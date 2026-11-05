@@ -1,0 +1,291 @@
+{
+ "packet": "T1",
+ "commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
+ "branch_with_evidence": "claude/t1-b0-evidence",
+ "environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "os": "Linux-6.18.44-fc-v236-x86_64-with-glibc2.39",
+  "cpus": 2,
+  "note": "Claude sandbox, not Codex environment"
+ },
+ "b0_definition": "Pocket 4 hook layer, every PRISM/HAND_FIGHT/CATCH_V2/PRISM_* env flag unset; effective flags recorded per run (empty)",
+ "commands": {
+  "capture": "python3 tools/t1_capture.py <seed> <short|reg> <out.json>  (fresh process per game; run from repo root; make_rosters(seed=seed); P4.run(... short= mode==short))",
+  "tests": "python3 <test_file>.py per file (pytest not installable)",
+  "perception": "python3 test_perception_multimatch.py (PRISM_I=1, NOT B0)"
+ },
+ "source_sha256": {
+  "Beastball Pocket 2 0(1).py": "a078e6b75a7ea85d09ea720ba0779854e9e91558d0f2973a72f0797d6b0780a5",
+  "pocket4_proto.py": "a53ac69ffeb059b8abb78c40634f115828bdb06a2f94def97f612c4e316b6a3d",
+  "pocket_capability_v37.py": "dad0b9828112c5a33286a0bb40b2d8d8c1388ac8cb74761c214ecfa24e6fd160",
+  "condition_layer_v2.py": "3e7067071d870aa7ec1713126caedc2afb8afa9eac864ee9cba7c1f006fde7f7",
+  "throwing_v1.py": "1457ad2e42cbb327e7840849d8acde49d745e20a5ece507eacca04cd82d727fc",
+  "ball_handling_v1.py": "d451f43fd0c7aea952a9ddb78f402e3c6c9aed5141a28e2882e6cbfdea2e6826",
+  "pose_engine_v0.py": "f1d65868b25ab62bad207ac5cb417a0262dc469d8176e71f6093a10864866601",
+  "positional_tendencies_v1.py": "cb780582442dda17098846b35bea9fba9643360e4350fe2e5afc8bf2456e7d04",
+  "tools/t1_capture.py": "ffd4f945dda3a0b6406cd86fef0d5928e2cdf339180e7b8e2aaa57a0aedb62c2"
+ },
+ "runs": [
+  {
+   "seed": 1,
+   "mode": "short",
+   "score": {
+    "A": 7,
+    "B": 3
+   },
+   "result": {
+    "winner": "A",
+    "method": "overtime",
+    "score": {
+     "A": 7,
+     "B": 3
+    },
+    "shootout": null
+   },
+   "n_events": 3789,
+   "log_sha256": "0cc709124037857276e6f86091047269e791ca0b85e86abb572ee6a6635465cf",
+   "result_sha256": "899f04cef5fcf8bbd1981a4789e9b4005111575c0401e9f29b77b09fd83572e2",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    19.36,
+    18.94
+   ]
+  },
+  {
+   "seed": 1,
+   "mode": "reg",
+   "score": {
+    "A": 49,
+    "B": 50
+   },
+   "result": {
+    "winner": "B",
+    "method": "regulation",
+    "score": {
+     "A": 49,
+     "B": 50
+    },
+    "shootout": null
+   },
+   "n_events": 27323,
+   "log_sha256": "9194161ec278b5293a31eabb75e34ecf0852ceaf0446f470feffe9d077e61079",
+   "result_sha256": "96935db74f6c9bbd3b1a4acd140984240bbe111c6e50399ea7b121548b1f7faa",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    195.25,
+    192.73
+   ]
+  },
+  {
+   "seed": 2,
+   "mode": "short",
+   "score": {
+    "A": 3,
+    "B": 4
+   },
+   "result": {
+    "winner": "B",
+    "method": "regulation",
+    "score": {
+     "A": 3,
+     "B": 4
+    },
+    "shootout": null
+   },
+   "n_events": 2928,
+   "log_sha256": "ac1807d2b2c61bbf1eacb3db58957bba47559572fd60f5db1ca460208e469515",
+   "result_sha256": "320f0a5b80ee8629f3f831986d6fa77e28750a4560b81342b29091ffee970ff2",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    14.65,
+    14.66
+   ]
+  },
+  {
+   "seed": 2,
+   "mode": "reg",
+   "score": {
+    "A": 61,
+    "B": 60
+   },
+   "result": {
+    "winner": "A",
+    "method": "regulation",
+    "score": {
+     "A": 61,
+     "B": 60
+    },
+    "shootout": null
+   },
+   "n_events": 27677,
+   "log_sha256": "61316a47fe34a2f663923a8167db93da25adbfb7f80024e9f208dcc537634c73",
+   "result_sha256": "3a5f3b8bf3fba284bd3656db66591290a02c092f7c1d75eaa225384af38f5c89",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    232.84,
+    230.48
+   ]
+  },
+  {
+   "seed": 3,
+   "mode": "short",
+   "score": {
+    "A": 3,
+    "B": 4
+   },
+   "result": {
+    "winner": "B",
+    "method": "regulation",
+    "score": {
+     "A": 3,
+     "B": 4
+    },
+    "shootout": null
+   },
+   "n_events": 3029,
+   "log_sha256": "262039da9869a50628ea98055677538b4439a5c5e5a4f319ffa7d8b1eb1e627c",
+   "result_sha256": "a538210fe0f8f2c60c80ec85b13a383676ea036a0e661414cbf606202b2617a0",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    14.96,
+    15.02
+   ]
+  },
+  {
+   "seed": 3,
+   "mode": "reg",
+   "score": {
+    "A": 61,
+    "B": 52
+   },
+   "result": {
+    "winner": "A",
+    "method": "regulation",
+    "score": {
+     "A": 61,
+     "B": 52
+    },
+    "shootout": null
+   },
+   "n_events": 27752,
+   "log_sha256": "77742297918db038d20ac88a4fcb940ca74089607e900050f375d6e542bd5617",
+   "result_sha256": "e282fcf63b0c9cb115c268b720f80dbaa6bdb3840939330fe152272cd3291aba",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    299.37,
+    296.69
+   ]
+  },
+  {
+   "seed": 4,
+   "mode": "short",
+   "score": {
+    "A": 0,
+    "B": 10
+   },
+   "result": {
+    "winner": "B",
+    "method": "regulation",
+    "score": {
+     "A": 0,
+     "B": 10
+    },
+    "shootout": null
+   },
+   "n_events": 2987,
+   "log_sha256": "9d6f5148b9c9ea0e485535312f5ca1d15b888c894a05a38bba0a03ca6ec57df8",
+   "result_sha256": "d99a496e49317bf0540a497388ee4012af7e9acc8bf0a186a5023f27e012ab72",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    14.97,
+    15.5
+   ]
+  },
+  {
+   "seed": 4,
+   "mode": "reg",
+   "score": {
+    "A": 54,
+    "B": 49
+   },
+   "result": {
+    "winner": "A",
+    "method": "regulation",
+    "score": {
+     "A": 54,
+     "B": 49
+    },
+    "shootout": null
+   },
+   "n_events": 28041,
+   "log_sha256": "4240279f43649d2ef85ab086cd49723c9ea8dab8c6ae31a12162dc2e2086f53f",
+   "result_sha256": "0e9bbce438e047a6df99e721e9feede3e3402a5c0c70daab996e58ed06d43f60",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    152.63,
+    151.48
+   ]
+  },
+  {
+   "seed": 5,
+   "mode": "short",
+   "score": {
+    "A": 2,
+    "B": 14
+   },
+   "result": {
+    "winner": "B",
+    "method": "regulation",
+    "score": {
+     "A": 2,
+     "B": 14
+    },
+    "shootout": null
+   },
+   "n_events": 2888,
+   "log_sha256": "7d1ca6d1e23d39d6816ccc928a8d62fd17c83cf7d8240f2bd5d8102d9af377e8",
+   "result_sha256": "2ded04712e6a20d7448385cb163fffa8f91b7d415029c7f64fd2b120b12ff980",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    16.88,
+    15.21
+   ]
+  },
+  {
+   "seed": 5,
+   "mode": "reg",
+   "score": {
+    "A": 60,
+    "B": 26
+   },
+   "result": {
+    "winner": "A",
+    "method": "regulation",
+    "score": {
+     "A": 60,
+     "B": 26
+    },
+    "shootout": null
+   },
+   "n_events": 27982,
+   "log_sha256": "6315522c80aec8dc75c001efcccfe092929c3e751de07c8a6846abade0480bf8",
+   "result_sha256": "8f8fc869bcf0619b0f9aa8994bbd868fbb7945f93647fc24aa97b71c0a3b185f",
+   "replay_identical": true,
+   "flags": {},
+   "wall_s": [
+    152.39,
+    155.9
+   ]
+  }
+ ]
+}

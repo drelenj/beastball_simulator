@@ -1,1 +1,18 @@
 test_beastball_locomotion_v31.py rc=1 secs=6 last:  FAILED (errors=1, expected failures=5) 
+test_beastball_locomotion_v32.py rc=0 secs=51 last:  OK (expected failures=5) 
+test_beastball_locomotion_v33.py rc=0 secs=38 last:  OK (expected failures=3) 
+test_beastball_locomotion_v34.py rc=0 secs=10 last:  OK (expected failures=2) 
+test_beastball_locomotion_v35.py rc=0 secs=6 last:  OK (expected failures=2) 
+test_beastball_locomotion_v36.py rc=0 secs=2 last:  OK (expected failures=2) 
+test_beastball_locomotion_v37.py rc=0 secs=4 last:  OK 
+test_beastball_unified_locomotion_v30.py rc=0 secs=0 last:  OK 
+test_locomotion_freeze_1_0.py rc=1 secs=0 last:  FAILED (errors=1) 
+test_pocket4_proto.py rc=0 secs=74 last:  OK 
+test_pocket_capability_v37.py rc=1 secs=0 last:                      ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ FileNotFoundError: [Errno 2] No such file or directory:
+test_pose_engine.py rc=0 secs=58 last: PASS strip hook only filters ALL PASS 
+test_pose_maneuvers.py rc=0 secs=1 last:  OK 
+test_prism_archer.py rc=0 secs=0 last:  OK 
+test_prism_comms.py rc=0 secs=1 last: PASS higher trust in the sender gives a heavier belief ALL PASS 
+test_prism_install.py rc=0 secs=189 last: PASS a global ratings override (sweeps) replaces per-athlete ratings ALL PASS 
+test_prism_v012.py rc=0 secs=1 last:  OK 
+ALLDONE
