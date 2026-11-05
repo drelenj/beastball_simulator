@@ -1,0 +1,45 @@
+team,name,position,overall,role,generated_archetype(old),report_archetype,margin,runner_up
+Ala_Lady_Reds,Talia Monroe,PDR,89,starter,passer,Tempo Predator,0.0154,Ghost
+Ala_Lady_Reds,Amara Saint-Claire,SCT,88,starter,receiver,Cutter,0.0103,Transition Scout
+Ala_Lady_Reds,Zola Baptiste,SCT,87,starter,receiver,Transition Scout,0.0159,Cutter
+Ala_Lady_Reds,Nia Makaafi,TRK,86,starter,runner,Transition Tracker,0.005,Shuttle
+Ala_Lady_Reds,Selah Okonkwo,SEN,93,starter,backer,Sentinel,1.0,
+Ala_Lady_Reds,Zuriana Woods,HNT,90,starter,safety,Apex Hunter,1.0,
+Ala_Lady_Reds,Kesi Valdez,TRK,85,starter,runner,Transition Tracker,0.0017,Shuttle
+Ala_Lady_Reds,Imani Fatu,TRP,91,starter,corner,Press Trapper,0.0177,Recovery Trapper
+Ala_Lady_Reds,Aziza Holloway,GRD,94,starter,lineman,Crusher,0.0061,Anchor
+Ala_Lady_Reds,Reina Omari,TRP,89,starter,corner,Press Trapper,0.0263,Recovery Trapper
+Ala_Lady_Reds,Makayla Tupuola,KPR,89,starter,keeper,Keeper,1.0,
+Ala_Lady_Reds,Sanaa Redmane,ARC,92,starter,archer,Archer,1.0,
+Ala_Lady_Reds,Leilani Brooks,PFD,83,bench,passer,Field Surgeon,0.0235,Conductor
+Ala_Lady_Reds,Marisol Adeyemi,STR,81,bench,forward,Bruiser,0.0099,Tower
+Ala_Lady_Reds,Keisha Talavera,TRK,78,bench,runner,Transition Tracker,0.0116,Shuttle
+Ala_Lady_Reds,Asha Faumuina,GRD,82,bench,lineman,Crusher,0.0305,Anchor
+Ala_Lady_Reds,Nala Washington,TRK,77,bench,runner,Transition Tracker,0.0103,Shuttle
+Ala_Lady_Reds,Teyana Solofa,TRP,89,bench,corner,Press Trapper,0.0101,Hybrid Trapper
+Ala_Lady_Reds,Minryi Velani,SEN,79,bench,backer,Sentinel,1.0,
+Ala_Lady_Reds,Kamaria Banks,PDR,81,bench,passer,Tempo Predator,0.0227,Far-Side Predator
+Ala_Lady_Reds,Samara Castillo,KPR,79,bench,keeper,Keeper,1.0,
+Ala_Lady_Reds,Noemi Fangborn,ARC,80,bench,archer,Archer,1.0,
+Xenar_Dzaku,Zahara Gravenight,STR,98,starter,forward,Bruiser,0.0122,Tower
+Xenar_Dzaku,Kiara Moreno,SCT,97,starter,receiver,Transition Scout,0.013,Cutter
+Xenar_Dzaku,Zola Sefu,TRK,91,starter,runner,Shuttle,0.0039,Overload Tracker
+Xenar_Dzaku,Sina Tuiasosopo,PFD,95,starter,passer,Field Surgeon,0.002,Conductor
+Xenar_Dzaku,Imani Dos Santos,HNT,91,starter,safety,Apex Hunter,1.0,
+Xenar_Dzaku,Teyana Okonkwo,HNT,87,starter,safety,Apex Hunter,1.0,
+Xenar_Dzaku,Alani James,TRK,88,starter,runner,Transition Tracker,0.0092,Shuttle
+Xenar_Dzaku,Kendra Pule,TRP,90,starter,corner,Press Trapper,0.0199,Recovery Trapper
+Xenar_Dzaku,Amina Mbeki,GRD,89,starter,lineman,Crusher,0.0273,Anchor
+Xenar_Dzaku,Celia Fuentes,TRP,87,starter,corner,Press Trapper,0.021,Archer Trapper
+Xenar_Dzaku,Brielle Vaito,KPR,90,starter,keeper,Keeper,1.0,
+Xenar_Dzaku,Malika Shadowbow,ARC,86,starter,archer,Archer,1.0,
+Xenar_Dzaku,Nala Figueroa,PDR,86,bench,passer,Tempo Predator,0.0382,Ghost
+Xenar_Dzaku,Samira Afolayan,STR,88,bench,forward,Bruiser,0.0264,Tower
+Xenar_Dzaku,Ayana Solis,SCT,82,bench,receiver,Cutter,0.0224,Transition Scout
+Xenar_Dzaku,Kehlani Faumuina,TRK,87,bench,runner,Shuttle,0.0049,Overload Tracker
+Xenar_Dzaku,Paloma Okoro,PFD,83,bench,passer,Field Surgeon,0.017,Conductor
+Xenar_Dzaku,Zainab Washington,TRP,85,bench,corner,Press Trapper,0.0168,Recovery Trapper
+Xenar_Dzaku,Sade Batista,GRD,89,bench,lineman,Crusher,0.0359,Anchor
+Xenar_Dzaku,Raven Mensah,SEN,84,bench,backer,Sentinel,1.0,
+Xenar_Dzaku,Amaya Katoa,KPR,78,bench,keeper,Keeper,1.0,
+Xenar_Dzaku,Nyota Dzakura,ARC,79,bench,archer,Archer,1.0,

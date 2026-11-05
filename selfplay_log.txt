@@ -1,0 +1,46 @@
+gen  1 opp=speed         best fit +4.51 (vs champ -0.07, vs speed +4.58) | confirm vs champ -9.30 vs opp -12.88 -> reject  [105s]
+gen  2 opp=contact       best fit +1.42 (vs champ -1.92, vs contact +3.34) | confirm vs champ -4.70 vs opp +1.02 -> reject  [192s]
+gen  3 opp=wide          best fit +10.62 (vs champ +5.57, vs wide +5.04) | confirm vs champ +5.67 vs opp +16.34 -> ACCEPT  [291s]
+   champion: {"width": 28.925, "support": 8.626, "pace": 0.75, "pass_pressure": 5.0, "shoot_distance": 23.0, "escort": 1, "escort_spacing": 2.741, "possession_patience": 0.5, "hunt_count": 4, "risk": 0.5, "arrow_interval": 16.841, "reserve": 2, "block_rate": 0.0, "block_reach": 8.515, "defense": "adaptive"}
+gen  4 opp=conservative  best fit +2.02 (vs champ +3.90, vs conservative -1.88) | confirm vs champ -2.99 vs opp -0.99 -> reject  [385s]
+gen  5 opp=zone_pressure best fit +6.40 (vs champ +4.29, vs zone_pressure +2.11) | confirm vs champ -6.29 vs opp +3.59 -> reject  [477s]
+gen  6 opp=hunt          best fit +5.54 (vs champ +2.48, vs hunt +3.07) | confirm vs champ -4.58 vs opp -6.34 -> reject  [580s]
+gen  7 opp=speed         best fit +6.50 (vs champ +2.35, vs speed +4.14) | confirm vs champ -4.67 vs opp +0.04 -> reject  [675s]
+gen  8 opp=contact       best fit +6.78 (vs champ -1.18, vs contact +7.96) | confirm vs champ -9.89 vs opp -10.97 -> reject  [778s]
+gen  9 opp=wide          best fit +7.24 (vs champ +3.12, vs wide +4.11) | confirm vs champ +3.16 vs opp +7.09 -> ACCEPT  [878s]
+   champion: {"width": 28.925, "support": 6.069, "pace": 0.75, "pass_pressure": 5.0, "shoot_distance": 20.806, "escort": 1, "escort_spacing": 2.741, "possession_patience": 0.496, "hunt_count": 4, "risk": 0.45, "arrow_interval": 16.841, "reserve": 3, "block_rate": 0.0, "block_reach": 8.515, "defense": "adaptive"}
+gen 10 opp=conservative  best fit +6.99 (vs champ +4.48, vs conservative +2.50) | confirm vs champ -1.12 vs opp -6.73 -> reject  [987s]
+gen 11 opp=zone_pressure best fit +6.46 (vs champ +2.36, vs zone_pressure +4.10) | confirm vs champ +3.65 vs opp +11.28 -> ACCEPT  [1085s]
+   champion: {"width": 28.925, "support": 6.51, "pace": 0.75, "pass_pressure": 5.0, "shoot_distance": 20.806, "escort": 1, "escort_spacing": 2.741, "possession_patience": 0.496, "hunt_count": 4, "risk": 0.703, "arrow_interval": 16.841, "reserve": 3, "block_rate": 0.0, "block_reach": 8.515, "defense": "adaptive"}
+gen 12 opp=hunt          best fit +3.04 (vs champ +4.18, vs hunt -1.14) | confirm vs champ -16.86 vs opp -9.40 -> reject  [1180s]
+gen 13 opp=speed         best fit +6.02 (vs champ +4.12, vs speed +1.90) | confirm vs champ +11.25 vs opp +0.74 -> ACCEPT  [1276s]
+   champion: {"width": 28.925, "support": 6.51, "pace": 0.747, "pass_pressure": 5.0, "shoot_distance": 20.806, "escort": 1, "escort_spacing": 2.549, "possession_patience": 0.496, "hunt_count": 3, "risk": 0.703, "arrow_interval": 16.841, "reserve": 3, "block_rate": 0.209, "block_reach": 8.515, "defense": "adaptive"}
+gen 14 opp=contact       best fit +6.62 (vs champ -0.03, vs contact +6.65) | confirm vs champ +0.28 vs opp -6.06 -> reject  [1372s]
+gen 15 opp=wide          best fit +11.47 (vs champ +6.39, vs wide +5.08) | confirm vs champ -3.88 vs opp +1.57 -> reject  [1473s]
+gen 16 opp=conservative  best fit +2.55 (vs champ +1.62, vs conservative +0.93) | confirm vs champ +5.69 vs opp -1.71 -> ACCEPT  [1579s]
+   champion: {"width": 30.079, "support": 6.51, "pace": 0.747, "pass_pressure": 5.931, "shoot_distance": 20.806, "escort": 1, "escort_spacing": 2.549, "possession_patience": 0.432, "hunt_count": 3, "risk": 0.691, "arrow_interval": 16.841, "reserve": 4, "block_rate": 0.209, "block_reach": 8.515, "defense": "adaptive"}
+gen 17 opp=zone_pressure best fit +10.17 (vs champ +4.10, vs zone_pressure +6.08) | confirm vs champ -11.67 vs opp +4.99 -> reject  [1678s]
+gen 18 opp=hunt          best fit +2.57 (vs champ -0.64, vs hunt +3.21) | confirm vs champ +3.93 vs opp +4.54 -> ACCEPT  [1778s]
+   champion: {"width": 28.154, "support": 6.51, "pace": 0.747, "pass_pressure": 5.931, "shoot_distance": 18.37, "escort": 0, "escort_spacing": 2.549, "possession_patience": 0.432, "hunt_count": 3, "risk": 0.829, "arrow_interval": 16.419, "reserve": 4, "block_rate": 0.307, "block_reach": 7.298, "defense": "adaptive"}
+gen 19 opp=speed         best fit +6.64 (vs champ +6.43, vs speed +0.22) | confirm vs champ +9.56 vs opp +6.94 -> ACCEPT  [1877s]
+   champion: {"width": 26.562, "support": 6.51, "pace": 0.747, "pass_pressure": 5.931, "shoot_distance": 18.37, "escort": 0, "escort_spacing": 2.549, "possession_patience": 0.344, "hunt_count": 3, "risk": 0.829, "arrow_interval": 15.67, "reserve": 4, "block_rate": 0.307, "block_reach": 9.8, "defense": "adaptive"}
+gen 20 opp=contact       best fit +5.16 (vs champ -3.25, vs contact +8.42) | confirm vs champ +1.62 vs opp +7.44 -> ACCEPT  [1972s]
+   champion: {"width": 31.082, "support": 9.468, "pace": 0.752, "pass_pressure": 2.527, "shoot_distance": 21.033, "escort": 0, "escort_spacing": 2.317, "possession_patience": 0.344, "hunt_count": 2, "risk": 0.829, "arrow_interval": 15.67, "reserve": 4, "block_rate": 0.307, "block_reach": 9.8, "defense": "adaptive"}
+gen 21 opp=wide          best fit +6.46 (vs champ +2.16, vs wide +4.30) | confirm vs champ -13.20 vs opp -3.49 -> reject  [2064s]
+gen 22 opp=conservative  best fit +7.10 (vs champ +4.95, vs conservative +2.15) | confirm vs champ +7.00 vs opp +4.72 -> ACCEPT  [2163s]
+   champion: {"width": 31.082, "support": 11.983, "pace": 0.623, "pass_pressure": 2.527, "shoot_distance": 23.682, "escort": 1, "escort_spacing": 2.049, "possession_patience": 0.344, "hunt_count": 3, "risk": 0.829, "arrow_interval": 15.67, "reserve": 4, "block_rate": 0.458, "block_reach": 9.8, "defense": "adaptive"}
+gen 23 opp=zone_pressure best fit +4.78 (vs champ +3.23, vs zone_pressure +1.55) | confirm vs champ +0.59 vs opp -1.02 -> reject  [2253s]
+gen 24 opp=hunt          best fit +3.48 (vs champ -0.73, vs hunt +4.21) | confirm vs champ +6.74 vs opp +8.53 -> ACCEPT  [2360s]
+   champion: {"width": 20.891, "support": 12.067, "pace": 0.654, "pass_pressure": 1.811, "shoot_distance": 23.682, "escort": 1, "escort_spacing": 2.049, "possession_patience": 0.344, "hunt_count": 3, "risk": 0.829, "arrow_interval": 16.254, "reserve": 4, "block_rate": 0.458, "block_reach": 9.8, "defense": "zone"}
+gen 25 opp=speed         best fit +8.17 (vs champ +4.42, vs speed +3.75) | confirm vs champ +8.05 vs opp +4.08 -> ACCEPT  [2460s]
+   champion: {"width": 15.546, "support": 11.436, "pace": 0.654, "pass_pressure": 4.326, "shoot_distance": 23.682, "escort": 0, "escort_spacing": 1.8, "possession_patience": 0.344, "hunt_count": 3, "risk": 0.747, "arrow_interval": 19.379, "reserve": 4, "block_rate": 0.488, "block_reach": 7.837, "defense": "zone"}
+gen 26 opp=contact       best fit +14.21 (vs champ +10.09, vs contact +4.12) | confirm vs champ -3.83 vs opp +1.06 -> reject  [2559s]
+gen 27 opp=wide          best fit +2.45 (vs champ +2.16, vs wide +0.29) | confirm vs champ +4.38 vs opp +10.71 -> ACCEPT  [2659s]
+   champion: {"width": 10.0, "support": 11.436, "pace": 0.495, "pass_pressure": 4.326, "shoot_distance": 20.166, "escort": 0, "escort_spacing": 1.8, "possession_patience": 0.344, "hunt_count": 4, "risk": 0.747, "arrow_interval": 18.883, "reserve": 4, "block_rate": 0.664, "block_reach": 7.837, "defense": "zone"}
+gen 28 opp=conservative  best fit +7.36 (vs champ +1.92, vs conservative +5.44) | confirm vs champ +2.41 vs opp +2.28 -> ACCEPT  [2754s]
+   champion: {"width": 10.0, "support": 14.226, "pace": 0.495, "pass_pressure": 4.996, "shoot_distance": 20.427, "escort": 0, "escort_spacing": 1.8, "possession_patience": 0.344, "hunt_count": 4, "risk": 0.747, "arrow_interval": 20.429, "reserve": 4, "block_rate": 0.664, "block_reach": 7.706, "defense": "zone"}
+gen 29 opp=zone_pressure best fit +5.39 (vs champ +2.23, vs zone_pressure +3.16) | confirm vs champ -8.45 vs opp +9.41 -> reject  [2855s]
+gen 30 opp=hunt          best fit -0.58 (vs champ +0.01, vs hunt -0.59) | confirm vs champ +2.54 vs opp +10.84 -> ACCEPT  [2954s]
+   champion: {"width": 15.767, "support": 14.226, "pace": 0.495, "pass_pressure": 4.996, "shoot_distance": 20.427, "escort": 0, "escort_spacing": 1.8, "possession_patience": 0.316, "hunt_count": 6, "risk": 0.455, "arrow_interval": 19.425, "reserve": 4, "block_rate": 0.664, "block_reach": 8.053, "defense": "hunt"}
+HOLDOUT champion vs: {"baseline": -2.66, "speed": 7.65, "contact": 24.13, "wide": -7.34, "conservative": 13.38, "zone_pressure": 17.27, "hunt": -15.47}
+done in 3263s

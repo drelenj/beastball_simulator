@@ -1,0 +1,42 @@
+team,player,pos,min,points,goals,shots,pass_kick_comp,pass_kick_att,receptions,interceptions,tackles,times_tackled,strips,fouls,fouls_drawn,penalties,k_catch,k_parry,k_body,arrows,controls
+Ala Lady Reds,Aziza Holloway,GRD,31.6,10,4,4,24,30,17,14,14,13,2,0,0,0,1,0,0,0,48
+Ala Lady Reds,Selah Okonkwo,SEN,32.4,1,1,1,16,23,13,13,14,14,0,1,1,1,0,0,0,0,43
+Ala Lady Reds,Imani Fatu,TRP,31.5,11,3,3,16,19,26,8,9,14,1,0,0,0,0,0,0,0,43
+Ala Lady Reds,Zuriana Woods,HNT,31.6,0,0,0,15,19,11,4,15,10,1,0,0,0,0,0,0,0,34
+Ala Lady Reds,Talia Monroe,PDR,31.4,0,0,0,21,27,18,4,11,14,2,0,0,0,0,0,0,0,50
+Ala Lady Reds,Reina Omari,TRP,27.5,0,0,0,14,19,6,5,2,6,1,3,0,3,0,0,0,0,28
+Ala Lady Reds,Teyana Solofa,TRP,32.3,0,0,1,12,17,13,7,11,17,1,1,1,0,0,0,0,0,36
+Ala Lady Reds,Amara Saint-Claire,SCT,32.2,1,1,0,11,26,10,2,5,10,0,0,0,0,0,0,0,0,40
+Ala Lady Reds,Zola Baptiste,SCT,32.8,0,0,0,9,13,12,1,11,14,0,2,1,1,0,0,0,0,35
+Ala Lady Reds,Nia Makaafi,TRK,32.3,0,0,0,22,25,23,2,14,14,1,0,0,0,0,0,0,0,42
+Ala Lady Reds,Makayla Tupuola,KPR,39.0,0,0,0,8,10,1,7,15,6,2,1,0,1,18,3,7,0,18
+Ala Lady Reds,Sanaa Redmane,ARC,40.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0
+Ala Lady Reds,Kesi Valdez,TRK,20.1,0,0,1,4,10,9,1,6,6,1,1,0,1,0,0,0,0,19
+Ala Lady Reds,Leilani Brooks,PFD,16.5,2,1,3,14,18,14,4,7,5,0,1,0,0,0,0,0,0,27
+Ala Lady Reds,Asha Faumuina,GRD,8.3,0,0,0,5,6,3,2,2,2,0,0,0,0,0,0,0,0,8
+Ala Lady Reds,Marisol Adeyemi,STR,17.9,8,3,1,12,21,27,3,10,22,0,0,0,0,0,0,0,0,48
+Ala Lady Reds,Kamaria Banks,PDR,7.4,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,1
+Ala Lady Reds,Minryi Velani,SEN,6.4,0,0,0,1,1,0,1,3,1,2,0,0,0,0,0,0,0,2
+Ala Lady Reds,Keisha Talavera,TRK,2.1,0,0,0,1,1,1,1,1,2,0,0,0,0,0,0,0,0,3
+Ala Lady Reds,Nala Washington,TRK,1.6,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,2
+Xenar Dzaku,Zahara Gravenight,STR,32.9,29,10,9,20,27,37,3,22,27,1,2,0,2,0,0,0,0,71
+Xenar Dzaku,Kiara Moreno,SCT,32.1,2,1,1,29,39,21,4,8,7,0,0,0,0,0,0,0,0,53
+Xenar Dzaku,Sina Tuiasosopo,PFD,31.7,3,1,1,31,37,17,13,13,12,3,0,0,1,0,0,0,0,52
+Xenar Dzaku,Zola Sefu,TRK,32.1,0,0,0,18,23,15,6,21,11,0,0,0,0,0,0,0,0,35
+Xenar Dzaku,Imani Dos Santos,HNT,33.0,1,1,1,11,21,7,9,13,8,1,0,2,0,0,0,0,0,34
+Xenar Dzaku,Kendra Pule,TRP,32.6,1,1,2,14,18,13,6,8,6,0,0,1,0,0,0,0,0,29
+Xenar Dzaku,Amina Mbeki,GRD,32.6,7,3,6,11,16,21,4,14,11,1,0,1,0,0,0,0,0,37
+Xenar Dzaku,Sade Batista,GRD,32.4,0,0,1,19,21,10,11,9,10,2,0,1,0,0,0,0,0,35
+Xenar Dzaku,Alani James,TRK,31.8,7,2,1,18,22,18,4,11,8,1,0,2,0,0,0,0,0,34
+Xenar Dzaku,Samira Afolayan,STR,31.4,13,5,6,35,43,52,5,17,27,1,1,0,0,0,0,0,0,80
+Xenar Dzaku,Brielle Vaito,KPR,40.1,0,0,0,9,10,2,5,10,3,1,0,0,0,14,3,2,0,13
+Xenar Dzaku,Malika Shadowbow,ARC,40.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0
+Xenar Dzaku,Teyana Okonkwo,HNT,21.8,2,1,1,7,12,7,1,8,7,0,0,0,0,0,0,0,0,22
+Xenar Dzaku,Celia Fuentes,TRP,16.1,0,0,0,8,13,7,0,3,1,0,0,0,0,0,0,0,0,14
+Xenar Dzaku,Kehlani Faumuina,TRK,9.8,0,0,0,6,8,7,1,4,4,0,0,0,0,0,0,0,0,12
+Xenar Dzaku,Nala Figueroa,PDR,10.7,9,3,2,3,6,10,2,4,5,0,0,1,0,0,0,0,0,14
+Xenar Dzaku,Zainab Washington,TRP,8.0,0,0,0,4,4,1,0,5,1,0,0,0,0,0,0,0,0,5
+Xenar Dzaku,Raven Mensah,SEN,5.3,0,0,0,3,4,1,4,1,2,0,0,0,0,0,0,0,0,6
+Xenar Dzaku,Paloma Okoro,PFD,2.0,0,0,0,2,2,1,0,1,0,0,0,0,0,0,0,0,0,2
+Xenar Dzaku,Ayana Solis,SCT,2.0,0,0,0,1,3,2,0,0,0,0,0,0,0,0,0,0,0,4
+Xenar Dzaku,Reserve 1,utility,0.4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

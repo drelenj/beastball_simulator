@@ -1,0 +1,285 @@
+{
+ "score": {
+  "A": 140,
+  "B": 156
+ },
+ "result": {
+  "winner": "B",
+  "method": "regulation",
+  "score": {
+   "A": 140,
+   "B": 156
+  },
+  "shootout": null
+ },
+ "off": [],
+ "shape": "sphere",
+ "seed": 1,
+ "names": {
+  "A0": {
+   "name": "A CB3",
+   "position": "CB",
+   "overall": 0.847,
+   "archetype": "corner"
+  },
+  "A1": {
+   "name": "A S1",
+   "position": "S",
+   "overall": 0.836,
+   "archetype": "safety"
+  },
+  "A2": {
+   "name": "A QB2",
+   "position": "QB",
+   "overall": 0.823,
+   "archetype": "passer"
+  },
+  "A3": {
+   "name": "A OL2",
+   "position": "OL",
+   "overall": 0.821,
+   "archetype": "lineman"
+  },
+  "A4": {
+   "name": "A WR3",
+   "position": "WR",
+   "overall": 0.809,
+   "archetype": "receiver"
+  },
+  "A5": {
+   "name": "A QB3",
+   "position": "QB",
+   "overall": 0.803,
+   "archetype": "passer"
+  },
+  "A6": {
+   "name": "A LB1",
+   "position": "LB",
+   "overall": 0.803,
+   "archetype": "backer"
+  },
+  "A7": {
+   "name": "A CB1",
+   "position": "CB",
+   "overall": 0.793,
+   "archetype": "corner"
+  },
+  "A8": {
+   "name": "A WR2",
+   "position": "WR",
+   "overall": 0.776,
+   "archetype": "receiver"
+  },
+  "A9": {
+   "name": "A RB2",
+   "position": "RB",
+   "overall": 0.739,
+   "archetype": "runner"
+  },
+  "A10": {
+   "name": "A K1",
+   "position": "K",
+   "overall": 0.626,
+   "archetype": "keeper"
+  },
+  "A11": {
+   "name": "A A1",
+   "position": "A",
+   "overall": 0.75,
+   "archetype": "archer"
+  },
+  "A12": {
+   "name": "A WR1",
+   "position": "WR",
+   "overall": 0.728,
+   "archetype": "receiver"
+  },
+  "A13": {
+   "name": "A LB3",
+   "position": "LB",
+   "overall": 0.727,
+   "archetype": "backer"
+  },
+  "A14": {
+   "name": "A OL3",
+   "position": "OL",
+   "overall": 0.724,
+   "archetype": "lineman"
+  },
+  "A15": {
+   "name": "A RB1",
+   "position": "RB",
+   "overall": 0.681,
+   "archetype": "runner"
+  },
+  "A16": {
+   "name": "A CB2",
+   "position": "CB",
+   "overall": 0.675,
+   "archetype": "corner"
+  },
+  "A17": {
+   "name": "A QB1",
+   "position": "QB",
+   "overall": 0.652,
+   "archetype": "passer"
+  },
+  "A18": {
+   "name": "A TE1",
+   "position": "TE",
+   "overall": 0.643,
+   "archetype": "forward"
+  },
+  "A19": {
+   "name": "A OL1",
+   "position": "OL",
+   "overall": 0.627,
+   "archetype": "lineman"
+  },
+  "A20": {
+   "name": "A S2",
+   "position": "S",
+   "overall": 0.627,
+   "archetype": "safety"
+  },
+  "A21": {
+   "name": "A LB2",
+   "position": "LB",
+   "overall": 0.621,
+   "archetype": "backer"
+  },
+  "B0": {
+   "name": "B S1",
+   "position": "S",
+   "overall": 0.858,
+   "archetype": "safety"
+  },
+  "B1": {
+   "name": "B QB1",
+   "position": "QB",
+   "overall": 0.845,
+   "archetype": "passer"
+  },
+  "B2": {
+   "name": "B S2",
+   "position": "S",
+   "overall": 0.826,
+   "archetype": "safety"
+  },
+  "B3": {
+   "name": "B LB3",
+   "position": "LB",
+   "overall": 0.821,
+   "archetype": "backer"
+  },
+  "B4": {
+   "name": "B CB2",
+   "position": "CB",
+   "overall": 0.774,
+   "archetype": "corner"
+  },
+  "B5": {
+   "name": "B CB1",
+   "position": "CB",
+   "overall": 0.754,
+   "archetype": "corner"
+  },
+  "B6": {
+   "name": "B WR3",
+   "position": "WR",
+   "overall": 0.739,
+   "archetype": "receiver"
+  },
+  "B7": {
+   "name": "B OL3",
+   "position": "OL",
+   "overall": 0.73,
+   "archetype": "lineman"
+  },
+  "B8": {
+   "name": "B WR2",
+   "position": "WR",
+   "overall": 0.725,
+   "archetype": "receiver"
+  },
+  "B9": {
+   "name": "B RB1",
+   "position": "RB",
+   "overall": 0.721,
+   "archetype": "runner"
+  },
+  "B10": {
+   "name": "B K1",
+   "position": "K",
+   "overall": 0.649,
+   "archetype": "keeper"
+  },
+  "B11": {
+   "name": "B A1",
+   "position": "A",
+   "overall": 0.7,
+   "archetype": "archer"
+  },
+  "B12": {
+   "name": "B QB2",
+   "position": "QB",
+   "overall": 0.711,
+   "archetype": "passer"
+  },
+  "B13": {
+   "name": "B LB1",
+   "position": "LB",
+   "overall": 0.69,
+   "archetype": "backer"
+  },
+  "B14": {
+   "name": "B TE1",
+   "position": "TE",
+   "overall": 0.676,
+   "archetype": "forward"
+  },
+  "B15": {
+   "name": "B OL1",
+   "position": "OL",
+   "overall": 0.675,
+   "archetype": "lineman"
+  },
+  "B16": {
+   "name": "B WR1",
+   "position": "WR",
+   "overall": 0.673,
+   "archetype": "receiver"
+  },
+  "B17": {
+   "name": "B OL2",
+   "position": "OL",
+   "overall": 0.673,
+   "archetype": "lineman"
+  },
+  "B18": {
+   "name": "B QB3",
+   "position": "QB",
+   "overall": 0.672,
+   "archetype": "passer"
+  },
+  "B19": {
+   "name": "B CB3",
+   "position": "CB",
+   "overall": 0.665,
+   "archetype": "corner"
+  },
+  "B20": {
+   "name": "B RB2",
+   "position": "RB",
+   "overall": 0.627,
+   "archetype": "runner"
+  },
+  "B21": {
+   "name": "B LB2",
+   "position": "LB",
+   "overall": 0.625,
+   "archetype": "backer"
+  }
+ },
+ "wall_s": 138.97538375854492
+}

@@ -1,0 +1,12 @@
+PRISM_BEST
+(20, 67.1) goal 1.00 touch 0.00 n 26
+(30, 67.1) goal 1.00 touch 0.00 n 26
+(40, 67.1) goal 1.00 touch 0.00 n 26
+(40, 101.0) goal 1.00 touch 0.00 n 26
+(60, 101.0) goal 1.00 touch 0.00 n 26
+PRISM_AVG70
+(20, 67.1) goal 1.00 touch 0.00 n 26
+(30, 67.1) goal 1.00 touch 0.00 n 26
+(40, 67.1) goal 1.00 touch 0.00 n 26
+(40, 101.0) goal 1.00 touch 0.00 n 26
+(60, 101.0) goal 1.00 touch 0.00 n 26

@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beastball Maneuver Lab</title>
+<style>
+  :root{
+    --bg:#eef3ee; --panel:#ffffff; --line:#c3d3c7; --ink:#14221a; --dim:#51665a;
+    --run:#c25e00; --tack:#2a5bd7; --ok:#1f8a3b; --warn:#9a6a00; --bad:#c43232;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0c1a12; --panel:#101f16; --line:#2a4333; --ink:#e8efe9; --dim:#93a899;
+      --run:#ff9a2e; --tack:#5b8cff; --ok:#7fe08a; --warn:#ffd36b; --bad:#ff6b6b;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c1a12; --panel:#101f16; --line:#2a4333; --ink:#e8efe9; --dim:#93a899;
+    --run:#ff9a2e; --tack:#5b8cff; --ok:#7fe08a; --warn:#ffd36b; --bad:#ff6b6b;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overscroll-behavior:none;
+    -webkit-user-select:none;user-select:none}
+  body{display:flex;flex-direction:column;}
+  #bar{display:flex;gap:8px;padding:8px 16px;background:var(--panel);border-bottom:1px solid var(--line);align-items:center}
+  #bar .title{font-weight:700;letter-spacing:.04em;font-size:12px;line-height:1.15;text-transform:uppercase;color:var(--dim);margin-right:auto}
+  button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:8px 12px;min-height:40px;touch-action:manipulation;cursor:pointer;white-space:nowrap}
+  button:hover{border-color:var(--dim)}
+  button:focus-visible{outline:2px solid var(--run);outline-offset:2px}
+  button.primary{border-color:var(--ok);font-weight:600}
+  #ladder{display:flex;gap:6px;padding:6px 16px;background:var(--panel);border-bottom:1px solid var(--line);align-items:center}
+  #ladder .lbl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+  .chip{flex:1;min-height:38px;padding:4px 1px;font-size:11px;position:relative;overflow:hidden}
+  .chip[aria-pressed="true"]{border-color:var(--ok);font-weight:700;box-shadow:inset 0 0 0 1px var(--ok)}
+  .chip .fill{position:absolute;left:0;bottom:0;height:3px;background:var(--warn);width:0}
+  #stage{position:relative;flex:1;min-height:0}
+  canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
+  #pad{position:absolute;right:12px;bottom:max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,62px);gap:6px}
+  #pad button{min-height:48px;padding:4px;font-size:12px;font-weight:600;background:color-mix(in srgb,var(--panel) 88%,transparent)}
+  #pad button.hold{border-color:var(--run)}
+  #pad button.on{border-color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+  #sheet{position:absolute;inset:0;background:color-mix(in srgb,var(--bg) 97%,transparent);display:none;flex-direction:column;padding:12px 16px;gap:10px;overflow:hidden}
+  #sheet.open{display:flex}
+  #tabs{display:flex;gap:6px;flex-wrap:wrap}
+  #tabs button[aria-pressed="true"]{border-color:var(--ok);font-weight:700}
+  #rows{flex:1;overflow-y:auto;display:grid;gap:6px;align-content:start}
+  .row{display:grid;grid-template-columns:1fr 64px 44px 44px;gap:6px;align-items:center}
+  .row .val{text-align:center;color:var(--warn);font-variant-numeric:tabular-nums}
+  .row button{padding:0;font-size:20px;line-height:1}
+  #foot{display:flex;gap:8px}#foot button{flex:1}
+  .hint{color:var(--dim);font-size:12px}
+</style>
+</head>
+<body>
+<div id="bar">
+  <span class="title">Beastball Maneuver Lab</span>
+  <button id="b-slow" type="button">Slow 0.5x</button>
+  <button id="b-reset" type="button">Reset</button>
+  <button id="b-tune" type="button" class="primary">Tune</button>
+</div>
+<div id="ladder" aria-label="Carry pose"><span class="lbl">Pose</span></div>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="pad"></div>
+  <div id="sheet" role="dialog" aria-label="Tuning">
+    <div id="tabs"></div>
+    <div id="rows"></div>
+    <div class="hint" id="hint"></div>
+    <div id="foot"><button id="b-defaults" type="button">Restore defaults</button><button id="b-close" type="button" class="primary">Done</button></div>
+  </div>
+</div>
+<script>
+"use strict";
+/* ============================================================================================
+   BEASTBALL MANEUVER LAB  (spec v0.1.1)  -  carrier pose ladder, juke / spin / stiff-arm / truck, touch pass.
+   Locomotion and contact follow the chase-lab standards; every number marked [P] is provisional and editable in TUNE.
+   Eligibility rules (which pose each maneuver needs) are [C] canon and are NOT tunable.
+   ============================================================================================ */
+const MPH = 0.44704, G = 9.81;
+const clamp = (x, a, b) => x < a ? a : x > b ? b : x;
+const wrapPi = a => { a = (a + Math.PI) % (2 * Math.PI); if (a < 0) a += 2 * Math.PI; return a - Math.PI; };
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+const DEFAULT_STD = {
+  top_speed: 100 * MPH, accel_max: 35, decel_max: 30, traction_g: 6, lat_g_max: 5, turn_cost: .12,
+  cut_mult: 1.6, cut_cost: .60, cut_time: .30, cut_cooldown: .80, spin_cap: 14, slide_decel: 6,
+  fatigue_floor: .70, drain_time: 20, recover_time: 25, mass: 197, radius: .6, push_n_per_kg: 35, balance_mps: 7,
+  brace_bonus: 1.6, behind_mult: 1.5, trip_mult: 1.5, wrap_front: 1, wrap_side: .85, wrap_behind: .55,
+  escape_k: .9, leg_drive: .5, down_speed: 2, field: 100,
+  prism_def: 0, perc_dt: .1, perc_comp: .5, cone_min: 35, cone_span: 85, pos_sig: .25, vel_sig: 1.0, radar_pos: 1.2, radar_vel: 4, lapse_rate: 1.2, lapse_len: .25, tell_det_min: .35, antic_gain: 0, antic_horizon: .2, judge_on: 1, j_blend_pow: 1, j_hit_r: 1.0, j_hit_w: .6, p_evade: .5, j_cut_k: .5, j_ok_lo: 11, j_ok_span: 4, j_horizon: 1.0, close_range: 8, breakdown_s: .5, close_throttle: .45, close_lead: .12,   // [P] defender closing technique: ease off and mirror inside close_range metres
+  tackle_reach: 1.3, reach_impulse: .7, reach_wrap: .5, trip_p: .8, stiff_cover_tol: .3, stiff_base: .6, stiff_k: 1.0, trip_reach_pen: .3, trip_speed_gain: .03,   // [P] a tackler's lunge beyond body contact (arms, ankle wrap)
+  // ---- maneuvers [P]
+  juke_offset_min: .7, juke_offset_agi: .9, juke_speed_cost: .10,
+  spin_speed_cost: .18, spin_offset: .5, spin_wrap_mult: .5, spin_side_mult: .95,
+  stiff_dvc: .4, stiff_dvd: .7, stiff_wq: .6,
+  truck_dvd: 1.1, truck_brace: 1.15,
+  fumble_k: .5,
+  cost_juke: .02, cost_spin: .03, cost_stiff: .02, cost_truck: .05,
+  // ---- poses [P]
+  step_ms: 150, tell_juke: 200, tell_spin: 200, tell_stiff: 200, tell_truck: 250,
+  exec_juke: 250, exec_spin: 350, exec_stiff: 400, exec_truck: 300,
+  // ---- throw [P]
+  throw_speed: 30, touch_power: .6, touch_sigma: .25,
+};
+const STD = Object.assign({}, DEFAULT_STD);
+
+/* ---------------------------------------------------------------- pose state machine (port of pose_maneuvers_v0.py) */
+const POSES = ['loaded', 'extended', 'exposed', 'tucked', 'braced'];
+const IDX = {}; POSES.forEach((p, i) => IDX[p] = i);
+const ALLOWED = { juke: ['exposed', 'extended', 'tucked'], spin: ['exposed', 'tucked', 'braced'], stiffarm: ['exposed', 'tucked'], truck: ['tucked', 'braced'] };   // [C]
+const STRIP = { braced: 1.0, tucked: .8, exposed: .45, extended: .3, loaded: .25 };
+const stepsBetween = (a, b) => Math.abs(IDX[a] - IDX[b]);
+const execMs = k => ({ juke: STD.exec_juke, spin: STD.exec_spin, stiffarm: STD.exec_stiff, truck: STD.exec_truck })[k];
+const tellMs = k => ({ juke: STD.tell_juke, spin: STD.tell_spin, stiffarm: STD.tell_stiff, truck: STD.tell_truck })[k];
+function nearestAllowed(pose, kind){
+  const sorted = ALLOWED[kind].slice().sort((a, b) => IDX[b] - IDX[a]); let best = sorted[0];
+  for (const p of sorted) if (stepsBetween(pose, p) < stepsBetween(pose, best)) best = p;
+  return best;
+}
+class PoseFSM {
+  constructor(pose = 'tucked'){
+    this.pose = pose; this.goal = pose; this.step_left = 0; this.step_to = pose; this.pending = null;
+    this.tell_left = 0; this.exec_left = 0; this.active = null; this.pinned = false; this.log = []; this.t = 0;
+  }
+  get in_transition(){ return this.step_left > 0; }
+  tell(){ return this.tell_left > 0 ? this.pending : null; }
+  next_pose(){ return this.step_left > 0 ? this.step_to : this.pose; }
+  strip_resistance(){
+    let r = STRIP[this.pose];
+    if (this.in_transition) r = Math.min(r, STRIP[this.next_pose()]) * .8;
+    return r;
+  }
+  can_throw(){ return !this.pinned && (this.pose === 'loaded' || this.pose === 'extended') && !this.in_transition; }
+  throw_ready_ms(kind){ return stepsBetween(this.pose, kind === 'full' ? 'loaded' : 'extended') * STD.step_ms; }
+  begin_step(){
+    const a = IDX[this.pose], b = IDX[this.goal];
+    if (a !== b){ this.step_to = POSES[a + (b > a ? 1 : -1)]; this.step_left = STD.step_ms; }
+  }
+  request_pose(target){
+    if (this.active || this.tell_left > 0) return false;
+    if (this.pinned && (target === 'loaded' || target === 'extended')) return false;
+    this.goal = target;
+    if (this.pose !== this.goal && !this.in_transition) this.begin_step();
+    return true;
+  }
+  request_pose_force(target){
+    if (this.pinned && (target === 'loaded' || target === 'extended')){ this.pending = null; return; }
+    this.goal = target;
+    if (this.pose !== this.goal && !this.in_transition) this.begin_step();
+  }
+  start_maneuver(kind){
+    if (this.active || this.pending) return null;
+    this.pending = kind;
+    if (ALLOWED[kind].indexOf(this.pose) < 0) this.request_pose_force(nearestAllowed(this.pose, kind));
+    else if (!this.in_transition) this.begin_tell();
+    return stepsBetween(this.pose, this.goal) * STD.step_ms + (this.in_transition ? Math.max(0, this.step_left - STD.step_ms) : 0);
+  }
+  begin_tell(){ this.tell_left = tellMs(this.pending); this.log.push([this.t, 'tell', this.pending]); }
+  on_contact(){
+    const ev = this.in_transition ? 'abort_transition' : (this.tell_left > 0 ? 'cancel_tell' : (this.active ? 'interrupt' : (this.pending ? 'cancel_pending' : null)));
+    this.step_left = 0; this.goal = this.pose; this.tell_left = 0;
+    if (this.active){ this.log.push([this.t, 'interrupted', this.active]); this.active = null; this.exec_left = 0; }
+    if (ev) this.log.push([this.t, ev, this.pending]);
+    this.pending = null;
+  }
+  step(dtMs){
+    for (let i = 0; i < dtMs; i++){
+      this.t++;
+      if (this.step_left > 0){
+        this.step_left--;
+        if (this.step_left === 0){
+          this.pose = this.step_to; this.log.push([this.t, 'pose', this.pose]);
+          if (this.pose !== this.goal) this.begin_step();
+          else if (this.pending && ALLOWED[this.pending].indexOf(this.pose) >= 0) this.begin_tell();
+        }
+      } else if (this.tell_left > 0){
+        this.tell_left--;
+        if (this.tell_left === 0){
+          this.active = this.pending; this.pending = null; this.exec_left = execMs(this.active); this.log.push([this.t, 'start', this.active]);
+        }
+      } else if (this.active){
+        this.exec_left--;
+        if (this.exec_left === 0){ this.log.push([this.t, 'done', this.active]); this.active = null; }
+      }
+    }
+  }
+}
+
+/* ---------------------------------------------------------------- body locomotion (chase-lab standards) */
+const RUNNER = { speed: .85, accel: .85, decel: .85, agility: .85, strength: .85, technique: .85, stamina: .85, throwPower: .8, throwAccuracy: .85 };
+const DEFENDER = { judgment: 0, speed: .85, accel: .85, decel: .85, agility: .85, strength: .85, technique: .85, stamina: .85, reaction: .6, instinct: .5, vision: .6, awareness: .5, clarity: .6, focus: .8, anticipation: .5 };
+class Player {
+  constructor(x, y, h, r){
+    this.x = x; this.y = y; this.h = h; this.sp = 0; this.r = Object.assign({}, r); this.state = 'free'; this.stumble_t = 0;
+    this.E = 1; this.cut_t = 0; this.cut_cd = 0; this.cutting = false; this.brace = false; this.alat = 0;
+  }
+  get vx(){ return Math.cos(this.h) * this.sp; }
+  get vy(){ return Math.sin(this.h) * this.sp; }
+  vtop(){ return STD.top_speed * (.5 + .5 * this.r.speed); }
+  vmax(){ return this.vtop() * (STD.fatigue_floor + (1 - STD.fatigue_floor) * this.E); }
+  fatigue(dt){
+    const I = clamp(this.sp / this.vtop(), 0, 1.2), sta = this.r.stamina;
+    const dE = I > .5 ? -((I - .5) / .5) / (STD.drain_time * sta) : ((.5 - I) / .5) * sta / STD.recover_time;
+    this.E = clamp(this.E + dE * dt, 0, 1);
+  }
+  move(dt){ this.x += Math.cos(this.h) * this.sp * dt; this.y += Math.sin(this.h) * this.sp * dt; }
+  step(dt, sx, sy, cut, brace){
+    this.cut_cd = Math.max(0, this.cut_cd - dt);
+    if (this.state === 'down'){ this.sp = Math.max(0, this.sp - STD.slide_decel * dt); this.move(dt); this.fatigue(dt); this.cutting = false; return; }
+    if (this.state === 'stumble'){ this.stumble_t -= dt; if (this.stumble_t <= 0) this.state = 'free'; }
+    const stum = this.state === 'stumble', mag = Math.min(1, Math.hypot(sx, sy)), vmax = this.vmax();
+    if (cut && this.cut_t <= 0 && this.cut_cd <= 0 && mag > .2 && this.sp > 3 && !stum){ this.cut_t = STD.cut_time; this.cut_cd = STD.cut_cooldown; }
+    this.cutting = this.cut_t > 0; this.cut_t = Math.max(0, this.cut_t - dt); this.brace = !!brace;
+    let tgt = mag * vmax; if (this.brace) tgt = Math.min(tgt, .40 * vmax); if (stum) tgt = Math.min(tgt, .50 * vmax);
+    const mult = this.cutting ? STD.cut_mult : 1, A = STD.traction_g * G * mult;
+    let aLatCap = Math.min(this.r.agility * STD.lat_g_max * G * mult, A); if (stum) aLatCap *= .5;
+    let used = 0;
+    if (mag > .15){
+      const err = wrapPi(Math.atan2(sy, sx) - this.h), wMax = Math.min(aLatCap / Math.max(this.sp, 1), STD.spin_cap);
+      const dh = clamp(err, -wMax * dt, wMax * dt); this.h += dh; used = this.sp * Math.abs(dh) / dt;
+    }
+    this.alat = used;
+    const avail = Math.sqrt(Math.max(0, A * A - used * used)); let longA;
+    if (this.sp < tgt){ let drive = this.r.accel * STD.accel_max * Math.max(0, 1 - this.sp / vmax); drive *= clamp((tgt - this.sp) / 1, 0, 1); longA = Math.min(drive, avail); if (stum) longA *= .5; }
+    else if (this.sp > vmax * 1.001 && mag > .95) longA = -3;
+    else longA = -Math.min(this.r.decel * STD.decel_max, avail) * clamp((this.sp - tgt) / 1.5, 0, 1);
+    longA -= (this.cutting ? STD.cut_cost : STD.turn_cost) * used;
+    this.sp = Math.max(0, this.sp + longA * dt); this.move(dt); this.fatigue(dt);
+  }
+}
+
+/* ---------------------------------------------------------------- the world: carrier (with pose + maneuvers), one defender, one receiver */
+class World {
+  constructor(opts = {}){
+    this.seed = opts.seed === undefined ? (Math.random() * 1e9) | 0 : opts.seed; this.rng = mulberry32(this.seed);
+    const rr = Object.assign({}, RUNNER, opts.runner || {}), dr = Object.assign({}, DEFENDER, opts.defender || {});
+    this.c = new Player(50, 92, -Math.PI / 2, rr); this.c.sp = opts.startSpeed === undefined ? 0 : opts.startSpeed;
+    const off = opts.defOffset === undefined ? (this.rng() * 2 - 1) * 10 : opts.defOffset;
+    this.d = new Player(50 + off, opts.defY === undefined ? 62 : opts.defY, Math.PI / 2, dr);
+    this.pose = new PoseFSM(opts.startPose || 'tucked'); this.logSeen = 0;
+    this.man = null; this.t = 0; this.msAcc = 0; this.result = null; this.info = ''; this.grap = null; this.contact_cd = 0;
+    this.hist = []; this.dRead = null; this.expect = 0; this.dBrace = false;
+    this.recv = { x: 50 + (this.rng() < .5 ? -1 : 1) * (10 + this.rng() * 6), y: 68 };
+    this.ball = null; this.events = []; this.trail_c = []; this.trail_d = []; this._tt = 0; this.stiffNow = false;
+  }
+  /* ---- commands from the player or a bot */
+  setPose(p){ return this.pose.request_pose(p); }
+  maneuver(kind, side){
+    if (this.result || this.ball || this.grap) return null;
+    this.pendSide = side || (this.c.x >= this.d.x ? 1 : -1);
+    return this.pose.start_maneuver(kind);
+  }
+  throwBall(kind){
+    if (this.result || this.ball) return;
+    const ready = kind === 'full' ? (this.pose.pose === 'loaded' && !this.pose.in_transition && !this.pose.pinned) : this.pose.can_throw();
+    if (ready && !this.grap) return this.release(kind);
+    if (this.pose.pinned) return;
+    this.pendThrow = kind; this.pose.request_pose(kind === 'full' ? 'loaded' : 'extended');
+  }
+  release(kind){
+    const c = this.c, touch = kind !== 'full' && this.pose.pose === 'extended';
+    const power = (.6 + .4 * c.r.throwPower) * (touch ? STD.touch_power : 1), v = STD.throw_speed * power;
+    const dx = this.recv.x - c.x, dy = this.recv.y - c.y, dist = Math.hypot(dx, dy), range = v * 1.5, T = dist / v;
+    const sigma = 1.2 * (1.3 - c.r.throwAccuracy) * (touch ? 1 + STD.touch_sigma * (1 - c.r.throwAccuracy) : 1);
+    const ex = (this.rng() - .5) * 2 * sigma, ey = (this.rng() - .5) * 2 * sigma;
+    this.ball = { t0: this.t, T, x0: c.x, y0: c.y, tx: this.recv.x + ex, ty: this.recv.y + ey, v, dist, range, touch, err: Math.hypot(ex, ey) };
+    this.pendThrow = null; this.events.push(['throw', kind, +v.toFixed(1), +dist.toFixed(1), touch]);
+  }
+  /* ---- the defender: pursuit with a reaction delay; reads tells with probability = Instinct */
+  observed(){
+    const d = this.d, r = d.r, dt = this.lastDt || .01;
+    // focus lapse: while not watching him the picture freezes (adds staleness)
+    if (STD.prism_def && this.t >= (this.lapseUntil || 0) && this.rng() < STD.lapse_rate * (1 - (r.focus ?? 1)) * dt) this.lapseUntil = this.t + STD.lapse_len;
+    const lapsing = STD.prism_def && this.t < (this.lapseUntil || 0);
+    if (lapsing && this.frozen) return this.frozen;
+    if (STD.prism_def && this.pTick !== undefined && this.t - this.pTick < STD.perc_dt && this.frozen && !lapsing) return this.frozen;   // PRISM ticks at 10 Hz; the last picture is projected forward in defenderCmd
+    const delay = Math.max(0, .25 * (1.3 - .6 * r.reaction) - (STD.prism_def ? STD.perc_dt * STD.perc_comp : 0)); const tt = this.t - delay;
+    let o = this.hist[0] || { x: this.c.x, y: this.c.y, vx: 0, vy: 0, tell: null, h: this.c.h };
+    for (const s of this.hist){ if (s.t <= tt) o = s; else break; }
+    if (!STD.prism_def) return o;
+    o = Object.assign({}, o);
+    // cone (Vision) vs radar (Awareness): a carrier outside the cone is only sensed coarsely and his tells are invisible
+    const brg = Math.atan2(o.y - d.y, o.x - d.x), off = Math.abs(wrapPi(brg - d.h)) * 180 / Math.PI;
+    const half = (STD.cone_min + STD.cone_span * (r.vision ?? .6)) / 2, inCone = off <= half;
+    const ps = inCone ? STD.pos_sig * (1.3 - (r.clarity ?? .6)) : STD.radar_pos * (1.3 - (r.awareness ?? .5));
+    const vs = inCone ? STD.vel_sig * (1.3 - (r.clarity ?? .6)) : STD.radar_vel * (1.3 - (r.awareness ?? .5));
+    const g = () => (this.rng() + this.rng() + this.rng() - 1.5) * 2;   // ~N(0,1)
+    o.x += g() * ps; o.y += g() * ps; o.vx += g() * vs; o.vy += g() * vs;
+    // Anticipation: turn rate from the last ~.15 s of the observed track, carried forward (intent, not just position)
+    let wob = 0; for (let i = this.hist.length - 1; i >= 0; i--){ const q = this.hist[i]; if (q.t <= o.t - .15){ wob = wrapPi(o.h - q.h) / .15; break; } }
+    o.omega = wob * (r.anticipation ?? .5) * STD.antic_gain;
+    // tell detection: needs the cone and enough Clarity; decided once per tell window
+    if (o.tell){
+      if (this.tellDet === undefined) this.tellDet = inCone && this.rng() < STD.tell_det_min + (1 - STD.tell_det_min) * (r.clarity ?? .6);
+      if (!this.tellDet) o.tell = null;
+    } else this.tellDet = undefined;
+    if (!lapsing){ this.frozen = o; this.pTick = this.t; }
+    return o;
+  }
+  /* Judgment: choose the closing throttle by scoring options against the evasion prior. Options considered grow with Judgment. */
+  commitThrottle(o, dist, rx, ry){
+    const d = this.d, J = d.r.judgment ?? 0;
+    if (!STD.judge_on || J <= 0) return STD.close_throttle;
+    const order = [STD.close_throttle, .3, .6, .2, .9], nopt = 1 + Math.round(4 * J), cand = order.slice(0, nopt);
+    if (this._jt !== undefined && this.t - this._jt < .1) return this._jv;
+    const lag = (this.t - o.t) + .25 * (1.3 - .6 * d.r.reaction), c = this.c;
+    const uxn = rx / dist, uyn = ry / dist, vcl = Math.max(0, -(o.vx * uxn + o.vy * uyn));   // carrier closing component
+    let best = -1, bv = cand[0];
+    for (const thr of cand){
+      const tc0 = dist / Math.max(2, d.sp + vcl), vd = clamp(thr * d.vmax(), d.sp - STD.decel_max * d.r.decel * tc0, d.sp + STD.accel_max * d.r.accel * tc0), cl = vd + vcl, tc = Math.max(.05, dist / Math.max(2, cl));
+      const Sd = .5 * STD.lat_g_max * G * Math.pow(Math.max(0, tc - lag), 2) * STD.j_cut_k;
+      const Sc = .5 * STD.cut_mult * STD.lat_g_max * G * Math.pow(Math.min(tc, STD.cut_time), 2) * STD.j_cut_k * (.5 + .5 * c.r.agility);
+      const pMiss = clamp((Sc - Sd - STD.j_hit_r) / STD.j_hit_w, 0, 1);
+      const pOk = clamp((cl - STD.j_ok_lo) / STD.j_ok_span, 0, 1);
+      const sc = STD.p_evade * (1 - pMiss) + (1 - STD.p_evade) * pOk;
+      if (sc > best + 1e-9){ best = sc; bv = thr; }
+    }
+    this._jt = this.t; this._jv = bv; return bv;
+  }
+  defenderCmd(){
+    const d = this.d; let o = this.observed();
+    if (o.tell && !this.dRead){
+      const ok = this.rng() < d.r.instinct; this.dRead = { kind: o.tell, ok, side: o.side };
+      if (o.tell === 'juke' || o.tell === 'spin') this.expect = ok ? o.side : (this.rng() < .5 ? -1 : 1) * (this.rng() < .5 ? 1 : -1);
+      if (o.tell === 'truck' && ok) this.dBrace = true;
+    }
+    if (!o.tell && this.dRead && !this.pose.tell() && !this.pose.active){ this.dRead = null; this.expect = 0; this.dBrace = false; }
+    const age = this.t - o.t, ox = o.x + o.vx * age, oy = o.y + o.vy * age;   // project the stale sighting forward at its observed velocity (what the belief does)
+    const rx = ox - d.x, ry = oy - d.y, dist = Math.hypot(rx, ry) || 1e-6;
+    const ov = Math.hypot(o.vx, o.vy), tgo = dist / Math.max(d.sp + ov * .5, 8);
+    if (o.omega){ const th = clamp(o.omega * (this.t - o.t + STD.antic_horizon + .85 * tgo), -1.2, 1.2), cs = Math.cos(th), sn = Math.sin(th), ovx = o.vx * cs - o.vy * sn, ovy = o.vx * sn + o.vy * cs; o = Object.assign({}, o, { vx: ovx, vy: ovy }); }
+    const lead = .85 * tgo, perpx = -Math.sin(o.h), perpy = Math.cos(o.h), shift = this.expect * (STD.juke_offset_min + STD.juke_offset_agi * this.c.r.agility) * .8;
+    let ax = ox + o.vx * lead + perpx * shift, ay = oy + o.vy * lead + perpy * shift, thr = 1;
+    const closeR = Math.max(STD.close_range, STD.breakdown_s * Math.max(0, (d.vx * rx + d.vy * ry) / dist - (o.vx * rx + o.vy * ry) / dist));   // breakdown distance grows with closing speed
+    if (dist < closeR){            // closing technique: aim at where he is (plus a short lead), and slow so the body can still turn
+      const k = clamp((dist - 2) / (closeR - 2), 0, 1), cl = STD.close_lead;
+      ax = ox + o.vx * cl + perpx * shift * k; ay = oy + o.vy * cl + perpy * shift * k;
+      const ct = this.commitThrottle(o, dist, rx, ry);
+      thr = ct + (1 - ct) * Math.pow(k, STD.j_blend_pow);
+    }
+    const ux = ax - d.x, uy = ay - d.y, un = Math.hypot(ux, uy) || 1;
+    const err = Math.abs(wrapPi(Math.atan2(uy, ux) - d.h));
+    return [ux / un * thr, uy / un * thr, dist < 7 && err > .45, this.dBrace && dist < 9];
+  }
+  /* ---- one physics step */
+  step(dt, sx, sy, cut, brace){
+    this.lastDt = dt; this.t += dt; this.contact_cd = Math.max(0, this.contact_cd - dt);
+    this.hist.push({ t: this.t, x: this.c.x, y: this.c.y, vx: this.c.vx, vy: this.c.vy, h: this.c.h, tell: this.pose.tell(), side: this.pendSide || 1 });
+    if (this.hist.length > 400) this.hist.shift();
+    if (this.result){ sx = sy = 0; cut = brace = false; }
+    const [dsx, dsy, dcut, dbr] = this.result ? [0, 0, false, false] : this.defenderCmd();
+    // pose clock (integer ms)
+    this.msAcc += dt * 1000; const whole = Math.floor(this.msAcc); this.msAcc -= whole;
+    if (whole > 0 && !this.result) this.pose.step(whole);
+    this.consumeLog();
+    if (this.pendThrow && !this.ball && !this.grap && (this.pendThrow === 'full' ? (this.pose.pose === 'loaded' && !this.pose.in_transition && !this.pose.pinned) : this.pose.can_throw())) this.release(this.pendThrow);
+    // maneuver-driven overrides on the carrier's input
+    const m = this.man;
+    if (m && m.kind === 'spin'){ sx = Math.cos(this.c.h); sy = Math.sin(this.c.h); }
+    if (m){
+      m.tau += dt; const T = m.T;
+      if (m.kind === 'juke' || m.kind === 'spin'){
+        const d = m.offset * (Math.PI / (2 * T)) * Math.sin(Math.PI * Math.min(m.tau, T) / T) * dt, px = -Math.sin(m.h0), py = Math.cos(m.h0);
+        this.c.x += px * m.side * d; this.c.y += py * m.side * d;
+      }
+    }
+    if (this.grap) this.stepGrapple(dt, sx, sy, brace);
+    else {
+      this.c.step(dt, sx, sy, cut, brace); this.d.step(dt, dsx, dsy, dcut, dbr);
+      if (!this.result && this.contact_cd <= 0 && this.c.state !== 'down' && this.d.state !== 'down' &&
+          Math.hypot(this.c.x - this.d.x, this.c.y - this.d.y) < 2 * STD.radius + this.reachOf()) this.contact();
+    }
+    this.stepBall(); this.trail(dt); this.check();
+  }
+  reachOf(){ return STD.tackle_reach * (this.d.state === 'free' ? 1 : 0); }   // arm reach is physical (not a technique effect); technique scales the grip
+  consumeLog(){
+    const L = this.pose.log;
+    while (this.logSeen < L.length){
+      const e = L[this.logSeen++];
+      if (e[1] === 'tell') this.tellSide = this.pendSide || 1;
+      if (e[1] === 'start'){
+        const k = e[2], c = this.c, ag = c.r.agility;
+        const offset = k === 'juke' ? STD.juke_offset_min + STD.juke_offset_agi * ag : k === 'spin' ? STD.spin_offset : 0;
+        this.man = { kind: k, tau: 0, T: execMs(k) / 1000, side: this.tellSide || 1, offset, h0: c.h };
+        if (k === 'juke'){ c.sp *= 1 - STD.juke_speed_cost * (1.3 - ag); c.E = clamp(c.E - STD.cost_juke, 0, 1); }
+        if (k === 'spin'){ c.sp *= 1 - STD.spin_speed_cost * (1.3 - ag); c.E = clamp(c.E - STD.cost_spin, 0, 1); }
+        if (k === 'stiffarm') c.E = clamp(c.E - STD.cost_stiff, 0, 1);
+        if (k === 'truck') c.E = clamp(c.E - STD.cost_truck, 0, 1);
+        this.events.push(['start', k]);
+      }
+      if (e[1] === 'done' || e[1] === 'interrupted') this.man = null;
+    }
+  }
+  /* ---- contact: the chase-lab model, with maneuver and pose modifiers */
+  contact(){
+    const c = this.c, d = this.d, M = 2 * STD.mass, dx = d.x - c.x, dy = d.y - c.y, dist = Math.hypot(dx, dy) || 1e-6, nx = dx / dist, ny = dy / dist;
+    const closing = Math.max(.5, (c.vx - d.vx) * nx + (c.vy - d.vy) * ny), cosang = nx * Math.cos(c.h) + ny * Math.sin(c.h);
+    let zone, wq;
+    if (cosang > .5){ zone = 'front'; wq = STD.wrap_front; } else if (cosang < -.5){ zone = 'behind'; wq = STD.wrap_behind; } else { zone = 'side'; wq = STD.wrap_side; }
+    const techd = d.r.technique; wq *= .6 + .4 * techd;
+    const act = this.pose.active; let tag = '', tagReach = '';
+    let dvc = .5 * closing, dvd = .5 * closing;
+    const reachMax = this.reachOf(), frac = reachMax > 0 ? clamp((dist - 2 * STD.radius) / reachMax, 0, 1) : 0;   // 0 = body contact, 1 = fingertip reach
+    if (frac > 0){ dvc *= 1 - STD.reach_impulse * frac; dvd *= 1 - STD.reach_impulse * frac; wq *= 1 - STD.reach_wrap * frac; tagReach = ' [REACH ' + frac.toFixed(2) + ']'; }
+    if (zone === 'behind') dvc *= STD.behind_mult * (1 + STD.trip_mult * techd);
+    if (act === 'spin'){ if (zone === 'front'){ wq *= STD.spin_wrap_mult; zone = 'side'; } if (zone === 'side') dvc *= STD.spin_side_mult; tag = ' [SPIN]'; }
+    const armCover = (() => { const sd = this.man ? this.man.side : 1, rc_ = dx * Math.sin(c.h) - dy * Math.cos(c.h); return rc_ * sd > -STD.stiff_cover_tol; })();   // the off arm only covers the side it is held out on
+    if (act === 'stiffarm' && zone !== 'behind' && !armCover) tag = ' [STIFF-ARM: uncovered side]';
+    const stiffWin = act === 'stiffarm' && this.rng() < clamp(STD.stiff_base + STD.stiff_k * (c.r.strength * (.5 + .5 * c.r.technique) - d.r.strength * (.5 + .5 * d.r.technique)), .05, .95);   // arm-length contest: strength x technique
+    if (act === 'stiffarm' && zone !== 'behind' && armCover && !stiffWin) tag = ' [STIFF-ARM: beaten, no hold-off]';
+    if (act === 'stiffarm' && zone !== 'behind' && armCover && stiffWin){ dvc *= STD.stiff_dvc; dvd *= STD.stiff_dvd; wq *= STD.stiff_wq; tag = ' [STIFF-ARM]'; }
+    if (act === 'truck'){ dvd *= STD.truck_dvd; tag = ' [TRUCK]'; }
+    let bc = STD.balance_mps * (.5 + .5 * c.r.strength) * (c.brace ? STD.brace_bonus : 1);
+    if (act === 'truck') bc *= Math.max(1, STD.truck_brace / (c.brace ? STD.brace_bonus : 1));
+    let bd = STD.balance_mps * (.5 + .5 * d.r.strength) * (.7 + .3 * techd) * (d.brace ? STD.brace_bonus : 1);
+    const rc = dvc / bc, rd = dvd / bd;
+    const vx = (c.vx + d.vx) / 2, vy = (c.vy + d.vy) / 2, vs = Math.hypot(vx, vy), hh = vs > .1 ? Math.atan2(vy, vx) : c.h;
+    tag += tagReach; this.info = zone + ' hit  closing ' + closing.toFixed(1) + ' m/s | carrier load ' + rc.toFixed(2) + '  tackler load ' + rd.toFixed(2) + tag + '  pose ' + this.pose.pose;
+    this.pose.on_contact();
+    let outcome;
+    if (rc >= 1 && rd >= 1){ for (const p of [c, d]){ p.state = 'down'; p.sp = vs; p.h = hh; } outcome = 'COLLISION'; }
+    else if (rd >= 1){ d.state = 'down'; d.sp = vs; d.h = hh; c.sp = Math.max(0, (c.sp + vs) / 2); this.contact_cd = .6; outcome = 'BROKEN'; }
+    else if (rc >= 1){ c.state = 'down'; c.sp = vs; c.h = hh; d.state = 'stumble'; d.stumble_t = .8; d.sp = vs; d.h = hh; outcome = 'DRIVEN DOWN'; }
+    else if (zone === 'behind' && this.rng() < clamp(STD.trip_p * (.4 + .6 * techd) * (1 - STD.trip_reach_pen * frac) * (.6 + STD.trip_speed_gain * Math.min(closing, 15)), 0, .95)){
+      c.state = 'down'; c.sp = vs; c.h = hh; d.state = 'stumble'; d.stumble_t = .8; d.sp = vs; d.h = hh; outcome = 'TRIPPED';   // ankle wrap / drag from behind
+    }
+    else { this.grap = { vx, vy, hold: 1, low: 0, wq, ox: nx * 2 * STD.radius * .9, oy: ny * 2 * STD.radius * .9 }; outcome = 'WRAP'; this.pose.pinned = true; this.pendThrow = null; }   // a wrap pins the arms: no throw
+    this.info += '  -> ' + outcome;
+    // strip check: the pose decides how much of the contact reaches the ball
+    const resist = this.stripResist0 !== undefined ? this.stripResist0 : this.lastResist;
+    const pStrip = clamp(STD.fumble_k * (1 - resist) * Math.min(1.5, Math.max(rc, .3)), 0, .9);
+    this.lastStrip = pStrip;
+    if (this.rng() < pStrip){ this.result = 'STRIPPED  (' + this.poseAtContact + ' carry, ' + Math.round(100 * pStrip) + '% strip chance)'; }
+  }
+  stepGrapple(dt, sx, sy, brace){
+    const g = this.grap, c = this.c, d = this.d; c.brace = !!brace; const M = 2 * STD.mass;
+    let sp = Math.hypot(g.vx, g.vy); const ux = sp > .5 ? g.vx / sp : Math.cos(c.h), uy = sp > .5 ? g.vy / sp : Math.sin(c.h);
+    const mag = Math.min(1, Math.hypot(sx, sy)); let dirx = 0, diry = 0;
+    if (mag > .15){ const n = Math.hypot(sx, sy); dirx = sx / n; diry = sy / n; }
+    const push = STD.push_n_per_kg;
+    const drive = c.r.accel * STD.accel_max * Math.max(0, 1 - sp / c.vmax()) + STD.leg_drive * push * c.r.strength * (c.brace ? STD.brace_bonus : 1);
+    const Fc = STD.mass * drive * mag, Fb = push * STD.mass * d.r.strength * g.wq;
+    g.vx += (Fc * dirx - Fb * ux) / M * dt; g.vy += (Fc * diry - Fb * uy) / M * dt; sp = Math.hypot(g.vx, g.vy);
+    const esc = push * STD.mass * c.r.strength * (.3 + .7 * mag) / Math.max(1e-6, Fb);
+    g.hold -= dt * STD.escape_k * esc; c.x += g.vx * dt; c.y += g.vy * dt; d.x = c.x + g.ox; d.y = c.y + g.oy;
+    if (sp > 1) c.h = Math.atan2(g.vy, g.vx);
+    c.sp = d.sp = sp; c.fatigue(dt); d.fatigue(dt); g.low = sp < STD.down_speed ? g.low + dt : 0;
+    if (g.low > .15){ for (const p of [c, d]){ p.state = 'down'; p.sp = sp; p.h = c.h; } this.grap = null; this.info += '  -> DOWN'; }
+    else if (g.hold <= 0){ const hh = Math.atan2(g.vy, g.vx); c.state = 'free'; c.sp = sp; c.h = hh; d.state = 'stumble'; d.stumble_t = 1; d.sp = sp * .4; d.h = hh; this.contact_cd = .6; this.grap = null; this.info += '  -> ESCAPED'; }
+  }
+  stepBall(){
+    const b = this.ball; if (!b || this.result) return;
+    const f = (this.t - b.t0) / b.T; if (f < 1) return;
+    // closest approach of the defender (continuing at his current velocity) to the ball line during the flight
+    let best = 1e9; const d = this.d;
+    for (let i = 0; i <= 20; i++){ const s = i / 20, tt = s * b.T, bx = b.x0 + (b.tx - b.x0) * s, by = b.y0 + (b.ty - b.y0) * s;
+      best = Math.min(best, Math.hypot(d.x + d.vx * tt - bx, d.y + d.vy * tt - by)); }
+    const reach = 1.5;
+    if (b.dist > b.range) this.result = 'PASS SHORT  (' + b.dist.toFixed(0) + ' m needs more than ' + b.range.toFixed(0) + ' m of range' + (b.touch ? ', touch pass' : '') + ')';
+    else if (best < reach) this.result = 'PASS INTERCEPTED  (flight ' + b.T.toFixed(2) + ' s' + (b.touch ? ', touch pass' : '') + ')';
+    else if (b.err > 1.5) this.result = 'PASS INCOMPLETE  (missed by ' + b.err.toFixed(1) + ' m)';
+    else this.result = 'PASS COMPLETE  (flight ' + b.T.toFixed(2) + ' s' + (b.touch ? ', touch pass' : '') + ')';
+  }
+  trail(dt){
+    this._tt += dt;
+    if (this._tt >= .04){ this._tt = 0; this.trail_c.push([this.c.x, this.c.y, this.man ? this.man.kind : null]); this.trail_d.push([this.d.x, this.d.y]);
+      if (this.trail_c.length > 70){ this.trail_c.shift(); this.trail_d.shift(); } }
+  }
+  check(){
+    if (this.result){ return; }
+    const c = this.c, F = STD.field;
+    if (c.state === 'down') this.result = 'TACKLED  ' + Math.max(0, c.y).toFixed(0) + ' m from goal';
+    else if (c.y <= 0 && c.x >= 0 && c.x <= F) this.result = 'SCORE  in ' + this.t.toFixed(2) + ' s';
+    else if (c.x < 0 || c.x > F || c.y > F + 5) this.result = 'OUT OF BOUNDS';
+    else if (this.t > 18) this.result = 'TIME';
+  }
+}
+/* strip bookkeeping: remember the pose resistance and name at the instant before contact clears the FSM */
+const _contact = World.prototype.contact;
+World.prototype.contact = function(){ this.lastResist = this.pose.strip_resistance(); this.poseAtContact = this.pose.pose + (this.pose.in_transition ? ' (mid-transition)' : ''); return _contact.call(this); };
+
+/* ---------------------------------------------------------------- scripted bots for headless experiments */
+function runTrial(kind, o = {}){
+  const w = new World({ seed: o.seed, defOffset: o.defOffset, runner: o.runner, defender: o.defender, startPose: o.startPose || 'tucked' });
+  const dt = 1 / 240, lead = o.lead === undefined ? .55 : o.lead; let fired = false;
+  while (!w.result && w.t < 20){
+    const c = w.c, d = w.d, dist = Math.hypot(c.x - d.x, c.y - d.y), closing = Math.max(5, c.sp + d.sp * .5);
+    const side = (c.x >= d.x ? 1 : -1) * (o.flip ? -1 : 1);
+    let sx = 0, sy = -1, cut = false;
+    if (!fired && dist < closing * lead && d.y < c.y){
+      fired = true;
+      if (kind === 'cut'){ sx = side; sy = -.3; cut = true; }
+      else if (kind !== 'straight') w.maneuver(kind, side);
+    }
+    if (kind === 'cut' && fired && w.t < 99){ if (!w.cutDone){ w.cutDone = w.t + .35; } if (w.t < w.cutDone){ sx = side * .9; sy = -.3; } }
+    w.step(dt, sx, sy, cut, false);
+  }
+  return w;
+}
+function classify(w){ const r = w.result || 'TIME'; return r.split(' ')[0]; }
+function matrix(trials, opt){
+  const kinds = ['straight', 'cut', 'juke', 'spin', 'stiffarm', 'truck'], out = {};
+  for (const k of kinds){ const cnt = {}; for (let s = 1; s <= trials; s++){ const w = runTrial(k, Object.assign({ seed: s }, opt)); const c = classify(w); cnt[c] = (cnt[c] || 0) + 1; } out[k] = cnt; }
+  return out;
+}
+
+/* ---------------------------------------------------------------- UI */
+const CAL = { runner: RUNNER, defender: DEFENDER };
+const TUNE = {
+  Runner: () => CAL.runner, Defender: () => CAL.defender,
+  Maneuvers: () => STD, Poses: () => STD, Throw: () => STD,
+};
+const TUNE_KEYS = {
+  Runner: [['speed', .5, 1], ['accel', .3, 1], ['decel', .3, 1], ['agility', .3, 1], ['strength', .3, 1], ['technique', .3, 1], ['stamina', .3, 1], ['throwPower', .3, 1], ['throwAccuracy', .3, 1]],
+  Defender: [['speed', .5, 1], ['accel', .3, 1], ['decel', .3, 1], ['agility', .3, 1], ['strength', .3, 1], ['technique', .3, 1], ['stamina', .3, 1], ['reaction', 0, 1], ['instinct', 0, 1], ['judgment', 0, 1], ['vision', 0, 1], ['awareness', 0, 1], ['clarity', 0, 1], ['focus', 0, 1], ['anticipation', 0, 1]],
+  Maneuvers: [['juke_offset_min', .2, 2.5], ['juke_offset_agi', 0, 2], ['juke_speed_cost', 0, .4], ['spin_speed_cost', 0, .5], ['spin_wrap_mult', .1, 1], ['spin_side_mult', .8, 2], ['stiff_dvc', .1, 1], ['stiff_dvd', .3, 1], ['stiff_wq', .2, 1], ['truck_dvd', .8, 2.5], ['truck_brace', 1, 3], ['fumble_k', 0, 1.2], ['judge_on', 0, 1], ['j_blend_pow', 1, 4], ['j_hit_r', .3, 2.5], ['j_hit_w', .2, 2], ['p_evade', 0, 1], ['j_cut_k', .1, 1.5], ['j_ok_lo', 5, 20], ['j_ok_span', 1, 10], ['prism_def', 0, 1], ['perc_dt', .01, .3], ['perc_comp', 0, 2], ['cone_min', 10, 120], ['cone_span', 0, 150], ['pos_sig', 0, 1], ['vel_sig', 0, 3], ['radar_pos', 0, 3], ['radar_vel', 0, 10], ['lapse_rate', 0, 4], ['lapse_len', 0, .6], ['tell_det_min', 0, 1], ['antic_gain', 0, 2], ['antic_horizon', 0, .6], ['close_range', 0, 15], ['breakdown_s', 0, 1.5], ['close_throttle', .2, 1], ['close_lead', 0, .4], ['tackle_reach', 0, 2.5], ['trip_p', 0, 1], ['stiff_cover_tol', -1, 1.5], ['stiff_base', 0, 1], ['stiff_k', 0, 2], ['trip_reach_pen', 0, 1], ['reach_impulse', 0, 1], ['reach_wrap', 0, 1]],
+  Poses: [['step_ms', 50, 400], ['tell_juke', 50, 500], ['tell_spin', 50, 500], ['tell_stiff', 50, 500], ['tell_truck', 50, 500], ['exec_juke', 100, 600], ['exec_spin', 150, 700], ['exec_stiff', 150, 700], ['exec_truck', 150, 600]],
+  Throw: [['throw_speed', 15, 50], ['touch_power', .3, 1], ['touch_sigma', 0, 1]],
+};
+const STEPSIZE = { step_ms: 10, tell_juke: 10, tell_spin: 10, tell_stiff: 10, tell_truck: 10, exec_juke: 10, exec_spin: 10, exec_stiff: 10, exec_truck: 10, throw_speed: 1 };
+const $ = id => document.getElementById(id);
+function store(k, v){ try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
+function loadTuning(){
+  const s = store('mlab_tune_v1'); if (!s) return;
+  for (const g of ['runner', 'defender']) if (s[g]) Object.assign(CAL[g], s[g]);
+  if (s.std) Object.assign(STD, s.std);
+}
+function saveTuning(){ store('mlab_tune_v1', { runner: CAL.runner, defender: CAL.defender, std: STD }); }
+
+let world = null, slowI = 1; const SLOW = [1, .5, .25];
+let stick = null, held = {}, cutBuf = 0, tab = 'Runner', tuneOpen = false;
+function newWorld(){ world = new World({ runner: CAL.runner, defender: CAL.defender }); syncUI(); }
+
+const POSE_LABEL = { loaded: 'Loaded', extended: 'Extended', exposed: 'Exposed', tucked: 'Tucked', braced: 'Braced' };
+function buildLadder(){
+  const L = $('ladder');
+  POSES.forEach(p => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.dataset.pose = p; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = POSE_LABEL[p] + '<span class="fill"></span>'; b.addEventListener('click', () => world && world.setPose(p)); L.appendChild(b); });
+}
+const PAD = [['JUKE', () => world.maneuver('juke', sideFromStick())], ['SPIN', () => world.maneuver('spin', sideFromStick())], ['STIFF', () => world.maneuver('stiffarm', sideFromStick())],
+  ['TRUCK', () => world.maneuver('truck', sideFromStick())], ['CUT', () => { cutBuf = .25; }], ['BRACE', null],
+  ['TOUCH', () => world.throwBall('touch')], ['THROW', () => world.throwBall('full')], ['AGAIN', () => newWorld()]];
+function sideFromStick(){ const s = currentStick(); return Math.abs(s[0]) > .25 ? (s[0] > 0 ? 1 : -1) : 0; }
+function buildPad(){
+  const P = $('pad');
+  PAD.forEach(([name, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = name;
+    if (name === 'BRACE'){ b.classList.add('hold'); const on = e => { e.preventDefault(); held.brace = true; b.classList.add('on'); }, off = () => { held.brace = false; b.classList.remove('on'); };
+      b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointercancel', off); b.addEventListener('pointerleave', off); }
+    else b.addEventListener('pointerdown', e => { e.preventDefault(); if (world) fn(); });
+    P.appendChild(b); });
+}
+function syncUI(){
+  document.querySelectorAll('.chip').forEach(b => { b.setAttribute('aria-pressed', world && world.pose.pose === b.dataset.pose ? 'true' : 'false'); });
+}
+function updateLadder(){
+  if (!world) return; const f = world.pose;
+  document.querySelectorAll('.chip').forEach(b => {
+    const p = b.dataset.pose; b.setAttribute('aria-pressed', f.pose === p ? 'true' : 'false');
+    const fill = b.querySelector('.fill'); fill.style.width = f.in_transition && f.next_pose() === p ? Math.round(100 * (1 - f.step_left / STD.step_ms)) + '%' : '0';
+  });
+}
+
+/* ---- input */
+const keys = new Set(); let canvas, ctx, W = 0, H = 0, DPR = 1;
+function currentStick(){
+  let sx = 0, sy = 0;
+  if (stick){ const R = Math.min(W, H) * .16, dx = stick.px - stick.ox, dy = stick.py - stick.oy, n = Math.hypot(dx, dy);
+    if (n > 4){ const m = Math.min(1, n / R); sx = dx / n * m; sy = dy / n * m; if (n > R){ stick.ox = stick.px - dx / n * R; stick.oy = stick.py - dy / n * R; } } }
+  const kx = (keys.has('arrowright') || keys.has('d') ? 1 : 0) - (keys.has('arrowleft') || keys.has('a') ? 1 : 0), ky = (keys.has('arrowdown') || keys.has('s') ? 1 : 0) - (keys.has('arrowup') || keys.has('w') ? 1 : 0);
+  if (kx || ky){ const n = Math.hypot(kx, ky); sx = kx / n; sy = ky / n; }
+  return [sx, sy];
+}
+function resize(){ DPR = Math.min(window.devicePixelRatio || 1, 2); const r = canvas.getBoundingClientRect(); W = r.width; H = r.height; canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+const KEYMAP = { j: ['juke'], k: ['spin'], l: ['stiffarm'], ';': ['truck'] };
+function wireInput(){
+  canvas.addEventListener('pointerdown', e => { if (tuneOpen) return; const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    if (world && world.result){ newWorld(); return; }
+    if (!stick){ stick = { id: e.pointerId, ox: x, oy: y, px: x, py: y }; canvas.setPointerCapture(e.pointerId); } });
+  canvas.addEventListener('pointermove', e => { if (stick && stick.id === e.pointerId){ const r = canvas.getBoundingClientRect(); stick.px = e.clientX - r.left; stick.py = e.clientY - r.top; } });
+  const up = e => { if (stick && stick.id === e.pointerId) stick = null; };
+  canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
+  window.addEventListener('keydown', e => { const k = e.key.toLowerCase(); keys.add(k);
+    if (k === ' '){ cutBuf = .25; e.preventDefault(); } else if (k === 'b' || k === 'shift') held.brace = true; else if (k === 'r') newWorld(); else if (k === 'tab'){ slowI = (slowI + 1) % 3; e.preventDefault(); updateSlow(); }
+    else if (KEYMAP[k] && world) world.maneuver(KEYMAP[k][0], sideFromStick());
+    else if ('12345'.indexOf(k) >= 0 && k.length === 1 && world) world.setPose(POSES[+k - 1]);
+    else if (k === 't' && world) world.throwBall('touch'); else if (k === 'y' && world) world.throwBall('full'); });
+  window.addEventListener('keyup', e => { const k = e.key.toLowerCase(); keys.delete(k); if (k === 'b' || k === 'shift') held.brace = false; });
+  window.addEventListener('resize', resize);
+}
+function updateSlow(){ $('b-slow').textContent = 'Slow ' + SLOW[slowI] + 'x'; }
+
+/* ---- drawing */
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function draw(){
+  if (!world) return; const w = world, c = w.c, d = w.d, S = Math.min(W / 34, H / 30);
+  const cx = W / 2 - c.x * S, cy = H * .68 - c.y * S;
+  const X = x => cx + x * S, Y = y => cy + y * S, dark = !(css('color-scheme') === 'light');
+  ctx.fillStyle = dark ? '#0f2a18' : '#cfe6d2'; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = dark ? 'rgba(255,255,255,.12)' : 'rgba(0,0,0,.14)'; ctx.lineWidth = 1;
+  for (let yy = 0; yy <= 100; yy += 10){ ctx.beginPath(); ctx.moveTo(X(0), Y(yy)); ctx.lineTo(X(100), Y(yy)); ctx.stroke(); }
+  ctx.strokeStyle = dark ? 'rgba(255,255,255,.5)' : 'rgba(0,0,0,.5)'; ctx.lineWidth = 2; ctx.strokeRect(X(0), Y(0), 100 * S, 100 * S);
+  ctx.fillStyle = dark ? 'rgba(255,200,80,.18)' : 'rgba(200,140,0,.18)'; ctx.fillRect(X(0), Y(-6), 100 * S, 6 * S);
+  ctx.fillStyle = css('--dim'); ctx.font = '11px system-ui'; ctx.fillText('GOAL', X(1), Y(-2));
+  // trails
+  ctx.lineWidth = 2;
+  for (let i = 1; i < w.trail_c.length; i++){ const a = w.trail_c[i - 1], b = w.trail_c[i]; ctx.strokeStyle = b[2] ? '#ffffff' : css('--run'); ctx.globalAlpha = i / w.trail_c.length * .8; ctx.beginPath(); ctx.moveTo(X(a[0]), Y(a[1])); ctx.lineTo(X(b[0]), Y(b[1])); ctx.stroke(); }
+  for (let i = 1; i < w.trail_d.length; i++){ const a = w.trail_d[i - 1], b = w.trail_d[i]; ctx.strokeStyle = css('--tack'); ctx.globalAlpha = i / w.trail_d.length * .8; ctx.beginPath(); ctx.moveTo(X(a[0]), Y(a[1])); ctx.lineTo(X(b[0]), Y(b[1])); ctx.stroke(); }
+  ctx.globalAlpha = 1;
+  // receiver + ball
+  ctx.strokeStyle = css('--ok'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X(w.recv.x), Y(w.recv.y), STD.radius * S * 1.6, 0, 7); ctx.stroke(); ctx.fillStyle = css('--ok'); ctx.fillText('R', X(w.recv.x) - 4, Y(w.recv.y) + 4);
+  if (w.ball){ const f = clamp((w.t - w.ball.t0) / w.ball.T, 0, 1), bx = w.ball.x0 + (w.ball.tx - w.ball.x0) * f, by = w.ball.y0 + (w.ball.ty - w.ball.y0) * f;
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(X(bx), Y(by), 4, 0, 7); ctx.fill(); }
+  // players
+  const rad = STD.radius * S;
+  const body = (p, col, label) => { ctx.fillStyle = col; ctx.globalAlpha = p.state === 'down' ? .45 : 1; ctx.beginPath(); ctx.arc(X(p.x), Y(p.y), rad, 0, 7); ctx.fill(); ctx.globalAlpha = 1;
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(p.x), Y(p.y)); ctx.lineTo(X(p.x) + Math.cos(p.h) * rad * 1.9, Y(p.y) + Math.sin(p.h) * rad * 1.9); ctx.stroke(); };
+  body(d, css('--tack')); body(c, css('--run'));
+  // pose ring + tell
+  const f = w.pose, tell = f.tell();
+  ctx.lineWidth = 3; ctx.strokeStyle = f.pose === 'braced' ? css('--ok') : f.pose === 'loaded' ? css('--bad') : css('--warn');
+  ctx.beginPath(); ctx.arc(X(c.x), Y(c.y), rad * (1.5 + (STRIP[f.pose] === 1 ? .4 : 0)), 0, 7); ctx.stroke();
+  if (tell){ ctx.strokeStyle = '#fff'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.arc(X(c.x), Y(c.y), rad * 2.8, 0, 7); ctx.stroke(); ctx.setLineDash([]); }
+  if (w.man){ ctx.fillStyle = css('--warn'); ctx.font = '700 12px system-ui'; ctx.fillText(w.man.kind.toUpperCase(), X(c.x) + rad * 2.2, Y(c.y) - rad * 1.6); }
+  else if (tell){ ctx.fillStyle = '#fff'; ctx.font = '700 12px system-ui'; ctx.fillText('(' + tell + ')', X(c.x) + rad * 2.2, Y(c.y) - rad * 1.6); }
+  // HUD
+  ctx.textAlign = 'left'; ctx.fillStyle = css('--ink'); ctx.font = '12px system-ui';
+  ctx.fillText('speed ' + Math.round(c.sp / MPH) + ' mph   energy ' + c.E.toFixed(2) + '   pose ' + f.pose + (f.in_transition ? ' > ' + f.next_pose() : '') + '   strip-resist ' + f.strip_resistance().toFixed(2), 12, 18);
+  ctx.fillStyle = css('--dim'); ctx.fillText('defender reaction ' + (.25 * (1.3 - .6 * d.r.reaction)).toFixed(2) + ' s   instinct ' + d.r.instinct.toFixed(2) + (w.dRead ? '   read: ' + w.dRead.kind + (w.dRead.ok ? ' (correct)' : ' (MISREAD)') : ''), 12, 34);
+  if (w.info){ ctx.fillStyle = css('--warn'); ctx.textAlign = 'center'; ctx.font = '12px system-ui'; ctx.fillText(w.info, W / 2, 54, W - 24); ctx.textAlign = 'left'; }
+  if (w.result){ ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.fillRect(0, H * .3, W, 64); ctx.fillStyle = '#fff'; ctx.font = '700 17px system-ui'; ctx.textAlign = 'center'; ctx.fillText(w.result, W / 2, H * .3 + 28, W - 24);
+    ctx.font = '12px system-ui'; ctx.fillText('tap the field or AGAIN to run it again', W / 2, H * .3 + 50); ctx.textAlign = 'left'; }
+  if (stick){ const R = Math.min(W, H) * .16; ctx.strokeStyle = css('--dim'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(stick.ox, stick.oy, R, 0, 7); ctx.stroke(); ctx.fillStyle = css('--dim'); ctx.beginPath(); ctx.arc(stick.px, stick.py, R * .35, 0, 7); ctx.fill(); }
+}
+
+/* ---- tune sheet */
+function buildTabs(){
+  const T = $('tabs'); T.innerHTML = '';
+  Object.keys(TUNE_KEYS).forEach(n => { const b = document.createElement('button'); b.type = 'button'; b.textContent = n; b.setAttribute('aria-pressed', n === tab ? 'true' : 'false'); b.addEventListener('click', () => { tab = n; buildTabs(); buildRows(); }); T.appendChild(b); });
+}
+function buildRows(){
+  const R = $('rows'); R.innerHTML = ''; const obj = TUNE[tab]();
+  TUNE_KEYS[tab].forEach(([k, lo, hi]) => {
+    const step = STEPSIZE[k] || (hi <= 1.2 ? .05 : .1), row = document.createElement('div'); row.className = 'row';
+    const lab = document.createElement('label'); lab.textContent = k; const val = document.createElement('div'); val.className = 'val';
+    const show = () => val.textContent = Number(obj[k]).toFixed(step >= 1 ? 0 : step < .1 ? 2 : 2);
+    const mk = (txt, dir) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = txt; b.setAttribute('aria-label', (dir > 0 ? 'increase ' : 'decrease ') + k);
+      b.addEventListener('click', () => { obj[k] = clamp(Math.round((obj[k] + dir * step) / step) * step, lo, hi); show(); saveTuning(); }); return b; };
+    show(); row.append(lab, val, mk('-', -1), mk('+', 1)); R.appendChild(row);
+  });
+  $('hint').textContent = tab === 'Poses' ? 'Transition, tell and execution times are [P] provisional. Which poses a maneuver needs is canon and cannot be edited here.' : tab === 'Runner' || tab === 'Defender' ? 'Ratings. Defender reaction sets how late he sees you; vision/awareness/clarity set cone, radar and noise; focus sets lapses; instinct classifies a tell he saw; anticipation carries your turn rate forward.' : 'All values provisional. Changes apply on the next run; Done starts a fresh play.';
+}
+function openTune(open){ tuneOpen = open; $('sheet').classList.toggle('open', open); if (open){ buildTabs(); buildRows(); } else { saveTuning(); newWorld(); } }
+
+/* ---- main loop */
+let last = 0;
+function frame(ts){
+  const dtF = Math.min((ts - last) / 1000 || .016, .05); last = ts;
+  if (!tuneOpen && world){
+    const [sx, sy] = currentStick(), total = dtF * SLOW[slowI], n = Math.max(1, Math.ceil(total * 240)), dt = total / n;
+    for (let i = 0; i < n; i++) world.step(dt, sx, sy, cutBuf > 0, !!held.brace);
+    cutBuf = Math.max(0, cutBuf - dtF); updateLadder();
+  }
+  draw(); requestAnimationFrame(frame);
+}
+function init(){
+  canvas = $('c'); ctx = canvas.getContext('2d'); buildLadder(); buildPad(); loadTuning(); resize(); wireInput(); newWorld(); updateSlow();
+  $('b-slow').addEventListener('click', () => { slowI = (slowI + 1) % 3; updateSlow(); });
+  $('b-reset').addEventListener('click', () => newWorld()); $('b-tune').addEventListener('click', () => openTune(true)); $('b-close').addEventListener('click', () => openTune(false));
+  $('b-defaults').addEventListener('click', () => { Object.assign(STD, DEFAULT_STD); Object.assign(CAL.runner, RUNNER); Object.assign(CAL.defender, DEFENDER); saveTuning(); buildRows(); });
+  requestAnimationFrame(frame);
+}
+window.__lab = { STD, World, PoseFSM, runTrial, matrix, classify, Player, POSES, ALLOWED, newWorld: () => newWorld(), getWorld: () => world, RUNNER, DEFENDER };
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
