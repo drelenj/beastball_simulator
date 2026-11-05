@@ -1,6 +1,28 @@
-# Handoff packet HP-001: Codex initial work package
-From: Claude. To: Codex. Approved by: DreLen (2026-11-05, ten decisions). Date: 2026-11-05.
+# Handoff packet HP-001 rev B: Codex initial work package (FINAL)
+From: Claude. To: Codex. Approved by: DreLen (2026-11-05). Rev B incorporates DreLen's ten clarifications. Date: 2026-11-05.
 Scope: preparation only. **No native rewrite, no cognitive migration.**
+
+
+## 0. DreLen's binding clarifications (rev B)
+1. Baseline commit `2abe497` is the proposed historical baseline: verify its contents, create `main` and the tag **without altering source**. Codex works on `codex/` branches. Historical backups (`*_before_*.py`, zips) are preserved.
+2. **B0 = Pocket 4 with PRISM disabled** (not unmodified Pocket 3). Record every effective feature flag, runtime patch, dependency version and execution command in the manifest.
+3. Golden traces add separate coverage for **CATCH_V2**, **HAND_FIGHT**, **throwing**, **carry-pose timing**, alongside the original physics scenarios. No behaviour changes. (Flag note: with PRISM disabled, CATCH_V2/HAND_FIGHT are separate flags; capture each as its own labelled trace set, "B0" = all off, "B0+CATCH_V2", "B0+CATCH_V2+HAND_FIGHT".)
+4. Exact same-environment replay required where feasible. Write numerical tolerances and statistical-equivalence criteria separately for future cross-platform migration.
+5. Codex may install profiling dependencies in its own environment, provided they do not change simulation behaviour.
+6. Telemetry: **JSON Lines** (events, decision traces), **CSV** (summaries), **JSON manifests** (configs, seeds, revisions, hashes).
+7. Bounded, resumable regulation-length batches approved in Codex's environment. Start with short validation runs, then grow.
+8. Motor Control: documentation and interface design **only**. Any change to execution mechanics, Focus effects, rating semantics or physical resolution needs separate approval.
+9. Baseline is established in **Codex's environment**; record Python and NumPy versions. iPhone compatibility is evaluated separately.
+10. Report real test evidence for the S.fowner correction and other known defects. Do not silently repair, recalibrate or hide failures during baseline capture.
+**Sequencing:** Codex starts with **T1 only** and returns results before T2–T6. No wholesale native rewrite or cognitive migration.
+
+## 0b. Evidence for the S.fowner correction (clarification 10)
+- Defect: perception state (`S.fprism`, tick clock `S.flast`) persisted across matches in one process; in match 2 the tick clock was stale, so perception minds were degraded.
+- Test: `test_perception_multimatch.py` (this branch). Runs two short games in one process with `PRISM_I=1`, seeds 1 and 2, and compares perception stats.
+- Result with the fix (current code): match 1 hidden_opp 16517, mean defender view miss 12.2 m; match 2 hidden_opp 13305, miss 13.4 m. **PASS**.
+- Result with the fix disabled (same code, reset line neutralised in a throwaway copy): match 2 hidden_opp **1985** (8× lower), mean view miss **53.3 m** (4.4× higher). **FAIL**.
+- Consequence: any earlier result that ran more than one match per process with PRISM on is suspect. Baseline capture must run each game in a fresh process, or assert this test passes first. Commit 2abe497 contains the fix but not this test; the test is added on this branch only.
+- Other known defects stay as listed in section 8; they are not repaired in baseline capture.
 
 ## 1. Source revision
 - Repo: `drelenj/beastball_simulator`. Baseline branch `claude/baseline`, commit `2abe497` (427 files). Intended tag: `baseline-p4-2026-11-05` (DreLen creates it; pushes to `main`/tags are not possible from Claude's session).
@@ -19,7 +41,7 @@ Full PRISM stack for reference (all provisional): `PRISM_I=1 PRISM_OFFBALL=1 PRI
 **T1. Repo hygiene and B0 golden pack** (deliver first)
 - Verify the clone builds and `python3 -m pytest` (or each `test_*.py`) runs; list failures and which pre-date this baseline. Do not fix behaviour.
 - Freeze B0 outputs: seeds 1–5, `--short` and one regulation game each, PRISM flags off. Store event-log hash, score, key counts, wall time. Output: `baseline/b0/` + `baseline/b0/MANIFEST.json` (commit, command, seed, python version, hashes).
-- Accept when: two runs per seed give identical hashes on the same machine; manifest lists every command; Python/numpy versions recorded.
+- Accept when: two runs per seed give identical hashes on the same machine; manifest lists every command, every effective flag, every runtime patch applied and Python/numpy/OS versions; each game runs in a fresh process; `test_perception_multimatch.py` result recorded. T1 also verifies the contents of commit 2abe497 (file count 427, no accidental edits) and reports test results (pass/fail per file) honestly, including pre-existing failures.
 
 **T2. Patch-chain and override map**
 - From `pocket4_proto.py` (`patch_source`, `install()` order around lines 407–572, all `Match.*`/`Policy.*` assignments and wrappers), produce a table: target symbol, original location (core_src file/line), each wrapper in order, flag that enables it, final behaviour.
@@ -62,10 +84,21 @@ Source revision (commit), changed files, commands run, tests and results with ha
 ## 8. Known defects at this revision (do not "fix" in the port)
 S.fowner stale-state bug fixed in this revision (earlier multi-match-per-process results suspect); Duel lab saturated; ENGAGE almost never chosen; contact band unverified at match level; `mate_prior_true` kick-off leak; `derive()` per-rating jitter (blocks a true uniform-0.70 run). Details: `PRISM_STATUS_REPORT.md`.
 
-## 9. Requires DreLen's approval before implementation
+## 9. Previously open approvals (resolved by DreLen rev B)
 1. Create `main` and tag `baseline-p4-2026-11-05` on commit 2abe497.
 2. Give Codex write access to the repo (collaborator invite or token) and agree the branch prefix `codex/`.
 3. T4: permission to install profiling tools (e.g. `py-spy`) in Codex's environment.
 4. T5: choice of telemetry format (proposal: JSON Lines plus a summary CSV) and whether Codex's environment may run regulation-length batches.
 5. T6: any change to Motor Control semantics beyond what exists (the plan only documents the current mechanics).
 6. Whether B0 should be run on the exact Python/numpy versions on DreLen's phone, or on Codex's.
+Resolved: profiling tools allowed (clarification 5); telemetry formats approved (6); bounded batches approved (7); baseline environment = Codex's (9); Motor Control = documentation only (8). **Still DreLen's action:** create `main`, the tag, and Codex's access (see HP-001-SETUP below).
+
+## 10. Exact repository setup actions (DreLen)
+1. GitHub → `drelenj/beastball_simulator` → **Branches** → create branch `main` from `claude/baseline` (or open a PR `claude/baseline` → `main` and merge it; do not squash, to keep commit 2abe497 intact).
+2. **Releases → Draft a new release** → tag `baseline-p4-2026-11-05`, target = commit `2abe497` (not the branch tip), title "Historical Pocket 4 baseline (B0 candidate)". Publish.
+3. Settings → **Default branch** = `main`.
+4. Settings → **Branches → Add rule** for `main`: require a pull request before merging; disallow force pushes and deletions. (Only DreLen merges.)
+5. Settings → **Collaborators** → invite Codex's GitHub account with **Write** access (or give Codex a fine-grained personal access token limited to this repository: Contents read/write, Pull requests read/write). Tell Codex to use the `codex/` branch prefix.
+6. Optional: merge the PR for branch `claude/codex-work-package` so Codex finds this packet and the regression test on `main`; otherwise Codex reads the branch directly.
+7. Send Codex: the repository URL, the tag name, and this file's path `handoff/HP-001_codex_initial_work_package.md`.
+Verification once done: `git ls-remote` shows `refs/heads/main` and `refs/tags/baseline-p4-2026-11-05` resolving to 2abe497.
