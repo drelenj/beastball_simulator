@@ -1,0 +1,16 @@
+{
+ "version": "locomotion-1.0",
+ "stack": "v3.2>v3.3>v3.4>v3.5>v3.6>v3.7",
+ "frozen": "2026-10-28",
+ "files": {
+  "beastball_physical_standard_v1.py": "118c16fc02554b29154a4c59a616698fe684b99aa202cf5f99f7d9e547f41e24",
+  "beastball_locomotion_v32.py": "a8785d1d2edae8cf3a212d582dee7c8d082d37141269efc679755403309583a6",
+  "beastball_locomotion_v33.py": "d92ed6adc1e82c55e1d4c00cb6528aed6c26b73f99b8b7322351bf42f9d405d5",
+  "beastball_locomotion_v34.py": "ecd013e615f6edcc5afdca203a793ac422f8763293bb37aed278ad7f3e282ebf",
+  "beastball_locomotion_v35.py": "f9691073b92f97aad26d405c00aaf019de3402aa210238bfaafde4503b1f3d24",
+  "beastball_locomotion_v36.py": "6184cda74c905247aaa2c253188724ea725af4331be53285d80316047fef4b11",
+  "beastball_locomotion_v37.py": "4668ba4e6a5829c05b112d35252eb04d2253f969c3705ad8a2cf6edcba91afd5",
+  "pocket_capability_v37.py": "dad0b9828112c5a33286a0bb40b2d8d8c1388ac8cb74761c214ecfa24e6fd160",
+  "results_v37/capability_table_v37.json": "8b6f00b148bf98e766ec57682970ec694318c9c1da6af1071eeb3fac390cf789"
+ }
+}
