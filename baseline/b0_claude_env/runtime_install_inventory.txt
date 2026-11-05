@@ -1,0 +1,327 @@
+# B0 runtime install inventory (measured, not read from source)
+# method: tools/t1_runtime_inventory.py; pristine = load_pocket() only; installed = load_pocket()+install()+one short B0 game (seed 1)
+# a core attribute counts as wrapped when its recursive code hash differs between the two processes; chain = closure-reachable functions, outermost first
+# wrapped core attributes: 30 (policies.Tactics.__setattr__/__delattr__ excluded: dataclass-generated per process, not patches)
+
+engine.Engine.acquire  <- bounce_option_v0.py:142 install.<locals>.wrap.<locals>.f
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+  - restarts_v1.py:296 install.<locals>.acquire
+      - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+          - <embedded engine.py>:186 Engine.acquire
+      - restarts_v1.py:40 install.<locals>.on
+  - bounce_option_v0.py:140 install.<locals>.<lambda>
+
+engine.Engine.award  <- restarts_v1.py:66 install.<locals>.award
+  - restarts_v1.py:282 install.<locals>.begin_quarter_hunt
+      - restarts_v1.py:44 install.<locals>.field
+      - restarts_v1.py:41 install.<locals>.pos_of
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1065 Engine.award
+  - restarts_v1.py:40 install.<locals>.on
+  - restarts_v1.py:46 install.<locals>.x_from_u
+
+engine.Engine.begin_hunt  <- restarts_v1.py:265 install.<locals>.begin_hunt
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:174 Engine.begin_hunt
+  - restarts_v1.py:40 install.<locals>.on
+  - restarts_v1.py:256 install.<locals>.place_support
+      - restarts_v1.py:48 install.<locals>.formation
+          - restarts_v1.py:44 install.<locals>.field
+          - restarts_v1.py:41 install.<locals>.pos_of
+          - restarts_v1.py:46 install.<locals>.x_from_u
+
+engine.Engine.c1_reason  <- bounce_option_v0.py:142 install.<locals>.wrap.<locals>.f
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+  - <embedded engine.py>:219 Engine.c1_reason
+  - bounce_option_v0.py:149 install.<locals>.<lambda>
+
+engine.Engine.discipline  <- rules_v03.py:23 install.<locals>.discipline
+  - rules_v03.py:22 install.<locals>.count
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1274 Engine.discipline
+
+engine.Engine.elapse  <- restarts_v1.py:340 install.<locals>.elapse
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1627 Engine.elapse
+  - restarts_v1.py:40 install.<locals>.on
+
+engine.Engine.first_tackle  <- restarts_v1.py:100 install.<locals>.first_tackle
+  - <embedded geometry.py>:5 norm
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1065 Engine.award
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:456 Engine.first_tackle
+  - restarts_v1.py:40 install.<locals>.on
+
+engine.Engine.foul  <- rules_v03.py:42 install.<locals>.foul
+  - rules_v03.py:22 install.<locals>.count
+  - rules_v03.py:34 install.<locals>.foul_spot
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1199 Engine.foul
+  - rules_v03.py:38 install.<locals>.to_scrim
+
+engine.Engine.freeze  <- rules_v03.py:97 install.<locals>.freeze
+  - rules_v03.py:22 install.<locals>.count
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1005 Engine.freeze
+
+engine.Engine.joint_control  <- restarts_v1.py:326 install.<locals>.joint_control
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:389 Engine.joint_control
+  - restarts_v1.py:40 install.<locals>.on
+
+engine.Engine.new_owner  <- rules_v03.py:91 install.<locals>.new_owner
+  - rules_v03.py:22 install.<locals>.count
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:76 Engine.new_owner
+
+engine.Engine.ready  <- restarts_v1.py:140 install.<locals>.ready
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1089 Engine.ready
+  - restarts_v1.py:123 install.<locals>.violators
+      - restarts_v1.py:44 install.<locals>.field
+      - restarts_v1.py:43 install.<locals>.uown
+
+engine.Engine.restart_release  <- restarts_v1.py:153 install.<locals>.restart_release
+  - <embedded geometry.py>:5 norm
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1098 Engine.restart_release
+  - restarts_v1.py:123 install.<locals>.violators
+      - restarts_v1.py:44 install.<locals>.field
+      - restarts_v1.py:43 install.<locals>.uown
+
+engine.Engine.shoot_arrow  <- pocket4_proto.py:506 install.<locals>.shoot_arrow
+  - restarts_v1.py:319 install.<locals>.shoot_arrow
+      - restarts_v1.py:309 install.<locals>.hunt_pending
+      - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+          - <embedded engine.py>:1020 Engine.shoot_arrow
+      - restarts_v1.py:40 install.<locals>.on
+  - pocket4_proto.py:500 install.<locals>.real_flight
+
+engine.Engine.tackle  <- rules_v03.py:140 install.<locals>.tackle
+  - rules_v03.py:110 install.<locals>.<lambda>
+  - rules_v03.py:117 install.<locals>.make_scrimmage
+      - rules_v03.py:112 install.<locals>.<lambda>
+      - rules_v03.py:22 install.<locals>.count
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:434 Engine.tackle
+  - rules_v03.py:114 install.<locals>.turnover_spot
+
+engine.Engine.terminal_ground  <- rules_v03.py:67 install.<locals>.terminal_ground
+  - <embedded engine.py>:1821 _final_guard.<locals>.guarded
+      - <embedded engine.py>:1259 Engine.terminal_ground
+
+match.Match.__init__  <- pocket4_proto.py:557 install.<locals>.init2
+  - pocket4_proto.py:151 install.<locals>.init
+      - pocket4_proto.py:200 install.<locals>.foot_event
+      - pocket4_proto.py:206 install.<locals>.legal_foot
+      - pocket4_proto.py:137 install.<locals>.thrower
+          - pocket4_proto.py:135 install.<locals>.ex
+      - pocket4_proto.py:210 install.<locals>.windup_read
+
+match.Match.aim_error  <- pocket4_proto.py:541 install.<locals>.<lambda>
+
+match.Match.arrow_decisions  <- pocket4_proto.py:412 install.<locals>.arrow_decisions
+  - restarts_v1.py:313 install.<locals>.arrow_decisions
+      - restarts_v1.py:309 install.<locals>.hunt_pending
+      - <embedded match.py>:971 Match.arrow_decisions
+      - restarts_v1.py:40 install.<locals>.on
+
+match.Match.auto_substitutions  <- rules_v03.py:75 install.<locals>.auto_substitutions
+  - rules_v03.py:22 install.<locals>.count
+  - pocket4_proto.py:349 install.<locals>.auto_substitutions
+      - pocket4_proto.py:298 install.<locals>.is_starter
+      - pocket4_proto.py:313 install.<locals>.reinstate_specialists
+          - pocket4_proto.py:301 install.<locals>.do_sub
+      - pocket4_proto.py:322 install.<locals>.rot_reserve
+      - pocket4_proto.py:324 install.<locals>.rotate
+          - pocket4_proto.py:299 install.<locals>.pace_max_ms
+          - pocket4_proto.py:310 install.<locals>.rested_long_enough
+
+match.Match.c4c2_cont  <- positional_tendencies_v1.py:369 install.<locals>.c4c2_cont
+  - <embedded match.py>:2722 pocket_cont
+
+match.Match.c4c2_eval  <- positional_tendencies_v1.py:356 install.<locals>.c4c2_eval
+  - <embedded match.py>:2700 pocket_eval
+
+match.Match.carrier_decision  <- bounce_option_v0.py:110 install.<locals>.carrier_decision
+  - <embedded match.py>:917 Match.carrier_decision
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+  - bounce_option_v0.py:28 install.<locals>.plan_to_ground
+      - bounce_option_v0.py:24 install.<locals>.first_ground
+      - <embedded geometry.py>:55 launch_for
+      - bounce_option_v0.py:21 install.<locals>.path_of
+          - <embedded geometry.py>:79 predict_path
+  - bounce_option_v0.py:72 install.<locals>.rnd
+  - bounce_option_v0.py:20 install.<locals>.unit_
+
+match.Match.make_pass  <- bounce_option_v0.py:73 install.<locals>.make_pass
+  - rules_v03.py:175 install_nokick.<locals>.make_pass
+      - pocket4_proto.py:392 install.<locals>.with_delay.<locals>.wrapped
+          - <embedded match.py>:859 Match.make_pass
+          - pocket4_proto.py:144 install.<locals>.pose
+              - <embedded geometry.py>:8 distance
+          - pocket4_proto.py:137 install.<locals>.thrower
+              - pocket4_proto.py:135 install.<locals>.ex
+      - rules_v03.py:174 install_nokick.<locals>.<lambda>
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+  - bounce_option_v0.py:72 install.<locals>.rnd
+
+match.Match.make_shot  <- bounce_option_v0.py:94 install.<locals>.make_shot
+  - rules_v03.py:178 install_nokick.<locals>.make_shot
+      - pocket4_proto.py:551 install.<locals>.make_shot2
+          - pocket4_proto.py:392 install.<locals>.with_delay.<locals>.wrapped
+              - <embedded match.py>:897 Match.make_shot
+              - pocket4_proto.py:144 install.<locals>.pose
+                  - <embedded geometry.py>:8 distance
+              - pocket4_proto.py:137 install.<locals>.thrower
+                  - pocket4_proto.py:135 install.<locals>.ex
+      - rules_v03.py:174 install_nokick.<locals>.<lambda>
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+  - bounce_option_v0.py:54 install.<locals>.plan_bounce_shot
+      - bounce_option_v0.py:24 install.<locals>.first_ground
+      - <embedded geometry.py>:55 launch_for
+      - bounce_option_v0.py:21 install.<locals>.path_of
+          - <embedded geometry.py>:79 predict_path
+  - bounce_option_v0.py:72 install.<locals>.rnd
+
+match.Match.plan_pass  <- bounce_option_v0.py:87 install.<locals>.plan_pass
+  - pocket4_proto.py:546 install.<locals>.plan_pass2
+      - <embedded geometry.py>:5 norm
+      - <embedded match.py>:2680 pocket_plan_pass
+      - pocket4_proto.py:137 install.<locals>.thrower
+          - pocket4_proto.py:135 install.<locals>.ex
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+  - bounce_option_v0.py:37 install.<locals>.plan_skip
+      - bounce_option_v0.py:24 install.<locals>.first_ground
+      - <embedded geometry.py>:55 launch_for
+      - bounce_option_v0.py:21 install.<locals>.path_of
+          - <embedded geometry.py>:79 predict_path
+
+match.Match.pocket_pass_option  <- positional_tendencies_v1.py:373 install.<locals>.pocket_pass_option
+  - <embedded match.py>:2752 pocket_pass_option
+
+match.Match.step  <- bounce_option_v0.py:128 install.<locals>.step
+  - rules_v03.py:153 install.<locals>.step
+      - rules_v03.py:110 install.<locals>.<lambda>
+      - rules_v03.py:22 install.<locals>.count
+      - restarts_v1.py:351 install.<locals>.step
+          - <embedded geometry.py>:5 norm
+          - pocket4_proto.py:363 install.<locals>.step
+              - <embedded geometry.py>:4 clamp
+              - pocket4_proto.py:259 install.<locals>.condition_post
+              - pocket4_proto.py:250 install.<locals>.fire_jumps
+              - pocket4_proto.py:220 install.<locals>.plan_jumps
+          - restarts_v1.py:40 install.<locals>.on
+      - rules_v03.py:130 install.<locals>.scrim_penalty
+          - rules_v03.py:112 install.<locals>.<lambda>
+          - rules_v03.py:117 install.<locals>.make_scrimmage
+          - rules_v03.py:114 install.<locals>.turnover_spot
+
+match.Match.targets_dead  <- restarts_v1.py:211 install.<locals>.targets_dead
+  - restarts_v1.py:44 install.<locals>.field
+  - restarts_v1.py:48 install.<locals>.formation
+      - restarts_v1.py:41 install.<locals>.pos_of
+      - restarts_v1.py:46 install.<locals>.x_from_u
+  - <embedded geometry.py>:5 norm
+  - <embedded match.py>:104 Match.targets_dead
+
+policies.Policy.targets  <- bounce_option_v0.py:151 install.<locals>.targets
+  - block_option_v0.py:27 install.<locals>.targets
+      - block_option_v0.py:67 install.<locals>._legacy
+      - block_option_v0.py:26 install.<locals>.gap
+      - positional_tendencies_v1.py:233 install.<locals>.targets
+          - <embedded geometry.py>:4 clamp
+          - <embedded geometry.py>:5 norm
+          - <embedded policies.py>:83 Policy.targets
+          - positional_tendencies_v1.py:231 install.<locals>.rec
+          - <embedded geometry.py>:20 zone
+  - bounce_option_v0.py:19 install.<locals>.<lambda>
+
+# environment keys read during import + install + game (none set in the environment; all defaults)
+ARCH_NEAR default='9' value='9'
+ARCH_RMAX default='70' value='70'
+ARCH_RMIN default='10' value='10'
+ARROW_V default='0' value='0'
+BLOCK_OPTION default='1' value='1'
+BOUNCE_OPTION default='1' value='1'
+CATCH_V2 default='0' value='0'
+DEB_PYTHON_INSTALL_LAYOUT default=None value=None
+DEF_FREEDOM default='1.0' value='1.0'
+FREEZE_CAP default='0' value='0'
+FZ_DIAG default='0' value='0'
+HAND_FIGHT default='0' value='0'
+KEEPER_FT default='0' value='0'
+KEEPER_STEP_FRAC default='.5' value='.5'
+KP_TRACE default=None value=None
+NET_R default='6' value='6'
+NPY_PROMOTION_STATE default='weak' value='weak'
+NUMPY_MADVISE_HUGEPAGE default=None value=None
+PASS_FLIGHT_S default='0.9' value='0.9'
+PLAT default='0' value='0'
+PLAT_H default='10' value='10'
+PLAT_SET default='5' value='5'
+PM_NUDGE default='1.0' value='1.0'
+PRISM default='0' value='0'
+PRISM_AMBIG default='keep' value='keep'
+PRISM_AUDIT default='0' value='0'
+PRISM_BALLVIEW default='1' value='1'
+PRISM_BOUNDED default='0' value='0'
+PRISM_CALL_R default='35' value='35'
+PRISM_CARRIER_BELIEF default='1' value='1'
+PRISM_CLARITY default='.5' value='.5'
+PRISM_DEF default='0' value='0'
+PRISM_DEF_K default='3' value='3'
+PRISM_DRIVE default='0' value='0'
+PRISM_FIELD default='0' value='0'
+PRISM_FIELD_RATINGS default='{}' value='{}'
+PRISM_FOCUS_ONLY default='' value=''
+PRISM_FREEVIEW default='0' value='0'
+PRISM_HIDE_CARRIER default='0' value='0'
+PRISM_I default='0' value='0'
+PRISM_INTENT_DEG default='70' value='70'
+PRISM_JD_ALAT default='3.0' value='3.0'
+PRISM_JD_HABIT default='3.0' value='3.0'
+PRISM_JD_L default='2.0' value='2.0'
+PRISM_JD_NOISE default='3.0' value='3.0'
+PRISM_JONLY default=None value=None
+PRISM_JSPLIT default='0' value='0'
+PRISM_JUDGE default='0' value='0'
+PRISM_JUDGE_DEF default='0' value='0'
+PRISM_KEEPER default='0' value='0'
+PRISM_LITE default='0' value='0'
+PRISM_MANEUVERS default='0' value='0'
+PRISM_OFFACT default='0' value='0'
+PRISM_OFFBALL default='0' value='0'
+PRISM_OFF_K default='99' value='99'
+PRISM_PM_SIG default='2.5' value='2.5'
+PRISM_PURSUIT_R default='6' value='6'
+PRISM_RANGE_MARGIN default='0' value='0'
+PRISM_RATINGS default='null' value='null'
+PRISM_RATING_CENTER default='.7' value='.7'
+PRISM_REIDENT default='1' value='1'
+PRISM_SOFT default='0' value='0'
+PRISM_TEAMVIEW default='0' value='0'
+PRISM_TRACK default='0' value='0'
+PRISM_TRACKID default='0' value='0'
+PRISM_TRK_AGE default='4' value='4'
+PRISM_ZR_SIG default='4.0' value='4.0'
+PYTHONDOCS default='https://docs.python.org/3.13/library' value='https://docs.python.org/3.13/library'
+PYTHONUSERBASE default=None value=None
+QUIVER_POSS default='0' value='0'
+REACH_SD default='0' value='0'
+RULESET default='1.0.1' value='1.0.1'
+RULES_V03 default='0' value='0'
+SCIPY_ARRAY_API default=False value=False
+SCIPY_DEVICE default='cpu' value='cpu'
+SHOT_FLIGHT_S default='0.4' value='0.4'
+SHOT_MIN_SPEED default='45' value='45'
+SOURCE_DATE_EPOCH default=1793908315.6531687 value=1793908315.6531687
+TEMP default=None value=None
+TEND_K default='0.5' value='0.5'
+THROW_SPLIT default='1' value='1'
+TMP default=None value=None
+TMPDIR default=None value=None
+_PYTHON_SUBPROCESS_USE_POSIX_SPAWN default=None value=None
+_PYTHON_SYSCONFIGDATA_NAME default='_sysconfigdata__x86_64-linux-gnu' value='_sysconfigdata__x86_64-linux-gnu'
+_PYTHON_SYSCONFIGDATA_PATH default=None value=None

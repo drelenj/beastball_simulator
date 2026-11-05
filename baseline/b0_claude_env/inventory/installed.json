@@ -1,0 +1,4705 @@
+{
+ "mode": "installed",
+ "core_file": "/tmp/pk_5hd9chu9/Pocket20_patched.py",
+ "attrs": {
+  "engine.Engine.__init__": {
+   "file": "<embedded engine.py>",
+   "line": 17,
+   "qualname": "Engine.__init__",
+   "code": "c18c0cfa7934b36b",
+   "chain": []
+  },
+  "engine.Engine.acquire": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 142,
+   "qualname": "install.<locals>.wrap.<locals>.f",
+   "code": "5eaa8310eb752f97",
+   "chain": [
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 296,
+     "qualname": "install.<locals>.acquire",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1821,
+       "qualname": "_final_guard.<locals>.guarded",
+       "inner": [
+        {
+         "file": "<embedded engine.py>",
+         "line": 186,
+         "qualname": "Engine.acquire",
+         "inner": []
+        }
+       ]
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 40,
+       "qualname": "install.<locals>.on",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 140,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.advance": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1743,
+     "qualname": "Engine.advance",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.archer_in_lane": {
+   "file": "<embedded engine.py>",
+   "line": 1017,
+   "qualname": "Engine.archer_in_lane",
+   "code": "8ea0991b0129d71c",
+   "chain": []
+  },
+  "engine.Engine.arrow_impact": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1049,
+     "qualname": "Engine.arrow_impact",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.assert_invariants": {
+   "file": "<embedded engine.py>",
+   "line": 1795,
+   "qualname": "Engine.assert_invariants",
+   "code": "535cc261391eb314",
+   "chain": []
+  },
+  "engine.Engine.award": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 66,
+   "qualname": "install.<locals>.award",
+   "code": "8302932861e74815",
+   "chain": [
+    {
+     "file": "restarts_v1.py",
+     "line": 282,
+     "qualname": "install.<locals>.begin_quarter_hunt",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 44,
+       "qualname": "install.<locals>.field",
+       "inner": []
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 41,
+       "qualname": "install.<locals>.pos_of",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1065,
+       "qualname": "Engine.award",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 40,
+     "qualname": "install.<locals>.on",
+     "inner": []
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 46,
+     "qualname": "install.<locals>.x_from_u",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.batch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1573,
+     "qualname": "Engine.batch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.batch_events": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1579,
+     "qualname": "Engine.batch_events",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.begin_hunt": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 265,
+   "qualname": "install.<locals>.begin_hunt",
+   "code": "fe6aef7a8e1bbc39",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 174,
+       "qualname": "Engine.begin_hunt",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 40,
+     "qualname": "install.<locals>.on",
+     "inner": []
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 256,
+     "qualname": "install.<locals>.place_support",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 48,
+       "qualname": "install.<locals>.formation",
+       "inner": [
+        {
+         "file": "restarts_v1.py",
+         "line": 44,
+         "qualname": "install.<locals>.field",
+         "inner": []
+        },
+        {
+         "file": "restarts_v1.py",
+         "line": 41,
+         "qualname": "install.<locals>.pos_of",
+         "inner": []
+        },
+        {
+         "file": "restarts_v1.py",
+         "line": 46,
+         "qualname": "install.<locals>.x_from_u",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.boundary": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1119,
+     "qualname": "Engine.boundary",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c1_commit": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 250,
+     "qualname": "Engine.c1_commit",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c1_reason": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 142,
+   "qualname": "install.<locals>.wrap.<locals>.f",
+   "code": "5eaa8310eb752f97",
+   "chain": [
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 219,
+     "qualname": "Engine.c1_reason",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 149,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c1_reject": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 245,
+     "qualname": "Engine.c1_reject",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c2_new_possession": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 87,
+     "qualname": "Engine.c2_new_possession",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c2_restore": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 140,
+     "qualname": "Engine.c2_restore",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c2_snapshot": {
+   "file": "<embedded engine.py>",
+   "line": 136,
+   "qualname": "Engine.c2_snapshot",
+   "code": "4b5573bb91c1e182",
+   "chain": []
+  },
+  "engine.Engine.c4b_auto_points": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 774,
+     "qualname": "Engine.c4b_auto_points",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c4b_origin": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 759,
+     "qualname": "Engine.c4b_origin",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c4b_set_origin": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 779,
+     "qualname": "Engine.c4b_set_origin",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c4c2_flight_touch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 314,
+     "qualname": "Engine.c4c2_flight_touch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c4c2_snap": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 298,
+     "qualname": "Engine.c4c2_snap",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c4c2_touch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 320,
+     "qualname": "Engine.c4c2_touch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.c4c2_unsnap": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 301,
+     "qualname": "Engine.c4c2_unsnap",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.clock_expiry": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1438,
+     "qualname": "Engine.clock_expiry",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.complete": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1487,
+     "qualname": "Engine.complete",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.contact_legal": {
+   "file": "<embedded engine.py>",
+   "line": 399,
+   "qualname": "Engine.contact_legal",
+   "code": "1b5d4d6aa86610cd",
+   "chain": []
+  },
+  "engine.Engine.count": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 41,
+     "qualname": "Engine.count",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.discipline": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 23,
+   "qualname": "install.<locals>.discipline",
+   "code": "30683acec4198214",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 22,
+     "qualname": "install.<locals>.count",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1274,
+       "qualname": "Engine.discipline",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.dispatch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1530,
+     "qualname": "Engine.dispatch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.elapse": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 340,
+   "qualname": "install.<locals>.elapse",
+   "code": "103671d87f21c23a",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1627,
+       "qualname": "Engine.elapse",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 40,
+     "qualname": "install.<locals>.on",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.eligible": {
+   "file": "<embedded engine.py>",
+   "line": 68,
+   "qualname": "Engine.eligible",
+   "code": "d51f335f9966de21",
+   "chain": []
+  },
+  "engine.Engine.emit": {
+   "file": "<embedded engine.py>",
+   "line": 61,
+   "qualname": "Engine.emit",
+   "code": "f7e6e225ced3c303",
+   "chain": []
+  },
+  "engine.Engine.end_flight": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1422,
+     "qualname": "Engine.end_flight",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.end_period": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1454,
+     "qualname": "Engine.end_period",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.end_reconstruction": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 112,
+     "qualname": "Engine.end_reconstruction",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.engage": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 424,
+     "qualname": "Engine.engage",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.equipment_check": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1782,
+     "qualname": "Engine.equipment_check",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.exchange_ends": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1474,
+     "qualname": "Engine.exchange_ends",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.exit_account": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 702,
+     "qualname": "Engine.exit_account",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.exit_before": {
+   "file": "<embedded engine.py>",
+   "line": 628,
+   "qualname": "Engine.exit_before",
+   "code": "6627d68e9cef5153",
+   "chain": []
+  },
+  "engine.Engine.exit_free": {
+   "file": "<embedded engine.py>",
+   "line": 594,
+   "qualname": "Engine.exit_free",
+   "code": "98f85ffe6535f7f6",
+   "chain": []
+  },
+  "engine.Engine.exit_interference": {
+   "file": "<embedded engine.py>",
+   "line": 926,
+   "qualname": "Engine.exit_interference",
+   "code": "ba48d7758b477cb1",
+   "chain": []
+  },
+  "engine.Engine.exit_lanes": {
+   "file": "<embedded engine.py>",
+   "line": 612,
+   "qualname": "Engine.exit_lanes",
+   "code": "938cea4d364e5b2d",
+   "chain": []
+  },
+  "engine.Engine.exit_points": {
+   "file": "<embedded engine.py>",
+   "line": 587,
+   "qualname": "Engine.exit_points",
+   "code": "bf2c58f2e807c577",
+   "chain": []
+  },
+  "engine.Engine.exit_routes": {
+   "file": "<embedded engine.py>",
+   "line": 604,
+   "qualname": "Engine.exit_routes",
+   "code": "eef12bc94889e01b",
+   "chain": []
+  },
+  "engine.Engine.exit_run": {
+   "file": "<embedded engine.py>",
+   "line": 563,
+   "qualname": "Engine.exit_run",
+   "code": "2461537eb43be4ef",
+   "chain": []
+  },
+  "engine.Engine.exit_watch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 631,
+     "qualname": "Engine.exit_watch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.failed_hunt": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 180,
+     "qualname": "Engine.failed_hunt",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.finish_penalty": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1395,
+     "qualname": "Engine.finish_penalty",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.finish_review": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1756,
+     "qualname": "Engine.finish_review",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.first_tackle": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 100,
+   "qualname": "install.<locals>.first_tackle",
+   "code": "960f6f43ef10a557",
+   "chain": [
+    {
+     "file": "<embedded geometry.py>",
+     "line": 5,
+     "qualname": "norm",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1065,
+       "qualname": "Engine.award",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 456,
+       "qualname": "Engine.first_tackle",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 40,
+     "qualname": "install.<locals>.on",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.flush_discipline": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1250,
+     "qualname": "Engine.flush_discipline",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.follow_carrier": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 274,
+     "qualname": "Engine.follow_carrier",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.forfeit": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1498,
+     "qualname": "Engine.forfeit",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.foul": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 42,
+   "qualname": "install.<locals>.foul",
+   "code": "256b349d5283476e",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 22,
+     "qualname": "install.<locals>.count",
+     "inner": []
+    },
+    {
+     "file": "rules_v03.py",
+     "line": 34,
+     "qualname": "install.<locals>.foul_spot",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1199,
+       "qualname": "Engine.foul",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "rules_v03.py",
+     "line": 38,
+     "qualname": "install.<locals>.to_scrim",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.frame_contact": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 378,
+     "qualname": "Engine.frame_contact",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.freeze": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 97,
+   "qualname": "install.<locals>.freeze",
+   "code": "e9c186b760eb4f6f",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 22,
+     "qualname": "install.<locals>.count",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1005,
+       "qualname": "Engine.freeze",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.go_down": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 986,
+     "qualname": "Engine.go_down",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.goal": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1131,
+     "qualname": "Engine.goal",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.grounded": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 996,
+     "qualname": "Engine.grounded",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.held": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 395,
+     "qualname": "Engine.held",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.illegal": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1195,
+     "qualname": "Engine.illegal",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.inbound": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 504,
+     "qualname": "Engine.inbound",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.inbound_side": {
+   "file": "<embedded engine.py>",
+   "line": 498,
+   "qualname": "Engine.inbound_side",
+   "code": "2931e0899927556f",
+   "chain": []
+  },
+  "engine.Engine.injury": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1343,
+     "qualname": "Engine.injury",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.joint_control": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 326,
+   "qualname": "install.<locals>.joint_control",
+   "code": "3c44c2b063d76670",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 389,
+       "qualname": "Engine.joint_control",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 40,
+     "qualname": "install.<locals>.on",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.live": {
+   "file": "<embedded engine.py>",
+   "line": 75,
+   "qualname": "Engine.live",
+   "code": "808107a61b7a296a",
+   "chain": []
+  },
+  "engine.Engine.medical_clear": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1350,
+     "qualname": "Engine.medical_clear",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.minor_goal_release": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1307,
+     "qualname": "Engine.minor_goal_release",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.neutral_offset": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1519,
+     "qualname": "Engine.neutral_offset",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.new_owner": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 91,
+   "qualname": "install.<locals>.new_owner",
+   "code": "3344043129a47edf",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 22,
+     "qualname": "install.<locals>.count",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 76,
+       "qualname": "Engine.new_owner",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.next_deadline": {
+   "file": "<embedded engine.py>",
+   "line": 1668,
+   "qualname": "Engine.next_deadline",
+   "code": "88a38aedce43960d",
+   "chain": []
+  },
+  "engine.Engine.next_shootout": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1481,
+     "qualname": "Engine.next_shootout",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.occupancy": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 935,
+     "qualname": "Engine.occupancy",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.penalty_goal": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1411,
+     "qualname": "Engine.penalty_goal",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.ready": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 140,
+   "qualname": "install.<locals>.ready",
+   "code": "9762ad8ce0b2cff5",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1089,
+       "qualname": "Engine.ready",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 123,
+     "qualname": "install.<locals>.violators",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 44,
+       "qualname": "install.<locals>.field",
+       "inner": []
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 43,
+       "qualname": "install.<locals>.uown",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.recall_advantage": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1429,
+     "qualname": "Engine.recall_advantage",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.reconstruction_check": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 166,
+     "qualname": "Engine.reconstruction_check",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.recovery_blocked": {
+   "file": "<embedded engine.py>",
+   "line": 540,
+   "qualname": "Engine.recovery_blocked",
+   "code": "89ae0fe9f632d421",
+   "chain": []
+  },
+  "engine.Engine.recovery_blockers": {
+   "file": "<embedded engine.py>",
+   "line": 552,
+   "qualname": "Engine.recovery_blockers",
+   "code": "5679cf574c34b0f8",
+   "chain": []
+  },
+  "engine.Engine.recovery_committed": {
+   "file": "<embedded engine.py>",
+   "line": 487,
+   "qualname": "Engine.recovery_committed",
+   "code": "5b9c46ae895db40c",
+   "chain": []
+  },
+  "engine.Engine.recovery_react": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 479,
+     "qualname": "Engine.recovery_react",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.recovery_watch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 509,
+     "qualname": "Engine.recovery_watch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.release": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 341,
+     "qualname": "Engine.release",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.reload": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1042,
+     "qualname": "Engine.reload",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.replace_unavailable_specialist": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1328,
+     "qualname": "Engine.replace_unavailable_specialist",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.request_review": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1750,
+     "qualname": "Engine.request_review",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.reset_penalty": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1378,
+     "qualname": "Engine.reset_penalty",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.resolve_timers": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1696,
+     "qualname": "Engine.resolve_timers",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.restart_release": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 153,
+   "qualname": "install.<locals>.restart_release",
+   "code": "1b326d65bac59c8e",
+   "chain": [
+    {
+     "file": "<embedded geometry.py>",
+     "line": 5,
+     "qualname": "norm",
+     "inner": []
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1098,
+       "qualname": "Engine.restart_release",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 123,
+     "qualname": "install.<locals>.violators",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 44,
+       "qualname": "install.<locals>.field",
+       "inner": []
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 43,
+       "qualname": "install.<locals>.uown",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.restore_recovery": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 544,
+     "qualname": "Engine.restore_recovery",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.resume": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1506,
+     "qualname": "Engine.resume",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.resume_recovery": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 554,
+     "qualname": "Engine.resume_recovery",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.retrieve_arrow": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 384,
+     "qualname": "Engine.retrieve_arrow",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.review_freeze_error": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1771,
+     "qualname": "Engine.review_freeze_error",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.safety_stop": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1354,
+     "qualname": "Engine.safety_stop",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.same_incident_discipline": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1303,
+     "qualname": "Engine.same_incident_discipline",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.save_review_point": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1767,
+     "qualname": "Engine.save_review_point",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.shoot_arrow": {
+   "file": "/home/claude/t1_b0/pocket4_proto.py",
+   "line": 506,
+   "qualname": "install.<locals>.shoot_arrow",
+   "code": "1db0feb92d582c9e",
+   "chain": [
+    {
+     "file": "restarts_v1.py",
+     "line": 319,
+     "qualname": "install.<locals>.shoot_arrow",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 309,
+       "qualname": "install.<locals>.hunt_pending",
+       "inner": []
+      },
+      {
+       "file": "<embedded engine.py>",
+       "line": 1821,
+       "qualname": "_final_guard.<locals>.guarded",
+       "inner": [
+        {
+         "file": "<embedded engine.py>",
+         "line": 1020,
+         "qualname": "Engine.shoot_arrow",
+         "inner": []
+        }
+       ]
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 40,
+       "qualname": "install.<locals>.on",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "pocket4_proto.py",
+     "line": 500,
+     "qualname": "install.<locals>.real_flight",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.slot_fill": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 129,
+     "qualname": "Engine.slot_fill",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.slot_inherit": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 115,
+     "qualname": "Engine.slot_inherit",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.slot_vacate": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 121,
+     "qualname": "Engine.slot_vacate",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.start_flight": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1419,
+     "qualname": "Engine.start_flight",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.start_penalty": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1359,
+     "qualname": "Engine.start_penalty",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.strike": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 360,
+     "qualname": "Engine.strike",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.strip": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 974,
+     "qualname": "Engine.strip",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.sub": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1311,
+     "qualname": "Engine.sub",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.suspend": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1502,
+     "qualname": "Engine.suspend",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.tackle": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 140,
+   "qualname": "install.<locals>.tackle",
+   "code": "98353d8bf111b6d8",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 110,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "rules_v03.py",
+     "line": 117,
+     "qualname": "install.<locals>.make_scrimmage",
+     "inner": [
+      {
+       "file": "rules_v03.py",
+       "line": 112,
+       "qualname": "install.<locals>.<lambda>",
+       "inner": []
+      },
+      {
+       "file": "rules_v03.py",
+       "line": 22,
+       "qualname": "install.<locals>.count",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 434,
+       "qualname": "Engine.tackle",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "rules_v03.py",
+     "line": 114,
+     "qualname": "install.<locals>.turnover_spot",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.terminal_ground": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 67,
+   "qualname": "install.<locals>.terminal_ground",
+   "code": "22e598614128ab17",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1821,
+     "qualname": "_final_guard.<locals>.guarded",
+     "inner": [
+      {
+       "file": "<embedded engine.py>",
+       "line": 1259,
+       "qualname": "Engine.terminal_ground",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "engine.Engine.terminal_record": {
+   "file": "<embedded engine.py>",
+   "line": 1786,
+   "qualname": "Engine.terminal_record",
+   "code": "bb4de495bb4fc677",
+   "chain": []
+  },
+  "engine.Engine.terminal_resolve": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1263,
+     "qualname": "Engine.terminal_resolve",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.territory": {
+   "file": "<embedded engine.py>",
+   "line": 46,
+   "qualname": "Engine.territory",
+   "code": "d15ab52d837dc849",
+   "chain": []
+  },
+  "engine.Engine.territory_points": {
+   "file": "<embedded engine.py>",
+   "line": 59,
+   "qualname": "Engine.territory_points",
+   "code": "ebfc9d716826cd35",
+   "chain": []
+  },
+  "engine.Engine.timeout": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 1415,
+     "qualname": "Engine.timeout",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.touch": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 279,
+     "qualname": "Engine.touch",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.validate_lineup": {
+   "file": "<embedded engine.py>",
+   "line": 1334,
+   "qualname": "Engine.validate_lineup",
+   "code": "36c9f7f6ee195818",
+   "chain": []
+  },
+  "engine.Engine.zone": {
+   "file": "<embedded engine.py>",
+   "line": 44,
+   "qualname": "Engine.zone",
+   "code": "57cc22100bf87867",
+   "chain": []
+  },
+  "engine.Engine.zone_call": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 831,
+     "qualname": "Engine.zone_call",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.zone_compliance_time": {
+   "file": "<embedded engine.py>",
+   "line": 796,
+   "qualname": "Engine.zone_compliance_time",
+   "code": "079de797452a6d9c",
+   "chain": []
+  },
+  "engine.Engine.zone_due": {
+   "file": "<embedded engine.py>",
+   "line": 782,
+   "qualname": "Engine.zone_due",
+   "code": "209f766c58f0b60f",
+   "chain": []
+  },
+  "engine.Engine.zone_due_first": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 918,
+     "qualname": "Engine.zone_due_first",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.zone_expiry_c3b": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 719,
+     "qualname": "Engine.zone_expiry_c3b",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.zone_intervention": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 901,
+     "qualname": "Engine.zone_intervention",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.zone_offset": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 867,
+     "qualname": "Engine.zone_offset",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.zone_overdue": {
+   "file": "<embedded engine.py>",
+   "line": 891,
+   "qualname": "Engine.zone_overdue",
+   "code": "b3a10058ea897041",
+   "chain": []
+  },
+  "engine.Engine.zone_reconcile": {
+   "file": "<embedded engine.py>",
+   "line": 1821,
+   "qualname": "_final_guard.<locals>.guarded",
+   "code": "d9da100b7c65bb56",
+   "chain": [
+    {
+     "file": "<embedded engine.py>",
+     "line": 930,
+     "qualname": "Engine.zone_reconcile",
+     "inner": []
+    }
+   ]
+  },
+  "engine.Engine.zone_witness": {
+   "file": "<embedded engine.py>",
+   "line": 826,
+   "qualname": "Engine.zone_witness",
+   "code": "c903f605cf70f8d3",
+   "chain": []
+  },
+  "engine.<module>._final_guard": {
+   "file": "<embedded engine.py>",
+   "line": 1820,
+   "qualname": "_final_guard",
+   "code": "6be0c5853ba5f553",
+   "chain": []
+  },
+  "geometry.<module>.attack_sign": {
+   "file": "<embedded geometry.py>",
+   "line": 11,
+   "qualname": "attack_sign",
+   "code": "676989cc890a3e2e",
+   "chain": []
+  },
+  "geometry.<module>.ball_at": {
+   "file": "<embedded geometry.py>",
+   "line": 49,
+   "qualname": "ball_at",
+   "code": "925085323aac5a37",
+   "chain": []
+  },
+  "geometry.<module>.ballistic": {
+   "file": "<embedded geometry.py>",
+   "line": 40,
+   "qualname": "ballistic",
+   "code": "85cb2e2e972454ce",
+   "chain": []
+  },
+  "geometry.<module>.clamp": {
+   "file": "<embedded geometry.py>",
+   "line": 4,
+   "qualname": "clamp",
+   "code": "d1ff21e2d46656b8",
+   "chain": []
+  },
+  "geometry.<module>.disk_path_blocked": {
+   "file": "<embedded geometry.py>",
+   "line": 148,
+   "qualname": "disk_path_blocked",
+   "code": "6d15bc3f9b3c78dd",
+   "chain": []
+  },
+  "geometry.<module>.distance": {
+   "file": "<embedded geometry.py>",
+   "line": 8,
+   "qualname": "distance",
+   "code": "237027c5fb8def97",
+   "chain": []
+  },
+  "geometry.<module>.goal_x": {
+   "file": "<embedded geometry.py>",
+   "line": 9,
+   "qualname": "goal_x",
+   "code": "6f516dc6bcbf0f8a",
+   "chain": []
+  },
+  "geometry.<module>.intercept_xy": {
+   "file": "<embedded geometry.py>",
+   "line": 96,
+   "qualname": "intercept_xy",
+   "code": "b010c737e008bfe5",
+   "chain": []
+  },
+  "geometry.<module>.launch_for": {
+   "file": "<embedded geometry.py>",
+   "line": 55,
+   "qualname": "launch_for",
+   "code": "b9d642fd5fafc8e7",
+   "chain": []
+  },
+  "geometry.<module>.legal_goal": {
+   "file": "<embedded geometry.py>",
+   "line": 36,
+   "qualname": "legal_goal",
+   "code": "b27b29701ab2cf6a",
+   "chain": []
+  },
+  "geometry.<module>.norm": {
+   "file": "<embedded geometry.py>",
+   "line": 5,
+   "qualname": "norm",
+   "code": "42d6009e9ecb3149",
+   "chain": []
+  },
+  "geometry.<module>.own_goal_x": {
+   "file": "<embedded geometry.py>",
+   "line": 10,
+   "qualname": "own_goal_x",
+   "code": "2542d2e9f42f543a",
+   "chain": []
+  },
+  "geometry.<module>.predict_path": {
+   "file": "<embedded geometry.py>",
+   "line": 79,
+   "qualname": "predict_path",
+   "code": "c2dc8e13620c5ffe",
+   "chain": []
+  },
+  "geometry.<module>.restart_point": {
+   "file": "<embedded geometry.py>",
+   "line": 13,
+   "qualname": "restart_point",
+   "code": "f157031f39cc7c22",
+   "chain": []
+  },
+  "geometry.<module>.segment3_distance": {
+   "file": "<embedded geometry.py>",
+   "line": 31,
+   "qualname": "segment3_distance",
+   "code": "6a2ac022a08a2bf8",
+   "chain": []
+  },
+  "geometry.<module>.segment_distance": {
+   "file": "<embedded geometry.py>",
+   "line": 26,
+   "qualname": "segment_distance",
+   "code": "3362c2c3b2b282c4",
+   "chain": []
+  },
+  "geometry.<module>.travel_time": {
+   "file": "<embedded geometry.py>",
+   "line": 143,
+   "qualname": "travel_time",
+   "code": "04a465071cc94c98",
+   "chain": []
+  },
+  "geometry.<module>.unit": {
+   "file": "<embedded geometry.py>",
+   "line": 6,
+   "qualname": "unit",
+   "code": "26afe077d1ea9c07",
+   "chain": []
+  },
+  "geometry.<module>.zone": {
+   "file": "<embedded geometry.py>",
+   "line": 20,
+   "qualname": "zone",
+   "code": "2aa8850e5beeb8c3",
+   "chain": []
+  },
+  "match.Match.__init__": {
+   "file": "/home/claude/t1_b0/pocket4_proto.py",
+   "line": 557,
+   "qualname": "install.<locals>.init2",
+   "code": "dae47b5227baaffa",
+   "chain": [
+    {
+     "file": "pocket4_proto.py",
+     "line": 151,
+     "qualname": "install.<locals>.init",
+     "inner": [
+      {
+       "file": "pocket4_proto.py",
+       "line": 200,
+       "qualname": "install.<locals>.foot_event",
+       "inner": []
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 206,
+       "qualname": "install.<locals>.legal_foot",
+       "inner": []
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 137,
+       "qualname": "install.<locals>.thrower",
+       "inner": [
+        {
+         "file": "pocket4_proto.py",
+         "line": 135,
+         "qualname": "install.<locals>.ex",
+         "inner": []
+        }
+       ]
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 210,
+       "qualname": "install.<locals>.windup_read",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "match.Match.active_field": {
+   "file": "<embedded match.py>",
+   "line": 103,
+   "qualname": "Match.active_field",
+   "code": "4ce8557fcf319569",
+   "chain": []
+  },
+  "match.Match.advance_arrows": {
+   "file": "<embedded match.py>",
+   "line": 2333,
+   "qualname": "Match.advance_arrows",
+   "code": "e7f313c41bc684e6",
+   "chain": []
+  },
+  "match.Match.advance_ball": {
+   "file": "<embedded match.py>",
+   "line": 2091,
+   "qualname": "Match.advance_ball",
+   "code": "045ff2433861342c",
+   "chain": []
+  },
+  "match.Match.aim_error": {
+   "file": "/home/claude/t1_b0/pocket4_proto.py",
+   "line": 541,
+   "qualname": "install.<locals>.<lambda>",
+   "code": "1c0cd32d1fbdc76f",
+   "chain": []
+  },
+  "match.Match.arrow_decisions": {
+   "file": "/home/claude/t1_b0/pocket4_proto.py",
+   "line": 412,
+   "qualname": "install.<locals>.arrow_decisions",
+   "code": "3e3216f1ede51de1",
+   "chain": [
+    {
+     "file": "restarts_v1.py",
+     "line": 313,
+     "qualname": "install.<locals>.arrow_decisions",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 309,
+       "qualname": "install.<locals>.hunt_pending",
+       "inner": []
+      },
+      {
+       "file": "<embedded match.py>",
+       "line": 971,
+       "qualname": "Match.arrow_decisions",
+       "inner": []
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 40,
+       "qualname": "install.<locals>.on",
+       "inner": []
+      }
+     ]
+    }
+   ]
+  },
+  "match.Match.auto_substitutions": {
+   "file": "/home/claude/t1_b0/rules_v03.py",
+   "line": 75,
+   "qualname": "install.<locals>.auto_substitutions",
+   "code": "84ab538c55e0619b",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 22,
+     "qualname": "install.<locals>.count",
+     "inner": []
+    },
+    {
+     "file": "pocket4_proto.py",
+     "line": 349,
+     "qualname": "install.<locals>.auto_substitutions",
+     "inner": [
+      {
+       "file": "pocket4_proto.py",
+       "line": 298,
+       "qualname": "install.<locals>.is_starter",
+       "inner": []
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 313,
+       "qualname": "install.<locals>.reinstate_specialists",
+       "inner": [
+        {
+         "file": "pocket4_proto.py",
+         "line": 301,
+         "qualname": "install.<locals>.do_sub",
+         "inner": []
+        }
+       ]
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 322,
+       "qualname": "install.<locals>.rot_reserve",
+       "inner": []
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 324,
+       "qualname": "install.<locals>.rotate",
+       "inner": [
+        {
+         "file": "pocket4_proto.py",
+         "line": 299,
+         "qualname": "install.<locals>.pace_max_ms",
+         "inner": []
+        },
+        {
+         "file": "pocket4_proto.py",
+         "line": 310,
+         "qualname": "install.<locals>.rested_long_enough",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "match.Match.ball_velocity": {
+   "file": "<embedded match.py>",
+   "line": 820,
+   "qualname": "Match.ball_velocity",
+   "code": "1af6459e820c6ea3",
+   "chain": []
+  },
+  "match.Match.c3_add": {
+   "file": "<embedded match.py>",
+   "line": 1070,
+   "qualname": "Match.c3_add",
+   "code": "d6b19a0a2457123e",
+   "chain": []
+  },
+  "match.Match.c3_at": {
+   "file": "<embedded match.py>",
+   "line": 1059,
+   "qualname": "Match.c3_at",
+   "code": "5f178dc82149cdf9",
+   "chain": []
+  },
+  "match.Match.c3_bal": {
+   "file": "<embedded match.py>",
+   "line": 1066,
+   "qualname": "Match.c3_bal",
+   "code": "dc2032b610d5355f",
+   "chain": []
+  },
+  "match.Match.c3_contact_kick": {
+   "file": "<embedded match.py>",
+   "line": 1866,
+   "qualname": "Match.c3_contact_kick",
+   "code": "2abe3cbe6eb2d511",
+   "chain": []
+  },
+  "match.Match.c3_contain": {
+   "file": "<embedded match.py>",
+   "line": 1776,
+   "qualname": "Match.c3_contain",
+   "code": "ca429e41a47ce676",
+   "chain": []
+  },
+  "match.Match.c3_cross": {
+   "file": "<embedded match.py>",
+   "line": 1395,
+   "qualname": "Match.c3_cross",
+   "code": "3d59b1f67e9b2d62",
+   "chain": []
+  },
+  "match.Match.c3_descend": {
+   "file": "<embedded match.py>",
+   "line": 1785,
+   "qualname": "Match.c3_descend",
+   "code": "98dba3a0fee57d44",
+   "chain": []
+  },
+  "match.Match.c3_descent_end": {
+   "file": "<embedded match.py>",
+   "line": 1793,
+   "qualname": "Match.c3_descent_end",
+   "code": "bdf95583acf0cf1d",
+   "chain": []
+  },
+  "match.Match.c3_desired": {
+   "file": "<embedded match.py>",
+   "line": 1204,
+   "qualname": "Match.c3_desired",
+   "code": "59386dff1097d4b1",
+   "chain": []
+  },
+  "match.Match.c3_driven": {
+   "file": "<embedded match.py>",
+   "line": 1818,
+   "qualname": "Match.c3_driven",
+   "code": "d948cb71bdf352b8",
+   "chain": []
+  },
+  "match.Match.c3_end_hold": {
+   "file": "<embedded match.py>",
+   "line": 1104,
+   "qualname": "Match.c3_end_hold",
+   "code": "7c4acf420414de9b",
+   "chain": []
+  },
+  "match.Match.c3_escape_effort": {
+   "file": "<embedded match.py>",
+   "line": 1765,
+   "qualname": "Match.c3_escape_effort",
+   "code": "c23e8102cfd30408",
+   "chain": []
+  },
+  "match.Match.c3_fly": {
+   "file": "<embedded match.py>",
+   "line": 1407,
+   "qualname": "Match.c3_fly",
+   "code": "b550cbae38abc2c5",
+   "chain": []
+  },
+  "match.Match.c3_free": {
+   "file": "<embedded match.py>",
+   "line": 1374,
+   "qualname": "Match.c3_free",
+   "code": "14c92f052b50e5e2",
+   "chain": []
+  },
+  "match.Match.c3_ground": {
+   "file": "<embedded match.py>",
+   "line": 1974,
+   "qualname": "Match.c3_ground",
+   "code": "fb80a0e6c4d709c0",
+   "chain": []
+  },
+  "match.Match.c3_holds_kick": {
+   "file": "<embedded match.py>",
+   "line": 1503,
+   "qualname": "Match.c3_holds_kick",
+   "code": "468394ff866f56e3",
+   "chain": []
+  },
+  "match.Match.c3_init": {
+   "file": "<embedded match.py>",
+   "line": 1055,
+   "qualname": "Match.c3_init",
+   "code": "d70de84539987b7a",
+   "chain": []
+  },
+  "match.Match.c3_move": {
+   "file": "<embedded match.py>",
+   "line": 1273,
+   "qualname": "Match.c3_move",
+   "code": "d91208ce7eea604d",
+   "chain": []
+  },
+  "match.Match.c3_no_time": {
+   "file": "<embedded match.py>",
+   "line": 1841,
+   "qualname": "Match.c3_no_time",
+   "code": "0cf300a5ade107fd",
+   "chain": []
+  },
+  "match.Match.c3_note": {
+   "file": "<embedded match.py>",
+   "line": 1062,
+   "qualname": "Match.c3_note",
+   "code": "5626bbc8ecbec410",
+   "chain": []
+  },
+  "match.Match.c3_pass_open": {
+   "file": "<embedded match.py>",
+   "line": 1731,
+   "qualname": "Match.c3_pass_open",
+   "code": "0510f3cb2baa55b7",
+   "chain": []
+  },
+  "match.Match.c3_perturb": {
+   "file": "<embedded match.py>",
+   "line": 842,
+   "qualname": "Match.c3_perturb",
+   "code": "e5ac19520eb836f5",
+   "chain": []
+  },
+  "match.Match.c3_push": {
+   "file": "<embedded match.py>",
+   "line": 1812,
+   "qualname": "Match.c3_push",
+   "code": "0173cd29c098354c",
+   "chain": []
+  },
+  "match.Match.c3_rate": {
+   "file": "<embedded match.py>",
+   "line": 1956,
+   "qualname": "Match.c3_rate",
+   "code": "b287e1e22f939eb3",
+   "chain": []
+  },
+  "match.Match.c3_reconcile": {
+   "file": "<embedded match.py>",
+   "line": 1114,
+   "qualname": "Match.c3_reconcile",
+   "code": "51eb6d9ba452187d",
+   "chain": []
+  },
+  "match.Match.c3_recover": {
+   "file": "<embedded match.py>",
+   "line": 1966,
+   "qualname": "Match.c3_recover",
+   "code": "f13d55df746d4c32",
+   "chain": []
+  },
+  "match.Match.c3_region": {
+   "file": "<embedded match.py>",
+   "line": 1088,
+   "qualname": "Match.c3_region",
+   "code": "6e079feee3013267",
+   "chain": []
+  },
+  "match.Match.c3_release_state": {
+   "file": "<embedded match.py>",
+   "line": 848,
+   "qualname": "Match.c3_release_state",
+   "code": "0c45bddafe5e7c02",
+   "chain": []
+  },
+  "match.Match.c3_restore": {
+   "file": "<embedded match.py>",
+   "line": 1151,
+   "qualname": "Match.c3_restore",
+   "code": "494c1b43e6bae90d",
+   "chain": []
+  },
+  "match.Match.c3_rho": {
+   "file": "<embedded match.py>",
+   "line": 1077,
+   "qualname": "Match.c3_rho",
+   "code": "1e5ac6c4b303cd45",
+   "chain": []
+  },
+  "match.Match.c3_run": {
+   "file": "<embedded match.py>",
+   "line": 1411,
+   "qualname": "Match.c3_run",
+   "code": "cc496c3aae1a23d9",
+   "chain": []
+  },
+  "match.Match.c3_save": {
+   "file": "<embedded match.py>",
+   "line": 1144,
+   "qualname": "Match.c3_save",
+   "code": "671c1a2d4bfc93ad",
+   "chain": []
+  },
+  "match.Match.c3_settle": {
+   "file": "<embedded match.py>",
+   "line": 1799,
+   "qualname": "Match.c3_settle",
+   "code": "6ed9ba895ecc1a1c",
+   "chain": []
+  },
+  "match.Match.c3_span": {
+   "file": "<embedded match.py>",
+   "line": 1963,
+   "qualname": "Match.c3_span",
+   "code": "f4f0a055e797cbc4",
+   "chain": []
+  },
+  "match.Match.c3_step": {
+   "file": "<embedded match.py>",
+   "line": 1162,
+   "qualname": "Match.c3_step",
+   "code": "1ee207669e7c1cec",
+   "chain": []
+  },
+  "match.Match.c3_sync": {
+   "file": "<embedded match.py>",
+   "line": 1131,
+   "qualname": "Match.c3_sync",
+   "code": "78e93a1c15183f58",
+   "chain": []
+  },
+  "match.Match.c3_throw_off": {
+   "file": "<embedded match.py>",
+   "line": 1701,
+   "qualname": "Match.c3_throw_off",
+   "code": "5d340556bd000377",
+   "chain": []
+  },
+  "match.Match.c3_withhold": {
+   "file": "<embedded match.py>",
+   "line": 1717,
+   "qualname": "Match.c3_withhold",
+   "code": "dc3dc9ae632f2211",
+   "chain": []
+  },
+  "match.Match.c3_zone_left": {
+   "file": "<embedded match.py>",
+   "line": 1770,
+   "qualname": "Match.c3_zone_left",
+   "code": "a311cdd64630b539",
+   "chain": []
+  },
+  "match.Match.c4a_roster": {
+   "file": "<embedded match.py>",
+   "line": 165,
+   "qualname": "Match.c4a_roster",
+   "code": "325db2c82111d1eb",
+   "chain": []
+  },
+  "match.Match.c4a_shares": {
+   "file": "<embedded match.py>",
+   "line": 1739,
+   "qualname": "Match.c4a_shares",
+   "code": "d943913fc316c850",
+   "chain": []
+  },
+  "match.Match.c4b_down": {
+   "file": "<embedded match.py>",
+   "line": 215,
+   "qualname": "Match.c4b_down",
+   "code": "093d410dab97cc48",
+   "chain": []
+  },
+  "match.Match.c4b_gait": {
+   "file": "<embedded match.py>",
+   "line": 183,
+   "qualname": "Match.c4b_gait",
+   "code": "731714afe20a4689",
+   "chain": []
+  },
+  "match.Match.c4b_land_tau": {
+   "file": "<embedded match.py>",
+   "line": 203,
+   "qualname": "Match.c4b_land_tau",
+   "code": "c10021790dea1637",
+   "chain": []
+  },
+  "match.Match.c4b_lateral": {
+   "file": "<embedded match.py>",
+   "line": 208,
+   "qualname": "Match.c4b_lateral",
+   "code": "94a536c4b8ada137",
+   "chain": []
+  },
+  "match.Match.c4b_lift": {
+   "file": "<embedded match.py>",
+   "line": 212,
+   "qualname": "Match.c4b_lift",
+   "code": "5b2a616863574127",
+   "chain": []
+  },
+  "match.Match.c4b_plant": {
+   "file": "<embedded match.py>",
+   "line": 210,
+   "qualname": "Match.c4b_plant",
+   "code": "2e6f0948c064ab23",
+   "chain": []
+  },
+  "match.Match.c4b_roster": {
+   "file": "<embedded match.py>",
+   "line": 718,
+   "qualname": "Match.c4b_roster",
+   "code": "a2c91309a4387306",
+   "chain": []
+  },
+  "match.Match.c4b_step": {
+   "file": "<embedded match.py>",
+   "line": 220,
+   "qualname": "Match.c4b_step",
+   "code": "09f12e74727526c4",
+   "chain": []
+  },
+  "match.Match.c4c2_carry_chance": {
+   "file": "<embedded match.py>",
+   "line": 619,
+   "qualname": "Match.c4c2_carry_chance",
+   "code": "4aabf2da5a2bc387",
+   "chain": []
+  },
+  "match.Match.c4c2_carry_p": {
+   "file": "<embedded match.py>",
+   "line": 577,
+   "qualname": "Match.c4c2_carry_p",
+   "code": "14161a5779fbb49d",
+   "chain": []
+  },
+  "match.Match.c4c2_confront": {
+   "file": "<embedded match.py>",
+   "line": 588,
+   "qualname": "Match.c4c2_confront",
+   "code": "4e3bd9619bf0e32b",
+   "chain": []
+  },
+  "match.Match.c4c2_cont": {
+   "file": "/home/claude/t1_b0/positional_tendencies_v1.py",
+   "line": 369,
+   "qualname": "install.<locals>.c4c2_cont",
+   "code": "0c03df87a7023a04",
+   "chain": [
+    {
+     "file": "<embedded match.py>",
+     "line": 2722,
+     "qualname": "pocket_cont",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.c4c2_conv": {
+   "file": "<embedded match.py>",
+   "line": 563,
+   "qualname": "Match.c4c2_conv",
+   "code": "f253af41bd24834d",
+   "chain": []
+  },
+  "match.Match.c4c2_decide": {
+   "file": "<embedded match.py>",
+   "line": 2790,
+   "qualname": "pocket_decide",
+   "code": "3f5da9a6a368bcc3",
+   "chain": []
+  },
+  "match.Match.c4c2_engage_s": {
+   "file": "<embedded match.py>",
+   "line": 533,
+   "qualname": "Match.c4c2_engage_s",
+   "code": "9d837d732665291c",
+   "chain": []
+  },
+  "match.Match.c4c2_eval": {
+   "file": "/home/claude/t1_b0/positional_tendencies_v1.py",
+   "line": 356,
+   "qualname": "install.<locals>.c4c2_eval",
+   "code": "4c76fbd8fecbebf4",
+   "chain": [
+    {
+     "file": "<embedded match.py>",
+     "line": 2700,
+     "qualname": "pocket_eval",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.c4c2_goal_factor": {
+   "file": "<embedded match.py>",
+   "line": 573,
+   "qualname": "Match.c4c2_goal_factor",
+   "code": "7a5a7a293f54242d",
+   "chain": []
+  },
+  "match.Match.c4c2_inbound": {
+   "file": "<embedded match.py>",
+   "line": 130,
+   "qualname": "Match.c4c2_inbound",
+   "code": "fd82b4a72c02c98d",
+   "chain": []
+  },
+  "match.Match.c4c2_inbound_order": {
+   "file": "<embedded match.py>",
+   "line": 156,
+   "qualname": "Match.c4c2_inbound_order",
+   "code": "91cb11d4b744c50d",
+   "chain": []
+  },
+  "match.Match.c4c2_interp": {
+   "file": "<embedded match.py>",
+   "line": 557,
+   "qualname": "Match.c4c2_interp",
+   "code": "aac2731d056472e6",
+   "chain": []
+  },
+  "match.Match.c4c2_keeper_out": {
+   "file": "<embedded match.py>",
+   "line": 586,
+   "qualname": "Match.c4c2_keeper_out",
+   "code": "062bd8b7d3e85098",
+   "chain": []
+  },
+  "match.Match.c4c2_margin": {
+   "file": "<embedded match.py>",
+   "line": 554,
+   "qualname": "Match.c4c2_margin",
+   "code": "2ff581132c552513",
+   "chain": []
+  },
+  "match.Match.c4c2_pass_p": {
+   "file": "<embedded match.py>",
+   "line": 580,
+   "qualname": "Match.c4c2_pass_p",
+   "code": "6bbb3f31e662d881",
+   "chain": []
+  },
+  "match.Match.c4c2_tackled_p": {
+   "file": "<embedded match.py>",
+   "line": 575,
+   "qualname": "Match.c4c2_tackled_p",
+   "code": "84edb6c523f0a026",
+   "chain": []
+  },
+  "match.Match.c4c2_targets": {
+   "file": "<embedded match.py>",
+   "line": 684,
+   "qualname": "Match.c4c2_targets",
+   "code": "5d65dd4e8b50588c",
+   "chain": []
+  },
+  "match.Match.c4c2_vposs": {
+   "file": "<embedded match.py>",
+   "line": 583,
+   "qualname": "Match.c4c2_vposs",
+   "code": "1bfcdab5c0f3c9c2",
+   "chain": []
+  },
+  "match.Match.c4c2_windup_s": {
+   "file": "<embedded match.py>",
+   "line": 531,
+   "qualname": "Match.c4c2_windup_s",
+   "code": "881d27f03242b308",
+   "chain": []
+  },
+  "match.Match.c4c_body": {
+   "file": "<embedded match.py>",
+   "line": 276,
+   "qualname": "Match.c4c_body",
+   "code": "1ff2d38a8f5770dc",
+   "chain": []
+  },
+  "match.Match.c4c_due": {
+   "file": "<embedded match.py>",
+   "line": 382,
+   "qualname": "Match.c4c_due",
+   "code": "289e38f7a2426de1",
+   "chain": []
+  },
+  "match.Match.c4c_keepers": {
+   "file": "<embedded match.py>",
+   "line": 328,
+   "qualname": "Match.c4c_keepers",
+   "code": "fae558ac7745c514",
+   "chain": []
+  },
+  "match.Match.c4c_land": {
+   "file": "<embedded match.py>",
+   "line": 491,
+   "qualname": "Match.c4c_land",
+   "code": "93292ce103975d53",
+   "chain": []
+  },
+  "match.Match.c4c_land_due": {
+   "file": "<embedded match.py>",
+   "line": 486,
+   "qualname": "Match.c4c_land_due",
+   "code": "510c1651972c7023",
+   "chain": []
+  },
+  "match.Match.c4c_off": {
+   "file": "<embedded match.py>",
+   "line": 418,
+   "qualname": "Match.c4c_off",
+   "code": "7fca25a252462ce6",
+   "chain": []
+  },
+  "match.Match.c4c_path": {
+   "file": "<embedded match.py>",
+   "line": 394,
+   "qualname": "Match.c4c_path",
+   "code": "529a6aeacec5b4c2",
+   "chain": []
+  },
+  "match.Match.c4c_plan": {
+   "file": "<embedded match.py>",
+   "line": 423,
+   "qualname": "Match.c4c_plan",
+   "code": "808cf1ed33c70a90",
+   "chain": []
+  },
+  "match.Match.c4c_position": {
+   "file": "<embedded match.py>",
+   "line": 508,
+   "qualname": "Match.c4c_position",
+   "code": "55d9fa1a6d6ef40e",
+   "chain": []
+  },
+  "match.Match.c4c_reach": {
+   "file": "<embedded match.py>",
+   "line": 416,
+   "qualname": "Match.c4c_reach",
+   "code": "c351bc5e5a8d948c",
+   "chain": []
+  },
+  "match.Match.c4c_threat": {
+   "file": "<embedded match.py>",
+   "line": 407,
+   "qualname": "Match.c4c_threat",
+   "code": "10f53a60cf46f709",
+   "chain": []
+  },
+  "match.Match.carrier_decision": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 110,
+   "qualname": "install.<locals>.carrier_decision",
+   "code": "cd53645686d70a4a",
+   "chain": [
+    {
+     "file": "<embedded match.py>",
+     "line": 917,
+     "qualname": "Match.carrier_decision",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 28,
+     "qualname": "install.<locals>.plan_to_ground",
+     "inner": [
+      {
+       "file": "bounce_option_v0.py",
+       "line": 24,
+       "qualname": "install.<locals>.first_ground",
+       "inner": []
+      },
+      {
+       "file": "<embedded geometry.py>",
+       "line": 55,
+       "qualname": "launch_for",
+       "inner": []
+      },
+      {
+       "file": "bounce_option_v0.py",
+       "line": 21,
+       "qualname": "install.<locals>.path_of",
+       "inner": [
+        {
+         "file": "<embedded geometry.py>",
+         "line": 79,
+         "qualname": "predict_path",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 72,
+     "qualname": "install.<locals>.rnd",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 20,
+     "qualname": "install.<locals>.unit_",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.catch_contacts": {
+   "file": "<embedded match.py>",
+   "line": 2170,
+   "qualname": "Match.catch_contacts",
+   "code": "e7fc788ae942ebf8",
+   "chain": []
+  },
+  "match.Match.fly_on": {
+   "file": "<embedded match.py>",
+   "line": 2320,
+   "qualname": "Match.fly_on",
+   "code": "51aedc70a4f4e806",
+   "chain": []
+  },
+  "match.Match.make_pass": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 73,
+   "qualname": "install.<locals>.make_pass",
+   "code": "1e62789fafc38f17",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 175,
+     "qualname": "install_nokick.<locals>.make_pass",
+     "inner": [
+      {
+       "file": "pocket4_proto.py",
+       "line": 392,
+       "qualname": "install.<locals>.with_delay.<locals>.wrapped",
+       "inner": [
+        {
+         "file": "<embedded match.py>",
+         "line": 859,
+         "qualname": "Match.make_pass",
+         "inner": []
+        },
+        {
+         "file": "pocket4_proto.py",
+         "line": 144,
+         "qualname": "install.<locals>.pose",
+         "inner": [
+          {
+           "file": "<embedded geometry.py>",
+           "line": 8,
+           "qualname": "distance",
+           "inner": []
+          }
+         ]
+        },
+        {
+         "file": "pocket4_proto.py",
+         "line": 137,
+         "qualname": "install.<locals>.thrower",
+         "inner": [
+          {
+           "file": "pocket4_proto.py",
+           "line": 135,
+           "qualname": "install.<locals>.ex",
+           "inner": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "file": "rules_v03.py",
+       "line": 174,
+       "qualname": "install_nokick.<locals>.<lambda>",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 72,
+     "qualname": "install.<locals>.rnd",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.make_shot": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 94,
+   "qualname": "install.<locals>.make_shot",
+   "code": "1f4ee5acf13a7cba",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 178,
+     "qualname": "install_nokick.<locals>.make_shot",
+     "inner": [
+      {
+       "file": "pocket4_proto.py",
+       "line": 551,
+       "qualname": "install.<locals>.make_shot2",
+       "inner": [
+        {
+         "file": "pocket4_proto.py",
+         "line": 392,
+         "qualname": "install.<locals>.with_delay.<locals>.wrapped",
+         "inner": [
+          {
+           "file": "<embedded match.py>",
+           "line": 897,
+           "qualname": "Match.make_shot",
+           "inner": []
+          },
+          {
+           "file": "pocket4_proto.py",
+           "line": 144,
+           "qualname": "install.<locals>.pose",
+           "inner": [
+            {
+             "file": "<embedded geometry.py>",
+             "line": 8,
+             "qualname": "distance",
+             "inner": []
+            }
+           ]
+          },
+          {
+           "file": "pocket4_proto.py",
+           "line": 137,
+           "qualname": "install.<locals>.thrower",
+           "inner": [
+            {
+             "file": "pocket4_proto.py",
+             "line": 135,
+             "qualname": "install.<locals>.ex",
+             "inner": []
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "file": "rules_v03.py",
+       "line": 174,
+       "qualname": "install_nokick.<locals>.<lambda>",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 54,
+     "qualname": "install.<locals>.plan_bounce_shot",
+     "inner": [
+      {
+       "file": "bounce_option_v0.py",
+       "line": 24,
+       "qualname": "install.<locals>.first_ground",
+       "inner": []
+      },
+      {
+       "file": "<embedded geometry.py>",
+       "line": 55,
+       "qualname": "launch_for",
+       "inner": []
+      },
+      {
+       "file": "bounce_option_v0.py",
+       "line": 21,
+       "qualname": "install.<locals>.path_of",
+       "inner": [
+        {
+         "file": "<embedded geometry.py>",
+         "line": 79,
+         "qualname": "predict_path",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 72,
+     "qualname": "install.<locals>.rnd",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.move_players": {
+   "file": "<embedded match.py>",
+   "line": 735,
+   "qualname": "Match.move_players",
+   "code": "871603aa6d140a28",
+   "chain": []
+  },
+  "match.Match.penalty_targets": {
+   "file": "<embedded match.py>",
+   "line": 2359,
+   "qualname": "Match.penalty_targets",
+   "code": "14b0a93f4343fe64",
+   "chain": []
+  },
+  "match.Match.plan_pass": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 87,
+   "qualname": "install.<locals>.plan_pass",
+   "code": "45a8926bea798ebf",
+   "chain": [
+    {
+     "file": "pocket4_proto.py",
+     "line": 546,
+     "qualname": "install.<locals>.plan_pass2",
+     "inner": [
+      {
+       "file": "<embedded geometry.py>",
+       "line": 5,
+       "qualname": "norm",
+       "inner": []
+      },
+      {
+       "file": "<embedded match.py>",
+       "line": 2680,
+       "qualname": "pocket_plan_pass",
+       "inner": []
+      },
+      {
+       "file": "pocket4_proto.py",
+       "line": 137,
+       "qualname": "install.<locals>.thrower",
+       "inner": [
+        {
+         "file": "pocket4_proto.py",
+         "line": 135,
+         "qualname": "install.<locals>.ex",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 37,
+     "qualname": "install.<locals>.plan_skip",
+     "inner": [
+      {
+       "file": "bounce_option_v0.py",
+       "line": 24,
+       "qualname": "install.<locals>.first_ground",
+       "inner": []
+      },
+      {
+       "file": "<embedded geometry.py>",
+       "line": 55,
+       "qualname": "launch_for",
+       "inner": []
+      },
+      {
+       "file": "bounce_option_v0.py",
+       "line": 21,
+       "qualname": "install.<locals>.path_of",
+       "inner": [
+        {
+         "file": "<embedded geometry.py>",
+         "line": 79,
+         "qualname": "predict_path",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "match.Match.player_contacts": {
+   "file": "<embedded match.py>",
+   "line": 2026,
+   "qualname": "Match.player_contacts",
+   "code": "ad2484726e6be2e7",
+   "chain": []
+  },
+  "match.Match.pocket_budget": {
+   "file": "<embedded match.py>",
+   "line": 2632,
+   "qualname": "pocket_budget",
+   "code": "7d6a9703e7ba34dd",
+   "chain": []
+  },
+  "match.Match.pocket_pass_option": {
+   "file": "/home/claude/t1_b0/positional_tendencies_v1.py",
+   "line": 373,
+   "qualname": "install.<locals>.pocket_pass_option",
+   "code": "29eb93e54a98e449",
+   "chain": [
+    {
+     "file": "<embedded match.py>",
+     "line": 2752,
+     "qualname": "pocket_pass_option",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.pocket_receiver_position": {
+   "file": "<embedded match.py>",
+   "line": 2654,
+   "qualname": "pocket_receiver_position",
+   "code": "de6ece2e9b679351",
+   "chain": []
+  },
+  "match.Match.pocket_travel": {
+   "file": "<embedded match.py>",
+   "line": 2638,
+   "qualname": "pocket_travel",
+   "code": "1a06fdff2ad747e0",
+   "chain": []
+  },
+  "match.Match.process_events": {
+   "file": "<embedded match.py>",
+   "line": 2392,
+   "qualname": "Match.process_events",
+   "code": "d1ede4ef016bb7f3",
+   "chain": []
+  },
+  "match.Match.record": {
+   "file": "<embedded match.py>",
+   "line": 2855,
+   "qualname": "pocket_record",
+   "code": "48f7d315573f5340",
+   "chain": []
+  },
+  "match.Match.route_receiver": {
+   "file": "<embedded match.py>",
+   "line": 2508,
+   "qualname": "Match.route_receiver",
+   "code": "70153242d08e919b",
+   "chain": []
+  },
+  "match.Match.run": {
+   "file": "<embedded match.py>",
+   "line": 2535,
+   "qualname": "Match.run",
+   "code": "6e70e546598098fc",
+   "chain": []
+  },
+  "match.Match.run_for": {
+   "file": "<embedded match.py>",
+   "line": 2540,
+   "qualname": "Match.run_for",
+   "code": "88e2630e8d495b3e",
+   "chain": []
+  },
+  "match.Match.save": {
+   "file": "<embedded match.py>",
+   "line": 2554,
+   "qualname": "Match.save",
+   "code": "ba35f8c4714b6b40",
+   "chain": []
+  },
+  "match.Match.step": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 128,
+   "qualname": "install.<locals>.step",
+   "code": "ccf76737597a32f0",
+   "chain": [
+    {
+     "file": "rules_v03.py",
+     "line": 153,
+     "qualname": "install.<locals>.step",
+     "inner": [
+      {
+       "file": "rules_v03.py",
+       "line": 110,
+       "qualname": "install.<locals>.<lambda>",
+       "inner": []
+      },
+      {
+       "file": "rules_v03.py",
+       "line": 22,
+       "qualname": "install.<locals>.count",
+       "inner": []
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 351,
+       "qualname": "install.<locals>.step",
+       "inner": [
+        {
+         "file": "<embedded geometry.py>",
+         "line": 5,
+         "qualname": "norm",
+         "inner": []
+        },
+        {
+         "file": "pocket4_proto.py",
+         "line": 363,
+         "qualname": "install.<locals>.step",
+         "inner": [
+          {
+           "file": "<embedded geometry.py>",
+           "line": 4,
+           "qualname": "clamp",
+           "inner": []
+          },
+          {
+           "file": "pocket4_proto.py",
+           "line": 259,
+           "qualname": "install.<locals>.condition_post",
+           "inner": []
+          },
+          {
+           "file": "pocket4_proto.py",
+           "line": 250,
+           "qualname": "install.<locals>.fire_jumps",
+           "inner": []
+          },
+          {
+           "file": "pocket4_proto.py",
+           "line": 220,
+           "qualname": "install.<locals>.plan_jumps",
+           "inner": []
+          }
+         ]
+        },
+        {
+         "file": "restarts_v1.py",
+         "line": 40,
+         "qualname": "install.<locals>.on",
+         "inner": []
+        }
+       ]
+      },
+      {
+       "file": "rules_v03.py",
+       "line": 130,
+       "qualname": "install.<locals>.scrim_penalty",
+       "inner": [
+        {
+         "file": "rules_v03.py",
+         "line": 112,
+         "qualname": "install.<locals>.<lambda>",
+         "inner": []
+        },
+        {
+         "file": "rules_v03.py",
+         "line": 117,
+         "qualname": "install.<locals>.make_scrimmage",
+         "inner": []
+        },
+        {
+         "file": "rules_v03.py",
+         "line": 114,
+         "qualname": "install.<locals>.turnover_spot",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "match.Match.summary": {
+   "file": "<embedded match.py>",
+   "line": 2544,
+   "qualname": "Match.summary",
+   "code": "40d1e8a3a3c6f16f",
+   "chain": []
+  },
+  "match.Match.targets_dead": {
+   "file": "/home/claude/t1_b0/restarts_v1.py",
+   "line": 211,
+   "qualname": "install.<locals>.targets_dead",
+   "code": "6caf190b217e9995",
+   "chain": [
+    {
+     "file": "restarts_v1.py",
+     "line": 44,
+     "qualname": "install.<locals>.field",
+     "inner": []
+    },
+    {
+     "file": "restarts_v1.py",
+     "line": 48,
+     "qualname": "install.<locals>.formation",
+     "inner": [
+      {
+       "file": "restarts_v1.py",
+       "line": 41,
+       "qualname": "install.<locals>.pos_of",
+       "inner": []
+      },
+      {
+       "file": "restarts_v1.py",
+       "line": 46,
+       "qualname": "install.<locals>.x_from_u",
+       "inner": []
+      }
+     ]
+    },
+    {
+     "file": "<embedded geometry.py>",
+     "line": 5,
+     "qualname": "norm",
+     "inner": []
+    },
+    {
+     "file": "<embedded match.py>",
+     "line": 104,
+     "qualname": "Match.targets_dead",
+     "inner": []
+    }
+   ]
+  },
+  "match.Match.update_archers": {
+   "file": "<embedded match.py>",
+   "line": 808,
+   "qualname": "Match.update_archers",
+   "code": "74c987af59b9ef79",
+   "chain": []
+  },
+  "match.Match.update_keepers_jump": {
+   "file": "<embedded match.py>",
+   "line": 2363,
+   "qualname": "Match.update_keepers_jump",
+   "code": "742c169de5879fab",
+   "chain": []
+  },
+  "match.<module>._pocket_previous_cont": {
+   "file": "<embedded match.py>",
+   "line": 626,
+   "qualname": "Match.c4c2_cont",
+   "code": "b8464da00136bc7f",
+   "chain": []
+  },
+  "match.<module>._pocket_previous_decide": {
+   "file": "<embedded match.py>",
+   "line": 642,
+   "qualname": "Match.c4c2_decide",
+   "code": "2f18843162a7828d",
+   "chain": []
+  },
+  "match.<module>._pocket_previous_eval": {
+   "file": "<embedded match.py>",
+   "line": 600,
+   "qualname": "Match.c4c2_eval",
+   "code": "83276404d3acd9b5",
+   "chain": []
+  },
+  "match.<module>._pocket_previous_init": {
+   "file": "<embedded match.py>",
+   "line": 40,
+   "qualname": "Match.__init__",
+   "code": "e223239232c259e0",
+   "chain": []
+  },
+  "match.<module>._pocket_previous_plan": {
+   "file": "<embedded match.py>",
+   "line": 829,
+   "qualname": "Match.plan_pass",
+   "code": "f23c8de4b09a3c64",
+   "chain": []
+  },
+  "match.<module>._pocket_previous_record": {
+   "file": "<embedded match.py>",
+   "line": 2518,
+   "qualname": "Match.record",
+   "code": "f958cb12c01dd9a0",
+   "chain": []
+  },
+  "match.<module>.pocket_budget": {
+   "file": "<embedded match.py>",
+   "line": 2632,
+   "qualname": "pocket_budget",
+   "code": "7d6a9703e7ba34dd",
+   "chain": []
+  },
+  "match.<module>.pocket_cont": {
+   "file": "<embedded match.py>",
+   "line": 2722,
+   "qualname": "pocket_cont",
+   "code": "0f959c1fa7ca3f78",
+   "chain": []
+  },
+  "match.<module>.pocket_decide": {
+   "file": "<embedded match.py>",
+   "line": 2790,
+   "qualname": "pocket_decide",
+   "code": "3f5da9a6a368bcc3",
+   "chain": []
+  },
+  "match.<module>.pocket_eval": {
+   "file": "<embedded match.py>",
+   "line": 2700,
+   "qualname": "pocket_eval",
+   "code": "dc7169f6849561a5",
+   "chain": []
+  },
+  "match.<module>.pocket_init": {
+   "file": "<embedded match.py>",
+   "line": 2582,
+   "qualname": "pocket_init",
+   "code": "9fc026b3fcdee79c",
+   "chain": []
+  },
+  "match.<module>.pocket_pass_option": {
+   "file": "<embedded match.py>",
+   "line": 2752,
+   "qualname": "pocket_pass_option",
+   "code": "0f1ef0858f863378",
+   "chain": []
+  },
+  "match.<module>.pocket_plan_pass": {
+   "file": "<embedded match.py>",
+   "line": 2680,
+   "qualname": "pocket_plan_pass",
+   "code": "e94e68d47474b675",
+   "chain": []
+  },
+  "match.<module>.pocket_receiver_position": {
+   "file": "<embedded match.py>",
+   "line": 2654,
+   "qualname": "pocket_receiver_position",
+   "code": "de6ece2e9b679351",
+   "chain": []
+  },
+  "match.<module>.pocket_record": {
+   "file": "<embedded match.py>",
+   "line": 2855,
+   "qualname": "pocket_record",
+   "code": "48f7d315573f5340",
+   "chain": []
+  },
+  "match.<module>.pocket_travel": {
+   "file": "<embedded match.py>",
+   "line": 2638,
+   "qualname": "pocket_travel",
+   "code": "1a06fdff2ad747e0",
+   "chain": []
+  },
+  "policies.Policy.__init__": {
+   "file": "<embedded policies.py>",
+   "line": 80,
+   "qualname": "Policy.__init__",
+   "code": "658c398490b32cb5",
+   "chain": []
+  },
+  "policies.Policy.eligible": {
+   "file": "<embedded policies.py>",
+   "line": 82,
+   "qualname": "Policy.eligible",
+   "code": "4ce4acbcb101e26b",
+   "chain": []
+  },
+  "policies.Policy.pass_choice": {
+   "file": "<embedded policies.py>",
+   "line": 206,
+   "qualname": "Policy.pass_choice",
+   "code": "f2ae6119ab1827b6",
+   "chain": []
+  },
+  "policies.Policy.pass_ranked": {
+   "file": "<embedded policies.py>",
+   "line": 195,
+   "qualname": "Policy.pass_ranked",
+   "code": "3c7ea54aac279d4e",
+   "chain": []
+  },
+  "policies.Policy.targets": {
+   "file": "/home/claude/t1_b0/bounce_option_v0.py",
+   "line": 151,
+   "qualname": "install.<locals>.targets",
+   "code": "8507dc774a74b9e5",
+   "chain": [
+    {
+     "file": "block_option_v0.py",
+     "line": 27,
+     "qualname": "install.<locals>.targets",
+     "inner": [
+      {
+       "file": "block_option_v0.py",
+       "line": 67,
+       "qualname": "install.<locals>._legacy",
+       "inner": []
+      },
+      {
+       "file": "block_option_v0.py",
+       "line": 26,
+       "qualname": "install.<locals>.gap",
+       "inner": []
+      },
+      {
+       "file": "positional_tendencies_v1.py",
+       "line": 233,
+       "qualname": "install.<locals>.targets",
+       "inner": [
+        {
+         "file": "<embedded geometry.py>",
+         "line": 4,
+         "qualname": "clamp",
+         "inner": []
+        },
+        {
+         "file": "<embedded geometry.py>",
+         "line": 5,
+         "qualname": "norm",
+         "inner": []
+        },
+        {
+         "file": "<embedded policies.py>",
+         "line": 83,
+         "qualname": "Policy.targets",
+         "inner": []
+        },
+        {
+         "file": "positional_tendencies_v1.py",
+         "line": 231,
+         "qualname": "install.<locals>.rec",
+         "inner": []
+        },
+        {
+         "file": "<embedded geometry.py>",
+         "line": 20,
+         "qualname": "zone",
+         "inner": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "file": "bounce_option_v0.py",
+     "line": 19,
+     "qualname": "install.<locals>.<lambda>",
+     "inner": []
+    }
+   ]
+  },
+  "policies.Tactics.__delattr__": {
+   "file": "<string>",
+   "line": 30,
+   "qualname": "Tactics.__delattr__",
+   "code": "bdac4a5e8789697a",
+   "chain": []
+  },
+  "policies.Tactics.__eq__": {
+   "file": "<string>",
+   "line": 20,
+   "qualname": "Tactics.__eq__",
+   "code": "2cb071ae7df3d186",
+   "chain": []
+  },
+  "policies.Tactics.__hash__": {
+   "file": "<string>",
+   "line": 34,
+   "qualname": "Tactics.__hash__",
+   "code": "715800695f99aabe",
+   "chain": []
+  },
+  "policies.Tactics.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Tactics.__init__",
+   "code": "c04270969bd6826b",
+   "chain": []
+  },
+  "policies.Tactics.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "policies.Tactics.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Tactics.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 17,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "policies.Tactics.__setattr__": {
+   "file": "<string>",
+   "line": 26,
+   "qualname": "Tactics.__setattr__",
+   "code": "5e2fe851b17ff75d",
+   "chain": []
+  },
+  "policies.<module>.make_roster": {
+   "file": "<embedded policies.py>",
+   "line": 49,
+   "qualname": "make_roster",
+   "code": "666f198a115e9b81",
+   "chain": []
+  },
+  "policies.<module>.mix_tactics": {
+   "file": "<embedded policies.py>",
+   "line": 38,
+   "qualname": "mix_tactics",
+   "code": "f6670230ff47f14b",
+   "chain": []
+  },
+  "types.Arrow.__eq__": {
+   "file": "<string>",
+   "line": 21,
+   "qualname": "Arrow.__eq__",
+   "code": "7551f53d1a864ed9",
+   "chain": []
+  },
+  "types.Arrow.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Arrow.__init__",
+   "code": "044dbe3b8a3bbd8a",
+   "chain": []
+  },
+  "types.Arrow.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Arrow.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Arrow.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 18,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.Attributes.__eq__": {
+   "file": "<string>",
+   "line": 30,
+   "qualname": "Attributes.__eq__",
+   "code": "6703761ceae89c2c",
+   "chain": []
+  },
+  "types.Attributes.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Attributes.__init__",
+   "code": "06529ed7bb2de994",
+   "chain": []
+  },
+  "types.Attributes.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Attributes.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Attributes.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 27,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.Attributes.validate": {
+   "file": "<embedded types.py>",
+   "line": 36,
+   "qualname": "Attributes.validate",
+   "code": "030d01c0449c8cc3",
+   "chain": []
+  },
+  "types.Ball.__eq__": {
+   "file": "<string>",
+   "line": 23,
+   "qualname": "Ball.__eq__",
+   "code": "feb50ccbd86a9bf0",
+   "chain": []
+  },
+  "types.Ball.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Ball.__init__",
+   "code": "5ad8755f458087c5",
+   "chain": []
+  },
+  "types.Ball.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Ball.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Ball.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 20,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.BallMode.__format__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1311,
+   "qualname": "Enum.__format__",
+   "code": "2c73fdc3ac80bf9a",
+   "chain": []
+  },
+  "types.BallMode.__new__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1158,
+   "qualname": "Enum.__new__",
+   "code": "60a00462d2c67256",
+   "chain": []
+  },
+  "types.BallMode.__repr__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1275,
+   "qualname": "Enum.__repr__",
+   "code": "3ac3980f3c97260b",
+   "chain": []
+  },
+  "types.BallMode.__str__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1279,
+   "qualname": "Enum.__str__",
+   "code": "9c89b9f1fc563f2c",
+   "chain": []
+  },
+  "types.BallMode._generate_next_value_": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1250,
+   "qualname": "Enum._generate_next_value_",
+   "code": "e3990b2aa2634102",
+   "chain": []
+  },
+  "types.Engagement.__eq__": {
+   "file": "<string>",
+   "line": 11,
+   "qualname": "Engagement.__eq__",
+   "code": "90ac25d58a63f79b",
+   "chain": []
+  },
+  "types.Engagement.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Engagement.__init__",
+   "code": "ce316220e3a2fdc7",
+   "chain": []
+  },
+  "types.Engagement.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Engagement.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Engagement.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 8,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.Event.__eq__": {
+   "file": "<string>",
+   "line": 11,
+   "qualname": "Event.__eq__",
+   "code": "50bf6e539d0e9029",
+   "chain": []
+  },
+  "types.Event.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Event.__init__",
+   "code": "d9ea43423a79dfe8",
+   "chain": []
+  },
+  "types.Event.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Event.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Event.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 8,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.MatchState.__eq__": {
+   "file": "<string>",
+   "line": 57,
+   "qualname": "MatchState.__eq__",
+   "code": "49c7d9f38d657e44",
+   "chain": []
+  },
+  "types.MatchState.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "MatchState.__init__",
+   "code": "3735bfbaed659441",
+   "chain": [
+    {
+     "file": "<embedded types.py>",
+     "line": 203,
+     "qualname": "MatchState.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 187,
+     "qualname": "MatchState.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 176,
+     "qualname": "MatchState.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 173,
+     "qualname": "MatchState.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 201,
+     "qualname": "MatchState.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 200,
+     "qualname": "MatchState.<lambda>",
+     "inner": []
+    }
+   ]
+  },
+  "types.MatchState.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.MatchState.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "MatchState.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 54,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.MatchState.active": {
+   "file": "<embedded types.py>",
+   "line": 222,
+   "qualname": "MatchState.active",
+   "code": "2fe92de4cea5b4a7",
+   "chain": []
+  },
+  "types.MatchState.attack_goal": {
+   "file": "<embedded types.py>",
+   "line": 220,
+   "qualname": "MatchState.attack_goal",
+   "code": "12f7888558efda05",
+   "chain": []
+  },
+  "types.MatchState.attack_sign": {
+   "file": "<embedded types.py>",
+   "line": 219,
+   "qualname": "MatchState.attack_sign",
+   "code": "478105084b4c5ec5",
+   "chain": []
+  },
+  "types.MatchState.other": {
+   "file": "<embedded types.py>",
+   "line": 218,
+   "qualname": "MatchState.other",
+   "code": "b53489f959346ae0",
+   "chain": []
+  },
+  "types.MatchState.own_zone": {
+   "file": "<embedded types.py>",
+   "line": 221,
+   "qualname": "MatchState.own_zone",
+   "code": "9c7d8faf88e0ee9d",
+   "chain": []
+  },
+  "types.Phase.__format__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1311,
+   "qualname": "Enum.__format__",
+   "code": "2c73fdc3ac80bf9a",
+   "chain": []
+  },
+  "types.Phase.__new__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1158,
+   "qualname": "Enum.__new__",
+   "code": "60a00462d2c67256",
+   "chain": []
+  },
+  "types.Phase.__repr__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1275,
+   "qualname": "Enum.__repr__",
+   "code": "3ac3980f3c97260b",
+   "chain": []
+  },
+  "types.Phase.__str__": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1279,
+   "qualname": "Enum.__str__",
+   "code": "9c89b9f1fc563f2c",
+   "chain": []
+  },
+  "types.Phase._generate_next_value_": {
+   "file": "/usr/lib/python3.13/enum.py",
+   "line": 1250,
+   "qualname": "Enum._generate_next_value_",
+   "code": "e3990b2aa2634102",
+   "chain": []
+  },
+  "types.Player.__eq__": {
+   "file": "<string>",
+   "line": 40,
+   "qualname": "Player.__eq__",
+   "code": "0a04e8b47bef9fc8",
+   "chain": []
+  },
+  "types.Player.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Player.__init__",
+   "code": "c8b104aa3584f360",
+   "chain": [
+    {
+     "file": "<embedded types.py>",
+     "line": 67,
+     "qualname": "Player.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 70,
+     "qualname": "Player.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 72,
+     "qualname": "Player.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 71,
+     "qualname": "Player.<lambda>",
+     "inner": []
+    },
+    {
+     "file": "<embedded types.py>",
+     "line": 66,
+     "qualname": "Player.<lambda>",
+     "inner": []
+    }
+   ]
+  },
+  "types.Player.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Player.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Player.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 37,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.Player.eligible": {
+   "file": "<embedded types.py>",
+   "line": 85,
+   "qualname": "Player.eligible",
+   "code": "103b743c9d2e2d2e",
+   "chain": []
+  },
+  "types.Player.frozen": {
+   "file": "<embedded types.py>",
+   "line": 86,
+   "qualname": "Player.frozen",
+   "code": "fc72405bc642ffda",
+   "chain": []
+  },
+  "types.Quiver.__eq__": {
+   "file": "<string>",
+   "line": 11,
+   "qualname": "Quiver.__eq__",
+   "code": "f524717011e7183e",
+   "chain": []
+  },
+  "types.Quiver.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Quiver.__init__",
+   "code": "3fa8b18b96c789a0",
+   "chain": []
+  },
+  "types.Quiver.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Quiver.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Quiver.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 8,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  },
+  "types.Restart.__eq__": {
+   "file": "<string>",
+   "line": 18,
+   "qualname": "Restart.__eq__",
+   "code": "88dee2824c26a73e",
+   "chain": []
+  },
+  "types.Restart.__init__": {
+   "file": "<string>",
+   "line": 2,
+   "qualname": "Restart.__init__",
+   "code": "ab9a9c8d6b63a271",
+   "chain": []
+  },
+  "types.Restart.__replace__": {
+   "file": "/usr/lib/python3.13/dataclasses.py",
+   "line": 1648,
+   "qualname": "_replace",
+   "code": "d377649048b5551f",
+   "chain": []
+  },
+  "types.Restart.__repr__": {
+   "file": "/usr/lib/python3.13/reprlib.py",
+   "line": 15,
+   "qualname": "Restart.__repr__",
+   "code": "5e0bf368358100d6",
+   "chain": [
+    {
+     "file": "<string>",
+     "line": 15,
+     "qualname": "__create_fn__.<locals>.__repr__",
+     "inner": []
+    }
+   ]
+  }
+ },
+ "env_reads": {
+  "PRISM_I": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "THROW_SPLIT": {
+   "default": "1",
+   "value": "1",
+   "set": false
+  },
+  "TEND_K": {
+   "default": "0.5",
+   "value": "0.5",
+   "set": false
+  },
+  "DEF_FREEDOM": {
+   "default": "1.0",
+   "value": "1.0",
+   "set": false
+  },
+  "PYTHONUSERBASE": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "DEB_PYTHON_INSTALL_LAYOUT": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "NUMPY_MADVISE_HUGEPAGE": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "NPY_PROMOTION_STATE": {
+   "default": "weak",
+   "value": "weak",
+   "set": false
+  },
+  "_PYTHON_SUBPROCESS_USE_POSIX_SPAWN": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "_PYTHON_SYSCONFIGDATA_NAME": {
+   "default": "_sysconfigdata__x86_64-linux-gnu",
+   "value": "_sysconfigdata__x86_64-linux-gnu",
+   "set": false
+  },
+  "_PYTHON_SYSCONFIGDATA_PATH": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "SOURCE_DATE_EPOCH": {
+   "default": 1793908315.6531687,
+   "value": 1793908315.6531687,
+   "set": false
+  },
+  "SCIPY_ARRAY_API": {
+   "default": false,
+   "value": false,
+   "set": false
+  },
+  "SCIPY_DEVICE": {
+   "default": "cpu",
+   "value": "cpu",
+   "set": false
+  },
+  "PYTHONDOCS": {
+   "default": "https://docs.python.org/3.13/library",
+   "value": "https://docs.python.org/3.13/library",
+   "set": false
+  },
+  "PRISM_DRIVE": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_RANGE_MARGIN": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "ARCH_RMAX": {
+   "default": "70",
+   "value": "70",
+   "set": false
+  },
+  "PRISM_SOFT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_CLARITY": {
+   "default": ".5",
+   "value": ".5",
+   "set": false
+  },
+  "PRISM_TRACK": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_RATINGS": {
+   "default": "null",
+   "value": "null",
+   "set": false
+  },
+  "PRISM_JUDGE": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_JONLY": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "PRISM_INTENT_DEG": {
+   "default": "70",
+   "value": "70",
+   "set": false
+  },
+  "PRISM_REIDENT": {
+   "default": "1",
+   "value": "1",
+   "set": false
+  },
+  "PRISM_TRACKID": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_AMBIG": {
+   "default": "keep",
+   "value": "keep",
+   "set": false
+  },
+  "PRISM_TRK_AGE": {
+   "default": "4",
+   "value": "4",
+   "set": false
+  },
+  "PRISM_LITE": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_RATING_CENTER": {
+   "default": ".7",
+   "value": ".7",
+   "set": false
+  },
+  "PRISM_FIELD": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_FIELD_RATINGS": {
+   "default": "{}",
+   "value": "{}",
+   "set": false
+  },
+  "PRISM_DEF": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_DEF_K": {
+   "default": "3",
+   "value": "3",
+   "set": false
+  },
+  "PRISM_OFFBALL": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_OFF_K": {
+   "default": "99",
+   "value": "99",
+   "set": false
+  },
+  "PRISM_BOUNDED": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_BALLVIEW": {
+   "default": "1",
+   "value": "1",
+   "set": false
+  },
+  "PRISM_CARRIER_BELIEF": {
+   "default": "1",
+   "value": "1",
+   "set": false
+  },
+  "PRISM_AUDIT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_JUDGE_DEF": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_JD_NOISE": {
+   "default": "3.0",
+   "value": "3.0",
+   "set": false
+  },
+  "PRISM_JD_HABIT": {
+   "default": "3.0",
+   "value": "3.0",
+   "set": false
+  },
+  "PRISM_JD_L": {
+   "default": "2.0",
+   "value": "2.0",
+   "set": false
+  },
+  "PRISM_JD_ALAT": {
+   "default": "3.0",
+   "value": "3.0",
+   "set": false
+  },
+  "PRISM_HIDE_CARRIER": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_FOCUS_ONLY": {
+   "default": "",
+   "value": "",
+   "set": false
+  },
+  "PRISM_TEAMVIEW": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_FREEVIEW": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_JSPLIT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_PM_SIG": {
+   "default": "2.5",
+   "value": "2.5",
+   "set": false
+  },
+  "PRISM_ZR_SIG": {
+   "default": "4.0",
+   "value": "4.0",
+   "set": false
+  },
+  "PRISM_CALL_R": {
+   "default": "35",
+   "value": "35",
+   "set": false
+  },
+  "PRISM_PURSUIT_R": {
+   "default": "6",
+   "value": "6",
+   "set": false
+  },
+  "PM_NUDGE": {
+   "default": "1.0",
+   "value": "1.0",
+   "set": false
+  },
+  "PLAT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PLAT_H": {
+   "default": "10",
+   "value": "10",
+   "set": false
+  },
+  "PLAT_SET": {
+   "default": "5",
+   "value": "5",
+   "set": false
+  },
+  "RULESET": {
+   "default": "1.0.1",
+   "value": "1.0.1",
+   "set": false
+  },
+  "ARCH_RMIN": {
+   "default": "10",
+   "value": "10",
+   "set": false
+  },
+  "ARCH_NEAR": {
+   "default": "9",
+   "value": "9",
+   "set": false
+  },
+  "QUIVER_POSS": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "FREEZE_CAP": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "KEEPER_STEP_FRAC": {
+   "default": ".5",
+   "value": ".5",
+   "set": false
+  },
+  "NET_R": {
+   "default": "6",
+   "value": "6",
+   "set": false
+  },
+  "KEEPER_FT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "CATCH_V2": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_KEEPER": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "TMPDIR": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "TEMP": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "TMP": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "FZ_DIAG": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "ARROW_V": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PASS_FLIGHT_S": {
+   "default": "0.9",
+   "value": "0.9",
+   "set": false
+  },
+  "SHOT_FLIGHT_S": {
+   "default": "0.4",
+   "value": "0.4",
+   "set": false
+  },
+  "SHOT_MIN_SPEED": {
+   "default": "45",
+   "value": "45",
+   "set": false
+  },
+  "PRISM_MANEUVERS": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "HAND_FIGHT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "PRISM_OFFACT": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "KP_TRACE": {
+   "default": null,
+   "value": null,
+   "set": false
+  },
+  "REACH_SD": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "RULES_V03": {
+   "default": "0",
+   "value": "0",
+   "set": false
+  },
+  "BLOCK_OPTION": {
+   "default": "1",
+   "value": "1",
+   "set": false
+  },
+  "BOUNCE_OPTION": {
+   "default": "1",
+   "value": "1",
+   "set": false
+  }
+ }
+}
