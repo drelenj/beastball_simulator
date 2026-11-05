@@ -1,0 +1,30 @@
+test_beastball_locomotion_v31.py 0 pass 0 fail 
+test_beastball_locomotion_v32.py 0 pass 0 fail 
+test_beastball_locomotion_v33.py 0 pass 0 fail 
+test_beastball_locomotion_v34.py 0 pass 0 fail 
+test_beastball_locomotion_v35.py 0 pass 0 fail 
+test_beastball_locomotion_v36.py 0 pass 0 fail 
+test_beastball_locomotion_v37.py 0 pass 0 fail 
+test_beastball_unified_locomotion_v30.py 0 pass 0 fail 
+test_locomotion_freeze_1_0.py 0 pass 0 fail 
+test_pocket4_proto.py 5 pass 0 fail 
+test_pocket_capability_v37.py 0 pass 0 fail FileNotFoundError: [Errno 2] No such file or directory: '/home/claude/t1_b0/results_v37/capability_table_v37.json'
+test_pose_engine.py 0 pass 0 fail 
+test_pose_maneuvers.py 0 pass 0 fail 
+test_prism_archer.py 0 pass 0 fail 
+PASS inactive: nothing sent, received or stored
+PASS active: message heard, arrives after channel latency (0.35 s), then becomes a communicated belief
+PASS communicated belief is flagged and weighted below private certainty
+PASS out of voice range: no pathway, not received
+PASS loud crowd drowns a normal call
+PASS gesture needs line of sight
+PASS an opponent in range overhears a call addressed to a teammate
+PASS fresher private belief wins
+PASS stale private belief yields to a fresher communicated one
+PASS deception is indistinguishable in the receiver belief (ground truth is metrics-only)
+PASS higher trust in the sender gives a heavier belief
+ALL PASS
+test_prism_comms.py 0 pass 0 fail 
+test_prism_install.py 0 pass 0 fail 
+test_prism_v012.py 0 pass 0 fail 
+ALLDONE

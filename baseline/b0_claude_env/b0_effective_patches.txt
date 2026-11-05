@@ -1,0 +1,14 @@
+original sha256 a078e6b75a7ea85d09ea720ba0779854e9e91558d0f2973a72f0797d6b0780a5
+patched  sha256 b97f925634ff61e99247bb73e7cfb75a8e45b94df1a005c390af4bfd6a0ca4d1
+B0 default knobs: KSTEP=0.5 NET_R=6.0 KEEPER_FT=0.0 RULESET=1.0.1 ARCH=10.0-70.0 NEAR=9.0 PLAT=False CV2=False JSP=False KPK=False
+--- original
++++ patched_B0
+@@ -1780 +1780 @@
+-  service=(-10<=p.y<=-5)if low else(105<=p.y<=110)
++  service=True if getattr(self,'platform',False) else ((-10<=p.y<=-5)if low else(105<=p.y<=110))
+@@ -2400 +2400 @@
+-     inside=archer is not None and self.archer_in_lane(archer)and(archer.y<=-5 if s.ends[t]==0 else archer.y>=105)
++     inside=archer is not None and self.archer_in_lane(archer)and(True if getattr(self,'platform',False) else (archer.y<=-5 if s.ends[t]==0 else archer.y>=105))
+@@ -3219 +3219 @@
+-    if need*need+dz*dz<=(.95*R)**2:pick=('step',t,x,y,z,None);break
++    if need*need+dz*dz<=(0.5*R)**2:pick=('step',t,x,y,z,None);break

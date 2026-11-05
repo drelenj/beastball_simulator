@@ -1,0 +1,32 @@
+{
+ "file": "test_pocket4_proto.py",
+ "results": [
+  {
+   "test": "test_all_systems_run_and_fire",
+   "status": "pass",
+   "s": 16.4
+  },
+  {
+   "test": "test_deterministic",
+   "status": "pass",
+   "s": 30.8
+  },
+  {
+   "test": "test_restarts_fire_and_obey_rules",
+   "status": "pass",
+   "s": 15.7
+  },
+  {
+   "test": "test_roster_generation_matches_overall",
+   "status": "pass",
+   "s": 0.0
+  },
+  {
+   "test": "test_systems_off_is_plain_pocket_path",
+   "status": "pass",
+   "s": 11.9
+  }
+ ],
+ "import_error": null,
+ "total_s": 75.1
+}

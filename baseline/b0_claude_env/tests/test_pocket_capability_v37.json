@@ -1,0 +1,6 @@
+{
+ "file": "test_pocket_capability_v37.py",
+ "results": [],
+ "import_error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/claude/t1_b0/results_v37/capability_table_v37.json'",
+ "total_s": 0.0
+}
