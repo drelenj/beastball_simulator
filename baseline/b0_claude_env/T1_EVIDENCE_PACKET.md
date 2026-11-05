@@ -48,3 +48,9 @@ Golden physics traces (T3), patch-chain map (T2), profiling (T4). Python/numpy a
 1. Accept B0 as "Pocket 4 defaults, including the Keeper step-fraction 0.5 patch"? Or should B0 also record a variant with stock .95 for comparison?
 2. Authorise adding the three missing files once located.
 3. Confirm Codex repeats T1 in its own environment and compares hashes (expect equality only if numpy/python behave identically).
+
+## 8. Review decisions received (DreLen, 2026-11-05) and follow-up
+1. B0 accepted as defined: Pocket 4 defaults including the Keeper step-fraction 0.5 patch. No stock-.95 variant recorded (can be added on request).
+2. The three missing files (`baseline_v30_shipped/beastball_v30_results.csv`, `LOCOMOTION_1_0_MANIFEST.json`, `results_v37/capability_table_v37.json`) are not known to exist anywhere DreLen can reach. They stay missing; the three failing tests remain documented failures, not repaired.
+3. Partial cross-check: DreLen's attached `beastball_locomotion_v37.py` is byte-identical to the repo copy (sha256 4668ba4e6a5829c05b112d35252eb04d2253f969c3705ad8a2cf6edcba91afd5). The v3.7 float-control-valve source is therefore confirmed as the one in commit 2abe497.
+4. Note for Codex (T3): the capability table's *values* are still present, baked into `pocket_capability_v37.py` (generated from the missing JSON by `build_pocket_capability_v37.py`). Golden traces should treat that module as the authority, and the table can be regenerated from locomotion v3.7 only with DreLen's approval (a regenerated file would be new data, not the original).
