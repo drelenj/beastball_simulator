@@ -1,0 +1,23 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "mode": "short, full PRISM stack",
+ "decisions": 2209,
+ "counts": {
+  "decisions": 2209,
+  "hidden_ge1": 1049,
+  "hidden_sum": 2931,
+  "opp_sum": 19273,
+  "argmax_flip": 115,
+  "pass_target_change": 946,
+  "pert_n": 1049,
+  "pert_flip": 6,
+  "pert_changed": 200,
+  "pert_pass_target_change": 45
+ },
+ "integrity_identical_hashes": true
+}

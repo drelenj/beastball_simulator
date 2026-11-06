@@ -1,0 +1,410 @@
+{
+ "seed": 1,
+ "flagset": "full",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "wall_s": 9.8,
+ "rows": [
+  {
+   "file": "<embedded engine.py>",
+   "func": "tackle",
+   "where": "OUT",
+   "calls": 1,
+   "line": 434
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "arrow_decisions",
+   "where": "OUT",
+   "calls": 422,
+   "line": 971
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c3_contact_kick",
+   "where": "OUT",
+   "calls": 1990,
+   "line": 1866
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c3_contain",
+   "where": "OUT",
+   "calls": 247,
+   "line": 1776
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c3_desired",
+   "where": "OUT",
+   "calls": 12636,
+   "line": 1204
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c3_region",
+   "where": "OUT",
+   "calls": 8,
+   "line": 1088
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c4c2_confront",
+   "where": "OUT",
+   "calls": 1481,
+   "line": 588
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c4c2_eval",
+   "where": "OUT",
+   "calls": 1534,
+   "line": 600
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c4c2_targets",
+   "where": "OUT",
+   "calls": 225,
+   "line": 684
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "c4c_position",
+   "where": "OUT",
+   "calls": 403,
+   "line": 508
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "carrier_decision",
+   "where": "OUT",
+   "calls": 225,
+   "line": 917
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "catch_contacts",
+   "where": "OUT",
+   "calls": 81,
+   "line": 2170
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "make_pass",
+   "where": "OUT",
+   "calls": 17,
+   "line": 859
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "move_players",
+   "where": "OUT",
+   "calls": 341,
+   "line": 735
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "pocket_cont",
+   "where": "OUT",
+   "calls": 493,
+   "line": 2722
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "pocket_decide",
+   "where": "OUT",
+   "calls": 109,
+   "line": 2790
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "pocket_eval",
+   "where": "OUT",
+   "calls": 1534,
+   "line": 2700
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "pocket_pass_option",
+   "where": "OUT",
+   "calls": 389,
+   "line": 2752
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "pocket_plan_pass",
+   "where": "OUT",
+   "calls": 402,
+   "line": 2680
+  },
+  {
+   "file": "<embedded match.py>",
+   "func": "route_receiver",
+   "where": "OUT",
+   "calls": 225,
+   "line": 2508
+  },
+  {
+   "file": "<embedded policies.py>",
+   "func": "pass_ranked",
+   "where": "IN",
+   "calls": 101,
+   "line": 195
+  },
+  {
+   "file": "<embedded policies.py>",
+   "func": "targets",
+   "where": "IN",
+   "calls": 4336,
+   "line": 83
+  },
+  {
+   "file": "<embedded policies.py>",
+   "func": "targets",
+   "where": "OUT",
+   "calls": 450,
+   "line": 83
+  },
+  {
+   "file": "block_option_v0.py",
+   "func": "targets",
+   "where": "OUT",
+   "calls": 450,
+   "line": 27
+  },
+  {
+   "file": "bounce_option_v0.py",
+   "func": "carrier_decision",
+   "where": "OUT",
+   "calls": 225,
+   "line": 110
+  },
+  {
+   "file": "bounce_option_v0.py",
+   "func": "make_pass",
+   "where": "OUT",
+   "calls": 17,
+   "line": 73
+  },
+  {
+   "file": "bounce_option_v0.py",
+   "func": "plan_pass",
+   "where": "OUT",
+   "calls": 402,
+   "line": 87
+  },
+  {
+   "file": "bounce_option_v0.py",
+   "func": "targets",
+   "where": "OUT",
+   "calls": 450,
+   "line": 151
+  },
+  {
+   "file": "catch_v2.py",
+   "func": "move_players",
+   "where": "OUT",
+   "calls": 341,
+   "line": 62
+  },
+  {
+   "file": "hand_fight_v0.py",
+   "func": "band_foul",
+   "where": "OUT",
+   "calls": 29,
+   "line": 42
+  },
+  {
+   "file": "hand_fight_v0.py",
+   "func": "fight",
+   "where": "OUT",
+   "calls": 341,
+   "line": 50
+  },
+  {
+   "file": "hand_fight_v0.py",
+   "func": "move_players",
+   "where": "OUT",
+   "calls": 341,
+   "line": 91
+  },
+  {
+   "file": "judge_split_v0.py",
+   "func": "c3_contain",
+   "where": "OUT",
+   "calls": 247,
+   "line": 30
+  },
+  {
+   "file": "judge_split_v0.py",
+   "func": "c3_region",
+   "where": "OUT",
+   "calls": 8,
+   "line": 34
+  },
+  {
+   "file": "judge_split_v0.py",
+   "func": "duel_flip",
+   "where": "OUT",
+   "calls": 255,
+   "line": 25
+  },
+  {
+   "file": "judge_split_v0.py",
+   "func": "judge_opts",
+   "where": "OUT",
+   "calls": 109,
+   "line": 17
+  },
+  {
+   "file": "offball_actions_v0.py",
+   "func": "free_ball_plan",
+   "where": "OUT",
+   "calls": 383,
+   "line": 31
+  },
+  {
+   "file": "offball_actions_v0.py",
+   "func": "open_spots",
+   "where": "OUT",
+   "calls": 396,
+   "line": 66
+  },
+  {
+   "file": "offball_actions_v0.py",
+   "func": "targets",
+   "where": "OUT",
+   "calls": 450,
+   "line": 111
+  },
+  {
+   "file": "pocket4_proto.py",
+   "func": "arrow_decisions",
+   "where": "OUT",
+   "calls": 225,
+   "line": 412
+  },
+  {
+   "file": "pocket4_proto.py",
+   "func": "auto_substitutions",
+   "where": "OUT",
+   "calls": 322,
+   "line": 349
+  },
+  {
+   "file": "pose_engine_v0.py",
+   "func": "tackle",
+   "where": "OUT",
+   "calls": 2,
+   "line": 143
+  },
+  {
+   "file": "positional_tendencies_v1.py",
+   "func": "c4c2_cont",
+   "where": "OUT",
+   "calls": 493,
+   "line": 369
+  },
+  {
+   "file": "positional_tendencies_v1.py",
+   "func": "c4c2_eval",
+   "where": "OUT",
+   "calls": 1534,
+   "line": 356
+  },
+  {
+   "file": "positional_tendencies_v1.py",
+   "func": "pocket_pass_option",
+   "where": "OUT",
+   "calls": 389,
+   "line": 373
+  },
+  {
+   "file": "positional_tendencies_v1.py",
+   "func": "targets",
+   "where": "IN",
+   "calls": 4336,
+   "line": 233
+  },
+  {
+   "file": "positional_tendencies_v1.py",
+   "func": "targets",
+   "where": "OUT",
+   "calls": 450,
+   "line": 233
+  },
+  {
+   "file": "prism_field_v0.py",
+   "func": "judge_target",
+   "where": "OUT",
+   "calls": 513,
+   "line": 197
+  },
+  {
+   "file": "prism_field_v0.py",
+   "func": "noisy_rank",
+   "where": "OUT",
+   "calls": 101,
+   "line": 260
+  },
+  {
+   "file": "prism_field_v0.py",
+   "func": "pass_choice",
+   "where": "OUT",
+   "calls": 5,
+   "line": 271
+  },
+  {
+   "file": "prism_field_v0.py",
+   "func": "pass_ranked",
+   "where": "OUT",
+   "calls": 96,
+   "line": 267
+  },
+  {
+   "file": "prism_field_v0.py",
+   "func": "targets",
+   "where": "OUT",
+   "calls": 450,
+   "line": 233
+  },
+  {
+   "file": "prism_keeper_v0.py",
+   "func": "c4c_position",
+   "where": "OUT",
+   "calls": 403,
+   "line": 189
+  },
+  {
+   "file": "restarts_v1.py",
+   "func": "arrow_decisions",
+   "where": "OUT",
+   "calls": 450,
+   "line": 313
+  },
+  {
+   "file": "rules_v03.py",
+   "func": "auto_substitutions",
+   "where": "OUT",
+   "calls": 322,
+   "line": 75
+  },
+  {
+   "file": "rules_v03.py",
+   "func": "make_pass",
+   "where": "OUT",
+   "calls": 17,
+   "line": 175
+  },
+  {
+   "file": "rules_v03.py",
+   "func": "tackle",
+   "where": "OUT",
+   "calls": 2,
+   "line": 140
+  }
+ ]
+}

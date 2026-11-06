@@ -1,0 +1,50 @@
+{
+ "seed": 2,
+ "mode": "probe",
+ "score": {
+  "A": 8,
+  "B": 7
+ },
+ "n_events": 2132,
+ "log_sha256": "20453f0749d8bc625ad12942b6ad56afa0a9b01766e64305d0f5c76ebd9fc28f",
+ "result_sha256": "673349a35b38f31ec7f8384da25986ad5f316d252fdcaa39807d1201ffcd68cb",
+ "stats_sha256": null,
+ "counts": {
+  "decisions": 1282,
+  "hidden_ge1": 557,
+  "hidden_sum": 1583,
+  "opp_sum": 11131,
+  "argmax_flip": 69,
+  "pass_target_change": 544,
+  "pert_n": 557,
+  "pert_flip": 0,
+  "pert_changed": 99,
+  "pert_pass_target_change": 18
+ },
+ "rel_value_diff_true_vs_view": {
+  "shoot": {
+   "mean": 0.2311,
+   "median": 0.033,
+   "p90": 0.9874,
+   "n": 1282
+  },
+  "carry": {
+   "mean": 0.03,
+   "median": 0.0,
+   "p90": 0.0,
+   "n": 1282
+  },
+  "continue": {
+   "mean": 0.044,
+   "median": 0.018,
+   "p90": 0.12,
+   "n": 1282
+  },
+  "pass": {
+   "mean": 0.0934,
+   "median": 0.0567,
+   "p90": 0.2188,
+   "n": 948
+  }
+ }
+}

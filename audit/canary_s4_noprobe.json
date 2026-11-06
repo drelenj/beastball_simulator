@@ -1,0 +1,14 @@
+{
+ "seed": 4,
+ "mode": "noprobe",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "n_events": 718,
+ "log_sha256": "0ced4238111488cc1c33aa91a6c33429e65b8c844b03ee733cf4e2ccc05414e9",
+ "result_sha256": "f278519509dbd20f5d713d71aea7c475ba3d53ce20237597c3e5f61f12de8dfc",
+ "stats_sha256": null,
+ "counts": {},
+ "rel_value_diff_true_vs_view": {}
+}
