@@ -1,0 +1,27 @@
+{
+ "seed": 2,
+ "flagset": "full",
+ "score": {
+  "A": 8,
+  "B": 7
+ },
+ "jumps": {
+  "legacy_jumps_planned": 2,
+  "legacy_jumps_fired": 2,
+  "prism_field_jumps": 7
+ },
+ "route": {
+  "calls": 652,
+  "no_belief_yet": 157
+ },
+ "gap_true_vs_belief_target_m": {
+  "n": 495,
+  "median": 4.38,
+  "p90": 18.67,
+  "mean": 7.55
+ },
+ "ball_belief_pos_err_m": {
+  "median": 0.07,
+  "p90": 53.58
+ }
+}

@@ -1,0 +1,5541 @@
+{
+ "seed": 1,
+ "flagset": "full",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "wall_s": 33.5,
+ "rows": [
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Attributes",
+   "field": "archery_accuracy",
+   "rel": "any",
+   "n": 9
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Attributes",
+   "field": "archery_release_speed",
+   "rel": "any",
+   "n": 2
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "any",
+   "n": 14
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "any",
+   "n": 82
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 250
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 9
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 9
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 9
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 9
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 107
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 10486
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 450
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 450
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 450
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 450
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 450
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 206
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "immune_until",
+   "rel": "any",
+   "n": 26
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 450
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 26
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "any",
+   "n": 82
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 7464
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 19484
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 24
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 24
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 152
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 152
+  },
+  {
+   "func": "arrow_decisions@match.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "any",
+   "n": 12
+  },
+  {
+   "func": "arrow_decisions@pocket4_proto.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 5400
+  },
+  {
+   "func": "arrow_decisions@pocket4_proto.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 5256
+  },
+  {
+   "func": "arrow_decisions@pocket4_proto.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 10350
+  },
+  {
+   "func": "c3_contain@judge_split_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 247
+  },
+  {
+   "func": "c3_contain@judge_split_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 494
+  },
+  {
+   "func": "c3_contain@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 344
+  },
+  {
+   "func": "c3_contain@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 247
+  },
+  {
+   "func": "c3_contain@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 247
+  },
+  {
+   "func": "c3_contain@match.py",
+   "cls": "Player",
+   "field": "zone_ms",
+   "rel": "opp",
+   "n": 97
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "self",
+   "n": 8547
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "opp",
+   "n": 3850
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "self",
+   "n": 12636
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Attributes",
+   "field": "decision_speed",
+   "rel": "self",
+   "n": 8881
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Attributes",
+   "field": "turning",
+   "rel": "self",
+   "n": 9306
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "opp",
+   "n": 3850
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 39370
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "facing",
+   "rel": "opp",
+   "n": 100484
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "self",
+   "n": 8547
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 448
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 968
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 25066
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "target",
+   "rel": "self",
+   "n": 25272
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 50612
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 12636
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 50612
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 12636
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 50242
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 62878
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 50242
+  },
+  {
+   "func": "c3_desired@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 62878
+  },
+  {
+   "func": "c3_region@judge_split_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 8
+  },
+  {
+   "func": "c3_region@judge_split_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Attributes",
+   "field": "decision_speed",
+   "rel": "self",
+   "n": 1
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 1
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "mate",
+   "n": 246
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 58
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "opp",
+   "n": 19
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "mate",
+   "n": 78
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "opp",
+   "n": 38
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "mate",
+   "n": 164
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 38
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 168
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 570
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 155
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 142
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 154
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 142
+  },
+  {
+   "func": "c3_region@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "opp",
+   "n": 1834
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "opp",
+   "n": 1444
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "self",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "self",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "opp",
+   "n": 11638
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 4180
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 21172
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "opp",
+   "n": 4180
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "frozen",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "self",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 18268
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "speed",
+   "rel": "self",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 42966
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 39189
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 4212
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 4180
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 2090
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 4180
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 8360
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 153
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 8360
+  },
+  {
+   "func": "c4c2_confront@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 153
+  },
+  {
+   "func": "c4c2_cont@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 493
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "opp",
+   "n": 17678
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "opp",
+   "n": 12210
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "opp",
+   "n": 1534
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "kicking",
+   "rel": "self",
+   "n": 1534
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "opp",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "self",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "opp",
+   "n": 17678
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "opp",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "self",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "opp",
+   "n": 84870
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 37304
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 88640
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "opp",
+   "n": 35356
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "feet",
+   "rel": "self",
+   "n": 109
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "frozen",
+   "rel": "opp",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "last_plant",
+   "rel": "self",
+   "n": 57
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "next_action",
+   "rel": "opp",
+   "n": 237
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "opp",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "opp",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "self",
+   "n": 17885
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 52674
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "speed",
+   "rel": "self",
+   "n": 2733
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 110439
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 72527
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 146829
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 17459
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 5466
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 17459
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 5466
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 71796
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 218
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 71796
+  },
+  {
+   "func": "c4c2_eval@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 218
+  },
+  {
+   "func": "c4c2_eval@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 3068
+  },
+  {
+   "func": "c4c2_eval@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 1534
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 225
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 5559
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 2191
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "c4c2_intent",
+   "rel": "any",
+   "n": 151
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 2191
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 3379
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 2191
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 2191
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 3777
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 2191
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 981
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 3769
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 19615
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 13520
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 13520
+  },
+  {
+   "func": "c4c2_targets@match.py",
+   "cls": "Player",
+   "field": "zone_ms",
+   "rel": "any",
+   "n": 981
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 409
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 6
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 97
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 97
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 165
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 165
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 6
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "c4c2_confronting",
+   "rel": "self",
+   "n": 57
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 102
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 6
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 306
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 306
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 1016
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 57
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 57
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 159
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 61
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 159
+  },
+  {
+   "func": "c4c_position@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 61
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 709
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 250
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 250
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 253
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 253
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 5685
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 403
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 306
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 153
+  },
+  {
+   "func": "c4c_position@prism_keeper_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 153
+  },
+  {
+   "func": "carrier_decision@bounce_option_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 396
+  },
+  {
+   "func": "carrier_decision@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 171
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Attributes",
+   "field": "decision_speed",
+   "rel": "any",
+   "n": 4
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 777
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Ball",
+   "field": "control_time",
+   "rel": "ball",
+   "n": 52
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 4
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 2577
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 1434
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 1434
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 2577
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 1434
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 1434
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 231
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 1434
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "next_action",
+   "rel": "any",
+   "n": 171
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 179
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 1543
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 9814
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 2580
+  },
+  {
+   "func": "carrier_decision@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 2471
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "awareness",
+   "rel": "any",
+   "n": 45
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "balance",
+   "rel": "any",
+   "n": 4
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "catching",
+   "rel": "any",
+   "n": 39
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "contact_resistance",
+   "rel": "any",
+   "n": 4
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "decision_speed",
+   "rel": "any",
+   "n": 8
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "any",
+   "n": 3190
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "any",
+   "n": 1638
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "any",
+   "n": 1523
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Attributes",
+   "field": "strength",
+   "rel": "any",
+   "n": 4
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 81
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "intended",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "last_releaser",
+   "rel": "ball",
+   "n": 1757
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 152
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "release_time",
+   "rel": "ball",
+   "n": 38
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 81
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 81
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 81
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 6455
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 8841
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 1713
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 1713
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 1713
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 1713
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 1713
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "hand_height",
+   "rel": "any",
+   "n": 3038
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 3896
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 1713
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "next_action",
+   "rel": "any",
+   "n": 45
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 1900
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "any",
+   "n": 1634
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 3900
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 8
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 9775
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 9775
+  },
+  {
+   "func": "catch_contacts@match.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "any",
+   "n": 12778
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "balance",
+   "rel": "any",
+   "n": 435
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "blocking",
+   "rel": "any",
+   "n": 333
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "any",
+   "n": 139
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "contact_resistance",
+   "rel": "any",
+   "n": 290
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "decision_speed",
+   "rel": "any",
+   "n": 149
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "any",
+   "n": 77893
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "any",
+   "n": 77454
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Attributes",
+   "field": "strength",
+   "rel": "any",
+   "n": 290
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 4359
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 156983
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 91658
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 81582
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "bal_src",
+   "rel": "any",
+   "n": 580
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "c3_ext",
+   "rel": "any",
+   "n": 274
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "contact_velocity",
+   "rel": "any",
+   "n": 77164
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 81582
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 81582
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 81582
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "facing",
+   "rel": "any",
+   "n": 584
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 81582
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 6084
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 81582
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 163110
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "any",
+   "n": 77168
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 168956
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 73441
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 77520
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 77520
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 159620
+  },
+  {
+   "func": "fight@hand_fight_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 159566
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "self",
+   "n": 446
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "self",
+   "n": 223
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "self",
+   "n": 1155
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 223
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 892
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Ball",
+   "field": "version",
+   "rel": "ball",
+   "n": 137
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 1824
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "hand_height",
+   "rel": "self",
+   "n": 223
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 3112
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 223
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 1634
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 1634
+  },
+  {
+   "func": "free_ball_plan@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "self",
+   "n": 223
+  },
+  {
+   "func": "judge_target@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 513
+  },
+  {
+   "func": "judge_target@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 1519
+  },
+  {
+   "func": "judge_target@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 458
+  },
+  {
+   "func": "judge_target@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 458
+  },
+  {
+   "func": "judge_target@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 4122
+  },
+  {
+   "func": "judge_target@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 4122
+  },
+  {
+   "func": "make_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 17
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Attributes",
+   "field": "ball_handling",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "self",
+   "n": 24
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Attributes",
+   "field": "passing",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 66
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Ball",
+   "field": "version",
+   "rel": "ball",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 42
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 73
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "arrow_reaction_pending",
+   "rel": "self",
+   "n": 1
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "feet",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "hand_height",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 148
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 104
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "last_plant",
+   "rel": "self",
+   "n": 3
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 64
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 24
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 24
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "vz",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 48
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 8
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 48
+  },
+  {
+   "func": "make_pass@match.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "self",
+   "n": 16
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Attributes",
+   "field": "ball_handling",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Attributes",
+   "field": "passing",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 36
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 45
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "make_pass@rules_v03.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 9
+  },
+  {
+   "func": "open_spots@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 6732
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 15
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "mate",
+   "n": 100
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 105
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "self",
+   "n": 5
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 346
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 147
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 174
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "mate",
+   "n": 105
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 110
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 15
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 191
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 196
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 387
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "mate",
+   "n": 50
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 43
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "mate",
+   "n": 50
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 43
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 50
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 43
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 50
+  },
+  {
+   "func": "pass_choice@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 43
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Attributes",
+   "field": "catching",
+   "rel": "mate",
+   "n": 785
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "mate",
+   "n": 785
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "mate",
+   "n": 2121
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 2222
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "mate",
+   "n": 1111
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "opp",
+   "n": 1022
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "mate",
+   "n": 1111
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "opp",
+   "n": 1022
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "mate",
+   "n": 2121
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "opp",
+   "n": 2222
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "mate",
+   "n": 1111
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "opp",
+   "n": 1022
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "mate",
+   "n": 1111
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 1022
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 1010
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 1212
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "mate",
+   "n": 1111
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "opp",
+   "n": 1022
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "mate",
+   "n": 1010
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "mate",
+   "n": 1111
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 1022
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 101
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 4242
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 4444
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 4747
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 16920
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 14340
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 9750
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 16135
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 14340
+  },
+  {
+   "func": "pass_ranked@policies.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 8965
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 187
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 15
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 5
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "mate",
+   "n": 1920
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 2016
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "self",
+   "n": 96
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 8181
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "opp",
+   "n": 3996
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 5971
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "mate",
+   "n": 2016
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 2112
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 389
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 3581
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 4056
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 8001
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "mate",
+   "n": 982
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 878
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "mate",
+   "n": 982
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 878
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 982
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 878
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 53
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 982
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 878
+  },
+  {
+   "func": "pass_ranked@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 53
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "any",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Attributes",
+   "field": "awareness",
+   "rel": "any",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "any",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "any",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "any",
+   "n": 26199
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "_path_cache",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 322
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "intended",
+   "rel": "ball",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "last_releaser",
+   "rel": "ball",
+   "n": 1038
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 151
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 1422
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "release_time",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "vz",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 30151
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 3241
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "any",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 4990
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 2095
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 2195
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "speed",
+   "rel": "any",
+   "n": 988
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 27387
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 27387
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 26452
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 26449
+  },
+  {
+   "func": "plan_jumps@pocket4_proto.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "any",
+   "n": 1041
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "mate",
+   "n": 12
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "mate",
+   "n": 12
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Attributes",
+   "field": "passing",
+   "rel": "mate",
+   "n": 12
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "mate",
+   "n": 36
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 450
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "mate",
+   "n": 12
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "mate",
+   "n": 12
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 12
+  },
+  {
+   "func": "plan_pass@bounce_option_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 12
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "opp",
+   "n": 5112
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "self",
+   "n": 986
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "opp",
+   "n": 3026
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "kicking",
+   "rel": "self",
+   "n": 986
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "opp",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "self",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "opp",
+   "n": 5112
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "self",
+   "n": 986
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "opp",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "self",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "opp",
+   "n": 23624
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 13332
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 16033
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "opp",
+   "n": 10224
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "self",
+   "n": 1972
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "frozen",
+   "rel": "opp",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "next_action",
+   "rel": "opp",
+   "n": 36
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "opp",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "opp",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "self",
+   "n": 5187
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 5680
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "speed",
+   "rel": "self",
+   "n": 986
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 10353
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 10846
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 23664
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 5084
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 1972
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 5084
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 1972
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 20439
+  },
+  {
+   "func": "pocket_cont@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 20439
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Ball",
+   "field": "control_time",
+   "rel": "ball",
+   "n": 327
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 26
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Player",
+   "field": "c4c2_intent",
+   "rel": "self",
+   "n": 109
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 9
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 453
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 192
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 218
+  },
+  {
+   "func": "pocket_decide@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 218
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "self",
+   "n": 729
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "opp",
+   "n": 1722
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "self",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "self",
+   "n": 729
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "self",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 729
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "opp",
+   "n": 9738
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 5466
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 13282
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "opp",
+   "n": 4008
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "self",
+   "n": 1458
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "frozen",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "next_action",
+   "rel": "opp",
+   "n": 46
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "opp",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "self",
+   "n": 2004
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 10744
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "speed",
+   "rel": "self",
+   "n": 2733
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 29778
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 12245
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 45588
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 1958
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 5466
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 1958
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 5466
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 8607
+  },
+  {
+   "func": "pocket_eval@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 8607
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "mate",
+   "n": 1072
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Attributes",
+   "field": "ball_handling",
+   "rel": "self",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "mate",
+   "n": 1262
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "self",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Attributes",
+   "field": "kicking",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "mate",
+   "n": 1167
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "mate",
+   "n": 3890
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 778
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "mate",
+   "n": 8453
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "opp",
+   "n": 12489
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "self",
+   "n": 384
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "mate",
+   "n": 1167
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "hand_height",
+   "rel": "self",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 84
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "mate",
+   "n": 778
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "mate",
+   "n": 4613
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "opp",
+   "n": 8466
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "self",
+   "n": 384
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "target",
+   "rel": "mate",
+   "n": 1167
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 3840
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "opp",
+   "n": 4041
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "self",
+   "n": 8649
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "opp",
+   "n": 3957
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "mate",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "opp",
+   "n": 3957
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "mate",
+   "n": 778
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "opp",
+   "n": 11955
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 8692
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "mate",
+   "n": 778
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "opp",
+   "n": 11871
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 8692
+  },
+  {
+   "func": "pocket_pass_option@match.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "self",
+   "n": 389
+  },
+  {
+   "func": "pocket_pass_option@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "mate",
+   "n": 768
+  },
+  {
+   "func": "pocket_pass_option@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "self",
+   "n": 384
+  },
+  {
+   "func": "pocket_pass_option@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "mate",
+   "n": 384
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "self",
+   "n": 12023
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "self",
+   "n": 16559
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Attributes",
+   "field": "mass",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "self",
+   "n": 14291
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "self",
+   "n": 47697
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "fatigue",
+   "rel": "self",
+   "n": 14291
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "hand_height",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "radius",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "target",
+   "rel": "self",
+   "n": 14291
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "self",
+   "n": 2814
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "self",
+   "n": 2814
+  },
+  {
+   "func": "pocket_plan_pass@match.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "self",
+   "n": 2412
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "_path_cache",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 225
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "intended",
+   "rel": "ball",
+   "n": 104
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 2275
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "vz",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 250
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 100
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 100
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 1070
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 1070
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 2037
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 2037
+  },
+  {
+   "func": "route_receiver@match.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "any",
+   "n": 50
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "any",
+   "n": 2442
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 7152
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Ball",
+   "field": "mode",
+   "rel": "ball",
+   "n": 383
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Ball",
+   "field": "version",
+   "rel": "ball",
+   "n": 4477
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 2442
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 58460
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 93587
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 35873
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 204271
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 8115
+  },
+  {
+   "func": "targets@offball_actions_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 8115
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Attributes",
+   "field": "acceleration",
+   "rel": "any",
+   "n": 55132
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Attributes",
+   "field": "braking",
+   "rel": "any",
+   "n": 48385
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Attributes",
+   "field": "decision_speed",
+   "rel": "any",
+   "n": 46578
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "any",
+   "n": 8554
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Attributes",
+   "field": "maximum_speed",
+   "rel": "any",
+   "n": 10361
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "any",
+   "n": 8554
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "_path_cache",
+   "rel": "ball",
+   "n": 888
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 58936
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 38813
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "version",
+   "rel": "ball",
+   "n": 10106
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 13210
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 11081
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "vz",
+   "rel": "ball",
+   "n": 889
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 64026
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 25973
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Ball",
+   "field": "z",
+   "rel": "ball",
+   "n": 889
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 177564
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 210584
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 108188
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 108188
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 210584
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 108188
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 108188
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 303167
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 108188
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 210916
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "slot",
+   "rel": "any",
+   "n": 47257
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "speed",
+   "rel": "any",
+   "n": 48373
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 424832
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "unmarked_ms",
+   "rel": "any",
+   "n": 3006
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 372450
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 372450
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 1111922
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 1116838
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "any",
+   "n": 8554
+  },
+  {
+   "func": "targets@policies.py",
+   "cls": "Player",
+   "field": "zone_ms",
+   "rel": "any",
+   "n": 6318
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 7942
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 3444
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 3444
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 111188
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 56467
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 40450
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 75768
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 40450
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 40450
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 544660
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 40450
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 116418
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 232904
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 4054
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 4054
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 112446
+  },
+  {
+   "func": "targets@positional_tendencies_v1.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 96429
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 8108
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 2100
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "vx",
+   "rel": "ball",
+   "n": 3851
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "vy",
+   "rel": "ball",
+   "n": 3851
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "x",
+   "rel": "ball",
+   "n": 4301
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Ball",
+   "field": "y",
+   "rel": "ball",
+   "n": 4301
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 201956
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 1306
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 1306
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 2420
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 1306
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 1306
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 714977
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 1306
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 205887
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "team",
+   "rel": "any",
+   "n": 741540
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vx",
+   "rel": "any",
+   "n": 89918
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "vy",
+   "rel": "any",
+   "n": 89918
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 112898
+  },
+  {
+   "func": "targets@prism_field_v0.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 113277
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Attributes",
+   "field": "height",
+   "rel": "any",
+   "n": 49
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Attributes",
+   "field": "jump_height",
+   "rel": "any",
+   "n": 3272
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Attributes",
+   "field": "reach",
+   "rel": "any",
+   "n": 169
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Ball",
+   "field": "carrier",
+   "rel": "ball",
+   "n": 341
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Ball",
+   "field": "last_releaser",
+   "rel": "ball",
+   "n": 3348
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Ball",
+   "field": "radius",
+   "rel": "ball",
+   "n": 4395
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "a",
+   "rel": "any",
+   "n": 3490
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "active",
+   "rel": "any",
+   "n": 11209
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "available",
+   "rel": "any",
+   "n": 3377
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "disqualified",
+   "rel": "any",
+   "n": 3377
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "eligible",
+   "rel": "any",
+   "n": 3377
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "exclusion_ms",
+   "rel": "any",
+   "n": 3377
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "freeze_until",
+   "rel": "any",
+   "n": 3377
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "hand_height",
+   "rel": "any",
+   "n": 49
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "id",
+   "rel": "any",
+   "n": 11281
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "injured",
+   "rel": "any",
+   "n": 3377
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "posture",
+   "rel": "any",
+   "n": 6732
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "role",
+   "rel": "any",
+   "n": 12664
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "x",
+   "rel": "any",
+   "n": 4842
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "y",
+   "rel": "any",
+   "n": 4820
+  },
+  {
+   "func": "update_jumps@catch_v2.py",
+   "cls": "Player",
+   "field": "z",
+   "rel": "any",
+   "n": 49
+  }
+ ]
+}

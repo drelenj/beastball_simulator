@@ -1,0 +1,24 @@
+{
+ "seed": 3,
+ "flagset": "b0",
+ "score": {
+  "A": 3,
+  "B": 4
+ },
+ "jumps": {
+  "legacy_jumps_planned": 6,
+  "legacy_jumps_fired": 6,
+  "prism_field_jumps": 0
+ },
+ "route": {},
+ "gap_true_vs_belief_target_m": {
+  "n": 0,
+  "median": null,
+  "p90": null,
+  "mean": null
+ },
+ "ball_belief_pos_err_m": {
+  "median": null,
+  "p90": null
+ }
+}
