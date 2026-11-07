@@ -1,0 +1,37 @@
+{
+ "seed": 1,
+ "flagset": "full",
+ "mode": "instr",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "n_log": 214,
+ "log_hash": "b020f0a15e05e35b",
+ "rng_streams": {
+  "arrow": "bf8d20091d0fe0d6",
+  "ball": "da1a57f350eee117",
+  "contact": "7b4998a1de240f30",
+  "policy": "82c42d28bde60c86",
+  "roster": "df2604d55c1ddc52"
+ },
+ "rng_extra": {
+  "S.arng": "f7b7d159ff6680bc",
+  "global_random_consumed": false
+ },
+ "stats_hash": "fc87ccc61e4637ff",
+ "chain_before": "be69aac950524ab9",
+ "chain_after_removal": "be69aac950524ab9",
+ "chain_restored": true,
+ "wrappers_outside_unmodified": {
+  "Match.step": true,
+  "Match.carrier_decision": true,
+  "Match.route_receiver": true,
+  "Match.c4c2_targets": true,
+  "Match.move_players": true,
+  "Match.arrow_decisions": true,
+  "Policy.targets": true
+ },
+ "sentinel_marks": 2013,
+ "profile_calls": 9915398
+}

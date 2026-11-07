@@ -1,0 +1,25 @@
+{
+ "seed": 1,
+ "mode": "drive",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "n_log": 214,
+ "log_hash": "59ce0e5160c51958",
+ "releases_logged": 2,
+ "with_belief": 2,
+ "pos_err_median": 0.0,
+ "pos_err_p90": 0.0,
+ "aim_div_n": 2,
+ "aim_div_median": 0.0,
+ "aim_div_p90": 0.0,
+ "stats": {
+  "hidden_A": 268,
+  "hidden_B": 229,
+  "range_margin_hidden": 1908
+ },
+ "arrow_stats": {
+  "aware": 2
+ }
+}

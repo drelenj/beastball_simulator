@@ -1,0 +1,22 @@
+{
+ "seed": 1,
+ "mode": "b0",
+ "score": {
+  "A": 7,
+  "B": 3
+ },
+ "n_log": 3789,
+ "log_hash": "d0a25dca983f18da",
+ "releases_logged": 0,
+ "with_belief": 0,
+ "pos_err_median": null,
+ "pos_err_p90": null,
+ "aim_div_n": 0,
+ "aim_div_median": null,
+ "aim_div_p90": null,
+ "stats": {},
+ "arrow_stats": {
+  "aware": 34,
+  "fallback": 1
+ }
+}

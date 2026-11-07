@@ -1,0 +1,29 @@
+{
+ "seed": 1,
+ "flagset": "b0",
+ "mode": "plain",
+ "score": {
+  "A": 7,
+  "B": 3
+ },
+ "n_log": 3789,
+ "log_hash": "8993883f85218024",
+ "rng_streams": {
+  "arrow": "8d9904f110091c97",
+  "ball": "fe00935b2aca18d2",
+  "contact": "71291360081b0a88",
+  "policy": "82c42d28bde60c86",
+  "roster": "df2604d55c1ddc52"
+ },
+ "rng_extra": {
+  "S.arng": "5ac83ace566252c0",
+  "global_random_consumed": false
+ },
+ "stats_hash": "833c306954808167",
+ "chain_before": "7afc3b59f6b51bf5",
+ "chain_after_removal": "7afc3b59f6b51bf5",
+ "chain_restored": true,
+ "wrappers_outside_unmodified": {},
+ "sentinel_marks": 0,
+ "profile_calls": 0
+}

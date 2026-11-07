@@ -1,0 +1,32 @@
+{
+ "seed": 1,
+ "flagset": "full",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "route_calls": 50,
+ "flights": 13,
+ "calls_with_pending_timer": 45,
+ "share_pending": 0.9,
+ "natural_delay_ms": {
+  "median": 191,
+  "p90": 206,
+  "max": 299
+ },
+ "first_call_of_flight": {
+  "n": 13,
+  "pending": 8,
+  "natural_delay_median": 53,
+  "natural_delay_p90": 153
+ },
+ "target_change_vs_held_m": {
+  "median": 0.3,
+  "p90": 14.3,
+  "share_over_1m": 0.38
+ },
+ "rated_interval_ms": {
+  "median": 295.6,
+  "p90": 306.3
+ }
+}
