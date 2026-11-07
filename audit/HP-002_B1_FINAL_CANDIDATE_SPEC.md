@@ -1,0 +1,66 @@
+# HP-002 — B1 Final Candidate Specification
+Claude, 2026-11-07. Branch `claude/hp002-audit`. Builds on r3 (accepted as provisional governing architecture; r3 holds the supporting detail and evidence). **Candidate only: no B1 behaviour, physics, rating or native work is implemented or authorized by this document.** B0-P4-DEFAULT (2abe497) and all T1–T3 evidence are untouched.
+
+## 1. Authority and status
+**Decided by DreLen (not reopened):** IA-001; C-7 (full PRISM Archer cognition in B1; phasing allowed, final acceptance requires full coverage); five-layer ownership; receiver-routing separation and removal of the decision-cadence bypass in B1; single-owner jump architecture *subject to validation*; ban on externally prescribed tactical assignments in formation-free mode; Gates A/B/C; T3 evidence with its coverage limits; neutral instrumentation; separate experimental formation-free mode; B0/B1 baselines; kicking eliminated in B1 without auto-enabling `RULES_V03=1`; calibration freeze; no rating or attribute progression; no native rewrite.
+**Resolved by DreLen on 2026-11-07 (his wording):** see §10. All other items are recommendations until you say otherwise.
+
+## 2. Principles
+- **P1** Physical resolution is a deterministic function of physical state, commands, environment and modelled randomness from named seeded streams.
+- **P2** Cognition (generation, evaluation, selection) reads observable, known and inferred information only. Motor Control (MC) reads the athlete's own body, physical constraints and the command given. Neither reads a hidden opponent attribute. Physical resolution (PHY) uses true state, including both athletes' true ratings.
+- **P3** Belief updates within a match are allowed; no rating development is authorized.
+- **P4** Matching B0 or T3 proves historical physical preservation, not canonical correctness.
+
+## 3. Motor Control boundary (clarification 1)
+MC **may**: compute execution geometry for a destination or target it was given, from the cognitive intention and the athlete's beliefs: path and braking profile, intercept timing along a believed trajectory, ballistic aim solution to a chosen target, steering and take-off timing, release error from ratings. MC **may not**: choose or improve a tactical destination, select among targets, re-pick a receiving spot, pick an arc by weighing opponents or obstacles, or substitute a different destination when the given one is poor. If the command is infeasible MC returns infeasibility to cognition; it does not decide an alternative.
+Rule of thumb: *MC output = f(command, belief of the object to be met, own body and limits).* Other players, the goal, rules and tactics are not inputs to MC geometry. Obstacle-aware choices (for example the Archer's high-versus-low arc, which today weighs blockers) belong to cognition; MC solves the arc it is given. Interception along a believed ball path is execution geometry only while it is a deterministic function of that path and the athlete's limits.
+Tests: **MF-1** field-read check (MC reads only P2 inputs); **MF-4** endpoint fidelity (MC endpoint equals the cognitive endpoint within feasibility tolerance, or an infeasibility report); **MF-5** perturbation (changing other players' positions, with the command and belief fixed, does not change MC output).
+
+## 4. Catch pathway (clarification 2)
+| Stage | Owner | Contents | Today |
+|---|---|---|---|
+| Cognitive catch preparation | Cognition | tracking the ball from belief, whether and where to move, readiness timing from perceptual reaction latency, decision to jump | `CATCH_V2` readiness (PRISM Reaction latency); `update_jumps`; receiver routing (to be split) |
+| Motor execution | MC | hand placement, reach extension, body orientation, take-off execution within limits | movement kernel; jump take-off |
+| Automatic grasp and contact | PHY | hand-sphere meets ball; capacity versus energy; secure or fumble; hand contests; no choice involved | `catch_contacts`, `hc_acquire`, `catch_secure` |
+Cognition may change *when and where the hands are ready*, never the grasp outcome. PHY receives no cognitive state beyond physical state of hands and ball, and true ratings. Tests: **CT-1** grasp inputs limited to physical state and ratings; **CT-2** readiness derives only from belief timing and latency; **CT-3** identical-input parity on the T3 catch trace (jump and hand-contest need T3A, §9).
+
+## 5. Information and ownership (summary of r3)
+Observable (seen kinematics, visible morphology with error, visible status, communication), known (own state, rules, constants, population-level priors), inferred (from observation, including capabilities), hidden (unseen true positions, opponent ratings, fatigue, timers, `next_action`, `intended`, caches, RNG). Typed `AthleteView` per athlete per decision [O8, decided]. Ownership table, Archer requirements (A-1 to A-5, AR-1 to AR-6), receiver split with no `next_decision` write by cognition or routing, and jump single-owner preconditions are as in r3 §4, §6, §8 and r2 §6.
+
+## 6. Formation-based and formation-free arms (clarification 3)
+Both arms are B1: **same architecture** (AthleteView, five-layer ownership, MC, instrumentation) and **same physical model** (Gate B parity holds in both). They differ only in which providers of assignments are enabled; no other module differs. The formation-free arm is not expected to match the formation-based arm bit for bit, or in outcome distribution, and neither is the reference for the other. The formation-based arm must be reproducible (same inputs, same output, with and without instruments) and passes the same IS/DO/MF/PP tests except DO-3, which applies to the formation-free arm. (This replaces r2's phrase "formation arm bit-identical to B1", which meant the formation arm is B1 itself.)
+Tests: **ARM-1** install-chain snapshot of the two arms differs only in the named provider entries; **ARM-2** Gate B passes for both; **ARM-3** DO-3 provenance check passes for the formation-free arm; **ARM-4** comparative emergence metrics are reported, with no required equivalence.
+
+## 7. Information-quality sensitivity testing (clarification 4; added to Gate C)
+Purpose: show the pipeline responds coherently to information quality, with no assumption about how large the effect should be. Protocol: a test-only harness (not a game control; ratings remain the only knobs) scales perception parameters (observation noise, sensory latency, memory, detection probability, field of view) one at a time over a grid, with common random numbers and fixed rosters and seeds. Checks: **IQ-1** limit identities (at zero noise and latency, belief equals truth to numerical precision; this is a perception setting, not hidden-state access); **IQ-2** at every quality level the hide-only perturbation of hidden state changes nothing (isolation does not depend on quality); **IQ-3** determinism and valid states at degraded limits; **IQ-4** dose-response curves for pre-registered metrics (decision-change rate, pass completion, interception timing, Archer hit rate, Keeper saves), reported with no pass/fail on slope or size. Metrics and tolerances follow O5.
+
+## 8. Instrumentation neutrality and NI-4 (clarification 5)
+Measured earlier (seed 1, B0 and full stack): score, event log, all five match RNG streams, `S.arng`, global `random` (unconsumed), stats and wrapper chains identical with and without instruments; instruments sat outermost and were removable.
+**NI-4 completed (this revision).** The ten accepted T1 cases (seeds 1–5, `short` and `reg`) were replayed in fresh processes with instruments installed (pass-through ID/sentinel wrappers on `step`, `carrier_decision`, `route_receiver`, `c4c2_targets`, `move_players`, `arrow_decisions`, `Policy.targets`, plus a `sys.setprofile` call counter; 24,974–33,015 marks per `short` and about 250,000 per `reg` run). **All ten match the accepted T1 hashes**: canonical event-log SHA-256, result SHA-256, score, event count and event-type counts, with no environment overrides. Data: `audit/ni4/`. Caveats: comparison is to my environment's accepted runs (Python 3.13.16 then, 3.13.18 now, NumPy 2.5.3); Codex's environment is Python 3.12 (cross-environment equality of the accepted baseline was established in T1); the sentinels are pass-through counters, so a real decision-ID carrier still needs NI-1..4 re-run when built. On this evidence the current instruments are behaviour-neutral for B0; the statement does not yet extend to instrumentation not yet written.
+
+## 9. Evidence tasks and T5 coordination (clarification 6)
+**T3A (proposed separately authorized read-only evidence task; authorization given in O7).** Codex generates supplemental golden fixtures where T3 has none: arrow release, flight, hit and freeze; archer lane movement; jump take-off and flight; hand contest; Keeper save. Scope, tolerances and acceptance are to be set in its own work package; until it exists, Gate B tests that need it are marked uncovered, not assumed.
+**T5.** I have not been given T5's scope or any T5 artifact, so nothing here changes or presumes it. Evidence requirements this specification places on any Codex packet, without altering approved scope: B0 commit and source hashes recorded before and after generation; environment recorded; B0 distinguished from controlled feature studies; read-only; repeat-run byte identity; unavailable underlying evidence stated explicitly. I will treat T5 output as Codex-verified, not Claude-verified, and map it to Gate A/B inputs once I have its scope. Please send the T5 scope statement.
+
+## 10. Decision register
+**Resolved by DreLen, 2026-11-07 (06:52 local):**
+| ID | Resolution (his wording) | Effect in this spec |
+|---|---|---|
+| O1 Visible morphology | Body dimensions observable with error; capabilities inferred | Body size in O-class with perceptual error; all ratings inferred, never read |
+| O2 Receiver awareness | Explicit teammate communication and observable inference | Receiver learns of a pass through a call channel and from the ball's observed course |
+| O3 Belief timing | Observe → update beliefs → decide, with modeled sensory latency | Decisions use the belief after the current observation update, with latency applied |
+| O4 Tracking cadence | Permit attention-dependent tracking, not unrestricted decision-timer bypass | A perception attention parameter for locked-on objects; no `next_decision` write |
+| O5 Gate C tolerances | Defer numbers until metrics and distributions are established | No numeric tolerances now; IQ-4 and PP-3 are measurement first |
+| O6 Archer targets | Archer can target ball-carrier and off-ball offensive players | Archer target set is the ball-carrier and off-ball players of the offence (I read this as the opposing team's offence when it holds the ball); rules engine still decides legality |
+| O7 Supplemental T3A | Approve as separate read-only evidence work | T3A authorized as its own task (§9) |
+| O8 AthleteView | Approve typed per-athlete isolation boundary | AthleteView adopted |
+| O9 Restarts | Rule-required placement only; optional tactics must be athlete-selected | In formation-free mode restart placements are limited to written rules; no set-piece tactics assigned |
+| O10 Carrier biases | Remove externally assigned position biases in formation-free mode | Position/archetype carrier biases removed in the formation-free arm only |
+**Still open (not covered by the resolutions above; I have not assumed answers):**
+- **R1** Archer: status of the 5 m range margin and other authored Archer constants, and whether freeze/immunity/eligibility are public observables (O6 settled only the target set). Please also confirm my reading of "offensive players" in O6.
+- **R2** Scheduling of the rules audit (kicking at the engine boundary, RULE versus TACTIC placements); O9 settled the restart principle, not the timing.
+- **R3** Approval of the dependency order (below) and of Gate C's measurement-first approach given O5.
+
+## 11. Dependency order (unchanged from r3 §10, with new items)
+0 Preservation (hash B0, T1–T3, this audit). 1 Neutral harness: CFG, NI-1..4 (NI-4 done for current instruments), ID, DO and IS in log-only mode including Archer, Gate A and B runners, red-baseline ledger; T3A in parallel. 2 MC-0 documentation including the §3 boundary and Archer command surface. 3 Rules audit (R2). 4 Receiver split and cadence ruling (O2–O4). 5 Jump single owner after its preconditions. 6 AthleteView and information core (O1, O3). 7 Archer A-1…A-4 (O6, R1). 8 Keeper triggers. 9 Formation-free arm (O9, O10). 10 B1 acceptance: Gates A, B, C including IQ-1..4, ARM-1..4, CT-1..3, MF-1/4/5, AR-1..6, with full Archer coverage. Not authorized: native rewrite, recalibration, rating development.
+Deferred beyond B1 (unchanged, not new): Keeper-to-Keeper communication, block option, defensive zone organisation.

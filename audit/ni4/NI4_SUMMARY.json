@@ -1,0 +1,78 @@
+{
+ "all_match": true,
+ "rows": [
+  [
+   "short",
+   1,
+   true,
+   "0cc709124037",
+   "899f04cef5fc"
+  ],
+  [
+   "short",
+   2,
+   true,
+   "ac1807d2b2c6",
+   "320f0a5b80ee"
+  ],
+  [
+   "short",
+   3,
+   true,
+   "262039da9869",
+   "a538210fe0f8"
+  ],
+  [
+   "short",
+   4,
+   true,
+   "9d6f5148b9c9",
+   "d99a496e4931"
+  ],
+  [
+   "short",
+   5,
+   true,
+   "7d1ca6d1e23d",
+   "2ded04712e6a"
+  ],
+  [
+   "reg",
+   1,
+   true,
+   "9194161ec278",
+   "96935db74f6c"
+  ],
+  [
+   "reg",
+   2,
+   true,
+   "61316a47fe34",
+   "3a5f3b8bf3fb"
+  ],
+  [
+   "reg",
+   3,
+   true,
+   "77742297918d",
+   "e282fcf63b0c"
+  ],
+  [
+   "reg",
+   4,
+   true,
+   "4240279f4364",
+   "0e9bbce438e0"
+  ],
+  [
+   "reg",
+   5,
+   true,
+   "6315522c80ae",
+   "8f8fc869bcf0"
+  ]
+ ],
+ "python": "3.13.18",
+ "numpy": "2.5.3",
+ "accepted_runs_python": "3.13.16"
+}
