@@ -1,0 +1,15 @@
+{
+ "seed": 2,
+ "mode": "plain",
+ "score": {
+  "B": 0,
+  "A": 5
+ },
+ "field_jumps": 1,
+ "calls": 575,
+ "fire_times": [
+  61
+ ],
+ "log_hash": "fc2d23b3a0297a68",
+ "n_log": 259
+}

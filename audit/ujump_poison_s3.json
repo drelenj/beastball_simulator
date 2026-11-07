@@ -1,0 +1,17 @@
+{
+ "seed": 3,
+ "mode": "poison",
+ "score": {
+  "A": 0,
+  "B": 5
+ },
+ "field_jumps": 2,
+ "calls": 1906,
+ "fire_times": [
+  388,
+  389,
+  553
+ ],
+ "log_hash": "9b5b5af894f6c114",
+ "n_log": 592
+}
