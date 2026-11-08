@@ -51,13 +51,13 @@ Measured earlier (seed 1, B0 and full stack): score, event log, all five match R
 | O3 Belief timing | Observe → update beliefs → decide, with modeled sensory latency | Decisions use the belief after the current observation update, with latency applied |
 | O4 Tracking cadence | Permit attention-dependent tracking, not unrestricted decision-timer bypass | A perception attention parameter for locked-on objects; no `next_decision` write |
 | O5 Gate C tolerances | Defer numbers until metrics and distributions are established | No numeric tolerances now; IQ-4 and PP-3 are measurement first |
-| O6 Archer targets | Archer can target ball-carrier and off-ball offensive players | Archer target set is the ball-carrier and off-ball players of the offence (I read this as the opposing team's offence when it holds the ball); rules engine still decides legality |
+| O6 Archer targets | Archer can target ball-carrier and off-ball offensive players. **Clarified by DreLen 2026-11-07 18:55:** the Archer can target all of the opposing team's field players while the opposing team is on offense and in possession of the ball; the team that last had possession before the ball became loose or airborne is still the possessing team | Archer target set = all opposing field players while the opposing team is the possessing team (possession persists through loose and airborne ball until the other team gains it); the rules engine still decides legality (immunity, eligibility, Keeper-zone and range rules). Possession attribution is public rules state, so the archer may read it |
 | O7 Supplemental T3A | Approve as separate read-only evidence work | T3A authorized as its own task (§9) |
 | O8 AthleteView | Approve typed per-athlete isolation boundary | AthleteView adopted |
 | O9 Restarts | Rule-required placement only; optional tactics must be athlete-selected | In formation-free mode restart placements are limited to written rules; no set-piece tactics assigned |
 | O10 Carrier biases | Remove externally assigned position biases in formation-free mode | Position/archetype carrier biases removed in the formation-free arm only |
 **Still open (not covered by the resolutions above; I have not assumed answers):**
-- **R1** Archer: status of the 5 m range margin and other authored Archer constants, and whether freeze/immunity/eligibility are public observables (O6 settled only the target set). Please also confirm my reading of "offensive players" in O6.
+- **R1** Archer: status of the 5 m range margin and other authored Archer constants, and whether freeze/immunity/eligibility are public observables (O6 settled only the target set; the reading of "offensive players" is now confirmed). Open point I have not assumed: whether the Keeper counts as a "field player" for targeting (the rules engine currently makes a Keeper in its own zone an illegal target).
 - **R2** Scheduling of the rules audit (kicking at the engine boundary, RULE versus TACTIC placements); O9 settled the restart principle, not the timing.
 - **R3** Approval of the dependency order (below) and of Gate C's measurement-first approach given O5.
 
