@@ -1,4 +1,5 @@
-# HP-002 — T6-O4 v3 (DRAFT reconciliation): command arbitration, plans, commitment, coincident events
+# HP-002 — T6-O4 v3 rev 2 (DRAFT reconciliation): command arbitration, plans, commitment, coincident events
+**Rev 2 (2026-11-08):** applies the owner's CE-C1/C2/C3 direction (see `HP-002_OWNER_CANON_DIRECTION_CE-C1_C3.md`).
 Claude with Codex R2 response incorporated. **DRAFT. Not frozen. Non-governing.** rc2 and manifest v2 unchanged; Contract v1 NOT FROZEN; B1 not authorized; B0 frozen. Labels: **[B0-VERIFIED]** read from frozen source; **[PROPOSED]**; **[ENG] [BEH] [CANON]** governance class. Supersedes O4 v2 (v2 SUP-10 whole-tick commitment inclusion stays withdrawn).
 
 ## 1. Vocabulary (carried forward)
@@ -44,8 +45,8 @@ activation_not_before = max(
 | Jump / Keeper launch | `takeoff_impulse_committed` | KEEP boundary, CHANGE ownership |
 | Keeper step save | future steps supersedable; irreversible at committed hand/body contact | CHANGE ownership |
 | Tackle / hold | first declared irreversible contact act, else first committed contact impulse | **UNDECIDED** (technique) |
-| Archer draw | draw start is execution start; abort policy | **UNDECIDED** |
-| Archer release | atomic projectile-release transaction; ammo/legality order | **UNDECIDED, CANON candidate CE-C3** |
+| Archer draw | draw start is execution start; **revocable until release with no ammo cost** (owner direction) | RESOLVED [CANON] |
+| Archer release | `arrow_released_free_of_bow`: ammo spent atomically with release, legality judged afterward, illegal arrows still spend (owner direction) | RESOLVED [CANON] |
 | Keeper no-attempt | no command, no commitment | KEEP |
 UNDECIDED rows fail validation (SUP-17) until resolved or explicitly waived as out of scope for the scenarios run.
 
@@ -66,9 +67,9 @@ UNDECIDED rows fail validation (SUP-17) until resolved or explicitly waived as o
 | contact/grounding vs takeoff | takeoff only if still eligible and feasible | proposed [ENG] |
 | Arrow impact on ball vs hand/body contact | simultaneous solve or approved pair rule; never actor order | UNDECIDED (physical) |
 | same-team exact-tie secure catches | discriminating metric (continuous contact time, then ball-point distance); joint control if none; check against rc2 PA/TC first | proposed [ENG], rc2 check pending |
-| goal/boundary crossing vs secure catch (exact tie) | `tie_rule` slot, ruleset-versioned | **UNRESOLVED_CANON (CE-C2)** |
-| clock/period/possession expiry vs release (exact tie) | `tie_rule` slot; B0 ordering (release before clock) held in B0 adapter only | **UNRESOLVED_CANON (CE-C1)** |
-| Archer legality/ammo vs projectile creation | atomic transaction; ordering approved by rule | **UNRESOLVED_CANON (CE-C3)** |
+| goal/boundary crossing vs secure catch (exact tie) | goal stands over a coincident catch; ball touching out-of-bounds floor/line stands over a coincident secure hold; player location by last floor contact (NBA base, owner direction) | RESOLVED at principle (CE-C2) [CANON] |
+| clock/period/possession expiry vs release (exact tie) | shot counts if the ball left the hand before expiry; a shot in flight stays live; exact-instant release counts (default, flagged) (NBA base, owner direction) | RESOLVED at principle, one default flagged (CE-C1) [CANON] |
+| Archer legality/ammo vs projectile creation | one atomic transaction: ammo spent at release, legality judged after; MC refuses only physical infeasibility | RESOLVED (CE-C3) [CANON] |
 **Native tolerance.** B0 runs on integer milliseconds, so same-ms ties are common. "Same resolved instant" must be defined for the native port. Open item for Codex.
 
 ## 6. Wind-up revocability [BEH]
@@ -86,7 +87,7 @@ Intents carry `(decided_at, decision_stage, intent_seq)` with `intent_seq` alloc
 | SUP-2…9, 11…16 | as in v2 |
 | SUP-10 | **withdrawn** (whole-tick inclusion) |
 | SUP-15 | the compatibility table has an entry for every pair of the seven resources and is symmetric where declared |
-| SUP-17 | UNDECIDED / UNRESOLVED_CANON rows fail validation unless waived for the scenarios run |
+| SUP-17 | UNDECIDED rows fail validation unless waived for the scenarios run (the tackle technique row remains) |
 | SUP-18 | atomic bundle admission: partial queue loss yields one outcome for the whole bundle |
 | CE-1 | any permutation of coincident candidates gives identical state, events, RNG consumption and IDs |
 | CE-2 | each pair-table row has a fixture with expected outcome |
@@ -104,4 +105,4 @@ Intents carry `(decided_at, decision_stage, intent_seq)` with `intent_seq` alloc
 | SELF-1…4 | type-level isolation; poison tests; MC output unchanged under perturbed `SelfView`; sweep over named self-perception parameters |
 
 ## 10. Status
-Engineering content here is a proposal to Codex for confirmation. Defaults are conservative and none is presented as approved behavior. Still open for Codex: reaction-delay placement, native "same instant" tolerance. Still canon-class and owner-only if the rulebook is silent: CE-C1, CE-C2, CE-C3 (after a rulebook check).
+Engineering content here is a proposal to Codex for confirmation. Defaults are conservative and none is presented as approved behavior. Still open for Codex: reaction-delay placement, native "same instant" tolerance. CE-C1, CE-C2, CE-C3 are resolved at principle level by the owner's direction. Residuals with stated defaults: exact-instant release counts; shots only for the in-flight exception; whether an illegal arrow flies (default: nullified as in B0); rate of fire treated as legality.

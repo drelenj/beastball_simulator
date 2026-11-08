@@ -57,3 +57,6 @@ The effect is that no default depends on an owner decision, because each default
 **Difference R-4: undefined "ordinary reaction delay".** The T6 timing table has no named reaction-delay quantity (fields run `delivered_at` → `decision_opened_at` → `decided_at` → `not_before`). O4 v3 defines `reaction_delay(athlete, stimulus_class)` as one function called by both the ordinary path and plan activation, so the two paths cannot diverge. Its value is not chosen here. Class: ENG, needs Codex confirmation of where B1 timing parameters live.
 
 **Open for Codex:** (a) confirm `reaction_delay` placement (R-4); (b) the native tolerance for "same resolved instant" given B0's integer-ms quantization (ties are frequent, not rare); (c) the R-3 position.
+
+## 5. Update (2026-11-08, later): owner canon direction on CE-C1/C2/C3
+DreLen resolved CE-C1, CE-C2 and CE-C3 at principle level (NBA base for clock and boundary/goal; ammunition spent at release, illegal arrows still spend, a draw can be aborted). Record: `HP-002_OWNER_CANON_DIRECTION_CE-C1_C3.md`. O4 v3 is now rev 2. Difference R-2 above is closed except for the residual defaults listed in that record. The rows for these items in the Codex §10 table are no longer open owner items.
