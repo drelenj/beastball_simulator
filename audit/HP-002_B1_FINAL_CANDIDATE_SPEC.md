@@ -57,7 +57,7 @@ Measured earlier (seed 1, B0 and full stack): score, event log, all five match R
 | O9 Restarts | Rule-required placement only; optional tactics must be athlete-selected | In formation-free mode restart placements are limited to written rules; no set-piece tactics assigned |
 | O10 Carrier biases | Remove externally assigned position biases in formation-free mode | Position/archetype carrier biases removed in the formation-free arm only |
 **Still open (not covered by the resolutions above; I have not assumed answers):**
-- **R1** Archer: whether freeze, immunity and eligibility status are public observables to every athlete (still unanswered). Settled: the legal range is any spot outside the Keeper Zones (DreLen confirmed Keeper Zones, 2026-11-07), so my 5 m margin is retired; Keepers are not field players and are outside the Archer target set.
+- **R1 — resolved (DreLen, 2026-11-08 10:52):** freeze, immunity and eligibility status are public to every athlete; there are indicators on the player uniforms. Observable (O class) when the athlete can see the player, as for other visible status. Also settled earlier: the Archer's legal range is any spot outside the Keeper Zones (confirmed 2026-11-07), so my 5 m margin is retired; Keepers are not field players and are outside the Archer target set.
 - **R2** Scheduling of the rules audit (kicking at the engine boundary, RULE versus TACTIC placements); O9 settled the restart principle, not the timing.
 - **R3** Approval of the dependency order (below) and of Gate C's measurement-first approach given O5.
 
