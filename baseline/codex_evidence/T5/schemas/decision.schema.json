@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ndagisports.local/hp001/t5/decision.schema.json",
+  "title": "HP-001 T5 decision and execution telemetry",
+  "type": "object",
+  "required": ["schema_version", "record_type", "run_id"],
+  "properties": {
+    "schema_version": {"const": "hp001-t5-v1"},
+    "record_type": {"enum": ["decision", "target_selection", "execution_outcome", "random_stream_checkpoint"]},
+    "run_id": {"type": "string"},
+    "decision_id": {"type": ["string", "null"]},
+    "athlete": {"type": ["string", "null"]},
+    "ownership": {"type": "object"},
+    "option_set": {"type": ["array", "null"]},
+    "evaluated_values": {"type": ["object", "null"]},
+    "selected_intention": {"type": ["string", "null"]},
+    "selected_target": {},
+    "execution_outcome": {"type": ["object", "null"]},
+    "random_evidence": {"type": "object"},
+    "information_access": {
+      "type": "object",
+      "description": "Reserved extension point. T5 records historical provenance only and does not implement IA-001 or C-7.",
+      "properties": {
+        "ia001_contract_version": {"type": ["string", "null"]},
+        "ia001_status": {"const": "not_implemented_t5"},
+        "visibility_scope": {"type": "string"},
+        "observed_information_channels": {"type": ["array", "null"]},
+        "belief_provenance": {"type": ["object", "null"]},
+        "communication": {"type": ["object", "null"]},
+        "c7_full_prism_archer_cognition": {"const": "not_implemented_t5"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

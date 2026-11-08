@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-11-08) by HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc2.md. Historical only; not governing. See HP-002_SPEC_MANIFEST.json.**
+
 # HP-002 — B1 Final Approval Candidate · Specification v1.0-rc1
 Claude, 2026-11-08. Branch `claude/hp002-audit`. **Self-contained: implementation must rely only on the documents listed in `HP-002_SPEC_MANIFEST.json`, not on earlier drafts (r1, r2, r3 and the earlier "final candidate" are SUPERSEDED, historical only).** Candidate only. **No B1 implementation, rating recalibration, Keeper optimization or native rewrite is authorized.** B0-P4-DEFAULT (commit 2abe497) and accepted T1–T3 evidence are untouched.
 

@@ -1,0 +1,86 @@
+{
+  "accepted_t1": null,
+  "checks": {
+    "event_count": true,
+    "event_log_hash": true,
+    "execution_schedule_hash": true,
+    "final_simulation_random_stream_bundle": true,
+    "outer_completed_steps": true,
+    "python_global_changed_steps": true,
+    "python_global_consumption_signature": true,
+    "result": true,
+    "score": true,
+    "simulation_rng_transition_hash": true
+  },
+  "comparisons": {
+    "event_count": [
+      3789,
+      3789
+    ],
+    "event_log_hash": [
+      "0cc709124037857276e6f86091047269e791ca0b85e86abb572ee6a6635465cf",
+      "0cc709124037857276e6f86091047269e791ca0b85e86abb572ee6a6635465cf"
+    ],
+    "execution_schedule_hash": [
+      "9c0272b3a6a2682c88730cf502b09f79ccd2f7e94c2e69e04a11d4268bbd1742",
+      "9c0272b3a6a2682c88730cf502b09f79ccd2f7e94c2e69e04a11d4268bbd1742"
+    ],
+    "final_simulation_random_stream_bundle": [
+      "1e5ec00dfce57ceef17deac211aeb8b0b8b301958417933d745bb13ab60a44ad",
+      "1e5ec00dfce57ceef17deac211aeb8b0b8b301958417933d745bb13ab60a44ad"
+    ],
+    "outer_completed_steps": [
+      5277,
+      5277
+    ],
+    "python_global_changed_steps": [
+      0,
+      0
+    ],
+    "python_global_consumption_signature": [
+      "1220c4e4db5add94b50a354611e70e551effbbbb2da8f4b2911e148bb4a21460",
+      "1220c4e4db5add94b50a354611e70e551effbbbb2da8f4b2911e148bb4a21460"
+    ],
+    "result": [
+      {
+        "method": "overtime",
+        "score": {
+          "A": 7,
+          "B": 3
+        },
+        "shootout": null,
+        "winner": "A"
+      },
+      {
+        "method": "overtime",
+        "score": {
+          "A": 7,
+          "B": 3
+        },
+        "shootout": null,
+        "winner": "A"
+      }
+    ],
+    "score": [
+      {
+        "A": 7,
+        "B": 3
+      },
+      {
+        "A": 7,
+        "B": 3
+      }
+    ],
+    "simulation_rng_transition_hash": [
+      "d9466face5d23694c55b869acfd5ed19ee340925ad4047e3e3fc32b184b962e3",
+      "d9466face5d23694c55b869acfd5ed19ee340925ad4047e3e3fc32b184b962e3"
+    ]
+  },
+  "conclusion": "Telemetry did not alter observed execution",
+  "control_run_id": "equivalence_b0_seed1_control",
+  "generated_utc": "2026-11-08T18:03:35.868805+00:00",
+  "instrumented_run_id": "equivalence_b0_seed1_instrumented",
+  "ok": true,
+  "record_type": "instrumentation_equivalence",
+  "schema_version": "hp001-t5-v1"
+}

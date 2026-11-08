@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ndagisports.local/hp001/t5/event.schema.json",
+  "title": "HP-001 T5 simulation event telemetry",
+  "type": "object",
+  "required": ["schema_version", "record_type", "run_id", "payload"],
+  "properties": {
+    "schema_version": {"const": "hp001-t5-v1"},
+    "record_type": {"const": "simulation_event"},
+    "run_id": {"type": "string"},
+    "payload": {
+      "type": "object",
+      "required": ["id", "event", "t_ms", "live_ms", "period", "phase", "data"],
+      "properties": {
+        "id": {"type": "integer"},
+        "event": {"type": "string"},
+        "t_ms": {"type": "integer"},
+        "live_ms": {"type": "integer"},
+        "period": {"type": "integer"},
+        "phase": {"type": "string"},
+        "data": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

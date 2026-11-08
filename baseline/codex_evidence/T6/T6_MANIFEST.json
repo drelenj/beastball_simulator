@@ -1,0 +1,31 @@
+{
+  "schema": "hp001.t6.design-packet.v1",
+  "task": "HP-001 T6 — Native Interface Design",
+  "status": "design_complete_implementation_not_authorized",
+  "prepared_utc": "2026-11-08",
+  "baseline": {
+    "name": "B0-P4-DEFAULT",
+    "commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12"
+  },
+  "scope": {
+    "paper_only": true,
+    "behavior_modified": false,
+    "native_code_implemented": false,
+    "b1_behavior_implemented": false,
+    "accepted_t1_t5_artifacts_modified": false
+  },
+  "documents": [
+    {"path": "DECISION_TICK_DATAFLOW.md", "bytes": 2047, "sha256": "4739de5e0de4185c09521a58ffbd26f2585bc4fea5213ad80ef0e561350e2dd8"},
+    {"path": "HP-001_T6_NATIVE_INTERFACE_SPEC.md", "bytes": 17114, "sha256": "e353059f3ac1444e96c82c24c3fdd3e3699303c4a324f446440ac0932c4448ce"},
+    {"path": "HP002_RECONCILIATION.md", "bytes": 6436, "sha256": "252cc8ecf0c517da1c6f498028d6188833dc8cf08940ef7272e401f8628d95ce"},
+    {"path": "IMPLEMENTATION_SEQUENCE.md", "bytes": 3307, "sha256": "a486579c3fef6b03104eaaa510a91101c47d1823c52fb4e572ca489a18909bc1"},
+    {"path": "LEGACY_MECHANISM_MAP.md", "bytes": 7144, "sha256": "965f77533b6dc8a920a4c4cb68ca825f383516e19af467036ef1aa9db05e60e0"},
+    {"path": "MIGRATION_RISK_REGISTER.md", "bytes": 4680, "sha256": "e56eed831bdb38bd91fed55a1298f62dbe7c15e4ea1ab301cbdafaf9b0abba23"},
+    {"path": "README.md", "bytes": 2026, "sha256": "e4fe51abb2c5430dd3ff34cc06f15d823690890311b4b9defa11312922a8e024"},
+    {"path": "REQUIREMENTS_TRACEABILITY.md", "bytes": 2397, "sha256": "8561c2dc0d6060f39da3ed482d53d164165e6da7c5ee5fea455ce99369e1c051"},
+    {"path": "SOURCE_PROVENANCE.md", "bytes": 4277, "sha256": "b2d016ad8049ab9ecda3c751fcd5c7a498af344ff0ee6f91f9cba516e300628b"},
+    {"path": "TYPED_CONTRACTS.md", "bytes": 12057, "sha256": "84168f8a1194bf888c4a5c21822c1b67e4f38ca74d0d0940410064c48265e1d9"},
+    {"path": "VALIDATION_MATRIX.md", "bytes": 6724, "sha256": "61da4594b109c9c6d3fdccd4a1481ea5bdd3d9754f0220144e550e8ad9424c54"}
+  ],
+  "approval_boundary": "Stop after T6 for review; T3A, B1, optimization, and native implementation remain unauthorized."
+}

@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
+  "artifacts": {
+    "T1_CLOSURE_REPORT.md": "687cbefd47e233d123d52eaa2fccd4a1f2e207ed717786dc3f2dde143ef11eb6",
+    "HP-001_T2_EVIDENCE_REPORT.md": "fd2cf9eeba67081d8c087123ee1dd6bb2aa9a7153b9fb07a71fce35a9c160eee",
+    "HP-001_T2_EVIDENCE_PACKET.zip": "a40744b655f5783865434ba1f62da1162fde4ce1404514611a2035339d6b4982",
+    "HP-001_T3_FINAL_PACKET/HP-001_T3_EVIDENCE_REPORT.md": "aa8efd9a20942803c18c6d8302b04c92fd77509177163017a5861c8b27adb6b7",
+    "HP-001_T3_EVIDENCE_PACKET.zip": "8d9f93436eec5ef19ba6562ec3eb09d9f37ef1f3e7dc8516c92ddb72d09ee61c",
+    "HP-001_T4_EVIDENCE_PACKET.zip": "634ac16eb6a5c2e4cfa806bc8bab721e510a9c3725ce13759ab64e9630380b82"
+  },
+  "status": "recomputed_after_t5_unchanged"
+}

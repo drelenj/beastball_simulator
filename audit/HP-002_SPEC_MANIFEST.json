@@ -1,21 +1,40 @@
 {
- "manifest_version": "1.0",
- "spec": "HP-002 B1 Final Approval Candidate v1.0-rc1",
+ "manifest_version": "2.0",
+ "spec": "HP-002 B1 Final Approval Candidate v1.0-rc2",
+ "spec_version": "1.0-rc2",
  "status": "CANDIDATE - not accepted; B1 implementation NOT authorized",
- "base_repo_commit_before_this_change": "87ad6317642a0da0ad4e5239953126ddcc6e0089",
+ "base_repo_commit_before_this_change": "c5f0b9e1c5372facf7b83574f6b12a736038c0ee",
  "b0_baseline": {
   "name": "B0-P4-DEFAULT",
   "commit": "2abe497"
  },
+ "contract_v1": {
+  "status": "NOT FROZEN",
+  "requires": [
+   "U-1",
+   "U-2",
+   "U-3",
+   "U-4",
+   "SELF-1",
+   "R-RS",
+   "T6-O4",
+   "T6-O5"
+  ]
+ },
  "governing": [
   {
-   "id": "HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1",
-   "path": "audit/HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md",
-   "role": "governing candidate (self-contained)",
-   "sha256": "4d2e965bb70d4957dc5d4b4f38860b4938b9c96a272d031e82515c1d9448fe20"
+   "id": "HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc2",
+   "path": "audit/HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc2.md",
+   "role": "governing candidate (self-contained); contains the T5/T6 conflict register",
+   "sha256": "a95cdb059701ebf2ab8e807e510c8327dd62086b0bc97853331e3f057066722a"
   }
  ],
  "superseded_non_governing": [
+  {
+   "id": "HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1",
+   "path": "audit/HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md",
+   "sha256": "0025d0abc4c8aa81c8f00242c7c23b700133c25737906e80c3f0874ee139ab32"
+  },
   {
    "id": "HP-002_B1_FINAL_CANDIDATE_SPEC",
    "path": "audit/HP-002_B1_FINAL_CANDIDATE_SPEC.md",
@@ -67,6 +86,26 @@
    "id": "NI4_SUMMARY",
    "path": "audit/ni4/NI4_SUMMARY.json",
    "sha256": "3d5771f97bffcd6e0696e61212dab06e4421c80643aca22c3c1a328598a12250"
+  },
+  {
+   "id": "t5_replication",
+   "path": "audit/t5_replication/README.md",
+   "sha256": "5386027d93cffd4eb4f88bcfc80ec8884ba93a128926a10fde34f0c442b53858"
+  },
+  {
+   "id": "t5_replication",
+   "path": "audit/t5_replication/equivalence.json",
+   "sha256": "589c0d47b9ff0123eb5264971fd4386494269de350ea81b48034a67a76493147"
+  },
+  {
+   "id": "t5_replication",
+   "path": "audit/t5_replication/manifest_control.json",
+   "sha256": "8ca5e7579360b140d65f1776f79dc95f646e203b495b3dd548f1e79747224d23"
+  },
+  {
+   "id": "t5_replication",
+   "path": "audit/t5_replication/manifest_instrumented.json",
+   "sha256": "b189b2a1e7fb6abc6e7709c8bb6ce8cc5fe2b3d34dc14940cfedbce40b5dc3d4"
   }
  ],
  "claude_tools": [
@@ -105,6 +144,10 @@
   {
    "path": "tools/ni4_capture.py",
    "sha256": "65f3ede0bfa5d3c866d29e900f1af5e58811ac6c0e518eebc1d55f3f1c238c6f"
+  },
+  {
+   "path": "tools/build_manifest.py",
+   "sha256": "31421324988e19757a29bd6723eb10e85fffc48901d2748da34ade16c425d3a8"
   }
  ],
  "codex_evidence": {
@@ -113,24 +156,480 @@
    "hash_source": "baseline/b0_claude_env/runs/*.json"
   },
   "T2": {
-   "status": "received, read",
-   "file": "HP-001_T2_EVIDENCE_REPORT.md",
-   "sha256": "fd2cf9eeba67081d8c087123ee1dd6bb2aa9a7153b9fb07a71fce35a9c160eee"
+   "status": "received, read"
   },
   "T3": {
-   "status": "received, read",
-   "file": "HP-001_T3_EVIDENCE_REPORT.md",
-   "sha256": "aa8efd9a20942803c18c6d8302b04c92fd77509177163017a5861c8b27adb6b7"
+   "status": "received, read"
   },
   "T4": {
-   "status": "NOT RECEIVED by Claude (not referenced as governing)"
+   "status": "NOT RECEIVED by Claude; not governing; referenced by T5/T6 (report 606e7a79..., packet 634ac16e...)"
   },
   "T5": {
-   "status": "completed and accepted per DreLen; NOT RECEIVED by Claude; content not incorporated"
+   "status": "received 2026-11-08, read; unit suite and short seed-1 equivalence replicated",
+   "packet_zip_sha256": "824b83c1591fc22e6358e76d9d1ef122959547a1c67ecc9f00dccb11461583bb"
   },
   "T6": {
-   "status": "completed and accepted per DreLen; NOT RECEIVED by Claude; content not incorporated"
+   "status": "received 2026-11-08, read; packet manifest verified",
+   "packet_zip_sha256": "9c04c1b1c697d22fedef550ef581eab395a0904929c2934cc53aa3048040b6f7"
+  },
+  "copies_read_only": [
+   {
+    "path": "baseline/codex_evidence/T2/HP-001_T2_EVIDENCE_REPORT.md",
+    "sha256": "fd2cf9eeba67081d8c087123ee1dd6bb2aa9a7153b9fb07a71fce35a9c160eee"
+   },
+   {
+    "path": "baseline/codex_evidence/T3/HP-001_T3_EVIDENCE_REPORT.md",
+    "sha256": "aa8efd9a20942803c18c6d8302b04c92fd77509177163017a5861c8b27adb6b7"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/HP-001_T5_EVIDENCE_REPORT.md",
+    "sha256": "7b1c9ddcece27ed1e260d2457c4720677989c2b286ba6f91a145456bada9e930"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/PRESERVATION.json",
+    "sha256": "fb3c775d71e4dacba25dfb2fddabda69d3444f52f626742b6ad4e2d3d97cc113"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/TELEMETRY_SCHEMA.md",
+    "sha256": "a2f7e6cc39bd29a2c7dce13d8f0160cb7e2b4a606e0151bfaac28cc17cdab0c3"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/schemas/decision.schema.json",
+    "sha256": "a19a54521c2c4ade4f0f4aa861d065c9a76b318e69c4c1a053dd76fe709d6f02"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/schemas/event.schema.json",
+    "sha256": "77a156ddd4e39b3d061c3b16b0bf7065a3070ca00dda03bc8c95990dc145e367"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/schemas/experiment.schema.json",
+    "sha256": "6f398608b4f322129e6eda7ff4867aabe6152a688ec9b0be8346a830f7245db9"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/schemas/run_manifest.schema.json",
+    "sha256": "77004bf3e1668aa38b2f0fa41e7cac91829c4b54ffc61b698398b89fed375c65"
+   },
+   {
+    "path": "baseline/codex_evidence/T5/schemas/step.schema.json",
+    "sha256": "36c4352b2602df3b10452d1b7cd165d82a2a96265725e22d4ce1969c0f9f0d99"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/DECISION_TICK_DATAFLOW.md",
+    "sha256": "4739de5e0de4185c09521a58ffbd26f2585bc4fea5213ad80ef0e561350e2dd8"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/HP-001_T6_NATIVE_INTERFACE_SPEC.md",
+    "sha256": "e353059f3ac1444e96c82c24c3fdd3e3699303c4a324f446440ac0932c4448ce"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/HP002_RECONCILIATION.md",
+    "sha256": "252cc8ecf0c517da1c6f498028d6188833dc8cf08940ef7272e401f8628d95ce"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/IMPLEMENTATION_SEQUENCE.md",
+    "sha256": "a486579c3fef6b03104eaaa510a91101c47d1823c52fb4e572ca489a18909bc1"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/LEGACY_MECHANISM_MAP.md",
+    "sha256": "965f77533b6dc8a920a4c4cb68ca825f383516e19af467036ef1aa9db05e60e0"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/MANIFEST.sha256",
+    "sha256": "6afd126bebc5534d29a8bb8ef1ee9d331683455dd363129f0fe6608158121817"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/MIGRATION_RISK_REGISTER.md",
+    "sha256": "e56eed831bdb38bd91fed55a1298f62dbe7c15e4ea1ab301cbdafaf9b0abba23"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/README.md",
+    "sha256": "e4fe51abb2c5430dd3ff34cc06f15d823690890311b4b9defa11312922a8e024"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/REQUIREMENTS_TRACEABILITY.md",
+    "sha256": "8561c2dc0d6060f39da3ed482d53d164165e6da7c5ee5fea455ce99369e1c051"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/SOURCE_PROVENANCE.md",
+    "sha256": "b2d016ad8049ab9ecda3c751fcd5c7a498af344ff0ee6f91f9cba516e300628b"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/T6_MANIFEST.json",
+    "sha256": "ff6009e2ebf4359c45840463354b839a18b81c2f66e0a974c7dfc7d8f7f43ff2"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/TYPED_CONTRACTS.md",
+    "sha256": "84168f8a1194bf888c4a5c21822c1b67e4f38ca74d0d0940410064c48265e1d9"
+   },
+   {
+    "path": "baseline/codex_evidence/T6/VALIDATION_MATRIX.md",
+    "sha256": "61da4594b109c9c6d3fdccd4a1481ea5bdd3d9754f0220144e550e8ad9424c54"
+   }
+  ]
+ },
+ "decisions": {
+  "resolved_fixed": [
+   "RST-1",
+   "IA-001",
+   "C-7",
+   "O1-O10",
+   "R1",
+   "ARC-1",
+   "KP-A",
+   "ZR-1",
+   "ZR-2"
+  ],
+  "unresolved": [
+   {
+    "id": "U-1",
+    "what": "Keeper protection cells KP-01..KP-14",
+    "state": "UNRESOLVED"
+   },
+   {
+    "id": "U-2",
+    "what": "zone-clock reset rule (PA basis direction recorded); Keeper phase basis KP-12",
+    "state": "UNRESOLVED"
+   },
+   {
+    "id": "U-3",
+    "what": "zone geometry G-1..G-6, separate ball and athlete predicates",
+    "state": "UNRESOLVED"
+   },
+   {
+    "id": "U-4",
+    "what": "rules-state transition table; scenarios U4-01..U4-13 incl. bounce-pass and control-at-release",
+    "state": "UNRESOLVED"
+   },
+   {
+    "id": "SELF-1",
+    "what": "exactness of an athlete's knowledge of own capabilities",
+    "state": "needs DreLen"
+   },
+   {
+    "id": "R-RS",
+    "what": "ruleset 1.0.1 vs 1.0.2 for Archer freeze eligibility",
+    "state": "needs DreLen"
+   },
+   {
+    "id": "T6-O4",
+    "what": "supersession priority among simultaneous commands",
+    "state": "needs approval"
+   },
+   {
+    "id": "T6-O5",
+    "what": "causal-ID encoding and telemetry schema version",
+    "state": "needs approval"
+   },
+   {
+    "id": "A-1",
+    "what": "approve refined dependency order and measurement-first Gate C",
+    "state": "needs DreLen"
+   },
+   {
+    "id": "T6-O3",
+    "what": "Keeper arbitration policy",
+    "state": "deferred (before Keeper migration)"
+   },
+   {
+    "id": "T6-O6",
+    "what": "native numeric tolerances",
+    "state": "deferred (native track)"
+   }
+  ]
+ },
+ "conflict_register": {
+  "source": "audit/HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc2.md",
+  "rows": [
+   {
+    "id": "TI-1",
+    "topic": "AthleteView composition",
+    "verdict": "AGREE",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "TI-2",
+    "topic": "Unavailable data",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "TI-3",
+    "topic": "Athlete's knowledge of own capabilities",
+    "verdict": "CONFLICT",
+    "disposition": "OPEN-D"
+   },
+   {
+    "id": "TI-4",
+    "topic": "MC state access",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "TI-5",
+    "topic": "MC acceptance vs legality",
+    "verdict": "AGREE",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "TI-6",
+    "topic": "Focus rating",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "TI-7",
+    "topic": "Catch ownership",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "TI-8",
+    "topic": "Who may write an athlete's destination",
+    "verdict": "CONFLICT (wording)",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "TI-9",
+    "topic": "Keeper intent modes and arbitration",
+    "verdict": "GAP",
+    "disposition": "OPEN-C"
+   },
+   {
+    "id": "TI-10",
+    "topic": "Identifier encoding, schema version",
+    "verdict": "GAP",
+    "disposition": "OPEN-D"
+   },
+   {
+    "id": "CT-1",
+    "topic": "Causation vs correlation",
+    "verdict": "CONFLICT (capability)",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "CT-2",
+    "topic": "Decision-domain coverage",
+    "verdict": "GAP",
+    "disposition": "INFO"
+   },
+   {
+    "id": "CT-3",
+    "topic": "Neutrality evidence",
+    "verdict": "AGREE",
+    "disposition": "INFO"
+   },
+   {
+    "id": "CT-4",
+    "topic": "RNG coverage in neutrality tests",
+    "verdict": "GAP",
+    "disposition": "OPEN-C"
+   },
+   {
+    "id": "CT-5",
+    "topic": "Python-global RNG",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "CT-6",
+    "topic": "Option menus and raw draws",
+    "verdict": "AGREE",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "CT-7",
+    "topic": "Telemetry as pure observer",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "CS-1",
+    "topic": "No silent replacement",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "CS-2",
+    "topic": "Interruption causes, supersession edge",
+    "verdict": "GAP in rc1",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "CS-3",
+    "topic": "Priority among simultaneous commands",
+    "verdict": "GAP",
+    "disposition": "OPEN-D"
+   },
+   {
+    "id": "CS-4",
+    "topic": "Supersession visible in B0",
+    "verdict": "GAP",
+    "disposition": "INFO"
+   },
+   {
+    "id": "CS-5",
+    "topic": "Single jump owner",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "CS-6",
+    "topic": "Delays retained",
+    "verdict": "AGREE",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "PO-1",
+    "topic": "Outcome record",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "PO-2",
+    "topic": "Rule events vs physical events",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "PO-3",
+    "topic": "Gate B tolerance",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "PO-4",
+    "topic": "T3 gaps and T3A",
+    "verdict": "CLARIFY",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "PO-5",
+    "topic": "Consequences of illegal attempts",
+    "verdict": "CLARIFY",
+    "disposition": "INFO"
+   },
+   {
+    "id": "PO-6",
+    "topic": "Freeze eligibility vs ruleset",
+    "verdict": "GAP (new)",
+    "disposition": "OPEN-D"
+   },
+   {
+    "id": "PO-7",
+    "topic": "Keeper reverse-flight",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "PO-8",
+    "topic": "Termination classes",
+    "verdict": "AGREE",
+    "disposition": "INFO"
+   },
+   {
+    "id": "RN-1",
+    "topic": "B0 stream preservation",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "RN-2",
+    "topic": "Where streams live",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "RN-3",
+    "topic": "Draw ledger and injection",
+    "verdict": "GAP",
+    "disposition": "OPEN-C"
+   },
+   {
+    "id": "RN-4",
+    "topic": "RNG redesign, new substreams",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "RN-5",
+    "topic": "Cognition draws vs physics streams",
+    "verdict": "GAP in rc1",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "RN-6",
+    "topic": "Cross-environment reproducibility",
+    "verdict": "AGREE",
+    "disposition": "INFO"
+   },
+   {
+    "id": "VG-1",
+    "topic": "Gate definitions A, B, C",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "VG-2",
+    "topic": "Test inventory",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "VG-3",
+    "topic": "Reference environment",
+    "verdict": "AGREE",
+    "disposition": "INFO"
+   },
+   {
+    "id": "VG-4",
+    "topic": "Portability tests P-01 to P-03",
+    "verdict": "CLARIFY",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "VG-5",
+    "topic": "Gate mislabeling",
+    "verdict": "AGREE",
+    "disposition": "RES-A"
+   },
+   {
+    "id": "SQ-1",
+    "topic": "Command-replay physical boundary (T6 phase 4) before AthleteView",
+    "verdict": "CONFLICT (order)",
+    "disposition": "OPEN-C"
+   },
+   {
+    "id": "SQ-2",
+    "topic": "Physical fixture before replacing its owner",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "SQ-3",
+    "topic": "Never combine information-boundary and PHY change; no RNG redesign with migration",
+    "verdict": "AGREE",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "SQ-4",
+    "topic": "Domain order for behavioural step",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   },
+   {
+    "id": "SQ-5",
+    "topic": "Undecided values",
+    "verdict": "CLARIFY",
+    "disposition": "RES-P"
+   }
+  ],
+  "counts": {
+   "RES-A": 15,
+   "RES-P": 17,
+   "OPEN-D": 4,
+   "OPEN-C": 4,
+   "INFO": 7
   }
  },
- "note": "The repo commit that contains this manifest is the commit whose tree holds these hashes; verify with: tools/build_manifest.py verify"
+ "note": "Verify with: python3 tools/build_manifest.py verify"
 }

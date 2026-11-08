@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ndagisports.local/hp001/t5/step.schema.json",
+  "title": "HP-001 T5 completed execution-step telemetry",
+  "type": "object",
+  "required": ["schema_version", "record_type", "run_id", "outer_step", "before", "after", "new_event_ids", "random_streams_before", "random_streams_after"],
+  "properties": {
+    "schema_version": {"const": "hp001-t5-v1"},
+    "record_type": {"const": "execution_step"},
+    "run_id": {"type": "string"},
+    "outer_step": {"type": "integer", "minimum": 1},
+    "before": {"type": "object"},
+    "after": {"type": "object"},
+    "new_event_ids": {"type": "array", "items": {"type": ["integer", "null"]}},
+    "random_streams_before": {"type": "object", "additionalProperties": {"type": "string"}},
+    "random_streams_after": {"type": "object", "additionalProperties": {"type": "string"}}
+  },
+  "additionalProperties": false
+}
