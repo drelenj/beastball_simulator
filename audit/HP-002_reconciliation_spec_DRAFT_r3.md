@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-11-08) by HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md. Historical evidence only; not governing. See HP-002_SPEC_MANIFEST.json.**
+
 # HP-002 Reconciliation Specification — DRAFT r3
 Claude, 2026-11-07. Branch `claude/hp002-audit`. Supersedes r2 (r1, r2 left unchanged). **Proposal only. No B1 change, recalibration, physics change or native work implemented. B0-P4-DEFAULT (2abe497) and all T1–T3 evidence untouched.** Instruments in `tools/` are read-only; §7 measures that they are behaviour-neutral.
 Labels: **[M]** measured · **[S]** source-derived · **[P]** proposed architecture · **[O]** open decision (§12). Provenance: my HP-002 audits; Codex T2 and T3 reports and packets (read; T3 trace files re-checked for byte-identity between each trace and its repeat; I did **not** recompute Codex's canonical hashes or re-run T3 generation, which depends on Codex's repository layout and Python/NumPy versions that differ from mine).

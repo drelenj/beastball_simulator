@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-11-08) by HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md. Historical evidence only; not governing. See HP-002_SPEC_MANIFEST.json.**
+
 # HP-002 — B1 Final Candidate Specification
 Claude, 2026-11-07. Branch `claude/hp002-audit`. Builds on r3 (accepted as provisional governing architecture; r3 holds the supporting detail and evidence). **Candidate only: no B1 behaviour, physics, rating or native work is implemented or authorized by this document.** B0-P4-DEFAULT (2abe497) and all T1–T3 evidence are untouched.
 

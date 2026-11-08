@@ -1,0 +1,136 @@
+{
+ "manifest_version": "1.0",
+ "spec": "HP-002 B1 Final Approval Candidate v1.0-rc1",
+ "status": "CANDIDATE - not accepted; B1 implementation NOT authorized",
+ "base_repo_commit_before_this_change": "87ad6317642a0da0ad4e5239953126ddcc6e0089",
+ "b0_baseline": {
+  "name": "B0-P4-DEFAULT",
+  "commit": "2abe497"
+ },
+ "governing": [
+  {
+   "id": "HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1",
+   "path": "audit/HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md",
+   "role": "governing candidate (self-contained)",
+   "sha256": "4d2e965bb70d4957dc5d4b4f38860b4938b9c96a272d031e82515c1d9448fe20"
+  }
+ ],
+ "superseded_non_governing": [
+  {
+   "id": "HP-002_B1_FINAL_CANDIDATE_SPEC",
+   "path": "audit/HP-002_B1_FINAL_CANDIDATE_SPEC.md",
+   "sha256": "35557353d3b95388e1be249b7cee99a8afe876ce18c64d857dea27b21a5ea514"
+  },
+  {
+   "id": "HP-002_reconciliation_spec_DRAFT_r1",
+   "path": "audit/HP-002_reconciliation_spec_DRAFT_r1.md",
+   "sha256": "051fe2bbcf632e1f2b372d93b87e066dbd7e8e5420964066567fa92cbc225b44"
+  },
+  {
+   "id": "HP-002_reconciliation_spec_DRAFT_r2",
+   "path": "audit/HP-002_reconciliation_spec_DRAFT_r2.md",
+   "sha256": "db653c99e675fe0bf2557f285f686fc2d0177116d8580c73d3ecfde0c598bc73"
+  },
+  {
+   "id": "HP-002_reconciliation_spec_DRAFT_r3",
+   "path": "audit/HP-002_reconciliation_spec_DRAFT_r3.md",
+   "sha256": "ce7fdfe7682e1773deecac289980a24a1c3ba69714ec70cc262182201031791a"
+  }
+ ],
+ "claude_evidence": [
+  {
+   "id": "HP-002_stageA_decision_ownership",
+   "path": "audit/HP-002_stageA_decision_ownership.md",
+   "sha256": "06915df806130cf5692432e5b68a8d062bf0bd68c8cabd38bc9859122296a46a"
+  },
+  {
+   "id": "HP-002_stageB_report",
+   "path": "audit/HP-002_stageB_report.md",
+   "sha256": "f55aae580f91de2b8ab1e6809974171b2c1035d71412c041e9f7a38c09c407ce"
+  },
+  {
+   "id": "T1_EVIDENCE_PACKET",
+   "path": "baseline/b0_claude_env/T1_EVIDENCE_PACKET.md",
+   "sha256": "6eace909fd0c7349f94059b2a3e709a31dd82989247410b999c21dbcafb719ca"
+  },
+  {
+   "id": "T1_COMPLETION_ADDENDUM",
+   "path": "baseline/b0_claude_env/T1_COMPLETION_ADDENDUM.md",
+   "sha256": "ff99a02d0f7b67630aaf77f194f611bf2a4abc4342cfd0e3930e4d77fcfc6976"
+  },
+  {
+   "id": "T1_MANIFEST",
+   "path": "baseline/b0_claude_env/MANIFEST.json",
+   "sha256": "bb3687d5f6e287afcc872aa9dfa132480ed9a26863a191ff50b1a899bd2e24eb"
+  },
+  {
+   "id": "NI4_SUMMARY",
+   "path": "audit/ni4/NI4_SUMMARY.json",
+   "sha256": "3d5771f97bffcd6e0696e61212dab06e4421c80643aca22c3c1a328598a12250"
+  }
+ ],
+ "claude_tools": [
+  {
+   "path": "tools/audit_fields.py",
+   "sha256": "3725a5c4edd43bd39e532aadcc9456604a350294503feaa08a263b66fc776ad4"
+  },
+  {
+   "path": "tools/audit_probes.py",
+   "sha256": "2495dcc596603c8ae59a126dc6cc8919bd4e8fa2227e74c00c2c48f2cbeee600"
+  },
+  {
+   "path": "tools/audit_update_jumps.py",
+   "sha256": "ec3a39dbcc6e743c681175c17296f6a68c34872757343e94513992294158faf7"
+  },
+  {
+   "path": "tools/audit_archer.py",
+   "sha256": "c0782cf16961736183ebcdc2010fbb09af7e963af9138fbc82c8b5a78ba421e2"
+  },
+  {
+   "path": "tools/audit_cadence.py",
+   "sha256": "2987fac71ad02eb79f0eab5460306a6d8264905011b5b6cf5527a60e24053f03"
+  },
+  {
+   "path": "tools/audit_neutrality.py",
+   "sha256": "df71021970f95941f4e5ad54788497106b20bbdda93e292bbf240c888c74f380"
+  },
+  {
+   "path": "tools/audit_canary.py",
+   "sha256": "34069a709a3b46803ea93d91f0a9f75be2ab5cdcde076b81cdab6cdf668c6ac3"
+  },
+  {
+   "path": "tools/audit_trace.py",
+   "sha256": "9bbd7045468cd5be297bde773b0ff4932bf9477905c25d3236878678d6560569"
+  },
+  {
+   "path": "tools/ni4_capture.py",
+   "sha256": "65f3ede0bfa5d3c866d29e900f1af5e58811ac6c0e518eebc1d55f3f1c238c6f"
+  }
+ ],
+ "codex_evidence": {
+  "T1": {
+   "status": "received, accepted",
+   "hash_source": "baseline/b0_claude_env/runs/*.json"
+  },
+  "T2": {
+   "status": "received, read",
+   "file": "HP-001_T2_EVIDENCE_REPORT.md",
+   "sha256": "fd2cf9eeba67081d8c087123ee1dd6bb2aa9a7153b9fb07a71fce35a9c160eee"
+  },
+  "T3": {
+   "status": "received, read",
+   "file": "HP-001_T3_EVIDENCE_REPORT.md",
+   "sha256": "aa8efd9a20942803c18c6d8302b04c92fd77509177163017a5861c8b27adb6b7"
+  },
+  "T4": {
+   "status": "NOT RECEIVED by Claude (not referenced as governing)"
+  },
+  "T5": {
+   "status": "completed and accepted per DreLen; NOT RECEIVED by Claude; content not incorporated"
+  },
+  "T6": {
+   "status": "completed and accepted per DreLen; NOT RECEIVED by Claude; content not incorporated"
+  }
+ },
+ "note": "The repo commit that contains this manifest is the commit whose tree holds these hashes; verify with: tools/build_manifest.py verify"
+}

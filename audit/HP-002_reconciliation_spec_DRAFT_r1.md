@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-11-08) by HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md. Historical evidence only; not governing. See HP-002_SPEC_MANIFEST.json.**
+
 # HP-002 Reconciliation Specification — DRAFT r1 (Claude side)
 Claude, 2026-11-06. Branch `claude/hp002-audit`. **Status: proposal. No behaviour change implemented. B0 (2abe497) and all evidence untouched.**
 **Codex T2 not yet available to me** (not in repo or uploads). Everything below is from HP-002 Stages A/B only. §9 lists exactly what must be checked against T2 before this is final; nothing here is claimed as reconciled.

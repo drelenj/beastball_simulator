@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-11-08) by HP-002_B1_FINAL_APPROVAL_CANDIDATE_v1.0-rc1.md. Historical evidence only; not governing. See HP-002_SPEC_MANIFEST.json.**
+
 # HP-002 Reconciliation Specification — DRAFT r2
 Claude, 2026-11-07. Branch `claude/hp002-audit`. Supersedes r1 (r1 file left unchanged). **Proposal only. No B1 change implemented. B0-P4-DEFAULT (2abe497) and all T1–T3 evidence untouched.**
 
