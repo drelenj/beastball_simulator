@@ -1,0 +1,23 @@
+{
+  "scenario_id": "m1-carrier-pass-or-carry-v1",
+  "status": "DRAFT_FOR_CODEX_IMPLEMENTATION",
+  "profile": "beastball-b1-conformance-v1-m1",
+  "field_m": [100, 100],
+  "attack_direction": "+x",
+  "episode_end": ["pass_completed", "pass_intercepted", "pass_incomplete_ball_loose", "carrier_grounded", "carrier_reaches_x_90", "timeout_8000ms"],
+  "athletes": [
+    {"id": "A", "role": "carrier", "team": "T1", "cognition": "prism_b1", "start": [45, 50], "start_state": "carrying", "facing": 0.0},
+    {"id": "T", "role": "teammate", "team": "T1", "cognition": "none_inert", "start": [49, 62], "note": "physical body, no cognition, stationary; a legitimate target seen through A's own perception; not an assigned receiving position"},
+    {"id": "D", "role": "defender", "team": "T2", "cognition": "prism_b1_simple", "start": [53, 52], "note": "same information boundary as A; pursues from its own belief"}
+  ],
+  "forbidden_in_scenario": ["Keeper", "Archer", "formation anchors", "role assignment tables", "scripted receiver routes", "scripted defender failure"],
+  "ratings_conditions": [
+    {"condition": "C0_uniform", "all_prism_ratings": 0.70},
+    {"condition": "C1_sharp_defender", "all_prism_ratings": 0.70, "overrides": {"D": {"Judgment": 0.90, "Reaction": 0.90}}},
+    {"condition": "C2_limited_vision_carrier", "all_prism_ratings": 0.70, "overrides": {"A": {"Vision": 0.40, "Awareness": 0.50}}},
+    {"condition": "C3_close_defender", "all_prism_ratings": 0.70, "overrides": {"D": {"start": [50, 51]}}}
+  ],
+  "seeds_per_condition": 100,
+  "seed_list": "1..100",
+  "note": "Physical ratings and body constants use the existing accepted physical standards unchanged. Positions are starting layout for the test, not a prescribed formation."
+}

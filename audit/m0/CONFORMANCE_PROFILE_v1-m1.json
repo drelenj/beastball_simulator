@@ -1,0 +1,26 @@
+{
+  "profile_id": "beastball-b1-conformance-v1-m1",
+  "status": "DRAFT_FOR_CODEX_CONFIRMATION",
+  "schema_version": "beastball-causal-v1",
+  "ruleset_version": "B0-1.0.1-physics-only-provisional",
+  "authorized_scope": "M1 single-athlete decision-to-outcome slice",
+  "supported_policies": [
+    {"policy_family": "CoincidentResolution", "policy_id": "pair-table-v0-resolved-rows", "policy_version": "0", "status": "resolved"},
+    {"policy_family": "ReactionTiming", "policy_id": "reaction-gate-null", "policy_version": "1", "status": "resolved"},
+    {"policy_family": "WindupRevocability", "policy_id": "non-revocable-after-prep-started", "policy_version": "1", "status": "resolved"},
+    {"policy_family": "SelfKnowledge", "policy_id": "selfview-exact-null", "policy_version": "1", "status": "resolved"}
+  ],
+  "unresolved_policies": [
+    {"policy_family": "Commitment", "policy_id": "tackle-contact-commitment", "status": "unresolved"},
+    {"policy_family": "CoincidentResolution", "policy_id": "arrow-ball-hand-tie", "status": "unresolved"},
+    {"policy_family": "PossessionAssignment", "policy_id": "same-team-exact-tie", "status": "unresolved"}
+  ],
+  "excluded_scenario_classes": [
+    "keeper_present", "archer_present", "restart_or_out_of_play", "keeper_zone_occupancy",
+    "ball_clock_zone_rules", "foul_or_discipline", "substitution", "clock_or_period_boundary_event",
+    "simultaneous_arrow_ball_hand_contact", "same_team_exact_tie_secure_catch",
+    "tackle_with_declared_commitment_technique", "kicking", "formation_or_role_assignment"
+  ],
+  "rules_state_fields_unavailable_reason": "UNRESOLVED_RULES_STATE",
+  "validation": "A scenario naming any excluded class is rejected at selection. A runtime case needing an unresolved policy emits UnresolvedOutcome and fails the run; no outcome is fabricated."
+}
