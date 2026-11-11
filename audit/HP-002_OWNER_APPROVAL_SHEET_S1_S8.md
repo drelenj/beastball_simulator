@@ -25,3 +25,6 @@ Sheet source: `HP-002_O4_O5_V3.3_CODEX_REVIEW_DISPOSITION.md` §3. DreLen's resp
 
 ## 4. Effect on the drafts
 O4 v3.4 labels CE-C1, CE-C2 and A1 to A3 as owner-approved with this record as the citation. O5 is unaffected.
+
+## 5. Editorial operationalization of S6 and S7 (2026-11-11, later)
+Codex found S6 and S7 under-specified. `HP-002_S6_S7_OPERATIONALIZATION.md` converts them to executable wording without changing the approved intent: S6 consequences are the ruleset's minor-foul rule for a foul by the defence, cited to `RULES_FLOW_v0.3.md` [C] and to B0 code; S7 retires the phrase "not live" in favor of `play_state = stopped` before release (pre-release blocker) versus a legality condition at or after release (post-release). The existing Hunt rule is recorded as a member of the pre-release family. If the owner reads either differently, it returns to him.
