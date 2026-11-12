@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 
 
@@ -25,3 +26,24 @@ def historical_hashes(root: Path):
         str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in historical_files(root)
     }
+
+
+def verify_baseline(root: Path, inventory: Path):
+    """Check every recorded baseline file before accepting new evidence."""
+    root = Path(root)
+    expected = json.loads(Path(inventory).read_text())
+    if not isinstance(expected, dict) or not expected:
+        raise ValueError("empty or invalid baseline inventory")
+    problems = []
+    for relative, digest in sorted(expected.items()):
+        path = Path(relative)
+        if path.is_absolute() or '..' in path.parts:
+            raise ValueError(f"invalid baseline path: {relative}")
+        target = root / path
+        if not target.is_file():
+            problems.append(f"missing: {relative}")
+        elif hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+            problems.append(f"modified: {relative}")
+    if problems:
+        raise RuntimeError("B0 baseline verification failed: " + "; ".join(problems))
+    return len(expected)

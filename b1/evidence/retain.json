@@ -3,9 +3,9 @@
   "decision_count": 6,
   "execution_hash": "29c3bd4010998c138a95c06de14e9939872ecdebce5b219d347d13f696a61050",
   "performance": {
-    "cpu_s": 1.772575326,
-    "setup_wall_s": 0.6275740920000317,
-    "total_wall_s": 0.6353070879999905
+    "cpu_s": 1.683662602,
+    "setup_wall_s": 0.5735899279999899,
+    "total_wall_s": 0.5816185250000103
   },
   "rng_states": {
     "match.rng.arrow": "d3d407cafac41952523ee00de57b781dd3a73d17118553afb64fa375730c6cc7",

@@ -7,12 +7,27 @@ import sys
 import tempfile
 import unittest
 from .core import AthleteView, BeliefState, Contact, decide
-from .preservation import historical_hashes
+from .preservation import historical_hashes, verify_baseline
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 class PureBoundaryTests(unittest.TestCase):
+    def test_baseline_guard_detects_preexisting_modification_and_missing_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            source=root/'source.py'
+            source.write_text('original')
+            inventory=root/'inventory.json'
+            inventory.write_text(json.dumps({'source.py':hashlib.sha256(b'original').hexdigest()}))
+            self.assertEqual(verify_baseline(root,inventory),1)
+            source.write_text('changed')
+            with self.assertRaisesRegex(RuntimeError,'modified: source.py'):
+                verify_baseline(root,inventory)
+            source.unlink()
+            with self.assertRaisesRegex(RuntimeError,'missing: source.py'):
+                verify_baseline(root,inventory)
+
     def test_decision_values_are_immutable(self):
         v=AthleteView('o','A0','A',1500,40,50,True,(Contact('A1','A',55,50,1000),))
         b=BeliefState('b','o',v.contacts)

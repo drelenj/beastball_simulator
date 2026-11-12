@@ -1,3 +1,4 @@
+test_baseline_guard_detects_preexisting_modification_and_missing_file (b1.test_m1.PureBoundaryTests.test_baseline_guard_detects_preexisting_modification_and_missing_file) ... ok
 test_cognition_has_no_engine_import (b1.test_m1.PureBoundaryTests.test_cognition_has_no_engine_import) ... ok
 test_decision_values_are_immutable (b1.test_m1.PureBoundaryTests.test_decision_values_are_immutable) ... ok
 test_observation_changes_selection (b1.test_m1.PureBoundaryTests.test_observation_changes_selection) ... ok
@@ -10,6 +11,6 @@ test_replay_and_observer_neutrality (b1.test_m1.WorkerTests.test_replay_and_obse
 test_retain (b1.test_m1.WorkerTests.test_retain) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 7.778s
+Ran 11 tests in 7.246s
 
 OK
