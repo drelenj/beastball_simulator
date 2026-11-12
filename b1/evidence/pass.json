@@ -1,0 +1,2833 @@
+{
+  "case": "pass",
+  "decision_count": 6,
+  "execution_hash": "47215a951f7c806d7b0faaefa4ed257fcaf9b6280b196c1479d63cb6dbf7d6bc",
+  "performance": {
+    "cpu_s": 1.868300055,
+    "setup_wall_s": 0.6348124730002382,
+    "total_wall_s": 0.6446491239998977
+  },
+  "rng_states": {
+    "match.rng.arrow": "d3d407cafac41952523ee00de57b781dd3a73d17118553afb64fa375730c6cc7",
+    "match.rng.ball": "ceae8601fcc852739abcf70f1acaacb2a30b16f6a63f6f1f4aba641356d9e236",
+    "match.rng.contact": "dd7cdc0bedcf454af8d128d3e8dd8ced42bbc5abcfdd259737edcadbc3abfeee",
+    "match.rng.policy": "97b3d1e28a9e0b5bc310b9bfcdb8b03524a781e485f959239b0a4a8972be9278",
+    "match.rng.roster": "6aa9da2c4d66a96f8d9785628b92f4b3bdd3e5de8c3497e4b4022425a26fff12",
+    "perception.rng": "f023494f6fd5af3e16b958e17149dad578aa40dd7b2ca8c5ade87fdeea4cdf15",
+    "perception.rng_t": "668eefa679010fdb81e398dc8c6f1fa6d399a00b540ae2cd4bd91d4a4ea11871"
+  },
+  "runtime": "3.12.14",
+  "seed": 1,
+  "state_hash": "bfeb50623c65114b7ff53f80573ea47cdba0054724ec9b0e853e172f146aa023",
+  "status": "bounded_scenario_completed",
+  "trace": {
+    "admissions": [
+      {
+        "admission": {
+          "command": {
+            "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
+            "desired_velocity": [
+              26.999981567663138,
+              -0.03154910221902736,
+              2.0
+            ],
+            "intent": {
+              "aim": [
+                54.937446819088606,
+                49.982545801544134
+              ],
+              "athlete": "A0",
+              "decided_ms": 1300,
+              "decision_id": "m1/0000000000001300/A0/perception/0/decision",
+              "intent_id": "m1/0000000000001300/A0/perception/0/decision/intent",
+              "kind": "pass",
+              "target": "A1"
+            },
+            "release_ms": 1534,
+            "start_ms": 1300
+          },
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001300/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "reason": "resource_busy",
+          "status": "rejected"
+        },
+        "intent_id": "m1/0000000000001500/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000001700/A0/perception/0/decision/intent",
+          "outcome": "no_action",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001700/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000001900/A0/perception/0/decision/intent",
+          "outcome": "no_action",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001900/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000002100/A0/perception/0/decision/intent",
+          "outcome": "no_action",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000002100/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000002300/A0/perception/0/decision/intent",
+          "outcome": "no_action",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000002300/A0/perception/0/decision/intent"
+      }
+    ],
+    "athlete_feedback": [
+      [
+        "m1/physics/00000000000000001534/A0/0000000000/outcome",
+        "released",
+        1534
+      ],
+      [
+        "m1/physics/00000000000000002050/A1/0000000001/outcome",
+        "physical_contact",
+        2050
+      ],
+      [
+        "m1/physics/00000000000000002090/A1/0000000002/outcome",
+        "physical_contact",
+        2090
+      ]
+    ],
+    "decisions": [
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1000,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.937446819088606,
+              "y": 49.982545801544134
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001300/A0/perception/0",
+          "own_feedback": [],
+          "revision": "m1/0000000000001300/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001300/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001300/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1"
+          ],
+          "observation_id": "m1/0000000000001300/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                54.937446819088606,
+                49.982545801544134
+              ],
+              6.551876289502631
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "pass",
+            "A1",
+            [
+              54.937446819088606,
+              49.982545801544134
+            ],
+            6.551876289502631
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": [
+            54.937446819088606,
+            49.982545801544134
+          ],
+          "athlete": "A0",
+          "decided_ms": 1300,
+          "decision_id": "m1/0000000000001300/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001300/A0/perception/0/decision/intent",
+          "kind": "pass",
+          "target": "A1"
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1000,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.937446819088606,
+              "y": 49.982545801544134
+            }
+          ],
+          "delivered_ms": 1300,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000001300/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1200,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.17591692765194,
+              "y": 50.0441239133591
+            },
+            {
+              "captured_ms": 1100,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.035644589174844,
+              "y": 54.99931060425908
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001500/A0/perception/0",
+          "own_feedback": [],
+          "revision": "m1/0000000000001500/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001500/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001500/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001500/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                55.17591692765194,
+                50.0441239133591
+              ],
+              1.523554021305955
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "pass",
+            "A1",
+            [
+              55.17591692765194,
+              50.0441239133591
+            ],
+            1.523554021305955
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": [
+            55.17591692765194,
+            50.0441239133591
+          ],
+          "athlete": "A0",
+          "decided_ms": 1500,
+          "decision_id": "m1/0000000000001500/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001500/A0/perception/0/decision/intent",
+          "kind": "pass",
+          "target": "A1"
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1200,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.17591692765194,
+              "y": 50.0441239133591
+            },
+            {
+              "captured_ms": 1100,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.035644589174844,
+              "y": 54.99931060425908
+            }
+          ],
+          "delivered_ms": 1500,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000001500/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1400,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.003864733599315,
+              "y": 50.03106717099749
+            },
+            {
+              "captured_ms": 1400,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.923393311218376,
+              "y": 54.97790997820402
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001700/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/physics/00000000000000001534/A0/0000000000/outcome",
+              "released",
+              1534
+            ]
+          ],
+          "revision": "m1/0000000000001700/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001700/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001700/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001700/A0/perception/0",
+          "options": [
+            [
+              "no_action",
+              null,
+              null,
+              0.0
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "no_action",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 1700,
+          "decision_id": "m1/0000000000001700/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001700/A0/perception/0/decision/intent",
+          "kind": "no_action",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1400,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.003864733599315,
+              "y": 50.03106717099749
+            },
+            {
+              "captured_ms": 1400,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.923393311218376,
+              "y": 54.97790997820402
+            }
+          ],
+          "delivered_ms": 1700,
+          "holds_ball": false,
+          "observation_id": "m1/0000000000001700/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1600,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.995174720907876,
+              "y": 49.966992489350304
+            },
+            {
+              "captured_ms": 1500,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.90224032256288,
+              "y": 54.98629900131494
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001900/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/physics/00000000000000001534/A0/0000000000/outcome",
+              "released",
+              1534
+            ]
+          ],
+          "revision": "m1/0000000000001900/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001900/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001900/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001900/A0/perception/0",
+          "options": [
+            [
+              "no_action",
+              null,
+              null,
+              0.0
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "no_action",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 1900,
+          "decision_id": "m1/0000000000001900/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001900/A0/perception/0/decision/intent",
+          "kind": "no_action",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1600,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.995174720907876,
+              "y": 49.966992489350304
+            },
+            {
+              "captured_ms": 1500,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.90224032256288,
+              "y": 54.98629900131494
+            }
+          ],
+          "delivered_ms": 1900,
+          "holds_ball": false,
+          "observation_id": "m1/0000000000001900/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1800,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.076980540534215,
+              "y": 49.96400723188153
+            },
+            {
+              "captured_ms": 1500,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.86999703073304,
+              "y": 54.983384892012886
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000002100/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/physics/00000000000000001534/A0/0000000000/outcome",
+              "released",
+              1534
+            ],
+            [
+              "m1/physics/00000000000000002050/A1/0000000001/outcome",
+              "physical_contact",
+              2050
+            ],
+            [
+              "m1/physics/00000000000000002090/A1/0000000002/outcome",
+              "physical_contact",
+              2090
+            ]
+          ],
+          "revision": "m1/0000000000002100/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000002100/A0/perception/0/belief",
+          "decision_id": "m1/0000000000002100/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000002100/A0/perception/0",
+          "options": [
+            [
+              "no_action",
+              null,
+              null,
+              0.0
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "no_action",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 2100,
+          "decision_id": "m1/0000000000002100/A0/perception/0/decision",
+          "intent_id": "m1/0000000000002100/A0/perception/0/decision/intent",
+          "kind": "no_action",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1800,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.076980540534215,
+              "y": 49.96400723188153
+            },
+            {
+              "captured_ms": 1500,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.86999703073304,
+              "y": 54.983384892012886
+            }
+          ],
+          "delivered_ms": 2100,
+          "holds_ball": false,
+          "observation_id": "m1/0000000000002100/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 2000,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.02311440745325,
+              "y": 50.00244085928679
+            },
+            {
+              "captured_ms": 2000,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.01324637551992,
+              "y": 54.90901925179048
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000002300/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/physics/00000000000000001534/A0/0000000000/outcome",
+              "released",
+              1534
+            ],
+            [
+              "m1/physics/00000000000000002050/A1/0000000001/outcome",
+              "physical_contact",
+              2050
+            ],
+            [
+              "m1/physics/00000000000000002090/A1/0000000002/outcome",
+              "physical_contact",
+              2090
+            ]
+          ],
+          "revision": "m1/0000000000002300/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000002300/A0/perception/0/belief",
+          "decision_id": "m1/0000000000002300/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000002300/A0/perception/0",
+          "options": [
+            [
+              "no_action",
+              null,
+              null,
+              0.0
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "no_action",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 2300,
+          "decision_id": "m1/0000000000002300/A0/perception/0/decision",
+          "intent_id": "m1/0000000000002300/A0/perception/0/decision/intent",
+          "kind": "no_action",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 2000,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.02311440745325,
+              "y": 50.00244085928679
+            },
+            {
+              "captured_ms": 2000,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.01324637551992,
+              "y": 54.90901925179048
+            }
+          ],
+          "delivered_ms": 2300,
+          "holds_ball": false,
+          "observation_id": "m1/0000000000002300/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      }
+    ],
+    "events": [
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1010,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1020,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1030,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1040,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1050,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1060,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1070,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1080,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1090,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1100,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1110,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1120,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1130,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1140,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1150,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1160,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1170,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1180,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1190,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1200,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1210,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1220,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1230,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1240,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1250,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1260,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1270,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1280,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1290,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1300,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1310,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1320,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1330,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1340,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1350,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1360,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1370,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1380,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1390,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1400,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1410,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1420,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1430,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1440,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1450,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1460,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1470,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1480,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1490,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1500,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1510,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1520,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1530,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1534,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball_velocity": [
+          27.29976621508636,
+          0.03978467469017377,
+          2.0706364727440496
+        ],
+        "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
+        "kind": "outcome",
+        "status": "released",
+        "time_ms": 1534
+      },
+      {
+        "ball": [
+          41.02059766215086,
+          50.0003978467469,
+          1.5509958647274402
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1544,
+        "velocity": [
+          27.295671557261112,
+          0.03977870743652546,
+          1.9722406144630638
+        ]
+      },
+      {
+        "ball": [
+          41.293554377723474,
+          50.00079563382126,
+          1.5702277708720709
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1554,
+        "velocity": [
+          27.291577513588475,
+          0.03977274107789806,
+          1.8738595144539218
+        ]
+      },
+      {
+        "ball": [
+          41.56647015285936,
+          50.00119336123204,
+          1.58847586601661
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1564,
+        "velocity": [
+          27.28748408397633,
+          0.03976677561415735,
+          1.7754931705030494
+        ]
+      },
+      {
+        "ball": [
+          41.83934499369912,
+          50.00159102898818,
+          1.6057402977216406
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1574,
+        "velocity": [
+          27.283391268332583,
+          0.039760811045169084,
+          1.6771415803972036
+        ]
+      },
+      {
+        "ball": [
+          42.11217890638245,
+          50.001988637098634,
+          1.6220212135256127
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1584,
+        "velocity": [
+          27.279299066565137,
+          0.03975484737079907,
+          1.5788047419234736
+        ]
+      },
+      {
+        "ball": [
+          42.384971897048096,
+          50.00238618557234,
+          1.6373187609448474
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1594,
+        "velocity": [
+          27.275207478581923,
+          0.03974888459091312,
+          1.4804826528692805
+        ]
+      },
+      {
+        "ball": [
+          42.548623141919585,
+          50.00262467887989,
+          1.646025076862063
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1600,
+        "velocity": [
+          27.272752820370126,
+          0.039745307352278096,
+          1.4214947125879214
+        ]
+      },
+      {
+        "ball": [
+          42.82135067012329,
+          50.003022131953415,
+          1.6597495239879423
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1610,
+        "velocity": [
+          27.2686622142502,
+          0.03973934600328761,
+          1.3231962182684793
+        ]
+      },
+      {
+        "ball": [
+          43.09403729226579,
+          50.00341952541345,
+          1.6724909861706272
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1620,
+        "velocity": [
+          27.264572221675174,
+          0.03973338554843241,
+          1.2249124676173824
+        ]
+      },
+      {
+        "ball": [
+          43.36668301448254,
+          50.00381685926893,
+          1.684249610846801
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1630,
+        "velocity": [
+          27.260482842553024,
+          0.03972742598757838,
+          1.126643458423246
+        ]
+      },
+      {
+        "ball": [
+          43.63928784290807,
+          50.004214133528805,
+          1.6950255454310335
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1640,
+        "velocity": [
+          27.25639407679174,
+          0.03972146732059144,
+          1.0283891884750178
+        ]
+      },
+      {
+        "ball": [
+          43.911851783675985,
+          50.00461134820201,
+          1.7048189373157836
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1650,
+        "velocity": [
+          27.25230592429932,
+          0.03971550954733751,
+          0.9301496555619767
+        ]
+      },
+      {
+        "ball": [
+          44.18437484291898,
+          50.00500850329748,
+          1.7136299338714034
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1660,
+        "velocity": [
+          27.24821838498379,
+          0.03970955266768256,
+          0.831924857473733
+        ]
+      },
+      {
+        "ball": [
+          44.456857026768816,
+          50.00540559882416,
+          1.7214586824461406
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1670,
+        "velocity": [
+          27.244131458753174,
+          0.03970359668149254,
+          0.7337147920002288
+        ]
+      },
+      {
+        "ball": [
+          44.72929834135635,
+          50.005802634790975,
+          1.7283053303661429
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1680,
+        "velocity": [
+          27.240045145515516,
+          0.03969764158863344,
+          0.6355194569317377
+        ]
+      },
+      {
+        "ball": [
+          45.0016987928115,
+          50.00619961120686,
+          1.7341700249354604
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1690,
+        "velocity": [
+          27.235959445178874,
+          0.03969168738897128,
+          0.5373388500588646
+        ]
+      },
+      {
+        "ball": [
+          45.27405838726329,
+          50.00659652808075,
+          1.739052913436049
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1700,
+        "velocity": [
+          27.23187435765132,
+          0.039685734082372096,
+          0.4391729691725458
+        ]
+      },
+      {
+        "ball": [
+          45.5463771308398,
+          50.00699338542157,
+          1.7429541431277744
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1710,
+        "velocity": [
+          27.22778988284094,
+          0.039679781668701924,
+          0.3410218120640489
+        ]
+      },
+      {
+        "ball": [
+          45.81865502966821,
+          50.00739018323826,
+          1.7458738612484148
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1720,
+        "velocity": [
+          27.223706020655836,
+          0.03967383014782684,
+          0.24288537652497302
+        ]
+      },
+      {
+        "ball": [
+          46.090892089874764,
+          50.00778692153973,
+          1.7478122150136646
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1730,
+        "velocity": [
+          27.21962277100412,
+          0.03966787951961294,
+          0.14476366034724833
+        ]
+      },
+      {
+        "ball": [
+          46.363088317584804,
+          50.00818360033493,
+          1.748769351617137
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1740,
+        "velocity": [
+          27.215540133793912,
+          0.03966192978392633,
+          0.046656661323136166
+        ]
+      },
+      {
+        "ball": [
+          46.635243718922744,
+          50.00858021963277,
+          1.7487454182303683
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1750,
+        "velocity": [
+          27.21145810893336,
+          0.03965598094063314,
+          -0.051435622754770934
+        ]
+      },
+      {
+        "ball": [
+          46.90735830001208,
+          50.00897677944218,
+          1.7477405620028206
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1760,
+        "velocity": [
+          27.207376696330616,
+          0.03965003298959953,
+          -0.14951319409354938
+        ]
+      },
+      {
+        "ball": [
+          47.17943206697539,
+          50.00937327977208,
+          1.745754930061885
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1770,
+        "velocity": [
+          27.203295895893852,
+          0.03964408593069166,
+          -0.2475760548999445
+        ]
+      },
+      {
+        "ball": [
+          47.451465025934326,
+          50.00976972063138,
+          1.7427886695128856
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1780,
+        "velocity": [
+          27.199215707531245,
+          0.03963813976377572,
+          -0.3456242073803707
+        ]
+      },
+      {
+        "ball": [
+          47.723457183009636,
+          50.01016610202902,
+          1.7388419274390818
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1790,
+        "velocity": [
+          27.195136131150992,
+          0.03963219448871793,
+          -0.44365765374091143
+        ]
+      },
+      {
+        "ball": [
+          47.995408544321144,
+          50.01056242397391,
+          1.7339148509016726
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1800,
+        "velocity": [
+          27.191057166661302,
+          0.039626250105384515,
+          -0.5416763961873192
+        ]
+      },
+      {
+        "ball": [
+          48.26731911598776,
+          50.010958686474964,
+          1.7280075869397995
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1810,
+        "velocity": [
+          27.186978813970402,
+          0.03962030661364173,
+          -0.6396804369250156
+        ]
+      },
+      {
+        "ball": [
+          48.539188904127464,
+          50.0113548895411,
+          1.7211202825705494
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1820,
+        "velocity": [
+          27.182901072986525,
+          0.03961436401335584,
+          -0.7376697781590917
+        ]
+      },
+      {
+        "ball": [
+          48.81101791485733,
+          50.011751033181234,
+          1.7132530847889584
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1830,
+        "velocity": [
+          27.178823943617925,
+          0.039608422304393154,
+          -0.8356444220943078
+        ]
+      },
+      {
+        "ball": [
+          49.08280615429351,
+          50.012147117404275,
+          1.7044061405680153
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1840,
+        "velocity": [
+          27.174747425772864,
+          0.03960248148661997,
+          -0.9336043709350931
+        ]
+      },
+      {
+        "ball": [
+          49.35455362855124,
+          50.012543142219144,
+          1.6945795968586643
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1850,
+        "velocity": [
+          27.170671519359622,
+          0.039596541559902616,
+          -1.0315496268855466
+        ]
+      },
+      {
+        "ball": [
+          49.62626034374483,
+          50.01293910763474,
+          1.683773600589809
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1860,
+        "velocity": [
+          27.16659622428649,
+          0.03959060252410745,
+          -1.1294801921494368
+        ]
+      },
+      {
+        "ball": [
+          49.897926305987696,
+          50.01333501365998,
+          1.6719882986683146
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1870,
+        "velocity": [
+          27.162521540461775,
+          0.03958466437910084,
+          -1.2273960689302013
+        ]
+      },
+      {
+        "ball": [
+          50.169551521392314,
+          50.013730860303774,
+          1.6592238379790125
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1880,
+        "velocity": [
+          27.158447467793795,
+          0.039578727124749184,
+          -1.325297259430947
+        ]
+      },
+      {
+        "ball": [
+          50.44113599607025,
+          50.01412664757502,
+          1.645480365384703
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1890,
+        "velocity": [
+          27.154374006190885,
+          0.03957279076091889,
+          -1.4231837658544508
+        ]
+      },
+      {
+        "ball": [
+          50.71267973613216,
+          50.01452237548263,
+          1.6307580277261584
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1900,
+        "velocity": [
+          27.15030115556139,
+          0.03956685528747639,
+          -1.5210555904031593
+        ]
+      },
+      {
+        "ball": [
+          50.984182747687775,
+          50.014918044035504,
+          1.6150569718221268
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1910,
+        "velocity": [
+          27.146228915813673,
+          0.039560920704288134,
+          -1.6189127352791886
+        ]
+      },
+      {
+        "ball": [
+          51.25564503684591,
+          50.01531365324254,
+          1.598377344469335
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1920,
+        "velocity": [
+          27.142157286856108,
+          0.039554987011220594,
+          -1.7167552026843242
+        ]
+      },
+      {
+        "ball": [
+          51.527066609714474,
+          50.01570920311266,
+          1.5807192924424918
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1930,
+        "velocity": [
+          27.138086268597082,
+          0.03954905420814026,
+          -1.8145829948200218
+        ]
+      },
+      {
+        "ball": [
+          51.79844747240045,
+          50.01610469365474,
+          1.5620829624942916
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1940,
+        "velocity": [
+          27.134015860945,
+          0.039543122294913656,
+          -1.9123961138874068
+        ]
+      },
+      {
+        "ball": [
+          52.069787631009895,
+          50.01650012487769,
+          1.5424685013554176
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1950,
+        "velocity": [
+          27.129946063808273,
+          0.0395371912714073,
+          -2.0101945620872743
+        ]
+      },
+      {
+        "ball": [
+          52.34108709164798,
+          50.016895496790404,
+          1.5218760557345448
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1960,
+        "velocity": [
+          27.125876877095333,
+          0.03953126113748775,
+          -2.1079783416200892
+        ]
+      },
+      {
+        "ball": [
+          52.612345860418934,
+          50.01729080940178,
+          1.500305772318344
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1970,
+        "velocity": [
+          27.121808300714626,
+          0.03952533189302158,
+          -2.2057474546859868
+        ]
+      },
+      {
+        "ball": [
+          52.88356394342608,
+          50.017686062720706,
+          1.477757797771484
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1980,
+        "velocity": [
+          27.117740334574606,
+          0.03951940353787538,
+          -2.303501903484772
+        ]
+      },
+      {
+        "ball": [
+          53.15474134677183,
+          50.01808125675608,
+          1.4542322787366362
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1990,
+        "velocity": [
+          27.113672978583743,
+          0.03951347607191576,
+          -2.40124169021592
+        ]
+      },
+      {
+        "ball": [
+          53.425878076557666,
+          50.0184763915168,
+          1.429729361834477
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2000,
+        "velocity": [
+          27.109606232650524,
+          0.03950754949500935,
+          -2.498966817078576
+        ]
+      },
+      {
+        "ball": [
+          53.69697413888417,
+          50.01887146701175,
+          1.4042491936636914
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2010,
+        "velocity": [
+          27.10554009668345,
+          0.03950162380702281,
+          -2.5966772862715555
+        ]
+      },
+      {
+        "ball": [
+          53.96802953985101,
+          50.01926648324982,
+          1.377791920800976
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2020,
+        "velocity": [
+          27.101474570591026,
+          0.03949569900782281,
+          -2.6943730999933435
+        ]
+      },
+      {
+        "ball": [
+          54.23904428555692,
+          50.0196614402399,
+          1.3503576898010425
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2030,
+        "velocity": [
+          27.097409654281783,
+          0.03948977509727603,
+          -2.792054260442096
+        ]
+      },
+      {
+        "ball": [
+          54.51001838209974,
+          50.02005633799087,
+          1.3219466471966215
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2040,
+        "velocity": [
+          27.093345347664258,
+          0.039483852075249196,
+          -2.8897207698156397
+        ]
+      },
+      {
+        "ball": [
+          54.78095183557638,
+          50.02045117651163,
+          1.2925589394984651
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2050,
+        "velocity": [
+          27.089281650647003,
+          0.039477929941609036,
+          -2.9873726303114707
+        ]
+      },
+      {
+        "ball_mode": "BallMode.PASS",
+        "carrier": null,
+        "events": [
+          {
+            "actor": "A1",
+            "at": 6,
+            "data": {
+              "ball_point": [
+                54.96346907695616,
+                50.020717163737174,
+                1.272100682638991
+              ],
+              "c1_contact": true,
+              "generation": 1
+            },
+            "kind": "acquire",
+            "target": null
+          }
+        ],
+        "kind": "kernel_event",
+        "time_ms": 2050
+      },
+      {
+        "ball": [
+          55.05184465208285,
+          50.02084595581104,
+          1.2621947131953504
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2060,
+        "velocity": [
+          27.085218563138586,
+          0.0394720086962223,
+          -3.0850098441267555
+        ]
+      },
+      {
+        "ball_mode": "BallMode.PASS",
+        "carrier": null,
+        "events": [
+          {
+            "actor": "A1",
+            "at": 0,
+            "data": {
+              "ball_point": [
+                55.05184465208285,
+                50.02084595581104,
+                1.2621947131953504
+              ],
+              "c1_contact": true,
+              "generation": 1
+            },
+            "kind": "acquire",
+            "target": null
+          }
+        ],
+        "kind": "kernel_event",
+        "time_ms": 2060
+      },
+      {
+        "ball": [
+          55.32269683771423,
+          50.021240675898,
+          1.2308541147540828
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2070,
+        "velocity": [
+          27.08115608504759,
+          0.03946608833895576,
+          -3.182632413458332
+        ]
+      },
+      {
+        "ball_mode": "BallMode.PASS",
+        "carrier": null,
+        "events": [
+          {
+            "actor": "A1",
+            "at": 0,
+            "data": {
+              "ball_point": [
+                55.32269683771423,
+                50.021240675898,
+                1.2308541147540828
+              ],
+              "c1_contact": true,
+              "generation": 1
+            },
+            "kind": "acquire",
+            "target": null
+          }
+        ],
+        "kind": "kernel_event",
+        "time_ms": 2070
+      },
+      {
+        "ball": [
+          55.59350839856471,
+          50.02163533678139,
+          1.1985372906194995
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2080,
+        "velocity": [
+          27.077094216282603,
+          0.03946016886967622,
+          -3.2802403405027074
+        ]
+      },
+      {
+        "ball_mode": "BallMode.PASS",
+        "carrier": null,
+        "events": [
+          {
+            "actor": "A1",
+            "at": 0,
+            "data": {
+              "ball_point": [
+                55.59350839856471,
+                50.02163533678139,
+                1.1985372906194995
+              ],
+              "c1_contact": true,
+              "generation": 1
+            },
+            "kind": "acquire",
+            "target": null
+          }
+        ],
+        "kind": "kernel_event",
+        "time_ms": 2080
+      },
+      {
+        "ball": [
+          55.864279340727535,
+          50.022029938470084,
+          1.1652443872144724
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2090,
+        "velocity": [
+          27.07303295675224,
+          0.03945425028825047,
+          -3.3778336274560607
+        ]
+      },
+      {
+        "ball_mode": "BallMode.PASS",
+        "carrier": null,
+        "events": [
+          {
+            "actor": "A1",
+            "at": 0,
+            "data": {
+              "ball_point": [
+                55.864279340727535,
+                50.022029938470084,
+                1.1652443872144724
+              ],
+              "c1_contact": true,
+              "cooldown_ms": 200,
+              "deliberate": false,
+              "generation": 1,
+              "keeper_block": false,
+              "velocity": [
+                5.241809278684461,
+                1.3537607623379166,
+                2.0818417046597695
+              ]
+            },
+            "kind": "touch",
+            "target": null
+          }
+        ],
+        "kind": "kernel_event",
+        "time_ms": 2090
+      },
+      {
+        "ball": [
+          56.135009670295055,
+          50.022424480972965,
+          1.1309755509399118
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2100,
+        "velocity": [
+          27.06897230636512,
+          0.03944833259454535,
+          -3.4754122765142403
+        ]
+      },
+      {
+        "ball": [
+          56.40569939335871,
+          50.022818964298914,
+          1.0957309281747694
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2110,
+        "velocity": [
+          27.064912265029875,
+          0.03944241578842772,
+          -3.5729762898727664
+        ]
+      },
+      {
+        "ball": [
+          56.67634851600901,
+          50.023213388456796,
+          1.0595106652760418
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2120,
+        "velocity": [
+          27.06085283265516,
+          0.03943649986976445,
+          -3.6705256697268287
+        ]
+      },
+      {
+        "ball": [
+          56.94695704433556,
+          50.023607753455494,
+          1.0223149085787735
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2130,
+        "velocity": [
+          27.056794009149638,
+          0.039430584838422426,
+          -3.768060418271289
+        ]
+      },
+      {
+        "ball": [
+          57.21752498442706,
+          50.024002059303875,
+          0.9841438043960606
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2140,
+        "velocity": [
+          27.052735794421977,
+          0.03942467069426856,
+          -3.865580537700678
+        ]
+      },
+      {
+        "ball": [
+          57.488052342371276,
+          50.024396306010814,
+          0.9449974990190538
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2150,
+        "velocity": [
+          27.048678188380876,
+          0.03941875743716979,
+          -3.9630860302091997
+        ]
+      },
+      {
+        "ball": [
+          57.75853912425509,
+          50.024790493585186,
+          0.9048761387169618
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2160,
+        "velocity": [
+          27.044621190935032,
+          0.039412845066993066,
+          -4.060576897990726
+        ]
+      },
+      {
+        "ball": [
+          58.02898533616444,
+          50.02518462203586,
+          0.8637798697370546
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2170,
+        "velocity": [
+          27.040564801993167,
+          0.03940693358360536,
+          -4.158053143238804
+        ]
+      },
+      {
+        "ball": [
+          58.29939098418437,
+          50.02557869137169,
+          0.8217088383046666
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2180,
+        "velocity": [
+          27.036509021464013,
+          0.03940102298687365,
+          -4.2555147681466465
+        ]
+      },
+      {
+        "ball": [
+          58.56975607439901,
+          50.02597270160156,
+          0.7786631906232001
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2190,
+        "velocity": [
+          27.032453849256314,
+          0.03939511327666497,
+          -4.352961774907142
+        ]
+      },
+      {
+        "ball": [
+          58.840080612891576,
+          50.026366652734325,
+          0.7346430728741287
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2200,
+        "velocity": [
+          27.028399285278827,
+          0.039389204452846334,
+          -4.450394165712846
+        ]
+      },
+      {
+        "ball": [
+          59.110364605744365,
+          50.02676054477885,
+          0.6896486312170003
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2210,
+        "velocity": [
+          27.024345329440322,
+          0.0393832965152848,
+          -4.54781194275599
+        ]
+      },
+      {
+        "ball": [
+          59.38060805903877,
+          50.027154377744004,
+          0.6436800117894403
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2220,
+        "velocity": [
+          27.020291981649592,
+          0.03937738946384744,
+          -4.645215108228473
+        ]
+      },
+      {
+        "ball": [
+          59.65081097885527,
+          50.02754815163864,
+          0.5967373607071557
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2230,
+        "velocity": [
+          27.01623924181543,
+          0.039371483298401344,
+          -4.742603664321865
+        ]
+      },
+      {
+        "ball": [
+          59.920973371273426,
+          50.02794186647162,
+          0.5488208240639371
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2240,
+        "velocity": [
+          27.012187109846653,
+          0.03936557801881362,
+          -4.8399776132274095
+        ]
+      },
+      {
+        "ball": [
+          60.191095242371894,
+          50.02833552225181,
+          0.49993054793166297
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2250,
+        "velocity": [
+          27.008135585652088,
+          0.03935967362495141,
+          -4.93733695713602
+        ]
+      },
+      {
+        "ball": [
+          60.46117659822841,
+          50.02872911898806,
+          0.4500666783603028
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2260,
+        "velocity": [
+          27.004084669140575,
+          0.039353770116681855,
+          -5.034681698238283
+        ]
+      },
+      {
+        "ball": [
+          60.73121744491982,
+          50.029122656689225,
+          0.39922936137792
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2270,
+        "velocity": [
+          27.000034360220965,
+          0.03934786749387213,
+          -5.132011838724454
+        ]
+      },
+      {
+        "ball": [
+          61.001217788522034,
+          50.02951613536416,
+          0.34741874299067543
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2280,
+        "velocity": [
+          26.995984658802133,
+          0.03934196575638943,
+          -5.229327380784461
+        ]
+      },
+      {
+        "ball": [
+          61.27117763511006,
+          50.029909555021725,
+          0.29463496918283083
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2290,
+        "velocity": [
+          26.991935564792954,
+          0.03933606490410096,
+          -5.326628326607905
+        ]
+      },
+      {
+        "ball": [
+          61.541096990757985,
+          50.03030291567077,
+          0.24087818591675178
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2300,
+        "velocity": [
+          26.987887078102325,
+          0.03933016493687395,
+          -5.4239146783840555
+        ]
+      },
+      {
+        "ball": [
+          61.810975861539006,
+          50.030696217320134,
+          0.18614853913291124
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2310,
+        "velocity": [
+          26.98383919863916,
+          0.03932426585457565,
+          -5.521186438301856
+        ]
+      },
+      {
+        "ball": [
+          62.080814253525396,
+          50.03108945997868,
+          0.13044617474989267
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2320,
+        "velocity": [
+          26.979791926312377,
+          0.03931836765707333,
+          -5.6184436085499225
+        ]
+      },
+      {
+        "ball": [
+          62.35061217278852,
+          50.03148264365525,
+          0.1075
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2330,
+        "velocity": [
+          20.501566398383492,
+          0.02987747746161806,
+          4.427351485986226
+        ]
+      },
+      {
+        "ball": [
+          62.55562783677236,
+          50.031781418429865,
+          0.15128301485986226
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2340,
+        "velocity": [
+          20.498491394054824,
+          0.02987299617610363,
+          4.328602146964973
+        ]
+      },
+      {
+        "ball": [
+          62.76061275071291,
+          50.03208014839163,
+          0.194078536329512
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2350,
+        "velocity": [
+          20.495416850942213,
+          0.02986851556273162,
+          4.229867619233698
+        ]
+      },
+      {
+        "ball": [
+          62.96556691922233,
+          50.032378833547256,
+          0.23588671252184898
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2360,
+        "velocity": [
+          20.49234276897648,
+          0.02986403562140121,
+          4.131147900570874
+        ]
+      },
+      {
+        "ball": [
+          63.170490346912096,
+          50.03267747390347,
+          0.2767076915275577
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2370,
+        "velocity": [
+          20.489269148088464,
+          0.029859556352011603,
+          4.032442988755309
+        ]
+      },
+      {
+        "ball": [
+          63.37538303839298,
+          50.03297606946699,
+          0.3165416214151108
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2380,
+        "velocity": [
+          20.486195988209005,
+          0.029855077754462014,
+          3.9337528815661416
+        ]
+      },
+      {
+        "ball": [
+          63.58024499827507,
+          50.03327462024453,
+          0.3553886502307722
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2390,
+        "velocity": [
+          20.483123289268956,
+          0.029850599828651677,
+          3.8350775767828438
+        ]
+      },
+      {
+        "ball": [
+          63.78507623116776,
+          50.03357312624282,
+          0.3932489259986006
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2400,
+        "velocity": [
+          20.480051051199183,
+          0.029846122574479838,
+          3.736417072185222
+        ]
+      }
+    ],
+    "outcomes": [
+      {
+        "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
+        "entity_id": null,
+        "outcome_id": "m1/physics/00000000000000001534/A0/0000000000/outcome",
+        "resolved_ms": 1534,
+        "status": "released"
+      },
+      {
+        "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
+        "entity_id": "A1",
+        "outcome_id": "m1/physics/00000000000000002050/A1/0000000001/outcome",
+        "resolved_ms": 2050,
+        "status": "physical_contact"
+      },
+      {
+        "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
+        "entity_id": "A1",
+        "outcome_id": "m1/physics/00000000000000002090/A1/0000000002/outcome",
+        "resolved_ms": 2090,
+        "status": "physical_contact"
+      }
+    ],
+    "scenario": {
+      "actor": "A0",
+      "case": "pass",
+      "defender": "B0",
+      "positions": {
+        "A0": [
+          40.0,
+          50.0,
+          0.0
+        ],
+        "A1": [
+          55.0,
+          50.0,
+          0.0
+        ],
+        "B0": [
+          47.0,
+          55.0,
+          0.0
+        ]
+      },
+      "teammate": "A1"
+    },
+    "timing": {
+      "decision_period_ms": 163,
+      "end_ms": 2400,
+      "first_decision_ms": 1222,
+      "sensor_ms": 100,
+      "start_ms": 1000
+    }
+  }
+}

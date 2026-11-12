@@ -1,0 +1,41 @@
+{
+  "profile_id": "m1-pass-flight-v1",
+  "schema_version": "b1-m1-python-0",
+  "baseline_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
+  "seed": 1,
+  "physics_profile": "B0-P4-DEFAULT",
+  "actor": "A0",
+  "scenario_bodies": [
+    {"id": "A0", "team": "A", "role": "B1-controlled", "initial_position_m": [40.0, 50.0, 0.0]},
+    {"id": "A1", "team": "A", "role": "passive-physical-entity", "initial_position_m": [55.0, 50.0, 0.0]},
+    {"id": "B0", "team": "B", "role": "passive-physical-entity", "initial_position_m": [47.0, 55.0, 0.0]}
+  ],
+  "time_profile": {
+    "start_ms": 1000,
+    "end_ms": 2400,
+    "sensor_interval_ms": 100,
+    "physical_step_max_ms": 10,
+    "decision_cadence_source": "PRISM judgment profile decision_interval_s",
+    "first_decision_source": "delivered PRISM latency"
+  },
+  "supported_intentions": ["pass", "retain", "no_action"],
+  "supported_command_resources": ["ball_control_release"],
+  "busy_command_policy": "explicit resource_busy rejection",
+  "excluded_scenario_classes": ["give-and-go", "multi-athlete cognition", "locomotion command", "keeper", "archer", "tackle", "jump", "catch intent", "scoring", "regulation"],
+  "policy_bindings": [
+    {"family": "tackle_commitment", "status": "unsupported"},
+    {"family": "coincident_arrow_contact", "status": "unsupported"},
+    {"family": "same_team_catch_intent", "status": "unsupported"}
+  ],
+  "engineering_defaults": {
+    "prism_sensor": "prism_archer_v0.ArcherPrism; existing perception mapping and ratings",
+    "field_selection": "b1.core.decide; provisional lane-clearance values",
+    "motor_release_delay": "ceil(m.assume.pass_release_ms * (1.35 - .5 * athlete.ball_handling))",
+    "base_pass_speed": "m.cfg.pocket.pass_speed",
+    "physical_release": "unchanged Pocket 4 release wrapper and T3 accepted physical kernel",
+    "true_state_access": "ObservationProjector and PhysicalExecutionPort only; MC sees own physical attributes",
+    "belief_age": "PRISM memory_s converted to max_contact_age_ms",
+    "telemetry": "observational; internal causal trace is built whether serialization is enabled or suppressed",
+    "identity": "deterministic candidate IDs; full versioned causal schema not implemented"
+  }
+}

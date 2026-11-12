@@ -1,0 +1,2777 @@
+{
+  "case": "retain",
+  "decision_count": 6,
+  "execution_hash": "29c3bd4010998c138a95c06de14e9939872ecdebce5b219d347d13f696a61050",
+  "performance": {
+    "cpu_s": 1.772575326,
+    "setup_wall_s": 0.6275740920000317,
+    "total_wall_s": 0.6353070879999905
+  },
+  "rng_states": {
+    "match.rng.arrow": "d3d407cafac41952523ee00de57b781dd3a73d17118553afb64fa375730c6cc7",
+    "match.rng.ball": "7219316526c8534a898a525031ad1bfd820fc7a871177ad859e67ed1c784a0af",
+    "match.rng.contact": "dd7cdc0bedcf454af8d128d3e8dd8ced42bbc5abcfdd259737edcadbc3abfeee",
+    "match.rng.policy": "97b3d1e28a9e0b5bc310b9bfcdb8b03524a781e485f959239b0a4a8972be9278",
+    "match.rng.roster": "6aa9da2c4d66a96f8d9785628b92f4b3bdd3e5de8c3497e4b4022425a26fff12",
+    "perception.rng": "5bd853c416141721b5280ffae7d29dd40cebcc69b32c17bb9f1584fd04b8fbb7",
+    "perception.rng_t": "668eefa679010fdb81e398dc8c6f1fa6d399a00b540ae2cd4bd91d4a4ea11871"
+  },
+  "runtime": "3.12.14",
+  "seed": 1,
+  "state_hash": "c55401c6492b96dc4b3a2712167e03944dca254958e46104e9054444f16a94a3",
+  "status": "bounded_scenario_completed",
+  "trace": {
+    "admissions": [
+      {
+        "admission": {
+          "intent_id": "m1/0000000000001300/A0/perception/0/decision/intent",
+          "outcome": "retained",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001300/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000001500/A0/perception/0/decision/intent",
+          "outcome": "retained",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001500/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000001700/A0/perception/0/decision/intent",
+          "outcome": "retained",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001700/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000001900/A0/perception/0/decision/intent",
+          "outcome": "retained",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000001900/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000002100/A0/perception/0/decision/intent",
+          "outcome": "retained",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000002100/A0/perception/0/decision/intent"
+      },
+      {
+        "admission": {
+          "intent_id": "m1/0000000000002300/A0/perception/0/decision/intent",
+          "outcome": "retained",
+          "status": "accepted"
+        },
+        "intent_id": "m1/0000000000002300/A0/perception/0/decision/intent"
+      }
+    ],
+    "athlete_feedback": [
+      [
+        "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+        "retained",
+        1300
+      ],
+      [
+        "m1/0000000000001500/A0/perception/0/decision/intent/outcome/retained",
+        "retained",
+        1500
+      ],
+      [
+        "m1/0000000000001700/A0/perception/0/decision/intent/outcome/retained",
+        "retained",
+        1700
+      ],
+      [
+        "m1/0000000000001900/A0/perception/0/decision/intent/outcome/retained",
+        "retained",
+        1900
+      ],
+      [
+        "m1/0000000000002100/A0/perception/0/decision/intent/outcome/retained",
+        "retained",
+        2100
+      ],
+      [
+        "m1/0000000000002300/A0/perception/0/decision/intent/outcome/retained",
+        "retained",
+        2300
+      ]
+    ],
+    "decisions": [
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1000,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.937446819088606,
+              "y": 49.982545801544134
+            },
+            {
+              "captured_ms": 1000,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.98286341792047,
+              "y": 50.82122590977417
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001300/A0/perception/0",
+          "own_feedback": [],
+          "revision": "m1/0000000000001300/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001300/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001300/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001300/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                54.937446819088606,
+                49.982545801544134
+              ],
+              -2.6187389883290915
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "retain",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 1300,
+          "decision_id": "m1/0000000000001300/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001300/A0/perception/0/decision/intent",
+          "kind": "retain",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1000,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.937446819088606,
+              "y": 49.982545801544134
+            },
+            {
+              "captured_ms": 1000,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.98286341792047,
+              "y": 50.82122590977417
+            }
+          ],
+          "delivered_ms": 1300,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000001300/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1200,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.0426658744845,
+              "y": 50.18443304439278
+            },
+            {
+              "captured_ms": 1200,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.01122554304833,
+              "y": 50.86236786462496
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001500/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1300
+            ]
+          ],
+          "revision": "m1/0000000000001500/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001500/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001500/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001500/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                55.0426658744845,
+                50.18443304439278
+              ],
+              -2.674966646726206
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "retain",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 1500,
+          "decision_id": "m1/0000000000001500/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001500/A0/perception/0/decision/intent",
+          "kind": "retain",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1200,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.0426658744845,
+              "y": 50.18443304439278
+            },
+            {
+              "captured_ms": 1200,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.01122554304833,
+              "y": 50.86236786462496
+            }
+          ],
+          "delivered_ms": 1500,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000001500/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1400,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.01418176755689,
+              "y": 49.99974367872131
+            },
+            {
+              "captured_ms": 1400,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.94585640730365,
+              "y": 50.76679736130904
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001700/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1300
+            ],
+            [
+              "m1/0000000000001500/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1500
+            ]
+          ],
+          "revision": "m1/0000000000001700/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001700/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001700/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001700/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                55.01418176755689,
+                49.99974367872131
+              ],
+              -2.683509512619586
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "retain",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 1700,
+          "decision_id": "m1/0000000000001700/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001700/A0/perception/0/decision/intent",
+          "kind": "retain",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1400,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.01418176755689,
+              "y": 49.99974367872131
+            },
+            {
+              "captured_ms": 1400,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.94585640730365,
+              "y": 50.76679736130904
+            }
+          ],
+          "delivered_ms": 1700,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000001700/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1600,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.046962907978816,
+              "y": 49.9151373108049
+            },
+            {
+              "captured_ms": 1600,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.1162806029306,
+              "y": 50.76342850583863
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000001900/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1300
+            ],
+            [
+              "m1/0000000000001500/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1500
+            ],
+            [
+              "m1/0000000000001700/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1700
+            ]
+          ],
+          "revision": "m1/0000000000001900/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000001900/A0/perception/0/belief",
+          "decision_id": "m1/0000000000001900/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000001900/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                55.046962907978816,
+                49.9151373108049
+              ],
+              -2.6478655492579715
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "retain",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 1900,
+          "decision_id": "m1/0000000000001900/A0/perception/0/decision",
+          "intent_id": "m1/0000000000001900/A0/perception/0/decision/intent",
+          "kind": "retain",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1600,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.046962907978816,
+              "y": 49.9151373108049
+            },
+            {
+              "captured_ms": 1600,
+              "entity": "B0",
+              "team": "B",
+              "x": 47.1162806029306,
+              "y": 50.76342850583863
+            }
+          ],
+          "delivered_ms": 1900,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000001900/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 1800,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.996535640931064,
+              "y": 50.036774322636724
+            },
+            {
+              "captured_ms": 1800,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.97881849226001,
+              "y": 50.760366834670336
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000002100/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1300
+            ],
+            [
+              "m1/0000000000001500/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1500
+            ],
+            [
+              "m1/0000000000001700/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1700
+            ],
+            [
+              "m1/0000000000001900/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1900
+            ]
+          ],
+          "revision": "m1/0000000000002100/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000002100/A0/perception/0/belief",
+          "decision_id": "m1/0000000000002100/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000002100/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                54.996535640931064,
+                50.036774322636724
+              ],
+              -2.706646195865945
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "retain",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 2100,
+          "decision_id": "m1/0000000000002100/A0/perception/0/decision",
+          "intent_id": "m1/0000000000002100/A0/perception/0/decision/intent",
+          "kind": "retain",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 1800,
+              "entity": "A1",
+              "team": "A",
+              "x": 54.996535640931064,
+              "y": 50.036774322636724
+            },
+            {
+              "captured_ms": 1800,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.97881849226001,
+              "y": 50.760366834670336
+            }
+          ],
+          "delivered_ms": 2100,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000002100/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      },
+      {
+        "belief": {
+          "contacts": [
+            {
+              "captured_ms": 2000,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.00220546618759,
+              "y": 50.11030948461376
+            },
+            {
+              "captured_ms": 2000,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.92966492165638,
+              "y": 50.82992084503583
+            }
+          ],
+          "max_contact_age_ms": 2812,
+          "observation_id": "m1/0000000000002300/A0/perception/0",
+          "own_feedback": [
+            [
+              "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1300
+            ],
+            [
+              "m1/0000000000001500/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1500
+            ],
+            [
+              "m1/0000000000001700/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1700
+            ],
+            [
+              "m1/0000000000001900/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              1900
+            ],
+            [
+              "m1/0000000000002100/A0/perception/0/decision/intent/outcome/retained",
+              "retained",
+              2100
+            ]
+          ],
+          "revision": "m1/0000000000002300/A0/perception/0/belief"
+        },
+        "decision": {
+          "belief_revision": "m1/0000000000002300/A0/perception/0/belief",
+          "decision_id": "m1/0000000000002300/A0/perception/0/decision",
+          "fresh_contact_ids": [
+            "A1",
+            "B0"
+          ],
+          "observation_id": "m1/0000000000002300/A0/perception/0",
+          "options": [
+            [
+              "retain",
+              null,
+              null,
+              0.0
+            ],
+            [
+              "pass",
+              "A1",
+              [
+                55.00220546618759,
+                50.11030948461376
+              ],
+              -2.6711315677965426
+            ]
+          ],
+          "owner": "A0",
+          "selected": [
+            "retain",
+            null,
+            null,
+            0.0
+          ],
+          "stale_contact_ids": []
+        },
+        "intent": {
+          "aim": null,
+          "athlete": "A0",
+          "decided_ms": 2300,
+          "decision_id": "m1/0000000000002300/A0/perception/0/decision",
+          "intent_id": "m1/0000000000002300/A0/perception/0/decision/intent",
+          "kind": "retain",
+          "target": null
+        },
+        "view": {
+          "athlete": "A0",
+          "contacts": [
+            {
+              "captured_ms": 2000,
+              "entity": "A1",
+              "team": "A",
+              "x": 55.00220546618759,
+              "y": 50.11030948461376
+            },
+            {
+              "captured_ms": 2000,
+              "entity": "B0",
+              "team": "B",
+              "x": 46.92966492165638,
+              "y": 50.82992084503583
+            }
+          ],
+          "delivered_ms": 2300,
+          "holds_ball": true,
+          "observation_id": "m1/0000000000002300/A0/perception/0",
+          "team": "A",
+          "x": 40.0,
+          "y": 50.0
+        }
+      }
+    ],
+    "events": [
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1010,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1020,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1030,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1040,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1050,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1060,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1070,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1080,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1090,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1100,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1110,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1120,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1130,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1140,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1150,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1160,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1170,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1180,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1190,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1200,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1210,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1220,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1230,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1240,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1250,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1260,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1270,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1280,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1290,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1300,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1310,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1320,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1330,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1340,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1350,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1360,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1370,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1380,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1390,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1400,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1410,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1420,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1430,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1440,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1450,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1460,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1470,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1480,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1490,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1500,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1510,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1520,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1530,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1540,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1550,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1560,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1570,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1580,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1590,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1600,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1610,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1620,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1630,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1640,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1650,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1660,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1670,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1680,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1690,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1700,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1710,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1720,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1730,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1740,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1750,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1760,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1770,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1780,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1790,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1800,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1810,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1820,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1830,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1840,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1850,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1860,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1870,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1880,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1890,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1900,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1910,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1920,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1930,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1940,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1950,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1960,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1970,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1980,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 1990,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2000,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2010,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2020,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2030,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2040,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2050,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2060,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2070,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2080,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2090,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2100,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2110,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2120,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2130,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2140,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2150,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2160,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2170,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2180,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2190,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2200,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2210,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2220,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2230,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2240,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2250,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2260,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2270,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2280,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2290,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2300,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2310,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2320,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2330,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2340,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2350,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2360,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2370,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2380,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2390,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "ball": [
+          40.7476,
+          50.0,
+          1.5307799999999998
+        ],
+        "kind": "physical_sample",
+        "time_ms": 2400,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "outcomes": [
+      {
+        "command_id": null,
+        "entity_id": null,
+        "outcome_id": "m1/0000000000001300/A0/perception/0/decision/intent/outcome/retained",
+        "resolved_ms": 1300,
+        "status": "retained"
+      },
+      {
+        "command_id": null,
+        "entity_id": null,
+        "outcome_id": "m1/0000000000001500/A0/perception/0/decision/intent/outcome/retained",
+        "resolved_ms": 1500,
+        "status": "retained"
+      },
+      {
+        "command_id": null,
+        "entity_id": null,
+        "outcome_id": "m1/0000000000001700/A0/perception/0/decision/intent/outcome/retained",
+        "resolved_ms": 1700,
+        "status": "retained"
+      },
+      {
+        "command_id": null,
+        "entity_id": null,
+        "outcome_id": "m1/0000000000001900/A0/perception/0/decision/intent/outcome/retained",
+        "resolved_ms": 1900,
+        "status": "retained"
+      },
+      {
+        "command_id": null,
+        "entity_id": null,
+        "outcome_id": "m1/0000000000002100/A0/perception/0/decision/intent/outcome/retained",
+        "resolved_ms": 2100,
+        "status": "retained"
+      },
+      {
+        "command_id": null,
+        "entity_id": null,
+        "outcome_id": "m1/0000000000002300/A0/perception/0/decision/intent/outcome/retained",
+        "resolved_ms": 2300,
+        "status": "retained"
+      }
+    ],
+    "scenario": {
+      "actor": "A0",
+      "case": "retain",
+      "defender": "B0",
+      "positions": {
+        "A0": [
+          40.0,
+          50.0,
+          0.0
+        ],
+        "A1": [
+          55.0,
+          50.0,
+          0.0
+        ],
+        "B0": [
+          47.0,
+          50.8,
+          0.0
+        ]
+      },
+      "teammate": "A1"
+    },
+    "timing": {
+      "decision_period_ms": 163,
+      "end_ms": 2400,
+      "first_decision_ms": 1222,
+      "sensor_ms": 100,
+      "start_ms": 1000
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "b0_source_unchanged": true,
+  "baseline_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
+  "command": "python3 -m b1.evidence",
+  "limitations": [
+    "Claude behavioral acceptance pending",
+    "full T1 ten-case suite not rerun",
+    "general resource queues and locomotion not integrated",
+    "catch cognition and regulation excluded",
+    "RNG signatures cover discoverable direct generator attributes",
+    "field option evaluator is a limited provisional B1 policy"
+  ],
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "profile": "m1-pass-flight-v1",
+  "python": "3.12.14",
+  "source": {
+    "b1/M0_CLOSURE.md": "f169da3c80584247d6ecfe409866e2f1f5d6b6c8d292b32bfbc76d26e491c138",
+    "b1/M0_FREEZE_MANIFEST.json": "fc17dfe8b56bb03d3577218fdd56c1fc492887aaddf9ca9db4d4e3604d900e0c",
+    "b1/M1_IMPLEMENTATION_REPORT.md": "da505be22ec108e7793924d95a70756f2b6eb251f354d8678fbb932419029752",
+    "b1/README.md": "83fdd5e56efcf069a6e121b2ffba9212eb0fb106d908cdf72f6f260e6c0195da",
+    "b1/__init__.py": "f8bb748799589a12ef08860e00760129dd628db9014f7a729e759f208ad4257a",
+    "b1/conformance.json": "a9705ec4665cdd71db1d6aa8fd20e1d5c1b3934955e530abf16b6b86e0472bf7",
+    "b1/core.py": "8d05d42f67eb6506b558a85499e1d5fec0429b0f13a8a2c0d9341aad78dbb04d",
+    "b1/evidence.py": "47c286167a64df372bd64fdfac02488668296c62a58b7d566f2e4d44d8c9320a",
+    "b1/m0_manifest.py": "5cc1a150552204e02d2eb7000959a198c4c4abb24b875402d96920fa49a987cc",
+    "b1/preservation.py": "b7cb78020c414dd721749bd771efe29458c9a6b6e2e59db8dbbe9fa301e52607",
+    "b1/run.py": "9a7b69ac58b05cba02896e5ac86ed1274c41b1b58e9e0a7c8046fb54226c5105",
+    "b1/runtime.py": "2fb7812944f82a86074a1a3e1b5dea9a1a2183e6d9525b70a1c19580a47b8e70",
+    "b1/test_m1.py": "cf5a98ae7fdf4ee93cb8680e3af422361313693c3d422abed0d4bb437dcdc3bf"
+  },
+  "test_exit_code": 0
+}
