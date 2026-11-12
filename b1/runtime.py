@@ -129,6 +129,13 @@ class CommandIngress:
         s = p.m.s
         if intent.athlete != 'A0' or intent.decided_ms != s.now:
             return {'status':'rejected', 'reason':'invalid_actor_or_time'}
+        if intent.kind == 'continue_current':
+            if p.pending and intent.related_command_id == p.pending.command_id:
+                return {'status':'accepted', 'outcome':'continuing',
+                        'command_id':p.pending.command_id,
+                        'release_ms':p.pending.release_ms,
+                        'intent_id':intent.intent_id}
+            return {'status':'rejected', 'reason':'stale_pending_command'}
         if intent.kind == 'retain':
             return {'status':'accepted', 'outcome':'retained', 'intent_id':intent.intent_id}
         if intent.kind == 'no_action':
@@ -173,7 +180,7 @@ class ObservationProjector:
         eye = (athlete.x, athlete.y, athlete.z + .72*athlete.a.height)
         self.prism.tick(time_ms/1000, eye, facing, bodies, None)
 
-    def deliver(self, time_ms, physical_state, own_feedback=()):
+    def deliver(self, time_ms, physical_state, own_feedback=(), pending=None):
         self.prism.deliver(time_ms/1000)
         contacts = tuple(Contact(pid, self.teams[pid], *b.at(time_ms/1000), int(b.t*1000))
                          for pid in sorted(self.teams) if (b := self.prism.bget(pid)) is not None)
@@ -181,6 +188,8 @@ class ObservationProjector:
         athlete = physical_state.players[self.athlete_id]
         holds_ball = physical_state.ball.carrier == athlete.id
         view = AthleteView(oid,athlete.id,athlete.team,time_ms,
-                           float(athlete.x),float(athlete.y),holds_ball,contacts)
+                           float(athlete.x),float(athlete.y),holds_ball,contacts,
+                           pending.command_id if pending else None,
+                           pending.release_ms if pending else None)
         return view, BeliefState(oid+'/belief',oid,contacts,tuple(own_feedback),
                                  int(round(self.prism.P['memory_s']*1000)))

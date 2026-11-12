@@ -7,17 +7,18 @@
    poison test, and stepped decision/outcome feedback.
 2. **What B1 can do now:** One B1 field athlete senses actual active engine
    bodies through PRISM, forms an age-bounded individual belief, chooses
-   pass/retain/no-action, submits through typed ingress, and receives actual
-   release/interruption/contact outcomes. The stepped run includes six PRISM
-   decision opportunities; no actor timestamp is assigned by the runner.
+   pass/retain/no-action, explicitly continues an accepted pass during wind-up,
+   and changes its next choice after interruption or rejection. Remote receiver
+   contact remains a world event rather than private thrower feedback.
 3. **What remains unimplemented or unproven:** locomotion commands, multiple
-   independently deciding athletes, receiver cognition/catch ownership,
+   independently deciding athletes, receiver cognition/catch ownership and
+   completed/intercepted/dropped/tackled outcome diversity,
    general bundle queues, full causal-ID schema, full T1 rerun, and Claude's
    review of this revised candidate. This is still an M1 candidate; no M1
    acceptance is claimed.
-4. **What blocks the next milestone:** M1 acceptance requires review of this
-   revised evidence and remaining BLK gates; M2 is not authorized. No canon
-   question is exposed by the work completed here.
+4. **What blocks the next milestone:** M1 still lacks physical outcome diversity.
+   Independently deciding defenders and receivers cross into M2, which remains
+   unauthorized. No canon question is exposed by the work completed here.
 5. **Recommended action:** Continue within M1 authority. Have Claude review the
    corrected information boundary and behavioral trace before closing M1.
 
@@ -49,11 +50,22 @@ implemented; profile IDs remain scoped to this Python candidate. Historical
 legacy traps still cover the known decision/target entry points, while a
 complete unimportable-controller capability boundary is not yet demonstrated.
 
+## R2 finding disposition
+
+| Finding | Current correction | Status |
+|---|---|---|
+| G2 own-action state and unused feedback | `AthleteView` carries the pending command and release time. Cognition selects `continue_current`; one-shot interruption/rejection feedback changes the next choice. | Implemented and tested |
+| G3 isolation evidence | Separate deterministic physical runs perturb hidden attributes and relocate an unsensed defender, then a visible-frame change proves the converse. | Implemented and tested |
+| F13 remote contact feedback | Receiver contact remains in the authoritative outcome ledger and is excluded from the thrower's private feedback. | Implemented and tested |
+| F14 timing metadata | Trace records nominal readiness plus actual quantized decision times and effective cadence. | Implemented and tested |
+| F16 import guard | Test scans `Import`, `ImportFrom`, and forbidden engine symbols. | Implemented and tested |
+| G1 outcome diversity | Catch/interception/drop/tackle and independently controlled opposition remain absent. | Open |
+
 ## Implemented and tested gates
 
 | Gate | Current evidence | Status |
 |---|---|---|
-| BLK-01 information isolation | Frozen cognition values, pure decision module, actual projector, true-state poison test, observation sensitivity, stale-contact test | Implemented/tested for current pass slice; Claude review pending |
+| BLK-01 information isolation | Frozen cognition values, pure decision module, actual projector, independent hidden-state perturbation, observation sensitivity, stale-contact test | Implemented/tested for current pass slice; R2 retest pending |
 | BLK-02 no legacy override | Historical match step and known target/policy functions trapped; command target fidelity asserted | Pass command path only; movement path not implemented |
 | BLK-03 typed physical port | `CommandIngress` and `PhysicalExecutionPort`; cognition-free command replay; release, interruption, and real kernel contact feedback | Locomotion and fixed catch/interception replay fixtures absent |
 | BLK-04 deterministic arbitration | Canonical single-resource admission, permutation check, repeated execution/state/RNG hashes | General bundles, queues, and simultaneous event-batch invariance absent |
@@ -61,7 +73,7 @@ complete unimportable-controller capability boundary is not yet demonstrated.
 
 DESIGN COMPLETE: M0 Core Slice v1 and its engineering defaults frozen.
 IMPLEMENTED: stepped physical-world perception and one-athlete pass/retain path.
-TESTED: ten M1 tests plus stored T3/T5 packet integrity checks.
+TESTED: twelve M1 tests plus stored T3/T5 packet integrity checks.
 ACCEPTED: M0 and M1 authority only; revised M1 candidate not formally accepted.
 
 ## Reproduction and evidence

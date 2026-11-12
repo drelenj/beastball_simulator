@@ -22,6 +22,8 @@ class AthleteView:
     y: float
     holds_ball: bool
     contacts: tuple[Contact, ...]
+    pending_command_id: str | None = None
+    pending_release_ms: int | None = None
 
 
 @dataclass(frozen=True)
@@ -42,6 +44,7 @@ class ActionIntent:
     target: str | None
     aim: tuple[float, float] | None
     decided_ms: int
+    related_command_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -77,8 +80,19 @@ def decide(view: AthleteView, belief: BeliefState):
         raise ValueError('belief/view provenance mismatch')
     contacts = tuple(c for c in belief.contacts
                      if 0 <= view.delivered_ms-c.captured_ms <= belief.max_contact_age_ms)
-    options = [('retain' if view.holds_ball else 'no_action', None, None, 0.0)]
-    if view.holds_ball:
+    latest_feedback = belief.own_feedback[-1] if belief.own_feedback else None
+    if view.pending_command_id is not None:
+        options = [('continue_current', None, None, 0.0)]
+    elif latest_feedback and (latest_feedback[1] == 'interrupted' or
+                              latest_feedback[1].startswith('rejected_')):
+        # A failed action produces one explicit reassessment cycle. The caller
+        # supplies only feedback not yet considered by a prior decision.
+        options = [('no_action', None, None, 0.0)]
+    else:
+        options = [('retain' if view.holds_ball else 'no_action', None, None, 0.0)]
+    if view.holds_ball and view.pending_command_id is None and not (
+            latest_feedback and (latest_feedback[1] == 'interrupted' or
+                                  latest_feedback[1].startswith('rejected_'))):
         opponents = [c for c in contacts if c.team != view.team]
         for c in sorted(contacts, key=lambda c: c.entity):
             if c.team != view.team:
@@ -95,9 +109,13 @@ def decide(view: AthleteView, belief: BeliefState):
             options.append(('pass', c.entity, (c.x, c.y), value))
     chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
     did = f'{view.observation_id}/decision'
-    intent = ActionIntent(did+'/intent', did, view.athlete, *chosen[:3], view.delivered_ms)
+    intent = ActionIntent(did+'/intent', did, view.athlete, *chosen[:3],
+                          view.delivered_ms,
+                          view.pending_command_id if chosen[0] == 'continue_current' else None)
     return intent, {'decision_id': did, 'owner': view.athlete,
                     'observation_id': view.observation_id, 'belief_revision': belief.revision,
                     'fresh_contact_ids':[c.entity for c in contacts],
                     'stale_contact_ids':[c.entity for c in belief.contacts if c not in contacts],
+                    'considered_feedback': latest_feedback,
+                    'pending_command_id': view.pending_command_id,
                     'options': options, 'selected': chosen}

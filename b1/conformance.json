@@ -18,7 +18,7 @@
     "decision_cadence_source": "PRISM judgment profile decision_interval_s",
     "first_decision_source": "delivered PRISM latency"
   },
-  "supported_intentions": ["pass", "retain", "no_action"],
+  "supported_intentions": ["pass", "retain", "no_action", "continue_current"],
   "supported_command_resources": ["ball_control_release"],
   "busy_command_policy": "explicit resource_busy rejection",
   "excluded_scenario_classes": ["give-and-go", "multi-athlete cognition", "locomotion command", "keeper", "archer", "tackle", "jump", "catch intent", "scoring", "regulation"],

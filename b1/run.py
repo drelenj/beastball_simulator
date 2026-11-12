@@ -34,7 +34,7 @@ def run(seed=1, case='pass', telemetry=True):
     next_decision = 1000 + int(round(sensor.prism.latency_s*1000))
     ingress = CommandIngress(port)
     decisions, admissions, outcomes = [], [], []
-    feedback = []
+    feedback_pending, feedback_log = [], []
     released_command = None
     observed_contacts = set()
 
@@ -45,7 +45,9 @@ def run(seed=1, case='pass', telemetry=True):
                 released_command = rec.get('command_id')
             if rec.get('kind') == 'outcome' and rec.get('command_id') and not any(o.command_id == rec['command_id'] for o in outcomes):
                 outcome=PhysicalOutcome(f"m1/physics/{rec['time_ms']:020d}/A0/{len(outcomes):010d}/outcome",rec['command_id'],rec['status'],rec['time_ms'])
-                outcomes.append(outcome); feedback.append(receive_outcome(outcome))
+                outcomes.append(outcome)
+                delivered=receive_outcome(outcome)
+                feedback_pending.append(delivered); feedback_log.append(delivered)
             if rec.get('kind') == 'kernel_event' and released_command:
                 for event in rec.get('events',()):
                     field=(lambda name,default=None: event.get(name,default) if isinstance(event,dict) else getattr(event,name,default))
@@ -58,7 +60,9 @@ def run(seed=1, case='pass', telemetry=True):
                     status='caught' if rec.get('carrier') == actor else 'physical_contact'
                     outcome=PhysicalOutcome(f"m1/physics/{rec['time_ms']:020d}/{actor}/{len(outcomes):010d}/outcome",
                                             released_command,status,rec['time_ms'],actor)
-                    outcomes.append(outcome); feedback.append(receive_outcome(outcome))
+                    outcomes.append(outcome)
+                    # Contact at a remote receiver is a world event. It does not
+                    # enter the thrower's private own-action feedback channel.
     start_ms, end_ms = 1000, 2400
     for now_ms in range(start_ms,end_ms+1,100):
         if now_ms > port.m.s.now:
@@ -67,14 +71,23 @@ def run(seed=1, case='pass', telemetry=True):
         sensor.capture(now_ms,port.m.s)
         if now_ms < next_decision:
             continue
-        view,belief = sensor.deliver(now_ms,port.m.s,feedback)
+        view,belief = sensor.deliver(now_ms,port.m.s,feedback_pending,port.pending)
         intent,decision = decide(view,belief)
         decisions.append({'view':view,'belief':belief,'decision':decision,'intent':intent})
+        feedback_pending.clear()
         admission=ingress.submit_batch([intent])[0][1]
         admissions.append({'intent_id':intent.intent_id,'admission':admission})
         if admission.get('status') == 'accepted' and intent.kind == 'retain':
             retained=PhysicalOutcome(f'{intent.intent_id}/outcome/retained',None,'retained',now_ms)
-            outcomes.append(retained); feedback.append(receive_outcome(retained))
+            outcomes.append(retained)
+            delivered=receive_outcome(retained)
+            feedback_pending.append(delivered); feedback_log.append(delivered)
+        if admission.get('status') == 'rejected':
+            rejected=PhysicalOutcome(f"{intent.intent_id}/outcome/rejected",None,
+                                     'rejected_'+admission['reason'],now_ms)
+            outcomes.append(rejected)
+            delivered=receive_outcome(rejected)
+            feedback_pending.append(delivered); feedback_log.append(delivered)
         if case == 'interrupted' and admission.get('status') == 'accepted' and intent.kind == 'pass' and port.pending:
             athlete.freeze_until = port.pending.release_ms+1
             case = 'interrupted_pending'
@@ -96,11 +109,16 @@ def run(seed=1, case='pass', telemetry=True):
                 for name,generator in sorted(value.items()):
                     if isinstance(generator,random.Random): rng_states[owner_name+'.'+key+'.'+name]=digest(generator.getstate())
     encode=lambda o:asdict(o) if is_dataclass(o) else str(o)
+    decision_times=[d['view'].delivered_ms for d in decisions]
+    actual_period=(decision_times[1]-decision_times[0]) if len(decision_times)>1 else None
     causal=json.loads(json.dumps({'scenario':scenario,'timing':{'start_ms':start_ms,'end_ms':end_ms,
-                              'sensor_ms':100,'decision_period_ms':decision_period,
-                              'first_decision_ms':1000+int(round(sensor.prism.latency_s*1000))},
+                              'sensor_ms':100,'nominal_decision_period_ms':decision_period,
+                              'effective_decision_period_ms':actual_period,
+                              'first_ready_ms':1000+int(round(sensor.prism.latency_s*1000)),
+                              'first_decision_ms':decision_times[0] if decision_times else None,
+                              'decision_times_ms':decision_times},
                               'decisions':decisions,'admissions':admissions,'events':port.records,
-                              'outcomes':outcomes,'athlete_feedback':feedback},default=encode))
+                              'outcomes':outcomes,'athlete_feedback':feedback_log},default=encode))
     return {'seed':seed,'case':scenario['case'],'execution_hash':digest(causal),
             'state_hash':digest(json.loads(json.dumps(state,default=encode))),
             'rng_states':rng_states,'trace':causal if telemetry else None,

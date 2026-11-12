@@ -5,8 +5,9 @@ Implementation lives only in this package; it does not modify the accepted B0
 source snapshot or T1–T5 evidence.
 
 This candidate runs one athlete through actual PRISM sensing from active physical
-bodies, individual beliefs, pass/retain/no-action evaluation, intent, motor
-preparation, authoritative pass release/flight/contact, and own-action feedback.
+bodies, individual beliefs, pass/retain/no-action evaluation, explicit
+continuation of a pending action, motor preparation, authoritative pass
+release/flight/contact, and bounded own-action feedback.
 PRISM sensing and rating mappings are reused; the field decision evaluator is a
 new, limited B1 policy. No claim of full M1 acceptance is made.
 
@@ -30,7 +31,8 @@ B1-generated movement commands.
 ## Evidence boundary
 
 Tests cover immutability, observation-sensitive choices, stale beliefs,
-physical-state projection, true-state poison, cadence stepping and feedback,
+physical-state projection, a two-runtime hidden-state isolation probe, cadence
+stepping and feedback-dependent decisions,
 target fidelity, command replay without cognition, interruption, deterministic
 single-resource arbitration, repeated hashes, telemetry-off neutrality, and
 B0 file hash preservation. Full multi-athlete cognition, locomotion, general

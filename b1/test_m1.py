@@ -35,6 +35,18 @@ class PureBoundaryTests(unittest.TestCase):
         self.assertEqual(first,decide(v,b))
         with self.assertRaises(dataclasses.FrozenInstanceError): v.x=100
 
+    def test_pending_action_and_failure_feedback_change_the_decision(self):
+        contacts=(Contact('A1','A',55,50,1500),)
+        view=AthleteView('o','A0','A',1500,40,50,True,contacts)
+        ordinary=decide(view,BeliefState('b','o',contacts))[0]
+        self.assertEqual(ordinary.kind,'pass')
+        pending=dataclasses.replace(view,pending_command_id='cmd-1',pending_release_ms=1700)
+        continuing=decide(pending,BeliefState('b2','o',contacts))[0]
+        self.assertEqual((continuing.kind,continuing.related_command_id),
+                         ('continue_current','cmd-1'))
+        failed=BeliefState('b3','o',contacts,(('out','interrupted',1490),))
+        self.assertEqual(decide(view,failed)[0].kind,'no_action')
+
     def test_observation_changes_selection(self):
         contacts=(Contact('A1','A',55,50,1000),)
         v=AthleteView('o','A0','A',1500,40,50,True,contacts)
@@ -54,8 +66,15 @@ class PureBoundaryTests(unittest.TestCase):
     def test_cognition_has_no_engine_import(self):
         import ast
         tree=ast.parse((ROOT/'b1/core.py').read_text())
-        modules=[n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)]
-        self.assertEqual(modules,['dataclasses','math'])
+        modules=[]
+        for node in ast.walk(tree):
+            if isinstance(node,ast.ImportFrom): modules.append(node.module)
+            elif isinstance(node,ast.Import): modules.extend(a.name for a in node.names)
+        self.assertEqual(sorted(modules),['dataclasses','math'])
+        symbols={n.id for n in ast.walk(tree) if isinstance(n,ast.Name)}
+        symbols.update(n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute))
+        self.assertFalse(symbols & {'SimState','Match','Engine','PhysicalExecutionPort',
+                                    'CommandIngress','pocket4_proto'})
 
 
 class WorkerTests(unittest.TestCase):
@@ -89,14 +108,27 @@ class WorkerTests(unittest.TestCase):
         accepted=next(x['admission'] for x in trace['admissions'] if x['admission'].get('command'))
         self.assertEqual(first['target'],accepted['command']['intent']['target'])
         self.assertTrue(any(d['belief']['own_feedback'] for d in trace['decisions']))
+        self.assertIn('continue_current',[d['intent']['kind'] for d in trace['decisions']])
+        self.assertFalse(any(a['admission'].get('reason')=='resource_busy'
+                             for a in trace['admissions']))
         outcomes=trace['outcomes']
         self.assertTrue(any(o['status']=='released' for o in outcomes))
         self.assertTrue(any(o['status']=='physical_contact' for o in outcomes))
+        self.assertNotIn('physical_contact',[f[1] for f in trace['athlete_feedback']])
         self.assertGreater(outcomes[0]['resolved_ms'],1000)
+        timing=trace['timing']
+        self.assertEqual(timing['first_decision_ms'],timing['decision_times_ms'][0])
+        self.assertEqual(timing['effective_decision_period_ms'],200)
+        self.assertLess(timing['first_ready_ms'],timing['first_decision_ms'])
 
     def test_interruption(self):
         r=self.worker('interrupted')
         self.assertIn('interrupted',[e['status'] for e in r['trace']['outcomes']])
+        affected=[d for d in r['trace']['decisions']
+                  if d['decision']['considered_feedback'] and
+                  d['decision']['considered_feedback'][1]=='interrupted']
+        self.assertEqual(len(affected),1)
+        self.assertEqual(affected[0]['intent']['kind'],'no_action')
 
     def test_retain(self):
         r=self.worker('retain')
@@ -106,30 +138,37 @@ class WorkerTests(unittest.TestCase):
         code='''
 from b1.runtime import PhysicalExecutionPort,ObservationProjector,digest
 from b1.core import decide
+from dataclasses import asdict
+import json,sys
 p=PhysicalExecutionPort(1)
-import sys
 sys.path.insert(0,str(__import__('pathlib').Path('.').resolve()))
 import prism_ratings_v0
 r=prism_ratings_v0.assign(p.roster_overrides,p.roster_names)['A0']
 a=p.m.s.players['A0']; sensor=ObservationProjector(1,a,r)
-for t in range(1000,1401,100): sensor.capture(t,p.m.s)
-v,b=sensor.deliver(1400,p.m.s)
-assert a.active and p.m.s.players['A1'].active and p.m.s.players['B0'].active
-assert abs(v.x-a.x)<1e-12 and abs(v.y-a.y)<1e-12 and v.holds_ball
-assert any(c.entity=='A1' for c in v.contacts)
-assert abs(sensor.prism.prof['cone_half_angle_deg']-(60+60*r['vision']))<1e-9
-assert abs(sensor.prism.gaze_az)<1e-12
-first=decide(v,b)
-p.m.s.players['B0'].x=99.
-assert first==decide(v,b)  # true state changes; delivered frame remains fixed
-from dataclasses import replace
-changed=replace(v,contacts=tuple(c for c in v.contacts if c.entity!='B0'))
-changed_b=replace(b,observation_id=changed.observation_id,contacts=changed.contacts)
-assert decide(changed,changed_b)==decide(changed,changed_b)
-assert changed.contacts!=v.contacts
+mode=sys.argv[1]
+d=p.m.s.players['B0']
+if mode in ('hidden-a','hidden-b'):
+    d.x,d.y=(2.,95.) if mode=='hidden-a' else (3.,94.)
+if mode=='hidden-b':
+    d.fatigue=.123; d.freeze_until=99999; d.next_action=99999
+    d.target=(1.,1.); d.posture='hidden-sentinel'
+elif mode=='visible':
+    d.x,d.y=47.,50.8
+for t in range(1000,2001,100): sensor.capture(t,p.m.s)
+v,b=sensor.deliver(2000,p.m.s)
+i,tr=decide(v,b)
+print(json.dumps({'view':asdict(v),'intent':asdict(i),'decision':tr},sort_keys=True))
 '''
-        r=subprocess.run([sys.executable,'-c',code],cwd=ROOT,text=True,capture_output=True,timeout=45)
-        self.assertEqual(r.returncode,0,r.stderr)
+        results={}
+        for mode in ('hidden-a','hidden-b','visible'):
+            r=subprocess.run([sys.executable,'-c',code,mode],cwd=ROOT,text=True,
+                             capture_output=True,timeout=45)
+            self.assertEqual(r.returncode,0,r.stderr)
+            results[mode]=json.loads(r.stdout)
+        self.assertEqual(results['hidden-a'],results['hidden-b'])
+        self.assertNotEqual(results['hidden-a']['view'],results['visible']['view'])
+        self.assertEqual(results['hidden-a']['intent']['kind'],'pass')
+        self.assertEqual(results['visible']['intent']['kind'],'retain')
 
     def test_batch_permutation_and_legacy_traps(self):
         code = '''
