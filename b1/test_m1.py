@@ -6,7 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from .core import AthleteView, BeliefState, Contact, decide
+from .core import AthleteView, BeliefState, Contact, DecisionConfig, decide
 from .preservation import historical_hashes, verify_baseline
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -126,9 +126,24 @@ class WorkerTests(unittest.TestCase):
         self.assertIn('interrupted',[e['status'] for e in r['trace']['outcomes']])
         affected=[d for d in r['trace']['decisions']
                   if d['decision']['considered_feedback'] and
-                  d['decision']['considered_feedback'][1]=='interrupted']
+                  any(f[1]=='interrupted'
+                      for f in d['decision']['considered_feedback'])]
         self.assertEqual(len(affected),1)
         self.assertEqual(affected[0]['intent']['kind'],'no_action')
+
+    def test_defender_pursuit_is_derived_from_belief(self):
+        contacts=(Contact('A0','A',45,50,1000,2,-1),
+                  Contact('BALL','neutral',45.2,50.1,1000,2,-1))
+        view=AthleteView('o','B0','B',1200,50,51,False,contacts)
+        intent,trace=decide(view,BeliefState('b','o',contacts),
+                            DecisionConfig('defender'))
+        self.assertEqual((intent.kind,intent.target),('move','A0'))
+        self.assertNotEqual(intent.aim,(45,50))
+        shifted=tuple(dataclasses.replace(c,x=c.x+3) for c in contacts)
+        moved=decide(dataclasses.replace(view,contacts=shifted),
+                     BeliefState('b2','o',shifted),
+                     DecisionConfig('defender'))[0]
+        self.assertAlmostEqual(moved.aim[0]-intent.aim[0],3)
 
     def test_retain(self):
         r=self.worker('retain')

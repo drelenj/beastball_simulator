@@ -1,11 +1,11 @@
 {
   "case": "pass",
   "decision_count": 6,
-  "execution_hash": "4dec2b0bd1c541301dec1b5c5858280a494ab145e64c343ec44c4846910b2cbc",
+  "execution_hash": "d04ab60e327ec74d25c83409be52154379006e1418f472175348ce1244465024",
   "performance": {
-    "cpu_s": 2.2899898590000003,
-    "setup_wall_s": 0.8747353559999738,
-    "total_wall_s": 0.8881570029998329
+    "cpu_s": 2.3366671930000003,
+    "setup_wall_s": 0.91960062499993,
+    "total_wall_s": 0.9367209870001716
   },
   "rng_states": {
     "match.rng.arrow": "d3d407cafac41952523ee00de57b781dd3a73d17118553afb64fa375730c6cc7",
@@ -13,7 +13,7 @@
     "match.rng.contact": "dd7cdc0bedcf454af8d128d3e8dd8ced42bbc5abcfdd259737edcadbc3abfeee",
     "match.rng.policy": "97b3d1e28a9e0b5bc310b9bfcdb8b03524a781e485f959239b0a4a8972be9278",
     "match.rng.roster": "6aa9da2c4d66a96f8d9785628b92f4b3bdd3e5de8c3497e4b4022425a26fff12",
-    "perception.rng": "f023494f6fd5af3e16b958e17149dad578aa40dd7b2ca8c5ade87fdeea4cdf15",
+    "perception.rng": "66ca048063c80264b54bb636ec2a702fe650707951ae47d61a0051beed8e85d7",
     "perception.rng_t": "668eefa679010fdb81e398dc8c6f1fa6d399a00b540ae2cd4bd91d4a4ea11871"
   },
   "runtime": "3.12.14",
@@ -108,9 +108,22 @@
             {
               "captured_ms": 1000,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
+              "vx": 0.0,
+              "vy": 0.0,
               "x": 54.937446819088606,
               "y": 49.982545801544134
+            },
+            {
+              "captured_ms": 1000,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 0.0,
+              "vy": 0.0,
+              "x": 40.7488241424962,
+              "y": 49.994620019783554
             }
           ],
           "max_contact_age_ms": 2812,
@@ -120,10 +133,11 @@
         },
         "decision": {
           "belief_revision": "m1/0000000000001300/A0/perception/0/belief",
-          "considered_feedback": null,
+          "considered_feedback": [],
           "decision_id": "m1/0000000000001300/A0/perception/0/decision",
           "fresh_contact_ids": [
-            "A1"
+            "A1",
+            "BALL"
           ],
           "observation_id": "m1/0000000000001300/A0/perception/0",
           "options": [
@@ -175,9 +189,22 @@
             {
               "captured_ms": 1000,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
+              "vx": 0.0,
+              "vy": 0.0,
               "x": 54.937446819088606,
               "y": 49.982545801544134
+            },
+            {
+              "captured_ms": 1000,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 0.0,
+              "vy": 0.0,
+              "x": 40.7488241424962,
+              "y": 49.994620019783554
             }
           ],
           "delivered_ms": 1300,
@@ -196,16 +223,32 @@
             {
               "captured_ms": 1200,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.17591692765194,
-              "y": 50.0441239133591
+              "vx": 0.10298828655671592,
+              "vy": 0.18726002945992365,
+              "x": 55.01704195716942,
+              "y": 50.075545265788136
             },
             {
-              "captured_ms": 1100,
+              "captured_ms": 1200,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 47.035644589174844,
-              "y": 54.99931060425908
+              "vx": -0.3286817608154142,
+              "vy": -0.13707995761652134,
+              "x": 46.8526063085607,
+              "y": 54.93518606296689
+            },
+            {
+              "captured_ms": 1200,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": -0.05550013195056163,
+              "vy": 0.06259581873020457,
+              "x": 40.722345201533464,
+              "y": 50.02801635732898
             }
           ],
           "max_contact_age_ms": 2812,
@@ -215,11 +258,12 @@
         },
         "decision": {
           "belief_revision": "m1/0000000000001500/A0/perception/0/belief",
-          "considered_feedback": null,
+          "considered_feedback": [],
           "decision_id": "m1/0000000000001500/A0/perception/0/decision",
           "fresh_contact_ids": [
             "A1",
-            "B0"
+            "B0",
+            "BALL"
           ],
           "observation_id": "m1/0000000000001500/A0/perception/0",
           "options": [
@@ -256,16 +300,32 @@
             {
               "captured_ms": 1200,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.17591692765194,
-              "y": 50.0441239133591
+              "vx": 0.10298828655671592,
+              "vy": 0.18726002945992365,
+              "x": 55.01704195716942,
+              "y": 50.075545265788136
             },
             {
-              "captured_ms": 1100,
+              "captured_ms": 1200,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 47.035644589174844,
-              "y": 54.99931060425908
+              "vx": -0.3286817608154142,
+              "vy": -0.13707995761652134,
+              "x": 46.8526063085607,
+              "y": 54.93518606296689
+            },
+            {
+              "captured_ms": 1200,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": -0.05550013195056163,
+              "vy": 0.06259581873020457,
+              "x": 40.722345201533464,
+              "y": 50.02801635732898
             }
           ],
           "delivered_ms": 1500,
@@ -284,16 +344,32 @@
             {
               "captured_ms": 1400,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.003864733599315,
-              "y": 50.03106717099749
+              "vx": 0.09757246974869466,
+              "vy": 0.0941706329428627,
+              "x": 55.03377717710054,
+              "y": 50.04910671002775
+            },
+            {
+              "captured_ms": 1200,
+              "entity": "B0",
+              "has_ball": false,
+              "team": "B",
+              "vx": -0.3286817608154142,
+              "vy": -0.13707995761652134,
+              "x": 46.78686995639762,
+              "y": 54.907770071443586
             },
             {
               "captured_ms": 1400,
-              "entity": "B0",
-              "team": "B",
-              "x": 46.923393311218376,
-              "y": 54.97790997820402
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": -0.03827034338573123,
+              "vy": 0.013118816322181821,
+              "x": 40.72304174921874,
+              "y": 50.00969329006591
             }
           ],
           "max_contact_age_ms": 2812,
@@ -310,14 +386,17 @@
         "decision": {
           "belief_revision": "m1/0000000000001700/A0/perception/0/belief",
           "considered_feedback": [
-            "m1/physics/00000000000000001534/A0/0000000000/outcome",
-            "released",
-            1534
+            [
+              "m1/physics/00000000000000001534/A0/0000000000/outcome",
+              "released",
+              1534
+            ]
           ],
           "decision_id": "m1/0000000000001700/A0/perception/0/decision",
           "fresh_contact_ids": [
             "A1",
-            "B0"
+            "B0",
+            "BALL"
           ],
           "observation_id": "m1/0000000000001700/A0/perception/0",
           "options": [
@@ -354,16 +433,32 @@
             {
               "captured_ms": 1400,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.003864733599315,
-              "y": 50.03106717099749
+              "vx": 0.09757246974869466,
+              "vy": 0.0941706329428627,
+              "x": 55.03377717710054,
+              "y": 50.04910671002775
+            },
+            {
+              "captured_ms": 1200,
+              "entity": "B0",
+              "has_ball": false,
+              "team": "B",
+              "vx": -0.3286817608154142,
+              "vy": -0.13707995761652134,
+              "x": 46.78686995639762,
+              "y": 54.907770071443586
             },
             {
               "captured_ms": 1400,
-              "entity": "B0",
-              "team": "B",
-              "x": 46.923393311218376,
-              "y": 54.97790997820402
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": -0.03827034338573123,
+              "vy": 0.013118816322181821,
+              "x": 40.72304174921874,
+              "y": 50.00969329006591
             }
           ],
           "delivered_ms": 1700,
@@ -382,16 +477,32 @@
             {
               "captured_ms": 1600,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 54.995174720907876,
-              "y": 49.966992489350304
+              "vx": -0.03918114314917174,
+              "vy": 0.2248878232843764,
+              "x": 54.98228211229324,
+              "y": 50.12681292662446
             },
             {
-              "captured_ms": 1500,
+              "captured_ms": 1600,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 46.90224032256288,
-              "y": 54.98629900131494
+              "vx": -0.3286817608154142,
+              "vy": -0.13707995761652134,
+              "x": 46.9060480703463,
+              "y": 54.91727652997743
+            },
+            {
+              "captured_ms": 1600,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 5.458783646190805,
+              "vy": 0.03741701495026282,
+              "x": 43.65255681688651,
+              "y": 50.023407460683686
             }
           ],
           "max_contact_age_ms": 2812,
@@ -401,11 +512,12 @@
         },
         "decision": {
           "belief_revision": "m1/0000000000001900/A0/perception/0/belief",
-          "considered_feedback": null,
+          "considered_feedback": [],
           "decision_id": "m1/0000000000001900/A0/perception/0/decision",
           "fresh_contact_ids": [
             "A1",
-            "B0"
+            "B0",
+            "BALL"
           ],
           "observation_id": "m1/0000000000001900/A0/perception/0",
           "options": [
@@ -442,16 +554,32 @@
             {
               "captured_ms": 1600,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 54.995174720907876,
-              "y": 49.966992489350304
+              "vx": -0.03918114314917174,
+              "vy": 0.2248878232843764,
+              "x": 54.98228211229324,
+              "y": 50.12681292662446
             },
             {
-              "captured_ms": 1500,
+              "captured_ms": 1600,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 46.90224032256288,
-              "y": 54.98629900131494
+              "vx": -0.3286817608154142,
+              "vy": -0.13707995761652134,
+              "x": 46.9060480703463,
+              "y": 54.91727652997743
+            },
+            {
+              "captured_ms": 1600,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 5.458783646190805,
+              "vy": 0.03741701495026282,
+              "x": 43.65255681688651,
+              "y": 50.023407460683686
             }
           ],
           "delivered_ms": 1900,
@@ -470,16 +598,32 @@
             {
               "captured_ms": 1800,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.076980540534215,
-              "y": 49.96400723188153
+              "vx": -0.3232955425788031,
+              "vy": -0.30509286299616356,
+              "x": 54.83335614757851,
+              "y": 49.87861141984906
             },
             {
-              "captured_ms": 1500,
+              "captured_ms": 1800,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 46.86999703073304,
-              "y": 54.983384892012886
+              "vx": -0.09520617049825,
+              "vy": -0.03572628638967796,
+              "x": 47.027092190436946,
+              "y": 54.9709434754356
+            },
+            {
+              "captured_ms": 1800,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 24.309479168872468,
+              "vy": -0.017247876879196156,
+              "x": 55.07197229729131,
+              "y": 50.00384901509766
             }
           ],
           "max_contact_age_ms": 2812,
@@ -489,11 +633,12 @@
         },
         "decision": {
           "belief_revision": "m1/0000000000002100/A0/perception/0/belief",
-          "considered_feedback": null,
+          "considered_feedback": [],
           "decision_id": "m1/0000000000002100/A0/perception/0/decision",
           "fresh_contact_ids": [
             "A1",
-            "B0"
+            "B0",
+            "BALL"
           ],
           "observation_id": "m1/0000000000002100/A0/perception/0",
           "options": [
@@ -530,16 +675,32 @@
             {
               "captured_ms": 1800,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.076980540534215,
-              "y": 49.96400723188153
+              "vx": -0.3232955425788031,
+              "vy": -0.30509286299616356,
+              "x": 54.83335614757851,
+              "y": 49.87861141984906
             },
             {
-              "captured_ms": 1500,
+              "captured_ms": 1800,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 46.86999703073304,
-              "y": 54.983384892012886
+              "vx": -0.09520617049825,
+              "vy": -0.03572628638967796,
+              "x": 47.027092190436946,
+              "y": 54.9709434754356
+            },
+            {
+              "captured_ms": 1800,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 24.309479168872468,
+              "vy": -0.017247876879196156,
+              "x": 55.07197229729131,
+              "y": 50.00384901509766
             }
           ],
           "delivered_ms": 2100,
@@ -558,16 +719,32 @@
             {
               "captured_ms": 2000,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.02311440745325,
-              "y": 50.00244085928679
+              "vx": -0.06973994239324992,
+              "vy": 0.0471349044602132,
+              "x": 54.924305235764805,
+              "y": 50.03093297725601
             },
             {
               "captured_ms": 2000,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 47.01324637551992,
-              "y": 54.90901925179048
+              "vx": 0.10993070060755075,
+              "vy": 0.015453819559542337,
+              "x": 47.084547394621744,
+              "y": 54.97948511421914
+            },
+            {
+              "captured_ms": 2000,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 27.16069502169397,
+              "vy": -0.030735755650583854,
+              "x": 61.56317305401451,
+              "y": 49.99640710048524
             }
           ],
           "max_contact_age_ms": 2812,
@@ -577,11 +754,12 @@
         },
         "decision": {
           "belief_revision": "m1/0000000000002300/A0/perception/0/belief",
-          "considered_feedback": null,
+          "considered_feedback": [],
           "decision_id": "m1/0000000000002300/A0/perception/0/decision",
           "fresh_contact_ids": [
             "A1",
-            "B0"
+            "B0",
+            "BALL"
           ],
           "observation_id": "m1/0000000000002300/A0/perception/0",
           "options": [
@@ -618,16 +796,32 @@
             {
               "captured_ms": 2000,
               "entity": "A1",
+              "has_ball": false,
               "team": "A",
-              "x": 55.02311440745325,
-              "y": 50.00244085928679
+              "vx": -0.06973994239324992,
+              "vy": 0.0471349044602132,
+              "x": 54.924305235764805,
+              "y": 50.03093297725601
             },
             {
               "captured_ms": 2000,
               "entity": "B0",
+              "has_ball": false,
               "team": "B",
-              "x": 47.01324637551992,
-              "y": 54.90901925179048
+              "vx": 0.10993070060755075,
+              "vy": 0.015453819559542337,
+              "x": 47.084547394621744,
+              "y": 54.97948511421914
+            },
+            {
+              "captured_ms": 2000,
+              "entity": "BALL",
+              "has_ball": false,
+              "team": "neutral",
+              "vx": 27.16069502169397,
+              "vy": -0.030735755650583854,
+              "x": 61.56317305401451,
+              "y": 49.99640710048524
             }
           ],
           "delivered_ms": 2300,

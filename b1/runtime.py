@@ -76,8 +76,64 @@ class PhysicalExecutionPort:
         for policy in self.m.pol.values():
             for name in ('targets', 'pass_choice', 'pass_ranked'):
                 setattr(policy, name, forbidden)
+        # This controlled three-athlete slice must not refill the other roster
+        # slots while the accepted contact/ball kernel advances.
+        self.m.auto_substitutions = lambda: None
         self.pending = None
+        self.move_targets = {'A0':(40.,50.), 'A1':(55.,50.), 'B0':(47.,55.)}
         self.records = []
+        self._engine_log_index = len(self.m.e.log)
+
+    def _collect_engine_log(self):
+        fresh = self.m.e.log[self._engine_log_index:]
+        self._engine_log_index = len(self.m.e.log)
+        for event in fresh:
+            self.records.append({'kind':'engine_event', **copy.deepcopy(event)})
+
+    def _release_due(self):
+        s = self.m.s
+        if not self.pending or s.now < self.pending.release_ms:
+            return
+        c = self.pending
+        a = s.players[c.intent.athlete]
+        if not self.m.e.eligible(a) or s.ball.carrier != a.id:
+            self.records.append({'kind':'outcome', 'command_id':c.command_id,
+                                 'status':'interrupted', 'time_ms':s.now})
+        else:
+            ok = self.m.e.release(a.id, c.desired_velocity, 'pass',
+                                  c.intent.target, False)
+            self.records.append({'kind':'outcome', 'command_id':c.command_id,
+                                 'status':'released' if ok else 'rejected',
+                                 'time_ms':s.now,
+                                 'ball_velocity':[s.ball.vx,s.ball.vy,s.ball.vz]})
+        self.pending = None
+        self._collect_engine_log()
+
+    def advance_world(self, until_ms):
+        """Advance the accepted C3/contact/catch kernel under B1 targets."""
+        s = self.m.s
+        if until_ms < s.now or until_ms-s.now > 10000:
+            raise ValueError('invalid bounded advance')
+        while s.now < until_ms:
+            self._release_due()
+            span = min(50, until_ms-s.now)
+            if self.pending:
+                span = min(span, max(1, self.pending.release_ms-s.now))
+            before = s.now
+            advanced = self.m.c3_step(span, dict(self.move_targets), scripted=True)
+            if advanced < 1 or s.now <= before:
+                raise RuntimeError('physical kernel did not advance')
+            self._collect_engine_log()
+            self.records.append({'kind':'physical_sample', 'time_ms':s.now,
+                                 'players':{pid:[s.players[pid].x,s.players[pid].y,
+                                                 s.players[pid].vx,s.players[pid].vy,
+                                                 s.players[pid].posture]
+                                            for pid in ('A0','A1','B0')},
+                                 'carrier':s.ball.carrier,
+                                 'ball':[s.ball.x,s.ball.y,s.ball.z],
+                                 'velocity':[s.ball.vx,s.ball.vy,s.ball.vz]})
+        self._release_due()
+        return tuple(self.records)
 
     def advance(self, until_ms):
         s = self.m.s
@@ -127,7 +183,9 @@ class CommandIngress:
     def submit(self, intent):
         p = self.port
         s = p.m.s
-        if intent.athlete != 'A0' or intent.decided_ms != s.now:
+        if (intent.athlete not in s.players or
+                not s.players[intent.athlete].active or
+                intent.decided_ms != s.now):
             return {'status':'rejected', 'reason':'invalid_actor_or_time'}
         if intent.kind == 'continue_current':
             if p.pending and intent.related_command_id == p.pending.command_id:
@@ -139,12 +197,32 @@ class CommandIngress:
         if intent.kind == 'retain':
             return {'status':'accepted', 'outcome':'retained', 'intent_id':intent.intent_id}
         if intent.kind == 'no_action':
+            a = s.players[intent.athlete]
+            p.move_targets[intent.athlete] = (a.x, a.y)
             return {'status':'accepted', 'outcome':'no_action', 'intent_id':intent.intent_id}
+        if intent.kind in ('move','carry'):
+            if intent.aim is None:
+                return {'status':'rejected', 'reason':'missing_aim'}
+            if intent.kind == 'carry' and s.ball.carrier != intent.athlete:
+                return {'status':'rejected', 'reason':'not_carrier'}
+            p.move_targets[intent.athlete] = tuple(intent.aim)
+            # This is the admitted athlete command itself, so its target is
+            # effective now; the kernel's own acceleration/turning limits
+            # still govern the physical response.
+            s.players[intent.athlete].target = tuple(intent.aim)
+            return {'status':'accepted', 'outcome':intent.kind,
+                    'target':list(intent.aim), 'intent_id':intent.intent_id}
         if intent.kind != 'pass' or intent.aim is None or s.ball.carrier != intent.athlete:
             return {'status':'rejected', 'reason':'infeasible'}
         if p.pending:
             return {'status':'rejected', 'reason':'resource_busy'}
         a = s.players[intent.athlete]
+        # A release command includes planting/braking at the admitted origin;
+        # the accepted kernel still determines whether that can be achieved
+        # before release under contact and inertia.
+        p.move_targets[intent.athlete] = (a.x, a.y)
+        a.target = (a.x, a.y)
+        a.next_decision = s.now
         dx, dy = intent.aim[0]-a.x, intent.aim[1]-a.y
         length = math.hypot(dx,dy)
         if length < 1e-9:
@@ -161,7 +239,7 @@ class CommandIngress:
 class ObservationProjector:
     def __init__(self, seed, athlete, prism_ratings):
         from prism_archer_v0 import ArcherPrism
-        self.prism = ArcherPrism(f'b1-{seed}-A0', prism_ratings['awareness'],
+        self.prism = ArcherPrism(f'b1-{seed}-{athlete.id}', prism_ratings['awareness'],
                                  athlete.a.decision_speed, {'vel_mode':'lsq'})
         self.prism.apply_ratings(prism_ratings)
         self.teams = {}
@@ -179,12 +257,28 @@ class ObservationProjector:
         facing = math.atan2(athlete.facing[1], athlete.facing[0])
         eye = (athlete.x, athlete.y, athlete.z + .72*athlete.a.height)
         self.prism.tick(time_ms/1000, eye, facing, bodies, None)
+        # A ball can be sensed, but it must not become an opaque body that
+        # hides a player from the same sensor ray.
+        ball = physical_state.ball
+        self.teams['BALL'] = 'neutral'
+        ball_body={'id':'BALL','x':ball.x,'y':ball.y,'z':ball.z,
+                   'h':max(.22, 2*ball.radius),'r':ball.radius,
+                   'vx':ball.vx,'vy':ball.vy}
+        self.prism.tick(time_ms/1000, eye, facing, [ball_body], None)
 
     def deliver(self, time_ms, physical_state, own_feedback=(), pending=None):
         self.prism.deliver(time_ms/1000)
-        contacts = tuple(Contact(pid, self.teams[pid], *b.at(time_ms/1000), int(b.t*1000))
-                         for pid in sorted(self.teams) if (b := self.prism.bget(pid)) is not None)
-        oid = f'm1/{time_ms:016d}/A0/perception/0'
+        contacts = []
+        for pid in sorted(self.teams):
+            b = self.prism.bget(pid)
+            if b is None:
+                continue
+            x, y = b.at(time_ms/1000)
+            vx, vy = b.vel_at(time_ms/1000)
+            contacts.append(Contact(pid, self.teams[pid], x, y, int(b.t*1000),
+                                    vx, vy, False))
+        contacts = tuple(contacts)
+        oid = f'm1/{time_ms:016d}/{self.athlete_id}/perception/0'
         athlete = physical_state.players[self.athlete_id]
         holds_ball = physical_state.ball.carrier == athlete.id
         view = AthleteView(oid,athlete.id,athlete.team,time_ms,

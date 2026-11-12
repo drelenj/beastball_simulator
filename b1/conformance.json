@@ -1,41 +1,38 @@
 {
-  "profile_id": "m1-pass-flight-v1",
-  "schema_version": "b1-m1-python-0",
+  "profile_id": "m1-carrier-pass-or-carry-v1",
+  "schema_version": "b1-m1-python-1",
   "baseline_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
-  "seed": 1,
   "physics_profile": "B0-P4-DEFAULT",
-  "actor": "A0",
-  "scenario_bodies": [
-    {"id": "A0", "team": "A", "role": "B1-controlled", "initial_position_m": [40.0, 50.0, 0.0]},
-    {"id": "A1", "team": "A", "role": "passive-physical-entity", "initial_position_m": [55.0, 50.0, 0.0]},
-    {"id": "B0", "team": "B", "role": "passive-physical-entity", "initial_position_m": [47.0, 55.0, 0.0]}
-  ],
+  "actors": ["A0", "B0"],
+  "passive_physical_receiver": "A1",
+  "conditions": ["C0_uniform", "C1_sharp_defender", "C2_limited_carrier_vision", "C3_close_defender"],
   "time_profile": {
     "start_ms": 1000,
-    "end_ms": 2400,
-    "sensor_interval_ms": 100,
-    "physical_step_max_ms": 10,
-    "decision_cadence_source": "PRISM judgment profile decision_interval_s",
-    "first_decision_source": "delivered PRISM latency"
+    "timeout_ms": 8000,
+    "sensor_interval_ms": 50,
+    "physical_step_max_ms": 50,
+    "decision_cadence_source": "per-athlete PRISM judgment profile decision_interval_s",
+    "first_decision_source": "per-athlete delivered PRISM latency"
   },
-  "supported_intentions": ["pass", "retain", "no_action", "continue_current"],
-  "supported_command_resources": ["ball_control_release"],
-  "busy_command_policy": "explicit resource_busy rejection",
-  "excluded_scenario_classes": ["give-and-go", "multi-athlete cognition", "locomotion command", "keeper", "archer", "tackle", "jump", "catch intent", "scoring", "regulation"],
-  "policy_bindings": [
-    {"family": "tackle_commitment", "status": "unsupported"},
-    {"family": "coincident_arrow_contact", "status": "unsupported"},
-    {"family": "same_team_catch_intent", "status": "unsupported"}
-  ],
+  "supported_intentions": ["pass", "carry", "move", "retain", "no_action", "continue_current"],
+  "supported_command_resources": ["ball_control_release", "movement_target"],
+  "episode_endpoints": ["pass_completed", "pass_intercepted", "pass_incomplete_ball_loose", "carrier_grounded", "carrier_reaches_x_90", "timeout_8000ms"],
+  "failure_causes": ["belief_error", "latency", "physical_contest"],
+  "forbidden_controls": ["formation_anchor", "role_assignment", "scripted_receiver_route", "scripted_defender_failure", "legacy_tactical_controller"],
+  "excluded_scenario_classes": ["give-and-go", "multi-teammate cognition", "keeper", "archer", "catch intent", "scoring", "regulation"],
   "engineering_defaults": {
-    "prism_sensor": "prism_archer_v0.ArcherPrism; existing perception mapping and ratings",
-    "field_selection": "b1.core.decide; provisional lane-clearance values",
+    "prism_sensor": "prism_archer_v0.ArcherPrism with existing mappings",
+    "field_selection": "b1.core.decide provisional lane-clearance and belief-pursuit policy",
     "motor_release_delay": "ceil(m.assume.pass_release_ms * (1.35 - .5 * athlete.ball_handling))",
-    "base_pass_speed": "m.cfg.pocket.pass_speed",
-    "physical_release": "unchanged Pocket 4 release wrapper and T3 accepted physical kernel",
-    "true_state_access": "ObservationProjector and PhysicalExecutionPort only; MC sees own physical attributes",
+    "physical_world": "unchanged Pocket C3 locomotion/contact plus C1 catch/flight kernel",
+    "true_state_access": "ObservationProjector and PhysicalExecutionPort only",
     "belief_age": "PRISM memory_s converted to max_contact_age_ms",
-    "telemetry": "observational; internal causal trace is built whether serialization is enabled or suppressed",
-    "identity": "deterministic candidate IDs; full versioned causal schema not implemented"
+    "telemetry": "observational and hash-neutral"
+  },
+  "evidence": {
+    "seeds_per_condition": 100,
+    "episodes": 400,
+    "matrix_hash": "bd3237e392ede5d7e861dd5486b7879667896bc4affebc1e8d711a198f82e452",
+    "behavioral_acceptance": "BA-M1-1 through BA-M1-6 passed"
   }
 }

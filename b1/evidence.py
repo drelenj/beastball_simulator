@@ -23,7 +23,7 @@ def main():
     verify_baseline(ROOT, OUT/'b0_source_hashes.json')
     subprocess.run([sys.executable,'-m','b1.m0_manifest'],cwd=ROOT,check=True)
     baseline=historical_hashes(ROOT)
-    r=subprocess.run([sys.executable,'-m','unittest','b1.test_m1','-v'],cwd=ROOT,capture_output=True,text=True,timeout=120)
+    r=subprocess.run([sys.executable,'-m','unittest','b1.test_m1','b1.test_g1','-v'],cwd=ROOT,capture_output=True,text=True,timeout=180)
     (OUT/'tests.txt').write_text(r.stdout+r.stderr)
     if r.returncode: raise RuntimeError(r.stderr)
     for case in ('pass','retain','interrupted'):
@@ -32,11 +32,11 @@ def main():
     if baseline != after: raise RuntimeError('B0 source changed')
     manifest={'baseline_commit':'2abe497ca82588cb2d8c871a7aab61daaae95c12',
               'python':platform.python_version(),'platform':platform.platform(),
-              'profile':'m1-pass-flight-v1','test_exit_code':r.returncode,
+              'profile':'m1-carrier-pass-or-carry-v1','test_exit_code':r.returncode,
               'b0_source_unchanged':True,'source':source_hashes(),
-              'limitations':['Claude behavioral acceptance pending','full T1 ten-case suite not rerun',
-                             'general resource queues and locomotion not integrated',
-                             'catch cognition and regulation excluded','RNG signatures cover discoverable direct generator attributes',
+              'limitations':['Independent G1 review pending','full T1 ten-case suite not rerun',
+                             'general resource queues not integrated',
+                             'receiver catch cognition and regulation excluded','RNG signatures cover discoverable direct generator attributes',
                              'field option evaluator is a limited provisional B1 policy'],
               'command':'python3 -m b1.evidence'}
     (OUT/'manifest.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')

@@ -1,43 +1,40 @@
-# HP-001 B1 M1 candidate
+# HP-002 B1 M1 candidate
 
-M0 contract freeze is recorded in `M0_CLOSURE.md` and its hash manifest.
-Implementation lives only in this package; it does not modify the accepted B0
-source snapshot or T1–T5 evidence.
+M0 remains frozen at B0 commit
+`2abe497ca82588cb2d8c871a7aab61daaae95c12`. The B1 implementation is isolated
+to this package and does not modify the accepted physical kernel or T1–T5
+evidence.
 
-This candidate runs one athlete through actual PRISM sensing from active physical
-bodies, individual beliefs, pass/retain/no-action evaluation, explicit
-continuation of a pending action, motor preparation, authoritative pass
-release/flight/contact, and bounded own-action feedback.
-PRISM sensing and rating mappings are reused; the field decision evaluator is a
-new, limited B1 policy. No claim of full M1 acceptance is made.
+G1 implements the governed `m1-carrier-pass-or-carry-v1` scenario:
+
+- A0 senses through PRISM, chooses pass or carry, and owns only its belief.
+- B0 has an independent PRISM view and pursues/intercepts from its own belief.
+- A1 is a real, stationary physical receiver with no cognition or assigned route.
+- Pass release, locomotion, contact, catch, interception, loose-ball, and
+  grounding outcomes come from the accepted Pocket C3/C1 kernel.
+- Legacy match tactics, route assignment, formation anchors, receiver scripts,
+  and scripted defender failure are trapped or bypassed.
 
 ## Reproduction
 
 ```bash
 python3 -m b1.m0_manifest
-python3 -m unittest b1.test_m1 -v
+python3 -m unittest b1.test_m1 b1.test_g1 -v
+python3 -m b1.g1 --seed 1 --condition C0_uniform --out /tmp/g1-seed-1.json
+python3 -m b1.g1 --matrix 100 --out /tmp/g1-matrix.json
 python3 -m b1.evidence
-python3 -m b1.run --case pass --seed 1 --out b1/evidence/pass.json
 ```
 
-Run these commands from the repository root at the pinned baseline or the B1
-branch. Each physical runtime must be initialized in its own process because
-the historical loader installs runtime classes. The runner avoids the match-step
-loop and traps known legacy decision and target methods. Physical kernel release,
-ball flight, and contact behavior are invoked directly. A1 and B0 are real
-active engine bodies configured at scenario start; they do not decide or receive
-B1-generated movement commands.
+The stored 400-episode matrix is
+`b1/evidence/HP-002_G1_100_SEED_MATRIX.json`. It passed BA-M1-1 through
+BA-M1-6 with matrix hash
+`bd3237e392ede5d7e861dd5486b7879667896bc4affebc1e8d711a198f82e452`.
 
-## Evidence boundary
+## Scope boundary
 
-Tests cover immutability, observation-sensitive choices, stale beliefs,
-physical-state projection, a two-runtime hidden-state isolation probe, cadence
-stepping and feedback-dependent decisions,
-target fidelity, command replay without cognition, interruption, deterministic
-single-resource arbitration, repeated hashes, telemetry-off neutrality, and
-B0 file hash preservation. Full multi-athlete cognition, locomotion, general
-queues, final causal schema, and full T1 rerun remain outstanding.
-
-The accepted T3 and T5 verification scripts in the original evidence workspace
-check their stored packets; they are not vendored into this source branch and do
-not rerun historical simulation cases. No full match throughput is claimed.
+G1 proves the required carrier/receiver/defender episode, not a full team or
+regulation match. A1 has no catch intent; the physical catch model acts on the
+stationary receiver. General resource queues, multi-teammate tactics, Keepers,
+Archers, formations, and the final cross-language causal schema remain outside
+this slice. The field option and pursuit rules are provisional B1 policy;
+physical ratings and constants are unchanged.
