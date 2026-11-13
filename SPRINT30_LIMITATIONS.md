@@ -12,7 +12,9 @@ Experimental evidence only. **Nothing here is ACCEPTED; no milestone is declared
 | `cognition.archer` | PRIMITIVE+PROVISIONAL (R-RS, ARC-1): targets only the believed opposing carrier, never a Keeper; fixed 2.5 s self-imposed interval. | Archer behaviour is not evidence for the open Archer foul mapping (SELF-1) or the 1.0.2 target policy; 0 freezes were observed in the seed-1 match. |
 | `cognition.keeper` | PRIMITIVE+PROVISIONAL (U-1..U-4): line positioning and a save intent from perceived ball velocity; Keeper-zone canon unresolved. | Only 1 save intent in the seed-1 match: Keepers almost never react in time; Keeper-zone behaviour is not canon. |
 | `sensor.ball_as_body` | PRIMITIVE: the ball is fed to the B0 PRISM perception model as one more body (same FOV, latency and noise as an athlete). | Ball visibility/noise is not a calibrated ball-perception model; airborne balls are treated as near-ground bodies. |
-| `sensor.public_signals` | PRIMITIVE: phase, clocks, score, restart spot/team/taker delivered instantly as public officiating signals. | Assumes every athlete hears/sees every signal instantly, including possession clock and restart taker designation. |
+| `sensor.public_signals` | PRIMITIVE: phase, clocks, score, restart spot/team/taker are public officiating signals, delivered exact (no noise) after the athlete own perception latency. | Assumes every athlete hears/sees every signal instantly, including possession clock and restart taker designation. |
+| `sensor.proprioception` | PRIMITIVE: own position, posture, ball-in-hand and quiver count are exact (no noise), delivered after the athlete own perception latency. | Athletes never mis-sense their own body or possession; a delayed ball-in-hand sense causes some `rejected:infeasible` pass/shot intents. |
+| `procedure.archer_platform` | PRIMITIVE: Archer movement along the platform is the B0 engine procedure `update_archers` (follows the true ball). | Archer positioning is not athlete-owned and uses true ball position at the physics level. |
 | `sensor.gaze` | PRIMITIVE: gaze focus is the athlete own believed ball position; with no belief the body facing is used. | No scanning policy; athletes who lose the ball rely on memory ("search"). |
 | `motor.pass_release` | PRIMITIVE: release-time aim uses the B0 plan_pass on the intended receiver true kinematics (receiver cannot be replaced: pass_ranked is empty). | Pass accuracy does not degrade with the passer belief error about the receiver; only the choice of receiver is belief-driven. |
 | `motor.shot` | PRIMITIVE: shot aimed at the intent aim point with the B0 release-state / perturbation physics. | Shot placement choice is one of two fixed corners. |
@@ -35,8 +37,11 @@ Experimental evidence only. **Nothing here is ACCEPTED; no milestone is declared
 - `b1/preservation.py` inventory guard fails on a clean checkout: 23 of 235 inventory entries were never committed to git (pre-existing at `8d98234`). 212 present files are byte-identical and `git diff 2abe497` shows no B0 file changed (tested separately).
 - Spec deviation BR-3: `decide(view, belief)` takes two arguments (inherited from M1), not a single AthleteView.
 - Spec deviation BA-7: slot-grid home positions.
-- Public `Signals` include `possession_ms` and restart taker designation delivered without latency.
-- `view.holds_ball`, own x/y, posture and quiver count are exact proprioception (no noise).
+- Public `Signals` (phase, clocks, score, restart spot/team/taker) are exact, delayed only by the athlete perception latency.
+- `view.holds_ball`, own x/y, posture and quiver count are exact proprioception (no noise), delayed by perception latency.
+- Ingress rejections (`infeasible`, `unknown_target`, `resource_busy`) are fed back to the acting athlete as own-action feedback; they are derived from true state.
+- A Keeper already launched into a dive completes it regardless of its current intent (physical commitment); the save plan itself is the B0 C4c kernel reading the true flight.
+- The independent review (`b1/evidence_sprint30/INDEPENDENT_REVIEW.md`) rated most OWN/BR tests WEAK at the time it ran; OWN-1/2, OWN-5 and OWN-7 tests and the view construction were tightened afterwards and have NOT been re-reviewed.
 - The engine `targets_dead`, substitution, C3 contact and C4c save kernels still act on true state at the physics level (labeled above).
 - Motor pass release aims with true receiver kinematics.
 - Action-resource model (O4) is reduced to three resources (ball, bow, locomotion), one pending command per athlete, no queued bundles; causal IDs (O5) are string-prefixed chains observation -> decision -> intent -> command, outcomes reference command ids.

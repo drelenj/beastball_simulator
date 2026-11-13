@@ -180,29 +180,41 @@ class EngineIntegration(unittest.TestCase):
             p.minor_count, p.immune_until = 3, now + 5000
         a.capture(now)
         b.capture(now)
-        # (2) true positions and velocities poisoned AFTER capture with the delivered view fixed
-        for p in b.m.s.players.values():
-            if p.role == 'field':
-                p.vx, p.vy = 20., -20.
-        bb = b.m.s.ball
-        bb.vx, bb.vy = bb.vx + 30., bb.vy - 30.
+        # (2) AFTER capture, with the delivered view fixed, poison every piece of live true
+        # state: all bodies (including the deciding athlete and the carrier), the ball and
+        # its carrier, phase, clocks, score, restart, quivers.
+        s = b.m.s
+        for p in s.players.values():
+            p.x, p.y, p.vx, p.vy, p.posture = 100. - p.x, 100. - p.y, 20., -20., 'grounded'
+        s.ball.x, s.ball.y, s.ball.vx, s.ball.vy = 3., 97., 30., -30.
+        s.ball.carrier = 'B7' if s.ball.carrier != 'B7' else 'A3'
+        s.phase = b.types.Phase.DEAD if s.phase != b.types.Phase.DEAD else b.types.Phase.LIVE
+        s.possession_ms, s.game_ms, s.score = 1, 1, {'A': 99, 'B': 98}
+        s.restart = b.types.Restart('B', 5., 5., 'poison', taker='B3')
+        for q in s.quivers.values():
+            q.loaded, q.last_release = 0, now
         n = 0
         for pid in a.active_ids():
-            if b.m.s.ball.carrier == pid:
-                continue
             va, ba = a.deliver(pid, now)
-            for p in b.m.s.players.values():        # poison everyone but the deciding athlete itself
-                if p.id != pid and p.role == 'field':
-                    p.x, p.y = 100. - p.x, 100. - p.y
             vb, bel_b = b.deliver(pid, now)
-            for p in b.m.s.players.values():
-                if p.id != pid and p.role == 'field':
-                    p.x, p.y = 100. - p.x, 100. - p.y
             self.assertEqual(va, vb, pid)
             self.assertEqual(ba, bel_b, pid)
             self.assertEqual(J(C.decide(va, ba)), J(C.decide(vb, bel_b)))
             n += 1
+        self.assertEqual(n, len(a.active_ids()))
         self.assertGreaterEqual(n, 20)
+
+    def test_public_signal_change_reaches_view_only_after_latency(self):
+        a, b = self._twin_ports()
+        now = a.m.s.now
+        b.m.s.possession_ms = 1234
+        diff = 0
+        for k in range(0, 10):
+            a.capture(now + 100 * k)
+            b.capture(now + 100 * k)
+        for pid in a.active_ids():
+            diff += a.deliver(pid, now + 900)[0].signals != b.deliver(pid, now + 900)[0].signals
+        self.assertEqual(diff, len(a.active_ids()))
 
     def test_sensor_is_sensitive_observed_world_change_changes_view(self):
         """Counterpart that proves the perturbation test can fail."""
@@ -249,22 +261,27 @@ class EngineIntegration(unittest.TestCase):
         self.assertEqual(J(d['out']), J([[s['decision'], s['intent']] for s in samples]))
 
     def test_OWN5_motor_never_changes_kind_target_or_receiver(self):
-        r, port = self.match, self.port
-        chains = r['trace']['action_chains']
-        want = {(c['decision_id'].split('/')[2], c['target']) for c in chains if c['kind'] in ('pass', 'restart_pass')}
-        shooters = {c['decision_id'].split('/')[2] for c in chains if c['kind'] == 'shoot'}
-        archers = {(c['decision_id'].split('/')[2], c['target']) for c in chains if c['kind'] == 'draw_release'}
         seen = 0
-        for rec in port.m.e.log:
-            d = rec['data']
-            if rec['event'] == 'pass_plan':
-                self.assertIn((d['player'], d['target']), want)
-                seen += 1
-            if rec['event'] == 'release' and d.get('kind') == 'shot':
-                self.assertIn(d['player'], shooters)
-            if rec['event'] == 'arrow_draw':
-                self.assertIn((d['player'], d['target']), archers)
-        self.assertGreater(seen, 0)
+        runs = [(self.match, self.port)] + [self.run_match(sd, 'g1', 9000) for sd in (1, 2, 3)]
+        for r, port in runs:
+            chains = r['trace']['action_chains']
+            want = {(c['decision_id'].split('/')[2], c['target']) for c in chains if c['kind'] in ('pass', 'restart_pass')}
+            shooters = {c['decision_id'].split('/')[2] for c in chains if c['kind'] == 'shoot'}
+            archers = {(c['decision_id'].split('/')[2], c['target']) for c in chains if c['kind'] == 'draw_release'}
+            plans = 0
+            for rec in port.m.e.log:
+                d = rec['data']
+                if rec['event'] == 'pass_plan':
+                    self.assertIn((d['player'], d['target']), want)
+                    plans += 1
+                if rec['event'] == 'release' and d.get('kind') == 'shot':
+                    self.assertIn(d['player'], shooters)
+                if rec['event'] == 'arrow_draw':
+                    self.assertIn((d['player'], d['target']), archers)
+            # every engine pass release was checked per command at release time (raises on mismatch)
+            self.assertEqual(r['own5_pass_releases_checked'], plans)
+            seen += plans
+        self.assertGreaterEqual(seen, 3)
 
     def test_OWN6_no_decision_before_delivery_and_no_future_data(self):
         self.assertGreater(len(self.views), 1000)
@@ -279,14 +296,20 @@ class EngineIntegration(unittest.TestCase):
         s = port.m.s
         now = s.now
         d = s.players['B0']
+        for k in range(0, 6):
+            port.capture(now + 100 * k)
+        t0 = now + 500
+        before = next((t for t in port.deliver('A0', t0)[1].tracks if t.entity == 'B0'), None)
+        self.assertIsNotNone(before)             # non-vacuous: A0 was tracking B0
         d.x, d.y = 12., 50.                      # teleported far behind A0 (faces +x at x~40)
         for k in range(1, 9):
-            port.capture(now + 100 * k)
-        view, belief = port.deliver('A0', now + 800)
+            port.capture(t0 + 100 * k)
+        view, belief = port.deliver('A0', t0 + 800)
         tr = next((t for t in belief.tracks if t.entity == 'B0'), None)
-        if tr is not None:
-            self.assertGreater(math.hypot(tr.x - d.x, tr.y - d.y), 5.)
-            self.assertLess(tr.captured_ms, now + 100)
+        self.assertIsNotNone(tr)                 # remembered, not deleted
+        self.assertGreater(math.hypot(tr.x - d.x, tr.y - d.y), 5.)       # did not jump to the truth
+        self.assertLessEqual(tr.captured_ms, t0)                         # no observation after it left view
+        self.assertLess(math.hypot(tr.x - before.x, tr.y - before.y), 8.)
 
     def test_BR7_legacy_tactical_controller_is_trapped_and_run_completes(self):
         m = self.port.m

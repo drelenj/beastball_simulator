@@ -49,6 +49,7 @@ class MatchPort:
         self.outcomes, self.feedback, self.flight, self.n_out = [], {}, None, 0
         self.sensors, self.gaze, self.last_ball, self.public = {}, {}, {}, {}
         self.log_seen, self.hook_calls = 0, Counter()
+        self.snaps, self.own5_checked = [], 0
         self._orig_keepers = type(m).c4c_keepers
         self._orig_ready = m.e.ready
         # ---- B1 hooks: instance attributes shadow every legacy tactical entry point
@@ -116,6 +117,14 @@ class MatchPort:
         for p in s.players.values():
             self.public[p.id] = (p.team, p.role)
         ball = {'id': BALL, 'x': b.x, 'y': b.y, 'z': max(0., b.z - .1), 'h': .22, 'r': .11, 'vx': b.vx, 'vy': b.vy}
+        r = s.restart
+        self.snaps.append((now_ms, {
+            'carrier': b.carrier, 'phase': s.phase.value, 'period': s.period, 'game_ms': int(s.game_ms),
+            'possession_ms': int(s.possession_ms), 'score': dict(s.score),
+            'restart': (r.team, round(r.x, 2), round(r.y, 2), r.taker or getattr(self.m, 'restart_taker', None)) if r else None,
+            'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture) for p in s.players.values() if p.active},
+            'quiver': {t: (q.loaded, q.last_release) for t, q in s.quivers.items()}}))
+        del self.snaps[:-40]
         for pid in self.active_ids():
             a = s.players[pid]
             eye = (a.x, a.y, a.z + .72 * a.a.height)
@@ -144,20 +153,25 @@ class MatchPort:
         if bt is not None and (pid not in self.last_ball or bt.captured_ms >= self.last_ball[pid][2]):
             self.last_ball[pid] = (bt.x, bt.y, bt.captured_ms)
         a = s.players[pid]
-        r = s.restart
-        taker = bool(r and (r.taker == pid or getattr(m, 'restart_taker', None) == pid))
-        sig = Signals(s.phase.value, s.period, int(s.game_ms), int(s.possession_ms),
-                      s.score[a.team], s.score[s.other(a.team)],
-                      r.team if r else None, (round(r.x, 2), round(r.y, 2)) if r else None, taker)
+        # Self and public signals come from the capture snapshot delayed by this
+        # athlete's own perception latency: nothing is read from live state here
+        # except static identity (team, role, slot, attack direction).
+        due = now_ms - int(round(pr.latency_s * 1000))
+        snap = next((sn for ms, sn in reversed(self.snaps) if ms <= due), self.snaps[0][1])
+        r = snap['restart']
+        me = snap['self'].get(pid) or (round(float(a.x), 3), round(float(a.y), 3), a.posture)
+        other = 'B' if a.team == 'A' else 'A'
+        sig = Signals(snap['phase'], snap['period'], snap['game_ms'], snap['possession_ms'],
+                      snap['score'][a.team], snap['score'][other],
+                      r[0] if r else None, (r[1], r[2]) if r else None, bool(r and r[3] == pid))
         pend = self.pending.get(pid)
-        q = s.quivers[a.team] if a.role == 'archer' else None
+        q = snap['quiver'][a.team] if a.role == 'archer' else None
         oid = f's30/{now_ms:010d}/{pid}/obs'
-        view = AthleteView(oid, pid, a.team, a.role, a.slot, now_ms, round(float(a.x), 3), round(float(a.y), 3),
-                           s.ball.carrier == pid, int(s.attack_sign(a.team)), float(s.ends[a.team]),
+        view = AthleteView(oid, pid, a.team, a.role, a.slot, now_ms, me[0], me[1],
+                           snap['carrier'] == pid, int(s.attack_sign(a.team)), float(s.ends[a.team]),
                            tracks, sig, pend['cmd'].command_id if pend else None,
                            pend['cmd'].intent.kind if pend else None, pend.get('due') if pend else None,
-                           q.loaded if q else None,
-                           (q.last_release if q and q.last_release > 0 else None), a.posture)
+                           q[0] if q else None, (q[1] if q and q[1] > 0 else None), me[2])
         fb = tuple(self.feedback.get(pid, ()))
         self.feedback[pid] = []
         belief = BeliefState(oid + '/belief', oid, tracks, fb, int(round(pr.P['memory_s'] * 1000)),
@@ -280,8 +294,14 @@ class MatchPort:
                 q = s.players[intent.target]
                 ok = False
                 if m.e.eligible(q):
+                    n0 = len(m.e.log)
                     m.make_pass(p, q, 'pass', True)
                     ok = s.ball.carrier != p.id
+                    for rec in m.e.log[n0:]:      # OWN-5: fail loudly if the engine changed the receiver
+                        if rec['event'] == 'pass_plan':
+                            if rec['data']['player'] != p.id or rec['data']['target'] != intent.target:
+                                raise RuntimeError('OWN-5 violation: motor changed pass receiver')
+                            self.own5_checked += 1
             self._resolve(p.id, 'released' if ok else 'release_failed')
             if ok:
                 self.flight = {'command': pend['cmd'], 'kind': intent.kind, 'passer': p.id,
@@ -510,7 +530,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
         'decisions_total': n_dec, 'decisions_by_athlete': dict(sorted(counts.items())),
         'decisions_by_role': dict(sorted(by_role.items())), 'decisions_by_kind': dict(sorted(by_kind.items())),
         'admissions': dict(sorted(admissions.items())), 'outcomes_by_status': dict(sorted(out_kinds.items())),
-        'engine_events': dict(sorted(events.items())), 'hook_calls': dict(port.hook_calls),
+        'engine_events': dict(sorted(events.items())), 'hook_calls': dict(port.hook_calls), 'own5_pass_releases_checked': port.own5_checked,
         'trace_hash': h.hexdigest(), 'state_hash': digest(state),
         'final_state': state,
     }
