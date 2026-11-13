@@ -1,0 +1,3673 @@
+{
+  "acceptance": {
+    "BA-M1-1_required_outcomes_present": true,
+    "BA-M1-2_all_failures_traceable": true,
+    "BA-M1-3_condition_mixes_differ": true,
+    "BA-M1-4_no_formation_or_role_assignment": true,
+    "BA-M1-5_determinism": true,
+    "BA-M1-6_performance_reported": true
+  },
+  "conditions": {
+    "C0_uniform": {
+      "failure_causes": {
+        "physical_contest": 25
+      },
+      "outcomes": {
+        "pass_completed": 75,
+        "pass_incomplete_ball_loose": 25
+      },
+      "unknown_failure_causes": 0
+    },
+    "C1_sharp_defender": {
+      "failure_causes": {
+        "latency": 1,
+        "physical_contest": 24
+      },
+      "outcomes": {
+        "pass_completed": 75,
+        "pass_incomplete_ball_loose": 25
+      },
+      "unknown_failure_causes": 0
+    },
+    "C2_limited_carrier_vision": {
+      "failure_causes": {
+        "physical_contest": 26
+      },
+      "outcomes": {
+        "pass_completed": 74,
+        "pass_incomplete_ball_loose": 26
+      },
+      "unknown_failure_causes": 0
+    },
+    "C3_close_defender": {
+      "failure_causes": {
+        "belief_error": 2,
+        "latency": 86,
+        "physical_contest": 5
+      },
+      "outcomes": {
+        "carrier_grounded": 3,
+        "carrier_reaches_x_90": 7,
+        "pass_incomplete_ball_loose": 89,
+        "pass_intercepted": 1
+      },
+      "unknown_failure_causes": 0
+    }
+  },
+  "determinism_replay": {
+    "C0_uniform": true,
+    "C1_sharp_defender": true,
+    "C2_limited_carrier_vision": true,
+    "C3_close_defender": true
+  },
+  "episodes": [
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "015222d0af8df2bc7561b00b225a6fc3b6597573af402e304ce9b3e3b4f77ac3",
+      "failure_cause": null,
+      "seed": 1,
+      "state_hash": "21fb640e02594941210e0f05440e5be99f6736993221ecc665e9ccf3f977dca1"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9129f32fe988ff0c4ca2b0c258bc6bb8ef44b1fef33c01de4efecf6320ddd8e4",
+      "failure_cause": "physical_contest",
+      "seed": 2,
+      "state_hash": "3cc1bcde1114063f2298fcf1d90d57ee70e1d47fc8683141166b45da7768dc4e"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "affb9f59d17ca5ff7374a8a0a19bf10ab1a23ef89501ea29ef979c8bedcb1a08",
+      "failure_cause": null,
+      "seed": 3,
+      "state_hash": "28aad2a871f4df1cd312b1e827072ce5fed2660ea29771655a53e72b68b56754"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "2362d941f99f73d55fe657b9a1834ed51018f33ceb15f74ba5b422dd0e82941d",
+      "failure_cause": null,
+      "seed": 4,
+      "state_hash": "db56c1bf911d460b0d70008e84be938aa55cf5a354d9bcb36d8486a52441bb96"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "224b011c5d1352b299ddf9906dd222d8d253960b9d62b20b8f5b1c32f389d177",
+      "failure_cause": null,
+      "seed": 5,
+      "state_hash": "7f625cf5ff195a2fdeff0e3f860ecdc3c0e1ac105403cd1efdd2dbcfa424ba07"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e08b5b199968848c9b82f73e2f6f04f1b95c5fe42303f21b69ee9fb6872dfd37",
+      "failure_cause": "physical_contest",
+      "seed": 6,
+      "state_hash": "e4f6d8e8ccc8c13d886fbbcf94b92361475a67cc45bafd4a2101857f1feb1ec7"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "565055640c74ca56ab60ce6cea31b0bfaaa461a2a6baa9b122182d716ed286c1",
+      "failure_cause": null,
+      "seed": 7,
+      "state_hash": "f7b4f28e3eb5f27108d52455ba0bc98018ee4e3851435e34cdf94fb8b1d76b09"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "3634b1850a0dbfc71ac77924de878652f3a3aa69452ab045c1cec72db5d372dd",
+      "failure_cause": "physical_contest",
+      "seed": 8,
+      "state_hash": "525a5de2bf3e449e89a9f5936d210de93f576c8b17fbe2e99aa65de2f1672795"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "c83a1a51f4ca018300f2e54bca702373bb25015a89c236a291ef11e8ffbc0811",
+      "failure_cause": null,
+      "seed": 9,
+      "state_hash": "5454b8e7d51b711f099d5babbc6fb70e9c39e76a7a0accfa667b55f4273f46bf"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "b87c2b2214189c345c834925569fa50b7807da7bedcd93be0d0fd8f93d9d810b",
+      "failure_cause": null,
+      "seed": 10,
+      "state_hash": "a12fae151661096329a9a2fd01cb54d10677c61095f94a6fb706df113d10a225"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "08afb116fb17155f03a447d8197fba088d1de52a6eeb88b91655e5d14d22d3d3",
+      "failure_cause": "physical_contest",
+      "seed": 11,
+      "state_hash": "7b59e9335298d593a8a7d2f36d75a5b63031ab3f6b07b175fe8ac4b877984579"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "58dfb3dccecaf801e2f0fa3e47cf52b0ac706fbd38bc0b12af402299cbea04a2",
+      "failure_cause": null,
+      "seed": 12,
+      "state_hash": "7fc75b2966a2e9acdc41caa02966626d74fc9396f047e1fb8b76ce21982edade"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "b22af5b18f36a7ec0c151226a7e4e81c702b183e51ab9d237a860494fff3995c",
+      "failure_cause": null,
+      "seed": 13,
+      "state_hash": "0c61bebe9aee87d2e267ce3b8316dd5886fb320947a7e2d10d337ccf8a259d5a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "0c31ea6567cfaf3e5417d9c2c51d297c1df609b497843583d511e8ccbffa5bd4",
+      "failure_cause": null,
+      "seed": 14,
+      "state_hash": "946ca5a54040e80b1010db9f8122722889fb467f2c6ed3d694f6e9fd12646e43"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "3708d1969c3a354a34824a368edfa86aaebedd9c436de86a874b6a9f0047a34c",
+      "failure_cause": null,
+      "seed": 15,
+      "state_hash": "c1c865a45b6a36c4622687b14bd1da7f4134942034ad68fb2d7eaee1e218b422"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "331b05d500cd1e5142d8c291d541dd243f30aa738a693640df1b0c2f3ea90ffb",
+      "failure_cause": null,
+      "seed": 16,
+      "state_hash": "41dc0fee1053db0410a7c8429e88df39792668326acf401985690214e6d4d0df"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a5becda52c47f24667975ff0ecfe198ea2adb2fe9fe502d38b883f68e122f413",
+      "failure_cause": "physical_contest",
+      "seed": 17,
+      "state_hash": "853f6e96ef06a695e61fd2c77390fc535a3017d5f705ffd8153f3e762178d479"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "27f70e910c315ad3a5f677afc9bf632c16ca7eb97a0926c8a5f97c33073ace38",
+      "failure_cause": null,
+      "seed": 18,
+      "state_hash": "ed77009a1d73b8cdf1f35c6133cba335369f449ceceff4d68dc3d03061f3a6ef"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a27bf6890c5be87e0ab4329b7b8c77774a19f5541f6dd94d0cdf62985e13c5e1",
+      "failure_cause": "physical_contest",
+      "seed": 19,
+      "state_hash": "c850515ea17cf712eb0cafa013a4e8a8b17323de10cb4132e88262a4a0879e13"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "e37839b3f004ec0e302aca453ac4a5d8234f1a9cd8f3f1c475d4670ed72143ed",
+      "failure_cause": null,
+      "seed": 20,
+      "state_hash": "7f171ac28debf6b7e2b879445c62b4da9542f71192a5a7b8535f2ac18ff637fb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9b2cef125dec941944343683590f401766394491d9dacc1b286e6afce27f9714",
+      "failure_cause": null,
+      "seed": 21,
+      "state_hash": "5c3da74897433a147fc0d8789027fad75862807d7bb022d9b08aed94c018d4f5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "ad58e7a57b862a5d32281a2612b70d6def427ccaa6de35a0d6fcf68e29d00c7e",
+      "failure_cause": null,
+      "seed": 22,
+      "state_hash": "82dca42911e3a0678f680576e85bf8ebdefd721bf418d62228bfbb4d22626d1d"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "389ae8a0f21cb41efcdf4ba674b40581bd73b83f98b9428871aa38dd8ed6fd55",
+      "failure_cause": null,
+      "seed": 23,
+      "state_hash": "f540218382efd6d48386fe631d826ff3c2c67ed7d4bac37d6b7a283e624a5735"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "8078be5fa368acd37f08989032837b7c1c55a729f91922a8966b94242fac209e",
+      "failure_cause": null,
+      "seed": 24,
+      "state_hash": "a9334219305b0ea101830ca03c456f3dff8d23ef1c36a00ebdccf646355b3a08"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "d1a7614dfea3e86021239662a5d37bb8c0a6fea19bcffac2eab6eb5cc5622b70",
+      "failure_cause": null,
+      "seed": 25,
+      "state_hash": "c97ffa2ac72faedd8286f0dd6c224d9422bd31a9e658304ef6f95056226f6b9c"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "748264c627d268d5a8a7de223b9b7e36a1d087c01ace164ecf8e15c736b31afa",
+      "failure_cause": "physical_contest",
+      "seed": 26,
+      "state_hash": "06e4357ffd72da5e2a5ec43b2a6d9e6174ad234d69f6cdafbd284c115fe091dd"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9c3e22f9a1b183006e9195fa343b54996c0699f7e7fe19ad7ff342be84ca0fa0",
+      "failure_cause": null,
+      "seed": 27,
+      "state_hash": "5deac43822e933d06b01346e27fda22d061b05c43ef02ba06579aa91f151c0ec"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "60884c1bf36e80754ad6a325b347f80958d575aeaa5990e06505d2539b35eee6",
+      "failure_cause": "physical_contest",
+      "seed": 28,
+      "state_hash": "678fda11445a5c0388c28972144b390ad1300ea3961500ee24f40055dd4c3a92"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "99da9dc313453c40c7c450df7125538499febf1094eb8df3e4aa6cda02289333",
+      "failure_cause": null,
+      "seed": 29,
+      "state_hash": "7621863453fa200814ab43f164e3093b400a37a6941b3048c4b7e830ecf9bf91"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "38dbeb6ef71d996c7931acb0ac48710c93dfe0cc302defe45087ca8e9566f21e",
+      "failure_cause": "physical_contest",
+      "seed": 30,
+      "state_hash": "3f8d784beea9c9fb716b12d6479d4859c750dbefcf1f40b87a19eb65df6a9fd2"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "d79d502de4205bff7d6555a9d3956f8612193c88f84ab99100fa8885dd0da46e",
+      "failure_cause": null,
+      "seed": 31,
+      "state_hash": "e783eaabc50f7509d7c135021fc4bec4ac2c7c38e57154eab464782561d6b6bb"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "037cf21a6ef8ffc652a9f1d9161debe7842495b44da5ce922fd7cc16bdeb63fa",
+      "failure_cause": "physical_contest",
+      "seed": 32,
+      "state_hash": "7a353857ef355dde80ce2f0eed38f458a49e75d69fd23c5cc19f9720061e7cc8"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "91070771ade90c1d01fcb0d03f2e131203d4ff18786026dcea821b1aeee80810",
+      "failure_cause": "physical_contest",
+      "seed": 33,
+      "state_hash": "a3468440f29eb81811a6af3b64f4fa3912d398b5437f872d34652ab5ff9f08a4"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "189175ce36ca645f19bf813a463b568f9d95b48ba8f47023fc2b1a0d989c041b",
+      "failure_cause": "physical_contest",
+      "seed": 34,
+      "state_hash": "d06c7b8da259a978771b05ea65ea8ff32a9b227189c331bb24e008f4be6d880b"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "b376672764699e797d38cf4710534d3dc10fe5a980242a5c887c3ff990127c35",
+      "failure_cause": null,
+      "seed": 35,
+      "state_hash": "201940e7854b41d2b945f25abd88705f752fe862ca7d0cc56d60d63a403bdce1"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "fab238487c112b3222eb97d17ed7f6352eb91b457dd8975c66d595aed5d6e455",
+      "failure_cause": null,
+      "seed": 36,
+      "state_hash": "3fecbad191e3be9ea07fb8f13d9837e2800ec2b235a50bd8a874292a7ee8a8df"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9cc36042ff11897bd80087fa610c7a02fd1ecdf1375204f329800952d03048a6",
+      "failure_cause": null,
+      "seed": 37,
+      "state_hash": "10cadca119eb683f7268099b8cda72be3643ca5060adccae153d788481e9cb30"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "b90b68ba02df1bd7422eef79ccae05d5e1fc45f4a0f573d01944e5dec96ee6c8",
+      "failure_cause": null,
+      "seed": 38,
+      "state_hash": "38c28449d825f992e16c8100bb45b70abb9e23825134c6fadc1dca872a8628bc"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "fa892c65032a81d053152685fd83e83db072be0e918f4fcad686139af0fadc12",
+      "failure_cause": "physical_contest",
+      "seed": 39,
+      "state_hash": "d5e0008be80ff5b1ad9e39a0908c10feadb459e7d305417f092ac6a7433f6c6a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "88c5d11ccbf76375a2e4c6d95b10952d629dabdd09f61e8d4c627f5ad82049c6",
+      "failure_cause": null,
+      "seed": 40,
+      "state_hash": "01ca28988afc501b837fd414119c3f19fc32aab7727716eb9c06d942d5089457"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "ec614f37224e4dbd7fa82c9141572f9c23628b55530919312e47e593e012db2f",
+      "failure_cause": null,
+      "seed": 41,
+      "state_hash": "8ac097771db7aea8f125ac1a883f138d2e90c9f27bc134d8da05f3b843afefa3"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "a36dca1786e84e28a71e636f22b462b529ba36907e84bf52907ac825be1e3953",
+      "failure_cause": null,
+      "seed": 42,
+      "state_hash": "0722afb59ee940438bf0d32102e897e380ff740d647bce5cc0b285ee512117be"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "40b15b3ae55736815f772463271c37ef14776e33235646836a0426e0d29d20ba",
+      "failure_cause": null,
+      "seed": 43,
+      "state_hash": "6833cc4cefc26f6d15ea62718d59882db0567a8182c5f1da02220d45a9dbb702"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "ce8a3dd3d3534dbc6dcb2f8401939e4e88b23d0f34cfa60c10ec3b785f931421",
+      "failure_cause": null,
+      "seed": 44,
+      "state_hash": "10cb41a278efb7e8d736196aa26f6e569a39624052cb8e854c4fd57ca38ffc09"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e4d9fe0629bdfec42edd25065d501dda47d7e08388168d5c2c9157a30f3587a7",
+      "failure_cause": "physical_contest",
+      "seed": 45,
+      "state_hash": "f02a123fd974d6950dc35e10c1a767997c47a04012cc6a553de374525f284b78"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "94050c3a8f60468d5a08bee78eebf7c511b473204946f5e79a8ddc8a9338f47b",
+      "failure_cause": null,
+      "seed": 46,
+      "state_hash": "574fc51d0cbf58a12c335e72868b4b8b145b81c198892a200928201f37fdc086"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "31d8b564681ebdcdd91f63e301631c82f733c551079d5e68d4f948e3e1062ab1",
+      "failure_cause": "physical_contest",
+      "seed": 47,
+      "state_hash": "340b963439b1587a670ad50bfcd26bf864733bdb60e8e52495c8d74cfe02109f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "a201683ac0032e7213cad40c19d43a1580f5fad327e608bf267b12c39cd0bac8",
+      "failure_cause": null,
+      "seed": 48,
+      "state_hash": "0c9519edb9c955039820458dd4ab7699363609b63be1929bbfb880e1d37c6bf9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "bcc20243ecf98596ff52e89dc3dee611197a1aad818b7c1b9d47a45661e5f38d",
+      "failure_cause": null,
+      "seed": 49,
+      "state_hash": "473010248c99cf506a22e4f78a37a411b34c777d746b47b3bf4c02e422aaf3cc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "a32bd830a61eee0625df9a95a304af359d6bc634a5e1ec7efd20717213b35411",
+      "failure_cause": null,
+      "seed": 50,
+      "state_hash": "36e85a6c9d38d9f29910e4c1cbe713338d901b1737a7041cb05c5fbb1ddc15d1"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "350c6014e8d27d2e715704b5e2c8fa0899ca549971d88202e0c599fde8ba4575",
+      "failure_cause": null,
+      "seed": 51,
+      "state_hash": "ff0c1cc9512217a9fb3e811ab9ad2e08a5964ee0a5ff8f88a09a929af5b1f661"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "eaf1b32073642beaaaff868cbad4dd22215a203f9b71757db2fdfad8a85014d7",
+      "failure_cause": null,
+      "seed": 52,
+      "state_hash": "c4fa029c4ad5fed43b0eca73a3a390efdc44b529669b057f660d5951e4d0b772"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "84f045ccc51d525502c1726cacc58408e1ef18a1f0de011d22859af89c10d8b7",
+      "failure_cause": null,
+      "seed": 53,
+      "state_hash": "8a189180fc17937ad21f90fff5bbe292ef0a4bed63e1785fe8ebd0fe69692c83"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "00ec6a2d5b7cb38eca4204caac7df5da2be21c7f49c5c2a4f6ab9dae8f933de1",
+      "failure_cause": null,
+      "seed": 54,
+      "state_hash": "039d7c0dba4683afbe1457fb92e1553fe2300f9e6a74cbaf691612a9c7c15288"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "94779e351a2202a8db14046bffa48a720a1320ef4aaf3421839238270023e4f0",
+      "failure_cause": null,
+      "seed": 55,
+      "state_hash": "e2814c9217355d03358af81c73d4bd6de36086b9208a17edb32c388cb9c82a22"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "1c4f0f66c91d318ca448ba4e6293e2998c056451bd36be5c3619d2f51b6ad619",
+      "failure_cause": null,
+      "seed": 56,
+      "state_hash": "5f6e4583fd0e7cb0889e281d6533e917588c12be95e7e06fafacc2e83fcfb6a7"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "071783af330001550ed72f42b77da894fd9d9c758304d9d720ef4ed75c078cb3",
+      "failure_cause": null,
+      "seed": 57,
+      "state_hash": "6fb3e8ef79ca9c7626047f3ac3fedc60ee41efbc7c365b80357130602fee9402"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "110be4f7eb3e5f426b228c0e6488775b0b1246ed42e825897165a88ae644bb13",
+      "failure_cause": null,
+      "seed": 58,
+      "state_hash": "45d55b7f5b12f22546e3f0da396fe47b5862941dc40fd47dd4af53f3ac126774"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "544247a8d6c8528d4528878cb3bbb9fe15146b95adede14530a0cc45cf39a0d7",
+      "failure_cause": null,
+      "seed": 59,
+      "state_hash": "dd88063106d135b4576cfb825aedb18c780f3df00f4ef9b74b255900e83ea295"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "4aa46c6e6111b167440a7598d536bab4ed5463246be8ab18980ea53a3f5c6bc0",
+      "failure_cause": null,
+      "seed": 60,
+      "state_hash": "d3d87a3077e4092a7e8daf500448a25f9a555363adc200ba34d1f9211c1f9bcf"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9779e0bd3db4918564896c08e544939c72e7f17012890f7f99f21a583baa7648",
+      "failure_cause": "physical_contest",
+      "seed": 61,
+      "state_hash": "50a1d8b6d5bdeac90f69d78bd0aaced377e283e2bfe6b0d4ba6c36c821113170"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "45b9a0171c98d9e12aba275e6aacc50759027965905b169b7b2c93c7f53ad8a3",
+      "failure_cause": "physical_contest",
+      "seed": 62,
+      "state_hash": "2f3c154ffeb24b3d116654b5176198fa276a9359b40bd7bf869d524a857cb029"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "779eee24f305cf1a322600d836a2d27c377e0c9b14d7b37feb9e52ab0b0d3935",
+      "failure_cause": null,
+      "seed": 63,
+      "state_hash": "4feda82ad01a69b2217461f35b1245d04f725ffa3e7b191fddf51c4c0c710230"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "454536e35fdb5b4978fefb04a9afc4ee4c70ac1738f773a459bfbda323c06dd9",
+      "failure_cause": null,
+      "seed": 64,
+      "state_hash": "dc4084bf1ac445b49b27f97228f4826905ba214181adea933a8cd30d538e5d97"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "204f0494bd629dece4c6bda6f010fd388766c7d3be9090103425a850b81680eb",
+      "failure_cause": null,
+      "seed": 65,
+      "state_hash": "d7690ceec2ee87fff18edd043e117e68ac69ed9fba73910506576a85bdbabe88"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "d6d54aab9e0d690a5805f925ce27478b1e4b5ed80536c3def745321b0db1a1a4",
+      "failure_cause": null,
+      "seed": 66,
+      "state_hash": "bb95f9ec1fb33654e2102224f7addbed9d8290724810ed6a4e0a9c1681ba050a"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "f231bfa4a1609ddb0f684ea55a302ce971d550eca65edbe218a7e258dd1dca82",
+      "failure_cause": "physical_contest",
+      "seed": 67,
+      "state_hash": "18cc0152c9f9b344d4879399b8a7f88822e378746dfce57d26e13eef1c7368df"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "09f8dd7e26e7712dfa181060f93513a69bc4812d13e01c67770bf0bf2937afe0",
+      "failure_cause": null,
+      "seed": 68,
+      "state_hash": "46e3fa58613e617f58c08bb92d6c04f89c59d258490626808628120a6d53cee4"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "17b01f9a9f7a557d0a617784b5baf0acf3eefa91613db3a79ea330c1204fc687",
+      "failure_cause": null,
+      "seed": 69,
+      "state_hash": "98993afd2db74a77f2049281c7aebc4144e617ea2c75c1b36913b05d8fb9f862"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "2a817378a8ef59e08db72ac81fc615bfc3522358742794ddf34d63223ebe37f5",
+      "failure_cause": null,
+      "seed": 70,
+      "state_hash": "93deceecca0aa71959b76344b3f2eb9b03035b5d9815d186847af5d17a000cdb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9aec60a6c4eb580655d918a791fd0d8580ad0fde7cec2da087185a1a80bd9134",
+      "failure_cause": null,
+      "seed": 71,
+      "state_hash": "74962d420de5c3e6b11e180224003f9c4f42dafa37f81313f124b408b0ee1022"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "b0b7289037269453a0d3e4c5748a45f1f2de274a99a616ad08a074f2180bc6b3",
+      "failure_cause": null,
+      "seed": 72,
+      "state_hash": "bfbbd2005c5e6d562b6fd4951d536e8b5da98a92cd1560a8c565c19bd8f4c598"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "494ecc044ec6116ac0ebdf29d8c8786ba8f5779c512ca53f665255b2c437ebd5",
+      "failure_cause": "physical_contest",
+      "seed": 73,
+      "state_hash": "93486069b2ae9c06635c193324654cba5fb7f6ee84120d38acdfa7fe83e4037e"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "09a52f90bb7445ffa280f679cd88e8905b6e2c4531b3f34f88b21881dbef6893",
+      "failure_cause": "physical_contest",
+      "seed": 74,
+      "state_hash": "e14393f9e3c2cf09c975e92d2c968cfa30970c5f0709490b33c6082028cef223"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "521abff945ee773eaf81d86881be45bb3dcf322d959fc0ce66466cf0e70dfe93",
+      "failure_cause": null,
+      "seed": 75,
+      "state_hash": "68ceb3efebf835bb9c63cd6147f65c94caefc9b80560da827ac8c3102a8224ed"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "03d808fb9447c6e0616c41e813cfd9e1070a4423923bc377fb88d8c6a7f271ff",
+      "failure_cause": null,
+      "seed": 76,
+      "state_hash": "96624210ec347656378a04a8455bfdef78298914b309cac12da7e191718c6615"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "90a4d2d239d45c340736518a07981dbd10efa6a419ffe3a4ea15353176b84cb4",
+      "failure_cause": null,
+      "seed": 77,
+      "state_hash": "880aa536e1611ac0715248aaea978998225767ad74630a77ea5c2c6993d8d0b5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "06f9da62b9269fb8b55b8036dd91498f26beec5954c5221ea7ff82c80523c3ca",
+      "failure_cause": null,
+      "seed": 78,
+      "state_hash": "9ddb7b6e1100c6b2605f49966d2e63ad548c1279089220996124be57392e71cf"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "13e8c448c7c147146a17b577dcc8d6b8cf44f526b16f6525afc4031769490cc9",
+      "failure_cause": null,
+      "seed": 79,
+      "state_hash": "17d51973010ba173a37cfd353f9987f2057db87c5023e1c84c3ee76dd23ba1f5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "b38b72ce2d5c349105aaea9b54540a2e824323945dc0f5687913167268f5c618",
+      "failure_cause": null,
+      "seed": 80,
+      "state_hash": "763f372ec2be4101ec831e34b854c666199893c436a92b72e847f399c6493428"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "7d09d2bed342c6e5025f0958848459987c1917e4fb0b5ca66270dc56f254007e",
+      "failure_cause": "physical_contest",
+      "seed": 81,
+      "state_hash": "5f3ace7e523ec2f248fb057d5907b7cbabac5d2fa33cdc75635689c8d9888bee"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "dea010d67c999df68fb9fa050a1130f00ca0727ecb76b12ff2c9931d1b9edf0c",
+      "failure_cause": null,
+      "seed": 82,
+      "state_hash": "870bfe81e30d08d3e78e74e2336b99552476a36517fff75ae16c0bce8f9001a9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "349eddb14793c027835b674d8cbb66b66482e9a7a33fa7e321e14e27ad59bc77",
+      "failure_cause": null,
+      "seed": 83,
+      "state_hash": "6395326efe5aa9096f6a437d0ce46bc61b28cb9ee32aeb68c41a4188dc2d3542"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "ced1cb3954f9bd1173ced25439832771eaa3041dca2223b155835f9b417766fe",
+      "failure_cause": null,
+      "seed": 84,
+      "state_hash": "4b4c1a8407a0a89b6acd5813e37b815d7791ebc7ed3d347f971c22366ef3999f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9847da52ef4f7f78ac266df23258267d684cb16815c2ef712e5406728dfd9f1f",
+      "failure_cause": null,
+      "seed": 85,
+      "state_hash": "0bdc1eae6ce8a0f784744c27e614e5ac14f62d3770c03a1003805cf23e2aa9b5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "76b7d631638acd62381ea8db95fb2baf1db13bf47ef266db80e899da963a53f4",
+      "failure_cause": null,
+      "seed": 86,
+      "state_hash": "9317262e9b5a2530e3f6765c0f334807d58239731c421af1eac7849c68750a88"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9c12fcab2703e4a28d087dae7f64548d5933e5c6ab66c6412ecf73ae97ec3993",
+      "failure_cause": null,
+      "seed": 87,
+      "state_hash": "752dd58f5ac5e2ce1ede97b600dc960aa8903d4a2e1b2b5d5d8165b39e36a714"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "d8f75593c9ebc31cc1c3385fababa4f376c37fefdd6019a165e2fe358b7163f3",
+      "failure_cause": null,
+      "seed": 88,
+      "state_hash": "4182632821f7b9ef9c246c0659ec8b7ac05e891b288d46dd7891ea23538bb95a"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "be72d408b8e21b5251c9cde6354e399ae895f356a9dc6687e9bd4ed47f6fd658",
+      "failure_cause": "physical_contest",
+      "seed": 89,
+      "state_hash": "d053c78829cb5278f3edfd60e06a78ec95716303f076066e6a7b8d2dbdf336a0"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "ffc02cf61798d58923a4acb7cfda7c97134bbdb65dc3dfebf098a382b83c4e8f",
+      "failure_cause": null,
+      "seed": 90,
+      "state_hash": "932ae55b0aca622d9afd77947df36381381bd272cd95a687a1715c8691c070dc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "5e5b08e885c9362107730bf0dae989f3ee54c09ad7e954d05c44800ffa9e2234",
+      "failure_cause": null,
+      "seed": 91,
+      "state_hash": "55a849f325a2814093da768b40f7069a63c1b44f1bffd684e9f3ae4f48a260d9"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "96ddaa47f6228c8ee70541ab418ac32433f348c119a0a157374e9cf9df78df25",
+      "failure_cause": "physical_contest",
+      "seed": 92,
+      "state_hash": "5c43dff3aa23c7532954baf24ba8909edb7a6ad5c59a44369b1542c0f90863bd"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "13167e0a033272bfd8af281fd75750ddf69f6143dd1c267c1ee3a3363bd9844d",
+      "failure_cause": "physical_contest",
+      "seed": 93,
+      "state_hash": "fba3c9e3b999d028f2632d442305bd5d6156f86583a8c6b463e30d113e7384df"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "539b44a0ac0582824782ac21367cab4da28a3b76a6cb2398fbca40b88db094a5",
+      "failure_cause": null,
+      "seed": 94,
+      "state_hash": "3dd22b9b448efba8962fa89a966e4759c8174a6611ecd7751af7072be618f898"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "9013fde37697e9a9c420dd04886b409198728959c7c66e2226153758c74b48fe",
+      "failure_cause": null,
+      "seed": 95,
+      "state_hash": "50ce70be168ac4edb762eaba1baab2ddd671c74bf00d983de88dc9ae7c56dd51"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "f8421a68f72577a0b4ba394e17f14fa3b40b6bdd21b9f9fd0588f6ef425017b0",
+      "failure_cause": null,
+      "seed": 96,
+      "state_hash": "d2b4936ecb05de21f5ca41e53db97ff4e90049fa9ae6951edbfecbb6b741a29f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "2468247fa361ff58c6e95c88a2c714d796f16aec802851e028709e1b1e7f96de",
+      "failure_cause": null,
+      "seed": 97,
+      "state_hash": "74476ce3d8043ee8600f224d34973300a0427c8e6be49f0b47ccdd5b753bc4e0"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C0_uniform",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "f377ce9fc531b4af574736d3e8d46081536ec5588bdd5d5e1021eb526277f114",
+      "failure_cause": "physical_contest",
+      "seed": 98,
+      "state_hash": "1ef48d8a1a5ca60ebb36c62a446630990f2f2d738c9cf1167175961987a788ba"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "86041ed0981c05dd53adba66a195827bf492a18018f25478cb3a2b15fbe7305f",
+      "failure_cause": null,
+      "seed": 99,
+      "state_hash": "a5c11b596bed9911b581da2d9af7ef8e55a85a618f432e16fc533bb00c077671"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C0_uniform",
+      "endpoint": "pass_completed",
+      "execution_hash": "d7c6fc9178ca3f75d298de1c7dd8c20b73664d23c2f4a724640535fd1642b480",
+      "failure_cause": null,
+      "seed": 100,
+      "state_hash": "8f5bf350746991c05daf26ea9a7f983837c944b1f9125c73217770962aa12e80"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "2adeb62fccd2c901536f52ece0d802ed782c7f0fc2a072361596eacb740840c8",
+      "failure_cause": null,
+      "seed": 1,
+      "state_hash": "45678e7f42565cb9285fd5cbc27dd321ff5751dc45317a37b7fc03f60f600e54"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a8f6f77d3622494b0454f600b9d138331dba010ec96992b3506fae640658da42",
+      "failure_cause": "physical_contest",
+      "seed": 2,
+      "state_hash": "e9001c04102cddb5368df694b893cac0eb84d229c764f2c0ad145d41987116b4"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "60bdb9e14acbd9ed5a29ccc40a60816f62e1d8b0240d12d329857a8517f94a81",
+      "failure_cause": null,
+      "seed": 3,
+      "state_hash": "8727e762c85d4b37ca58afe97998f4548f53c479d1b31bdedf68f01d5d205760"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "77ac55c71af4bd10088021457989932a02a6e3e568d006f804dc9351c3ded422",
+      "failure_cause": null,
+      "seed": 4,
+      "state_hash": "df37915df7a2c48d5f61b4ffb339c1c7ea955f07b4891da540dda37670bc1ccc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "128652f6ce2e597a26822d5cfee42c255b56d135a298e3465f757f7f01825a67",
+      "failure_cause": null,
+      "seed": 5,
+      "state_hash": "c67f26538ceec85e5b2c2efa59108fca553036f0cdbfbebb637b672d0ef34e29"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "86f9313db723e7b16ab2610fd53c55c53b24d0ebfc4d09227c143b0d9cc1cefd",
+      "failure_cause": "physical_contest",
+      "seed": 6,
+      "state_hash": "77dd87012895771810eb0596c210fa2b6f8a6eecd2a0ebc0b536786cea7ba8bc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "def6de7c833975ec7d2f66ec35768458711958a0382009ba2d61c942bde5e2cd",
+      "failure_cause": null,
+      "seed": 7,
+      "state_hash": "6e7af23a8c449e6bdd73dda4b64efc803520270e7fe92ab9df1453e2e41a1f99"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "eea6d71be5a1cf6fd8418b5b069bc0d2b27a3a0283b5aab1affafcb669557e22",
+      "failure_cause": "physical_contest",
+      "seed": 8,
+      "state_hash": "bf401617db67274ef8f57b2247f4f92dd06db813481392c9f7b9bd3b2e2ba848"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "a81ea17b8e83a6f3ad29a4832cacfc66f870b1329a3f084e377499d3016f5216",
+      "failure_cause": null,
+      "seed": 9,
+      "state_hash": "47533530ade023fb5c58e8888fa8b411d3c4837f345c4d14059a3673ee5155af"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "02b06c4388c0edbd621f7774273687b98362778159be9185a8c14bc2c929e269",
+      "failure_cause": null,
+      "seed": 10,
+      "state_hash": "839ee8edf16891c1c691dfbadae00d87a4903ebc153469e18ea9004eb4944c7b"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "7996e81c03b261f88a3ed0e0f460a2b4732070b1536043ee77629457b128f982",
+      "failure_cause": "physical_contest",
+      "seed": 11,
+      "state_hash": "87b34c92c58de0e9be8d5254f3d0f6f9cdd38733951ab2d11f84040926320c2d"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "800847ba847f0027b8d079c5627769cff051cd362b53919db4314a748e54df49",
+      "failure_cause": null,
+      "seed": 12,
+      "state_hash": "e5ea6984773ad702a2d96432c038cce3d7c12a56d4091faeffeb325ee94f5090"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "68305dacf30e0b231e20773bd134656116dca89716e716464ab44afe399f27a2",
+      "failure_cause": null,
+      "seed": 13,
+      "state_hash": "6c9663b6b2ce5ff5b56ce4ea492410f69518542cd256698c53e461fa862784f0"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "8e6fbf16ed3196647959c485bb937fd1f196f27cb9882f303c70078ab4025956",
+      "failure_cause": null,
+      "seed": 14,
+      "state_hash": "84f5f0a8cae50ad10c92753455295233ea472987553d5df33be7e988fdba305e"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "ff74c3952943c77055818bbc5cc851db8099c723f27c30283a9740827a2959d1",
+      "failure_cause": null,
+      "seed": 15,
+      "state_hash": "7ad2f41e20678b62c6de10bbf792b3f720f94ae460e79a1957f998b15ebab2e8"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "67c5737670a9662b641dd80202c74d429c8022a6e9bb9ea30bf2abd5de053068",
+      "failure_cause": null,
+      "seed": 16,
+      "state_hash": "b04a2a7b33f1faff18ffb7f108498d66c28dc529d409dab89584554ee0613121"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "7d974f4239dfcbd26b69d544fd35873fd653d0c5d039608841f8fcf448157384",
+      "failure_cause": "physical_contest",
+      "seed": 17,
+      "state_hash": "655c2037615e5e047ee2e0bc330eb6ce33a645846392b10cceff87793fd989dd"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "1e70da0fad4c1cb686317095706a72b2f281c825dc75703c012fed036d37f795",
+      "failure_cause": null,
+      "seed": 18,
+      "state_hash": "db80f1efe7f65b09016d6017e9d3425b0bf417c388bc00cdaefd871a7fdd25b6"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "89ebee71f9f44cc2bd0884d9ddbf0581cf464459eaaa06c2a94242a587f441fe",
+      "failure_cause": "physical_contest",
+      "seed": 19,
+      "state_hash": "22a28ee6cb4e228deab141a3a8ed06bd615bd54ebe47a08ae57a6d63caecc46a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "e768f20c3c7df8dc8fa708f4a2d4f825ed4782dae281c7c344bdc2d379be6ad5",
+      "failure_cause": null,
+      "seed": 20,
+      "state_hash": "43ea7fb69608ed5a6bc906b549eb067cf2c45fe75dcc7b56e7b7bea4b6d705e0"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "d76e5442fcc3b38c06612053f6c9259ac1517a5543dea8c14d708af801e93f48",
+      "failure_cause": null,
+      "seed": 21,
+      "state_hash": "87f3a299568bd10c3fa57473ff09edfc475d5a46e654bb27244dd38e766aa8fb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "9499e2d5028fadf59f5e9662d204ba2485159fca673a232fbfd1e5dbadd45f9c",
+      "failure_cause": null,
+      "seed": 22,
+      "state_hash": "b9f1d95e1f12f5eba7e563fa91c89d426f232ae7c09a03285acc5d0f1efe1ced"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "504ac3b606a15efb1b39ab1d504e6c0f49db3e2b8ba755c82d02bae80aa23561",
+      "failure_cause": null,
+      "seed": 23,
+      "state_hash": "f35d58b472ea14bf63d432e4592669d5d08e91106ee9be4722ef23421de69a42"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "72b82c53eaa837979980f94afca98d99e74f7addcefdcad84b6e6f038559a3db",
+      "failure_cause": null,
+      "seed": 24,
+      "state_hash": "36bc39ee6b1a5e635b36f2c57603acfa240386853781e2aaccb9ac1bff176b74"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "9dc7d5755baf5ed893d7189247e687f124208072617c340652e570369347f241",
+      "failure_cause": null,
+      "seed": 25,
+      "state_hash": "850e65b4763d5171e2c97c5af949e9ca8a691b74f45389845584fbbcc946bb90"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4ef32e0a74952dbd6b28a0ce6acf4b0f0186950506b86d569819967f0f408c67",
+      "failure_cause": "physical_contest",
+      "seed": 26,
+      "state_hash": "7311c58484630e2b4476fb6462d2cce14447f60194e0a5e3725ae89f69011f3c"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "093cd9f3a09a8beb63fc5cfccf53ed7afb42665a10cbfa950ae38c6f4c5994db",
+      "failure_cause": null,
+      "seed": 27,
+      "state_hash": "e64155fb3be20b5530350d7dc0172308d0ba383fdfced21d238c1ce7ae43d059"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9124b955c159296792019f842f7eea578a1530069120e9914aa17866af5a6724",
+      "failure_cause": "physical_contest",
+      "seed": 28,
+      "state_hash": "f2d8619ddc5a5338074215fec8b6dcffcefdd5d396671523dc8608b632b44514"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "26551cd02d34d53d63f4be2e297ad62b7e690675d222fa9640f1a82f849c5ba0",
+      "failure_cause": null,
+      "seed": 29,
+      "state_hash": "78e7d10e2239191f3f159a1a836c6aea7559100c9bc1f1dae2208c0e79712db2"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c311ce80c508735b57a0cecb2a2ca033d36a90fbbb44be86f588a3d32d2eca2d",
+      "failure_cause": "latency",
+      "seed": 30,
+      "state_hash": "caf2cfd7f7ae06ca8c81ea10a5d8efb82ae600e058b79e69de4fb1a84216c47f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "b63665e63857dfbc97b5cc1f5eff1a32bc2b005eeb96224fac38330371b8950d",
+      "failure_cause": null,
+      "seed": 31,
+      "state_hash": "6f704a6adedd78037e319e40b5cd06666ff523c7744f7d5b940afcca8b526cf5"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "ac5a80b5f310908506eb2d07ebeb45912ce7bfeec90ce0ba2d7d66e4762ad620",
+      "failure_cause": "physical_contest",
+      "seed": 32,
+      "state_hash": "eadb6431050d32ea4f7eabc387614eacd64361867beecf9d37880abfaf01131b"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "ca4343c795de5edd007911516835de7892a907b6308428b42663363258e76a16",
+      "failure_cause": "physical_contest",
+      "seed": 33,
+      "state_hash": "04c638a4aa695c5c9b747aaa5d98e7dd2c3d847b35502d48aef3bcfcf4cffd30"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "afee423e44b965eca82dcdcff35d194cb4cd74cb3e90764b1396dee8559e9262",
+      "failure_cause": "physical_contest",
+      "seed": 34,
+      "state_hash": "a92b6115560f6d7c44a685693c967cefaaa50424bf703cf3eef3785ed9bc6708"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "099fbd220f992b53cd5daf9a9e456be13a5cac9dd40a6299c3805621e6af7fc8",
+      "failure_cause": null,
+      "seed": 35,
+      "state_hash": "1b39b56f27e8a80ad007626024e1ffefd22fa6cfaacee1924a23f5a5c5aebe6e"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "e86e70169f1ca3519834f711df14d1144816c1fb8c65f9896784ea0217343fdb",
+      "failure_cause": null,
+      "seed": 36,
+      "state_hash": "f540f6baafee71d452ba930883d7ea676fe610adb67874461e14081f1fdc50c3"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "009407308ea68d194b96969e9a98997e8b1802ee8af9e4b9e3335aff5b36c84e",
+      "failure_cause": null,
+      "seed": 37,
+      "state_hash": "a2110c003c1f97e2ac9eed795d4a25a638375f396f3e8535567b3b83bb1754e8"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "876da044e04c74489b9b5a79468daddfdee98f7b2e41d1077617bc26c9883c86",
+      "failure_cause": null,
+      "seed": 38,
+      "state_hash": "a80d6b8cb523a0f3da0843331078185ebf27989261dc834285c8cd285078f0c2"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "acc43418d9862afa417979655abe166ed47531af9e1b1fa40d3c5aab0ed1462f",
+      "failure_cause": "physical_contest",
+      "seed": 39,
+      "state_hash": "5575a56e5d1a5b2cc08b2053ec93515d8d0ab4cd15bc81d48655fbb943beaae7"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "ab7c9c2d7b167389765355785b2e5501c23b6a97407a206183baca798d7ad188",
+      "failure_cause": null,
+      "seed": 40,
+      "state_hash": "5f2adad0f134b351066f0a3b01d56e7b8e8b8f5a5983dbe066a54ea7fb95fbd1"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "4be731c12f961ad29a224e87e0269e43833152119b7202ec6d52dd1976f76a39",
+      "failure_cause": null,
+      "seed": 41,
+      "state_hash": "35068938a864389c9ad80fdb4a03b468f1ea75675139db2740bc7f0e271a266a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "a34d4cedcc82b4b737a9b55232550f8fa1fe160efb236595fd790ab075c4fa5a",
+      "failure_cause": null,
+      "seed": 42,
+      "state_hash": "06f9c3cbfe6a9ff4635513707c612bf7ac6189103a6e1b2af779e205ec0a378a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "3d5b312361d07b8fae44a727301e0f47a9486aa00582462ea762aae790fb8754",
+      "failure_cause": null,
+      "seed": 43,
+      "state_hash": "ccae8aac73c11248be91765e4ec54e05282b2373de040e5beafbb69c580c9dda"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "df9a6297a03e0f04c1addcf25706ce84886d6639b745eba34b54a80cc43e8176",
+      "failure_cause": null,
+      "seed": 44,
+      "state_hash": "09b96b154bccc107eca6c8c91b94842443b14d59789503e4bc1ee5df0e4a4206"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "414d65994816094da08bcab339e0dd63bfe0ce0647380bd339132d6c17fc1fc4",
+      "failure_cause": "physical_contest",
+      "seed": 45,
+      "state_hash": "0136fac0e3072b5af335025369586791b2fc1cd132181e2fc401b54cbe2069d2"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "c2845d5401ce00a7f8f74ae7001b64e76984c73de9f54ac799f2f6cd8d1b7ecb",
+      "failure_cause": null,
+      "seed": 46,
+      "state_hash": "e70f3a9aa398ef8dbc8b43da9e52df8ecaccbe4bc52ba47ecd4ba8393523b264"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a86a16d8e4ef71d5ab271d9bf5650f184c94949d2f8575796fb8660d405c0a5a",
+      "failure_cause": "physical_contest",
+      "seed": 47,
+      "state_hash": "e0e59baba6ec98c8e8d1c4064fb487471b5676916eac842fe4d604e2eb77d64f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "4bded2dafd8a391c716bbdec4b88b7a41b4108e5a2085a69ad47bf012b045c6b",
+      "failure_cause": null,
+      "seed": 48,
+      "state_hash": "0f455ad2b16fa5f8cd9a1f1c71030e48cd494583d59f092a33d94dc6a0d3baf2"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "ec97ef7109391699b4baa91e28fe2f1ff86c3367d9eae521216ad1a252807fbd",
+      "failure_cause": null,
+      "seed": 49,
+      "state_hash": "7ed58c888038cdfcb42e556d97780e5c356422032ea0091c19887bcc83204991"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "126f62d66233cf3bda1c0f84ae4eb29a3a0606910f32c2636856e4a60415c8db",
+      "failure_cause": null,
+      "seed": 50,
+      "state_hash": "89bba644b1cf9a35de27d8fe2551c990ec44698e0ff9a084ec8fc2577a2b2f67"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "a824fb917c2116ffa425d4d167af77f1972baec150bebee2259f4d4a34afed09",
+      "failure_cause": null,
+      "seed": 51,
+      "state_hash": "f5c53e4e1362170577d61dc345f4bca7c5eeca24d09fe7d886664f286b5096a5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "3b28c859ff6578ec141308fe5b1bb73ce684d6cb32df373f397fadfec92885e5",
+      "failure_cause": null,
+      "seed": 52,
+      "state_hash": "11f04dba3419d7e15801f6ffd2c552d61714282d29253b7bf88714bab5ae6702"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "efbb08f87f1e58aa01ba350127731fdf2d2fb9ca05bf0b035bb4ff58b7731dd7",
+      "failure_cause": null,
+      "seed": 53,
+      "state_hash": "29036a3c1c187791c7217dd171d162ce29f926fda0677f7bcde45c269cb327b9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "6107217e41527d419dcbfa29d821dd3d02315b2df00420bc0af9c5970f44ee36",
+      "failure_cause": null,
+      "seed": 54,
+      "state_hash": "3de0849c753a332469e672cedacbff5891de762f5b7822320d799ea3220233de"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "e3a1d927f9548acce4de1860cd0854a344fb48619eb6404b0c00f94f2f829b9a",
+      "failure_cause": null,
+      "seed": 55,
+      "state_hash": "f1cf82f92179a62d25186577604a5cbc4f96108ded8be7f2eca6f6a51d468d81"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "0e4a03bedbc82bf89713ee192393cfe34909065432cb3b77244b6f9488339cee",
+      "failure_cause": null,
+      "seed": 56,
+      "state_hash": "6431e745128ece4857bdcfaf260b13391032792d76ffbdfe46588747f8e6b7b0"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "5320bc362cf119002161e90d24803ae83ff7e3a534d6a2d8b780f62d9c2c8085",
+      "failure_cause": null,
+      "seed": 57,
+      "state_hash": "a238773a36e8899e500f696cdad8510a30e3be88c48135d3ba8e784d0a46349b"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "69619c84c93694d883db1b21199a99a11d8f2feedd0140fa7397040683af5dce",
+      "failure_cause": null,
+      "seed": 58,
+      "state_hash": "3339b139af60621620c6214ef6c75411f07d5340ed189e3504dd078d5edc0258"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "a6b4fa35c072f343d2e498aa1afff1b5811cc44bdc6fb1a49cbd04e3a5a4f731",
+      "failure_cause": null,
+      "seed": 59,
+      "state_hash": "087318aade0664b0ff5a5047d84bed754f6904401308280b50a5aed9d210f774"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "f94555ffb0d2af6f05bf624ab46cbea713dcd747590bfe97ac4b19c60bb7efa4",
+      "failure_cause": null,
+      "seed": 60,
+      "state_hash": "d9075bdfb876a5b2d7c78a35530174996eb521943883fdbe1509676928350fd6"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "093fea5fb39ddb380eb4094007e0507dee82ce09a413ba0af89ae0ea88474c98",
+      "failure_cause": "physical_contest",
+      "seed": 61,
+      "state_hash": "790433ac3832c75975eb7cb5ad71d02cf777cfcb8b73b3d0a87ba6c4d19897ed"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "10fe8872e9ff65dfffb5aacd0b3e95510072d6b02a2d3940531fbbc8fc1fd5a0",
+      "failure_cause": "physical_contest",
+      "seed": 62,
+      "state_hash": "95808b4d59d8147eb56b83fe53c26d77ed8ffeedac6232d821455bf549a65a38"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "5cf08c8629e93c6eb7a3ae3fa201bdc7d51d38688802c8a6fa0cb72ea583403e",
+      "failure_cause": null,
+      "seed": 63,
+      "state_hash": "ec459400fc04028a584988fe9b339d3797dbc7878c0f2435c1cbfb19fff53b50"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "1b6b8c347ffc3dba920ee14a826b58edbe7f66c70bc38dfb34c2edc56a089c9e",
+      "failure_cause": null,
+      "seed": 64,
+      "state_hash": "46489c80859551f4da2e7883687e09669cf9eb2a54fec0e93e91e170d8d869e6"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "7e8fb302580e060e7d4fd6bbdc64ad289b3a0597c9724d5d921eaa0e9b06a988",
+      "failure_cause": null,
+      "seed": 65,
+      "state_hash": "4e015e8fd7dc7d7d1a3a68a3a492d5074571690690f22c8834daeb4771938373"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "3d52b622943833a4f281004e9c937ebfb6462934ddc46b5d91bf5e0f9b833ba2",
+      "failure_cause": null,
+      "seed": 66,
+      "state_hash": "305779d4fdbe20fdf29456899426ebaa25dc17eeb598838c877042e6b7dcb327"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "6c407cc0d3cdd9de089a5d8a3e7c60aee4e1c0f670d7af617f414f426af91ef5",
+      "failure_cause": "physical_contest",
+      "seed": 67,
+      "state_hash": "bc98c5a7f6919afc1f1fe689a33c050b037fc6df6e2d08fb494d3b0611b527ca"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "abf7e9058170b42619dd79d7c1b6f544129a37ee01ebdea01c99cbffc6129d09",
+      "failure_cause": null,
+      "seed": 68,
+      "state_hash": "092dd5e58a1af293017e9e7d576104d5d4b5200ac2fab79d1f2e3dd8047d988a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "9277051b410b0fe20ce3bd160d14de0c7515e473a4630f479d97ae849c4bdf5a",
+      "failure_cause": null,
+      "seed": 69,
+      "state_hash": "79cab17172755ffb4819961bd12e604d5bd277fc45ea8a0e1a5e4f43c03530cb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "6d24f12f37282f52f5c45341e2fd393d5e67d097658f34ad9087f1e7ddde44b6",
+      "failure_cause": null,
+      "seed": 70,
+      "state_hash": "c5d6d01ffb45a56d74d1525e1aea376c833e87458e6b9c457fca3df5a3c414b9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "15c052a0912e08dfcaaa67c94d15beb4ccb826ebe1aed9635201a55e9beb9439",
+      "failure_cause": null,
+      "seed": 71,
+      "state_hash": "dfad0e72dcabbb21ab20365fa2b10ed488b5737381a7a8713fa074d163b17e5f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "3f4137be51719b0334e225076bedd9691d982750c79b8786cab4c8c1566bf7d4",
+      "failure_cause": null,
+      "seed": 72,
+      "state_hash": "ff61597fff091800f49e67ac3269a1e055f679aecda6aecb00864b3999f153be"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "bdd15fadb1d2cd3f4c37cc3700d6543ad74ba853170df240a97605e14af87096",
+      "failure_cause": "physical_contest",
+      "seed": 73,
+      "state_hash": "736e0736b15c2fcee60bf7ae52a458c44c7960b2c81db92d8d50ffe4729f96e3"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e2ea2983e9689aec33938146f7661a267b78f32ffcf9a54afb62e929c5d9b8ad",
+      "failure_cause": "physical_contest",
+      "seed": 74,
+      "state_hash": "54968c7b411a9f18e0e59216171505e6bb664c5cf90475686b26ab984f1778f4"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "a8d159be90c6ed8dd20ebe9459cfe9eb4c9a4396245766281e12f82742840527",
+      "failure_cause": null,
+      "seed": 75,
+      "state_hash": "cec4f84c47c1afd0bbd37c39d2753d271f231f6cad3600b7778627ff0525ca99"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "b6cc1d060532075bb4508ca888d8a7c5ce7561c9245d2ae9b57da9a44cd9c553",
+      "failure_cause": null,
+      "seed": 76,
+      "state_hash": "f563f751883d3c2a6534469b09db91975b90dfc621a718910f61337f87bd435b"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "b1350890545931ae055c57823857fe412651ab49e4e0a120e4704b7970091153",
+      "failure_cause": null,
+      "seed": 77,
+      "state_hash": "809279a0dae72057a9b12657cff4a6dbbe7b91339dcc5082c151dbf8c4ebc092"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "3727a17a986e8ff4757a6633dc0906068504266ff6823880089ef2d79c300b14",
+      "failure_cause": null,
+      "seed": 78,
+      "state_hash": "2d14ca0a80d5a104a18cabf38efe56f0b41e56085356496435f7b963ee56407e"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "51202db1a7bcc7a19bb177f115389bcc014bec07ac109d65e08aa8296ba2eb6d",
+      "failure_cause": null,
+      "seed": 79,
+      "state_hash": "21c741c0651be823a1d1833b2e73b05893ef3dd46c8a130aca96550f964a035c"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "2348a51a57e2b02b7a20080a5bae77f400d09d1e8458d59cee87aa9460f0fdb8",
+      "failure_cause": null,
+      "seed": 80,
+      "state_hash": "af5ed177d9a389a0af5c2ea1d3ca576e3f141d8a60c0d02dfa58d2cbf5f39d62"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9dfa59550af31d9fde70ef660ace66e7d9ea4a903f171cc4f83f967db77a6200",
+      "failure_cause": "physical_contest",
+      "seed": 81,
+      "state_hash": "c2f6b09acc2b447cd3cd3111e4a34f91dacf31c7d61e011e71faf4ecdc733d14"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "b1a3339dbdaf0c1c9038636bf8fa23c9be3173274d129bc2ca4c27b80ccc9e5f",
+      "failure_cause": null,
+      "seed": 82,
+      "state_hash": "fcb9dc5be87161e16894eba6a3a2219ffcc4d8f4dea8c6756b45cfe1e860216f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "62bedc642b19004b434cae1b8ce50378f6d9beacfa6b3e52163b63726bba371b",
+      "failure_cause": null,
+      "seed": 83,
+      "state_hash": "11842a0fe7371b0ead1663c9f0a735452685d7922581b47f4e87d56da27d0c74"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "2736117327c8b4b237b0c4722f1e1af3caffb1b9666f945d1766f2577f132d50",
+      "failure_cause": null,
+      "seed": 84,
+      "state_hash": "7f614c6a5447e2098019b072247f54c240761667d470f9be8b05c8ccef76e2e8"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "f57a038dc1a13522748358fb0977a6a012b535fd365dd00603e3f823d5c0b105",
+      "failure_cause": null,
+      "seed": 85,
+      "state_hash": "a309944ade62991cba8288f9be829dd9235dcd92e4cca36b7fa34cf659c87d79"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "7295827b6633a6975237fcaf887c3da0be6559bb961e38cb0896d88b563a3b12",
+      "failure_cause": null,
+      "seed": 86,
+      "state_hash": "5a339569659e0c7e2711e7031282c357ff00881c7722ea717bdc9a88e9018215"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "6825c29e112b25906c8cb3b6e5781b2463a67a292f20ea8cfce94d21abb17538",
+      "failure_cause": null,
+      "seed": 87,
+      "state_hash": "63b5007a2836bc7b31f307ca36d66268d807c099f1ed1af51af3ea9d4168b7af"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "ff020be49dea6e92c04aea57d09e90843b96114153eaef0c668db6b6d81ac77f",
+      "failure_cause": null,
+      "seed": 88,
+      "state_hash": "6d2c9af02175cacd8ef300318dffaf79fc1de78a473e3a95fe75e2460d19e0aa"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "2df8256d6bc43c4d5c08d93a61216fca7cd1ba34f1baa3e24fbb59d87eef802b",
+      "failure_cause": "physical_contest",
+      "seed": 89,
+      "state_hash": "ddb7efcfb8f600653ef736f08ee5325eb7f88134c4fe2f14ce498520e09cdc5c"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "f1dae1183625195f7c6e5b5ebf9056ceaf4217ee8825cec040497ee8876a2481",
+      "failure_cause": null,
+      "seed": 90,
+      "state_hash": "bbeafab2d178061ee45e7b2e0c599490e9c9f352acca84f4b3936af269387109"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "035f0bc7c6eb7528bb696fd82901d299539fb8150ee4f7a7ea2ff8ff2d07c8fe",
+      "failure_cause": null,
+      "seed": 91,
+      "state_hash": "96b1cead19cbd6a322642ded53cf6cf32d739a418301dd8775ec9edf99c692a7"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "26ed1e26b1d53edb444d2c5501df4e81ac2305ed3c354bc4d6ecef1d1e13fe1d",
+      "failure_cause": "physical_contest",
+      "seed": 92,
+      "state_hash": "95c0277c375fc9fc996323f771896a43aa40599ddaf370f025e199e05591af50"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "6d2e1ffaf152cededda11638fc758eb8634fdb14e4ff0987a70fe64b2f739d90",
+      "failure_cause": "physical_contest",
+      "seed": 93,
+      "state_hash": "2c0ce95b5c53d2f8f4b93522147e5958aa706657da3889783953de5fcdafbbeb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "d760c01d6ae71e8cc0491a8f5a105c1ebaa4f5f1b0a3d01c572d699d34610f15",
+      "failure_cause": null,
+      "seed": 94,
+      "state_hash": "4365fda9de569c9e30a25253094055582d51506580f4bd1279e427ffc5523321"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "1e8fdc1bb5bd1c4f9cbf894efd14490805581ca77f8df62158c7601b83ff56ed",
+      "failure_cause": null,
+      "seed": 95,
+      "state_hash": "80606924afaace4abec1480cf1984ef5a6cd64a0186b0e2e32333333c860cce9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "ee3cb8389878ebb3949da2de3dafe825c41cd79e54be7fef89ab11d93232b7f1",
+      "failure_cause": null,
+      "seed": 96,
+      "state_hash": "eac9dd7d403081a1ea3c70e7d232432cb102dcb25e016b38da141e1ca3a6703d"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "30c75a07cd27fb6bd7e697e4d16c8d56ff7b825767e34a41c27cc2dbcdacde20",
+      "failure_cause": null,
+      "seed": 97,
+      "state_hash": "14f1ec44235d00a1e632b3936ec1cf581be1468f486d09aa3e49bc18e98dc59c"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "ee8defcb2cde627e4e2b20959d5485c686a89119da46b13ebf505caed2a7cbd4",
+      "failure_cause": "physical_contest",
+      "seed": 98,
+      "state_hash": "265454676ce007b3acd561a17cb0c9e2c5e9eab3fe46bb85295a8d5c4f148844"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "284ac74d76c5d9f936549b55178bd17feadf2a9a38f7784a31d7a54c178dd829",
+      "failure_cause": null,
+      "seed": 99,
+      "state_hash": "475169c3c14eb177a619168ee844b463bff737ac4d94d5ab312c526064821acb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C1_sharp_defender",
+      "endpoint": "pass_completed",
+      "execution_hash": "6af6f06fc57777de5962db8712fd427594861283dd5f1d96dc54d8eb9cfa83d9",
+      "failure_cause": null,
+      "seed": 100,
+      "state_hash": "3cca6fda0f617ea5eaa3bc8579536da7776649c327d3237f34ce4ea092879e22"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "2b96a9470fe4c3a9dcfb03f31cd718c8b750f205c90d576ef0a91a8afa440d58",
+      "failure_cause": null,
+      "seed": 1,
+      "state_hash": "21fb640e02594941210e0f05440e5be99f6736993221ecc665e9ccf3f977dca1"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8b9406bdb7fa31f6c6eaf624ec95bf6228770f3fcb28480b4e195b94c3c7daf5",
+      "failure_cause": "physical_contest",
+      "seed": 2,
+      "state_hash": "991b182e6805bbc2d493f15b0d531ca007308358a26c7d2c077d0cb25aa47c2e"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "9f06c11f7e581cde7cf7d7d1bd17ba5e92784c9d0632a4b1461c794bad11573b",
+      "failure_cause": null,
+      "seed": 3,
+      "state_hash": "28aad2a871f4df1cd312b1e827072ce5fed2660ea29771655a53e72b68b56754"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "9536bba4e5bdbec65a7d5922cbd27ebc8a1e770a5a2d2208ce9d95796dbd6cec",
+      "failure_cause": null,
+      "seed": 4,
+      "state_hash": "db56c1bf911d460b0d70008e84be938aa55cf5a354d9bcb36d8486a52441bb96"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "aa27eee17acbace8b61c889dceb5d134724055bddbe198e03a805f7d7e5771c5",
+      "failure_cause": null,
+      "seed": 5,
+      "state_hash": "7f625cf5ff195a2fdeff0e3f860ecdc3c0e1ac105403cd1efdd2dbcfa424ba07"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c727cd0d67b5a7ea55211a245bc3b223455305a6073df89bef6144dc230e3b32",
+      "failure_cause": "physical_contest",
+      "seed": 6,
+      "state_hash": "7565e0950c6433b6d53d800c4043aa5da5fe5165dbdf5fcb1fcb41878b61a60a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "b96f480d0e4b62ebc5d964f2729053f4e3752c1ad5ce39fcce6066686be54b27",
+      "failure_cause": null,
+      "seed": 7,
+      "state_hash": "f7b4f28e3eb5f27108d52455ba0bc98018ee4e3851435e34cdf94fb8b1d76b09"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "d97d054d0c80072cad890b7d985e19f9f457336ac45cbd341a289553015f84fe",
+      "failure_cause": "physical_contest",
+      "seed": 8,
+      "state_hash": "8f86e072b3069055cc0b0436d9f6f0cb1d80a26380aa84b7db2431b8d5759c79"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "83c70b1b300b42cad2b6746f5af1f3d8d6ceb8abbd3f452c25da35669d28ed53",
+      "failure_cause": "physical_contest",
+      "seed": 9,
+      "state_hash": "9e5fc82455a57d576f6daf3fce73f9064753b7b6589425259f8eb27cda87eb31"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "53be9fed5a6706ae94516b5760b53f42a89341d4ecc623a2b5c94a6474106fe3",
+      "failure_cause": null,
+      "seed": 10,
+      "state_hash": "a12fae151661096329a9a2fd01cb54d10677c61095f94a6fb706df113d10a225"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "112ce333b08c174c2be53942f6c1b77ac53233ba7dc60b91dc93f07371647831",
+      "failure_cause": "physical_contest",
+      "seed": 11,
+      "state_hash": "ab930a58cc26cb33f856c734ae6036d6df2a3bbaf8e64e16ea21897d24503105"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "2267f0d90f95b1a959f176cb865269b7a54408cbe35bb4722bfdf29542437d60",
+      "failure_cause": null,
+      "seed": 12,
+      "state_hash": "7fc75b2966a2e9acdc41caa02966626d74fc9396f047e1fb8b76ce21982edade"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "28f54c46c7e1db9bf9081c189e682a870628c7cedb1d211fc8e8c973b3306ce9",
+      "failure_cause": null,
+      "seed": 13,
+      "state_hash": "0c61bebe9aee87d2e267ce3b8316dd5886fb320947a7e2d10d337ccf8a259d5a"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "e1b3a4fc3674747b1a8271ae4c9ae1ab5767c3941577eaa3bfdc93a6e31a3b48",
+      "failure_cause": null,
+      "seed": 14,
+      "state_hash": "946ca5a54040e80b1010db9f8122722889fb467f2c6ed3d694f6e9fd12646e43"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "195ec5ed50bb118333934503a7f41ed64dd767d34e937ad040cd8b6bb317a50a",
+      "failure_cause": null,
+      "seed": 15,
+      "state_hash": "c1c865a45b6a36c4622687b14bd1da7f4134942034ad68fb2d7eaee1e218b422"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "e9b334d4160aa0a2f205d057a428c4f8257c159d6b2d3ecaac4523aee192ddc0",
+      "failure_cause": null,
+      "seed": 16,
+      "state_hash": "41dc0fee1053db0410a7c8429e88df39792668326acf401985690214e6d4d0df"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "29750b9cc186431f4ac5fdefb24d551ae4a45b67f42022ad9d32cd3001529d02",
+      "failure_cause": "physical_contest",
+      "seed": 17,
+      "state_hash": "e77349140abc87b7c5a903cbb12085db89d2ad9685e344cfd10aafcc54544c3e"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "ee154c2e9965b9b97cdab1b3d28495f0e4177aadc8a44842628125090f4a4498",
+      "failure_cause": null,
+      "seed": 18,
+      "state_hash": "d914d222a79e353316ffb6accb6196ddc3e7ecdb8a621da9ef2c018100089689"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e7bcc6f825e76c44f5d27c7378c7959e03e2e0cb06e1ea2210e73edef414f524",
+      "failure_cause": "physical_contest",
+      "seed": 19,
+      "state_hash": "348cb2de4333c530413196546723a163772150566fbde015db86d159c845e08c"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "5395ffc3b899082918c7442ae1aaa622e1bab5b814b4d09aeab72eb69c00a64a",
+      "failure_cause": null,
+      "seed": 20,
+      "state_hash": "7f171ac28debf6b7e2b879445c62b4da9542f71192a5a7b8535f2ac18ff637fb"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "046f9b92b53595a9b5adc75b3532151c0001dd06ff11d00aac735648e7fe8fda",
+      "failure_cause": null,
+      "seed": 21,
+      "state_hash": "5c3da74897433a147fc0d8789027fad75862807d7bb022d9b08aed94c018d4f5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "46c1df4719930f96120e95b6957438cbdc1dc7cf28451d608fe0b718855f6f87",
+      "failure_cause": null,
+      "seed": 22,
+      "state_hash": "82dca42911e3a0678f680576e85bf8ebdefd721bf418d62228bfbb4d22626d1d"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "3d8374d81b5ceef0654c57473f99f606233938eccd5f0cda339d0f171adc4845",
+      "failure_cause": null,
+      "seed": 23,
+      "state_hash": "f540218382efd6d48386fe631d826ff3c2c67ed7d4bac37d6b7a283e624a5735"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "a42f599ae7a0809bba36ebe68fa9d55a1c9c1d3aeef8babf1e544d1a7df95d27",
+      "failure_cause": null,
+      "seed": 24,
+      "state_hash": "a9334219305b0ea101830ca03c456f3dff8d23ef1c36a00ebdccf646355b3a08"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "6799414dd5bd49394a031e630ef90bf7cbf6b5b23715227fb516d8dba822fa70",
+      "failure_cause": null,
+      "seed": 25,
+      "state_hash": "c97ffa2ac72faedd8286f0dd6c224d9422bd31a9e658304ef6f95056226f6b9c"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "468c895c87df5a806e8cbca3724d5f6381c104eba739a67b4c8e3ab1c1533d32",
+      "failure_cause": "physical_contest",
+      "seed": 26,
+      "state_hash": "da42763a1dd258f459aace1cdca8744b24936eb56530c418b401351cd8d51f39"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "da4cd573e3c4afc784e2da218a101601d9d531331a3a060a5cea6ee76afb6b20",
+      "failure_cause": null,
+      "seed": 27,
+      "state_hash": "5deac43822e933d06b01346e27fda22d061b05c43ef02ba06579aa91f151c0ec"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9d116bc4ffe9fbc5552782c73a77765858f77c03b7670b2ae06fef374d4582b6",
+      "failure_cause": "physical_contest",
+      "seed": 28,
+      "state_hash": "4ab11cbd55ecb3587bcb2671b05f3731ce2defa75e69cc11810f3a3c691ef848"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "121a7aa07c3183c7c2a7a6090258694b9b52422548f457ad222ee4211cb94ce6",
+      "failure_cause": null,
+      "seed": 29,
+      "state_hash": "7621863453fa200814ab43f164e3093b400a37a6941b3048c4b7e830ecf9bf91"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "b911a8a4a655f6734f7160ce10419df5472fe9bb0be8867093056e06666d8581",
+      "failure_cause": "physical_contest",
+      "seed": 30,
+      "state_hash": "5dac50e3cedbb718e896b2381aaf19eaa3e741e2261c8d7ed9c156e27eb71766"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "1ea85f64b23de97d5547509d309f4f20126bc2a88423a07c6f44d950feed7a1f",
+      "failure_cause": null,
+      "seed": 31,
+      "state_hash": "6edfe230e3d35fc25d4bd71b0294562bddb900caa58666e2041a3f28b7fbfded"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "84d0e02b9f6753643ae684ea04a0193b604524267e6b23381ef37d89b9b1bd18",
+      "failure_cause": "physical_contest",
+      "seed": 32,
+      "state_hash": "5cc2e86bf1d79b5f71cf7ca135b759dce4ce48b9ed60fb8e4e9f6a2a18fc0b4c"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9d06d5e2fa31b5d123c3f4f05f2970e3a46df498cd636c3fd1c1a01bb8f455e1",
+      "failure_cause": "physical_contest",
+      "seed": 33,
+      "state_hash": "ac50e8238f208a8a8ab14efe494909d3eee00c3bda1ab4534bc6c3d4f822f33c"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9156477995c2eba3d182dd4bbdcb6cdf096d56888d8efcbd5ef84f796aa7658a",
+      "failure_cause": "physical_contest",
+      "seed": 34,
+      "state_hash": "2e05c9314e35679c7bc93b79075f43f1c366a2579863c72a595809048a26b85f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "7089f995cf322d822a487d39b1b0539cd6aeed51ca99cef8b1ba15a2d636854b",
+      "failure_cause": null,
+      "seed": 35,
+      "state_hash": "201940e7854b41d2b945f25abd88705f752fe862ca7d0cc56d60d63a403bdce1"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "0755c616db253c82932dc9ca18806f09678f0c048e16ac6b2192800cb4226ef8",
+      "failure_cause": null,
+      "seed": 36,
+      "state_hash": "3fecbad191e3be9ea07fb8f13d9837e2800ec2b235a50bd8a874292a7ee8a8df"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "c8ae981e2a91b21f06da3dce24bcdfde52cc30b7ebf1f51bba6812961d3540f9",
+      "failure_cause": null,
+      "seed": 37,
+      "state_hash": "10cadca119eb683f7268099b8cda72be3643ca5060adccae153d788481e9cb30"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "050068d919a666b758a9c56e2287b840833ae0fbf103fd1893858a39577c1cc9",
+      "failure_cause": null,
+      "seed": 38,
+      "state_hash": "38c28449d825f992e16c8100bb45b70abb9e23825134c6fadc1dca872a8628bc"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "d33eef57f786b4711b31bf66c8dba6837b06909c94bbc4a50b4d2f398f996635",
+      "failure_cause": "physical_contest",
+      "seed": 39,
+      "state_hash": "f124f0427d3b4710a6a2e1dd2122ff382ff7c8c51de85edc895fa9d71e6250c6"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "644168a198b3ae38948f4974748f5855202d7bf7eb892b533a8ef002eaae66b4",
+      "failure_cause": null,
+      "seed": 40,
+      "state_hash": "01ca28988afc501b837fd414119c3f19fc32aab7727716eb9c06d942d5089457"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "6436ee3a56723cf19a4107e9ce33500b8f9e6eaac4c2a65add45b59d093a24c8",
+      "failure_cause": null,
+      "seed": 41,
+      "state_hash": "8ac097771db7aea8f125ac1a883f138d2e90c9f27bc134d8da05f3b843afefa3"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "cb9572e1f1efb555dda45d07085ab5550c4b766e2f73bfec83c44b837ea6de92",
+      "failure_cause": null,
+      "seed": 42,
+      "state_hash": "089814e00774693a8ebb69369ac6dee8a0673f7ff7cfb8d4857a90ea378fcff4"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "c3554a0d20904b8378d606e923c9b509984147e17471ba272e0e250ce7b1b7b8",
+      "failure_cause": null,
+      "seed": 43,
+      "state_hash": "6833cc4cefc26f6d15ea62718d59882db0567a8182c5f1da02220d45a9dbb702"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "16293785269cbd0969ac43a3f25d59dac6a2082914d8fcb7f4a988fe76172c50",
+      "failure_cause": null,
+      "seed": 44,
+      "state_hash": "10cb41a278efb7e8d736196aa26f6e569a39624052cb8e854c4fd57ca38ffc09"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8e95b638bf9e5b46dfc15a71018ddc8cf5ebddb1ff55d2c1b4d01c66af033cf4",
+      "failure_cause": "physical_contest",
+      "seed": 45,
+      "state_hash": "fa58caff951f9906bd12e59af6b1c8969da19bb56aa277a5bf06f9271470a2c2"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "aa88511ee1a7b491af383ea325e107df3ab86034d8b3594e5bbe3cbee77e2d1e",
+      "failure_cause": null,
+      "seed": 46,
+      "state_hash": "574fc51d0cbf58a12c335e72868b4b8b145b81c198892a200928201f37fdc086"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4b5a99c0e91965abcfa154c3973c7a5a4d6e216f797e59eb14ffd759da1acce7",
+      "failure_cause": "physical_contest",
+      "seed": 47,
+      "state_hash": "3d767625fac256150e0c90a0ba123cee1888d7b15d1749a3877967235a69eade"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "052d59340f53eff83fa37e435f12af9ec445eb29fd0555b82c58b45977a37707",
+      "failure_cause": null,
+      "seed": 48,
+      "state_hash": "0c9519edb9c955039820458dd4ab7699363609b63be1929bbfb880e1d37c6bf9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "a4ad5692adb0a5da57a8a11daf359c833bd48b84411af14d3417a4549662502f",
+      "failure_cause": null,
+      "seed": 49,
+      "state_hash": "473010248c99cf506a22e4f78a37a411b34c777d746b47b3bf4c02e422aaf3cc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "4ed91f758d2733918cb01cb3b9d855ac358cf73b85a28966ae9a63332bcfeeb5",
+      "failure_cause": null,
+      "seed": 50,
+      "state_hash": "36e85a6c9d38d9f29910e4c1cbe713338d901b1737a7041cb05c5fbb1ddc15d1"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "dc2251ccc9593476dd069766c3e8258e3b45631f27af1b9f6a94933bcef09136",
+      "failure_cause": null,
+      "seed": 51,
+      "state_hash": "ea1475424761ad82ea0555b7f93b2d125d54cd566323213ba9401751dcbae45f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "1526f5a46917081353a59afc5701d3e3c353cd91d6fb6ded29e0d6c3e232eee7",
+      "failure_cause": null,
+      "seed": 52,
+      "state_hash": "c4fa029c4ad5fed43b0eca73a3a390efdc44b529669b057f660d5951e4d0b772"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "074ec743e06da6b7f743fe45be01b57bd7742453c67b3479cfa3fe88c1c89a36",
+      "failure_cause": null,
+      "seed": 53,
+      "state_hash": "8a189180fc17937ad21f90fff5bbe292ef0a4bed63e1785fe8ebd0fe69692c83"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "f4478abb16d22dc10c4ab1c747adedf33c157f4364b2f39731ba19b23d9f7699",
+      "failure_cause": null,
+      "seed": 54,
+      "state_hash": "039d7c0dba4683afbe1457fb92e1553fe2300f9e6a74cbaf691612a9c7c15288"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "bda3068ddb8014620866f17af3d7af7271f95733fd0e481b3852a9550bb091b3",
+      "failure_cause": null,
+      "seed": 55,
+      "state_hash": "e2814c9217355d03358af81c73d4bd6de36086b9208a17edb32c388cb9c82a22"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "d943b78c61b28aad58287dd0948233cefb4a0b94e5e254cef9a2afb78792ee27",
+      "failure_cause": null,
+      "seed": 56,
+      "state_hash": "2a46d84d84fc182e0aec505f7e85b4e98b4403695a2235912506b2132b361bae"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "0918dd7ea934db0b062be1e61d564546d1d372ba4fe0040a9ecc18bcdba23f45",
+      "failure_cause": null,
+      "seed": 57,
+      "state_hash": "6fb3e8ef79ca9c7626047f3ac3fedc60ee41efbc7c365b80357130602fee9402"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "27769494cf91ced8fcd7452e930d1521e22b5f5658e252d0b9f5bbf7307c8239",
+      "failure_cause": null,
+      "seed": 58,
+      "state_hash": "45d55b7f5b12f22546e3f0da396fe47b5862941dc40fd47dd4af53f3ac126774"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "02f729d240244a2fb9d3d54d5af1b1f6a808f470c00bad9769203474ab68c1fc",
+      "failure_cause": null,
+      "seed": 59,
+      "state_hash": "dd88063106d135b4576cfb825aedb18c780f3df00f4ef9b74b255900e83ea295"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "2bbf42e583375dea4b22a481c0032e48d36bde26ae42098d6168c57c6d66ecaa",
+      "failure_cause": null,
+      "seed": 60,
+      "state_hash": "d3d87a3077e4092a7e8daf500448a25f9a555363adc200ba34d1f9211c1f9bcf"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c44ad510bde15d43d62ca3d6e03d0c50d1a12f55adbcf706af22e5e271df724f",
+      "failure_cause": "physical_contest",
+      "seed": 61,
+      "state_hash": "232014c1c710a257c306e571c077d8c9368c33de0d2aed4b559f609fb42b5f9c"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "86beecf1d245031d6bfbaec02f2054c01d530aac33070a7f8cf795acdac1a17e",
+      "failure_cause": "physical_contest",
+      "seed": 62,
+      "state_hash": "a541d6af891fe6aaac8e1b24d04a685e65a46f0c4ace106968489466c6c0cc96"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "cd617512622a36287d7069f109b87700e38d86047c90aeb852a0548f2d10bfeb",
+      "failure_cause": null,
+      "seed": 63,
+      "state_hash": "4feda82ad01a69b2217461f35b1245d04f725ffa3e7b191fddf51c4c0c710230"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "5b2b0a28c3425a6b41137e30152c4664c6ff603330735c33e76e845a53f4ba2b",
+      "failure_cause": null,
+      "seed": 64,
+      "state_hash": "dc4084bf1ac445b49b27f97228f4826905ba214181adea933a8cd30d538e5d97"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "fa691cdc34dee9a4342fb224136e110bb7e48865ff24f7466c7a11616013ab22",
+      "failure_cause": null,
+      "seed": 65,
+      "state_hash": "d7690ceec2ee87fff18edd043e117e68ac69ed9fba73910506576a85bdbabe88"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "a3ee7e808f15dc34a3326a1bf78efe6c6c806d5ee29219690fff5485d9fa603d",
+      "failure_cause": null,
+      "seed": 66,
+      "state_hash": "bb95f9ec1fb33654e2102224f7addbed9d8290724810ed6a4e0a9c1681ba050a"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4312f33833ed3f757126cfbec62796c6fb177faba9bb7c4d04dbc3141a51be94",
+      "failure_cause": "physical_contest",
+      "seed": 67,
+      "state_hash": "05375d85eab7d5e90f5cc67494b0afcd96efbd6112ef2e40a125b4f47db46e23"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "f1d81e6c8baff2434251b2a29503aeb5e7a1ee01989906c8d3a0732de48116aa",
+      "failure_cause": null,
+      "seed": 68,
+      "state_hash": "46e3fa58613e617f58c08bb92d6c04f89c59d258490626808628120a6d53cee4"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "c8d34ca1a6f43dbe51ddf723aaa4021950fe3743fd412ccb9deb4dae4327b87d",
+      "failure_cause": null,
+      "seed": 69,
+      "state_hash": "98993afd2db74a77f2049281c7aebc4144e617ea2c75c1b36913b05d8fb9f862"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "85d8a0cbfd86a67c04f05e7bf1a45ac11206d54b474f742b755d52abb45de5d0",
+      "failure_cause": null,
+      "seed": 70,
+      "state_hash": "e97c14c6421287845afa7cbe2101c876108f5c6affbbf419e205969fa3452854"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "37d9a55f6c9753b9c98897e707046a3f2a10a3b02f7a02d915abb3ae568a3052",
+      "failure_cause": null,
+      "seed": 71,
+      "state_hash": "74962d420de5c3e6b11e180224003f9c4f42dafa37f81313f124b408b0ee1022"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "f61c5664a68072920eec41ae6cf6e3c92a100de3f4268f4123249b53b1a61fd3",
+      "failure_cause": null,
+      "seed": 72,
+      "state_hash": "bfbbd2005c5e6d562b6fd4951d536e8b5da98a92cd1560a8c565c19bd8f4c598"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4073fd46e3e29edcc0bbdbc4c2190ce6c8187539534ecad76eadc968b11201d5",
+      "failure_cause": "physical_contest",
+      "seed": 73,
+      "state_hash": "485cd5673bb181eb6dec22e5925e970e06656fb6852782a182e6d538786a2932"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e7f6540b0d9c9cc503ccaefb1db473c659e99c2ffc30137984eca0186ea47847",
+      "failure_cause": "physical_contest",
+      "seed": 74,
+      "state_hash": "6d3618a8913a985aa06da1132d3ddb2f127b8f844b9f3a93dd28134af8a9eaf8"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "50b7114f94d6e5293a772791e30bca9d71684406192a6159faafe88f3d79ec17",
+      "failure_cause": null,
+      "seed": 75,
+      "state_hash": "68ceb3efebf835bb9c63cd6147f65c94caefc9b80560da827ac8c3102a8224ed"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "6ab5683d7718f46b2958caa8577aedb0d14063d219c886b27c8f693723bc32ad",
+      "failure_cause": null,
+      "seed": 76,
+      "state_hash": "96624210ec347656378a04a8455bfdef78298914b309cac12da7e191718c6615"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "6439a0db92e8feab33fd25c4633107caac2034ffcc7137500e87609215b562e5",
+      "failure_cause": null,
+      "seed": 77,
+      "state_hash": "880aa536e1611ac0715248aaea978998225767ad74630a77ea5c2c6993d8d0b5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "a1f05ca581380d20cab65911fc3afb039d9457838f5ef68689bd60c35cf37906",
+      "failure_cause": null,
+      "seed": 78,
+      "state_hash": "9ddb7b6e1100c6b2605f49966d2e63ad548c1279089220996124be57392e71cf"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "b6709b36b7e6b3e53dae5c8c835cdb3b9304035864da2ea52fe301693be30c2f",
+      "failure_cause": null,
+      "seed": 79,
+      "state_hash": "17d51973010ba173a37cfd353f9987f2057db87c5023e1c84c3ee76dd23ba1f5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "cd79430a2b9bab633cb223ba92f14072f44f848c2b8a1ec9d97dbd62ab0cd710",
+      "failure_cause": null,
+      "seed": 80,
+      "state_hash": "763f372ec2be4101ec831e34b854c666199893c436a92b72e847f399c6493428"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4aa718925a0a625bd07d130ba6879bfdc3eb582b4e317c522e2feb9b5e8fb14b",
+      "failure_cause": "physical_contest",
+      "seed": 81,
+      "state_hash": "aa35b606ae1f4d138d3a36ae3a8fa4cf73f6418b8240db573a331f38e6c71dfc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "39e3acdbe6b670490e37fa85d48330ce1db2bc98f5966646b9f6d3a91ce3ba56",
+      "failure_cause": null,
+      "seed": 82,
+      "state_hash": "870bfe81e30d08d3e78e74e2336b99552476a36517fff75ae16c0bce8f9001a9"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "307b6c2f8b06acfe17aad8fef6636c8eda4164ec127a5ba6fac9101d32630cbe",
+      "failure_cause": null,
+      "seed": 83,
+      "state_hash": "23af6ad4a814112450f786a78b3ea5234a9b2f419d5c027a7e41c2592a4c9afd"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "bc6bc29f73c5e5eef80c50991f379e1f0118b472327c851874e92d1716d79c10",
+      "failure_cause": null,
+      "seed": 84,
+      "state_hash": "4b4c1a8407a0a89b6acd5813e37b815d7791ebc7ed3d347f971c22366ef3999f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "d794b1f00158cd139d30d2bf77b4720c163773eec9bf6ec0d6d4b5ffa757a693",
+      "failure_cause": null,
+      "seed": 85,
+      "state_hash": "0bdc1eae6ce8a0f784744c27e614e5ac14f62d3770c03a1003805cf23e2aa9b5"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "846907827a52e7a778b5b22ba884609763817943f19601675da3361be3983402",
+      "failure_cause": null,
+      "seed": 86,
+      "state_hash": "9317262e9b5a2530e3f6765c0f334807d58239731c421af1eac7849c68750a88"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "e514c09bfb9e3a1ac825cbe55dc9f93c5ebec1e62b2db7d42f66f70975a88645",
+      "failure_cause": null,
+      "seed": 87,
+      "state_hash": "752dd58f5ac5e2ce1ede97b600dc960aa8903d4a2e1b2b5d5d8165b39e36a714"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "6714545138cd62deb0258ea17222108a0674eb472daa629134fbb65391c4e74a",
+      "failure_cause": null,
+      "seed": 88,
+      "state_hash": "4182632821f7b9ef9c246c0659ec8b7ac05e891b288d46dd7891ea23538bb95a"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "1e9c89053b0851cde00a795cafc4e697e1ebc2e6312330499022239ec38d81e6",
+      "failure_cause": "physical_contest",
+      "seed": 89,
+      "state_hash": "b619a964171432f5dbfb7dad24afc85eb8debeff6672244d893fee8ef50e4a56"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "0d5a4b36f405a80f0e153f25d168546f7b280eca2c8211a1deac950e4b452f7f",
+      "failure_cause": null,
+      "seed": 90,
+      "state_hash": "932ae55b0aca622d9afd77947df36381381bd272cd95a687a1715c8691c070dc"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "6ec3ee1ee34cdb6c514e32cd681a783a0fd7cd21b31071b650fa1bb9f9dcc6de",
+      "failure_cause": null,
+      "seed": 91,
+      "state_hash": "55a849f325a2814093da768b40f7069a63c1b44f1bffd684e9f3ae4f48a260d9"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "1a0b119ce9671d9a164bc18e79a0b18309c45846245127e63d749f7a59b339da",
+      "failure_cause": "physical_contest",
+      "seed": 92,
+      "state_hash": "da8f536a9bba70c1642e6540ecf627bf950a062c61688436cecab3189e17c8ca"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4d5cb6e5d1e62a2af04a3e110c079d0b3064478bc43611e154341e935bc719f8",
+      "failure_cause": "physical_contest",
+      "seed": 93,
+      "state_hash": "51dc33e0c554db36d8ab5fe238758571a3264d20d96ce8b6b39a3ca13fa42cac"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "678da1642d740c5d1b70379320ae5eae22787ebce6af7f2a382208fe026befaf",
+      "failure_cause": null,
+      "seed": 94,
+      "state_hash": "3dd22b9b448efba8962fa89a966e4759c8174a6611ecd7751af7072be618f898"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "27b2d3c68acd22021c99bb03485c4faeb559989155e6e98bf0af994cc4d300eb",
+      "failure_cause": null,
+      "seed": 95,
+      "state_hash": "50ce70be168ac4edb762eaba1baab2ddd671c74bf00d983de88dc9ae7c56dd51"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "8a5a99dd49be49c0d82975a30899c399a7ab49db2bc8987dc041efc1042ff095",
+      "failure_cause": null,
+      "seed": 96,
+      "state_hash": "d2b4936ecb05de21f5ca41e53db97ff4e90049fa9ae6951edbfecbb6b741a29f"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "ea33f830573d23f8fd64cc9241a9e0661233f61269aae6614537bef40491a521",
+      "failure_cause": null,
+      "seed": 97,
+      "state_hash": "74476ce3d8043ee8600f224d34973300a0427c8e6be49f0b47ccdd5b753bc4e0"
+    },
+    {
+      "cause_basis": "accepted catch kernel did not secure control",
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e01a2f777dfe98c69e60e65045fc0c94bce8a668a7dd123612b5edaf8dedf03e",
+      "failure_cause": "physical_contest",
+      "seed": 98,
+      "state_hash": "352b482d06cb6705df655e38f252bdd7ae5a58d4831e39a66aade9ce982fef29"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "561b10a6fef5ed24d4ac9376bd1129ed71f702094574301ed7d27b8a12358bcb",
+      "failure_cause": null,
+      "seed": 99,
+      "state_hash": "a5c11b596bed9911b581da2d9af7ef8e55a85a618f432e16fc533bb00c077671"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C2_limited_carrier_vision",
+      "endpoint": "pass_completed",
+      "execution_hash": "ebb2f19ca017e41401d633fe136ed5cb726c7de584cb05bfb35ad6f0e4acb2a6",
+      "failure_cause": null,
+      "seed": 100,
+      "state_hash": "8f5bf350746991c05daf26ea9a7f983837c944b1f9125c73217770962aa12e80"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9b934e2f85f9b33de83db944ea79816f785cdac773003addb7c9ecaba194f031",
+      "failure_cause": "latency",
+      "seed": 1,
+      "state_hash": "dc086e54efd6c048f9e785c8b902dfe496cb3b7470d282477adbb53ffadd7b4e"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e06d01c95611d536a5236a8c8f44443872988a68ef6d26ddfcf6866b7e55ed01",
+      "failure_cause": "latency",
+      "seed": 2,
+      "state_hash": "acb6a7ba6ff3f819cb19f48df8a7b4c06d88f15a9f35098f0946ecb6b4009dbf"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8e072178a2d239ce418ea47d7323b613f96dfee23df114463b4fdcf1fc087e66",
+      "failure_cause": "latency",
+      "seed": 3,
+      "state_hash": "3788f3d9d6a502b9eef26409700fe1a5781f2a74df624eff998000ab9eb3b6f4"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "2e0bc6cbb3488dac8267460d8c69fad173e0e82a0c285d5a09c223e5877e2a3f",
+      "failure_cause": "latency",
+      "seed": 4,
+      "state_hash": "c5f04715f2d836568a7f72e2033872d5cc8b97e8ae001b857f289d3143be4024"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "ce900d1f6c6a8bb55ea6679c7effd7d098a0d29bfe1411962a4b834656cdaf69",
+      "failure_cause": "latency",
+      "seed": 5,
+      "state_hash": "fd9be405ee2aeecda52be5f89cc2d76bc0ad90a98e23753521d9f1912c98e6e3"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "767a31f4d3ca380a1bd5114131628d229e0105ec9e6d108acbc91af267c28976",
+      "failure_cause": "latency",
+      "seed": 6,
+      "state_hash": "a220b0e95ac1a18e1ab64b7cf9bb2dc67d194b93eb4ea30858e57967165f4baf"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a751a172b7db0a5528258dbe0643adf1613cfeeb5008ef244c5cec722c6ad4e8",
+      "failure_cause": "latency",
+      "seed": 7,
+      "state_hash": "ee01865bd9d29989669d226a76615a86a13de11de151e3cbc4ddab640fae22e4"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a84494408f44ee7dd54e9244919b2d6d6a495bb80b3158a014424eaf85da58ea",
+      "failure_cause": "latency",
+      "seed": 8,
+      "state_hash": "a25be003a892dd98d93f4c997a03dc9cca8b7fd31b556c5dee26905b1fb13526"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "736a5e219c821da8809f1c95bae84f3fbfab01628fc25bb51426f5f04aa50158",
+      "failure_cause": "latency",
+      "seed": 9,
+      "state_hash": "997e40cf8ef90412161b1a316994e28764820fdedae23a22b3f16bcaaf147585"
+    },
+    {
+      "cause_basis": "defender produced a committed ball/body event",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_intercepted",
+      "execution_hash": "ae87b0a5dc4367b682f246cf81bf9fbc1ca3ba3945c494341f21fb3f45cae005",
+      "failure_cause": "physical_contest",
+      "seed": 10,
+      "state_hash": "7d53ed5124595d91eb9f07e1111f9d78c8416b4adf18bdfb24cb9f77e4716170"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8047762fe7259e7c41590431b65ccd833a0576d6d748f2163312fe9cc91fa50e",
+      "failure_cause": "latency",
+      "seed": 11,
+      "state_hash": "ae83a013042cd01a51a8bdc4639909eb7cc1abcf27c7e6a6923917f86f15aa96"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "b55cc07335c6c329435fca7a3a26d7995f61d3ecd5e64824ba32567146cc301e",
+      "failure_cause": "latency",
+      "seed": 12,
+      "state_hash": "2e9c7c84d18db4586959183478a9e9182b236b559ab25e6a9db29552729456c2"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "6790c011b68ae3f18a551cc2e2ab24d58de8ba26c6912d6707c4a6a1749e2391",
+      "failure_cause": "latency",
+      "seed": 13,
+      "state_hash": "94d06a3b2e2a4fdfa89fcb584985775b522645ed1b713195045640b528bba8a2"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "1076af0967e1bed8a12a3662d4d0600c15dc2dd1e6b1a049c91aa78311914569",
+      "failure_cause": "latency",
+      "seed": 14,
+      "state_hash": "ebac50b26ba469a1b72ad3b86e094eff693a0c82998d702912450944c3d1e067"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8a0a16eda705dcf51c2309d9d48ea3a06b90b605cd8d43701e252418b50f1dd6",
+      "failure_cause": "latency",
+      "seed": 15,
+      "state_hash": "4615f0502a8cfb64880326bdb8ad33e4b961c1d96bafba264915c9f6677fc229"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "086cefb97f849119207e825ca64b20fdbf77612a91ac85c7e8e78c2e4bf883af",
+      "failure_cause": "latency",
+      "seed": 16,
+      "state_hash": "5150fe619665a34c8ce7ae13eb7e7f0a9734f2850a484d56aab9a299e7e05576"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a2c9069369054682389ecab009dffbc79804f214116cf431bb8f1e0e723028a0",
+      "failure_cause": "latency",
+      "seed": 17,
+      "state_hash": "ee4019c039fbf0ef74f5f6c34b60452d4ff891a30cbc63330bf9216159e71c8d"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "842600ef57833667b3f4aa3504af81167fd1fc5cd9786169081b0843afc77a52",
+      "failure_cause": "latency",
+      "seed": 18,
+      "state_hash": "f2c8ee7a5c470b2a93499a7e318ff95aa1209bf24887590c3d98100a873f130d"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c5d645c9825ff2292a7320a3a8b5afd87c48435209f13a62a2a409b59bd3bd9a",
+      "failure_cause": "latency",
+      "seed": 19,
+      "state_hash": "f8d408ca7e661fc63d4e4429f414dd1fbd0e471bfc9ce9267ddcbd86b4cff34b"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "0d72e2397b26d77b93b7b3ecbd88b862a8052cab082ce3b3f767e5a987404fae",
+      "failure_cause": "latency",
+      "seed": 20,
+      "state_hash": "7fb48267fff9f76bb4f1049e81dfcc4b450e5e4fa8d1610fe27e6b7df728f217"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "05ccfc4af2f4bb860f93586e424663567eadda01bc7aa2eab146bd8e7ebef579",
+      "failure_cause": "latency",
+      "seed": 21,
+      "state_hash": "4f57341c34df92b4d2de1029b45dba6d3376ee0ea21bf8ec32c639e3eb04217c"
+    },
+    {
+      "cause_basis": "believed receiver point differed from physical receiver",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "1b73ef1740fa60dd853ddb4e740c000bdc45b2cb4171005362ff878134b2450b",
+      "failure_cause": "belief_error",
+      "seed": 22,
+      "state_hash": "f420984189b2a99e93a7fa75e1e5c3677668851e97fce8e1c60bf3aaece91f37"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e9f27f11b2304ead2d93269785114016d73d9d4e0322d78ee2f331643afdcc68",
+      "failure_cause": "latency",
+      "seed": 23,
+      "state_hash": "1ff74d0b513ac43f7361bd01ae995f5f368a049eeaedee2f636ec4529a7d8cc0"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "0d6b0d1ff83a55a5399a27dd575e9307ac8dc8a7ef1966fffc0e23c2602bd184",
+      "failure_cause": "latency",
+      "seed": 24,
+      "state_hash": "67290f851f58a9a476623420e578f5f3585d6330508d6bc816f85796b8ba7e4c"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e44ceaa8545f7dd6703258f8e9f93418da6396a408abf6fc06cab8647ba11a63",
+      "failure_cause": "latency",
+      "seed": 25,
+      "state_hash": "da5beb8d0d0fea5768f3beb18d9b18f21425d6660512778ead57678081ca210e"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a549a510023dbe7977ddc981c70257d174ebc552b48c53009de1f4f9e469a51f",
+      "failure_cause": "latency",
+      "seed": 26,
+      "state_hash": "bb1a2657428974628547bf6448db051128eebecbee41c9daeec5d34e0ff3e186"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "7efd063fa7e80cb13b0005a559c151d9717a2a5e270480437a84714ad0cc9449",
+      "failure_cause": "latency",
+      "seed": 27,
+      "state_hash": "fa39977e5fc34c3d4ff769eb19cce561e65b5499d8a96179e53c774e28b06f02"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "52abdd609715f2a4da163eb003d4a783a32ca4998850bac786f012a325663ccc",
+      "failure_cause": "latency",
+      "seed": 28,
+      "state_hash": "54325193cae46b596fd64d0ad7f196e09e48af86d80e1c54f987545ae605552f"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "f9dd369d79d0ec65994e802ceb49f44ff5a1f6451953adf24a8b5747413fe5ae",
+      "failure_cause": "latency",
+      "seed": 29,
+      "state_hash": "8a3ea57c0a385846b0fae23d367185dd27f9fe48af83ec3acbb854f72d827608"
+    },
+    {
+      "cause_basis": "defender produced a committed ball/body event",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "2569b31911fe0e04b74c637d232d59de35dd9836865f95860807c02b675ac862",
+      "failure_cause": "physical_contest",
+      "seed": 30,
+      "state_hash": "28d65f42701ad40f2a7e14af5b9c02a0a8220969565a96c873cd6d8618d235ac"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8a7abb864a3bccefea2d49d3a573e2d4d6d361326bd6b6ebb568caa2ba6da9b4",
+      "failure_cause": "latency",
+      "seed": 31,
+      "state_hash": "83c104405f464d740e17c3505ebf7ade6425e00a496a9c016c5548bb972a9b88"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "b6789b6570b1d9e9f0b0e00d5c113040328fd478c2f9c070a2b7747ecf749086",
+      "failure_cause": "latency",
+      "seed": 32,
+      "state_hash": "4cda4345a1f26a15752c38efd6d37101eb1ce4cefd72a3eec068217763605f77"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "1c285909cc0c6a0b09f6e0931c0a1a0b280db6faeaa635fc9285c0f3d9eb7a93",
+      "failure_cause": null,
+      "seed": 33,
+      "state_hash": "b14ef9a7b05ce4248fee21307de00294ecb47f27d532528be12479c734081341"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9720b51dde10351e58c2cd369a420441e78688f569b7bb278c9da919ff93ddb5",
+      "failure_cause": "latency",
+      "seed": 34,
+      "state_hash": "5c5401d3eb39f8971ccc7d5163fb2b6a44dd6fa850bea8c8e13f097199e360cc"
+    },
+    {
+      "cause_basis": "accepted contact kernel grounded the carrier",
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_grounded",
+      "execution_hash": "81ec9bd15eb90c9167263e2d73adbb8492e22a8aa91c96e2a907e6a4c7e67a20",
+      "failure_cause": "physical_contest",
+      "seed": 35,
+      "state_hash": "8cd3074c3af1035f77f4b84b64d3088668d433c8e53cd8aa955b4b534d2fa00a"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "5b24d6ce31f4b40efaf6343fcd8b8ab1247219233d78022d8d3cec1ee13a8f93",
+      "failure_cause": "latency",
+      "seed": 36,
+      "state_hash": "a92768be7b42257b54532950883d3a5059a2bf02d97e52fbf9fab6e6d886f387"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "0c882205b793052a26b6792a39d9120b7a4462172348b07daa44a420f298ff18",
+      "failure_cause": "latency",
+      "seed": 37,
+      "state_hash": "0cd69e8c61b1c455bc6b828aab7c6280a368f649f949a8ff997fb1ca9a435900"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "fd5d4908abe4454b2426a6bf6a6781bad33a1c3b067777340e9016d5f0527610",
+      "failure_cause": "latency",
+      "seed": 38,
+      "state_hash": "c9556c9b17c7b33fee0709746b10f14576ef087dc0c61c2249cdd6b5e956529d"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "9b784394c27933c4c873d6fcace32b47d260eae41908e1e60629e531353cd8dd",
+      "failure_cause": null,
+      "seed": 39,
+      "state_hash": "2523dfb126c66929333dbc3acbcc36e79f5625f52e18d1d42b185c6ea5f28243"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "9761c88a59fb1206fb16a158b1a5b04178e3af7010abafbfb61a6d572cdfc0b1",
+      "failure_cause": "latency",
+      "seed": 40,
+      "state_hash": "c9117fe39ff397005c4748300ceb131545bd242196833fd8251bd7a90507704d"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4c09e377f95ffe6df4ede4345b106b651868311bf8dfc16b5fa656f188b73ed7",
+      "failure_cause": "latency",
+      "seed": 41,
+      "state_hash": "0455bd32f15a75fb43ef48e2c2f98b3ab54a27bb7149935ad07cf7ea6b569742"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "01e171454c998806c7f5d90422b6278ad77fffd981750fc53a078285db7004a5",
+      "failure_cause": "latency",
+      "seed": 42,
+      "state_hash": "f7d2387889193c68f70b1a40f9de66abf5cd7078548768842f5dc5692481c399"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4e8fae900e89b447469fb29201d01c4c5fa1d34469e2970513aa52392e625359",
+      "failure_cause": "latency",
+      "seed": 43,
+      "state_hash": "20706bdb5359c46524a365bf3dc528b797b389b449689eb342c5a4d0f830ba4f"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "b035aca97a9fadc6d10eee9adbbe65fd12fb5cc2e75495208aeba27f934f18fd",
+      "failure_cause": "latency",
+      "seed": 44,
+      "state_hash": "40037ee3311d8fe97a75bef8323666a4a4488bb53e79b890951a1edc130677e3"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4699ce6f6e1bc749128ad4dfcf3002c2a4f229743e7087123dcfd24effebe519",
+      "failure_cause": "latency",
+      "seed": 45,
+      "state_hash": "625beeac8e285c120b67310f940b285343d4559e01b0c75e4413928a8704eb5c"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "268fd18e4488b4da9793fea0eb654dfde0d6cf58ddc9338527ace3dbff910bc5",
+      "failure_cause": "latency",
+      "seed": 46,
+      "state_hash": "e34775165b272569e1bfad2d075f6c1898cad062dc1ea947f79a60b4d766849f"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "f14fc54c35e158fec9034a309250d7b5f38f386fd59051891c16c3ad6c078ade",
+      "failure_cause": "latency",
+      "seed": 47,
+      "state_hash": "f8ceab4a9aaa77ea55ac423c6f0bfacea917f0bb08df53623a1629a7c4f41748"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e5caef8ea7b373156b279f2f2deb6a9105cb55fefd98cab439d08ce9aa747673",
+      "failure_cause": "latency",
+      "seed": 48,
+      "state_hash": "f2af5f570b1c2deaa436febaff10ad21aacf8d0e2cc961d25b5a1e306937f7b7"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8bc13f28e9c71dba270a45e15a68f00c11c158a660b5890a9c30280b8022b59b",
+      "failure_cause": "latency",
+      "seed": 49,
+      "state_hash": "31191c5fecb55d1c43e436c0c324807de604a3b1e34873e9b3b22af0ce125f42"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "0f96f4bb66ac047a3ac236631ac1fa4261f7459dbe5022d3b41a9b82aa83b12d",
+      "failure_cause": "latency",
+      "seed": 50,
+      "state_hash": "72cf6f70bc76b35d23352849abd3dba14d91aff1129c44f712b7df32045ecc00"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "51c54515cf4ce7b1739fd1da7c50a5a26cb62d0ebcfff7723d15058e62ad5420",
+      "failure_cause": "latency",
+      "seed": 51,
+      "state_hash": "328145bfd7ce3669d4b2187efcb435f4637ee957b2fd9229bcf01ff62886b9da"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "a2e0290b51aa58ab9645d4a2fb4cf26fdc5437b28ff412cffb7b0c44b4f41e3e",
+      "failure_cause": null,
+      "seed": 52,
+      "state_hash": "a8732e15191eb07d5f3bb06915fcebb874d50a6f6ae069be471130f85cb9e756"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "3afc26486af6dc0ea172d6fb24cbad40cae65e0ce6a98af81aac8efdac66dae6",
+      "failure_cause": "latency",
+      "seed": 53,
+      "state_hash": "ba714d29261dda635967d545439906a2c84e6864bcd9ac1398ace420149e12cc"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "d4af21c9654f66eee2f1be3b29e6701bdae40b8092a7693bdc83ec04b86f198d",
+      "failure_cause": "latency",
+      "seed": 54,
+      "state_hash": "696a0cf67d95516bd92ac29619308b4365c6d0a41a916fdbaa7e2250681ed467"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "635839b42df3886a5eaea21e153397f4a081e60911f658c049854e34afc07746",
+      "failure_cause": null,
+      "seed": 55,
+      "state_hash": "280574ef47a2d7127db170d428213a96c90398b807b5a595eacca32f6cf3ee3e"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "787c736bfb257a720c6c7c71041938b717fa1b9bbca9d14d1257234c15856f1d",
+      "failure_cause": "latency",
+      "seed": 56,
+      "state_hash": "0e25e585f3a3049e240041696300388c162fb8010ce02b8b38ab19c6baa70b64"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "1d8b68fc628de3e1ea7b7abca02b6ff62f65e4e2a5089c07a6fc09d15c75d19b",
+      "failure_cause": "latency",
+      "seed": 57,
+      "state_hash": "b708aedee1ffa76a84b1adfb61e4d6493e664f5d1ff121b6ae75e4b2cb2c0592"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4c959547f180e50fcae5a205d646ef983d6c5d8129daf4582eacfa520639c6ca",
+      "failure_cause": "latency",
+      "seed": 58,
+      "state_hash": "0088f5c15deb8b41ce645da83c56e70c2abf7c5a21862ff632915eaf102f365b"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c022e7996ce1edae604ec0cf04ea4ad8e1ca9640a85b577b5b6d4ee6b88b3d57",
+      "failure_cause": "latency",
+      "seed": 59,
+      "state_hash": "badc7ecd6f74dd4fd2b086cdf8bac0d57e3d73ee25f0f35c40eb82abe14813d9"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "f5618a4361f3aa38088d89f6aea4b35d188e4af259d50b9a37813c09f8d88407",
+      "failure_cause": "latency",
+      "seed": 60,
+      "state_hash": "559a7a977d25a66b4f01814e7f6877164fd9823dadc7263126916e199df59ea8"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "40c38e400182fb8a45408fe31073bd395ed280a0a07afe518b696d1f58fa3ff2",
+      "failure_cause": "latency",
+      "seed": 61,
+      "state_hash": "069e61f25cfd43f7c6bdaf4be4c68d3c559582731b0c370835867296017d4eac"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "e48a910e2db6b7f5fcf389b68ec0bf01db895834d754a07f243bb8f68226f67d",
+      "failure_cause": "latency",
+      "seed": 62,
+      "state_hash": "fad6ba3b5f51c2eaf57294fa2bea64a7f9d6749d535c247ab538d8ba48e9f68e"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "374b8fdb67f35650c9a90cf7e94236713add498519ab2f8ef41546258ee8e44d",
+      "failure_cause": "latency",
+      "seed": 63,
+      "state_hash": "48274e5604eca30f4b456fdbe27ae378794b8d6af1b9b0839f3f48593f64da6f"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8a32ae7b68fc450611de07c01a07e54c110ec0f2f5423d11ce5800045f90ab85",
+      "failure_cause": "latency",
+      "seed": 64,
+      "state_hash": "6c9b144c27ab7adabde840f104665b83a2abcea56e949bba6a783d0cb9cc43d4"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "bfce3fd5471df14115214e7ce433d73486ffb6968c6a614ae1d4146ec0bde394",
+      "failure_cause": "latency",
+      "seed": 65,
+      "state_hash": "34216054d29d0390510cb50a7a23764727bee4b5aa84ae8718639097b39d36a9"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c98373a0b1fbf9db4b893380c8855e9926f74a41779d4957d2573633966e344c",
+      "failure_cause": "latency",
+      "seed": 66,
+      "state_hash": "7bec8bbf3312a34ddc818e4e9d4cb47dca79694e2947fd3113a53031c7d76b5b"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "535c29036a90569c47dc946325364b59a3323cfdf51ad8cd1c6be7fa24f076fe",
+      "failure_cause": "latency",
+      "seed": 67,
+      "state_hash": "37f705fbdcfb9aee07886314a46c62f519fa318ffa8d5eef94b4a89cc70d2e8a"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "038e01dc20da4775cb1c3c74f88e8b9b856c36eda56404c9fc10674c08381220",
+      "failure_cause": "latency",
+      "seed": 68,
+      "state_hash": "c280b8770a61928d9f1cdfa6efc0e926d3937d1554aeb56f5f7cea61a1986aca"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "13267b12d4ab510ba6a7e61e9274c9f36140aa0c1fb1ef98c1511a3ddbb829d5",
+      "failure_cause": "latency",
+      "seed": 69,
+      "state_hash": "0d5466fd35d48fccb157f0c98be8637ebab087cf60a4f458385cd99f69173a5d"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c26182d81e1a4ac0af773062d7fec9430a212fb10b307add402aeadedf98150a",
+      "failure_cause": "latency",
+      "seed": 70,
+      "state_hash": "0c2875b1179d3c90b93e93f9ec33f5502e6ac863b982f915a6e3069c75024df0"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "553e4fafdc8240a2f046fcded4225c1614779cc848333de073640a79d2f91b89",
+      "failure_cause": "latency",
+      "seed": 71,
+      "state_hash": "bea2cce25f60e6d8dfc1b143c4bcd37ace60ecb92e1ccf045d264d86394df4d8"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "0e76b72d128e36efd4c96f9a67b2b52fe3577cb0b907177ea3bf02497c1acfbd",
+      "failure_cause": "latency",
+      "seed": 72,
+      "state_hash": "50b6b57a4125984ccf92f5de3cd9b70c83babea9873aeeec3b8ba62d2aa62090"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "8ea73908b6c89ece139384d8460ff8dbb7c75bb3f3d44986b6b3edefd8e08b13",
+      "failure_cause": "latency",
+      "seed": 73,
+      "state_hash": "ccb99652a718553c704124253800cc1c0d74137da33b54f1f5aa545a2e4dd59c"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "a154b0d290d9990a4a8a9c1e80fda47c4a9d2c5d3a309eb5c7840fd75fa3f191",
+      "failure_cause": "latency",
+      "seed": 74,
+      "state_hash": "0e6df3d59480f208812b27b7ea404c3fb9063969e0430a41736353ef0427168d"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "2526e90a3b755ea87c0b9b47f8a2a7d91e74748e1d5b27d231ce4e50e793e0ae",
+      "failure_cause": "latency",
+      "seed": 75,
+      "state_hash": "1598ea4db72b3379f6e88c1d7cb58311a26f08747c38eecb662252b414eae6a4"
+    },
+    {
+      "cause_basis": "believed receiver point differed from physical receiver",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "807fb6181b74f69866bf53b872097c2422989a04f383dc4064961da1bc3b69ca",
+      "failure_cause": "belief_error",
+      "seed": 76,
+      "state_hash": "b4e41c5355b8fb09ba10599b8fdc7b6fd400055a39d25636bc3c210e3a00b3f8"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "29f62b4f9f9ffb7164c950707c5e6c8a9b0927fbf15e61794fb70b9562a4259e",
+      "failure_cause": "latency",
+      "seed": 77,
+      "state_hash": "b898c2db7ea868234253df21c976dfe3a29849a9a6ae61d552fa4a3862c3828c"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4e5d07810fd6a00cf0b618a6de001a7f6bf6ba665a046890354a120f9e026b57",
+      "failure_cause": "latency",
+      "seed": 78,
+      "state_hash": "611bad912f3bc77fe85a8ded80f6ed2cf3ba8272fe857ad1516edaf440778051"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "858063e417529129c641942a44593f3dcdcd5298ef6118927c5c24c32b74673a",
+      "failure_cause": "latency",
+      "seed": 79,
+      "state_hash": "60ad83a6863e6fe5f82c629bc3aeb18a04241173514c433f971f99df8290416e"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "ecf466a379d5cb1ab1aa11f22e3c52515f5a60e18a7f2faf0bb984232e872f88",
+      "failure_cause": "latency",
+      "seed": 80,
+      "state_hash": "cb9e2e99f9176dea8ef8f84c2c3b8fa81e9c9e10820acae5021ebe3f918a5ddf"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "b3611c7873d521f001e191cf96a6eaae34cd85108ea7544b1c3e37734a2d41e8",
+      "failure_cause": "latency",
+      "seed": 81,
+      "state_hash": "02ad633daee318a5baa989cd18b9def69ff70937c6a7a326b4c90aaac48e7599"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "f032537964291835564a30ef6f9a3e27c816c9cf74163a80424308280e12e058",
+      "failure_cause": "latency",
+      "seed": 82,
+      "state_hash": "fa5b451f1a4b7c2f9e2999d5c9f65e8fc4e51f9a6f4487372a13e22edb8df1ed"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "df97b01c2bd937dde630ff1998859587580b2f5a8fab2efa19ec60d33cb10ef5",
+      "failure_cause": "latency",
+      "seed": 83,
+      "state_hash": "f68e592e6fcbf5c51d703ae284d94f1a38d03dd62cbe363e449e5de089585b9d"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "95ae660d570d512778ab0a1725aecbcc8de96c11ac8e37fce7e2ea3abffc993c",
+      "failure_cause": null,
+      "seed": 84,
+      "state_hash": "1862dd9355eb4a0ad7f28e6dc4cfab342721b0032172a2cc2eb5bacdeeb5d748"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "a816d6db3068aa675de5d6a7f8b7a6a9de8b0175377cc9dad07816ae6a1e2cad",
+      "failure_cause": null,
+      "seed": 85,
+      "state_hash": "8f777078b50935403eadebbe5c8c96189429c887d1c43a67980ed62ab74bbef9"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "4a51ec1bf5c5d529054d5ca6379ce70a4eafea94156ac9a22ec7234298037bbd",
+      "failure_cause": "latency",
+      "seed": 86,
+      "state_hash": "b4479617bca167b8fa189af70cf92389adf8502b84fc190f9da92aa7cc3ca8f8"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "abab239b75162e6a9314a13f35958093b6b6c3adf1dd1733670b0588f88eb68f",
+      "failure_cause": "latency",
+      "seed": 87,
+      "state_hash": "cd40da899a687d3f8842e9d34a928af4524d2c9cab267da47062fda5e474901d"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "efa5cf20407252a8ed2d625c1b164dbcf3401f1015fe26079350b754bb23b68a",
+      "failure_cause": "latency",
+      "seed": 88,
+      "state_hash": "5b24539dceffe75c324fee1cfddd8f1305b29520d8adec22fb0c1576badcddff"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "23f2c455eaf943752b76dea6e25a9f432ede433eb8674e210dadb4bd7929b6c7",
+      "failure_cause": "latency",
+      "seed": 89,
+      "state_hash": "a4ee3c5041bf6b13d9cd079326199b5e2448f04ea37f490272fd12feaeb9c04c"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "d6d5d316c9c95dd83e5233eb958b4d350d7af7a97e50083788360b8d1d626239",
+      "failure_cause": "latency",
+      "seed": 90,
+      "state_hash": "3f30cdba75ca1d44400ba29271520e109de577468dbf3eb890edab6c5a878724"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "c2d37526959ba081c062075d43bf12dff4eb7660fea99dceb541e1f95f1245d4",
+      "failure_cause": "latency",
+      "seed": 91,
+      "state_hash": "6ad8d51081b7bf3b674c3b2addc88f9c4a7848589037124bb632352d04bfcf6c"
+    },
+    {
+      "cause_basis": null,
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_reaches_x_90",
+      "execution_hash": "b2f84472d999704e198412b725361f71d96dc934f80af903d2219e559694ead0",
+      "failure_cause": null,
+      "seed": 92,
+      "state_hash": "452742240daa2584e7651a51084c8b2bb40235385538588f5fde92573ff59d27"
+    },
+    {
+      "cause_basis": "accepted contact kernel grounded the carrier",
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_grounded",
+      "execution_hash": "3c887079aea078a4a790bcf0c8162fe62b6b839f187b8dd8708fd78b32844261",
+      "failure_cause": "physical_contest",
+      "seed": 93,
+      "state_hash": "26d86d4d892003b9d0c5435c82da1bc01577e0f510244e244ca2e98d4d4c29a2"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "5e33e690963a03a354f919ff8cb222ab19b6f6999ed577eb348939a9d55f1947",
+      "failure_cause": "latency",
+      "seed": 94,
+      "state_hash": "2cd1c37a6a6b5179ce90a786c55b40b2eca7ae3c21f5838b6557f95789ddc573"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "6ee7f6309eecf6e12761c8ad2b1689c5d93adc6e49d07d6a44e04f0bcd8acb72",
+      "failure_cause": "latency",
+      "seed": 95,
+      "state_hash": "150d38ef847b160e51483cbeb887cf8c86cab28ed4ed285a3e122658a34ac8a8"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "34d4ea73f5ffb7d1dc8d644b61f85a80c268661d1082b5eeec9e3d2d596c1089",
+      "failure_cause": "latency",
+      "seed": 96,
+      "state_hash": "e63ea5bc0f17527a1ac3f2cab0190ba7360fa2258fbe989557ede6cef1da0149"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "26086f2a4b4286c48f092a55f6858e9a540576f439d8a9cd81cc5012805e96e8",
+      "failure_cause": "latency",
+      "seed": 97,
+      "state_hash": "3feb82d1c70b3b9014739280df0ddb4d3a1cfa730a3414d1de1903f7e064e8e0"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "bc1bee368af604df985a8cd73203e57eb5702abb242d7d768d854d560943044a",
+      "failure_cause": "latency",
+      "seed": 98,
+      "state_hash": "fe618b5c49c9eed35d14c1b3aff91faaa4171c55651d1b8cd858c05bac227f9e"
+    },
+    {
+      "cause_basis": "accepted contact kernel grounded the carrier",
+      "condition": "C3_close_defender",
+      "endpoint": "carrier_grounded",
+      "execution_hash": "b8c2672f78885d6f187f5e7ff0c8a8dddfa7742cc350150461c9c950c9014cc9",
+      "failure_cause": "physical_contest",
+      "seed": 99,
+      "state_hash": "1d9313b2fd49ddbd9fbbebf2cb523bc66e07756d0f46fd10cd54310aa6d40e69"
+    },
+    {
+      "cause_basis": "release origin shifted during the admitted interval",
+      "condition": "C3_close_defender",
+      "endpoint": "pass_incomplete_ball_loose",
+      "execution_hash": "ac6e218e7f8c12b161f2d377fd13cb948a27fb9e5441ffdd73c938f9e0a660fd",
+      "failure_cause": "latency",
+      "seed": 100,
+      "state_hash": "bf672f542c7cd07ebdb662bff533212e5a830de2db2fe39bea2b9223d1a72f47"
+    }
+  ],
+  "matrix_hash": "bd3237e392ede5d7e861dd5486b7879667896bc4affebc1e8d711a198f82e452",
+  "performance": {
+    "cpu_s": 145.795830143,
+    "wall_s": 144.02016844699983
+  },
+  "runtime": "3.12.14",
+  "scenario_id": "m1-carrier-pass-or-carry-v1",
+  "seeds_per_condition": 100
+}

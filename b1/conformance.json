@@ -1,0 +1,66 @@
+{
+  "profile_id": "m1-carrier-pass-or-carry-v2-r6",
+  "schema_version": "b1-m1-python-3",
+  "baseline_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
+  "physics_profile": "B0-P4-DEFAULT",
+  "actors": ["A0", "B0"],
+  "passive_physical_receiver": "A1",
+  "conditions": ["C0_uniform", "C1_sharp_defender", "C2_limited_vision_carrier", "C3_close_defender", "C4_lane_defender", "C5_lane_defender_sharp"],
+  "lane_comparison": {
+    "baseline": "C4_lane_defender",
+    "sharp": "C5_lane_defender_sharp",
+    "shared_defender_start_m": [47.0, 56.0],
+    "only_rating_changes": ["judgment", "reaction"],
+    "ratings": {"baseline": 0.70, "sharp": 0.90},
+    "continuous_lane_fraction": "clamp(0.2 + 0.6 * judgment, 0.2, 0.8)"
+  },
+  "time_profile": {
+    "start_ms": 1000,
+    "timeout_ms": 8000,
+    "sensor_interval_ms": 50,
+    "physical_step_max_ms": 50,
+    "decision_cadence_source": "per-athlete PRISM judgment profile decision_interval_s",
+    "first_decision_source": "per-athlete delivered PRISM latency"
+  },
+  "supported_intentions": ["pass", "carry", "move", "retain", "no_action", "continue_current"],
+  "supported_command_resources": ["ball_control_release", "locomotion"],
+  "moving_release_contract": {
+    "id": "pass-release-v1",
+    "source_commit": "baaabaa",
+    "status": "draft; recompute implementation accepted provisionally",
+    "correction_bound_deg": 60.0,
+    "over_bound_status": "rejected_geometry",
+    "engine_adds_carrier_velocity": false
+  },
+  "episode_endpoints": ["pass_completed", "pass_intercepted", "pass_incomplete_ball_loose", "carrier_grounded", "carrier_reaches_x_90", "timeout_8000ms"],
+  "failure_causes": ["defender_ball_contact", "defender_body_contact", "receiver_catch_failure", "belief_aim_error", "pass_accuracy_failure", "unknown"],
+  "forbidden_controls": ["formation_anchor", "role_assignment", "scripted_receiver_route", "scripted_defender_failure", "legacy_tactical_controller"],
+  "excluded_scenario_classes": ["give-and-go", "multi-teammate cognition", "keeper", "archer", "catch intent", "scoring", "regulation"],
+  "evidence": {
+    "matrix": {
+      "seeds_per_condition": 100,
+      "episodes": 600,
+      "matrix_hash": "3f61f1e6d66a78120281755d2f9e771db0b90959a0806f3e84173d32c33edd12",
+      "unknown_failures_observed": 37,
+      "ba_m1_2": false,
+      "ba_m1_3": false
+    },
+    "lane_study": {
+      "seed_ranges": [[101, 500], [501, 900]],
+      "seeds_per_condition": 800,
+      "episodes": 1600,
+      "study_hash": "a3a68939883294c06ad0e1d6276f13d911cf188ff128942c50aa4a92b50ff5e1",
+      "lane_option_seeds": {"baseline": 161, "sharp": 152},
+      "conditional_interceptions": {"baseline": 30, "sharp": 52},
+      "matched_both_selected_seeds": 107,
+      "matched_interceptions": {"baseline": 28, "sharp": 45},
+      "matched_gained": 32,
+      "matched_lost": 15,
+      "exact_two_sided_mcnemar_p": 0.01862383661500644,
+      "net_interceptions": {"baseline": 98, "sharp": 76},
+      "net_improvement_claimed": false
+    },
+    "focused_tests": 25,
+    "formal_m1_acceptance": false
+  }
+}

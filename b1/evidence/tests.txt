@@ -1,0 +1,132 @@
+test_mr2_outcome_preserves_action_target_and_semantic_aim (b1.test_m1.MovingReleaseContractTests.test_mr2_outcome_preserves_action_target_and_semantic_aim) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:79: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/b1-r6-final2.eBkoGN/Beastball Pocket 2 0(1).py' mode='r' encoding='utf-8'>
+  t = open(path, encoding='utf-8').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_awz31rkg/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_mr3_hidden_opponent_and_receiver_state_do_not_change_release (b1.test_m1.MovingReleaseContractTests.test_mr3_hidden_opponent_and_receiver_state_do_not_change_release) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_wj76ahze/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_81e4wgvv/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_mr4_over_bound_rejects_and_feedback_reaches_cognition (b1.test_m1.MovingReleaseContractTests.test_mr4_over_bound_rejects_and_feedback_reaches_cognition) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_arbz0a77/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_mr5_stationary_release_matches_contract_off (b1.test_m1.MovingReleaseContractTests.test_mr5_stationary_release_matches_contract_off) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_5nk7r0vs/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_c3kjt35d/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_baseline_guard_detects_preexisting_modification_and_missing_file (b1.test_m1.PureBoundaryTests.test_baseline_guard_detects_preexisting_modification_and_missing_file) ... ok
+test_cognition_has_no_engine_import (b1.test_m1.PureBoundaryTests.test_cognition_has_no_engine_import) ... ok
+test_decision_values_are_immutable (b1.test_m1.PureBoundaryTests.test_decision_values_are_immutable) ... ok
+test_observation_changes_selection (b1.test_m1.PureBoundaryTests.test_observation_changes_selection) ... ok
+test_pending_action_and_failure_feedback_change_the_decision (b1.test_m1.PureBoundaryTests.test_pending_action_and_failure_feedback_change_the_decision) ... ok
+test_stale_belief_is_not_treated_as_current (b1.test_m1.PureBoundaryTests.test_stale_belief_is_not_treated_as_current) ... ok
+test_batch_permutation_and_legacy_traps (b1.test_m1.WorkerTests.test_batch_permutation_and_legacy_traps) ... ok
+test_command_replay_independent_of_cognition (b1.test_m1.WorkerTests.test_command_replay_independent_of_cognition) ... ok
+test_defender_pursuit_is_derived_from_belief (b1.test_m1.WorkerTests.test_defender_pursuit_is_derived_from_belief) ... ok
+test_interruption (b1.test_m1.WorkerTests.test_interruption) ... ok
+test_judgment_continuously_moves_belief_aim_toward_lane (b1.test_m1.WorkerTests.test_judgment_continuously_moves_belief_aim_toward_lane) ... ok
+test_projector_uses_physical_world_and_poisoned_true_state_isolated (b1.test_m1.WorkerTests.test_projector_uses_physical_world_and_poisoned_true_state_isolated) ... ok
+test_replay_and_observer_neutrality (b1.test_m1.WorkerTests.test_replay_and_observer_neutrality) ... ok
+test_retain (b1.test_m1.WorkerTests.test_retain) ... ok
+test_conditions_are_declared (b1.test_g1.GovernedScenarioTests.test_conditions_are_declared) ... ok
+test_defender_tracks_released_ball_from_belief (b1.test_g1.GovernedScenarioTests.test_defender_tracks_released_ball_from_belief) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_jrm2mkol/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_failure_attribution_can_report_unknown (b1.test_g1.GovernedScenarioTests.test_failure_attribution_can_report_unknown) ... ok
+test_mr1_twenty_seeds_final_direction_matches_semantic_aim (b1.test_g1.GovernedScenarioTests.test_mr1_twenty_seeds_final_direction_matches_semantic_aim) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_yyedptx0/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_7lzxogjb/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_mn3zke9w/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_i08a1h90/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_89pl_5do/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_6tq1rav_/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_aou_13cb/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_5ia_csmm/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_03knr5vf/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_q_ca0f27/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_hpx33765/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_n8n_kz6x/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_7xy3nfzh/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_i5qbrvmm/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_khqgkv_u/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_4v7vosac/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk__om4z4f1/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_cxj7xc02/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_vka7oi7e/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_arehds3_/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_only_carrier_and_defender_have_cognition (b1.test_g1.GovernedScenarioTests.test_only_carrier_and_defender_have_cognition) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_6v7wdetg/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_real_kernel_exhibits_required_outcomes (b1.test_g1.GovernedScenarioTests.test_real_kernel_exhibits_required_outcomes) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_c_7b_6r8/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_jusubkke/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_9gico0zt/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_replay_and_telemetry_are_observer_neutral (b1.test_g1.GovernedScenarioTests.test_replay_and_telemetry_are_observer_neutral) ... /tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_wohgjqbc/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/tmp/b1-r6-final2.eBkoGN/pocket4_proto.py:111: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/pk_jgu0_zro/Pocket20_patched.py' mode='w' encoding='utf-8'>
+  d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 20.796s
+
+OK
