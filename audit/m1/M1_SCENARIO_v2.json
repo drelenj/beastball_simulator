@@ -1,0 +1,132 @@
+{
+ "scenario_id": "m1-carrier-pass-or-carry-v2",
+ "status": "DRAFT_PROPOSED_BY_CLAUDE_AFTER_R5",
+ "profile": "beastball-b1-conformance-v1-m1",
+ "field_m": [
+  100,
+  100
+ ],
+ "attack_direction": "+x",
+ "episode_end": [
+  "pass_completed",
+  "pass_intercepted",
+  "pass_incomplete_ball_loose",
+  "carrier_grounded",
+  "carrier_reaches_x_90",
+  "timeout_8000ms"
+ ],
+ "athletes": [
+  {
+   "id": "A",
+   "role": "carrier",
+   "team": "T1",
+   "cognition": "prism_b1",
+   "start": [
+    45,
+    50
+   ],
+   "start_state": "carrying",
+   "facing": 0.0
+  },
+  {
+   "id": "T",
+   "role": "teammate",
+   "team": "T1",
+   "cognition": "none_inert",
+   "start": [
+    49,
+    62
+   ],
+   "note": "physical body, no cognition, stationary; a legitimate target seen through A's own perception; not an assigned receiving position"
+  },
+  {
+   "id": "D",
+   "role": "defender",
+   "team": "T2",
+   "cognition": "prism_b1_simple",
+   "start": [
+    53,
+    52
+   ],
+   "note": "C0-C3 start; C4/C5 override below"
+  }
+ ],
+ "forbidden_in_scenario": [
+  "Keeper",
+  "Archer",
+  "formation anchors",
+  "role assignment tables",
+  "scripted receiver routes",
+  "scripted defender failure"
+ ],
+ "ratings_conditions": [
+  {
+   "condition": "C0_uniform",
+   "all_prism_ratings": 0.7
+  },
+  {
+   "condition": "C1_sharp_defender",
+   "all_prism_ratings": 0.7,
+   "overrides": {
+    "D": {
+     "Judgment": 0.9,
+     "Reaction": 0.9
+    }
+   }
+  },
+  {
+   "condition": "C2_limited_vision_carrier",
+   "all_prism_ratings": 0.7,
+   "overrides": {
+    "A": {
+     "Vision": 0.4,
+     "Awareness": 0.5
+    }
+   }
+  },
+  {
+   "condition": "C3_close_defender",
+   "all_prism_ratings": 0.7,
+   "overrides": {
+    "D": {
+     "start": [
+      50,
+      51
+     ]
+    }
+   }
+  },
+  {
+   "condition": "C4_lane_defender",
+   "all_prism_ratings": 0.7,
+   "overrides": {
+    "D": {
+     "start": [
+      47,
+      56
+     ]
+    }
+   },
+   "note": "defender 4 m off the carrier, near the pass lane to T"
+  },
+  {
+   "condition": "C5_lane_defender_sharp",
+   "all_prism_ratings": 0.7,
+   "overrides": {
+    "D": {
+     "start": [
+      47,
+      56
+     ],
+     "Judgment": 0.9,
+     "Reaction": 0.9
+    }
+   },
+   "note": "same geometry as C4 with the sharp defender; BA-M1-3 compares C4 vs C5"
+  }
+ ],
+ "seeds_per_condition": 100,
+ "seed_list": "1..100",
+ "note": "Physical ratings and body constants use the existing accepted physical standards unchanged. Positions are starting layout for the test, not a prescribed formation.",
+ "changes_from_v1": "v1 geometry (defender at 53,52) made the defender irrelevant in C0-C2: 100/100 seeds had identical endpoints for uniform vs sharp defender (R5). v2 adds C4/C5 with the defender positioned so interception is physically possible."
+}
