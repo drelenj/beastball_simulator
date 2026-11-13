@@ -70,7 +70,7 @@ O = ['# SPRINT30 OWNER BRIEFING', '', '**Nothing is ACCEPTED. This is experiment
      '- Keepers position and can issue a save intent; Archers draw and release at the believed opposing carrier (both PROVISIONAL).',
      '- The legacy tactical controller is trapped: calling it raises an error, and the match completes without it.', '',
      '## 3. What remains unimplemented or unproven', '', '| milestone | status | notes |', '|---|---|---|', *[f'| {a} | {b} | {c} |' for a, b, c in MILE], '',
-     'Every decision rule is a hand-set primitive, so the scores say nothing yet about how real PRISM athletes would play. Seed-1 match: Keepers issued 1 save intent; Archers released 50 arrows with 0 freezes.', '',
+     'Every decision rule is a hand-set primitive, so the scores say nothing yet about how real PRISM athletes would play. Seed-1 match physical outcomes: ' + str(m.get('outcomes_by_status')) + '. The independent review rated most boundary tests WEAK when it ran; fixes made afterwards are not re-reviewed.', '',
      '## 4. What is blocking the next step', '', '- Your canon decisions: U-1..U-4 (Keeper zone, zone clock, restarts), R-RS (ruleset 1.0.1 vs 1.0.2), SELF-1 (Archer foul mapping).',
      '- Reconciling this sprint with the governed G1 work at `c083ae9`.', '- The B0 inventory guard lists 23 files that are not in git, so it fails on any clean checkout.', '',
      '## 5. Recommended action', '', 'Review `SPRINT30_LIMITATIONS.md` and the independent review; decide the canon items; then follow `SPRINT30_UNLIMITED_STRATEGY.md` (keep the skeleton and boundary tests, replace primitives in milestone order). Do not merge this branch.', '',

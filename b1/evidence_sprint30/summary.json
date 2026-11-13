@@ -1,0 +1,730 @@
+{
+ "g1": [
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2116,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 1,
+   "state_hash": "170979f500d5a7341de76556b7ee28fc0f733148b66722eb12c17f32ee23604d",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "92b5e918c36e57c270e3b5fe71e1184042267462df4fc715addf7af02cdde89f",
+   "wall_s": 0.718
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2123,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 2,
+   "state_hash": "107068689c6252910be673cdef445f90928c1544f5acfa1f4d7131aa895619d6",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "0b32819166f7063fb4eb96c7607377bbbcef211546352c168d09bb2815e15788",
+   "wall_s": 0.588
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2139,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 3,
+   "state_hash": "0d0472167fe5f5eb0a9a3b5d6b8c1d44b0181299a21086debe2e178e600505ed",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "467ff67a7aeaddbb094f516afc8e15516102a3f3a4056b1c4d76e8c5cb492da9",
+   "wall_s": 0.566
+  },
+  {
+   "decisions_by_role": {
+    "field": 12
+   },
+   "decisions_total": 12,
+   "end_ms": 2117,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 4,
+   "state_hash": "3505ce84af0843569d78b42c793c6864f0d1d34633e5d4089b95987f41270b09",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "c100407fbcbc9809f288460205f1c96f821b45d2da1b95cd5a84e8283de79a89",
+   "wall_s": 0.58
+  },
+  {
+   "decisions_by_role": {
+    "field": 12
+   },
+   "decisions_total": 12,
+   "end_ms": 2110,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 5,
+   "state_hash": "57dc274a445367b8a0f7334c8a860af779c0a64ff4179a77242e2ddbd33e7077",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "ce84b905938055f66a767d88efae642e807d0cfd242d02584bac196691c69714",
+   "wall_s": 0.655
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2110,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 6,
+   "state_hash": "ed4fd199313916a3eb345441db4f496c44e9b93247e59ccc47c3f4a350d1f76b",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "2a9042a299a4ccb28a0d7413bff9e1b9e51636ffb089f7ddedbf466f192fce03",
+   "wall_s": 0.576
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2117,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 7,
+   "state_hash": "c8c7d8cd23e66f652a85843bf97fbe4a461ccd6ddc972f5603b5dfb828587b10",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "a338f30b0bc75f7ea3802ac4993a0f88b5e7acbbb8687a02515e9a629d6293dc",
+   "wall_s": 0.563
+  },
+  {
+   "decisions_by_role": {
+    "field": 42
+   },
+   "decisions_total": 42,
+   "end_ms": 4004,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 8,
+   "state_hash": "177bbf7798d7d556e360491b4d1b17bbe373107980ba7b9cb4285f1d5b596cdb",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "77e9ec1756799182037b192e37b922c975a876fd9aa48e2a485088332136a717",
+   "wall_s": 0.64
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2125,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 9,
+   "state_hash": "0ab00af273008f27331eff5b9364975d8213dd2ddd981ade4feca7852341f708",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "d0dcd2e4030d923a5a43b625fa9d61371e5b6e0377128543b73bef5b60904c5d",
+   "wall_s": 0.565
+  },
+  {
+   "decisions_by_role": {
+    "field": 12
+   },
+   "decisions_total": 12,
+   "end_ms": 2124,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 10,
+   "state_hash": "984c11dd0390630553c4e15145c2f24b1125016325ac56a16adc7320a78d9361",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "27178ffb620d02ce42f1bd4e5e906a0408f1fd464e6c50edb95064cf3a3b9ff5",
+   "wall_s": 0.57
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2137,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 11,
+   "state_hash": "21e1e27b236dfb95eef166c58f9c14202a51dd33748a26e54d0b3901045c7e85",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "6e847e5eb2a73af2fa15ebd82e996d03a58799699f5903985aa569c9f3b64374",
+   "wall_s": 0.619
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2120,
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 12,
+   "state_hash": "ea5160ab59fa1d2591696e395ba6d345e0c7831b3e6a4c0956f0a1dde1c28a6b",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "77ca86c9be4b6dd08256b8e872d29f8fc811a0cd6d2e2c8e9b06b0602bbd4aef",
+   "wall_s": 0.578
+  }
+ ],
+ "g1_close": [
+  {
+   "decisions_by_role": {
+    "field": 60
+   },
+   "decisions_total": 60,
+   "end_ms": 5259,
+   "kinds": {
+    "carry": 8,
+    "continue_current": 1,
+    "home": 5,
+    "pass": 1,
+    "press": 8,
+    "pursue": 29,
+    "scan": 5,
+    "support": 3
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 1,
+   "state_hash": "5c9581e8ddb13174ce15d13afb4a0de24788d935c6220a8f421905505db6aa14",
+   "status": "scenario_terminal",
+   "terminal": "pass_dead:boundary",
+   "trace_hash": "ead818e43fe9392e856f96336c636d7e9976bdfdb552f65bfc3e6ec37c6651fd",
+   "wall_s": 0.592
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 2956,
+   "kinds": {
+    "carry": 7,
+    "continue_current": 1,
+    "pass": 1,
+    "press": 6,
+    "pursue": 5,
+    "scan": 5,
+    "support": 2
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 2,
+   "state_hash": "ca029e4fe9a77b460d34ac3e4036ddcd59b940f32ab5878f63fa9c1828e4f364",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "7fef35fd85eb0991b7f07c95acb9df160f5a28c277490da60d29ca9e82a041d9",
+   "wall_s": 0.612
+  },
+  {
+   "decisions_by_role": {
+    "field": 54
+   },
+   "decisions_total": 54,
+   "end_ms": 4853,
+   "kinds": {
+    "carry": 5,
+    "continue_current": 3,
+    "pass": 1,
+    "press": 8,
+    "pursue": 29,
+    "scan": 6,
+    "support": 2
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 3,
+   "state_hash": "f35359d2c84a6d2d7bc96bb9a792aba57ae804c8bbf20654caf71526db8c13c3",
+   "status": "scenario_terminal",
+   "terminal": "pass_dead:boundary",
+   "trace_hash": "93cdeb73831ff6e00dad38201bbe524845ce942b87cf9d8382b03120e40c8452",
+   "wall_s": 0.63
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 2950,
+   "kinds": {
+    "carry": 7,
+    "continue_current": 1,
+    "pass": 1,
+    "press": 5,
+    "pursue": 8,
+    "scan": 5
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 4,
+   "state_hash": "ceb4abb61ceae3a56c27379a5b7f71bae471d386fdeb07f9a317a85f8f116391",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "af6d5e7aad4ffe8eb68811f87c54623d117394b30d2946556b3a8fa4ca23c194",
+   "wall_s": 0.599
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 3022,
+   "kinds": {
+    "carry": 6,
+    "continue_current": 1,
+    "pass": 2,
+    "press": 7,
+    "pursue": 4,
+    "scan": 6,
+    "support": 1
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 5,
+   "state_hash": "53e595ca56335b202fa7175c14b75de4d149117ca7d6d67625d89705cd1ab6bf",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "20ebc51c9585047c0772b9f73fed86dd14d2b756cc1b2346dace832552ff9bcd",
+   "wall_s": 0.577
+  },
+  {
+   "decisions_by_role": {
+    "field": 30
+   },
+   "decisions_total": 30,
+   "end_ms": 3155,
+   "kinds": {
+    "carry": 8,
+    "continue_current": 1,
+    "pass": 1,
+    "press": 8,
+    "pursue": 7,
+    "scan": 5
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 6,
+   "state_hash": "ae24d1cc544b9b408c9616d073868c5dacd6b3a9135d8e240c5ff477271e7258",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "e96cb1146762ef8033297f18fb7acd4ecb093a13d991f4051c634263394beb41",
+   "wall_s": 0.577
+  },
+  {
+   "decisions_by_role": {
+    "field": 57
+   },
+   "decisions_total": 57,
+   "end_ms": 4976,
+   "kinds": {
+    "carry": 7,
+    "continue_current": 1,
+    "home": 6,
+    "pass": 1,
+    "press": 8,
+    "pursue": 26,
+    "scan": 7,
+    "support": 1
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 7,
+   "state_hash": "ed40d58ab25a4182b4311cad7109f88c5d24715471df0eb17d873eb53977d7e4",
+   "status": "scenario_terminal",
+   "terminal": "pass_dead:boundary",
+   "trace_hash": "018af713785d4ecf873f4babee6cc5502ff40ca227f6fbf9f5d7dc1ec9d66fe3",
+   "wall_s": 0.605
+  },
+  {
+   "decisions_by_role": {
+    "field": 33
+   },
+   "decisions_total": 33,
+   "end_ms": 3365,
+   "kinds": {
+    "carry": 8,
+    "continue_current": 1,
+    "pass": 1,
+    "press": 5,
+    "pursue": 10,
+    "scan": 6,
+    "support": 2
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 8,
+   "state_hash": "7e77bf99b0ebd88cee7afbe18ae6eff3763a5d8c7d256aa72f0deb0e801992ad",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "27946ceb9d2f4792d80a9cb2f519c1be99edfc3e8dee36e14636c48fc29f0350",
+   "wall_s": 0.586
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 2979,
+   "kinds": {
+    "carry": 7,
+    "continue_current": 1,
+    "pass": 1,
+    "press": 5,
+    "pursue": 7,
+    "scan": 6
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 9,
+   "state_hash": "9e07c183a0814a6dda23e3bd245c4e884657317b4f1e87c8a861c6946441df3b",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "cabcb04d92fcea8f5f69823aa70c9c27099d607b9aaad77364d5dbf1281496da",
+   "wall_s": 0.565
+  },
+  {
+   "decisions_by_role": {
+    "field": 63
+   },
+   "decisions_total": 63,
+   "end_ms": 5390,
+   "kinds": {
+    "carry": 8,
+    "continue_current": 1,
+    "home": 6,
+    "pass": 1,
+    "press": 6,
+    "pursue": 34,
+    "scan": 6,
+    "support": 1
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 10,
+   "state_hash": "aa00ea86dce595d9cecd5f53c0739fc25125008483a700dd65967d0927f8772d",
+   "status": "scenario_terminal",
+   "terminal": "pass_dead:boundary",
+   "trace_hash": "a22239c1e1cdfede1135414bcc67759abed52c99696e0ebc928e0b8f0b9f5bd0",
+   "wall_s": 0.606
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 2979,
+   "kinds": {
+    "carry": 6,
+    "continue_current": 2,
+    "pass": 1,
+    "press": 7,
+    "pursue": 4,
+    "scan": 6,
+    "support": 1
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 11,
+   "state_hash": "0edad6ff5aaad4802a0e1afa4868d244ae82a9ed6a38466f451db16637b819ad",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "37ba2407397fe749595f6160be0375cdabcb1719093255ba4a6a839b539ede92",
+   "wall_s": 0.582
+  },
+  {
+   "decisions_by_role": {
+    "field": 63
+   },
+   "decisions_total": 63,
+   "end_ms": 5405,
+   "kinds": {
+    "carry": 6,
+    "continue_current": 1,
+    "home": 7,
+    "pass": 2,
+    "press": 7,
+    "pursue": 33,
+    "scan": 6,
+    "support": 1
+   },
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 12,
+   "state_hash": "5aaff2fdf80ff8fd85055a8ebeedaf325b420dd64428f02aaea08625278d4d29",
+   "status": "scenario_terminal",
+   "terminal": "pass_dead:boundary",
+   "trace_hash": "8ce518165368bd4d03a34a4335f8ae6855c056b4de6d424f9142cf362e603d5c",
+   "wall_s": 0.584
+  }
+ ],
+ "generated_utc": "2026-11-13T00:45:27Z",
+ "head": "879857be1dbc5b6dc52cff0a214650603509e27f",
+ "match_seed1": {
+  "admissions": {
+   "accepted": 42099,
+   "rejected:infeasible": 35,
+   "rejected:unknown_target": 9
+  },
+  "decisions_by_athlete": {
+   "A0": 1809,
+   "A1": 1894,
+   "A10": 1319,
+   "A11": 1940,
+   "A12": 390,
+   "A13": 429,
+   "A14": 182,
+   "A2": 1865,
+   "A3": 1675,
+   "A4": 1949,
+   "A5": 1608,
+   "A6": 1810,
+   "A7": 1855,
+   "A8": 1891,
+   "A9": 1832,
+   "B0": 1790,
+   "B1": 1903,
+   "B10": 1324,
+   "B11": 1347,
+   "B12": 842,
+   "B13": 401,
+   "B14": 316,
+   "B15": 201,
+   "B16": 339,
+   "B17": 79,
+   "B18": 28,
+   "B19": 27,
+   "B2": 1877,
+   "B20": 27,
+   "B21": 27,
+   "B3": 1875,
+   "B4": 1529,
+   "B5": 1635,
+   "B6": 1042,
+   "B7": 917,
+   "B8": 1105,
+   "B9": 1064
+  },
+  "decisions_by_kind": {
+   "archer_hold": 2897,
+   "carry": 385,
+   "continue_current": 1002,
+   "draw_release": 60,
+   "home": 19632,
+   "keeper_save": 6,
+   "keeper_set": 2633,
+   "mark": 2719,
+   "pass": 71,
+   "press": 812,
+   "pursue": 3214,
+   "restart_pass": 98,
+   "restart_wait": 47,
+   "scan": 232,
+   "search": 4915,
+   "shoot": 17,
+   "support": 3403
+  },
+  "decisions_by_role": {
+   "archer": 3287,
+   "field": 36213,
+   "keeper": 2643
+  },
+  "decisions_total": 42143,
+  "end_ms": 514561,
+  "hook_calls": {
+   "archer_interlock_abort": 3,
+   "archer_motor": 2592,
+   "ball_motor": 2592,
+   "keeper_motor": 2592
+  },
+  "outcomes_by_status": {
+   "arrow_released": 52,
+   "goal_for:shoot": 4,
+   "interrupted": 54,
+   "keeper_save_plan:launch": 1,
+   "pass_completed": 17,
+   "pass_completed_other": 4,
+   "pass_dead:boundary": 4,
+   "pass_intercepted": 7,
+   "rejected_not_prepared": 7,
+   "rejected_out_of_range": 5,
+   "release_failed": 3,
+   "released": 81
+  },
+  "own5_pass_releases_checked": 32,
+  "period": 2,
+  "result": "{'winner': 'A', 'method': 'regulation', 'score': {'A': 9, 'B': 3}, 'shootout': None}",
+  "ruleset": "1.0.1",
+  "scenario": "regulation_match_B0_P4_DEFAULT",
+  "score": {
+   "A": 9,
+   "B": 3
+  },
+  "seed": 1,
+  "settings": {
+   "overtime_seconds": 30,
+   "period_seconds": 120,
+   "periods": 2,
+   "play_clock": 45
+  },
+  "start_ms": 0,
+  "state_hash": "620f0fd6479156f2924011d1b1e0fd384a2ca0afc21c76a5d331982a6125ca33",
+  "status": "final",
+  "terminal": null,
+  "trace_hash": "02b95a47260353394b880982d839910b04455c1998e6a92e66b922a8550890a1",
+  "wall_s": 36.177
+ },
+ "multi_seed": {
+  "attempted": 3,
+  "completed": 3,
+  "failed": 0,
+  "runs": [
+   {
+    "decisions_by_role": {
+     "archer": 3201,
+     "field": 37611,
+     "keeper": 2573
+    },
+    "decisions_total": 43385,
+    "end_ms": 502246,
+    "score": {
+     "A": 2,
+     "B": 13
+    },
+    "seed": 2,
+    "state_hash": "6e588b0575aca68ef6b78a3f9ede145e9b31de284e185b5584cc99bdb57a5ba7",
+    "status": "final",
+    "terminal": null,
+    "trace_hash": "68a87d9c12dcde231e07fc17912bfb2dde17840b925cae43e0bd91eed96d4aea",
+    "wall_s": 32.55
+   },
+   {
+    "decisions_by_role": {
+     "archer": 2874,
+     "field": 41689,
+     "keeper": 3508
+    },
+    "decisions_total": 48071,
+    "end_ms": 543180,
+    "score": {
+     "A": 8,
+     "B": 1
+    },
+    "seed": 3,
+    "state_hash": "dfa407e2151accff078006e07cfe9c9a310e357e07a43b446f8712b8605f4417",
+    "status": "final",
+    "terminal": null,
+    "trace_hash": "f731543994dbf6196cdbba71c9c13345f8852448267993129e8908de80d2657e",
+    "wall_s": 36.409
+   },
+   {
+    "decisions_by_role": {
+     "archer": 3964,
+     "field": 37810,
+     "keeper": 2740
+    },
+    "decisions_total": 44514,
+    "end_ms": 523689,
+    "score": {
+     "A": 3,
+     "B": 12
+    },
+    "seed": 4,
+    "state_hash": "e7dce693a220218451830a818e31ac8c157e1927e87948f69f922024299df4f9",
+    "status": "final",
+    "terminal": null,
+    "trace_hash": "7a9fadbd1c3a6a2d39a4c750593f9bbbd336520848dabaee67099ac955015c49",
+    "wall_s": 33.863
+   }
+  ]
+ },
+ "replay": {
+  "identical": true,
+  "run1": [
+   "02b95a47260353394b880982d839910b04455c1998e6a92e66b922a8550890a1",
+   "620f0fd6479156f2924011d1b1e0fd384a2ca0afc21c76a5d331982a6125ca33"
+  ],
+  "run2": [
+   "02b95a47260353394b880982d839910b04455c1998e6a92e66b922a8550890a1",
+   "620f0fd6479156f2924011d1b1e0fd384a2ca0afc21c76a5d331982a6125ca33"
+  ]
+ },
+ "tests": {
+  "b1.test_m1": {
+   "not_ok": [],
+   "ran": "Ran 12 tests in 8.070s",
+   "returncode": 0,
+   "verdict": "OK"
+  },
+  "b1.test_sprint": {
+   "not_ok": [
+    "test_frozen_B0_file_identity (b1.test_sprint.EngineIntegration.test_frozen_B0_file_identity) ... ERROR"
+   ],
+   "ran": "Ran 27 tests in 23.925s",
+   "returncode": 1,
+   "verdict": "FAILED (errors=1)"
+  }
+ }
+}
