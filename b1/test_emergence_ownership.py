@@ -3,6 +3,7 @@ import dataclasses
 import json
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 
 from .emergence_intents import (
@@ -13,6 +14,7 @@ from .emergence_intents import (
     decide_restart_position, plan_keeper_motor,
 )
 from .preservation import load_inventory, verify_baseline
+from .emergence_runtime import EmergenceOwnershipOverlay
 
 ROOT=Path(__file__).resolve().parents[1]
 INVENTORY=ROOT/'b1/baseline/B0_2abe497_GIT_BLOBS.json'
@@ -125,6 +127,29 @@ class ArcherAndReleaseOwnershipTests(unittest.TestCase):
         source=ast.unparse(tree)
         self.assertIn('m.c3_withhold = types.MethodType',source)
         self.assertNotIn('s.ball.x',source)
+        self.assertIn("admitted.get('kind') == 'approach'",source)
+        self.assertIn('p.c4c_seen = None',source)
+
+    def test_admitted_keeper_approach_persists_until_reread(self):
+        player=SimpleNamespace(
+            id='A10',active=True,role='keeper',posture='upright',
+            c4c_launch=None,c4c_plan={'kind':'approach','target':(4.,48.),
+                                     'launch_at':1500},
+            target=None,next_decision=0,
+            eligible=lambda now:True)
+        state=SimpleNamespace(
+            now=1200,players={'A10':player},
+            ball=SimpleNamespace(carrier=None))
+        match=SimpleNamespace(s=state)
+        def forbidden_belief(*args):
+            raise AssertionError('approach re-read before admitted deadline')
+        overlay=EmergenceOwnershipOverlay(
+            match,keeper_belief=forbidden_belief,
+            archer_ball_belief=lambda *_:None)
+        targets={}
+        overlay._keeper_controls(targets)
+        self.assertEqual(targets['A10'],(4.,48.))
+        self.assertEqual(player.next_decision,1500)
 
 
 class BaselineInventoryTests(unittest.TestCase):

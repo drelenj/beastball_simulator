@@ -86,6 +86,22 @@ class EmergenceOwnershipOverlay:
             if (not p.eligible(s.now) or p.posture == 'grounded' or
                     s.ball.carrier == p.id):
                 continue
+            admitted = getattr(p, 'c4c_plan', None)
+            if (admitted is not None and admitted.get('kind') == 'approach' and
+                    s.now < admitted['launch_at']):
+                targets[p.id] = admitted['target']
+                p.target = admitted['target']
+                p.next_decision = admitted['launch_at']
+                continue
+            if (admitted is not None and admitted.get('kind') == 'step' and
+                    s.now < admitted['until']):
+                targets[p.id] = admitted['target']
+                p.target = admitted['target']
+                p.next_decision = admitted['until']
+                continue
+            # An approach is revocable only at its declared re-read instant.
+            # A completed step may also be replaced by a newly delivered read.
+            p.c4c_plan = None
             belief = self.keeper_belief(p.id, s.now)
             position = None
             if belief is not None:
@@ -116,7 +132,15 @@ class EmergenceOwnershipOverlay:
             self._emit('keeper', athlete=p.id, intent=intent.kind,
                        belief_revision=intent.belief_revision,
                        command=command.kind, status=command.status)
-            p.c4c_plan = None
+            if intent.kind == 'save' and command.status == 'accepted':
+                # Engine course identity is execution provenance stamped only
+                # after the belief-derived save is admitted. Cognition never
+                # receives the version.
+                p.c4c_seen = (s.ball.version, belief.captured_ms, s.now, False)
+            else:
+                # No semantic save means no deliberate-save privilege in the
+                # catch/contact kernel. Passive body/reflex contacts remain.
+                p.c4c_seen = None
             if command.kind in ('hold', 'move', 'step', 'approach'):
                 targets[p.id] = command.target
                 p.target = command.target
@@ -140,9 +164,6 @@ class EmergenceOwnershipOverlay:
                 't0':s.now, 't_land':command.land_ms,
                 'off':m.c4c_off(p, command.lean, *command.direction),
                 'lean':command.lean, 'dir':command.direction, 'dive':dive}
-            # Course identity is execution provenance stamped only after the
-            # belief-derived intent is admitted; cognition never receives it.
-            p.c4c_seen = (s.ball.version, belief.captured_ms, s.now, False)
 
     def _record_from_engine(self, match):
         s, r = match.s, match.s.restart
