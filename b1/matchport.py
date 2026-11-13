@@ -18,6 +18,8 @@ LOCOMOTION = ('carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
               'search', 'keeper_set', 'keeper_save')
 PASSIVE = ('retain', 'archer_hold', 'restart_wait', 'no_action')
 LEGACY_TRAPS = ('c4c2_decide', 'pocket_decide')
+LEGACY_CLASS_TRAPS = ('carrier_decision', 'arrow_decisions', 'c4c2_decide', 'c4c2_targets',
+                      'route_receiver', 'c4c2_inbound', 'penalty_targets')
 
 
 def forbidden(*a, **k):
@@ -57,24 +59,31 @@ class MatchPort:
         m.c4c2_inbound = lambda *a, **k: None
         m.penalty_targets = self._targets
         m.e.ready = self._ready
+        # class-level traps: the legacy tactical functions themselves are unreachable
+        cls, pcls = type(m), type(next(iter(m.pol.values())))
+        self.legacy = {n: getattr(cls, n) for n in LEGACY_CLASS_TRAPS if hasattr(cls, n)}
+        for name in LEGACY_CLASS_TRAPS:
+            setattr(cls, name, forbidden)
+        for name in ('targets', 'pass_choice', 'pass_ranked'):
+            setattr(pcls, name, forbidden)
         for name in LEGACY_TRAPS:
             setattr(m, name, forbidden)
         for team, pol in m.pol.items():
             pol.targets = lambda s, team=team: self._targets(team)
             pol.pass_choice = self._restart_receiver
             pol.pass_ranked = lambda s, p: []      # OWN-5: no receiver replacement
-        if scenario == 'g1':
-            self._g1()
+        if scenario in ('g1', 'g1_close'):
+            self._g1((47., 50.6) if scenario == 'g1_close' else (49., 56.))
 
     # ------------------------------------------------------------ scenario (G1)
-    def _g1(self):
+    def _g1(self, defender):
         s, T = self.m.s, self.types
         s.phase, s.now, s.owner = T.Phase.LIVE, 1000, 'A'
         s.restart = s.recovery = s.reconstruction = s.advantage = s.penalty = None
         s.opening_touched, s.opening_deadline = True, None
         for p in s.players.values():
             p.active = False
-        for pid, (x, y) in {'A0': (40., 50.), 'A1': (56., 47.), 'B0': (49., 56.)}.items():
+        for pid, (x, y) in {'A0': (40., 50.), 'A1': (56., 47.), 'B0': defender}.items():
             p = s.players[pid]
             p.active, p.x, p.y, p.z, p.vx, p.vy, p.vz = True, x, y, 0., 0., 0., 0.
             p.facing = (1., 0.) if p.team == 'A' else (-1., 0.)
@@ -412,7 +421,7 @@ class MatchPort:
             self._resolve(pid, 'interrupted')
 
 
-def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=40, on_view=None):
+def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None):
     """Stepped N-athlete loop. Returns a compact, hashable result."""
     port = MatchPort(seed, scenario)
     m = port.m
@@ -459,9 +468,9 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=40, on_
                 full = {'view': asdict(view), 'belief': asdict(belief), 'decision': rec,
                         'intent': asdict(intent), 'admission': status,
                         'command': asdict(cmd) if cmd else None}
-                if len(samples) < sample or (n_dec % 397 == 0 and len(samples) < sample + 60):
+                if len(samples) < sample or (n_dec % 397 == 0 and len(samples) < sample + 50):
                     samples.append(full)
-                if cmd is not None and cmd.resource != 'locomotion' and len(chains) < 400:
+                if cmd is not None and cmd.resource != 'locomotion' and len(chains) < 260:
                     chains.append({'decision_id': rec['decision_id'], 'observation_id': rec['observation_id'],
                                    'belief_revision': rec['belief_revision'], 'intent_id': intent.intent_id,
                                    'command_id': cmd.command_id, 'kind': intent.kind, 'target': intent.target,
@@ -470,7 +479,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=40, on_
             next_dec[pid] = now + max(100, int(round(prof['decision_interval_s'] * 1000)))
         m.step()
         port.collect()
-        if scenario == 'g1':
+        if scenario in ('g1', 'g1_close'):
             done = [o.status for o in port.outcomes if o.status.startswith(('pass_', 'shot_', 'goal_'))]
             b = s.ball
             if done:
