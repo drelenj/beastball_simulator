@@ -4,9 +4,9 @@
 
 - Branch: `experiment/prism-sprint-45` (https://github.com/drelenj/beastball_simulator/tree/experiment/prism-sprint-45)
 - Source commits: Base A `4b19719` (`b1/m1-decision-outcome`) merged with Round 1 `99cf83a` (`experiment/prism-sprint-30`), `git merge --no-ff`, no conflicts
-- Code+evidence commit these reports were generated from: `f59f6c06c990a09c3a26d1086791c59aca2a11d5` (the report commit follows it; see `git log`)
+- Code+evidence commit these reports were generated from: `c77d8dac0d455bbb7aa0c7a597822394c2610a67` (the report commit follows it; see `git log`)
 - Frozen B0 `2abe497`: no B0 file changed (`git diff --name-status 2abe497 HEAD -- . ':!b1'` shows additions only)
-- Measured clock (`SPRINT45_TIMING.log`): first `2026-11-13T05:20:31Z PHASE_A_START`, last `2026-11-13T05:42:38Z PHASE_D_START_FEATURE_FREEZE_EVIDENCE_RUN`
+- Measured clock (`SPRINT45_TIMING.log`): first `2026-11-13T05:20:31Z PHASE_A_START`, last `2026-11-13T05:50:16Z PHASE_E_FINAL_COMMIT_PUSH`
 
 ## 1. What was accomplished
 

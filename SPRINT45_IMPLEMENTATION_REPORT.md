@@ -4,9 +4,9 @@ Experimental build. Status words: DESIGN COMPLETE / IMPLEMENTED / TESTED / ACCEP
 
 - Branch: `experiment/prism-sprint-45` (https://github.com/drelenj/beastball_simulator/tree/experiment/prism-sprint-45)
 - Source commits: Base A `4b19719` (`b1/m1-decision-outcome`) merged with Round 1 `99cf83a` (`experiment/prism-sprint-30`), `git merge --no-ff`, no conflicts
-- Code+evidence commit these reports were generated from: `f59f6c06c990a09c3a26d1086791c59aca2a11d5` (the report commit follows it; see `git log`)
+- Code+evidence commit these reports were generated from: `c77d8dac0d455bbb7aa0c7a597822394c2610a67` (the report commit follows it; see `git log`)
 - Frozen B0 `2abe497`: no B0 file changed (`git diff --name-status 2abe497 HEAD -- . ':!b1'` shows additions only)
-- Measured clock (`SPRINT45_TIMING.log`): first `2026-11-13T05:20:31Z PHASE_A_START`, last `2026-11-13T05:42:38Z PHASE_D_START_FEATURE_FREEZE_EVIDENCE_RUN`
+- Measured clock (`SPRINT45_TIMING.log`): first `2026-11-13T05:20:31Z PHASE_A_START`, last `2026-11-13T05:50:16Z PHASE_E_FINAL_COMMIT_PUSH`
 
 ## 0. Integration result (Phase B step 0)
 
@@ -25,7 +25,10 @@ A	SPRINT30_TEST_REPORT.md
 A	SPRINT30_TIMING.log
 A	SPRINT30_UNLIMITED_STRATEGY.md
 A	SPRINT45_EXECUTION_STRATEGY.md
+A	SPRINT45_IMPLEMENTATION_REPORT.md
 A	SPRINT45_LIMITATIONS.md
+A	SPRINT45_OWNER_BRIEFING.md
+A	SPRINT45_TEST_REPORT.md
 A	SPRINT45_TIMING.log
 A	SPRINT45_UNLIMITED_STRATEGY.md
 A	b1/SPRINT30_README.md
@@ -39,6 +42,10 @@ A	b1/evidence_sprint30/summary_before_archer_interlock.json
 A	b1/evidence_sprint30/tests_test_m1.txt
 A	b1/evidence_sprint30/tests_test_sprint.txt
 A	b1/evidence_sprint45/INDEPENDENT_REVIEW.md
+A	b1/evidence_sprint45/g1_seed1.json
+A	b1/evidence_sprint45/match_seed1.json
+A	b1/evidence_sprint45/summary.json
+A	b1/evidence_sprint45/tests_pytest_b1.txt
 A	b1/match_run.py
 A	b1/matchport.py
 A	b1/possession.py
@@ -91,7 +98,7 @@ A	b1/test_sprint45.py
 - Pass releases seed 1: {'bound_deg': 60.0, 'max_correction_deg': 39.184, 'recomputed': 59, 'rejected_geometry': 0, 'releases_recorded': 59}; pass outcomes {'pass_completed': 9, 'pass_completed_other': 13, 'pass_dead:boundary': 15, 'pass_dead:restart_awarded': 3, 'pass_intercepted': 16}; unattributed outcomes (`unknown`): 2
 - Additional full-match seeds: attempted 3, completed 3, failed 0
 - G1 scenarios, 12 seeds each: open {'pass_completed': 12}; defender on lane {'pass_completed': 10, 'pass_intercepted': 2}
-- Independent review by a fresh agent: `b1/evidence_sprint45/INDEPENDENT_REVIEW.md`. It ran before the last fixes (no live-state fallback in `deliver`, non-vacuous primitives test, extended poison test, violation enforcement); those are NOT re-reviewed. Its OWN-5 FAIL (engine procedures still choosing for athletes) and BR-3 FAIL stand.
+- Independent review by a fresh agent, two passes: `b1/evidence_sprint45/INDEPENDENT_REVIEW.md` (before the last fixes: OWN-5 FAIL, BR-3 FAIL, most others WEAK) and `INDEPENDENT_REVIEW_2.md` (after them, targeted): no-live-fallback in `deliver` CONFIRMED, non-vacuous primitives test CONFIRMED, extended poison test CONFIRMED, violation enforcement PARTIAL (wiring tested with a synthetic violation only), receiver-cognition changes PARTIAL (no dedicated test). Still OPEN: OWN-5 engine-owned choices, BR-3, delayed-but-unperceived public signals, true-state ingress rejections, one minor leak (other players' role labels refresh from live state at capture), R-15 recorded only.
 
 ## Tests not run
 
