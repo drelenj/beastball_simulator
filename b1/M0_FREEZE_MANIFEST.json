@@ -3,6 +3,13 @@
     "accepted_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
     "profile": "B0-P4-DEFAULT"
   },
+  "canonical_b0_source_inventory": {
+    "algorithm": "git-blob-sha1",
+    "commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
+    "file_count": 427,
+    "inventory_sha256": "8c02b7a1abbaf240000910f12a32dcaad3f9cc8c53393ebae873435b14f59640",
+    "note": "Canonical committed blob inventory; untracked workspace files are excluded."
+  },
   "contract_freeze": "B1 Core Slice v1 plus IMPL-01..10 in M0_CLOSURE.md",
   "inputs": {
     "o4_v3_5": {
@@ -81,13 +88,8 @@
       "sha256": "7412c985f9d59aed8d5a7ce50990771ba17608daac722da63f218ccf832109b9"
     }
   },
-  "m1_accepted": false,
+  "m1_accepted": true,
   "m1_authorized": true,
   "m2_authorized": false,
-  "manifest_schema": "b1-m0-freeze-manifest-v1",
-  "workspace_b0_source_snapshot": {
-    "file_count": 235,
-    "inventory_sha256": "72dc27935e94fd548b94371966e15c267acfbb7e8e213733a4d3500765d34283",
-    "note": "Workspace preservation inventory; not an independent Git checkout attestation."
-  }
+  "manifest_schema": "b1-m0-freeze-manifest-v1"
 }

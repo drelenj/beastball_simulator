@@ -61,6 +61,7 @@
       "net_improvement_claimed": false
     },
     "focused_tests": 25,
-    "formal_m1_acceptance": false
+    "formal_m1_acceptance": true,
+    "accepted_commit": "4b19719a886916da0bf3089779e06b367c543412"
   }
 }
