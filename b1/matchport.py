@@ -68,6 +68,7 @@ class MatchPort:
                                                    keeper_zone_radius=float(m.s.keeper_zone_radius)))
         self.was_live, self.release_records, self.kp_checked = None, [], 0
         self.calls = {}      # team -> (passer, target, aim_x, aim_y, expires_ms)
+        self.enforce, self.enforced = True, 0
         self.move, self.pending, self.save_mode, self.restart_choice = {}, {}, {}, {}
         self.outcomes, self.feedback, self.flight, self.n_out = [], {}, None, 0
         self.sensors, self.gaze, self.last_ball, self.public = {}, {}, {}, {}
@@ -545,8 +546,20 @@ class MatchPort:
             for pid in b.contested:
                 touching[pid] = team(pid)
         hp = s.players[b.carrier] if b.carrier else None
-        self.rules.step(s.now, touching, (float(b.x), float(b.y)), ev,
-                        (float(hp.x), float(hp.y)) if hp else None)
+        made = self.rules.step(s.now, touching, (float(b.x), float(b.y)), ev,
+                               (float(hp.x), float(hp.y)) if hp else None)
+        for entry in made or ():
+            if entry.get('event') != 'violation' or not self.enforce:
+                continue
+            # Zone violations (ZR-1 / ZR-C / ZR-T -> RST-1) are fed to the existing B0 restart
+            # machinery. PROVISIONAL: restart spot is the field centre (U4-13 'center line').
+            offender = entry.get('team')
+            if s.phase == T.Phase.LIVE and offender in ('A', 'B'):
+                m.e.award(s.other(offender), 50., 50., 'b1_' + str(entry.get('violation')))
+                entry['enforcement'] = 'B0 award injected (RST-1, provisional spot)'
+                self.enforced += 1
+            else:
+                entry['enforcement'] = 'not enforced (play not live)'
 
     # ------------------------------------------------------------ world outcomes
     def collect(self):
@@ -692,7 +705,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
         'rules': {'p1_ms': p1_ms, 'ledger_entries': len(ledger),
                   'ledger_by_row': dict(sorted(Counter(str(e.get('row')) for e in ledger).items())),
                   'ledger_by_event': dict(sorted(Counter(str(e.get('event')) for e in ledger).items())),
-                  'final_public_state': json.loads(json.dumps(asdict(pub), default=str)), 'keeper_contacts_checked': port.kp_checked},
+                  'final_public_state': json.loads(json.dumps(asdict(pub), default=str)), 'keeper_contacts_checked': port.kp_checked, 'violations_enforced': port.enforced},
         'release_contract': {'bound_deg': MAX_MOVING_RELEASE_CORRECTION_DEG, 'releases_recorded': len(port.release_records),
                              'recomputed': sum(bool(r['moving_release_recomputed']) for r in port.release_records),
                              'rejected_geometry': sum(r['status'] == 'rejected_geometry' for r in port.release_records),

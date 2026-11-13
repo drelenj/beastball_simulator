@@ -121,6 +121,23 @@ class Round2Engine(unittest.TestCase):
         fb = (('x', 'rejected_geometry:pass', 1450),)
         self.assertNotEqual(C.decide(v, C.BeliefState('b', 'o', tracks, fb))[0].kind, 'pass')
 
+    def test_zone_violation_is_fed_to_B0_restart_and_not_when_disabled(self):
+        fake = lambda *a, **k: [{'t_ms': 0, 'row': 'R-13', 'event': 'violation', 'violation': 'ZR-1', 'team': 'A', 'restart': 'RST-1'}]
+        for enforce in (False, True):
+            port = self.run_match(4, None, 12000, False)[1]
+            s = port.m.s
+            self.assertEqual(s.phase, port.types.Phase.LIVE)
+            port.enforce = enforce
+            port.rules.step = fake
+            n0 = len(port.m.e.log)
+            port._feed_rules([])
+            awards = [r for r in port.m.e.log[n0:] if r['event'] == 'restart_awarded']
+            if enforce:
+                self.assertEqual([(r['data']['team'], r['data']['reason']) for r in awards], [('B', 'b1_ZR-1')])
+                self.assertEqual(port.enforced, 1)
+            else:
+                self.assertEqual(awards, [])
+
     def test_determinism_with_rules_layer(self):
         a = self.run_match(1, None, 45000, False)[0]
         r = self.runs[500][0]
