@@ -117,6 +117,16 @@ python3 -m pytest -q b1
         g = ((r0.get('metrics') or {}).get(side) or {})
         entry('very high single-team score in a short match', 'B0 scoring methods (inner / release / outside points, carry value 4)',
               f"highest team score {max(r0['score'].values())} in a {2 * r0['period_s']} s match by label `{r0['label_' + side]}`; goals by method {g.get('goals')}, shots {g.get('shots')}, passes completed {g.get('pass_completed')}. Check whether one scoring method dominates independent of ratings.", hi)
+    ev_p = st.get('best_non_baseline_params') or {}
+    if held and ev_p.get('bias_pass', 0) <= -3:
+        agg = aggregate(held)[0]
+        keep = ('pass_released', 'pass_completed', 'shots', 'points', 'turnovers_lost')
+        entry('never-pass play outscoring passing play', 'Engine constraint, not a rule: pass-release-v1 admits a fixed 27 m/s pass with no loft or speed choice and B1 pass completion is low (see limitations)',
+              f"the evolved vector has bias_pass = {ev_p.get('bias_pass')} (passing effectively switched off) and scores by carrying and close shots. If passing is dominated only because the pass mechanics are primitive, this is an artifact of the build, not a finding about Beastball. Per-match means by label on held-out matches: {json.dumps({l: {k: m.get(k) for k in keep} for l, m in agg.items()})}", held)
+    og = [r for r in allrows if any('own_goal' in (((r.get('metrics') or {}).get(sd) or {}).get('goals') or {}) for sd in 'AB')]
+    if og:
+        entry('goals credited by method `own_goal`', 'B0 engine goal(): method own_goal; D1 KP-OG (Keeper own goal) is not implemented in B1',
+              f"{len(og)} of {len(allrows)} completed matches contain at least one `own_goal` score. These are points gained without an attacking action by the scoring team (the ball enters a goal off the defending side, e.g. a failed pass or clearance). A vector can profit simply by the opponent's passing errors; frequency by vector was not analysed.", og)
     meth = Counter()
     for r in allrows:
         for side in 'AB':

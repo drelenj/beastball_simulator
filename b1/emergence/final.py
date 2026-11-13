@@ -48,6 +48,15 @@ def main():
                'symmetry': {'matches': len(s), 'A_wins': sum(r['winner'] == 'A' for r in s), 'B_wins': sum(r['winner'] == 'B' for r in s),
                             'draws': sum(r['winner'] is None for r in s),
                             'A_goal_diff_mean': round(sum(r['score']['A'] - r['score']['B'] for r in s) / max(1, len(s)), 3)}}
+    # one readable, trimmed causal trace: evolved (A) vs baseline (B), first held-out seed, proxy length
+    from ..matchport import run_match
+    tr, _ = run_match(held[0], None, None, True, sample=4, policies={'A': best, 'B': DEFAULT}, period_seconds=a.period_s)
+    t_ = tr.pop('trace')
+    tr.pop('final_state', None)
+    tr['trace'] = {'sampled_decisions': t_['sampled_decisions'][:6], 'action_chains': t_['action_chains'][:40],
+                   'rules_ledger': t_['rules_ledger'][:80], 'release_records': t_['release_records'][:40], 'outcomes': t_['outcomes'][:80]}
+    (out / f'trace_evolved_vs_baseline_seed{held[0]}.json').write_text(json.dumps(tr, sort_keys=True, indent=1) + '\n')
+    summary['readable_trace'] = f'trace_evolved_vs_baseline_seed{held[0]}.json'
     (out / 'final_summary.json').write_text(json.dumps(summary, sort_keys=True, indent=1) + '\n')
     print(json.dumps(summary, sort_keys=True))
 
