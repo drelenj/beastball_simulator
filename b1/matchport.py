@@ -12,7 +12,8 @@ from collections import Counter
 from dataclasses import asdict
 
 from .cognition import (AthleteView, BeliefState, MotorCommand, PhysicalOutcome,
-                        Signals, Track, BALL, decide, receive_outcome)
+                        Signals, Track, BALL, decide, receive_outcome, view_to_json)
+from .communication import DeliveryModel, TeamTransport, receive_messages
 from .course_sensor import CourseSensor
 from .emergence_intents import BallCourseBelief
 from .emergence_runtime import EmergenceOwnershipOverlay
@@ -47,7 +48,7 @@ class _ReleaseAdapter:
 
 
 class MatchPort:
-    def __init__(self, seed, scenario=None, p1_ms=500):
+    def __init__(self, seed, scenario=None, p1_ms=500, communication_model=DeliveryModel()):
         sys.path.insert(0, str(REPO))
         for key in ALL_FEATURE_ENV:
             os.environ.pop(key, None)
@@ -63,6 +64,7 @@ class MatchPort:
         self.m = m = P.CORE.match.Match(P.configuration(dict(P.SETTINGS), seed, copy.deepcopy(P.CALIBRATION)))
         self.types, self.geom = P.CORE.types, P.CORE.geometry
         self.seed, self.ratings = seed, prism_ratings_v0.assign(over, names)
+        self.communication = TeamTransport(seed, {p.id:p.team for p in m.s.players.values()}, communication_model)
         self.settings = {k: P.SETTINGS[k] for k in ('period_seconds', 'periods', 'overtime_seconds', 'play_clock')}
         # D1 record R-RS: ruleset 1.0.2 for the B1 match instance only (B0 files untouched;
         # the B0 engine has a config switch for it).
@@ -242,12 +244,14 @@ class MatchPort:
             posture=me[2], judgment=round(float(self.ratings[pid]['judgment']), 4),
             zone_radius=float(self.rules.cfg.keeper_zone_radius),
             ownership_enabled=True, ball_course=course,
+            messages=self.communication.intake(pid, now_ms),
             own_restraint=snap['restraint'][pid],
             tuck_fraction=float(m.assume['tuck_after_delay_frac']))
         fb = tuple(self.feedback.get(pid, ()))
         self.feedback[pid] = []
         belief = BeliefState(oid + '/belief', oid, tracks, fb, int(round(pr.P['memory_s'] * 1000)),
-                             self.last_ball.get(pid), ball_course=view.ball_course)
+                             self.last_ball.get(pid), ball_course=view.ball_course,
+                             messages=receive_messages(view))
         return view, belief
 
     # ------------------------------------------------------------ ingress
@@ -597,9 +601,9 @@ class MatchPort:
             self._resolve(pid, 'interrupted')
 
 
-def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500):
+def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500, communication_model=DeliveryModel()):
     """Stepped N-athlete loop. Returns a compact, hashable result."""
-    port = MatchPort(seed, scenario, p1_ms)
+    port = MatchPort(seed, scenario, p1_ms, communication_model)
     m = port.m
     s = m.s
     FINAL = port.types.Phase.FINAL
@@ -646,7 +650,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
             by_kind[intent.kind] += 1
             admissions[status] += 1
             if telemetry:
-                full = {'view': asdict(view), 'belief': asdict(belief), 'decision': rec,
+                full = {**view_to_json(view, belief), 'decision': rec,
                         'intent': asdict(intent), 'admission': status,
                         'command': asdict(cmd) if cmd else None}
                 if len(samples) < sample or (n_dec % 397 == 0 and len(samples) < sample + 50):

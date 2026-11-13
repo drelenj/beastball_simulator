@@ -1,0 +1,187 @@
+................................................. [ 13%]
+....................................F..........FF...F....F.............. [ 33%]
+.........F..................x...xxxx.................................... [ 53%]
+......xxxxx........................xxx.................xx..............x [ 73%]
+x...........xx.............................F............................ [ 93%]
+........................                                                 [100%]
+=================================== FAILURES ===================================
+_ EngineIntegration.test_BR7_legacy_tactical_controller_is_trapped_and_run_completes _
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_BR7_legacy_tactical_controller_is_trapped_and_run_completes>
+
+    def test_BR7_legacy_tactical_controller_is_trapped_and_run_completes(self):
+        m = self.port.m
+        cls, pcls = type(m), type(m.pol['A'])
+        for name in ('carrier_decision', 'arrow_decisions', 'c4c2_decide', 'c4c2_targets', 'route_receiver'):
+            with self.assertRaisesRegex(RuntimeError, 'legacy tactical controller reached'):
+                getattr(cls, name)(m)
+        for name in ('targets', 'pass_choice', 'pass_ranked'):
+            with self.assertRaisesRegex(RuntimeError, 'legacy tactical controller reached'):
+                getattr(pcls, name)(m.pol['A'], m.s)
+        with self.assertRaisesRegex(RuntimeError, 'legacy tactical controller reached'):
+            m.c4c2_decide(None, 0, False)
+        self.assertEqual(m.pol['A'].pass_ranked(m.s, None), [])
+>       self.assertGreater(self.match['hook_calls']['ball_motor'], 100)
+E       AssertionError: 56 not greater than 100
+
+b1/test_sprint.py:380: AssertionError
+________________ EngineIntegration.test_frozen_B0_file_identity ________________
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_frozen_B0_file_identity>
+
+    def test_frozen_B0_file_identity(self):
+>       self.assertGreater(verify_baseline(ROOT, ROOT / 'b1/evidence/b0_source_hashes.json'), 100)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:167: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/preservation.py:61: in verify_baseline
+    algorithm,expected,_=load_inventory(inventory)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/preservation.py:38: in load_inventory
+    raw=json.loads(Path(inventory).read_text())
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/beastball_simulator/b1/evidence/b0_source_hashes.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/beastball_simulator/b1/evidence/b0_source_hashes.json'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_ EngineIntegration.test_frozen_B0_git_identity_and_no_modified_inventory_file _
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_frozen_B0_git_identity_and_no_modified_inventory_file>
+
+    def test_frozen_B0_git_identity_and_no_modified_inventory_file(self):
+        """Independent of the inventory's uncommitted entries: nothing from the
+        frozen B0 commit differs, and no present inventory file is modified."""
+        import hashlib
+        r = subprocess.run(['git', 'diff', '--name-status', '2abe497', '--', '.', ':!b1'],
+                           cwd=ROOT, text=True, capture_output=True, timeout=60)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        changed = [l for l in r.stdout.splitlines() if l and not l.startswith('A\t')]
+        self.assertEqual(changed, [])
+>       exp = json.loads((ROOT / 'b1/evidence/b0_source_hashes.json').read_text())
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:178: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/beastball_simulator/b1/evidence/b0_source_hashes.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/beastball_simulator/b1/evidence/b0_source_hashes.json'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+__________ Round2Engine.test_P1_threshold_in_engine_run_250_500_1000 ___________
+
+self = <b1.test_sprint45.Round2Engine testMethod=test_P1_threshold_in_engine_run_250_500_1000>
+
+    def test_P1_threshold_in_engine_run_250_500_1000(self):
+        """Every direct possession in the ledger follows its 'secured' entry by at least the
+        configured threshold and by less than threshold + one engine step (100 ms)."""
+        for p1, (r, port) in self.runs.items():
+            ledger = port.rules.ledger
+            gaps, last_secured = [], None
+            for e in ledger:
+                if e.get('event') == 'secured':
+                    last_secured = e['t_ms']
+                elif e.get('event') == 'direct_possession' and last_secured is not None:
+                    gaps.append(e['t_ms'] - last_secured)
+                    last_secured = None
+>           self.assertGreater(len(gaps), 0, p1)
+E           AssertionError: 1 not greater than 3 : 250
+
+b1/test_sprint45.py:42: AssertionError
+_ Round2Engine.test_release_contract_is_base_A_code_and_geometry_rejection_feeds_back _
+
+self = <b1.test_sprint45.Round2Engine testMethod=test_release_contract_is_base_A_code_and_geometry_rejection_feeds_back>
+
+    port = self.run_match(4, None, 12000, False)[1]
+    m = port.m
+    s = m.s
+    archer = next(p for p in s.players.values() if p.active and p.role == 'archer' and p.team == 'A')
+    target = min((p for p in s.players.values() if p.active and p.role == 'field' and p.team == 'B'),
+                 key=lambda p: abs(((p.x - archer.x) ** 2 + (p.y - archer.y) ** 2) ** .5 - 35))
+    target.immune_until = s.now + 60000                      # hidden true state
+    s.quivers['A'].loaded, s.quivers['A'].reload_until, s.quivers['A'].last_release = 5, -1, -99999
+>   intent = C.ActionIntent('t/intent', 't', archer.id, 'draw_release', target.id,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            (target.x, target.y), (0., 0.), None, s.now)
+E   AssertionError: 0 not greater than 0
+
+b1/test_sprint45.py:116: AssertionError
+_______________ Regression.test_v30_unchanged_vs_shipped_results _______________
+
+self = <test_beastball_locomotion_v31.Regression testMethod=test_v30_unchanged_vs_shipped_results>
+
+    def test_v30_unchanged_vs_shipped_results(self):
+>       rows = list(csv.DictReader((ROOT / 'baseline_v30_shipped' / 'beastball_v30_results.csv').open()))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_beastball_locomotion_v31.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/beastball_simulator/baseline_v30_shipped/beastball_v30_results.csv')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/beastball_simulator/baseline_v30_shipped/beastball_v30_results.csv'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_______________________ Freeze.test_files_match_manifest _______________________
+
+self = <test_locomotion_freeze_1_0.Freeze testMethod=test_files_match_manifest>
+
+    def test_files_match_manifest(self):
+>       man = json.load(open(R / 'LOCOMOTION_1_0_MANIFEST.json'))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/beastball_simulator/LOCOMOTION_1_0_MANIFEST.json'
+
+test_locomotion_freeze_1_0.py:7: FileNotFoundError
+=========================== short test summary info ============================
+FAILED b1/test_sprint.py::EngineIntegration::test_BR7_legacy_tactical_controller_is_trapped_and_run_completes
+FAILED b1/test_sprint.py::EngineIntegration::test_frozen_B0_file_identity - F...
+FAILED b1/test_sprint.py::EngineIntegration::test_frozen_B0_git_identity_and_no_modified_inventory_file
+FAILED b1/test_sprint45.py::Round2Engine::test_P1_threshold_in_engine_run_250_500_1000
+FAILED b1/test_sprint45.py::Round2Engine::test_release_contract_is_base_A_code_and_geometry_rejection_feeds_back
+FAILED test_beastball_locomotion_v31.py::Regression::test_v30_unchanged_vs_shipped_results
+FAILED test_locomotion_freeze_1_0.py::Freeze::test_files_match_manifest - Fil...
+7 failed, 335 passed, 19 xfailed, 23 subtests passed in 1497.99s (0:24:57)

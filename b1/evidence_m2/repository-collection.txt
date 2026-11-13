@@ -1,0 +1,45 @@
+
+==================================== ERRORS ====================================
+________________________ ERROR collecting block_test.py ________________________
+block_test.py:5: in <module>
+    N = int(sys.argv[1]) if len(sys.argv) > 1 else 30
+        ^^^^^^^^^^^^^^^^
+E   ValueError: invalid literal for int() with base 10: '-q'
+___________________ ERROR collecting lab/test_fsm_parity.py ____________________
+ImportError while importing test module '/workspace/beastball_simulator/lab/test_fsm_parity.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lab/test_fsm_parity.py:4: in <module>
+    from playwright.sync_api import sync_playwright
+E   ModuleNotFoundError: No module named 'playwright'
+____________________ ERROR collecting lab/test_lab_smoke.py ____________________
+ImportError while importing test module '/workspace/beastball_simulator/lab/test_lab_smoke.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lab/test_lab_smoke.py:2: in <module>
+    from playwright.sync_api import sync_playwright
+E   ModuleNotFoundError: No module named 'playwright'
+_________________________ ERROR collecting rs_test.py __________________________
+rs_test.py:3: in <module>
+    sd=int(ARGS[1]); short=ARGS[2]=='short'; off=tuple(ARGS[3].split(',')) if len(ARGS)>3 and ARGS[3] else ()
+           ^^^^^^^
+E   IndexError: list index out of range
+________________ ERROR collecting test_pocket_capability_v37.py ________________
+test_pocket_capability_v37.py:5: in <module>
+    ROWS = json.load(open(Path(__file__).resolve().parent / 'results_v37' / 'capability_table_v37.json'))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/workspace/beastball_simulator/results_v37/capability_table_v37.json'
+=========================== short test summary info ============================
+ERROR block_test.py - ValueError: invalid literal for int() with base 10: '-q'
+ERROR lab/test_fsm_parity.py
+ERROR lab/test_lab_smoke.py
+ERROR rs_test.py - IndexError: list index out of range
+ERROR test_pocket_capability_v37.py - FileNotFoundError: [Errno 2] No such fi...
+!!!!!!!!!!!!!!!!!!! Interrupted: 5 errors during collection !!!!!!!!!!!!!!!!!!!!
+5 errors in 58.80s
