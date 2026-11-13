@@ -8,7 +8,7 @@ from dataclasses import dataclass, asdict, replace
 from math import hypot
 
 from . import core as M1          # Base A (governed M1) pure decision code
-from .emergence.params import PolicyParams, DEFAULT as DEFAULT_POLICY
+from .emergence.params import TeamPreferences, DEFAULT as DEFAULT_POLICY
 from .emergence.positioning import choose_position
 
 BALL = 'BALL'
@@ -74,7 +74,7 @@ class AthleteView:
     posture: str = 'upright'
     judgment: float = 0.7                # SELF-1: own abilities known exactly
     zone_radius: float = 20.0            # G: inside = distance < R
-    policy: PolicyParams = DEFAULT_POLICY   # EMERGENCE-1: the team's fixed preference vector (own preferences)
+    policy: TeamPreferences = DEFAULT_POLICY   # EMERGENCE-1: the team's fixed preference vector (own preferences)
 
 
 @dataclass(frozen=True)
@@ -440,7 +440,7 @@ def view_from_json(d):
     s['immune'] = tuple(s.get('immune', ()))
     s['pass_call'] = tuple(s['pass_call']) if s.get('pass_call') else None
     v['signals'] = Signals(**s)
-    v['policy'] = PolicyParams.from_dict(v['policy']) if isinstance(v.get('policy'), dict) else DEFAULT_POLICY
+    v['policy'] = TeamPreferences.from_dict(v['policy']) if isinstance(v.get('policy'), dict) else DEFAULT_POLICY
     b['tracks'] = tr(b['tracks'])
     b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])
     b['last_ball'] = tuple(b['last_ball']) if b['last_ball'] else None

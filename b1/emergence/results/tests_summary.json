@@ -1,0 +1,18 @@
+{
+ "by_file": {
+  "b1/emergence/test_emergence.py": 12,
+  "b1/emergence/test_metrics.py": 5,
+  "b1/test_g1.py": 7,
+  "b1/test_m1.py": 18,
+  "b1/test_possession.py": 30,
+  "b1/test_sprint.py": 29,
+  "b1/test_sprint45.py": 9
+ },
+ "command": "python3 -m pytest -q b1",
+ "not_ok": [
+  "FAILED b1/test_sprint.py::EngineIntegration::test_frozen_B0_file_identity - R..."
+ ],
+ "passed": 110,
+ "returncode": 1,
+ "summary": "1 failed, 110 passed, 23 subtests passed in 140.46s (0:02:20)"
+}

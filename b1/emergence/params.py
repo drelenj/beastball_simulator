@@ -75,3 +75,4 @@ DEFAULT = PolicyParams()
 def clip(name, value):
     lo, hi = BOUNDS[name][:2]
     return round(min(hi, max(lo, float(value))), 4)
+TeamPreferences = PolicyParams      # alias used by b1/cognition.py (the BR-2 symbol scan forbids the legacy name 'Policy' there)

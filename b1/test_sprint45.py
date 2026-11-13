@@ -101,7 +101,8 @@ class Round2Engine(unittest.TestCase):
         port.pending[archer.id].update(started=True, due=s.now)
         n0, o0 = len(m.e.log), len(port.outcomes)
         port._archer_motor()
-        self.assertEqual([o.status for o in port.outcomes[o0:]], ['rejected_by_engine'])
+        # only this crafted command is examined (the other Archer may also have a pending draw)
+        self.assertEqual([o.status for o in port.outcomes[o0:] if o.command_id == 't/intent/command'], ['rejected_by_engine'])
         self.assertTrue(any(r['event'] in ('foul', 'illegal') or 'archery_target' in str(r['data']) for r in m.e.log[n0:]))
         self.assertTrue(port.feedback[archer.id][-1][1].startswith('rejected_by_engine'))
 

@@ -1,0 +1,7205 @@
+{
+ "admissions": {
+  "accepted": 16665,
+  "rejected:infeasible": 3,
+  "rejected:unknown_target": 3
+ },
+ "decisions_by_athlete": {
+  "A0": 744,
+  "A1": 528,
+  "A10": 730,
+  "A11": 682,
+  "A12": 260,
+  "A13": 119,
+  "A14": 122,
+  "A15": 106,
+  "A16": 98,
+  "A2": 700,
+  "A3": 640,
+  "A4": 681,
+  "A5": 431,
+  "A6": 695,
+  "A7": 631,
+  "A8": 459,
+  "A9": 502,
+  "B0": 651,
+  "B1": 742,
+  "B10": 500,
+  "B11": 738,
+  "B12": 89,
+  "B13": 129,
+  "B14": 24,
+  "B15": 31,
+  "B2": 704,
+  "B3": 744,
+  "B4": 743,
+  "B5": 684,
+  "B6": 661,
+  "B7": 709,
+  "B8": 733,
+  "B9": 661
+ },
+ "decisions_by_kind": {
+  "abort_draw": 8,
+  "archer_hold": 1284,
+  "carry": 156,
+  "continue_current": 359,
+  "draw_release": 47,
+  "keeper_save": 1,
+  "keeper_set": 1227,
+  "pass": 12,
+  "position": 9500,
+  "press": 157,
+  "pursue": 1271,
+  "receive": 91,
+  "restart_pass": 34,
+  "restart_wait": 40,
+  "scan": 281,
+  "search": 2195,
+  "shoot": 8
+ },
+ "decisions_by_role": {
+  "archer": 1465,
+  "field": 13976,
+  "keeper": 1230
+ },
+ "decisions_total": 16671,
+ "end_ms": 269329,
+ "engine_events": {
+  "arrow_draw": 46,
+  "arrow_geometry_impact": 1,
+  "arrow_lead": 33,
+  "arrow_miss": 20,
+  "arrow_release": 34,
+  "ball_action_prepared": 13,
+  "boundary": 8,
+  "c3_collision": 23,
+  "c3_down": 12,
+  "c3_grip_broken": 2,
+  "c3_grounding": 12,
+  "c3_hold_detached": 1,
+  "c3_hold_end": 28,
+  "c3_hold_start": 28,
+  "c3_release_withheld": 2,
+  "c3_tuck": 1,
+  "c3_upright": 12,
+  "c3b_rules": 1,
+  "c3c_rules": 1,
+  "c4_rules": 1,
+  "c4a_rules": 1,
+  "c4b_rules": 1,
+  "c4c2_rules": 1,
+  "c4c_rules": 1,
+  "control": 26,
+  "discipline": 1,
+  "engagement": 46,
+  "finishing_flight": 1,
+  "flight_ended": 1,
+  "foul": 2,
+  "freeze": 1,
+  "goal": 1,
+  "grounded": 1,
+  "hunt_live": 2,
+  "hunt_start": 2,
+  "intermission": 1,
+  "keeper_confront": 3,
+  "lineup_check": 1,
+  "match_complete": 1,
+  "occupancy_cleared": 19,
+  "opening_ground_touch": 2,
+  "period_end": 2,
+  "pocket_final_rules": 1,
+  "pocket_occupancy_sample": 87,
+  "possession_change": 19,
+  "quarter_hunt": 1,
+  "reconstruction_ended": 2,
+  "reconstruction_set": 2,
+  "release": 9,
+  "reload_complete": 4,
+  "reload_start": 5,
+  "restart_awarded": 18,
+  "restart_ready": 18,
+  "restart_release": 18,
+  "scrimmage_set": 5,
+  "specialist_replacement": 1,
+  "substitution": 51,
+  "tackle_award": 4,
+  "tackle_count": 11,
+  "touch": 5,
+  "warning": 1,
+  "zone_exit_invalid": 12,
+  "zone_exit_valid": 31,
+  "zone_reentry_no_reset": 3
+ },
+ "hook_calls": {
+  "archer_motor": 1039,
+  "ball_motor": 1039,
+  "keeper_motor": 1039
+ },
+ "outcomes_by_status": {
+  "aborted_by_athlete": 8,
+  "arrow_released": 34,
+  "goal_scored:shoot": 1,
+  "interrupted": 18,
+  "pass_completed_other": 4,
+  "pass_dead:boundary": 3,
+  "pass_dead:period_end": 1,
+  "rejected_by_engine": 1,
+  "rejected_geometry": 1,
+  "rejected_not_prepared": 4,
+  "rejected_out_of_range": 4,
+  "released": 25
+ },
+ "own5_pass_releases_checked": 8,
+ "period": 2,
+ "policy_params": {
+  "A": {
+   "archer_eager": 0.0,
+   "bias_pass": -6.0,
+   "bias_press": -2.7633,
+   "bias_pursue": 1.9055,
+   "bias_shoot": 0.0,
+   "pass_min_clearance": 0.0,
+   "pos_ball_att": 0.6,
+   "pos_ball_def": 3.0,
+   "pos_edge_zone": 0.0,
+   "pos_goal_att": 1.0852,
+   "pos_goal_def": -0.5336,
+   "pos_lane": 0.8,
+   "pos_opp_att": 0.6,
+   "pos_opp_def": 1.3967,
+   "pos_spread": 2.9973,
+   "shot_range": 31.7171
+  },
+  "B": {
+   "archer_eager": 0.0,
+   "bias_pass": 0.0,
+   "bias_press": 0.0,
+   "bias_pursue": 0.0,
+   "bias_shoot": 0.0,
+   "pass_min_clearance": 0.0,
+   "pos_ball_att": 0.6,
+   "pos_ball_def": 1.2,
+   "pos_edge_zone": 1.0,
+   "pos_goal_att": 1.0,
+   "pos_goal_def": 1.0,
+   "pos_lane": 0.8,
+   "pos_opp_att": 0.6,
+   "pos_opp_def": 0.6,
+   "pos_spread": 1.0,
+   "shot_range": 32.0
+  }
+ },
+ "release_contract": {
+  "bound_deg": 60.0,
+  "max_correction_deg": 100.368,
+  "recomputed": 8,
+  "rejected_geometry": 1,
+  "releases_recorded": 9
+ },
+ "result": "{'winner': 'A', 'method': 'regulation', 'score': {'A': 3, 'B': 0}, 'shootout': None}",
+ "rules": {
+  "final_public_state": {
+   "ball_status": "restart_pending",
+   "contested": false,
+   "direct_holder": null,
+   "direct_team": null,
+   "last_toucher": "B1",
+   "passive_team": "B",
+   "team_control": null,
+   "uncontested_ms": 0,
+   "zone_clock_ms": [
+    [
+     "A",
+     0
+    ],
+    [
+     "B",
+     0
+    ]
+   ],
+   "zone_clock_running": [
+    [
+     "A",
+     false
+    ],
+    [
+     "B",
+     false
+    ]
+   ]
+  },
+  "keeper_contacts_checked": 0,
+  "ledger_by_event": {
+   "dead": 22,
+   "defender_touch": 1,
+   "direct_possession": 25,
+   "freeze": 1,
+   "loose": 4,
+   "out_of_play": 8,
+   "pass_release": 8,
+   "passive_possession": 8,
+   "restart_awarded": 18,
+   "restart_release": 18,
+   "secured": 26,
+   "shot_release": 1,
+   "zone_clock_reset": 2
+  },
+  "ledger_by_row": {
+   "R-02": 26,
+   "R-03": 26,
+   "R-06": 8,
+   "R-07": 1,
+   "R-08": 1,
+   "R-09": 4,
+   "R-10": 7,
+   "R-14": 20,
+   "R-17": 1,
+   "R-18": 26,
+   "R-20": 22
+  },
+  "ledger_entries": 142,
+  "p1_ms": 500,
+  "violations_enforced": 0
+ },
+ "ruleset": "1.0.2",
+ "scenario": "regulation_match_B0_P4_DEFAULT",
+ "score": {
+  "A": 3,
+  "B": 0
+ },
+ "seed": 9000,
+ "settings": {
+  "overtime_seconds": 30,
+  "period_seconds": 45,
+  "periods": 2,
+  "play_clock": 45
+ },
+ "start_ms": 0,
+ "state_hash": "00bb06e498d7000d61acfea83a1fe629600b635d82f92a201333a8c1c59a576a",
+ "status": "final",
+ "terminal": null,
+ "trace": {
+  "action_chains": [
+   {
+    "aim": [
+     50.496,
+     49.498
+    ],
+    "belief_revision": "s30/0000002537/A11/obs/belief",
+    "command_id": "s30/0000002537/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000002537/A11/obs/decision",
+    "intent_id": "s30/0000002537/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000002537/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       50.496,
+       49.498
+      ],
+      0.135424
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       71.901,
+       29.017
+      ],
+      -0.257247
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       72.023,
+       33.482
+      ],
+      -0.184608
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       71.428,
+       39.177
+      ],
+      -0.091026
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       71.4,
+       44.729
+      ],
+      -0.074457
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B0",
+     [
+      50.496,
+      49.498
+     ],
+     0.135424
+    ],
+    "target": "B0"
+   },
+   {
+    "aim": [
+     66.99,
+     49.393
+    ],
+    "belief_revision": "s30/0000002937/B11/obs/belief",
+    "command_id": "s30/0000002937/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000002937/B11/obs/decision",
+    "intent_id": "s30/0000002937/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000002937/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A0",
+      [
+       66.99,
+       49.393
+      ],
+      0.314295
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A0",
+     [
+      66.99,
+      49.393
+     ],
+     0.314295
+    ],
+    "target": "A0"
+   },
+   {
+    "aim": [
+     76.876,
+     49.033
+    ],
+    "belief_revision": "s30/0000003937/B11/obs/belief",
+    "command_id": "s30/0000003937/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000003937/B11/obs/decision",
+    "intent_id": "s30/0000003937/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000003937/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A0",
+      [
+       76.876,
+       49.033
+      ],
+      0.360751
+     ],
+     [
+      "draw_release",
+      "A5",
+      [
+       45.435,
+       53.822
+      ],
+      -0.673654
+     ],
+     [
+      "draw_release",
+      "A6",
+      [
+       39.549,
+       55.222
+      ],
+      -0.932502
+     ],
+     [
+      "draw_release",
+      "A7",
+      [
+       38.625,
+       60.894
+      ],
+      -0.930459
+     ],
+     [
+      "draw_release",
+      "A8",
+      [
+       36.102,
+       66.963
+      ],
+      -1.036534
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       38.691,
+       80.868
+      ],
+      -1.007799
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A0",
+     [
+      76.876,
+      49.033
+     ],
+     0.360751
+    ],
+    "target": "A0"
+   },
+   {
+    "aim": [
+     100.0,
+     46.4
+    ],
+    "belief_revision": "s30/0000004937/A0/obs/belief",
+    "command_id": "s30/0000004937/A0/obs/decision/intent/command",
+    "decision_id": "s30/0000004937/A0/obs/decision",
+    "intent_id": "s30/0000004937/A0/obs/decision/intent",
+    "kind": "shoot",
+    "observation_id": "s30/0000004937/A0/obs",
+    "options": [
+     [
+      "retain",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "shoot",
+      null,
+      [
+       100.0,
+       46.4
+      ],
+      2.049636
+     ],
+     [
+      "carry",
+      null,
+      [
+       93.895,
+       45.361
+      ],
+      2.0
+     ]
+    ],
+    "selected": [
+     "shoot",
+     null,
+     [
+      100.0,
+      46.4
+     ],
+     2.049636
+    ],
+    "target": null
+   },
+   {
+    "aim": [
+     55.747,
+     42.844
+    ],
+    "belief_revision": "s30/0000005949/A7/obs/belief",
+    "command_id": "s30/0000005949/A7/obs/decision/intent/command",
+    "decision_id": "s30/0000005949/A7/obs/decision",
+    "intent_id": "s30/0000005949/A7/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000005949/A7/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A2",
+      [
+       54.612,
+       38.814
+      ],
+      5.806855
+     ],
+     [
+      "restart_pass",
+      "A4",
+      [
+       29.468,
+       44.736
+      ],
+      3.427357
+     ],
+     [
+      "restart_pass",
+      "A8",
+      [
+       55.747,
+       42.844
+      ],
+      6.005103
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A8",
+     [
+      55.747,
+      42.844
+     ],
+     6.005103
+    ],
+    "target": "A8"
+   },
+   {
+    "aim": [
+     90.351,
+     43.799
+    ],
+    "belief_revision": "s30/0000008949/A0/obs/belief",
+    "command_id": "s30/0000008949/A0/obs/decision/intent/command",
+    "decision_id": "s30/0000008949/A0/obs/decision",
+    "intent_id": "s30/0000008949/A0/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000008949/A0/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A7",
+      [
+       90.351,
+       43.799
+      ],
+      1.273907
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A7",
+     [
+      90.351,
+      43.799
+     ],
+     1.273907
+    ],
+    "target": "A7"
+   },
+   {
+    "aim": [
+     90.635,
+     43.61
+    ],
+    "belief_revision": "s30/0000009142/B11/obs/belief",
+    "command_id": "s30/0000009142/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000009142/B11/obs/decision",
+    "intent_id": "s30/0000009142/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000009142/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A7",
+      [
+       90.635,
+       43.61
+      ],
+      0.003706
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       49.755,
+       74.017
+      ],
+      -1.921147
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A7",
+     [
+      90.635,
+      43.61
+     ],
+     0.003706
+    ],
+    "target": "A7"
+   },
+   {
+    "aim": [
+     88.338,
+     44.346
+    ],
+    "belief_revision": "s30/0000009542/B11/obs/belief",
+    "command_id": "s30/0000009542/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000009542/B11/obs/decision",
+    "intent_id": "s30/0000009542/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000009542/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A7",
+      [
+       88.338,
+       44.346
+      ],
+      0.012841
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       50.025,
+       73.426
+      ],
+      -1.749285
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A7",
+     [
+      88.338,
+      44.346
+     ],
+     0.012841
+    ],
+    "target": "A7"
+   },
+   {
+    "aim": [
+     88.265,
+     40.745
+    ],
+    "belief_revision": "s30/0000010042/A11/obs/belief",
+    "command_id": "s30/0000010042/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000010042/A11/obs/decision",
+    "intent_id": "s30/0000010042/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000010042/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       87.383,
+       32.428
+      ],
+      -0.040861
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       88.265,
+       40.745
+      ],
+      0.037513
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       68.43,
+       48.846
+      ],
+      -0.709069
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B2",
+     [
+      88.265,
+      40.745
+     ],
+     0.037513
+    ],
+    "target": "B2"
+   },
+   {
+    "aim": [
+     83.276,
+     40.552
+    ],
+    "belief_revision": "s30/0000011042/A11/obs/belief",
+    "command_id": "s30/0000011042/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000011042/A11/obs/decision",
+    "intent_id": "s30/0000011042/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000011042/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       76.077,
+       49.478
+      ],
+      -0.171405
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       77.817,
+       33.373
+      ],
+      0.020294
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       83.276,
+       40.552
+      ],
+      0.191753
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       68.976,
+       50.246
+      ],
+      -0.408703
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B2",
+     [
+      83.276,
+      40.552
+     ],
+     0.191753
+    ],
+    "target": "B2"
+   },
+   {
+    "aim": [
+     68.262,
+     41.316
+    ],
+    "belief_revision": "s30/0000012542/B3/obs/belief",
+    "command_id": "s30/0000012542/B3/obs/decision/intent/command",
+    "decision_id": "s30/0000012542/B3/obs/decision",
+    "intent_id": "s30/0000012542/B3/obs/decision/intent",
+    "kind": "pass",
+    "observation_id": "s30/0000012542/B3/obs",
+    "options": [
+     [
+      "retain",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "carry",
+      null,
+      [
+       64.185,
+       40.227
+      ],
+      2.0
+     ],
+     [
+      "pass",
+      "B0",
+      [
+       71.996,
+       43.191
+      ],
+      -0.474635
+     ],
+     [
+      "pass",
+      "B10",
+      [
+       95.668,
+       49.342
+      ],
+      -3.46688
+     ],
+     [
+      "pass",
+      "B2",
+      [
+       68.262,
+       41.316
+      ],
+      2.71096
+     ],
+     [
+      "pass",
+      "B4",
+      [
+       66.734,
+       53.745
+      ],
+      -1.57462
+     ],
+     [
+      "pass",
+      "B5",
+      [
+       76.13,
+       43.479
+      ],
+      -0.929609
+     ],
+     [
+      "pass",
+      "B6",
+      [
+       76.655,
+       51.779
+      ],
+      -2.950832
+     ],
+     [
+      "pass",
+      "B8",
+      [
+       77.272,
+       50.941
+      ],
+      -2.968177
+     ]
+    ],
+    "selected": [
+     "pass",
+     "B2",
+     [
+      68.262,
+      41.316
+     ],
+     2.71096
+    ],
+    "target": "B2"
+   },
+   {
+    "aim": [
+     61.287,
+     45.165
+    ],
+    "belief_revision": "s30/0000013701/B11/obs/belief",
+    "command_id": "s30/0000013701/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000013701/B11/obs/decision",
+    "intent_id": "s30/0000013701/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000013701/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A2",
+      [
+       68.373,
+       45.109
+      ],
+      0.226086
+     ],
+     [
+      "draw_release",
+      "A5",
+      [
+       57.401,
+       47.48
+      ],
+      0.106071
+     ],
+     [
+      "draw_release",
+      "A6",
+      [
+       61.287,
+       45.165
+      ],
+      0.257381
+     ],
+     [
+      "draw_release",
+      "A7",
+      [
+       74.817,
+       45.505
+      ],
+      -0.020415
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       73.13,
+       60.078
+      ],
+      -0.027067
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A6",
+     [
+      61.287,
+      45.165
+     ],
+     0.257381
+    ],
+    "target": "A6"
+   },
+   {
+    "aim": [
+     61.805,
+     44.815
+    ],
+    "belief_revision": "s30/0000014401/A11/obs/belief",
+    "command_id": "s30/0000014401/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000014401/A11/obs/decision",
+    "intent_id": "s30/0000014401/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000014401/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       61.805,
+       44.815
+      ],
+      0.454074
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       47.889,
+       33.584
+      ],
+      0.210671
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       65.3,
+       44.797
+      ],
+      0.296098
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       64.55,
+       36.538
+      ],
+      0.326908
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       63.705,
+       53.387
+      ],
+      -0.011358
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       65.622,
+       44.494
+      ],
+      0.287458
+     ],
+     [
+      "draw_release",
+      "B6",
+      [
+       63.807,
+       45.364
+      ],
+      0.350406
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B0",
+     [
+      61.805,
+      44.815
+     ],
+     0.454074
+    ],
+    "target": "B0"
+   },
+   {
+    "aim": [
+     44.663,
+     62.966
+    ],
+    "belief_revision": "s30/0000015086/B0/obs/belief",
+    "command_id": "s30/0000015086/B0/obs/decision/intent/command",
+    "decision_id": "s30/0000015086/B0/obs/decision",
+    "intent_id": "s30/0000015086/B0/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000015086/B0/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "B1",
+      [
+       45.957,
+       34.095
+      ],
+      3.284105
+     ],
+     [
+      "restart_pass",
+      "B10",
+      [
+       92.946,
+       48.564
+      ],
+      -0.519352
+     ],
+     [
+      "restart_pass",
+      "B2",
+      [
+       69.697,
+       45.179
+      ],
+      2.045378
+     ],
+     [
+      "restart_pass",
+      "B3",
+      [
+       60.967,
+       33.253
+      ],
+      2.018378
+     ],
+     [
+      "restart_pass",
+      "B4",
+      [
+       59.224,
+       59.552
+      ],
+      2.260874
+     ],
+     [
+      "restart_pass",
+      "B5",
+      [
+       65.907,
+       44.961
+      ],
+      2.456533
+     ],
+     [
+      "restart_pass",
+      "B6",
+      [
+       59.129,
+       50.045
+      ],
+      2.151142
+     ],
+     [
+      "restart_pass",
+      "B7",
+      [
+       44.663,
+       62.966
+      ],
+      3.329122
+     ],
+     [
+      "restart_pass",
+      "B8",
+      [
+       61.694,
+       55.23
+      ],
+      2.582389
+     ],
+     [
+      "restart_pass",
+      "B9",
+      [
+       52.599,
+       64.895
+      ],
+      2.010214
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "B7",
+     [
+      44.663,
+      62.966
+     ],
+     3.329122
+    ],
+    "target": "B7"
+   },
+   {
+    "aim": [
+     60.267,
+     54.91
+    ],
+    "belief_revision": "s30/0000016886/B0/obs/belief",
+    "command_id": "s30/0000016886/B0/obs/decision/intent/command",
+    "decision_id": "s30/0000016886/B0/obs/decision",
+    "intent_id": "s30/0000016886/B0/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000016886/B0/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "B10",
+      [
+       92.738,
+       49.342
+      ],
+      0.167983
+     ],
+     [
+      "restart_pass",
+      "B2",
+      [
+       75.299,
+       45.747
+      ],
+      2.096674
+     ],
+     [
+      "restart_pass",
+      "B3",
+      [
+       51.4,
+       33.282
+      ],
+      2.555296
+     ],
+     [
+      "restart_pass",
+      "B4",
+      [
+       62.211,
+       55.892
+      ],
+      3.218282
+     ],
+     [
+      "restart_pass",
+      "B5",
+      [
+       64.661,
+       44.992
+      ],
+      3.265427
+     ],
+     [
+      "restart_pass",
+      "B6",
+      [
+       62.602,
+       48.49
+      ],
+      3.401277
+     ],
+     [
+      "restart_pass",
+      "B7",
+      [
+       71.781,
+       61.096
+      ],
+      2.202897
+     ],
+     [
+      "restart_pass",
+      "B8",
+      [
+       60.267,
+       54.91
+      ],
+      3.402306
+     ],
+     [
+      "restart_pass",
+      "B9",
+      [
+       67.844,
+       61.84
+      ],
+      2.551649
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "B8",
+     [
+      60.267,
+      54.91
+     ],
+     3.402306
+    ],
+    "target": "B8"
+   },
+   {
+    "aim": [
+     64.955,
+     45.464
+    ],
+    "belief_revision": "s30/0000017174/A11/obs/belief",
+    "command_id": "s30/0000017174/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000017174/A11/obs/decision",
+    "intent_id": "s30/0000017174/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000017174/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       61.089,
+       43.938
+      ],
+      0.386409
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       63.736,
+       37.158
+      ],
+      0.33243
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       69.168,
+       43.75
+      ],
+      0.367859
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       62.665,
+       32.524
+      ],
+      0.236807
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       64.955,
+       45.464
+      ],
+      0.49798
+     ],
+     [
+      "draw_release",
+      "B6",
+      [
+       62.513,
+       48.384
+      ],
+      0.347365
+     ],
+     [
+      "draw_release",
+      "B8",
+      [
+       65.553,
+       54.462
+      ],
+      0.036214
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B5",
+     [
+      64.955,
+      45.464
+     ],
+     0.49798
+    ],
+    "target": "B5"
+   },
+   {
+    "aim": [
+     59.121,
+     46.062
+    ],
+    "belief_revision": "s30/0000017274/B11/obs/belief",
+    "command_id": "s30/0000017274/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000017274/B11/obs/decision",
+    "intent_id": "s30/0000017274/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000017274/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A1",
+      [
+       59.121,
+       46.062
+      ],
+      1.818635
+     ],
+     [
+      "draw_release",
+      "A6",
+      [
+       55.916,
+       44.219
+      ],
+      0.181359
+     ],
+     [
+      "draw_release",
+      "A8",
+      [
+       59.894,
+       44.035
+      ],
+      0.300385
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       58.603,
+       55.07
+      ],
+      0.222303
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A1",
+     [
+      59.121,
+      46.062
+     ],
+     1.818635
+    ],
+    "target": "A1"
+   },
+   {
+    "aim": [
+     46.707,
+     58.156
+    ],
+    "belief_revision": "s30/0000020549/B11/obs/belief",
+    "command_id": "s30/0000020549/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000020549/B11/obs/decision",
+    "intent_id": "s30/0000020549/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000020549/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A0",
+      [
+       52.222,
+       56.825
+      ],
+      0.256087
+     ],
+     [
+      "draw_release",
+      "A1",
+      [
+       53.692,
+       56.587
+      ],
+      0.190792
+     ],
+     [
+      "draw_release",
+      "A2",
+      [
+       46.9,
+       73.092
+      ],
+      0.297527
+     ],
+     [
+      "draw_release",
+      "A3",
+      [
+       47.367,
+       51.784
+      ],
+      0.248585
+     ],
+     [
+      "draw_release",
+      "A4",
+      [
+       46.707,
+       58.156
+      ],
+      0.495784
+     ],
+     [
+      "draw_release",
+      "A6",
+      [
+       56.657,
+       55.704
+      ],
+      0.046749
+     ],
+     [
+      "draw_release",
+      "A8",
+      [
+       52.219,
+       53.87
+      ],
+      0.174967
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       50.514,
+       59.702
+      ],
+      0.366528
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A4",
+     [
+      46.707,
+      58.156
+     ],
+     0.495784
+    ],
+    "target": "A4"
+   },
+   {
+    "aim": [
+     37.046,
+     56.278
+    ],
+    "belief_revision": "s30/0000020649/A11/obs/belief",
+    "command_id": "s30/0000020649/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000020649/A11/obs/decision",
+    "intent_id": "s30/0000020649/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000020649/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       39.255,
+       41.291
+      ],
+      0.089856
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       36.279,
+       36.795
+      ],
+      -0.008312
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       37.953,
+       53.848
+      ],
+      0.341772
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       34.276,
+       32.178
+      ],
+      -0.120176
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       37.046,
+       56.278
+      ],
+      1.763452
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       40.678,
+       52.811
+      ],
+      0.271307
+     ],
+     [
+      "draw_release",
+      "B6",
+      [
+       41.547,
+       47.963
+      ],
+      0.192413
+     ],
+     [
+      "draw_release",
+      "B8",
+      [
+       49.088,
+       55.982
+      ],
+      -0.086246
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B4",
+     [
+      37.046,
+      56.278
+     ],
+     1.763452
+    ],
+    "target": "B4"
+   },
+   {
+    "aim": [
+     36.553,
+     55.397
+    ],
+    "belief_revision": "s30/0000020649/B4/obs/belief",
+    "command_id": "s30/0000020649/B4/obs/decision/intent/command",
+    "decision_id": "s30/0000020649/B4/obs/decision",
+    "intent_id": "s30/0000020649/B4/obs/decision/intent",
+    "kind": "pass",
+    "observation_id": "s30/0000020649/B4/obs",
+    "options": [
+     [
+      "retain",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "carry",
+      null,
+      [
+       31.444,
+       55.98
+      ],
+      2.0
+     ],
+     [
+      "pass",
+      "B0",
+      [
+       35.416,
+       39.504
+      ],
+      2.332639
+     ],
+     [
+      "pass",
+      "B1",
+      [
+       28.702,
+       37.288
+      ],
+      2.218309
+     ],
+     [
+      "pass",
+      "B2",
+      [
+       36.553,
+       55.397
+      ],
+      2.702432
+     ],
+     [
+      "pass",
+      "B3",
+      [
+       22.982,
+       29.862
+      ],
+      2.012609
+     ],
+     [
+      "pass",
+      "B5",
+      [
+       30.924,
+       37.704
+      ],
+      2.350818
+     ],
+     [
+      "pass",
+      "B6",
+      [
+       43.87,
+       57.506
+      ],
+      -0.315925
+     ],
+     [
+      "pass",
+      "B8",
+      [
+       46.012,
+       53.542
+      ],
+      -1.817974
+     ],
+     [
+      "pass",
+      "B9",
+      [
+       34.362,
+       59.047
+      ],
+      2.637389
+     ]
+    ],
+    "selected": [
+     "pass",
+     "B2",
+     [
+      36.553,
+      55.397
+     ],
+     2.702432
+    ],
+    "target": "B2"
+   },
+   {
+    "aim": [
+     30.969,
+     55.953
+    ],
+    "belief_revision": "s30/0000021075/A11/obs/belief",
+    "command_id": "s30/0000021075/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000021075/A11/obs/decision",
+    "intent_id": "s30/0000021075/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000021075/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       35.181,
+       45.292
+      ],
+      0.11918
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       31.62,
+       36.223
+      ],
+      -0.041746
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       34.987,
+       54.156
+      ],
+      0.218164
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       29.695,
+       32.852
+      ],
+      -0.121766
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       30.969,
+       55.953
+      ],
+      1.760743
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       36.894,
+       54.257
+      ],
+      0.148931
+     ],
+     [
+      "draw_release",
+      "B6",
+      [
+       37.794,
+       49.426
+      ],
+      0.118219
+     ],
+     [
+      "draw_release",
+      "B8",
+      [
+       49.295,
+       54.732
+      ],
+      -0.354499
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B4",
+     [
+      30.969,
+      55.953
+     ],
+     1.760743
+    ],
+    "target": "B4"
+   },
+   {
+    "aim": [
+     33.424,
+     52.282
+    ],
+    "belief_revision": "s30/0000021249/B4/obs/belief",
+    "command_id": "s30/0000021249/B4/obs/decision/intent/command",
+    "decision_id": "s30/0000021249/B4/obs/decision",
+    "intent_id": "s30/0000021249/B4/obs/decision/intent",
+    "kind": "pass",
+    "observation_id": "s30/0000021249/B4/obs",
+    "options": [
+     [
+      "retain",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "carry",
+      null,
+      [
+       24.219,
+       54.447
+      ],
+      2.0
+     ],
+     [
+      "pass",
+      "B0",
+      [
+       30.782,
+       39.006
+      ],
+      3.862909
+     ],
+     [
+      "pass",
+      "B1",
+      [
+       23.869,
+       35.978
+      ],
+      3.757173
+     ],
+     [
+      "pass",
+      "B2",
+      [
+       30.457,
+       53.102
+      ],
+      4.25198
+     ],
+     [
+      "pass",
+      "B3",
+      [
+       19.482,
+       31.425
+      ],
+      3.624564
+     ],
+     [
+      "pass",
+      "B5",
+      [
+       33.424,
+       52.282
+      ],
+      4.253401
+     ],
+     [
+      "pass",
+      "B6",
+      [
+       40.26,
+       62.567
+      ],
+      -1.178961
+     ],
+     [
+      "pass",
+      "B8",
+      [
+       45.822,
+       57.563
+      ],
+      -3.371162
+     ]
+    ],
+    "selected": [
+     "pass",
+     "B5",
+     [
+      33.424,
+      52.282
+     ],
+     4.253401
+    ],
+    "target": "B5"
+   },
+   {
+    "aim": [
+     34.91,
+     16.156
+    ],
+    "belief_revision": "s30/0000024395/A11/obs/belief",
+    "command_id": "s30/0000024395/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000024395/A11/obs/decision",
+    "intent_id": "s30/0000024395/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000024395/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       22.884,
+       38.87
+      ],
+      -0.990571
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       34.91,
+       16.156
+      ],
+      0.545987
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       27.676,
+       47.006
+      ],
+      -1.344117
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       28.333,
+       23.616
+      ],
+      -0.028712
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       18.862,
+       45.94
+      ],
+      -1.47724
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       33.986,
+       32.826
+      ],
+      -0.425168
+     ],
+     [
+      "draw_release",
+      "B6",
+      [
+       18.871,
+       30.039
+      ],
+      -0.662248
+     ],
+     [
+      "draw_release",
+      "B7",
+      [
+       15.402,
+       50.768
+      ],
+      -1.829142
+     ],
+     [
+      "draw_release",
+      "B9",
+      [
+       19.053,
+       44.91
+      ],
+      -1.416833
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B1",
+     [
+      34.91,
+      16.156
+     ],
+     0.545987
+    ],
+    "target": "B1"
+   },
+   {
+    "aim": [
+     43.499,
+     -3.861
+    ],
+    "belief_revision": "s30/0000024985/A3/obs/belief",
+    "command_id": "s30/0000024985/A3/obs/decision/intent/command",
+    "decision_id": "s30/0000024985/A3/obs/decision",
+    "intent_id": "s30/0000024985/A3/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000024985/A3/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A5",
+      [
+       43.499,
+       -3.861
+      ],
+      5.842721
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A5",
+     [
+      43.499,
+      -3.861
+     ],
+     5.842721
+    ],
+    "target": "A5"
+   },
+   {
+    "aim": [
+     43.729,
+     5.615
+    ],
+    "belief_revision": "s30/0000028495/A5/obs/belief",
+    "command_id": "s30/0000028495/A5/obs/decision/intent/command",
+    "decision_id": "s30/0000028495/A5/obs/decision",
+    "intent_id": "s30/0000028495/A5/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000028495/A5/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A3",
+      [
+       43.729,
+       5.615
+      ],
+      4.486573
+     ],
+     [
+      "restart_pass",
+      "A6",
+      [
+       45.925,
+       33.674
+      ],
+      2.519345
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A3",
+     [
+      43.729,
+      5.615
+     ],
+     4.486573
+    ],
+    "target": "A3"
+   },
+   {
+    "aim": [
+     43.187,
+     34.679
+    ],
+    "belief_revision": "s30/0000029695/A5/obs/belief",
+    "command_id": "s30/0000029695/A5/obs/decision/intent/command",
+    "decision_id": "s30/0000029695/A5/obs/decision",
+    "intent_id": "s30/0000029695/A5/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000029695/A5/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A6",
+      [
+       43.187,
+       34.679
+      ],
+      2.667125
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A6",
+     [
+      43.187,
+      34.679
+     ],
+     2.667125
+    ],
+    "target": "A6"
+   },
+   {
+    "aim": [
+     47.311,
+     22.476
+    ],
+    "belief_revision": "s30/0000030017/A11/obs/belief",
+    "command_id": "s30/0000030017/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000030017/A11/obs/decision",
+    "intent_id": "s30/0000030017/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000030017/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       47.311,
+       22.476
+      ],
+      0.214673
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B5",
+     [
+      47.311,
+      22.476
+     ],
+     0.214673
+    ],
+    "target": "B5"
+   },
+   {
+    "aim": [
+     49.547,
+     20.477
+    ],
+    "belief_revision": "s30/0000034169/B1/obs/belief",
+    "command_id": "s30/0000034169/B1/obs/decision/intent/command",
+    "decision_id": "s30/0000034169/B1/obs/decision",
+    "intent_id": "s30/0000034169/B1/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000034169/B1/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "B0",
+      [
+       58.551,
+       11.767
+      ],
+      1.815117
+     ],
+     [
+      "restart_pass",
+      "B4",
+      [
+       49.547,
+       20.477
+      ],
+      2.424563
+     ],
+     [
+      "restart_pass",
+      "B5",
+      [
+       55.546,
+       14.052
+      ],
+      1.61564
+     ],
+     [
+      "restart_pass",
+      "B6",
+      [
+       67.219,
+       24.115
+      ],
+      0.317841
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "B4",
+     [
+      49.547,
+      20.477
+     ],
+     2.424563
+    ],
+    "target": "B4"
+   },
+   {
+    "aim": [
+     50.843,
+     23.375
+    ],
+    "belief_revision": "s30/0000035569/B1/obs/belief",
+    "command_id": "s30/0000035569/B1/obs/decision/intent/command",
+    "decision_id": "s30/0000035569/B1/obs/decision",
+    "intent_id": "s30/0000035569/B1/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000035569/B1/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "B0",
+      [
+       57.408,
+       10.761
+      ],
+      0.407825
+     ],
+     [
+      "restart_pass",
+      "B2",
+      [
+       57.151,
+       22.314
+      ],
+      3.818031
+     ],
+     [
+      "restart_pass",
+      "B4",
+      [
+       50.843,
+       23.375
+      ],
+      5.30837
+     ],
+     [
+      "restart_pass",
+      "B5",
+      [
+       52.616,
+       12.502
+      ],
+      4.059639
+     ],
+     [
+      "restart_pass",
+      "B6",
+      [
+       69.19,
+       24.205
+      ],
+      1.347766
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "B4",
+     [
+      50.843,
+      23.375
+     ],
+     5.30837
+    ],
+    "target": "B4"
+   },
+   {
+    "aim": [
+     50.232,
+     9.326
+    ],
+    "belief_revision": "s30/0000036117/A11/obs/belief",
+    "command_id": "s30/0000036117/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000036117/A11/obs/decision",
+    "intent_id": "s30/0000036117/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000036117/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       53.865,
+       12.046
+      ],
+      1.030498
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       50.232,
+       9.326
+      ],
+      2.710879
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       57.736,
+       23.952
+      ],
+      0.297949
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       51.371,
+       11.083
+      ],
+      1.150962
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       51.204,
+       23.363
+      ],
+      0.426976
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       53.561,
+       12.418
+      ],
+      1.022512
+     ],
+     [
+      "draw_release",
+      "B6",
+      [
+       65.975,
+       24.227
+      ],
+      0.023652
+     ],
+     [
+      "draw_release",
+      "B8",
+      [
+       65.91,
+       39.514
+      ],
+      -0.752164
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B1",
+     [
+      50.232,
+      9.326
+     ],
+     2.710879
+    ],
+    "target": "B1"
+   },
+   {
+    "aim": [
+     56.549,
+     56.516
+    ],
+    "belief_revision": "s30/0000037117/B11/obs/belief",
+    "command_id": "s30/0000037117/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000037117/B11/obs/decision",
+    "intent_id": "s30/0000037117/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000037117/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A1",
+      [
+       56.549,
+       56.516
+      ],
+      0.195394
+     ],
+     [
+      "draw_release",
+      "A2",
+      [
+       65.121,
+       48.653
+      ],
+      -0.003579
+     ],
+     [
+      "draw_release",
+      "A4",
+      [
+       45.009,
+       48.616
+      ],
+      0.077005
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       39.462,
+       59.507
+      ],
+      -0.152557
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A1",
+     [
+      56.549,
+      56.516
+     ],
+     0.195394
+    ],
+    "target": "A1"
+   },
+   {
+    "aim": [
+     100.0,
+     53.6
+    ],
+    "belief_revision": "s30/0000042480/A1/obs/belief",
+    "command_id": "s30/0000042480/A1/obs/decision/intent/command",
+    "decision_id": "s30/0000042480/A1/obs/decision",
+    "intent_id": "s30/0000042480/A1/obs/decision/intent",
+    "kind": "shoot",
+    "observation_id": "s30/0000042480/A1/obs",
+    "options": [
+     [
+      "retain",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "shoot",
+      null,
+      [
+       100.0,
+       53.6
+      ],
+      2.433636
+     ],
+     [
+      "carry",
+      null,
+      [
+       98.941,
+       57.964
+      ],
+      2.0
+     ],
+     [
+      "pass",
+      "A0",
+      [
+       92.601,
+       64.007
+      ],
+      -0.276156
+     ],
+     [
+      "pass",
+      "A2",
+      [
+       84.049,
+       54.132
+      ],
+      -0.572707
+     ],
+     [
+      "pass",
+      "A4",
+      [
+       81.515,
+       79.144
+      ],
+      -7.782922
+     ],
+     [
+      "pass",
+      "A5",
+      [
+       88.297,
+       44.188
+      ],
+      -4.596519
+     ],
+     [
+      "pass",
+      "A7",
+      [
+       74.392,
+       43.104
+      ],
+      -6.575606
+     ],
+     [
+      "pass",
+      "A8",
+      [
+       79.012,
+       52.289
+      ],
+      -1.826602
+     ],
+     [
+      "pass",
+      "A9",
+      [
+       87.041,
+       74.698
+      ],
+      -4.995761
+     ]
+    ],
+    "selected": [
+     "shoot",
+     null,
+     [
+      100.0,
+      53.6
+     ],
+     2.433636
+    ],
+    "target": null
+   },
+   {
+    "aim": [
+     98.988,
+     58.133
+    ],
+    "belief_revision": "s30/0000043078/B11/obs/belief",
+    "command_id": "s30/0000043078/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000043078/B11/obs/decision",
+    "intent_id": "s30/0000043078/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000043078/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A0",
+      [
+       94.093,
+       47.595
+      ],
+      -0.036072
+     ],
+     [
+      "draw_release",
+      "A1",
+      [
+       98.988,
+       58.133
+      ],
+      2.012347
+     ],
+     [
+      "draw_release",
+      "A2",
+      [
+       88.452,
+       54.782
+      ],
+      0.117255
+     ],
+     [
+      "draw_release",
+      "A4",
+      [
+       78.517,
+       79.12
+      ],
+      -0.138297
+     ],
+     [
+      "draw_release",
+      "A8",
+      [
+       75.305,
+       57.539
+      ],
+      -0.348713
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       88.086,
+       72.902
+      ],
+      0.182451
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A1",
+     [
+      98.988,
+      58.133
+     ],
+     2.012347
+    ],
+    "target": "A1"
+   },
+   {
+    "aim": [
+     64.424,
+     70.516
+    ],
+    "belief_revision": "s30/0000043378/B4/obs/belief",
+    "command_id": "s30/0000043378/B4/obs/decision/intent/command",
+    "decision_id": "s30/0000043378/B4/obs/decision",
+    "intent_id": "s30/0000043378/B4/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000043378/B4/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "B0",
+      [
+       77.233,
+       36.151
+      ],
+      2.429975
+     ],
+     [
+      "restart_pass",
+      "B1",
+      [
+       65.051,
+       41.902
+      ],
+      4.505732
+     ],
+     [
+      "restart_pass",
+      "B2",
+      [
+       71.02,
+       58.192
+      ],
+      2.186029
+     ],
+     [
+      "restart_pass",
+      "B6",
+      [
+       81.742,
+       48.104
+      ],
+      2.620774
+     ],
+     [
+      "restart_pass",
+      "B7",
+      [
+       64.424,
+       70.516
+      ],
+      4.887207
+     ],
+     [
+      "restart_pass",
+      "B8",
+      [
+       80.655,
+       63.562
+      ],
+      0.577716
+     ],
+     [
+      "restart_pass",
+      "B9",
+      [
+       76.476,
+       55.227
+      ],
+      -0.068402
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "B7",
+     [
+      64.424,
+      70.516
+     ],
+     4.887207
+    ],
+    "target": "B7"
+   },
+   {
+    "aim": [
+     71.069,
+     50.183
+    ],
+    "belief_revision": "s30/0000046778/B4/obs/belief",
+    "command_id": "s30/0000046778/B4/obs/decision/intent/command",
+    "decision_id": "s30/0000046778/B4/obs/decision",
+    "intent_id": "s30/0000046778/B4/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000046778/B4/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "B0",
+      [
+       71.154,
+       27.821
+      ],
+      4.358444
+     ],
+     [
+      "restart_pass",
+      "B1",
+      [
+       70.732,
+       33.371
+      ],
+      4.54315
+     ],
+     [
+      "restart_pass",
+      "B2",
+      [
+       70.889,
+       38.82
+      ],
+      4.656016
+     ],
+     [
+      "restart_pass",
+      "B3",
+      [
+       71.062,
+       44.83
+      ],
+      4.743969
+     ],
+     [
+      "restart_pass",
+      "B5",
+      [
+       71.069,
+       50.183
+      ],
+      4.777754
+     ],
+     [
+      "restart_pass",
+      "B6",
+      [
+       70.834,
+       55.521
+      ],
+      4.764279
+     ],
+     [
+      "restart_pass",
+      "B7",
+      [
+       69.487,
+       61.039
+      ],
+      4.5873
+     ],
+     [
+      "restart_pass",
+      "B8",
+      [
+       70.755,
+       66.527
+      ],
+      2.241469
+     ],
+     [
+      "restart_pass",
+      "B9",
+      [
+       70.961,
+       72.573
+      ],
+      0.068078
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "B5",
+     [
+      71.069,
+      50.183
+     ],
+     4.777754
+    ],
+    "target": "B5"
+   },
+   {
+    "aim": [
+     60.268,
+     50.277
+    ],
+    "belief_revision": "s30/0000047078/A11/obs/belief",
+    "command_id": "s30/0000047078/A11/obs/decision/intent/command",
+    "decision_id": "s30/0000047078/A11/obs/decision",
+    "intent_id": "s30/0000047078/A11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000047078/A11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "B0",
+      [
+       71.479,
+       28.011
+      ],
+      -0.119918
+     ],
+     [
+      "draw_release",
+      "B1",
+      [
+       70.889,
+       33.545
+      ],
+      -0.001358
+     ],
+     [
+      "draw_release",
+      "B2",
+      [
+       70.665,
+       39.419
+      ],
+      0.090281
+     ],
+     [
+      "draw_release",
+      "B3",
+      [
+       70.99,
+       44.707
+      ],
+      0.105767
+     ],
+     [
+      "draw_release",
+      "B4",
+      [
+       60.268,
+       50.277
+      ],
+      0.391642
+     ],
+     [
+      "draw_release",
+      "B5",
+      [
+       71.407,
+       50.136
+      ],
+      0.018836
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "B4",
+     [
+      60.268,
+      50.277
+     ],
+     0.391642
+    ],
+    "target": "B4"
+   },
+   {
+    "aim": [
+     73.711,
+     81.298
+    ],
+    "belief_revision": "s30/0000049278/B11/obs/belief",
+    "command_id": "s30/0000049278/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000049278/B11/obs/decision",
+    "intent_id": "s30/0000049278/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000049278/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A5",
+      [
+       52.331,
+       60.628
+      ],
+      -1.521247
+     ],
+     [
+      "draw_release",
+      "A6",
+      [
+       47.565,
+       60.309
+      ],
+      -1.741656
+     ],
+     [
+      "draw_release",
+      "A7",
+      [
+       60.124,
+       74.589
+      ],
+      -0.682924
+     ],
+     [
+      "draw_release",
+      "A8",
+      [
+       49.08,
+       68.477
+      ],
+      -1.392215
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       73.711,
+       81.298
+      ],
+      0.095284
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A9",
+     [
+      73.711,
+      81.298
+     ],
+     0.095284
+    ],
+    "target": "A9"
+   },
+   {
+    "aim": [
+     62.045,
+     69.987
+    ],
+    "belief_revision": "s30/0000049957/A9/obs/belief",
+    "command_id": "s30/0000049957/A9/obs/decision/intent/command",
+    "decision_id": "s30/0000049957/A9/obs/decision",
+    "intent_id": "s30/0000049957/A9/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000049957/A9/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A8",
+      [
+       62.045,
+       69.987
+      ],
+      3.323348
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A8",
+     [
+      62.045,
+      69.987
+     ],
+     3.323348
+    ],
+    "target": "A8"
+   },
+   {
+    "aim": [
+     83.083,
+     89.252
+    ],
+    "belief_revision": "s30/0000052557/A9/obs/belief",
+    "command_id": "s30/0000052557/A9/obs/decision/intent/command",
+    "decision_id": "s30/0000052557/A9/obs/decision",
+    "intent_id": "s30/0000052557/A9/obs/decision/intent",
+    "kind": "restart_pass",
+    "observation_id": "s30/0000052557/A9/obs",
+    "options": [
+     [
+      "restart_wait",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "restart_pass",
+      "A7",
+      [
+       83.083,
+       89.252
+      ],
+      1.460491
+     ]
+    ],
+    "selected": [
+     "restart_pass",
+     "A7",
+     [
+      83.083,
+      89.252
+     ],
+     1.460491
+    ],
+    "target": "A7"
+   },
+   {
+    "aim": [
+     100.549,
+     89.511
+    ],
+    "belief_revision": "s30/0000052841/B11/obs/belief",
+    "command_id": "s30/0000052841/B11/obs/decision/intent/command",
+    "decision_id": "s30/0000052841/B11/obs/decision",
+    "intent_id": "s30/0000052841/B11/obs/decision/intent",
+    "kind": "draw_release",
+    "observation_id": "s30/0000052841/B11/obs",
+    "options": [
+     [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "draw_release",
+      "A7",
+      [
+       82.617,
+       89.219
+      ],
+      0.436277
+     ],
+     [
+      "draw_release",
+      "A8",
+      [
+       50.657,
+       69.716
+      ],
+      -1.737548
+     ],
+     [
+      "draw_release",
+      "A9",
+      [
+       100.549,
+       89.511
+      ],
+      2.687221
+     ]
+    ],
+    "selected": [
+     "draw_release",
+     "A9",
+     [
+      100.549,
+      89.511
+     ],
+     2.687221
+    ],
+    "target": "A9"
+   }
+  ],
+  "outcomes": [
+   {
+    "command_id": "s30/0000002537/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000003237/physics/00000001/outcome",
+    "resolved_ms": 3237,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000002937/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000003537/physics/00000002/outcome",
+    "resolved_ms": 3537,
+    "status": "rejected_out_of_range"
+   },
+   {
+    "command_id": "s30/0000003937/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000004337/physics/00000003/outcome",
+    "resolved_ms": 4337,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000005949/A7/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000008849/physics/00000004/outcome",
+    "resolved_ms": 8849,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000004937/A0/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000008849/physics/00000005/outcome",
+    "resolved_ms": 8849,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000008949/A0/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000009042/physics/00000006/outcome",
+    "resolved_ms": 9042,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000009142/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000009342/physics/00000007/outcome",
+    "resolved_ms": 9342,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000009542/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000010142/physics/00000008/outcome",
+    "resolved_ms": 10142,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000010042/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000010742/physics/00000009/outcome",
+    "resolved_ms": 10742,
+    "status": "rejected_out_of_range"
+   },
+   {
+    "command_id": "s30/0000011042/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000011742/physics/00000010/outcome",
+    "resolved_ms": 11742,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000012542/B3/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000013120/physics/00000011/outcome",
+    "resolved_ms": 13120,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000012542/B3/obs/decision/intent/command",
+    "entity_id": "B0",
+    "outcome_id": "s30/0000013401/physics/00000012/outcome",
+    "resolved_ms": 13401,
+    "status": "pass_completed_other"
+   },
+   {
+    "command_id": "s30/0000013701/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000014301/physics/00000013/outcome",
+    "resolved_ms": 14301,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000014401/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000015086/physics/00000014/outcome",
+    "resolved_ms": 15086,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000015086/B0/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000016886/physics/00000015/outcome",
+    "resolved_ms": 16886,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000016886/B0/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000016986/physics/00000016/outcome",
+    "resolved_ms": 16986,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000017174/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000017874/physics/00000017/outcome",
+    "resolved_ms": 17874,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000017274/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000017874/physics/00000018/outcome",
+    "resolved_ms": 17874,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000020649/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000020849/physics/00000019/outcome",
+    "resolved_ms": 20849,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000020649/B4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000020975/physics/00000020/outcome",
+    "resolved_ms": 20975,
+    "status": "rejected_geometry"
+   },
+   {
+    "command_id": "s30/0000020549/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000021149/physics/00000021/outcome",
+    "resolved_ms": 21149,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000021075/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000021775/physics/00000022/outcome",
+    "resolved_ms": 21775,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000021249/B4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000021795/physics/00000023/outcome",
+    "resolved_ms": 21795,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000021249/B4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000024585/physics/00000024/outcome",
+    "resolved_ms": 24585,
+    "status": "pass_dead:boundary"
+   },
+   {
+    "command_id": "s30/0000024395/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000024885/physics/00000025/outcome",
+    "resolved_ms": 24885,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000024985/A3/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000026485/physics/00000026/outcome",
+    "resolved_ms": 26485,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000028495/A5/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000029695/physics/00000027/outcome",
+    "resolved_ms": 29695,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000029695/A5/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000029795/physics/00000028/outcome",
+    "resolved_ms": 29795,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000030017/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000030717/physics/00000029/outcome",
+    "resolved_ms": 30717,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000034169/B1/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000035569/physics/00000030/outcome",
+    "resolved_ms": 35569,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000035569/B1/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000035669/physics/00000031/outcome",
+    "resolved_ms": 35669,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000036117/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000036817/physics/00000032/outcome",
+    "resolved_ms": 36817,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000037117/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000037717/physics/00000033/outcome",
+    "resolved_ms": 37717,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000042480/A1/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000042835/physics/00000034/outcome",
+    "resolved_ms": 42835,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000042480/A1/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000042978/physics/00000035/outcome",
+    "resolved_ms": 42978,
+    "status": "goal_scored:shoot"
+   },
+   {
+    "command_id": "s30/0000043078/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000043478/physics/00000036/outcome",
+    "resolved_ms": 43478,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000043378/B4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000046778/physics/00000037/outcome",
+    "resolved_ms": 46778,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000046778/B4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000046878/physics/00000038/outcome",
+    "resolved_ms": 46878,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000047078/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000047778/physics/00000039/outcome",
+    "resolved_ms": 47778,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000049278/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000049857/physics/00000040/outcome",
+    "resolved_ms": 49857,
+    "status": "aborted_by_athlete"
+   },
+   {
+    "command_id": "s30/0000049957/A9/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000052557/physics/00000041/outcome",
+    "resolved_ms": 52557,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000052557/A9/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000052657/physics/00000042/outcome",
+    "resolved_ms": 52657,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000052841/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000053441/physics/00000043/outcome",
+    "resolved_ms": 53441,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000056101/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000056701/physics/00000044/outcome",
+    "resolved_ms": 56701,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000056201/B7/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000057072/physics/00000045/outcome",
+    "resolved_ms": 57072,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000058250/B7/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000059750/physics/00000046/outcome",
+    "resolved_ms": 59750,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000059837/B7/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000059838/physics/00000047/outcome",
+    "resolved_ms": 59838,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000060138/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000060738/physics/00000048/outcome",
+    "resolved_ms": 60738,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000062356/A12/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000067778/physics/00000049/outcome",
+    "resolved_ms": 67778,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000067778/A12/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000067878/physics/00000050/outcome",
+    "resolved_ms": 67878,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000068049/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000068649/physics/00000051/outcome",
+    "resolved_ms": 68649,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000071249/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000071849/physics/00000052/outcome",
+    "resolved_ms": 71849,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000072289/B9/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000073789/physics/00000053/outcome",
+    "resolved_ms": 73789,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000073889/B9/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000073989/physics/00000054/outcome",
+    "resolved_ms": 73989,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000196787/B1/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000197461/physics/00000055/outcome",
+    "resolved_ms": 197461,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000197287/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000197987/physics/00000056/outcome",
+    "resolved_ms": 197987,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000196787/B1/obs/decision/intent/command",
+    "entity_id": "B2",
+    "outcome_id": "s30/0000201257/physics/00000057/outcome",
+    "resolved_ms": 201257,
+    "status": "pass_completed_other"
+   },
+   {
+    "command_id": "s30/0000200587/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000201287/physics/00000058/outcome",
+    "resolved_ms": 201287,
+    "status": "rejected_out_of_range"
+   },
+   {
+    "command_id": "s30/0000201587/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000202287/physics/00000059/outcome",
+    "resolved_ms": 202287,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000201787/B2/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000202365/physics/00000060/outcome",
+    "resolved_ms": 202365,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000201787/B2/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000203144/physics/00000061/outcome",
+    "resolved_ms": 203144,
+    "status": "pass_dead:boundary"
+   },
+   {
+    "command_id": "s30/0000203544/A0/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000205244/physics/00000062/outcome",
+    "resolved_ms": 205244,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000205544/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000206244/physics/00000063/outcome",
+    "resolved_ms": 206244,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000206444/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000207044/physics/00000064/outcome",
+    "resolved_ms": 207044,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000209665/B8/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000210165/physics/00000065/outcome",
+    "resolved_ms": 210165,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000210265/B8/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000210365/physics/00000066/outcome",
+    "resolved_ms": 210365,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000210465/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000211065/physics/00000067/outcome",
+    "resolved_ms": 211065,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000211965/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000212665/physics/00000068/outcome",
+    "resolved_ms": 212665,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000215242/A2/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000216542/physics/00000069/outcome",
+    "resolved_ms": 216542,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000216642/A2/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000216742/physics/00000070/outcome",
+    "resolved_ms": 216742,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000216842/A11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000217542/physics/00000071/outcome",
+    "resolved_ms": 217542,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000218608/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000219208/physics/00000072/outcome",
+    "resolved_ms": 219208,
+    "status": "rejected_out_of_range"
+   },
+   {
+    "command_id": "s30/0000219681/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000220281/physics/00000073/outcome",
+    "resolved_ms": 220281,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000221081/A4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000221081/physics/00000074/outcome",
+    "resolved_ms": 221081,
+    "status": "rejected_not_prepared"
+   },
+   {
+    "command_id": "s30/0000221658/A6/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000223942/physics/00000075/outcome",
+    "resolved_ms": 223942,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000223942/A6/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000224042/physics/00000076/outcome",
+    "resolved_ms": 224042,
+    "status": "interrupted"
+   },
+   {
+    "command_id": "s30/0000224685/A4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000224685/physics/00000077/outcome",
+    "resolved_ms": 224685,
+    "status": "rejected_not_prepared"
+   },
+   {
+    "command_id": "s30/0000224385/B11/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000224985/physics/00000078/outcome",
+    "resolved_ms": 224985,
+    "status": "arrow_released"
+   },
+   {
+    "command_id": "s30/0000225085/A4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000225085/physics/00000079/outcome",
+    "resolved_ms": 225085,
+    "status": "rejected_not_prepared"
+   },
+   {
+    "command_id": "s30/0000225485/A4/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000225485/physics/00000080/outcome",
+    "resolved_ms": 225485,
+    "status": "rejected_not_prepared"
+   }
+  ],
+  "release_records": [
+   {
+    "command_id": "s30/0000012542/B3/obs/decision/intent/command",
+    "correction_angle_deg": 26.043067251425335,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     69.58335216802908,
+     36.95448627153125
+    ],
+    "semantic_aim": [
+     68.262,
+     41.316
+    ],
+    "status": "released",
+    "target": "B2"
+   },
+   {
+    "command_id": "s30/0000020649/B4/obs/decision/intent/command",
+    "correction_angle_deg": 100.36810240073964,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": false,
+    "release_origin": [
+     34.105444466965906,
+     55.886278903560864
+    ],
+    "semantic_aim": [
+     36.553,
+     55.397
+    ],
+    "status": "rejected_geometry",
+    "target": "B2"
+   },
+   {
+    "command_id": "s30/0000021249/B4/obs/decision/intent/command",
+    "correction_angle_deg": 18.178020608722857,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     32.89955727672055,
+     55.194945746731754
+    ],
+    "semantic_aim": [
+     33.424,
+     52.282
+    ],
+    "status": "released",
+    "target": "B5"
+   },
+   {
+    "command_id": "s30/0000196787/B1/obs/decision/intent/command",
+    "correction_angle_deg": 16.286220703840282,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     39.9665592351823,
+     49.46997933010763
+    ],
+    "semantic_aim": [
+     54.907,
+     41.16
+    ],
+    "status": "released",
+    "target": "B3"
+   },
+   {
+    "command_id": "s30/0000201787/B2/obs/decision/intent/command",
+    "correction_angle_deg": 1.4412417389887475,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     96.52019788460335,
+     17.422120210134537
+    ],
+    "semantic_aim": [
+     95.718,
+     16.188
+    ],
+    "status": "released",
+    "target": "B3"
+   },
+   {
+    "command_id": "s30/0000226982/B2/obs/decision/intent/command",
+    "correction_angle_deg": 7.66350308082557,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     98.74786262757095,
+     70.70577988187429
+    ],
+    "semantic_aim": [
+     87.486,
+     76.48
+    ],
+    "status": "released",
+    "target": "B3"
+   },
+   {
+    "command_id": "s30/0000234892/B8/obs/decision/intent/command",
+    "correction_angle_deg": 0.9429345518979223,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     54.023617853998886,
+     83.93986588363421
+    ],
+    "semantic_aim": [
+     40.033,
+     94.689
+    ],
+    "status": "released",
+    "target": "B3"
+   },
+   {
+    "command_id": "s30/0000246545/B3/obs/decision/intent/command",
+    "correction_angle_deg": 0.5166230531904784,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     45.763487088019076,
+     71.31579635603457
+    ],
+    "semantic_aim": [
+     47.975,
+     68.237
+    ],
+    "status": "released",
+    "target": "B6"
+   },
+   {
+    "command_id": "s30/0000267946/B1/obs/decision/intent/command",
+    "correction_angle_deg": 0.007126186110336496,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     36.412544523917866,
+     44.23865972677224
+    ],
+    "semantic_aim": [
+     33.25,
+     49.404
+    ],
+    "status": "released",
+    "target": "B7"
+   }
+  ],
+  "rules_ledger": [
+   {
+    "event": "secured",
+    "passive_team": null,
+    "player": "A0",
+    "row": "R-02",
+    "t_ms": 937,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A0",
+    "row": "R-03",
+    "t_ms": 1437,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "passive_possession",
+    "previous": null,
+    "row": "R-03",
+    "t_ms": 1437,
+    "team": "A"
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": false,
+    "row": "R-18",
+    "t_ms": 5413,
+    "team": "A"
+   },
+   {
+    "event": "dead",
+    "passive_team": "A",
+    "row": "R-20",
+    "t_ms": 5413
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 8849,
+    "team": "A"
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "B3",
+    "row": "R-02",
+    "t_ms": 9042,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B3",
+    "row": "R-03",
+    "t_ms": 9542,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "passive_possession",
+    "previous": "A",
+    "row": "R-10",
+    "t_ms": 9542,
+    "team": "B"
+   },
+   {
+    "clock_ms": 2100,
+    "event": "zone_clock_reset",
+    "row": "R-14",
+    "t_ms": 11642,
+    "team": "B",
+    "trigger": "ball_left_zone"
+   },
+   {
+    "event": "pass_release",
+    "passive_team": "B",
+    "player": "B3",
+    "row": "R-06",
+    "t_ms": 13220,
+    "team": "B"
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "B0",
+    "row": "R-02",
+    "t_ms": 13401,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B0",
+    "row": "R-03",
+    "t_ms": 13901,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": false,
+    "row": "R-18",
+    "t_ms": 14586,
+    "team": "B"
+   },
+   {
+    "event": "dead",
+    "passive_team": "B",
+    "row": "R-20",
+    "t_ms": 14586
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 16886,
+    "team": "B"
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "B4",
+    "row": "R-02",
+    "t_ms": 19049,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B4",
+    "row": "R-03",
+    "t_ms": 19549,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "pass_release",
+    "passive_team": "B",
+    "player": "B4",
+    "row": "R-06",
+    "t_ms": 21895,
+    "team": "B"
+   },
+   {
+    "event": "out_of_play",
+    "passive_team": "B",
+    "row": "R-18",
+    "t_ms": 24585
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": true,
+    "row": "R-18",
+    "t_ms": 24585,
+    "team": "A"
+   },
+   {
+    "event": "dead",
+    "passive_team": "A",
+    "row": "R-20",
+    "t_ms": 24585
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 26485,
+    "team": "A"
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "A5",
+    "row": "R-02",
+    "t_ms": 26577,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A5",
+    "row": "R-03",
+    "t_ms": 27077,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": false,
+    "row": "R-18",
+    "t_ms": 27395,
+    "team": "A"
+   },
+   {
+    "event": "dead",
+    "passive_team": "A",
+    "row": "R-20",
+    "t_ms": 27395
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 29695,
+    "team": "A"
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "A3",
+    "row": "R-02",
+    "t_ms": 29817,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A3",
+    "row": "R-03",
+    "t_ms": 30317,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "loose",
+    "inferred": true,
+    "passive_team": "A",
+    "row": "R-09",
+    "t_ms": 32090
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "B1",
+    "row": "R-02",
+    "t_ms": 33768,
+    "team": "B"
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": true,
+    "row": "R-18",
+    "t_ms": 33769,
+    "team": "B"
+   },
+   {
+    "event": "dead",
+    "passive_team": "B",
+    "row": "R-20",
+    "t_ms": 33769
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 35569,
+    "team": "B"
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "A1",
+    "row": "R-02",
+    "t_ms": 37980,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A1",
+    "row": "R-03",
+    "t_ms": 38480,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "passive_possession",
+    "previous": "B",
+    "row": "R-10",
+    "t_ms": 38480,
+    "team": "A"
+   },
+   {
+    "event": "shot_release",
+    "passive_team": "A",
+    "player": "A1",
+    "row": "R-07",
+    "t_ms": 42935,
+    "team": "A"
+   },
+   {
+    "event": "dead",
+    "passive_team": "A",
+    "row": "R-20",
+    "t_ms": 42978
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": true,
+    "row": "R-18",
+    "t_ms": 42978,
+    "team": "B"
+   },
+   {
+    "event": "dead",
+    "passive_team": "B",
+    "row": "R-20",
+    "t_ms": 42978
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 46778,
+    "team": "B"
+   },
+   {
+    "event": "out_of_play",
+    "passive_team": "B",
+    "row": "R-18",
+    "t_ms": 49457
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": true,
+    "row": "R-18",
+    "t_ms": 49457,
+    "team": "A"
+   },
+   {
+    "event": "dead",
+    "passive_team": "A",
+    "row": "R-20",
+    "t_ms": 49457
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 52557,
+    "team": "A"
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "B7",
+    "row": "R-02",
+    "t_ms": 55601,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B7",
+    "row": "R-03",
+    "t_ms": 56101,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "passive_possession",
+    "previous": "A",
+    "row": "R-10",
+    "t_ms": 56101,
+    "team": "B"
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": false,
+    "row": "R-18",
+    "t_ms": 57350,
+    "team": "B"
+   },
+   {
+    "event": "dead",
+    "passive_team": "B",
+    "row": "R-20",
+    "t_ms": 57350
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 59750,
+    "team": "B"
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "B5",
+    "row": "R-02",
+    "t_ms": 59838,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B5",
+    "row": "R-03",
+    "t_ms": 60338,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "loose",
+    "inferred": true,
+    "passive_team": "B",
+    "row": "R-09",
+    "t_ms": 60764
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "A12",
+    "row": "R-02",
+    "t_ms": 60838,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A12",
+    "row": "R-03",
+    "t_ms": 61338,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "passive_possession",
+    "previous": "B",
+    "row": "R-10",
+    "t_ms": 61338,
+    "team": "A"
+   },
+   {
+    "event": "freeze",
+    "legal_by_layer": true,
+    "player": "A5",
+    "role": "field",
+    "row": "R-17",
+    "t_ms": 61878,
+    "was_carrier": false
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": false,
+    "row": "R-18",
+    "t_ms": 61956,
+    "team": "A"
+   },
+   {
+    "event": "dead",
+    "passive_team": "A",
+    "row": "R-20",
+    "t_ms": 61956
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 67778,
+    "team": "A"
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "A8",
+    "row": "R-02",
+    "t_ms": 67949,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A8",
+    "row": "R-03",
+    "t_ms": 68449,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "out_of_play",
+    "passive_team": "A",
+    "row": "R-18",
+    "t_ms": 71889
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": true,
+    "row": "R-18",
+    "t_ms": 71889,
+    "team": "B"
+   },
+   {
+    "event": "dead",
+    "passive_team": "B",
+    "row": "R-20",
+    "t_ms": 71889
+   },
+   {
+    "event": "restart_release",
+    "row": "R-14",
+    "t_ms": 73789,
+    "team": "B"
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "B3",
+    "row": "R-02",
+    "t_ms": 74386,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B3",
+    "row": "R-03",
+    "t_ms": 74886,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "dead",
+    "passive_team": "B",
+    "row": "R-20",
+    "t_ms": 76000
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "B1",
+    "row": "R-02",
+    "t_ms": 196387,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B1",
+    "row": "R-03",
+    "t_ms": 196887,
+    "team": "B",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "pass_release",
+    "passive_team": "B",
+    "player": "B1",
+    "row": "R-06",
+    "t_ms": 197561,
+    "team": "B"
+   },
+   {
+    "event": "secured",
+    "passive_team": "B",
+    "player": "B2",
+    "row": "R-02",
+    "t_ms": 201257,
+    "team": "B"
+   },
+   {
+    "event": "direct_possession",
+    "player": "B2",
+    "row": "R-03",
+    "t_ms": 201787,
+    "team": "B",
+    "uncontested_ms": 530
+   },
+   {
+    "event": "pass_release",
+    "passive_team": "B",
+    "player": "B2",
+    "row": "R-06",
+    "t_ms": 202465,
+    "team": "B"
+   },
+   {
+    "event": "out_of_play",
+    "passive_team": "B",
+    "row": "R-18",
+    "t_ms": 203144
+   },
+   {
+    "event": "restart_awarded",
+    "pp_changed": true,
+    "row": "R-18",
+    "t_ms": 203144,
+    "team": "A"
+   }
+  ],
+  "sampled_decisions": [
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      50.006,
+      49.987,
+      0
+     ],
+     "max_track_age_ms": 2718,
+     "observation_id": "s30/0000000300/A0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000000300/A0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 51.502,
+       "y": 50.018
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.009,
+       "y": 28.078
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B11",
+       "role": "archer",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 74.485,
+       "y": 104.692
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.06,
+       "y": 33.419
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.008,
+       "y": 38.962
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.899,
+       "y": 44.541
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.065,
+       "y": 55.547
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.85,
+       "y": 60.901
+      },
+      {
+       "captured_ms": 0,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 50.006,
+       "y": 49.987
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000000300/A0/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       48.5,
+       50.0
+      ],
+      "aim_vel": null,
+      "athlete": "A0",
+      "decided_ms": 300,
+      "decision_id": "s30/0000000300/A0/obs/decision",
+      "gaze": [
+       50.006,
+       49.987
+      ],
+      "intent_id": "s30/0000000300/A0/obs/decision/intent",
+      "kind": "position",
+      "related_command_id": null,
+      "target": "none"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 300
+    },
+    "decision": {
+     "belief_revision": "s30/0000000300/A0/obs/belief",
+     "believed_carrier": [
+      "B0",
+      "B"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000000300/A0/obs/decision",
+     "fresh_track_ids": [
+      "B0",
+      "B1",
+      "B11",
+      "B2",
+      "B3",
+      "B4",
+      "B6",
+      "B7",
+      "BALL"
+     ],
+     "observation_id": "s30/0000000300/A0/obs",
+     "options": [
+      [
+       "position",
+       "none",
+       [
+        48.5,
+        50.0
+       ],
+       1.0
+      ],
+      [
+       "press",
+       "B0",
+       [
+        51.502,
+        50.018
+       ],
+       0.206679
+      ],
+      [
+       "press",
+       "lane:B0:B4",
+       [
+        63.016,
+        46.767
+       ],
+       0.167982
+      ]
+     ],
+     "owner": "A0",
+     "pending_command_id": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "role": "field",
+     "selected": [
+      "position",
+      "none",
+      [
+       48.5,
+       50.0
+      ],
+      1.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      48.5,
+      50.0
+     ],
+     "aim_vel": null,
+     "athlete": "A0",
+     "decided_ms": 300,
+     "decision_id": "s30/0000000300/A0/obs/decision",
+     "gaze": [
+      50.006,
+      49.987
+     ],
+     "intent_id": "s30/0000000300/A0/obs/decision/intent",
+     "kind": "position",
+     "related_command_id": null,
+     "target": "none"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A0",
+     "attack_sign": 1,
+     "delivered_ms": 300,
+     "holds_ball": false,
+     "judgment": 0.656,
+     "last_release_ms": null,
+     "observation_id": "s30/0000000300/A0/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 45000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "opening",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 51.502,
+       "y": 50.018
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.009,
+       "y": 28.078
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B11",
+       "role": "archer",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 74.485,
+       "y": 104.692
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.06,
+       "y": 33.419
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.008,
+       "y": 38.962
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.899,
+       "y": 44.541
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.065,
+       "y": 55.547
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.85,
+       "y": 60.901
+      },
+      {
+       "captured_ms": 0,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 50.006,
+       "y": 49.987
+      }
+     ],
+     "x": 48.5,
+     "y": 50.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      50.226,
+      49.979,
+      0
+     ],
+     "max_track_age_ms": 2709,
+     "observation_id": "s30/0000000300/A1/obs",
+     "own_feedback": [],
+     "revision": "s30/0000000300/A1/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 51.339,
+       "y": 50.147
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.882,
+       "y": 27.927
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B10",
+       "role": "keeper",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 96.961,
+       "y": 49.755
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.223,
+       "y": 33.52
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.088,
+       "y": 38.82
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.868,
+       "y": 44.381
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.172,
+       "y": 50.117
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.752,
+       "y": 55.611
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B9",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.634,
+       "y": 71.628
+      },
+      {
+       "captured_ms": 0,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 50.226,
+       "y": 49.979
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000000300/A1/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       33.243,
+       32.243
+      ],
+      "aim_vel": null,
+      "athlete": "A1",
+      "decided_ms": 300,
+      "decision_id": "s30/0000000300/A1/obs/decision",
+      "gaze": [
+       50.226,
+       49.979
+      ],
+      "intent_id": "s30/0000000300/A1/obs/decision/intent",
+      "kind": "position",
+      "related_command_id": null,
+      "target": "none"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 300
+    },
+    "decision": {
+     "belief_revision": "s30/0000000300/A1/obs/belief",
+     "believed_carrier": [
+      "B0",
+      "B"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000000300/A1/obs/decision",
+     "fresh_track_ids": [
+      "B0",
+      "B1",
+      "B10",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B9",
+      "BALL"
+     ],
+     "observation_id": "s30/0000000300/A1/obs",
+     "options": [
+      [
+       "position",
+       "none",
+       [
+        33.243,
+        32.243
+       ],
+       1.0
+      ],
+      [
+       "press",
+       "B0",
+       [
+        51.339,
+        50.147
+       ],
+       -0.077866
+      ],
+      [
+       "press",
+       "lane:B0:B5",
+       [
+        62.087,
+        50.131
+       ],
+       -0.081363
+      ]
+     ],
+     "owner": "A1",
+     "pending_command_id": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "role": "field",
+     "selected": [
+      "position",
+      "none",
+      [
+       33.243,
+       32.243
+      ],
+      1.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      33.243,
+      32.243
+     ],
+     "aim_vel": null,
+     "athlete": "A1",
+     "decided_ms": 300,
+     "decision_id": "s30/0000000300/A1/obs/decision",
+     "gaze": [
+      50.226,
+      49.979
+     ],
+     "intent_id": "s30/0000000300/A1/obs/decision/intent",
+     "kind": "position",
+     "related_command_id": null,
+     "target": "none"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A1",
+     "attack_sign": 1,
+     "delivered_ms": 300,
+     "holds_ball": false,
+     "judgment": 0.5699,
+     "last_release_ms": null,
+     "observation_id": "s30/0000000300/A1/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 45000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "opening",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 1,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 51.339,
+       "y": 50.147
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.882,
+       "y": 27.927
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B10",
+       "role": "keeper",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 96.961,
+       "y": 49.755
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.223,
+       "y": 33.52
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.088,
+       "y": 38.82
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.868,
+       "y": 44.381
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.172,
+       "y": 50.117
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.752,
+       "y": 55.611
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B9",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.634,
+       "y": 71.628
+      },
+      {
+       "captured_ms": 0,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 50.226,
+       "y": 49.979
+      }
+     ],
+     "x": 29.0,
+     "y": 28.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 2310,
+     "observation_id": "s30/0000000300/A10/obs",
+     "own_feedback": [],
+     "revision": "s30/0000000300/A10/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "A3",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.957,
+       "y": 38.935
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A4",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.954,
+       "y": 44.621
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A5",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.909,
+       "y": 49.912
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A6",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.94,
+       "y": 55.391
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A7",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.841,
+       "y": 60.936
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.006,
+       "y": 33.106
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.901,
+       "y": 39.015
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.224,
+       "y": 44.651
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.071,
+       "y": 55.52
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.864,
+       "y": 61.198
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B8",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.169,
+       "y": 66.245
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000000300/A10/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       2.0,
+       50.0
+      ],
+      "aim_vel": null,
+      "athlete": "A10",
+      "decided_ms": 300,
+      "decision_id": "s30/0000000300/A10/obs/decision",
+      "gaze": null,
+      "intent_id": "s30/0000000300/A10/obs/decision/intent",
+      "kind": "keeper_set",
+      "related_command_id": null,
+      "target": null
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 300
+    },
+    "decision": {
+     "belief_revision": "s30/0000000300/A10/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000000300/A10/obs/decision",
+     "fresh_track_ids": [
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "B2",
+      "B3",
+      "B4",
+      "B6",
+      "B7",
+      "B8"
+     ],
+     "observation_id": "s30/0000000300/A10/obs",
+     "options": [
+      [
+       "keeper_set",
+       null,
+       [
+        2.0,
+        50.0
+       ],
+       1.0
+      ]
+     ],
+     "owner": "A10",
+     "pending_command_id": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "role": "keeper",
+     "selected": [
+      "keeper_set",
+      null,
+      [
+       2.0,
+       50.0
+      ],
+      1.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      2.0,
+      50.0
+     ],
+     "aim_vel": null,
+     "athlete": "A10",
+     "decided_ms": 300,
+     "decision_id": "s30/0000000300/A10/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000000300/A10/obs/decision/intent",
+     "kind": "keeper_set",
+     "related_command_id": null,
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A10",
+     "attack_sign": 1,
+     "delivered_ms": 300,
+     "holds_ball": false,
+     "judgment": 0.542,
+     "last_release_ms": null,
+     "observation_id": "s30/0000000300/A10/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "posture": "upright",
+     "role": "keeper",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 45000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "opening",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 10,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "A3",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.957,
+       "y": 38.935
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A4",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.954,
+       "y": 44.621
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A5",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.909,
+       "y": 49.912
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A6",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.94,
+       "y": 55.391
+      },
+      {
+       "captured_ms": 0,
+       "entity": "A7",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 28.841,
+       "y": 60.936
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.006,
+       "y": 33.106
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.901,
+       "y": 39.015
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.224,
+       "y": 44.651
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.071,
+       "y": 55.52
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.864,
+       "y": 61.198
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B8",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.169,
+       "y": 66.245
+      }
+     ],
+     "x": 3.0,
+     "y": 50.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 2315,
+     "observation_id": "s30/0000000300/A11/obs",
+     "own_feedback": [],
+     "revision": "s30/0000000300/A11/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "A2",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 29.213,
+       "y": 33.453
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 51.228,
+       "y": 49.285
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.613,
+       "y": 28.294
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.048,
+       "y": 44.551
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.15,
+       "y": 50.23
+      }
+     ]
+    },
+    "command": null,
+    "decision": {
+     "belief_revision": "s30/0000000300/A11/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000000300/A11/obs/decision",
+     "fresh_track_ids": [
+      "A2",
+      "B0",
+      "B1",
+      "B4",
+      "B5"
+     ],
+     "observation_id": "s30/0000000300/A11/obs",
+     "options": [
+      [
+       "archer_hold",
+       null,
+       null,
+       0.0
+      ]
+     ],
+     "owner": "A11",
+     "pending_command_id": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "role": "archer",
+     "selected": [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": null,
+     "aim_vel": null,
+     "athlete": "A11",
+     "decided_ms": 300,
+     "decision_id": "s30/0000000300/A11/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000000300/A11/obs/decision/intent",
+     "kind": "archer_hold",
+     "related_command_id": null,
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": 5,
+     "athlete": "A11",
+     "attack_sign": 1,
+     "delivered_ms": 300,
+     "holds_ball": false,
+     "judgment": 0.5179,
+     "last_release_ms": null,
+     "observation_id": "s30/0000000300/A11/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "posture": "upright",
+     "role": "archer",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 45000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "opening",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 11,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 0,
+       "entity": "A2",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 29.213,
+       "y": 33.453
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 51.228,
+       "y": 49.285
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 70.613,
+       "y": 28.294
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.048,
+       "y": 44.551
+      },
+      {
+       "captured_ms": 0,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 71.15,
+       "y": 50.23
+      }
+     ],
+     "x": 25.0,
+     "y": -5.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      74.649,
+      48.944,
+      3437
+     ],
+     "max_track_age_ms": 2315,
+     "observation_id": "s30/0000003737/A11/obs",
+     "own_feedback": [],
+     "revision": "s30/0000003737/A11/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 3437,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 10.542,
+       "vy": -0.513,
+       "x": 73.877,
+       "y": 49.069
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 5.56,
+       "vy": -5.675,
+       "x": 36.534,
+       "y": 20.303
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A10",
+       "role": "keeper",
+       "team": "A",
+       "vx": 0.104,
+       "vy": 7.909,
+       "x": 2.417,
+       "y": 52.728
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "A2",
+       "role": "field",
+       "team": "A",
+       "vx": 8.695,
+       "vy": 1.139,
+       "x": 40.83,
+       "y": 34.146
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "A3",
+       "role": "field",
+       "team": "A",
+       "vx": 6.812,
+       "vy": 0.363,
+       "x": 39.496,
+       "y": 39.128
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A4",
+       "role": "field",
+       "team": "A",
+       "vx": 0.723,
+       "vy": 0.717,
+       "x": 29.23,
+       "y": 45.11
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A5",
+       "role": "field",
+       "team": "A",
+       "vx": 11.222,
+       "vy": 3.808,
+       "x": 41.123,
+       "y": 54.18
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A6",
+       "role": "field",
+       "team": "A",
+       "vx": 6.252,
+       "vy": -0.77,
+       "x": 39.304,
+       "y": 54.855
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A7",
+       "role": "field",
+       "team": "A",
+       "vx": 9.134,
+       "vy": -0.676,
+       "x": 40.839,
+       "y": 60.926
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "A8",
+       "role": "field",
+       "team": "A",
+       "vx": 9.835,
+       "vy": 0.687,
+       "x": 41.071,
+       "y": 66.655
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 11.549,
+       "vy": 0.279,
+       "x": 59.652,
+       "y": 49.948
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": -0.535,
+       "vy": -0.387,
+       "x": 70.796,
+       "y": 27.776
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B10",
+       "role": "keeper",
+       "team": "B",
+       "vx": 0.497,
+       "vy": 0.144,
+       "x": 98.209,
+       "y": 50.15
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 1.087,
+       "vy": 0.667,
+       "x": 71.577,
+       "y": 33.728
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 1.319,
+       "vy": -0.707,
+       "x": 71.643,
+       "y": 38.702
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.479,
+       "vy": 0.411,
+       "x": 71.189,
+       "y": 44.735
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": -0.513,
+       "vy": -0.617,
+       "x": 70.617,
+       "y": 49.648
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.419,
+       "vy": -1.456,
+       "x": 71.191,
+       "y": 54.749
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": -0.408,
+       "vy": 0.533,
+       "x": 70.777,
+       "y": 61.311
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B8",
+       "role": "field",
+       "team": "B",
+       "vx": 2.862,
+       "vy": -1.072,
+       "x": 72.005,
+       "y": 66.1
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 10.67,
+       "vy": -0.398,
+       "x": 74.649,
+       "y": 48.944
+      }
+     ]
+    },
+    "command": null,
+    "decision": {
+     "belief_revision": "s30/0000003737/A11/obs/belief",
+     "believed_carrier": [
+      "A0",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000003737/A11/obs/decision",
+     "fresh_track_ids": [
+      "A0",
+      "A1",
+      "A10",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "B0",
+      "B1",
+      "B10",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B7",
+      "B8",
+      "BALL"
+     ],
+     "observation_id": "s30/0000003737/A11/obs",
+     "options": [
+      [
+       "archer_hold",
+       null,
+       null,
+       0.0
+      ]
+     ],
+     "owner": "A11",
+     "pending_command_id": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "role": "archer",
+     "selected": [
+      "archer_hold",
+      null,
+      null,
+      0.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": null,
+     "aim_vel": null,
+     "athlete": "A11",
+     "decided_ms": 3737,
+     "decision_id": "s30/0000003737/A11/obs/decision",
+     "gaze": [
+      74.649,
+      48.944
+     ],
+     "intent_id": "s30/0000003737/A11/obs/decision/intent",
+     "kind": "archer_hold",
+     "related_command_id": null,
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": 4,
+     "athlete": "A11",
+     "attack_sign": 1,
+     "delivered_ms": 3737,
+     "holds_ball": false,
+     "judgment": 0.5179,
+     "last_release_ms": 3237,
+     "observation_id": "s30/0000003737/A11/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "posture": "upright",
+     "role": "archer",
+     "signals": {
+      "ball_status": "carried",
+      "contested": false,
+      "direct_holder": "A0",
+      "direct_team": "A",
+      "game_ms": 43800,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": "A",
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 43800,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 11,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 3437,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 10.542,
+       "vy": -0.513,
+       "x": 73.877,
+       "y": 49.069
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 5.56,
+       "vy": -5.675,
+       "x": 36.534,
+       "y": 20.303
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A10",
+       "role": "keeper",
+       "team": "A",
+       "vx": 0.104,
+       "vy": 7.909,
+       "x": 2.417,
+       "y": 52.728
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "A2",
+       "role": "field",
+       "team": "A",
+       "vx": 8.695,
+       "vy": 1.139,
+       "x": 40.83,
+       "y": 34.146
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "A3",
+       "role": "field",
+       "team": "A",
+       "vx": 6.812,
+       "vy": 0.363,
+       "x": 39.496,
+       "y": 39.128
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A4",
+       "role": "field",
+       "team": "A",
+       "vx": 0.723,
+       "vy": 0.717,
+       "x": 29.23,
+       "y": 45.11
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A5",
+       "role": "field",
+       "team": "A",
+       "vx": 11.222,
+       "vy": 3.808,
+       "x": 41.123,
+       "y": 54.18
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A6",
+       "role": "field",
+       "team": "A",
+       "vx": 6.252,
+       "vy": -0.77,
+       "x": 39.304,
+       "y": 54.855
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "A7",
+       "role": "field",
+       "team": "A",
+       "vx": 9.134,
+       "vy": -0.676,
+       "x": 40.839,
+       "y": 60.926
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "A8",
+       "role": "field",
+       "team": "A",
+       "vx": 9.835,
+       "vy": 0.687,
+       "x": 41.071,
+       "y": 66.655
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 11.549,
+       "vy": 0.279,
+       "x": 59.652,
+       "y": 49.948
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": -0.535,
+       "vy": -0.387,
+       "x": 70.796,
+       "y": 27.776
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B10",
+       "role": "keeper",
+       "team": "B",
+       "vx": 0.497,
+       "vy": 0.144,
+       "x": 98.209,
+       "y": 50.15
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": 1.087,
+       "vy": 0.667,
+       "x": 71.577,
+       "y": 33.728
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 1.319,
+       "vy": -0.707,
+       "x": 71.643,
+       "y": 38.702
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.479,
+       "vy": 0.411,
+       "x": 71.189,
+       "y": 44.735
+      },
+      {
+       "captured_ms": 3337,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": -0.513,
+       "vy": -0.617,
+       "x": 70.617,
+       "y": 49.648
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": 0.419,
+       "vy": -1.456,
+       "x": 71.191,
+       "y": 54.749
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": -0.408,
+       "vy": 0.533,
+       "x": 70.777,
+       "y": 61.311
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "B8",
+       "role": "field",
+       "team": "B",
+       "vx": 2.862,
+       "vy": -1.072,
+       "x": 72.005,
+       "y": 66.1
+      },
+      {
+       "captured_ms": 3437,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 10.67,
+       "vy": -0.398,
+       "x": 74.649,
+       "y": 48.944
+      }
+     ],
+     "x": 49.3,
+     "y": -5.092,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      100.111,
+      42.28,
+      6849
+     ],
+     "max_track_age_ms": 2757,
+     "observation_id": "s30/0000007149/A7/obs",
+     "own_feedback": [],
+     "revision": "s30/0000007149/A7/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 6849,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.017,
+       "vy": -0.415,
+       "x": 98.051,
+       "y": 42.869
+      },
+      {
+       "captured_ms": 5337,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 5.706,
+       "vy": -5.472,
+       "x": 56.897,
+       "y": 6.986
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "A11",
+       "role": "archer",
+       "team": "A",
+       "vx": -0.992,
+       "vy": 1.349,
+       "x": 48.334,
+       "y": -4.119
+      },
+      {
+       "captured_ms": 6149,
+       "entity": "A2",
+       "role": "field",
+       "team": "A",
+       "vx": 7.541,
+       "vy": 7.643,
+       "x": 57.82,
+       "y": 55.209
+      },
+      {
+       "captured_ms": 5237,
+       "entity": "A3",
+       "role": "field",
+       "team": "A",
+       "vx": 3.453,
+       "vy": 2.632,
+       "x": 56.707,
+       "y": 54.153
+      },
+      {
+       "captured_ms": 4737,
+       "entity": "A4",
+       "role": "field",
+       "team": "A",
+       "vx": 0.311,
+       "vy": 0.189,
+       "x": 29.841,
+       "y": 44.962
+      },
+      {
+       "captured_ms": 5237,
+       "entity": "A5",
+       "role": "field",
+       "team": "A",
+       "vx": 0.227,
+       "vy": -0.233,
+       "x": 51.259,
+       "y": 48.732
+      },
+      {
+       "captured_ms": 5237,
+       "entity": "A6",
+       "role": "field",
+       "team": "A",
+       "vx": -1.313,
+       "vy": 0.269,
+       "x": 48.847,
+       "y": 49.201
+      },
+      {
+       "captured_ms": 5513,
+       "entity": "A8",
+       "role": "field",
+       "team": "A",
+       "vx": 7.718,
+       "vy": -9.459,
+       "x": 65.009,
+       "y": 31.494
+      },
+      {
+       "captured_ms": 5949,
+       "entity": "A9",
+       "role": "field",
+       "team": "A",
+       "vx": -1.229,
+       "vy": 2.199,
+       "x": 47.743,
+       "y": 77.001
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": -0.239,
+       "vy": 0.248,
+       "x": 66.759,
+       "y": 52.886
+      },
+      {
+       "captured_ms": 6549,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": -0.511,
+       "vy": -0.429,
+       "x": 80.024,
+       "y": 35.935
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B10",
+       "role": "keeper",
+       "team": "B",
+       "vx": -0.432,
+       "vy": 0.496,
+       "x": 98.51,
+       "y": 49.491
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B11",
+       "role": "archer",
+       "team": "B",
+       "vx": 7.903,
+       "vy": -1.398,
+       "x": 90.469,
+       "y": 104.339
+      },
+      {
+       "captured_ms": 6749,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": -0.142,
+       "vy": -0.031,
+       "x": 78.821,
+       "y": 40.136
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.253,
+       "vy": 0.132,
+       "x": 96.153,
+       "y": 45.289
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.07,
+       "vy": -0.001,
+       "x": 69.606,
+       "y": 50.172
+      },
+      {
+       "captured_ms": 6749,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": 0.337,
+       "vy": -0.231,
+       "x": 80.349,
+       "y": 48.976
+      },
+      {
+       "captured_ms": 6349,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": -0.409,
+       "vy": -0.963,
+       "x": 77.371,
+       "y": 52.416
+      },
+      {
+       "captured_ms": 5037,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": 2.128,
+       "vy": -6.309,
+       "x": 80.066,
+       "y": 40.743
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "B8",
+       "role": "field",
+       "team": "B",
+       "vx": 0.036,
+       "vy": -0.188,
+       "x": 79.659,
+       "y": 61.258
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B9",
+       "role": "field",
+       "team": "B",
+       "vx": -0.793,
+       "vy": -0.614,
+       "x": 74.609,
+       "y": 65.312
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.156,
+       "vy": 0.718,
+       "x": 100.111,
+       "y": 42.28
+      }
+     ]
+    },
+    "command": null,
+    "decision": {
+     "belief_revision": "s30/0000007149/A7/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000007149/A7/obs/decision",
+     "fresh_track_ids": [
+      "A0",
+      "A1",
+      "A11",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A8",
+      "A9",
+      "B0",
+      "B1",
+      "B10",
+      "B11",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B7",
+      "B8",
+      "B9",
+      "BALL"
+     ],
+     "observation_id": "s30/0000007149/A7/obs",
+     "options": [
+      [
+       "continue_current",
+       null,
+       null,
+       0.0
+      ]
+     ],
+     "owner": "A7",
+     "pending_command_id": "s30/0000005949/A7/obs/decision/intent/command",
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "role": "field",
+     "selected": [
+      "continue_current",
+      null,
+      null,
+      0.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": null,
+     "aim_vel": null,
+     "athlete": "A7",
+     "decided_ms": 7149,
+     "decision_id": "s30/0000007149/A7/obs/decision",
+     "gaze": [
+      100.111,
+      42.28
+     ],
+     "intent_id": "s30/0000007149/A7/obs/decision/intent",
+     "kind": "continue_current",
+     "related_command_id": "s30/0000005949/A7/obs/decision/intent/command",
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A7",
+     "attack_sign": 1,
+     "delivered_ms": 7149,
+     "holds_ball": false,
+     "judgment": 0.5705,
+     "last_release_ms": null,
+     "observation_id": "s30/0000007149/A7/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": "s30/0000005949/A7/obs/decision/intent/command",
+     "pending_kind": "restart_pass",
+     "pending_release_ms": null,
+     "pending_target": "A8",
+     "policy": {
+      "archer_eager": 0.0,
+      "bias_pass": -6.0,
+      "bias_press": -2.7633,
+      "bias_pursue": 1.9055,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 3.0,
+      "pos_edge_zone": 0.0,
+      "pos_goal_att": 1.0852,
+      "pos_goal_def": -0.5336,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 1.3967,
+      "pos_spread": 2.9973,
+      "shot_range": 31.7171
+     },
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "restart_pending",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 41824,
+      "i_am_taker": true,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": "A",
+      "period": 1,
+      "phase": "dead",
+      "possession_ms": 41824,
+      "restart_team": "A",
+      "restart_xy": [
+       100.0,
+       42.0
+      ],
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 7,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 6849,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.017,
+       "vy": -0.415,
+       "x": 98.051,
+       "y": 42.869
+      },
+      {
+       "captured_ms": 5337,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 5.706,
+       "vy": -5.472,
+       "x": 56.897,
+       "y": 6.986
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "A11",
+       "role": "archer",
+       "team": "A",
+       "vx": -0.992,
+       "vy": 1.349,
+       "x": 48.334,
+       "y": -4.119
+      },
+      {
+       "captured_ms": 6149,
+       "entity": "A2",
+       "role": "field",
+       "team": "A",
+       "vx": 7.541,
+       "vy": 7.643,
+       "x": 57.82,
+       "y": 55.209
+      },
+      {
+       "captured_ms": 5237,
+       "entity": "A3",
+       "role": "field",
+       "team": "A",
+       "vx": 3.453,
+       "vy": 2.632,
+       "x": 56.707,
+       "y": 54.153
+      },
+      {
+       "captured_ms": 4737,
+       "entity": "A4",
+       "role": "field",
+       "team": "A",
+       "vx": 0.311,
+       "vy": 0.189,
+       "x": 29.841,
+       "y": 44.962
+      },
+      {
+       "captured_ms": 5237,
+       "entity": "A5",
+       "role": "field",
+       "team": "A",
+       "vx": 0.227,
+       "vy": -0.233,
+       "x": 51.259,
+       "y": 48.732
+      },
+      {
+       "captured_ms": 5237,
+       "entity": "A6",
+       "role": "field",
+       "team": "A",
+       "vx": -1.313,
+       "vy": 0.269,
+       "x": 48.847,
+       "y": 49.201
+      },
+      {
+       "captured_ms": 5513,
+       "entity": "A8",
+       "role": "field",
+       "team": "A",
+       "vx": 7.718,
+       "vy": -9.459,
+       "x": 65.009,
+       "y": 31.494
+      },
+      {
+       "captured_ms": 5949,
+       "entity": "A9",
+       "role": "field",
+       "team": "A",
+       "vx": -1.229,
+       "vy": 2.199,
+       "x": 47.743,
+       "y": 77.001
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": -0.239,
+       "vy": 0.248,
+       "x": 66.759,
+       "y": 52.886
+      },
+      {
+       "captured_ms": 6549,
+       "entity": "B1",
+       "role": "field",
+       "team": "B",
+       "vx": -0.511,
+       "vy": -0.429,
+       "x": 80.024,
+       "y": 35.935
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B10",
+       "role": "keeper",
+       "team": "B",
+       "vx": -0.432,
+       "vy": 0.496,
+       "x": 98.51,
+       "y": 49.491
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B11",
+       "role": "archer",
+       "team": "B",
+       "vx": 7.903,
+       "vy": -1.398,
+       "x": 90.469,
+       "y": 104.339
+      },
+      {
+       "captured_ms": 6749,
+       "entity": "B2",
+       "role": "field",
+       "team": "B",
+       "vx": -0.142,
+       "vy": -0.031,
+       "x": 78.821,
+       "y": 40.136
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B3",
+       "role": "field",
+       "team": "B",
+       "vx": 0.253,
+       "vy": 0.132,
+       "x": 96.153,
+       "y": 45.289
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "B4",
+       "role": "field",
+       "team": "B",
+       "vx": 0.07,
+       "vy": -0.001,
+       "x": 69.606,
+       "y": 50.172
+      },
+      {
+       "captured_ms": 6749,
+       "entity": "B5",
+       "role": "field",
+       "team": "B",
+       "vx": 0.337,
+       "vy": -0.231,
+       "x": 80.349,
+       "y": 48.976
+      },
+      {
+       "captured_ms": 6349,
+       "entity": "B6",
+       "role": "field",
+       "team": "B",
+       "vx": -0.409,
+       "vy": -0.963,
+       "x": 77.371,
+       "y": 52.416
+      },
+      {
+       "captured_ms": 5037,
+       "entity": "B7",
+       "role": "field",
+       "team": "B",
+       "vx": 2.128,
+       "vy": -6.309,
+       "x": 80.066,
+       "y": 40.743
+      },
+      {
+       "captured_ms": 6649,
+       "entity": "B8",
+       "role": "field",
+       "team": "B",
+       "vx": 0.036,
+       "vy": -0.188,
+       "x": 79.659,
+       "y": 61.258
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "B9",
+       "role": "field",
+       "team": "B",
+       "vx": -0.793,
+       "vy": -0.614,
+       "x": 74.609,
+       "y": 65.312
+      },
+      {
+       "captured_ms": 6849,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.156,
+       "vy": 0.718,
+       "x": 100.111,
+       "y": 42.28
+      }
+     ],
+     "x": 66.899,
+     "y": 47.682,
+     "zone_radius": 20.0
+    }
+   }
+  ]
+ },
+ "trace_hash": "b8aca07e7428504f92905e6eb781f1c8e977d176bf807bf19af0d171d88b55cb"
+}
