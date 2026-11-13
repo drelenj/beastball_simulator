@@ -6,7 +6,7 @@ Claude, 2026-11-12. Records the owner's answers of 2026-11-12 19:48 (America/Chi
 2. **What B1 can do now.** No change at runtime. Nothing here is implemented, tested or accepted.
 3. **Unproven.** The derived table has never been run. It also rests on one number (0.5 s) that the tests must check.
 4. **Blocking.** No canon decision blocks the next step. Engineering is next: Codex implements the possession and rules-state layer and ruleset 1.0.2 in the B1 path; I review it.
-5. **Recommended action.** Approve the three derived consequences in section 2 (or veto them). Then relay this record to Codex.
+5. **Recommended action.** (Consequences C-1..C-3 were confirmed by the owner at 20:02.) Relay this record to Codex.
 
 ## 1. Owner answers, as stated
 | Item | Owner answer |
@@ -21,7 +21,7 @@ Claude, 2026-11-12. Records the owner's answers of 2026-11-12 19:48 (America/Chi
 | U-4 | my recommendations U4-01..U4-13 as listed in sheet D1 §E. |
 | A1–A8 | Not objected to; recorded as confirmed (A3 renamed). |
 
-## 2. Consequences I derived from your answers (please veto any you disagree with)
+## 2. Consequences I derived from your answers — **CONFIRMED by owner 2026-11-12 20:02 ("C-1: yes, C-2: yes, C-3: yes")**
 - **C-1.** Contest lapses direct possession; it does not change passive possession. While opposing players are both touching the ball nobody has direct possession and the 0.5 s timer is at 0. Passive possession stays with the last team that had direct possession. It flips only when the other team has uncontested control for 0.5 s.
 - **C-2.** Because contested means touching the ball, body contact alone does not contest. A tackle on a carrier who is not touched at the ball does not reset the timer. (A held ball that a defender touches is contested immediately.)
 - **C-3.** U4-12 (same-instant touches) is now simply a case of P-2: contested, no first-touch violation, passive possession unchanged. U4-05 stays as recommended; "hand-fight" is no longer a rule term.
