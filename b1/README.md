@@ -1,4 +1,4 @@
-# HP-002 B1 M1 candidate — R6 correction
+# HP-002 B1 — accepted M1 plus Emergence-1 ownership enablers
 
 M0 remains frozen at B0 commit
 `2abe497ca82588cb2d8c871a7aab61daaae95c12`. All implementation changes are
@@ -18,9 +18,15 @@ This revision responds to R6 on commit `77604e1`:
   `baaabaa`: release-origin recomputation, correction-angle telemetry, a 60°
   `rejected_geometry` bound, and restricted failure feedback.
 
-M1 is **not accepted** by this package. The 100-seed matrix leaves BA-M1-2 and
-BA-M1-3 false. A separate 800-seed C4/C5 mechanism study supports a conditional
-lane-interception effect, but it does not establish net defensive improvement.
+M1 was accepted at commit `4b19719`. The matrix's scoped empirical claims remain
+unchanged: its conditional lane-interception effect is not a claim of net
+defensive improvement.
+
+The subsequent Emergence-1 work is isolated in `emergence_intents.py` and
+`emergence_runtime.py`. It moves Keeper, restart, mobile-Archer, and release
+withholding choices behind athlete intents without starting M2 planning or
+communication layers. See `EMERGENCE_OWNERSHIP_REPORT.md` and
+`DEDICATED_PROCESS_CONTRACT.md`.
 
 ## Reproduction
 
