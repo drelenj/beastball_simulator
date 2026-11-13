@@ -13,6 +13,7 @@ PRIMITIVES = {
     'motor.pass_release': 'PRIMITIVE: release-time aim uses the B0 plan_pass on the intended receiver true kinematics (receiver cannot be replaced: pass_ranked is empty).',
     'motor.shot': 'PRIMITIVE: shot aimed at the intent aim point with the B0 release-state / perturbation physics.',
     'motor.archer': 'PRIMITIVE: ballistic lead from the intent believed position and velocity; nominal target height 1.4 m; low arc only; no obstacle check.',
+    'motor.archer_interlock': 'PROVISIONAL (SELF-1): the Archer motor aborts (never retargets) a release the B0 1.0.1 engine would penalise (immune/ineligible target, Keeper in own zone, true range outside 10-70 m, reloading). Reads true state at motor level.',
     'motor.keeper_save': 'PRIMITIVE+PROVISIONAL: a B1 keeper_save intent enables the B0 C4c dive/step planner, which tracks the true flight at motor level; without the intent the planner is masked.',
     'motor.contact_kernel': 'PRIMITIVE: grip/hold/escape micro-behaviour and catch/jump reflexes are the B0 C3/P4 physics kernels, not B1 decisions.',
     'procedure.dead_ball': 'PROVISIONAL: restart placement (taker walks to mark, opponents clear) is the B0 engine procedure targets_dead; the taker chooses the receiver; after 3 s without a choice the B0 pass-into-space fallback fires.',

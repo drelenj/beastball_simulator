@@ -165,7 +165,12 @@ class MatchPort:
                       snap['score'][a.team], snap['score'][other],
                       r[0] if r else None, (r[1], r[2]) if r else None, bool(r and r[3] == pid))
         pend = self.pending.get(pid)
-        q = snap['quiver'][a.team] if a.role == 'archer' else None
+        q = None
+        if a.role == 'archer':
+            # own equipment / own-action memory (rule 3: the athlete knows its own actions):
+            # the Archer knows its own last release and whether it is reloading, without delay.
+            lq = s.quivers[a.team]
+            q = (0 if now_ms < lq.reload_until else lq.loaded, lq.last_release)
         oid = f's30/{now_ms:010d}/{pid}/obs'
         view = AthleteView(oid, pid, a.team, a.role, a.slot, now_ms, me[0], me[1],
                            snap['carrier'] == pid, int(s.attack_sign(a.team)), float(s.ends[a.team]),
@@ -349,6 +354,21 @@ class MatchPort:
                 continue
             m.pending_draw.pop(p.team, None)
             origin = (p.x, p.y, .72 * p.a.height)
+            # PROVISIONAL (SELF-1 / Archer foul mapping open): motor legality interlock. The
+            # release is aborted (never retargeted) when the B0 1.0.1 engine would call a foul:
+            # target immune / ineligible / Keeper in own zone / true range outside 10-70 m /
+            # quiver reloading. This reads true state at motor level only; the Archer just
+            # receives 'interrupted' feedback.
+            t = s.players[intent.target]
+            legal = (t.team != p.team and m.e.eligible(t) and s.now > t.immune_until
+                     and not (t.role == 'keeper' and m.e.zone(t.x, t.y) == s.own_zone(t.team))
+                     and 10 <= math.dist(origin, (t.x, t.y, t.z + .55 * t.a.height)) <= 70
+                     and s.now >= q.reload_until and s.now - q.last_release >= 2000
+                     and m.e.archer_in_lane(p))
+            if not legal:
+                self.hook_calls['archer_interlock_abort'] += 1
+                self._resolve(pid, 'interrupted')
+                continue
             age = (s.now - intent.decided_ms) / 1000
             bx, by = intent.aim[0] + intent.aim_vel[0] * age, intent.aim[1] + intent.aim_vel[1] * age
             speed = min(m.cfg.get('pocket', {}).get('arrow_limit', 30), p.a.archery_release_speed)
