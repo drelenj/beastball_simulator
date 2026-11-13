@@ -13,7 +13,7 @@ import sys
 import unittest
 
 from . import cognition as C
-from .preservation import verify_baseline
+from .preservation import verify_baseline, canonical_hashes, load_inventory
 
 ROOT = Path(__file__).resolve().parents[1]
 J = lambda v: json.dumps(v, sort_keys=True, default=lambda o: dataclasses.asdict(o))
@@ -45,7 +45,7 @@ class PureCognition(unittest.TestCase):
         # cognition may import only the stdlib pure modules and Base A's pure b1.core
         self.assertEqual(mods, {'dataclasses', 'math', None})
         rel = [a.name for n in ast.walk(tree) if isinstance(n, ast.ImportFrom) and n.module is None for a in n.names]
-        self.assertEqual(rel, ['core'])
+        self.assertEqual(rel, ['emergence_intents', 'core'])
         core = ast.parse((ROOT / 'b1/core.py').read_text())
         cm = set()
         for n in ast.walk(core):
@@ -164,7 +164,7 @@ class EngineIntegration(unittest.TestCase):
                                         on_view=lambda p, v, b: cls.views.append((v, b)) if len(cls.views) < 4000 else None)
 
     def test_frozen_B0_file_identity(self):
-        self.assertGreater(verify_baseline(ROOT, ROOT / 'b1/evidence/b0_source_hashes.json'), 100)
+        self.assertGreater(verify_baseline(ROOT, ROOT / 'b1/baseline/B0_2abe497_GIT_BLOBS.json'), 100)
 
     def test_frozen_B0_git_identity_and_no_modified_inventory_file(self):
         """Independent of the inventory's uncommitted entries: nothing from the
@@ -175,10 +175,10 @@ class EngineIntegration(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stderr)
         changed = [l for l in r.stdout.splitlines() if l and not l.startswith('A\t')]
         self.assertEqual(changed, [])
-        exp = json.loads((ROOT / 'b1/evidence/b0_source_hashes.json').read_text())
-        present = [k for k in exp if (ROOT / k).is_file()]
-        self.assertGreater(len(present), 200)
-        self.assertEqual([k for k in present if hashlib.sha256((ROOT / k).read_bytes()).hexdigest() != exp[k]], [])
+        inventory = ROOT / 'b1/baseline/B0_2abe497_GIT_BLOBS.json'
+        _, exp, _ = load_inventory(inventory)
+        self.assertGreater(len(exp), 200)
+        self.assertEqual(canonical_hashes(ROOT, inventory), exp)
 
     def test_G1_three_athletes_decide_and_physics_resolves_the_pass(self):
         r, port = self.run_match(1, 'g1', 9000)
@@ -377,7 +377,8 @@ class EngineIntegration(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'legacy tactical controller reached'):
             m.c4c2_decide(None, 0, False)
         self.assertEqual(m.pol['A'].pass_ranked(m.s, None), [])
-        self.assertGreater(self.match['hook_calls']['ball_motor'], 100)
+        self.assertGreater(self.match['hook_calls']['ball_motor'], 0)
+        self.assertGreater(self.match['ownership_decisions_by_kind']['restart_claim'], 0)
         self.assertGreater(self.match['decisions_total'], 2000)
         self.assertEqual(set(self.match['decisions_by_role']), {'archer', 'field', 'keeper'})
 

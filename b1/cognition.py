@@ -7,6 +7,7 @@ immutable AthleteView and the athlete's own BeliefState.
 from dataclasses import dataclass, asdict, replace
 from math import hypot
 
+from . import emergence_intents as E
 from . import core as M1          # Base A (governed M1) pure decision code
 
 BALL = 'BALL'
@@ -71,6 +72,10 @@ class AthleteView:
     last_release_ms: int | None = None
     posture: str = 'upright'
     judgment: float = 0.7                # SELF-1: own abilities known exactly
+    ownership_enabled: bool = False
+    ball_course: E.BallCourseBelief | None = None
+    own_restraint: float = 0.
+    tuck_fraction: float = 0.
     zone_radius: float = 20.0            # G: inside = distance < R
 
 
@@ -82,6 +87,7 @@ class BeliefState:
     own_feedback: tuple = ()
     max_track_age_ms: int = 2000
     last_ball: tuple | None = None      # (x, y, captured_ms) own memory
+    ball_course: E.BallCourseBelief | None = None
 
 
 @dataclass(frozen=True)
@@ -243,6 +249,8 @@ def decide(view: AthleteView, belief: BeliefState):
             if (tgt is None or not archer_target_legal(tgt, view, now) or sig.phase != 'live'
                     or sig.passive_team is None):
                 options.append(('abort_draw', view.pending_target, None, 1.))
+    elif view.ownership_enabled and view.role == 'keeper' and not view.holds_ball:
+        options.append(('keeper_control', None, None, 0.))
     elif view.role == 'archer':
         options.append(('archer_hold', None, None, 0.))
         # Ruleset 1.0.2 (D1 record R-17): any eligible player may be frozen; a Keeper inside
@@ -373,6 +381,15 @@ def decide(view: AthleteView, belief: BeliefState):
                         options.append(('press', t, (round(_clamp(a[0], 1, 99), 3), round(_clamp(a[1], 1, 99), 3)),
                                         round(v - 7., 6)))
 
+    release = None
+    if view.ownership_enabled and view.holds_ball:
+        release = E.decide_release_preparation(E.ReleasePreparationView(
+            view.observation_id, now, view.athlete, 'pass',
+            view.own_restraint, view.tuck_fraction))
+        if release.kind == 'retain':
+            options = [o for o in options if o[0] not in ('pass', 'shoot', 'restart_pass')]
+            if not options:
+                options = [('retain', None, None, 0.)]
     chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
     did = f'{view.observation_id}/decision'
     aim_vel = None
@@ -390,7 +407,8 @@ def decide(view: AthleteView, belief: BeliefState):
               'considered_feedback': list(latest) if latest else None,
               'pending_command_id': view.pending_command_id,
               'options': [list(o) for o in options], 'selected': list(chosen),
-              'selection_rule': 'max(value, kind, target)'}
+              'selection_rule': 'max(value, kind, target)',
+              'release_preparation': asdict(release) if release else None}
     return intent, record
 
 
@@ -410,4 +428,7 @@ def view_from_json(d):
     b['tracks'] = tr(b['tracks'])
     b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])
     b['last_ball'] = tuple(b['last_ball']) if b['last_ball'] else None
+    for d in (v, b):
+        if d.get('ball_course') is not None:
+            d['ball_course'] = E.BallCourseBelief(**d['ball_course'])
     return AthleteView(**v), BeliefState(**b)

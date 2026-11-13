@@ -1,0 +1,383 @@
+{
+ "admissions": {
+  "accepted": 84467,
+  "rejected:infeasible": 31,
+  "rejected:unknown_target": 2
+ },
+ "decisions_by_athlete": {
+  "A0": 4024,
+  "A1": 2271,
+  "A10": 2701,
+  "A11": 4009,
+  "A12": 259,
+  "A13": 183,
+  "A14": 190,
+  "A15": 136,
+  "A2": 3810,
+  "A3": 3849,
+  "A4": 3856,
+  "A5": 3847,
+  "A6": 3758,
+  "A7": 3960,
+  "A8": 3931,
+  "A9": 3940,
+  "B0": 3957,
+  "B1": 3896,
+  "B10": 2705,
+  "B11": 2264,
+  "B12": 617,
+  "B13": 326,
+  "B14": 324,
+  "B15": 201,
+  "B16": 255,
+  "B17": 90,
+  "B18": 62,
+  "B19": 62,
+  "B2": 3783,
+  "B20": 61,
+  "B3": 3757,
+  "B4": 3837,
+  "B5": 3630,
+  "B6": 2565,
+  "B7": 2277,
+  "B8": 2642,
+  "B9": 2465
+ },
+ "decisions_by_kind": {
+  "abort_draw": 23,
+  "archer_hold": 6630,
+  "carry": 194,
+  "continue_current": 4322,
+  "draw_release": 98,
+  "home": 51352,
+  "keeper_control": 5361,
+  "mark": 1559,
+  "pass": 87,
+  "press": 688,
+  "pursue": 2959,
+  "receive": 452,
+  "restart_pass": 131,
+  "restart_wait": 157,
+  "retain": 10,
+  "scan": 219,
+  "search": 8148,
+  "shoot": 9,
+  "support": 2101
+ },
+ "decisions_by_role": {
+  "archer": 6979,
+  "field": 72115,
+  "keeper": 5406
+ },
+ "decisions_total": 84500,
+ "end_ms": 929484,
+ "engine_events": {
+  "arrow_draw": 92,
+  "arrow_geometry_impact": 9,
+  "arrow_lead": 59,
+  "arrow_miss": 42,
+  "arrow_release": 69,
+  "athlete_intent": 147523,
+  "attacking_zone_expiry": 2,
+  "ball_action_prepared": 65,
+  "boundary": 32,
+  "c3_collision": 42,
+  "c3_down": 13,
+  "c3_grip_broken": 4,
+  "c3_grounding": 12,
+  "c3_hold_detached": 4,
+  "c3_hold_end": 42,
+  "c3_hold_start": 42,
+  "c3_strip_in_wind_up": 1,
+  "c3_tuck": 2,
+  "c3_upright": 11,
+  "c3b_rules": 1,
+  "c3c_rules": 1,
+  "c4_rules": 1,
+  "c4a_rules": 1,
+  "c4b_rules": 1,
+  "c4c2_rules": 1,
+  "c4c_rules": 1,
+  "control": 85,
+  "discipline": 3,
+  "engagement": 74,
+  "finishing_flight": 1,
+  "flight_ended": 1,
+  "foul": 4,
+  "freeze": 5,
+  "goal": 5,
+  "hunt_live": 2,
+  "hunt_start": 2,
+  "inert_impact": 4,
+  "intermission": 1,
+  "keeper_contact": 14,
+  "keeper_landed": 1,
+  "lineup_check": 1,
+  "match_complete": 1,
+  "minor_released": 1,
+  "no_goal": 1,
+  "occupancy_cleared": 63,
+  "opening_ground_touch": 2,
+  "period_end": 2,
+  "pocket_final_rules": 1,
+  "pocket_occupancy_sample": 230,
+  "possession_change": 62,
+  "quarter_hunt": 1,
+  "reconstruction_ended": 3,
+  "reconstruction_set": 3,
+  "release": 62,
+  "reload_cancelled": 5,
+  "reload_complete": 11,
+  "reload_start": 16,
+  "restart_awarded": 91,
+  "restart_offside": 36,
+  "restart_ready": 90,
+  "restart_release": 53,
+  "scrimmage_set": 7,
+  "slot_return": 2,
+  "specialist_replacement": 1,
+  "strip": 3,
+  "substitution": 144,
+  "tackle_award": 2,
+  "tackle_count": 12,
+  "touch": 11,
+  "warning": 1,
+  "zone_exit_invalid": 65,
+  "zone_exit_valid": 139,
+  "zone_reentry_no_reset": 3
+ },
+ "final_state": {
+  "ball": [
+   42.784966,
+   83.539171,
+   0.1075
+  ],
+  "now": 929484,
+  "period": 2,
+  "phase": "final",
+  "players": {
+   "A0": [
+    45.966692,
+    58.904796
+   ],
+   "A1": [
+    49.934083,
+    40.180064
+   ],
+   "A10": [
+    39.906073,
+    50.004338
+   ],
+   "A11": [
+    43.839165,
+    -5.1
+   ],
+   "A2": [
+    -13.180188,
+    138.0
+   ],
+   "A3": [
+    28.587428,
+    50.012338
+   ],
+   "A4": [
+    128.0,
+    119.467818
+   ],
+   "A5": [
+    45.546613,
+    80.61071
+   ],
+   "A6": [
+    45.854349,
+    13.998558
+   ],
+   "A7": [
+    58.37288,
+    71.990915
+   ],
+   "A8": [
+    42.970965,
+    84.943862
+   ],
+   "A9": [
+    58.594445,
+    28.000801
+   ],
+   "B0": [
+    50.7,
+    105.167557
+   ],
+   "B1": [
+    127.662209,
+    -38.0
+   ],
+   "B10": [
+    96.000005,
+    51.570154
+   ],
+   "B2": [
+    39.303876,
+    50.72918
+   ],
+   "B3": [
+    120.896537,
+    -38.0
+   ],
+   "B4": [
+    60.489562,
+    51.008818
+   ],
+   "B5": [
+    128.0,
+    126.987175
+   ],
+   "B6": [
+    128.0,
+    110.521558
+   ],
+   "B7": [
+    -28.0,
+    138.0
+   ],
+   "B8": [
+    47.739034,
+    49.97854
+   ],
+   "B9": [
+    91.457838,
+    138.0
+   ]
+  },
+  "score": {
+   "A": 6,
+   "B": 8
+  }
+ },
+ "hook_calls": {
+  "archer_motor": 2662,
+  "ball_motor": 2662
+ },
+ "outcomes_by_status": {
+  "aborted_by_athlete": 23,
+  "arrow_released": 69,
+  "goal_scored:shoot": 4,
+  "interrupted": 88,
+  "pass_completed": 8,
+  "pass_completed_other": 13,
+  "pass_dead:boundary": 19,
+  "pass_dead:period_end": 1,
+  "pass_dead:restart_awarded": 1,
+  "pass_intercepted": 10,
+  "rejected_by_engine": 1,
+  "rejected_out_of_range": 5,
+  "released": 106,
+  "shoot_dead:boundary": 1,
+  "shot_saved": 1,
+  "unknown:score_change_during_flight": 1
+ },
+ "own5_pass_releases_checked": 53,
+ "ownership_decisions_by_kind": {
+  "archer_movement": 16654,
+  "keeper": 5029,
+  "restart_claim": 4756,
+  "restart_position": 121084
+ },
+ "period": 2,
+ "release_contract": {
+  "bound_deg": 60.0,
+  "max_correction_deg": 32.39,
+  "recomputed": 53,
+  "rejected_geometry": 0,
+  "releases_recorded": 53
+ },
+ "result": "{'winner': 'B', 'method': 'regulation', 'score': {'A': 6, 'B': 8}, 'shootout': None}",
+ "rules": {
+  "final_public_state": {
+   "ball_status": "restart_pending",
+   "contested": false,
+   "direct_holder": null,
+   "direct_team": null,
+   "last_toucher": "A1",
+   "passive_team": "A",
+   "team_control": null,
+   "uncontested_ms": 0,
+   "zone_clock_ms": [
+    [
+     "A",
+     0
+    ],
+    [
+     "B",
+     0
+    ]
+   ],
+   "zone_clock_running": [
+    [
+     "A",
+     false
+    ],
+    [
+     "B",
+     false
+    ]
+   ]
+  },
+  "keeper_contacts_checked": 7,
+  "ledger_by_event": {
+   "KP_contact_on_protected_keeper": 6,
+   "dead": 61,
+   "defender_touch": 12,
+   "direct_possession": 77,
+   "freeze": 5,
+   "loose": 8,
+   "out_of_play": 32,
+   "pass_release": 53,
+   "passive_possession": 19,
+   "restart_awarded": 88,
+   "restart_release": 53,
+   "secured": 85,
+   "shot_release": 6,
+   "violation": 3,
+   "zone_clock_reset": 13
+  },
+  "ledger_by_row": {
+   "R-02": 85,
+   "R-03": 78,
+   "R-06": 53,
+   "R-07": 6,
+   "R-08": 12,
+   "R-09": 8,
+   "R-10": 18,
+   "R-11": 1,
+   "R-12": 2,
+   "R-14": 66,
+   "R-15": 6,
+   "R-17": 5,
+   "R-18": 120,
+   "R-20": 61
+  },
+  "ledger_entries": 521,
+  "p1_ms": 500,
+  "violations_enforced": 3
+ },
+ "ruleset": "1.0.2",
+ "scenario": "regulation_match_B0_P4_DEFAULT",
+ "score": {
+  "A": 6,
+  "B": 8
+ },
+ "seed": 1,
+ "settings": {
+  "overtime_seconds": 30,
+  "period_seconds": 120,
+  "periods": 2,
+  "play_clock": 45
+ },
+ "start_ms": 0,
+ "state_hash": "79383432f0c77402fb0d0dc732624edae94d3545e68f15b53ce506cc32ae5955",
+ "status": "final",
+ "terminal": null,
+ "trace_hash": "d2fe8000251ec3a5be254937ddc790097d3b1830acb2f27e7d2b3fe6533fa687",
+ "wall_s": 459.841
+}

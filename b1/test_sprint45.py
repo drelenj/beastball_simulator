@@ -39,9 +39,28 @@ class Round2Engine(unittest.TestCase):
                 elif e.get('event') == 'direct_possession' and last_secured is not None:
                     gaps.append(e['t_ms'] - last_secured)
                     last_secured = None
-            self.assertGreater(len(gaps), 3, p1)
+            self.assertGreater(len(gaps), 0, p1)
             self.assertGreaterEqual(min(gaps), p1, (p1, gaps))
             self.assertLessEqual(min(gaps), p1 + 100, (p1, gaps))
+
+    def test_repeated_possessions_at_each_threshold_on_engine_state(self):
+        for threshold in (250, 500, 1000):
+            port = self.MatchPort(1, 'g1', threshold)
+            s = port.m.s
+            for _ in range(4):
+                s.ball.carrier = None
+                port._feed_rules([])
+                s.now += 100
+                s.ball.carrier = 'A0'
+                port._feed_rules([])
+                start = s.now
+                s.now += threshold - 1
+                port._feed_rules([])
+                self.assertIsNone(port.rules.public().direct_holder)
+                s.now += 1
+                port._feed_rules([])
+                self.assertEqual(port.rules.public().direct_holder, 'A0')
+                self.assertEqual(s.now - start, threshold)
 
     def test_passive_possession_only_changes_after_direct_possession_or_restart_award(self):
         for p1, (r, port) in self.runs.items():
@@ -112,7 +131,9 @@ class Round2Engine(unittest.TestCase):
         self.assertNotIn('make_pass(p, q, \'pass\', True)', src)
         self.assertNotIn('plan_pass', src)
         self.assertEqual(runtime.MAX_MOVING_RELEASE_CORRECTION_DEG, 60.0)
-        rc = self.runs[500][0]['release_contract']
+        # Force the pass scenario: release correctness must not depend on
+        # how many passes an unrelated match policy chooses in 45 seconds.
+        rc = self.run_match(1, 'g1', 9000, False)[0]['release_contract']
         self.assertGreater(rc['releases_recorded'], 0)
         tracks = (C.Track('A1', 'A', 'field', 58, 50, 0, 0, 1400),)
         sig = C.Signals('live', 1, 1, 30000, 0, 0, None, None, False, passive_team='A')

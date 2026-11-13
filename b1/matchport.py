@@ -13,6 +13,9 @@ from dataclasses import asdict
 
 from .cognition import (AthleteView, BeliefState, MotorCommand, PhysicalOutcome,
                         Signals, Track, BALL, decide, receive_outcome)
+from .course_sensor import CourseSensor
+from .emergence_intents import BallCourseBelief
+from .emergence_runtime import EmergenceOwnershipOverlay
 from . import core as M1
 from .possession import PossessionTracker, RulesConfig, UnresolvedOutcome
 from .runtime import (ALL_FEATURE_ENV, REPO, digest, PhysicalExecutionPort,
@@ -20,10 +23,11 @@ from .runtime import (ALL_FEATURE_ENV, REPO, digest, PhysicalExecutionPort,
 
 LOCOMOTION = ('receive', 'carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
               'search', 'keeper_set', 'keeper_save')
-PASSIVE = ('retain', 'archer_hold', 'restart_wait', 'no_action')
+PASSIVE = ('retain', 'archer_hold', 'restart_wait', 'no_action', 'keeper_control')
 LEGACY_TRAPS = ('c4c2_decide', 'pocket_decide')
 LEGACY_CLASS_TRAPS = ('carrier_decision', 'arrow_decisions', 'c4c2_decide', 'c4c2_targets',
-                      'route_receiver', 'c4c2_inbound', 'penalty_targets')
+                      'route_receiver', 'c4c2_inbound', 'penalty_targets',
+                      'c4c_keepers', 'targets_dead', 'update_archers', 'c3_withhold')
 
 
 def forbidden(*a, **k):
@@ -74,12 +78,11 @@ class MatchPort:
         self.sensors, self.gaze, self.last_ball, self.public = {}, {}, {}, {}
         self.log_seen, self.hook_calls = 0, Counter()
         self.snaps, self.own5_checked, self.own_release = [], 0, {}
-        self._orig_keepers = type(m).c4c_keepers
+        self.course_sensors, self.course_beliefs = {}, {}
         self._orig_ready = m.e.ready
         # ---- B1 hooks: instance attributes shadow every legacy tactical entry point
         m.carrier_decision = self._ball_motor
         m.arrow_decisions = self._archer_motor
-        m.c4c_keepers = self._keeper_motor
         m.c4c2_targets = m.route_receiver = lambda targets: None
         m.c4c2_inbound = lambda *a, **k: None
         m.penalty_targets = self._targets
@@ -97,8 +100,14 @@ class MatchPort:
             pol.targets = lambda s, team=team: self._targets(team)
             pol.pass_choice = self._restart_receiver
             pol.pass_ranked = lambda s, p: []      # OWN-5: no receiver replacement
+        self.ownership = EmergenceOwnershipOverlay(
+            m, keeper_belief=self._course_belief,
+            archer_ball_belief=self._course_belief).install()
         if scenario in ('g1', 'g1_close'):
             self._g1((47., 50.6) if scenario == 'g1_close' else (49., 56.))
+
+    def _course_belief(self, pid, now):
+        return self.course_beliefs.get(pid)
 
     # ------------------------------------------------------------ scenario (G1)
     def _g1(self, defender):
@@ -147,6 +156,7 @@ class MatchPort:
             'possession_ms': int(s.possession_ms), 'score': dict(s.score),
             'restart': (r.team, round(r.x, 2), round(r.y, 2), r.taker or getattr(self.m, 'restart_taker', None)) if r else None,
             'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture, p.role, p.slot) for p in s.players.values() if p.active},
+            'restraint': {p.id: float(self.m.c3_rho(p, 'pass')) for p in s.players.values() if p.active},
             'ends': {t: float(x) for t, x in s.ends.items()},
             'rules': self.rules.public(),
             # PRIMITIVE comms: a pending or just-released pass is shouted to the passer's team
@@ -157,8 +167,12 @@ class MatchPort:
         for pid in self.active_ids():
             a = s.players[pid]
             eye = (a.x, a.y, a.z + .72 * a.a.height)
-            self.sensor(pid).tick(now_ms / 1000, eye, math.atan2(a.facing[1], a.facing[0]),
+            seen = self.sensor(pid).tick(now_ms / 1000, eye, math.atan2(a.facing[1], a.facing[0]),
                                   [x for x in bodies if x['id'] != pid] + [ball], self.gaze.get(pid))
+
+            if a.role in ('keeper', 'archer') and BALL in seen:
+                cs = self.course_sensors.setdefault(pid, CourseSensor(f'{self.seed}/{pid}'))
+                cs.capture(now_ms, int(math.ceil(self.sensor(pid).latency_s*1000)), b, self.sensor(pid))
 
     def _snap_for(self, pid, due_ms):
         return next((sn for ms, sn in reversed(self.snaps) if ms <= due_ms and pid in sn['self']), None)
@@ -213,6 +227,8 @@ class MatchPort:
             # own-action memory (recorded by its motor at release), never from live state.
             sq = snap['quiver'][a.team]
             q = (0 if snap['ms'] < sq[2] else sq[0], max(sq[1], self.own_release.get(pid, -1)))
+        course = self.course_sensors[pid].deliver(now_ms, pid) if pid in self.course_sensors else None
+        self.course_beliefs[pid] = course
         oid = f's30/{now_ms:010d}/{pid}/obs'
         view = AthleteView(
             observation_id=oid, athlete=pid, team=a.team, role=me[3], slot=me[4], delivered_ms=now_ms,
@@ -224,11 +240,14 @@ class MatchPort:
             pending_release_ms=pend.get('due') if pend else None,
             arrows_loaded=q[0] if q else None, last_release_ms=(q[1] if q and q[1] > 0 else None),
             posture=me[2], judgment=round(float(self.ratings[pid]['judgment']), 4),
-            zone_radius=float(self.rules.cfg.keeper_zone_radius))
+            zone_radius=float(self.rules.cfg.keeper_zone_radius),
+            ownership_enabled=True, ball_course=course,
+            own_restraint=snap['restraint'][pid],
+            tuck_fraction=float(m.assume['tuck_after_delay_frac']))
         fb = tuple(self.feedback.get(pid, ()))
         self.feedback[pid] = []
         belief = BeliefState(oid + '/belief', oid, tracks, fb, int(round(pr.P['memory_s'] * 1000)),
-                             self.last_ball.get(pid))
+                             self.last_ball.get(pid), ball_course=view.ball_course)
         return view, belief
 
     # ------------------------------------------------------------ ingress
@@ -461,34 +480,6 @@ class MatchPort:
                 self.own_release[pid] = s.now
             self._resolve(pid, 'arrow_released' if ar else 'rejected_by_engine')
 
-    def _keeper_motor(self, targets):
-        """Replaces Match.c4c_keepers. PROVISIONAL: the B0 C4c save planner runs
-        for a Keeper only while that Keeper holds a B1 keeper_save intent."""
-        self.hook_calls['keeper_motor'] += 1
-        m = self.m
-        s, b = m.s, m.s.ball
-        keepers = [p for p in s.players.values() if p.active and p.role == 'keeper']
-        masked = []
-        for p in keepers:
-            if not self.save_mode.get(p.id) and getattr(p, 'c4c_launch', None) is None:
-                p.c4c_seen = (b.version, s.now, float('inf'), False)
-                p.c4c_plan = None
-                masked.append(p)
-        self._orig_keepers(m, targets)
-        for p in masked:
-            p.c4c_seen = None
-        for p in keepers:
-            plan = getattr(p, 'c4c_plan', None)
-            saving = self.save_mode.get(p.id) and plan is not None and plan.get('kind') != 'no_threat'
-            if saving:
-                if not p.__dict__.get('_s30_plan') is plan:
-                    p._s30_plan = plan
-                    self._outcome(None, 'keeper_save_plan:' + str(plan.get('kind')), p.id, feedback=False)
-                continue
-            if p.id in self.move and b.carrier != p.id and getattr(p, 'c4c_launch', None) is None:
-                targets[p.id] = self.move[p.id]
-                p.next_decision = min(p.next_decision, s.now)
-
     # ------------------------------------------------------------ rules-state layer
     def _feed_rules(self, new):
         """Rule 7: the possession layer reads authoritative engine events only.
@@ -638,6 +629,8 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
             if on_view:
                 on_view(port, view, belief)
             intent, rec = decide(view, belief)
+            if rec.get('release_preparation'):
+                port.ownership._emit('release_preparation', preparation=rec['release_preparation'])
             adm = port.submit(intent)
             status = adm['status'] + (':' + adm['reason'] if 'reason' in adm else '')
             if adm['status'] == 'rejected':
@@ -710,6 +703,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
                              'recomputed': sum(bool(r['moving_release_recomputed']) for r in port.release_records),
                              'rejected_geometry': sum(r['status'] == 'rejected_geometry' for r in port.release_records),
                              'max_correction_deg': round(max((r['correction_angle_deg'] or 0. for r in port.release_records), default=0.), 3)},
+        'ownership_decisions_by_kind': dict(sorted(Counter(r['kind'] for r in port.ownership.trace).items())),
         'trace_hash': h.hexdigest(), 'state_hash': digest(state),
         'final_state': state,
     }
