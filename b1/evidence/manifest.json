@@ -3,7 +3,7 @@
   "baseline_commit": "2abe497ca82588cb2d8c871a7aab61daaae95c12",
   "command": "python3 -m b1.evidence",
   "limitations": [
-    "Independent G1 review pending",
+    "Independent R6 review pending",
     "full T1 ten-case suite not rerun",
     "general resource queues not integrated",
     "receiver catch cognition and regulation excluded",
@@ -11,24 +11,24 @@
     "field option evaluator is a limited provisional B1 policy"
   ],
   "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
-  "profile": "m1-carrier-pass-or-carry-v1",
+  "profile": "m1-carrier-pass-or-carry-v2",
   "python": "3.12.14",
   "source": {
     "b1/M0_CLOSURE.md": "f169da3c80584247d6ecfe409866e2f1f5d6b6c8d292b32bfbc76d26e491c138",
     "b1/M0_FREEZE_MANIFEST.json": "fc17dfe8b56bb03d3577218fdd56c1fc492887aaddf9ca9db4d4e3604d900e0c",
-    "b1/M1_IMPLEMENTATION_REPORT.md": "4b1d496a2c06ffc7459e86a9311f601fb454e3d7274b45efd90c23c24f93ce61",
-    "b1/README.md": "012943d34f8a124bddefd113abae138c17e4f6e6d6a8c72f9519fbb6edf5d1fb",
+    "b1/M1_IMPLEMENTATION_REPORT.md": "3a72726fb4ac0d1336365ccf32c0b974dbcd8c329f1a2ae76319cf2a7fa29f1b",
+    "b1/README.md": "aa33a1c12a16ed2e2b8854fcd2acedcf750006da0e92ea60ce743c1fe16f82a4",
     "b1/__init__.py": "f8bb748799589a12ef08860e00760129dd628db9014f7a729e759f208ad4257a",
-    "b1/conformance.json": "cd5188e2b3716f17ce240fd073fe73f04c87e48ae5e94e35cf1bd43e9e0249a2",
-    "b1/core.py": "c45bd772b67ddc2a08abe565df4813fcfd38e104db9b0fa22851b2b637000cfc",
-    "b1/evidence.py": "525b8107a37e0bfe270a1dc79c661ff58563716d8ec7adae932f05c6b21b9a0e",
-    "b1/g1.py": "28e405d4e9ae1d3a4050a151638ad7dc5c058ed04c0306107767fcd42b84a495",
+    "b1/conformance.json": "245cbb803436f4515e1d95329d371f667de985548ae57d03b78e0c0265393c43",
+    "b1/core.py": "09e9df26a7308d2d5666ca70d084edcae3c7f74e030c28e24aedf8a9fd969854",
+    "b1/evidence.py": "69e0261c2dbafe9b05584a91f1477030bc4c424329f759d9887f52227f2c49be",
+    "b1/g1.py": "75259e4724d797ecf7e2969fbc7d78157dc95d3c205b376b90aec26e4e82305c",
     "b1/m0_manifest.py": "5cc1a150552204e02d2eb7000959a198c4c4abb24b875402d96920fa49a987cc",
     "b1/preservation.py": "fb87f8b200766a111329d86b8cbbfac320397fc06858176042d7cd6074ddbfe4",
     "b1/run.py": "3b5d5945d40cba69328cd1a1334196e3430df995616d2692a902ea2ea9556065",
-    "b1/runtime.py": "399deabad678c00088bd61f2d5579569b8ad93a07484f3a158b8a13cb46ce674",
-    "b1/test_g1.py": "0428c7333caa45a2148eb04181bebd482d567398dee270849280898d5fa2d4cd",
-    "b1/test_m1.py": "01981d485d449173a69e04a910628f9f894a63367c199ac77fcebc7b540b7ffb"
+    "b1/runtime.py": "cf664225a38d94b4a63b76239330f8845c100f3010f79c1195c966372c3c1e21",
+    "b1/test_g1.py": "f2cc9bc09d5a74d911545a4c1562062ea304a4ebdcf9fd50a98d446e0ff98e22",
+    "b1/test_m1.py": "eb2ecb5f31db5900db52348db979be060b2a93a068e3cccc335a97a1a2233e61"
   },
   "test_exit_code": 0
 }

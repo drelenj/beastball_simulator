@@ -145,6 +145,18 @@ class WorkerTests(unittest.TestCase):
                      DecisionConfig('defender'))[0]
         self.assertAlmostEqual(moved.aim[0]-intent.aim[0],3)
 
+    def test_sharp_defender_selects_belief_lane_option(self):
+        contacts=(Contact('A0','A',45,50,1000),
+                  Contact('A1','A',49,62,1000),
+                  Contact('BALL','neutral',45.1,50.1,1000))
+        view=AthleteView('o','B0','B',1200,47,56,False,contacts)
+        belief=BeliefState('b','o',contacts)
+        ordinary=decide(view,belief,DecisionConfig('defender'))[0]
+        sharp=decide(view,belief,DecisionConfig(
+            role='defender',defender_judgment=.9))[0]
+        self.assertEqual(ordinary.target,'A0')
+        self.assertEqual(sharp.target,'lane:A0:A1')
+
     def test_retain(self):
         r=self.worker('retain')
         self.assertEqual(r['trace']['decisions'][0]['intent']['kind'],'retain')

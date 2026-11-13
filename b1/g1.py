@@ -13,11 +13,14 @@ from .runtime import CommandIngress, ObservationProjector, PhysicalExecutionPort
 
 
 CONDITIONS = ('C0_uniform', 'C1_sharp_defender',
-              'C2_limited_carrier_vision', 'C3_close_defender')
+              'C2_limited_vision_carrier', 'C3_close_defender',
+              'C4_lane_defender', 'C5_lane_defender_sharp')
 TERMINALS = ('pass_completed', 'pass_intercepted',
              'pass_incomplete_ball_loose', 'carrier_grounded',
              'carrier_reaches_x_90', 'timeout_8000ms')
-FAILURE_CAUSES = ('belief_error', 'latency', 'physical_contest')
+FAILURE_CAUSES = ('defender_ball_contact', 'defender_body_contact',
+                  'receiver_catch_failure', 'carrier_motion_during_windup',
+                  'belief_aim_error', 'pass_accuracy_failure', 'unknown')
 
 
 def condition_ratings(condition):
@@ -26,11 +29,11 @@ def condition_ratings(condition):
         raise ValueError(f'unknown condition: {condition}')
     carrier = {k:.70 for k in prism_ratings_v0.ALL}
     defender = dict(carrier)
-    if condition == 'C1_sharp_defender':
+    if condition in ('C1_sharp_defender','C5_lane_defender_sharp'):
         defender['judgment'] = defender['reaction'] = .90
         for key in prism_ratings_v0.JUDGE:
             defender[key] = .90
-    if condition == 'C2_limited_carrier_vision':
+    if condition == 'C2_limited_vision_carrier':
         carrier['vision'], carrier['awareness'] = .40, .50
     return carrier, defender
 
@@ -41,34 +44,35 @@ def _jsonable(value):
     return str(value)
 
 
-def _failure_cause(endpoint, trace, release_snapshot, state):
+def _failure_cause(endpoint, evidence):
+    """Classify only from recorded physical evidence; unknown is admissible."""
     if endpoint not in ('pass_intercepted', 'pass_incomplete_ball_loose',
                         'carrier_grounded'):
         return None, None
     if endpoint == 'carrier_grounded':
-        return 'physical_contest', 'accepted contact kernel grounded the carrier'
-    events = trace['engine_events']
-    if any(e.get('event') in ('touch', 'control', 'grounded', 'tackle') and
-           (e.get('data',{}).get('player') == 'B0' or
-            e.get('data',{}).get('target') == 'A0') for e in events):
-        return 'physical_contest', 'defender produced a committed ball/body event'
-    if release_snapshot:
-        aim = release_snapshot['aim']
-        receiver = release_snapshot['receiver']
-        if aim and ((aim[0]-receiver[0])**2+(aim[1]-receiver[1])**2)**.5 > 1.5:
-            return 'belief_error', 'believed receiver point differed from physical receiver'
-        release = next((e for e in events if e.get('event')=='release' and
-                        e.get('data',{}).get('player')=='A0'), None)
-        if release:
-            origin=release.get('data',{}).get('origin',{}).get('pelvis')
-            actor=release_snapshot.get('actor')
-            if origin and actor and ((origin[0]-actor[0])**2+
-                                     (origin[1]-actor[1])**2)**.5 > .75:
-                return 'latency', 'release origin shifted during the admitted interval'
-        return 'physical_contest', 'accepted catch kernel did not secure control'
-    # A loose result without contact is still tied to the actor's noisy belief,
-    # rather than reported as an unexplained/unknown failure.
-    return 'belief_error', 'belief-based aim did not produce secure control'
+        if evidence.get('carrier_grounded_event') and evidence.get('defender_hold'):
+            return 'defender_body_contact', 'committed defender hold preceded carrier grounding'
+        return 'unknown', 'carrier grounded without a recorded defender causal chain'
+    if endpoint == 'pass_intercepted':
+        if evidence.get('defender_control'):
+            return 'defender_ball_contact', 'authoritative control event awarded B0 the ball'
+        return 'unknown', 'interception endpoint lacks a recorded defender control event'
+    if evidence.get('defender_touch'):
+        return 'defender_ball_contact', 'authoritative B0 touch occurred during the pass'
+    if evidence.get('receiver_touch'):
+        return 'receiver_catch_failure', 'A1 touched but did not secure the pass'
+    near=evidence.get('min_receiver_ball_3d_m')
+    if near is not None and near <= evidence.get('receiver_reach_threshold_m',0.):
+        return 'receiver_catch_failure', 'ball entered A1 reach envelope without secure control'
+    if evidence.get('aim_receiver_error_m') is not None and evidence['aim_receiver_error_m']>1.5:
+        return 'belief_aim_error', 'admitted belief aim was more than 1.5 m from A1'
+    if (evidence.get('release_origin_shift_m') is not None and
+            evidence['release_origin_shift_m']>.75 and
+            not evidence.get('moving_release_recomputed')):
+        return 'carrier_motion_during_windup', 'origin moved without release-time aim recomputation'
+    if evidence.get('aim_receiver_error_m') is not None:
+        return 'pass_accuracy_failure', 'pass aimed near A1 but physical flight missed the reach envelope'
+    return 'unknown', 'recorded evidence does not establish a failure cause'
 
 
 def run_episode(seed=1, condition='C0_uniform', telemetry=True):
@@ -77,8 +81,11 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
     port = PhysicalExecutionPort(seed)
     s = port.m.s
     A, T, D = (s.players[x] for x in ('A0','A1','B0'))
-    starts = {'A0':(45.,50.), 'A1':(49.,62.),
-              'B0':(50.,51.) if condition == 'C3_close_defender' else (53.,52.)}
+    defender_start=((50.,51.) if condition=='C3_close_defender' else
+                    (47.,56.) if condition in ('C4_lane_defender',
+                                                'C5_lane_defender_sharp') else
+                    (53.,52.))
+    starts = {'A0':(45.,50.), 'A1':(49.,62.), 'B0':defender_start}
     for p in (A,T,D):
         p.x,p.y=starts[p.id];p.z=p.vx=p.vy=p.vz=0.
         p.posture='upright';p.next_action=p.next_decision=0
@@ -98,8 +105,9 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
         'B0':ObservationProjector(seed,D,defender_ratings),
     }
     configs = {
-        'A0':DecisionConfig('carrier',(90.,50.)),
-        'B0':DecisionConfig('defender'),
+        'A0':DecisionConfig('carrier',(90.,50.),1.2,1.5),
+        'B0':DecisionConfig('defender',None,1.2,0.,
+                            defender_ratings['judgment']),
     }
     periods = {pid:max(50,int(round(sensor.prism.prof['decision_interval_s']*1000)))
                for pid,sensor in sensors.items()}
@@ -110,24 +118,43 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
     ingress=CommandIngress(port)
     feedback={pid:[] for pid in sensors}
     considered={pid:set() for pid in sensors}
-    trace={'scenario':{'id':'m1-carrier-pass-or-carry-v1','condition':condition,
+    trace={'scenario':{'id':'m1-carrier-pass-or-carry-v2','condition':condition,
                        'seed':seed,'starts':{k:list(v) for k,v in starts.items()},
                        'forbidden':['formation_anchor','role_assignment',
                                     'scripted_receiver_route','scripted_defender_failure']},
            'decisions':[],'admissions':[],'outcomes':[],
-           'engine_events':[],'samples':[]}
+           'engine_events':[],'samples':[],
+           'flight_evidence':{
+               'receiver_touch':False,'defender_touch':False,
+               'defender_control':False,'defender_hold':False,
+               'carrier_grounded_event':False,
+               'min_receiver_ball_3d_m':None,
+               'min_defender_ball_3d_m':None,
+               'receiver_reach_threshold_m':T.a.reach+T.radius+.2,
+               'aim_receiver_error_m':None,
+               'release_origin_shift_m':None,
+               'moving_release_recomputed':False}}
     record_index=0
     release_snapshot=None
     released=False
     endpoint=None
     end_ms=s.now+8000
     sensor_step_ms=50
+    previous_relative={}
 
     def harvest():
         nonlocal record_index,released
+        evidence=trace['flight_evidence']
         for rec in port.records[record_index:]:
             if rec.get('kind')=='engine_event':
                 trace['engine_events'].append(rec)
+                event,data=rec.get('event'),rec.get('data',{})
+                if event=='touch' and data.get('player')=='A1': evidence['receiver_touch']=True
+                if event=='touch' and data.get('player')=='B0': evidence['defender_touch']=True
+                if event=='control' and data.get('player')=='B0': evidence['defender_control']=True
+                if event=='c3_hold_start' and data.get('actor')=='B0' and data.get('target')=='A0': evidence['defender_hold']=True
+                if event in ('grounded','c3_grounding') and data.get('player')=='A0':
+                    evidence['carrier_grounded_event']=True
             elif rec.get('kind')=='outcome':
                 outcome=PhysicalOutcome(
                     f"g1/{seed}/{condition}/{rec['time_ms']}/{len(trace['outcomes'])}",
@@ -136,10 +163,33 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
                 if rec.get('command_id'):
                     feedback['A0'].append(receive_outcome(outcome))
                 released = released or rec['status']=='released'
-            elif rec.get('kind')=='physical_sample' and telemetry:
-                # 20 ms samples are useful for a single audit trace, but are
-                # omitted from matrix episodes.
-                trace['samples'].append(rec)
+                if rec['status']=='released':
+                    evidence['moving_release_recomputed']=bool(rec.get('moving_release_recomputed'))
+                    if release_snapshot and rec.get('release_origin'):
+                        ox,oy=rec['release_origin'];ax,ay=release_snapshot['actor']
+                        evidence['release_origin_shift_m']=((ox-ax)**2+(oy-ay)**2)**.5
+            elif rec.get('kind')=='physical_sample':
+                if released and rec.get('players'):
+                    bx,by,bz=rec['ball']
+                    for pid,key,player in (('A1','min_receiver_ball_3d_m',T),
+                                           ('B0','min_defender_ball_3d_m',D)):
+                        px,py=rec['players'][pid][:2]
+                        rel=(bx-px,by-py,bz-player.hand_height)
+                        prior_rel=previous_relative.get(pid)
+                        if prior_rel is None:
+                            dist=sum(v*v for v in rel)**.5
+                        else:
+                            delta=tuple(rel[i]-prior_rel[i] for i in range(3))
+                            denom=sum(v*v for v in delta)
+                            u=(max(0.,min(1.,-sum(prior_rel[i]*delta[i]
+                                                 for i in range(3))/denom))
+                               if denom>1e-12 else 0.)
+                            dist=sum((prior_rel[i]+u*delta[i])**2 for i in range(3))**.5
+                        previous_relative[pid]=rel
+                        prior=evidence[key]
+                        evidence[key]=dist if prior is None else min(prior,dist)
+                if telemetry:
+                    trace['samples'].append(rec)
         record_index=len(port.records)
 
     while s.now < end_ms and endpoint is None:
@@ -174,6 +224,9 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
                                   'aim':list(intent.aim) if intent.aim else None,
                                   'receiver':[T.x,T.y],
                                   'actor':[A.x,A.y]}
+                trace['flight_evidence']['aim_receiver_error_m']=(
+                    ((intent.aim[0]-T.x)**2+(intent.aim[1]-T.y)**2)**.5
+                    if intent.aim else None)
             if admission.get('status')=='rejected':
                 outcome=PhysicalOutcome(
                     f'{intent.intent_id}/rejected',None,
@@ -198,12 +251,14 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
            'ball':[s.ball.x,s.ball.y,s.ball.z,s.ball.vx,s.ball.vy,s.ball.vz],
            'players':{pid:[p.x,p.y,p.vx,p.vy,p.posture]
                       for pid,p in (('A0',A),('A1',T),('B0',D))}}
-    cause,basis=_failure_cause(endpoint,trace,release_snapshot,state)
+    cause,basis=_failure_cause(endpoint,trace['flight_evidence'])
     trace['terminal']={'endpoint':endpoint,'failure_cause':cause,
                        'cause_basis':basis,'time_ms':s.now}
     causal={'scenario':trace['scenario'],'decisions':trace['decisions'],
             'admissions':trace['admissions'],'outcomes':trace['outcomes'],
-            'engine_events':trace['engine_events'],'terminal':trace['terminal'],
+            'engine_events':trace['engine_events'],
+            'flight_evidence':trace['flight_evidence'],
+            'terminal':trace['terminal'],
             'state':state}
     rng_states={}
     for owner_name,owner in [('engine',port.m.e),('match',port.m)]+[
@@ -215,7 +270,7 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
                 for name,generator in sorted(value.items()):
                     if isinstance(generator,random.Random):
                         rng_states[owner_name+'.'+key+'.'+str(name)]=digest(generator.getstate())
-    result={'scenario_id':'m1-carrier-pass-or-carry-v1','seed':seed,
+    result={'scenario_id':'m1-carrier-pass-or-carry-v2','seed':seed,
             'condition':condition,'endpoint':endpoint,
             'failure_cause':cause,'cause_basis':basis,
             'execution_hash':digest(json.loads(json.dumps(causal,default=_jsonable))),
@@ -244,20 +299,22 @@ def run_matrix(seeds=100):
             'outcomes':dict(sorted(Counter(r['endpoint'] for r in rows).items())),
             'failure_causes':dict(sorted(Counter(r['failure_cause'] for r in rows
                                                  if r['failure_cause']).items())),
-            'unknown_failure_causes':sum(r['endpoint'] in (
-                'pass_intercepted','pass_incomplete_ball_loose','carrier_grounded') and
-                r['failure_cause'] not in FAILURE_CAUSES for r in rows),
+            'unknown_failure_causes':sum(r['failure_cause']=='unknown' for r in rows),
         }
     all_outcomes=set(r['endpoint'] for r in episodes)
     required={'pass_completed','pass_intercepted',
               'pass_incomplete_ball_loose','carrier_grounded'}
-    outcome_mixes={c:by_condition[c]['outcomes'] for c in CONDITIONS}
+    c4=by_condition['C4_lane_defender']['outcomes']
+    c5=by_condition['C5_lane_defender_sharp']['outcomes']
+    paired_lane_differences=sum(
+        next(r for r in episodes if r['condition']=='C4_lane_defender' and r['seed']==seed)['endpoint'] !=
+        next(r for r in episodes if r['condition']=='C5_lane_defender_sharp' and r['seed']==seed)['endpoint']
+        for seed in range(1,seeds+1))
     acceptance={
         'BA-M1-1_required_outcomes_present':required <= all_outcomes,
         'BA-M1-2_all_failures_traceable':all(
             v['unknown_failure_causes']==0 for v in by_condition.values()),
-        'BA-M1-3_condition_mixes_differ':len({json.dumps(v,sort_keys=True)
-                                              for v in outcome_mixes.values()})>1,
+        'BA-M1-3_sharp_defender_changes_lane_mix':c4!=c5 and paired_lane_differences>0,
         'BA-M1-4_no_formation_or_role_assignment':True,
         'BA-M1-5_determinism':False,
         'BA-M1-6_performance_reported':True,
@@ -269,9 +326,13 @@ def run_matrix(seeds=100):
         deterministic[condition]=(original['execution_hash']==replay['execution_hash'] and
                                   original['state_hash']==replay['state_hash'])
     acceptance['BA-M1-5_determinism']=all(deterministic.values())
-    payload={'scenario_id':'m1-carrier-pass-or-carry-v1',
+    payload={'scenario_id':'m1-carrier-pass-or-carry-v2',
              'seeds_per_condition':seeds,'conditions':by_condition,
              'episodes':episodes,'acceptance':acceptance,
+             'lane_defender_comparison':{
+                 'baseline':'C4_lane_defender','sharp':'C5_lane_defender_sharp',
+                 'paired_endpoint_differences':paired_lane_differences,
+                 'baseline_mix':c4,'sharp_mix':c5},
              'determinism_replay':deterministic,
              'performance':{'wall_s':time.perf_counter()-wall,
                             'cpu_s':time.process_time()-cpu},

@@ -32,9 +32,9 @@ def main():
     if baseline != after: raise RuntimeError('B0 source changed')
     manifest={'baseline_commit':'2abe497ca82588cb2d8c871a7aab61daaae95c12',
               'python':platform.python_version(),'platform':platform.platform(),
-              'profile':'m1-carrier-pass-or-carry-v1','test_exit_code':r.returncode,
+              'profile':'m1-carrier-pass-or-carry-v2','test_exit_code':r.returncode,
               'b0_source_unchanged':True,'source':source_hashes(),
-              'limitations':['Independent G1 review pending','full T1 ten-case suite not rerun',
+              'limitations':['Independent R6 review pending','full T1 ten-case suite not rerun',
                              'general resource queues not integrated',
                              'receiver catch cognition and regulation excluded','RNG signatures cover discoverable direct generator attributes',
                              'field option evaluator is a limited provisional B1 policy'],

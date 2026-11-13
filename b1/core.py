@@ -20,6 +20,8 @@ class DecisionConfig:
     role: str = 'carrier'
     carry_target: tuple[float, float] | None = None
     pursuit_lookahead_s: float = 1.2
+    pressure_pass_weight: float = 0.0
+    defender_judgment: float = 0.7
 
 
 @dataclass(frozen=True)
@@ -91,26 +93,34 @@ def decide(view: AthleteView, belief: BeliefState,
         raise ValueError('belief/view provenance mismatch')
     contacts = tuple(c for c in belief.contacts
                      if 0 <= view.delivered_ms-c.captured_ms <= belief.max_contact_age_ms)
+    opponent_contacts=[c for c in contacts if c.team not in (view.team,'neutral')]
     failed_feedback = next((f for f in belief.own_feedback
                             if f[1] == 'interrupted' or f[1].startswith('rejected_')),
                            None)
     latest_feedback = belief.own_feedback[-1] if belief.own_feedback else None
     if config.role == 'defender':
         ball = next((c for c in contacts if c.entity == 'BALL'), None)
-        opponents = [c for c in contacts if c.team not in (view.team, 'neutral')]
+        opponents = opponent_contacts
         carriers = [c for c in opponents if c.has_ball]
+        ball_free=False
+        nearest=None
         if ball is not None and opponents:
             nearest = min(opponents, key=lambda c: hypot(c.x-ball.x, c.y-ball.y))
+            separation=hypot(nearest.x-ball.x,nearest.y-ball.y)
+            ball_speed=hypot(ball.vx,ball.vy)
+            player_speed=hypot(nearest.vx,nearest.vy)
             # The association is made from the athlete's two beliefs, never
-            # from authoritative ownership.  Once separated, pursue the ball.
-            target = [nearest] if hypot(nearest.x-ball.x, nearest.y-ball.y) <= 2.5 else [ball]
+            # from authoritative ownership.  Separation or a ball-speed break
+            # switches pursuit to the observed ball in flight.
+            ball_free=(separation>1.5 or ball_speed>player_speed+4.)
+            target = [ball] if ball_free else [nearest]
         else:
             target = carriers or ([ball] if ball is not None else [])
         options=[('no_action',None,None,0.0)]
         for c in target:
             speed=hypot(c.vx,c.vy)
             if c.entity == 'BALL':
-                lead_t=.25
+                lead_t=.15
                 aim=(c.x+lead_t*c.vx,c.y+lead_t*c.vy)
             elif speed >= .1:
                 # Lead the observed heading by a bounded distance.  This is
@@ -121,6 +131,20 @@ def decide(view: AthleteView, belief: BeliefState,
                 aim=(c.x,c.y)
             options.append(('move',c.entity,aim,
                             10.0-hypot(aim[0]-view.x,aim[1]-view.y)*.01))
+        if nearest is not None and not ball_free:
+            receivers=[c for c in opponents if c.entity!=nearest.entity]
+            if receivers:
+                receiver=min(receivers,key=lambda c:hypot(c.x-nearest.x,c.y-nearest.y))
+                dx,dy=receiver.x-nearest.x,receiver.y-nearest.y
+                length2=dx*dx+dy*dy
+                if length2>1e-9:
+                    f=max(.2,min(.8,((view.x-nearest.x)*dx+
+                                     (view.y-nearest.y)*dy)/length2))
+                    lane=(nearest.x+f*dx,nearest.y+f*dy)
+                    lane_value=(8.9+1.2*config.defender_judgment-
+                                .01*hypot(lane[0]-view.x,lane[1]-view.y))
+                    options.append(('move',f'lane:{nearest.entity}:{receiver.entity}',
+                                    lane,lane_value))
         chosen=max(options,key=lambda o:(o[3],o[0],o[1] or ''))
         did=f'{view.observation_id}/decision'
         intent=ActionIntent(did+'/intent',did,view.athlete,*chosen[:3],view.delivered_ms)
@@ -138,12 +162,15 @@ def decide(view: AthleteView, belief: BeliefState,
         # supplies only feedback not yet considered by a prior decision.
         options = [('no_action', None, None, 0.0)]
     else:
-        base=('carry',None,config.carry_target,2.0) if (
+        nearest_opponent=min((hypot(c.x-view.x,c.y-view.y)
+                              for c in opponent_contacts),default=99.)
+        carry_value=10.0 if nearest_opponent<5.8 else 2.0
+        base=('carry',None,config.carry_target,carry_value) if (
             view.holds_ball and config.carry_target is not None) else (
             'retain' if view.holds_ball else 'no_action',None,None,0.0)
         options = [base]
     if view.holds_ball and view.pending_command_id is None and not failed_feedback:
-        opponents = [c for c in contacts if c.team not in (view.team, 'neutral')]
+        opponents = opponent_contacts
         for c in sorted(contacts, key=lambda c: c.entity):
             if c.team != view.team:
                 continue
@@ -155,7 +182,10 @@ def decide(view: AthleteView, belief: BeliefState,
             for d in opponents:
                 f = max(0., min(1., ((d.x-view.x)*dx+(d.y-view.y)*dy)/(distance**2)))
                 clearance = min(clearance, hypot(d.x-view.x-f*dx, d.y-view.y-f*dy))
-            value = clearance - 3.0 - .03*distance
+            pressure=min((hypot(d.x-view.x,d.y-view.y) for d in opponents),
+                         default=10.)
+            value=(clearance - 3.0 - .03*distance +
+                   config.pressure_pass_weight*max(0.,10.-pressure))
             options.append(('pass', c.entity, (c.x, c.y), value))
     chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
     did = f'{view.observation_id}/decision'

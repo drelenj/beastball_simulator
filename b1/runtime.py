@@ -100,12 +100,28 @@ class PhysicalExecutionPort:
             self.records.append({'kind':'outcome', 'command_id':c.command_id,
                                  'status':'interrupted', 'time_ms':s.now})
         else:
-            ok = self.m.e.release(a.id, c.desired_velocity, 'pass',
+            velocity = c.desired_velocity
+            recomputed = False
+            if c.intent.aim is not None and velocity is not None:
+                # Declared moving-release contract: locomotion and
+                # ball_control_release are separable.  Preserve the admitted
+                # speed, but execute the semantic aim from the authoritative
+                # release origin instead of retaining a stale direction.
+                dx,dy=c.intent.aim[0]-a.x,c.intent.aim[1]-a.y
+                length=math.hypot(dx,dy)
+                speed=math.hypot(velocity[0],velocity[1])
+                if length>1e-9:
+                    velocity=(dx/length*speed,dy/length*speed,velocity[2])
+                    recomputed=True
+            ok = self.m.e.release(a.id, velocity, 'pass',
                                   c.intent.target, False)
             self.records.append({'kind':'outcome', 'command_id':c.command_id,
                                  'status':'released' if ok else 'rejected',
                                  'time_ms':s.now,
-                                 'ball_velocity':[s.ball.vx,s.ball.vy,s.ball.vz]})
+                                 'ball_velocity':[s.ball.vx,s.ball.vy,s.ball.vz],
+                                 'release_origin':[a.x,a.y],
+                                 'semantic_aim':list(c.intent.aim) if c.intent.aim else None,
+                                 'moving_release_recomputed':recomputed})
         self.pending = None
         self._collect_engine_log()
 

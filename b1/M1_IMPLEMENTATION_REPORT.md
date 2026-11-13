@@ -1,93 +1,78 @@
-# HP-002 B1 M1 implementation report
+# HP-002 M1 G1 v2 implementation report
 
-## Owner briefing
+## Status
 
-R3 at `claude/hp002-audit` commit `ffb5c07` closed G2 and G3 and identified G1
-as the sole M1 blocker. G1 is now implemented and locally satisfies all six
-behavioral acceptance checks. This is a candidate for independent review; it is
-not self-declared milestone acceptance.
+This candidate addresses the four behavioral blockers identified by independent
+R5 review commit `838f6e5a76d0fa7b5aca0b36a476c1cbd1525754`. It locally satisfies
+BA-M1-1 through BA-M1-6 and is ready for independent R6 review. This report does
+not claim formal acceptance.
 
-No canon decision was required. No physical rating, physical constant, accepted
-B0 source file, or historical evidence file was changed.
+The accepted B0-P4-DEFAULT physical baseline remains frozen at
+`2abe497ca82588cb2d8c871a7aab61daaae95c12`. All new behavior is isolated under
+`b1/`.
 
-## G1 implementation
+## R5 blocker disposition
 
-The governed `m1-carrier-pass-or-carry-v1` episode uses three authoritative
-engine bodies:
-
-| Athlete | Control | Start |
+| R5 finding | G1 v2 response | Verification |
 |---|---|---|
-| A0 carrier | independent PRISM belief; pass/carry cognition | (45, 50) |
-| A1 receiver | stationary physical body; no cognition or route | (49, 62) |
-| B0 defender | independent PRISM belief; pursuit/interception cognition | (53, 52), or (50, 51) in C3 |
+| H1: defender quality did not affect endpoints | B0 can choose an individual, belief-derived pass-lane interception option. Judgment affects option value, and released-ball association uses B0's sensed ball belief. | Matched C4/C5 geometry yields 35 paired endpoint differences; interceptions change from 8 to 11. |
+| H2: failure causes were forced or mislabeled | Failure attribution is derived from recorded touches, controls, grounding, swept ball-to-hand proximity, belief/aim error, and release displacement. The classifier may return `unknown`. | Zero unknowns were observed in the 600 governed episodes; a unit test proves the unknown branch is reachable. |
+| H3: defender-quality effect was not isolated | Added C4 and C5 with identical geometry and only the governed defender Judgment/Reaction quality change. | C4: 56 completed, 36 incomplete, 8 intercepted. C5: 55 completed, 32 incomplete, 11 intercepted, 2 carrier reaches. |
+| H4: locomotion/release compatibility required proof | Preserved the approved separable locomotion + release contract. At the actual release tick, velocity is recomputed from the authoritative moving release origin toward the semantic aim. | Unit test verifies the released direction is within 8 degrees of the semantic aim after carrier displacement. |
 
-`PhysicalExecutionPort.advance_world` invokes the accepted C3 locomotion/contact
-and C1 ball/catch path with `scripted=True`. It supplies only admitted B1 motor
-targets. The legacy carrier evaluator, route planner, team target policy, and
-normal match step are trapped; automatic roster refill is disabled for this
-controlled three-body slice.
+## Governed scenario
 
-The defender sees player and ball observations through its own noisy, delayed
-PRISM instance. Ball sensing is projected separately so the ball cannot become
-an artificial occluder. Carrier association and lead pursuit are computed from
-delivered beliefs. A1 never receives a cognition tick or movement command.
+`m1-carrier-pass-or-carry-v2` contains three physical athletes:
 
-The R3 N1 note is also corrected: a decision consumes all unconsidered
-own-action failure feedback rather than inspecting only the newest item.
+- A0 senses and independently chooses pass or carry.
+- B0 senses independently and chooses carrier pursuit or a belief-derived lane
+  interception option; after release it associates with and pursues the ball.
+- A1 is a stationary physical receiver. It has no cognition, assigned route, or
+  scripted catch result.
 
-## 100-seed results
+The accepted kernel owns locomotion, contact, ball flight, catches, deflections,
+interceptions, loose-ball state, and grounding. The B1 layer does not directly
+assign an episode endpoint.
 
-Each condition ran seeds 1–100. Stored evidence:
-`b1/evidence/HP-002_G1_100_SEED_MATRIX.json`.
+## Evidence
 
-| Condition | Completed | Intercepted | Loose/incomplete | Grounded | Reached x=90 |
+The full matrix contains 100 seeds for each of six conditions, 600 episodes in
+total. Its semantic matrix hash is
+`f9afc5f410a2ad890b8fb271b4087ed00a3f1df3178c2a7a2bddd03d1d222b72`.
+
+| Condition | Completed | Incomplete | Intercepted | Grounded | Reaches x=90 |
 |---|---:|---:|---:|---:|---:|
-| C0 uniform | 75 | 0 | 25 | 0 | 0 |
-| C1 sharp defender | 75 | 0 | 25 | 0 | 0 |
-| C2 limited carrier vision | 74 | 0 | 26 | 0 | 0 |
-| C3 close defender | 0 | 1 | 89 | 3 | 7 |
+| C0 uniform | 82 | 18 | 0 | 0 | 0 |
+| C1 sharp defender | 82 | 18 | 0 | 0 | 0 |
+| C2 limited carrier vision | 82 | 18 | 0 | 0 | 0 |
+| C3 close defender | 31 | 63 | 2 | 3 | 1 |
+| C4 lane defender | 56 | 36 | 8 | 0 | 0 |
+| C5 sharp lane defender | 55 | 32 | 11 | 0 | 2 |
 
-Failure attribution contains only `belief_error`, `latency`, or
-`physical_contest`; unknown count is zero in every condition. Exact mixes differ
-by condition. Seed-1 replays for all four conditions reproduced both execution
-and final-state hashes. The 400-episode run took 144.020 s wall / 145.796 s CPU
-on Python 3.12.14. Matrix hash:
-`bd3237e392ede5d7e861dd5486b7879667896bc4affebc1e8d711a198f82e452`.
+All six condition replays are deterministic. Matrix runtime was 208.522 seconds
+wall time and 209.833 seconds CPU time on Python 3.12.14.
 
-## Gate disposition
-
-| Gate | Evidence | Status |
-|---|---|---|
-| G1 governed outcome scenario | independent carrier/defender cognition, physical receiver, 400 episodes | Implemented; review pending |
-| G2 own-action continuation/feedback | pending command state, `continue_current`, feedback reassessment | Closed in R3 |
-| G3 information isolation | physical-world projection and hidden-state poison probe | Closed in R3 |
-| BA-M1-1 outcome diversity | completed, intercepted, incomplete, and grounded all observed | Pass |
-| BA-M1-2 traceable failure | three declared causes; zero unknown | Pass |
-| BA-M1-3 condition sensitivity | differing exact outcome mixes | Pass |
-| BA-M1-4 no team tactics | no formation, role assignment, or receiver route | Pass |
-| BA-M1-5 determinism | four condition replays match execution/state hashes | Pass |
-| BA-M1-6 performance | wall and CPU time recorded | Pass |
+The stored artifact is
+`b1/evidence/HP-002_G1_V2_100_SEED_MATRIX.json`.
 
 ## Verification
 
 ```bash
-python3 -m unittest b1.test_m1 b1.test_g1 -v
-python3 -m b1.g1 --matrix 100 --out /tmp/g1-matrix.json
 python3 -m b1.m0_manifest
+python3 -m unittest b1.test_m1 b1.test_g1 -v
+python3 -m b1.g1 --matrix 100 --out /tmp/g1-v2-matrix.json
+python3 -m b1.evidence
 ```
 
-Seventeen tests pass in a clean staging tree. Tests cover the earlier M1
-boundary, independent defender belief pursuit, observer neutrality, deterministic
-replay, stationary receiver ownership, and fixed real-kernel outcome fixtures
-(completion seed 1, interception seed 10, grounding seed 35). The frozen B0
-inventory verifier remains clean.
+The focused M1/G1 suite contains 21 passing tests. `b1.evidence` additionally
+verifies that the accepted B0 source hashes are unchanged while generating the
+portable evidence manifest and representative pass, retain, and interrupted
+traces.
 
-## Remaining limits
+## Remaining boundary
 
-- G1 is one controlled episode, not full-team or regulation play.
-- A1 catches physically but has no cognition or catch intent.
-- General command queues, simultaneous multi-resource bundles, Keepers,
-  Archers, formations, and multi-teammate tactics remain out of scope.
-- The provisional option and pursuit policy is not a behavioral-quality claim.
-- Current deterministic IDs are scoped to this Python candidate, not the final
-  cross-language causal schema.
+This is a governed M1 proof, not a full tactical system or regulation match.
+General resource queues, moving receiver cognition, multi-teammate tactics,
+formations, Keepers, Archers, scoring, and regulation remain excluded. The
+current option values are provisional B1 policy and should be judged only
+against this M1 scenario until a later milestone broadens the contract.
