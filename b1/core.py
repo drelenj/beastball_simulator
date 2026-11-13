@@ -22,6 +22,7 @@ class DecisionConfig:
     pursuit_lookahead_s: float = 1.2
     pressure_pass_weight: float = 0.0
     defender_judgment: float = 0.7
+    enable_lane_option: bool = False
 
 
 @dataclass(frozen=True)
@@ -112,11 +113,12 @@ def decide(view: AthleteView, belief: BeliefState,
             # The association is made from the athlete's two beliefs, never
             # from authoritative ownership.  Separation or a ball-speed break
             # switches pursuit to the observed ball in flight.
-            ball_free=(separation>1.5 or ball_speed>player_speed+4.)
+            ball_free=(separation>3.0 or ball_speed>player_speed+8.)
             target = [ball] if ball_free else [nearest]
         else:
             target = carriers or ([ball] if ball is not None else [])
         options=[('no_action',None,None,0.0)]
+        carrier_pursuit_aim=None
         for c in target:
             speed=hypot(c.vx,c.vy)
             if c.entity == 'BALL':
@@ -129,22 +131,30 @@ def decide(view: AthleteView, belief: BeliefState,
                 aim=(c.x+lead*c.vx/speed,c.y+lead*c.vy/speed)
             else:
                 aim=(c.x,c.y)
+            if c.entity != 'BALL':
+                carrier_pursuit_aim=aim
             options.append(('move',c.entity,aim,
                             10.0-hypot(aim[0]-view.x,aim[1]-view.y)*.01))
-        if nearest is not None and not ball_free:
+        if (config.enable_lane_option and nearest is not None and not ball_free
+                and carrier_pursuit_aim is not None):
             receivers=[c for c in opponents if c.entity!=nearest.entity]
             if receivers:
                 receiver=min(receivers,key=lambda c:hypot(c.x-nearest.x,c.y-nearest.y))
                 dx,dy=receiver.x-nearest.x,receiver.y-nearest.y
                 length2=dx*dx+dy*dy
                 if length2>1e-9:
-                    f=max(.2,min(.8,((view.x-nearest.x)*dx+
-                                     (view.y-nearest.y)*dy)/length2))
-                    lane=(nearest.x+f*dx,nearest.y+f*dy)
-                    lane_value=(8.9+1.2*config.defender_judgment-
-                                .01*hypot(lane[0]-view.x,lane[1]-view.y))
+                    # Judgment continuously changes how deeply the defender
+                    # anticipates into the believed carrier-receiver lane.
+                    # There is no rating threshold that switches the option on.
+                    lane_fraction=max(.2,min(.8,
+                        .2+.6*config.defender_judgment))
+                    lane_aim=(
+                        carrier_pursuit_aim[0]+lane_fraction*(receiver.x-carrier_pursuit_aim[0]),
+                        carrier_pursuit_aim[1]+lane_fraction*(receiver.y-carrier_pursuit_aim[1]))
+                    lane_value=(10.08-
+                                .01*hypot(lane_aim[0]-view.x,lane_aim[1]-view.y))
                     options.append(('move',f'lane:{nearest.entity}:{receiver.entity}',
-                                    lane,lane_value))
+                                    lane_aim,lane_value))
         chosen=max(options,key=lambda o:(o[3],o[0],o[1] or ''))
         did=f'{view.observation_id}/decision'
         intent=ActionIntent(did+'/intent',did,view.athlete,*chosen[:3],view.delivered_ms)

@@ -1,13 +1,17 @@
 import dataclasses
 import hashlib
 import json
+import math
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
-from .core import AthleteView, BeliefState, Contact, DecisionConfig, decide
+from .core import (ActionIntent, AthleteView, BeliefState, Contact,
+                   DecisionConfig, MotorCommand, PhysicalOutcome, decide,
+                   receive_outcome)
 from .preservation import historical_hashes, verify_baseline
+from .runtime import PhysicalExecutionPort
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -75,6 +79,63 @@ class PureBoundaryTests(unittest.TestCase):
         symbols.update(n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute))
         self.assertFalse(symbols & {'SimState','Match','Engine','PhysicalExecutionPort',
                                     'CommandIngress','pocket4_proto'})
+
+
+class MovingReleaseContractTests(unittest.TestCase):
+    @staticmethod
+    def release(seed=1, contract=True, aim=(55.,50.),
+                desired=(27.,0.,2.), mutate=None):
+        port=PhysicalExecutionPort(seed,moving_release_contract=contract)
+        state=port.m.s
+        actor=state.players['A0']
+        if mutate:
+            mutate(state)
+        intent=ActionIntent('mr/intent','mr/decision','A0','pass','A1',aim,
+                            state.now)
+        port.pending=MotorCommand('mr/command',intent,state.now,state.now,
+                                  desired)
+        port._release_due()
+        outcome=next(r for r in port.records if r.get('kind')=='outcome')
+        return port,outcome
+
+    def test_mr2_outcome_preserves_action_target_and_semantic_aim(self):
+        _,outcome=self.release()
+        self.assertEqual(outcome['status'],'released')
+        self.assertEqual(outcome['action_kind'],'pass')
+        self.assertEqual(outcome['target'],'A1')
+        self.assertEqual(outcome['semantic_aim'],[55.,50.])
+        self.assertIn('correction_angle_deg',outcome)
+        self.assertIn('admitted_speed_mps',outcome)
+        self.assertIn('final_ball_velocity',outcome)
+
+    def test_mr3_hidden_opponent_and_receiver_state_do_not_change_release(self):
+        _,baseline=self.release(seed=7)
+        def poison(state):
+            state.players['A1'].x,state.players['A1'].y=2.,96.
+            state.players['B0'].x,state.players['B0'].y=98.,4.
+            state.players['B0'].target=(1.,1.)
+            state.players['B0'].fatigue=.123
+        _,poisoned=self.release(seed=7,mutate=poison)
+        self.assertEqual(baseline['final_ball_velocity'],
+                         poisoned['final_ball_velocity'])
+
+    def test_mr4_over_bound_rejects_and_feedback_reaches_cognition(self):
+        _,outcome=self.release(aim=(20.,50.),desired=(27.,0.,2.))
+        self.assertEqual(outcome['status'],'rejected_geometry')
+        self.assertGreater(outcome['correction_angle_deg'],60.)
+        contacts=(Contact('A1','A',55.,50.,1000),)
+        view=AthleteView('o','A0','A',1000,40.,50.,True,contacts)
+        physical=PhysicalOutcome('mr/rejected','mr/command',
+                                 outcome['status'],1000)
+        belief=BeliefState('b','o',contacts,(receive_outcome(physical),))
+        self.assertEqual(decide(view,belief)[0].kind,'no_action')
+
+    def test_mr5_stationary_release_matches_contract_off(self):
+        _,enabled=self.release(seed=11,contract=True)
+        _,disabled=self.release(seed=11,contract=False)
+        self.assertEqual(enabled['correction_angle_deg'],0.)
+        self.assertEqual(enabled['final_ball_velocity'],
+                         disabled['final_ball_velocity'])
 
 
 class WorkerTests(unittest.TestCase):
@@ -145,17 +206,22 @@ class WorkerTests(unittest.TestCase):
                      DecisionConfig('defender'))[0]
         self.assertAlmostEqual(moved.aim[0]-intent.aim[0],3)
 
-    def test_sharp_defender_selects_belief_lane_option(self):
+    def test_judgment_continuously_moves_belief_aim_toward_lane(self):
         contacts=(Contact('A0','A',45,50,1000),
                   Contact('A1','A',49,62,1000),
                   Contact('BALL','neutral',45.1,50.1,1000))
         view=AthleteView('o','B0','B',1200,47,56,False,contacts)
         belief=BeliefState('b','o',contacts)
-        ordinary=decide(view,belief,DecisionConfig('defender'))[0]
+        ordinary=decide(view,belief,DecisionConfig(
+            role='defender',enable_lane_option=True))[0]
         sharp=decide(view,belief,DecisionConfig(
-            role='defender',defender_judgment=.9))[0]
-        self.assertEqual(ordinary.target,'A0')
+            role='defender',defender_judgment=.9,
+            enable_lane_option=True))[0]
+        self.assertEqual(ordinary.target,'lane:A0:A1')
         self.assertEqual(sharp.target,'lane:A0:A1')
+        receiver=(49.,62.)
+        self.assertLess(math.dist(sharp.aim,receiver),
+                        math.dist(ordinary.aim,receiver))
 
     def test_retain(self):
         r=self.worker('retain')

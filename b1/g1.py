@@ -3,6 +3,7 @@ import argparse
 from collections import Counter
 from dataclasses import asdict, is_dataclass
 import json
+import math
 import platform
 import random
 import time
@@ -19,7 +20,7 @@ TERMINALS = ('pass_completed', 'pass_intercepted',
              'pass_incomplete_ball_loose', 'carrier_grounded',
              'carrier_reaches_x_90', 'timeout_8000ms')
 FAILURE_CAUSES = ('defender_ball_contact', 'defender_body_contact',
-                  'receiver_catch_failure', 'carrier_motion_during_windup',
+                  'receiver_catch_failure',
                   'belief_aim_error', 'pass_accuracy_failure', 'unknown')
 
 
@@ -31,8 +32,6 @@ def condition_ratings(condition):
     defender = dict(carrier)
     if condition in ('C1_sharp_defender','C5_lane_defender_sharp'):
         defender['judgment'] = defender['reaction'] = .90
-        for key in prism_ratings_v0.JUDGE:
-            defender[key] = .90
     if condition == 'C2_limited_vision_carrier':
         carrier['vision'], carrier['awareness'] = .40, .50
     return carrier, defender
@@ -66,13 +65,37 @@ def _failure_cause(endpoint, evidence):
         return 'receiver_catch_failure', 'ball entered A1 reach envelope without secure control'
     if evidence.get('aim_receiver_error_m') is not None and evidence['aim_receiver_error_m']>1.5:
         return 'belief_aim_error', 'admitted belief aim was more than 1.5 m from A1'
-    if (evidence.get('release_origin_shift_m') is not None and
-            evidence['release_origin_shift_m']>.75 and
-            not evidence.get('moving_release_recomputed')):
-        return 'carrier_motion_during_windup', 'origin moved without release-time aim recomputation'
-    if evidence.get('aim_receiver_error_m') is not None:
-        return 'pass_accuracy_failure', 'pass aimed near A1 but physical flight missed the reach envelope'
+    cross_track=evidence.get('release_cross_track_error_at_aim_m')
+    if (cross_track is not None and
+            cross_track>evidence.get('receiver_reach_threshold_m',0.)):
+        return 'pass_accuracy_failure', (
+            'sampled release direction missed the semantic aim reach envelope '
+            f'by {cross_track:.3f} m cross-track')
     return 'unknown', 'recorded evidence does not establish a failure cause'
+
+
+def _point_segment_distance(point, start, end):
+    px,py=point; ax,ay=start; bx,by=end
+    dx,dy=bx-ax,by-ay
+    length2=dx*dx+dy*dy
+    if length2<=1e-12:
+        return math.hypot(px-ax,py-ay)
+    u=max(0.,min(1.,((px-ax)*dx+(py-ay)*dy)/length2))
+    return math.hypot(px-(ax+u*dx),py-(ay+u*dy))
+
+
+def _direction_evidence(origin, aim, velocity):
+    if not origin or not aim or not velocity:
+        return None,None
+    tx,ty=aim[0]-origin[0],aim[1]-origin[1]
+    vx,vy=velocity[:2]
+    tl,vl=math.hypot(tx,ty),math.hypot(vx,vy)
+    if tl<=1e-12 or vl<=1e-12:
+        return None,None
+    cosine=max(-1.,min(1.,(tx*vx+ty*vy)/(tl*vl)))
+    angle=math.degrees(math.acos(cosine))
+    cross_track=abs(tx*vy-ty*vx)/vl
+    return angle,cross_track
 
 
 def run_episode(seed=1, condition='C0_uniform', telemetry=True):
@@ -107,7 +130,9 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
     configs = {
         'A0':DecisionConfig('carrier',(90.,50.),1.2,1.5),
         'B0':DecisionConfig('defender',None,1.2,0.,
-                            defender_ratings['judgment']),
+                            defender_ratings['judgment'],
+                            condition in ('C4_lane_defender',
+                                          'C5_lane_defender_sharp')),
     }
     periods = {pid:max(50,int(round(sensor.prism.prof['decision_interval_s']*1000)))
                for pid,sensor in sensors.items()}
@@ -132,8 +157,16 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
                'min_defender_ball_3d_m':None,
                'receiver_reach_threshold_m':T.a.reach+T.radius+.2,
                'aim_receiver_error_m':None,
+               'release_direction_error_deg':None,
+               'release_cross_track_error_at_aim_m':None,
                'release_origin_shift_m':None,
-               'moving_release_recomputed':False}}
+               'moving_release_recomputed':False,
+               'correction_angle_deg':None},
+           'mechanism_evidence':{
+               'defender_decisions_before_release':0,
+               'defender_lane_decisions_before_release':0,
+               'defender_lane_option_selected_before_release':False,
+               'defender_distance_to_pass_lane_at_release_m':None}}
     record_index=0
     release_snapshot=None
     released=False
@@ -159,12 +192,30 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
                 outcome=PhysicalOutcome(
                     f"g1/{seed}/{condition}/{rec['time_ms']}/{len(trace['outcomes'])}",
                     rec.get('command_id'),rec['status'],rec['time_ms'])
-                trace['outcomes'].append(asdict(outcome))
+                encoded_outcome=asdict(outcome)
+                for key in ('action_kind','target','release_origin','semantic_aim',
+                            'moving_release_recomputed','correction_angle_deg',
+                            'correction_bound_deg','admitted_speed_mps',
+                            'admitted_horizontal_speed_mps','final_ball_velocity'):
+                    if key in rec:
+                        encoded_outcome[key]=rec[key]
+                trace['outcomes'].append(encoded_outcome)
                 if rec.get('command_id'):
                     feedback['A0'].append(receive_outcome(outcome))
                 released = released or rec['status']=='released'
                 if rec['status']=='released':
                     evidence['moving_release_recomputed']=bool(rec.get('moving_release_recomputed'))
+                    evidence['correction_angle_deg']=rec.get('correction_angle_deg')
+                    angle,cross_track=_direction_evidence(
+                        rec.get('release_origin'),rec.get('semantic_aim'),
+                        rec.get('final_ball_velocity'))
+                    evidence['release_direction_error_deg']=angle
+                    evidence['release_cross_track_error_at_aim_m']=cross_track
+                    if rec.get('release_origin') and rec.get('semantic_aim'):
+                        trace['mechanism_evidence'][
+                            'defender_distance_to_pass_lane_at_release_m']=(
+                                _point_segment_distance((D.x,D.y),
+                                    rec['release_origin'],rec['semantic_aim']))
                     if release_snapshot and rec.get('release_origin'):
                         ox,oy=rec['release_origin'];ax,ay=release_snapshot['actor']
                         evidence['release_origin_shift_m']=((ox-ax)**2+(oy-ay)**2)**.5
@@ -214,6 +265,12 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
             trace['decisions'].append({'athlete':pid,'view':asdict(view),
                                        'belief':asdict(belief),'decision':decision,
                                        'intent':asdict(intent)})
+            if pid=='B0' and not released:
+                mechanism=trace['mechanism_evidence']
+                mechanism['defender_decisions_before_release']+=1
+                if intent.target and intent.target.startswith('lane:'):
+                    mechanism['defender_lane_decisions_before_release']+=1
+                    mechanism['defender_lane_option_selected_before_release']=True
             encoded=asdict(admission['command']) if is_dataclass(admission.get('command')) else admission
             trace['admissions'].append({'intent_id':intent.intent_id,
                                         'admission':encoded})
@@ -276,11 +333,164 @@ def run_episode(seed=1, condition='C0_uniform', telemetry=True):
             'execution_hash':digest(json.loads(json.dumps(causal,default=_jsonable))),
             'state_hash':digest(json.loads(json.dumps(state,default=_jsonable))),
             'rng_states':rng_states,'trace':trace if telemetry else None,
+            'mechanism_evidence':trace['mechanism_evidence'],
             'final_state':state,
             'performance':{'wall_s':time.perf_counter()-wall,
                            'cpu_s':time.process_time()-cpu},
             'runtime':platform.python_version()}
     return result
+
+
+def _lane_comparison(episodes):
+    names=('C4_lane_defender','C5_lane_defender_sharp')
+    rows_by={name:[r for r in episodes if r['condition']==name]
+             for name in names}
+    mechanism={}
+    for name,rows in rows_by.items():
+        selected=[r for r in rows if r['mechanism_evidence'][
+            'defender_lane_option_selected_before_release']]
+        release_distances=[r['mechanism_evidence'][
+            'defender_distance_to_pass_lane_at_release_m'] for r in rows
+            if r['mechanism_evidence'][
+                'defender_distance_to_pass_lane_at_release_m'] is not None]
+        selected_distances=[r['mechanism_evidence'][
+            'defender_distance_to_pass_lane_at_release_m'] for r in selected
+            if r['mechanism_evidence'][
+                'defender_distance_to_pass_lane_at_release_m'] is not None]
+        intercepted=sum(r['endpoint']=='pass_intercepted' for r in selected)
+        mechanism[name]={
+            'seed_count':len(rows),
+            'lane_option_seed_count':len(selected),
+            'lane_option_seed_fraction':len(selected)/len(rows) if rows else 0.,
+            'release_lane_distance_sample_count':len(release_distances),
+            'mean_defender_distance_to_pass_lane_at_release_m':(
+                sum(release_distances)/len(release_distances)
+                if release_distances else None),
+            'lane_selected_release_distance_sample_count':len(selected_distances),
+            'mean_defender_distance_to_pass_lane_when_lane_selected_m':(
+                sum(selected_distances)/len(selected_distances)
+                if selected_distances else None),
+            'interceptions_with_lane_option':intercepted,
+            'interception_rate_conditional_on_lane_option':(
+                intercepted/len(selected) if selected else None)}
+    c4_by={r['seed']:r for r in rows_by[names[0]]}
+    c5_by={r['seed']:r for r in rows_by[names[1]]}
+    common=sorted(set(c4_by)&set(c5_by))
+    endpoint_differences=sum(c4_by[s]['endpoint']!=c5_by[s]['endpoint']
+                             for s in common)
+    interceptions_gained=sum(c4_by[s]['endpoint']!='pass_intercepted' and
+                             c5_by[s]['endpoint']=='pass_intercepted'
+                             for s in common)
+    interceptions_lost=sum(c4_by[s]['endpoint']=='pass_intercepted' and
+                           c5_by[s]['endpoint']!='pass_intercepted'
+                           for s in common)
+    both_selected=[s for s in common if
+                   c4_by[s]['mechanism_evidence'][
+                       'defender_lane_option_selected_before_release'] and
+                   c5_by[s]['mechanism_evidence'][
+                       'defender_lane_option_selected_before_release']]
+    matched_c4_interceptions=sum(c4_by[s]['endpoint']=='pass_intercepted'
+                                 for s in both_selected)
+    matched_c5_interceptions=sum(c5_by[s]['endpoint']=='pass_intercepted'
+                                 for s in both_selected)
+    matched_gained=sum(c4_by[s]['endpoint']!='pass_intercepted' and
+                       c5_by[s]['endpoint']=='pass_intercepted'
+                       for s in both_selected)
+    matched_lost=sum(c4_by[s]['endpoint']=='pass_intercepted' and
+                     c5_by[s]['endpoint']!='pass_intercepted'
+                     for s in both_selected)
+    discordant=matched_gained+matched_lost
+    tail=min(matched_gained,matched_lost)
+    mcnemar_p=(min(1.,2*sum(math.comb(discordant,i)
+                           for i in range(tail+1))/(2**discordant))
+               if discordant else 1.)
+    distance_deltas=[]
+    selected_distance_deltas=[]
+    for seed in common:
+        r4,r5=c4_by[seed],c5_by[seed]
+        d4=r4['mechanism_evidence'][
+            'defender_distance_to_pass_lane_at_release_m']
+        d5=r5['mechanism_evidence'][
+            'defender_distance_to_pass_lane_at_release_m']
+        if d4 is not None and d5 is not None:
+            distance_deltas.append(d4-d5)
+            if (r4['mechanism_evidence'][
+                    'defender_lane_option_selected_before_release'] and
+                    r5['mechanism_evidence'][
+                    'defender_lane_option_selected_before_release']):
+                selected_distance_deltas.append(d4-d5)
+    c4m,c5m=mechanism[names[0]],mechanism[names[1]]
+    n4,n5=c4m['lane_option_seed_count'],c5m['lane_option_seed_count']
+    x4,x5=c4m['interceptions_with_lane_option'],c5m['interceptions_with_lane_option']
+    p4=x4/n4 if n4 else 0.;p5=x5/n5 if n5 else 0.
+    pooled=(x4+x5)/(n4+n5) if n4+n5 else 0.
+    se=math.sqrt(pooled*(1-pooled)*(1/n4+1/n5)) if n4 and n5 else 0.
+    z=(p5-p4)/se if se else 0.
+    p_value=math.erfc(abs(z)/math.sqrt(2.)) if se else 1.
+    enough_matched=len(both_selected)>=100
+    mechanism_supported=(
+        enough_matched and matched_c5_interceptions>matched_c4_interceptions
+        and matched_gained>matched_lost and mcnemar_p<.05)
+    return {
+        'baseline':names[0],'sharp':names[1],
+        'seed_count_per_condition':len(rows_by[names[0]]),
+        'paired_endpoint_differences':endpoint_differences,
+        'paired_interceptions_gained':interceptions_gained,
+        'paired_interceptions_lost':interceptions_lost,
+        'baseline_mix':dict(sorted(Counter(r['endpoint']
+                                          for r in rows_by[names[0]]).items())),
+        'sharp_mix':dict(sorted(Counter(r['endpoint']
+                                       for r in rows_by[names[1]]).items())),
+        'mechanism':mechanism,
+        'conditional_interception_rate_difference_sharp_minus_baseline':p5-p4,
+        'conditional_interception_two_proportion_z':z,
+        'conditional_interception_two_sided_p_approx':p_value,
+        'matched_both_selected':{
+            'seed_count':len(both_selected),
+            'baseline_interceptions':matched_c4_interceptions,
+            'sharp_interceptions':matched_c5_interceptions,
+            'sharp_interceptions_gained':matched_gained,
+            'sharp_interceptions_lost':matched_lost,
+            'exact_two_sided_mcnemar_p':mcnemar_p},
+        'mechanism_support_rule':(
+            'at least 100 paired seeds where both select the lane; sharp has '
+            'more interceptions, more paired gains than losses, and exact '
+            'two-sided McNemar p<0.05'),
+        'mechanism_support_rule_passed':mechanism_supported,
+        'paired_release_lane_distance':{
+            'sample_count':len(distance_deltas),
+            'sharp_closer_count':sum(d>0 for d in distance_deltas),
+            'baseline_closer_count':sum(d<0 for d in distance_deltas),
+            'equal_count':sum(d==0 for d in distance_deltas),
+            'mean_baseline_minus_sharp_m':(
+                sum(distance_deltas)/len(distance_deltas)
+                if distance_deltas else None)},
+        'paired_release_lane_distance_when_both_selected':{
+            'sample_count':len(selected_distance_deltas),
+            'sharp_closer_count':sum(d>0 for d in selected_distance_deltas),
+            'baseline_closer_count':sum(d<0 for d in selected_distance_deltas),
+            'equal_count':sum(d==0 for d in selected_distance_deltas),
+            'mean_baseline_minus_sharp_m':(
+                sum(selected_distance_deltas)/len(selected_distance_deltas)
+                if selected_distance_deltas else None)}}
+
+
+def run_lane_study(seeds=400, seed_start=101):
+    wall=time.perf_counter();cpu=time.process_time()
+    episodes=[]
+    for condition in ('C4_lane_defender','C5_lane_defender_sharp'):
+        for seed in range(seed_start,seed_start+seeds):
+            result=run_episode(seed,condition,False)
+            episodes.append({k:result[k] for k in (
+                'condition','seed','endpoint','failure_cause','cause_basis',
+                'execution_hash','state_hash','mechanism_evidence')})
+    return {'scenario_id':'m1-defender-lane-mechanism-study-v1',
+            'seed_start':seed_start,'seeds_per_condition':seeds,
+            'episodes':episodes,'lane_defender_comparison':_lane_comparison(episodes),
+            'study_hash':digest(episodes),
+            'performance':{'wall_s':time.perf_counter()-wall,
+                           'cpu_s':time.process_time()-cpu},
+            'runtime':platform.python_version()}
 
 
 def run_matrix(seeds=100):
@@ -291,7 +501,7 @@ def run_matrix(seeds=100):
             result=run_episode(seed,condition,False)
             episodes.append({k:result[k] for k in (
                 'condition','seed','endpoint','failure_cause','cause_basis',
-                'execution_hash','state_hash')})
+                'execution_hash','state_hash','mechanism_evidence')})
     by_condition={}
     for condition in CONDITIONS:
         rows=[r for r in episodes if r['condition']==condition]
@@ -304,17 +514,13 @@ def run_matrix(seeds=100):
     all_outcomes=set(r['endpoint'] for r in episodes)
     required={'pass_completed','pass_intercepted',
               'pass_incomplete_ball_loose','carrier_grounded'}
-    c4=by_condition['C4_lane_defender']['outcomes']
-    c5=by_condition['C5_lane_defender_sharp']['outcomes']
-    paired_lane_differences=sum(
-        next(r for r in episodes if r['condition']=='C4_lane_defender' and r['seed']==seed)['endpoint'] !=
-        next(r for r in episodes if r['condition']=='C5_lane_defender_sharp' and r['seed']==seed)['endpoint']
-        for seed in range(1,seeds+1))
+    lane_comparison=_lane_comparison(episodes)
     acceptance={
         'BA-M1-1_required_outcomes_present':required <= all_outcomes,
         'BA-M1-2_all_failures_traceable':all(
             v['unknown_failure_causes']==0 for v in by_condition.values()),
-        'BA-M1-3_sharp_defender_changes_lane_mix':c4!=c5 and paired_lane_differences>0,
+        'BA-M1-3_defender_quality_mechanism_demonstrated':(
+            lane_comparison['mechanism_support_rule_passed']),
         'BA-M1-4_no_formation_or_role_assignment':True,
         'BA-M1-5_determinism':False,
         'BA-M1-6_performance_reported':True,
@@ -329,10 +535,7 @@ def run_matrix(seeds=100):
     payload={'scenario_id':'m1-carrier-pass-or-carry-v2',
              'seeds_per_condition':seeds,'conditions':by_condition,
              'episodes':episodes,'acceptance':acceptance,
-             'lane_defender_comparison':{
-                 'baseline':'C4_lane_defender','sharp':'C5_lane_defender_sharp',
-                 'paired_endpoint_differences':paired_lane_differences,
-                 'baseline_mix':c4,'sharp_mix':c5},
+             'lane_defender_comparison':lane_comparison,
              'determinism_replay':deterministic,
              'performance':{'wall_s':time.perf_counter()-wall,
                             'cpu_s':time.process_time()-cpu},
@@ -345,10 +548,16 @@ def main():
     ap.add_argument('--seed',type=int,default=1)
     ap.add_argument('--condition',choices=CONDITIONS,default=CONDITIONS[0])
     ap.add_argument('--matrix',type=int,metavar='SEEDS_PER_CONDITION')
+    ap.add_argument('--lane-study',type=int,metavar='SEEDS_PER_CONDITION')
+    ap.add_argument('--seed-start',type=int,default=101)
     ap.add_argument('--telemetry-off',action='store_true')
     ap.add_argument('--out',required=True)
     args=ap.parse_args()
+    if args.matrix is not None and args.lane_study is not None:
+        ap.error('--matrix and --lane-study are mutually exclusive')
     result=(run_matrix(args.matrix) if args.matrix is not None else
+            run_lane_study(args.lane_study,args.seed_start)
+            if args.lane_study is not None else
             run_episode(args.seed,args.condition,not args.telemetry_off))
     out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(result,sort_keys=True,indent=2,default=_jsonable)+'\n')

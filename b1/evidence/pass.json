@@ -1,11 +1,11 @@
 {
   "case": "pass",
   "decision_count": 6,
-  "execution_hash": "d04ab60e327ec74d25c83409be52154379006e1418f472175348ce1244465024",
+  "execution_hash": "4beb80859df31a0e7d85ab731a67096a70d3262f98010bd8295a2c09f0a756b2",
   "performance": {
-    "cpu_s": 1.806775956,
-    "setup_wall_s": 0.6430617169999095,
-    "total_wall_s": 0.6524193300001571
+    "cpu_s": 1.729194478,
+    "setup_wall_s": 0.5998461079998378,
+    "total_wall_s": 0.6093460440006311
   },
   "rng_states": {
     "match.rng.arrow": "d3d407cafac41952523ee00de57b781dd3a73d17118553afb64fa375730c6cc7",
@@ -1593,15 +1593,73 @@
         ]
       },
       {
-        "ball_velocity": [
+        "action_kind": "pass",
+        "admitted_horizontal_speed_mps": 27.0,
+        "admitted_speed_mps": 27.073972741361768,
+        "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
+        "correction_angle_deg": 8.537736462515939e-07,
+        "correction_bound_deg": 60.0,
+        "final_ball_velocity": [
           27.29976621508636,
           0.03978467469017377,
           2.0706364727440496
         ],
-        "command_id": "m1/0000000000001300/A0/perception/0/decision/intent/command",
         "kind": "outcome",
+        "moving_release_recomputed": true,
+        "release_origin": [
+          40.0,
+          50.0
+        ],
+        "semantic_aim": [
+          54.937446819088606,
+          49.982545801544134
+        ],
         "status": "released",
+        "target": "A1",
         "time_ms": 1534
+      },
+      {
+        "ball": [
+          40.748,
+          50.0,
+          1.531
+        ],
+        "ball_mode": "passed",
+        "carrier": null,
+        "cause": null,
+        "data": {
+          "forced": false,
+          "kind": "pass",
+          "origin": {
+            "pelvis": [
+              40.0,
+              50.0
+            ],
+            "rule": "pelvis_no_foot_state"
+          },
+          "player": "A0",
+          "target": "A1",
+          "velocity": [
+            27.29976621508636,
+            0.03978467469017377,
+            2.0706364727440496
+          ]
+        },
+        "event": "release",
+        "g_ms": 120000,
+        "id": 12,
+        "kind": "engine_event",
+        "live_ms": 0,
+        "owner": "A",
+        "p_ms": 45000,
+        "period": 1,
+        "phase": "live",
+        "rule": "4.4\u20134.5;3.1",
+        "score": {
+          "A": 0,
+          "B": 0
+        },
+        "t_ms": 1534
       },
       {
         "ball": [

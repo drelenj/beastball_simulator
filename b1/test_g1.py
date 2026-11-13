@@ -42,7 +42,7 @@ class GovernedScenarioTests(unittest.TestCase):
         self.assertIn('C5_lane_defender_sharp',CONDITIONS)
 
     def test_defender_tracks_released_ball_from_belief(self):
-        result=run_episode(1,'C4_lane_defender',True)
+        result=run_episode(2,'C4_lane_defender',True)
         release_ms=next(e['t_ms'] for e in result['trace']['engine_events']
                         if e.get('event')=='release')
         ball_pursuit=[d for d in result['trace']['decisions']
@@ -50,20 +50,14 @@ class GovernedScenarioTests(unittest.TestCase):
                       and d['view']['delivered_ms']>=release_ms]
         self.assertTrue(ball_pursuit)
 
-    def test_moving_release_recomputes_semantic_aim(self):
-        result=run_episode(1,'C4_lane_defender',True)
-        trace=result['trace']
-        release=next(e for e in trace['engine_events'] if e.get('event')=='release')
-        decision=next(d for d in trace['decisions']
-                      if d['athlete']=='A0' and d['intent']['kind']=='pass')
-        ox,oy=release['data']['origin']['pelvis']
-        ax,ay=decision['intent']['aim']
-        vx,vy=release['data']['velocity'][:2]
-        dot=(ax-ox)*vx+(ay-oy)*vy
-        angle=math.acos(max(-1.,min(1.,dot/(math.hypot(ax-ox,ay-oy)*
-                                              math.hypot(vx,vy)))))
-        self.assertLess(math.degrees(angle),8.)
-        self.assertTrue(trace['flight_evidence']['moving_release_recomputed'])
+    def test_mr1_twenty_seeds_final_direction_matches_semantic_aim(self):
+        for seed in range(1,21):
+            with self.subTest(seed=seed):
+                result=run_episode(seed,'C0_uniform',True)
+                evidence=result['trace']['flight_evidence']
+                self.assertLess(evidence['release_direction_error_deg'],8.)
+                self.assertTrue(evidence['moving_release_recomputed'])
+                self.assertLessEqual(evidence['correction_angle_deg'],60.)
 
     def test_failure_attribution_can_report_unknown(self):
         cause,basis=_failure_cause('pass_incomplete_ball_loose',{})

@@ -20,6 +20,7 @@ ALL_FEATURE_ENV = (
     'PRISM', 'HAND_FIGHT', 'RULES_V03', 'RV03_SCRIM', 'RV03_NOKICK',
     'BLOCK_OPTION', 'BOUNCE_OPTION', 'THROW_SPLIT',
 )
+MAX_MOVING_RELEASE_CORRECTION_DEG = 60.0
 
 
 def digest(v):
@@ -32,7 +33,7 @@ def forbidden(*args, **kwargs):
 
 
 class PhysicalExecutionPort:
-    def __init__(self, seed):
+    def __init__(self, seed, moving_release_contract=True):
         # Only call in a dedicated process: the inherited loader installs classes.
         sys.path.insert(0, str(REPO))
         # Reproduce the accepted B0-P4-DEFAULT feature profile without importing
@@ -83,6 +84,7 @@ class PhysicalExecutionPort:
         self.move_targets = {'A0':(40.,50.), 'A1':(55.,50.), 'B0':(47.,55.)}
         self.records = []
         self._engine_log_index = len(self.m.e.log)
+        self.moving_release_contract = moving_release_contract
 
     def _collect_engine_log(self):
         fresh = self.m.e.log[self._engine_log_index:]
@@ -101,27 +103,53 @@ class PhysicalExecutionPort:
                                  'status':'interrupted', 'time_ms':s.now})
         else:
             velocity = c.desired_velocity
+            admitted_velocity = velocity
             recomputed = False
+            correction_angle_deg = 0.0
             if c.intent.aim is not None and velocity is not None:
-                # Declared moving-release contract: locomotion and
-                # ball_control_release are separable.  Preserve the admitted
-                # speed, but execute the semantic aim from the authoritative
-                # release origin instead of retaining a stale direction.
+                # Draft pass-release-v1 contract: preserve admitted speed and
+                # vertical component while recomputing horizontal direction
+                # from own-body release origin to the fixed semantic aim.
                 dx,dy=c.intent.aim[0]-a.x,c.intent.aim[1]-a.y
                 length=math.hypot(dx,dy)
                 speed=math.hypot(velocity[0],velocity[1])
                 if length>1e-9:
-                    velocity=(dx/length*speed,dy/length*speed,velocity[2])
-                    recomputed=True
-            ok = self.m.e.release(a.id, velocity, 'pass',
-                                  c.intent.target, False)
-            self.records.append({'kind':'outcome', 'command_id':c.command_id,
-                                 'status':'released' if ok else 'rejected',
-                                 'time_ms':s.now,
-                                 'ball_velocity':[s.ball.vx,s.ball.vy,s.ball.vz],
-                                 'release_origin':[a.x,a.y],
-                                 'semantic_aim':list(c.intent.aim) if c.intent.aim else None,
-                                 'moving_release_recomputed':recomputed})
+                    dot=velocity[0]*dx+velocity[1]*dy
+                    cosine=max(-1.,min(1.,dot/(max(1e-12,speed)*length)))
+                    correction_angle_deg=math.degrees(math.acos(cosine))
+                    if (self.moving_release_contract and
+                            correction_angle_deg>MAX_MOVING_RELEASE_CORRECTION_DEG):
+                        self.records.append({
+                            'kind':'outcome','command_id':c.command_id,
+                            'status':'rejected_geometry','time_ms':s.now,
+                            'action_kind':c.intent.kind,'target':c.intent.target,
+                            'release_origin':[a.x,a.y],
+                            'semantic_aim':list(c.intent.aim),
+                            'moving_release_recomputed':False,
+                            'correction_angle_deg':correction_angle_deg,
+                            'correction_bound_deg':MAX_MOVING_RELEASE_CORRECTION_DEG,
+                            'admitted_speed_mps':math.sqrt(sum(v*v for v in admitted_velocity)),
+                            'admitted_horizontal_speed_mps':speed,
+                            'final_ball_velocity':None})
+                        self.pending=None
+                        return
+                    if self.moving_release_contract:
+                        velocity=(dx/length*speed,dy/length*speed,velocity[2])
+                        recomputed=True
+            ok = self.m.e.release(a.id, velocity, 'pass', c.intent.target, False)
+            self.records.append({
+                'kind':'outcome','command_id':c.command_id,
+                'status':'released' if ok else 'rejected','time_ms':s.now,
+                'action_kind':c.intent.kind,'target':c.intent.target,
+                'release_origin':[a.x,a.y],
+                'semantic_aim':list(c.intent.aim) if c.intent.aim else None,
+                'moving_release_recomputed':recomputed,
+                'correction_angle_deg':correction_angle_deg,
+                'correction_bound_deg':MAX_MOVING_RELEASE_CORRECTION_DEG,
+                'admitted_speed_mps':math.sqrt(sum(v*v for v in admitted_velocity)),
+                'admitted_horizontal_speed_mps':math.hypot(admitted_velocity[0],
+                                                            admitted_velocity[1]),
+                'final_ball_velocity':[s.ball.vx,s.ball.vy,s.ball.vz]})
         self.pending = None
         self._collect_engine_log()
 
@@ -156,16 +184,7 @@ class PhysicalExecutionPort:
         if until_ms < s.now or until_ms-s.now > 10000:
             raise ValueError('invalid bounded advance')
         while s.now < until_ms:
-            if self.pending and s.now >= self.pending.release_ms:
-                c = self.pending
-                a = s.players[c.intent.athlete]
-                if not self.m.e.eligible(a) or s.ball.carrier != a.id:
-                    self.records.append({'kind':'outcome', 'command_id':c.command_id, 'status':'interrupted', 'time_ms':s.now})
-                else:
-                    ok = self.m.e.release(a.id, c.desired_velocity, 'pass', c.intent.target, False)
-                    self.records.append({'kind':'outcome', 'command_id':c.command_id, 'status':'released' if ok else 'rejected', 'time_ms':s.now,
-                                         'ball_velocity':[s.ball.vx,s.ball.vy,s.ball.vz]})
-                self.pending = None
+            self._release_due()
             dt = min(10, until_ms-s.now)
             if self.pending:
                 dt = min(dt, self.pending.release_ms-s.now)

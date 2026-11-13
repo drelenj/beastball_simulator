@@ -1,0 +1,89 @@
+{
+  "artifact_scope": "aggregate mechanism evidence; reproduce full episodes with the recorded command",
+  "command": "python3 -m b1.g1 --lane-study 800 --seed-start 101 --out /tmp/g1-r6-lane-study.json",
+  "lane_defender_comparison": {
+    "baseline": "C4_lane_defender",
+    "sharp": "C5_lane_defender_sharp",
+    "seed_count_per_condition": 800,
+    "baseline_mix": {
+      "carrier_reaches_x_90": 22,
+      "pass_completed": 467,
+      "pass_incomplete_ball_loose": 213,
+      "pass_intercepted": 98
+    },
+    "sharp_mix": {
+      "carrier_grounded": 3,
+      "carrier_reaches_x_90": 18,
+      "pass_completed": 495,
+      "pass_incomplete_ball_loose": 208,
+      "pass_intercepted": 76
+    },
+    "paired_endpoint_differences": 335,
+    "paired_interceptions_gained": 57,
+    "paired_interceptions_lost": 79,
+    "mechanism": {
+      "C4_lane_defender": {
+        "seed_count": 800,
+        "lane_option_seed_count": 161,
+        "lane_option_seed_fraction": 0.20125,
+        "release_lane_distance_sample_count": 778,
+        "mean_defender_distance_to_pass_lane_at_release_m": 1.8454233621112868,
+        "lane_selected_release_distance_sample_count": 139,
+        "mean_defender_distance_to_pass_lane_when_lane_selected_m": 1.775679256770549,
+        "interceptions_with_lane_option": 30,
+        "interception_rate_conditional_on_lane_option": 0.18633540372670807
+      },
+      "C5_lane_defender_sharp": {
+        "seed_count": 800,
+        "lane_option_seed_count": 152,
+        "lane_option_seed_fraction": 0.19,
+        "release_lane_distance_sample_count": 781,
+        "mean_defender_distance_to_pass_lane_at_release_m": 2.609523334600695,
+        "lane_selected_release_distance_sample_count": 144,
+        "mean_defender_distance_to_pass_lane_when_lane_selected_m": 1.7931513039117044,
+        "interceptions_with_lane_option": 52,
+        "interception_rate_conditional_on_lane_option": 0.34210526315789475
+      }
+    },
+    "conditional_interception_rate_difference_sharp_minus_baseline": 0.15576985943118668,
+    "conditional_interception_two_proportion_z": 3.132401423178482,
+    "conditional_interception_two_sided_p_approx": 0.001733826395202029,
+    "matched_both_selected": {
+      "seed_count": 107,
+      "baseline_interceptions": 28,
+      "sharp_interceptions": 45,
+      "sharp_interceptions_gained": 32,
+      "sharp_interceptions_lost": 15,
+      "exact_two_sided_mcnemar_p": 0.01862383661500644
+    },
+    "paired_release_lane_distance": {
+      "sample_count": 763,
+      "sharp_closer_count": 256,
+      "baseline_closer_count": 507,
+      "equal_count": 0,
+      "mean_baseline_minus_sharp_m": -0.8124929577875014
+    },
+    "paired_release_lane_distance_when_both_selected": {
+      "sample_count": 81,
+      "sharp_closer_count": 32,
+      "baseline_closer_count": 49,
+      "equal_count": 0,
+      "mean_baseline_minus_sharp_m": -0.29749557875301086
+    },
+    "mechanism_support_rule": "at least 100 paired seeds where both select the lane; sharp has more interceptions, more paired gains than losses, and exact two-sided McNemar p<0.05",
+    "mechanism_support_rule_passed": true
+  },
+  "performance": {
+    "cpu_s": 519.081507831,
+    "wall_s": 516.2981354620006
+  },
+  "runtime": "3.12.14",
+  "scenario_id": "m1-defender-lane-mechanism-study-v1",
+  "seed_ranges": [[101, 500], [501, 900]],
+  "seeds_per_condition": 800,
+  "source_study_hashes": [
+    "29cacbb1fc40a574bd531de3ec629399c7dc707a2e9c361654d5bf3d20bb9f08",
+    "e42a77f8bdd63ca7ad7aa484ba9a63aa08fd5d9e6ee10f007ced8d6d9dbd9ebc"
+  ],
+  "study_hash": "a3a68939883294c06ad0e1d6276f13d911cf188ff128942c50aa4a92b50ff5e1"
+}
