@@ -8,6 +8,8 @@ from dataclasses import dataclass, asdict, replace
 from math import hypot
 
 from . import core as M1          # Base A (governed M1) pure decision code
+from .emergence.params import PolicyParams, DEFAULT as DEFAULT_POLICY
+from .emergence.positioning import choose_position
 
 BALL = 'BALL'
 BALL_KINDS = ('pass', 'shoot', 'draw_release', 'restart_pass')
@@ -72,6 +74,7 @@ class AthleteView:
     posture: str = 'upright'
     judgment: float = 0.7                # SELF-1: own abilities known exactly
     zone_radius: float = 20.0            # G: inside = distance < R
+    policy: PolicyParams = DEFAULT_POLICY   # EMERGENCE-1: the team's fixed preference vector (own preferences)
 
 
 @dataclass(frozen=True)
@@ -200,6 +203,23 @@ def archer_target_legal(t, view, now):
             and 12. <= d <= 62. and now - t.captured_ms <= 700)
 
 
+def _position(view, mates, opps, bx, by, carrier):
+    """EMERGENCE-1 hook: belief-driven positioning replaces the `home` slot grid.
+    Offense/defense comes from the public passive-possession signal only."""
+    pp = view.signals.passive_team
+    mode = 'none' if pp is None else 'att' if pp == view.team else 'def'
+    cxy = None
+    if carrier and carrier[0] != 'me' and carrier[1] == view.team:
+        c = next((t for t in mates if t.entity == carrier[0]), None)
+        cxy = (c.x, c.y) if c is not None else None
+    aim, score, _ = choose_position(
+        view.x, view.y, view.own_goal_x, view.attack_sign, view.zone_radius,
+        (bx, by) if bx is not None else None, cxy, mode,
+        tuple((t.x, t.y) for t in mates if t.role == 'field'),
+        tuple((t.x, t.y) for t in opps if t.role != 'archer'), view.policy)
+    return ('position', mode, aim, 1.)
+
+
 def decide(view: AthleteView, belief: BeliefState):
     if belief.observation_id != view.observation_id:
         raise ValueError('belief/view provenance mismatch')
@@ -269,15 +289,15 @@ def decide(view: AthleteView, belief: BeliefState):
             if view.role == 'keeper':
                 options.append(('keeper_set', None, (view.own_goal_x + sg * 2., 50.), 1.))
             else:
-                options.append(('home', None, home_position(
-                    view, ref, sig.restart_team not in (None, view.team)), 1.))
+                options.append(_position(view, mates, opps, sig.restart_xy[0] if sig.restart_xy else bx,
+                                         sig.restart_xy[1] if sig.restart_xy else by, carrier))
     elif view.holds_ball:
         options.append(('retain', None, None, 0.))
         if not failed or True:
             near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=30.)
             dg = hypot(goal[0] - view.x, goal[1] - view.y)
             if view.role != 'keeper':
-                if dg <= 32 and banned != 'shoot':
+                if dg <= view.policy.shot_range and banned != 'shoot':
                     keeper = next((o for o in opps if o.role == 'keeper'), None)
                     side = -1. if keeper is not None and keeper.y > 50 else 1.
                     value = 5.5 - .2 * dg + (8. if near < 5.8 else 0.) + (
@@ -352,18 +372,18 @@ def decide(view: AthleteView, belief: BeliefState):
             mine = hypot(px - view.x, py - view.y)
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(px - t.x, py - t.y) < mine)
-            options.append(('home', None, home_position(view, ball.x, False), 1.))
+            options.append(_position(view, mates, opps, bx, by, carrier))
             if closer <= 1 or mine < 7.:
                 options.append(('pursue', BALL, (round(px, 3), round(py, 3)),
                                 round(4. - .05 * mine, 6)))
         elif carrier[1] == view.team:
-            options.append(('support', carrier[0], home_position(view, ball.x, False), 1.))
+            options.append(_position(view, mates, opps, bx, by, carrier))
         else:
             c = next(o for o in opps if o.entity == carrier[0])
             mine = hypot(c.x - view.x, c.y - view.y)
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(c.x - t.x, c.y - t.y) < mine)
-            options.append(('mark', None, home_position(view, ball.x, True), 1.))
+            options.append(_position(view, mates, opps, bx, by, carrier))
             # KP (R-15): no opponent-initiated contact on a protected Keeper
             if closer <= 1 and banned != 'press' and not keeper_protected(c, view):
                 # Base A (M1) defender decision: pursuit or the continuous lane option
@@ -373,6 +393,18 @@ def decide(view: AthleteView, belief: BeliefState):
                         options.append(('press', t, (round(_clamp(a[0], 1, 99), 3), round(_clamp(a[1], 1, 99), 3)),
                                         round(v - 7., 6)))
 
+    # EMERGENCE-1: the team's fixed preference vector biases the athlete's own options.
+    pol = view.policy
+    bias = {'pass': pol.bias_pass, 'shoot': pol.bias_shoot, 'press': pol.bias_press,
+            'pursue': pol.bias_pursue, 'draw_release': pol.archer_eager}
+    adjusted = []
+    for o in options:
+        if o[0] == 'pass' and pol.pass_min_clearance > 0. and _lane_clearance(
+                view.x, view.y, o[2][0], o[2][1], opps) < pol.pass_min_clearance:
+            continue
+        b_ = bias.get(o[0], 0.)
+        adjusted.append((o[0], o[1], o[2], round(o[3] + b_, 6)) if b_ else o)
+    options = adjusted
     chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
     did = f'{view.observation_id}/decision'
     aim_vel = None
@@ -390,6 +422,7 @@ def decide(view: AthleteView, belief: BeliefState):
               'considered_feedback': list(latest) if latest else None,
               'pending_command_id': view.pending_command_id,
               'options': [list(o) for o in options], 'selected': list(chosen),
+              'policy': pol.as_dict(),
               'selection_rule': 'max(value, kind, target)'}
     return intent, record
 
@@ -407,6 +440,7 @@ def view_from_json(d):
     s['immune'] = tuple(s.get('immune', ()))
     s['pass_call'] = tuple(s['pass_call']) if s.get('pass_call') else None
     v['signals'] = Signals(**s)
+    v['policy'] = PolicyParams.from_dict(v['policy']) if isinstance(v.get('policy'), dict) else DEFAULT_POLICY
     b['tracks'] = tr(b['tracks'])
     b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])
     b['last_ball'] = tuple(b['last_ball']) if b['last_ball'] else None

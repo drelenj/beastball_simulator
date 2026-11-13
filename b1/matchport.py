@@ -18,7 +18,7 @@ from .possession import PossessionTracker, RulesConfig, UnresolvedOutcome
 from .runtime import (ALL_FEATURE_ENV, REPO, digest, PhysicalExecutionPort,
                       MAX_MOVING_RELEASE_CORRECTION_DEG)
 
-LOCOMOTION = ('receive', 'carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
+LOCOMOTION = ('position', 'receive', 'carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
               'search', 'keeper_set', 'keeper_save')
 PASSIVE = ('retain', 'archer_hold', 'restart_wait', 'no_action')
 LEGACY_TRAPS = ('c4c2_decide', 'pocket_decide')
@@ -43,7 +43,7 @@ class _ReleaseAdapter:
 
 
 class MatchPort:
-    def __init__(self, seed, scenario=None, p1_ms=500):
+    def __init__(self, seed, scenario=None, p1_ms=500, policies=None, period_seconds=None):
         sys.path.insert(0, str(REPO))
         for key in ALL_FEATURE_ENV:
             os.environ.pop(key, None)
@@ -56,10 +56,18 @@ class MatchPort:
         X.S.on = set(X.SYSTEMS)
         X.S.shape, X.S.extras, X.S.names, X.S.seed, X.S.prism_r = 'sphere', extras, names, seed, None
         P.ROSTER_OVERRIDES = P.validate_roster(over) and over
-        self.m = m = P.CORE.match.Match(P.configuration(dict(P.SETTINGS), seed, copy.deepcopy(P.CALIBRATION)))
+        # EMERGENCE-1: per-team PolicyParams fixed before the match; optional shorter proxy period
+        from .emergence.params import PolicyParams, DEFAULT
+        self.policies = {t: (policies or {}).get(t, DEFAULT) for t in ('A', 'B')}
+        if not all(isinstance(v, PolicyParams) for v in self.policies.values()):
+            raise TypeError('policies must be PolicyParams')
+        settings = dict(P.SETTINGS)
+        if period_seconds is not None:
+            settings['period_seconds'] = int(period_seconds)
+        self.m = m = P.CORE.match.Match(P.configuration(settings, seed, copy.deepcopy(P.CALIBRATION)))
         self.types, self.geom = P.CORE.types, P.CORE.geometry
         self.seed, self.ratings = seed, prism_ratings_v0.assign(over, names)
-        self.settings = {k: P.SETTINGS[k] for k in ('period_seconds', 'periods', 'overtime_seconds', 'play_clock')}
+        self.settings = {k: settings[k] for k in ('period_seconds', 'periods', 'overtime_seconds', 'play_clock')}
         # D1 record R-RS: ruleset 1.0.2 for the B1 match instance only (B0 files untouched;
         # the B0 engine has a config switch for it).
         m.cfg['ruleset'] = '1.0.2'
@@ -224,7 +232,7 @@ class MatchPort:
             pending_release_ms=pend.get('due') if pend else None,
             arrows_loaded=q[0] if q else None, last_release_ms=(q[1] if q and q[1] > 0 else None),
             posture=me[2], judgment=round(float(self.ratings[pid]['judgment']), 4),
-            zone_radius=float(self.rules.cfg.keeper_zone_radius))
+            zone_radius=float(self.rules.cfg.keeper_zone_radius), policy=self.policies[a.team])
         fb = tuple(self.feedback.get(pid, ()))
         self.feedback[pid] = []
         belief = BeliefState(oid + '/belief', oid, tracks, fb, int(round(pr.P['memory_s'] * 1000)),
@@ -606,9 +614,10 @@ class MatchPort:
             self._resolve(pid, 'interrupted')
 
 
-def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500):
+def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500,
+              policies=None, period_seconds=None, on_decision=None, on_step=None):
     """Stepped N-athlete loop. Returns a compact, hashable result."""
-    port = MatchPort(seed, scenario, p1_ms)
+    port = MatchPort(seed, scenario, p1_ms, policies, period_seconds)
     m = port.m
     s = m.s
     FINAL = port.types.Phase.FINAL
@@ -616,6 +625,8 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
     limit = max_ms if max_ms is not None else 16000000
     next_sense, next_dec = s.now, {}
     h = hashlib.sha256()
+    h.update(digest({t: v.as_dict() for t, v in port.policies.items()}).encode())   # params are part of the trace
+    h.update(digest(port.settings).encode())
     counts, by_role, by_kind, admissions = Counter(), Counter(), Counter(), Counter()
     samples, chains, n_dec = [], [], 0
     terminal = None
@@ -638,6 +649,8 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
             if on_view:
                 on_view(port, view, belief)
             intent, rec = decide(view, belief)
+            if on_decision:
+                on_decision(port, view, intent)
             adm = port.submit(intent)
             status = adm['status'] + (':' + adm['reason'] if 'reason' in adm else '')
             if adm['status'] == 'rejected':
@@ -667,6 +680,8 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
             next_dec[pid] = now + max(100, int(round(prof['decision_interval_s'] * 1000)))
         m.step()
         port.collect()
+        if on_step:
+            on_step(port)
         if scenario in ('g1', 'g1_close'):
             done = [o.status for o in port.outcomes if o.status.startswith(('pass_', 'shot_', 'goal_', 'unknown:'))]
             b = s.ball
@@ -694,6 +709,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
     cmd_ids = {c['command_id'] for c in chains}
     result = {
         'seed': seed, 'scenario': scenario or 'regulation_match_B0_P4_DEFAULT',
+        'policy_params': {t: v.as_dict() for t, v in port.policies.items()},
         'status': ('final' if s.phase == FINAL else 'scenario_terminal' if terminal else 'time_limit'),
         'terminal': terminal, 'ruleset': port.ruleset, 'settings': port.settings,
         'start_ms': start, 'end_ms': s.now, 'score': dict(s.score), 'period': s.period,
