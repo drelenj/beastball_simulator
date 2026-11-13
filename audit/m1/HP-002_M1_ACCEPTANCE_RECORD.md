@@ -19,3 +19,17 @@ Independent evidence: reviews R1-R7 on `claude/hp002-audit`. R7 reproduced 25 te
 - M2 is **not** started or authorized by this record; it needs separate owner authorization.
 - `experiment/prism-sprint-30` and `experiment/prism-sprint-45` stay experiments; neither is merged or accepted. SPRINT-45 findings (R8) are inputs for M2/M3 planning only.
 - B0 (2abe497) remains frozen.
+
+## Addendum 2026-11-13: BLK-01..05 checked against the governing text (owner pasted it)
+Evidence is on commit 4b19719; checked by Claude against the table in the readiness plan.
+| Gate | Result | Basis |
+|---|---|---|
+| BLK-01 hidden state | MET | poison/perturbation tests (suite + my probes) leave decisions identical; cognition imports only dataclasses/math |
+| BLK-02 no retarget | MOSTLY MET | legacy controller trapped at runtime (test asserts the trap fires); receiver change rejected; no static call-graph test |
+| BLK-03 two ports, replay | MOSTLY MET | CommandIngress and PhysicalExecutionPort exist; command replay independent of cognition tested; outcome fixtures are episode-level (completion, interception, grounding seeds), not separate fixed-command fixtures per path |
+| BLK-04 order independence | MET for the M1 slice | batch permutation test; only two resources in M1 |
+| BLK-05 frozen B0 | PARTIAL | B1 is a separate package and B0 files are unchanged, but the port calls the B0 loader's install in a dedicated process, and the baseline guard fails on a clean checkout (23 uncommitted files); no CI |
+The owner accepted M1 with these partial items open. They are engineering follow-ups, not canon.
+
+## Addendum: change to carry-forward item 1
+Owner direction (2026-11-13): decision and outcome quality cannot be defined in advance because the best way to play is the thing being discovered. Therefore M2 acceptance tests judge **function** (boundary, ownership, determinism, ratings changing behavior through an observed mechanism), not whether any decision is "better". "Sharper defends better" is withdrawn as an acceptance item; quality is measured only by game-level results (score, wins) in many-match comparison.
