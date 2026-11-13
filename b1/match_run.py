@@ -13,11 +13,12 @@ def main():
     ap.add_argument('--max-ms', type=int)
     ap.add_argument('--out')
     ap.add_argument('--telemetry-off', action='store_true')
+    ap.add_argument('--p1-ms', type=int, default=500)
     a = ap.parse_args()
     t = time.perf_counter()
     result, _ = run_match(a.seed, None if a.scenario == 'match' else a.scenario,
                           a.max_ms if a.max_ms else (None if a.scenario == 'match' else 9000),
-                          not a.telemetry_off)
+                          not a.telemetry_off, p1_ms=a.p1_ms)
     result['wall_s'] = round(time.perf_counter() - t, 3)
     if a.out:
         Path(a.out).parent.mkdir(parents=True, exist_ok=True)

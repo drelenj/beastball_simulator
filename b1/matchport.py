@@ -4,6 +4,7 @@ every legacy tactical hook is replaced by a B1 command reader or a trap.
 """
 import copy
 import hashlib
+import json
 import math
 import os
 import sys
@@ -12,7 +13,10 @@ from dataclasses import asdict
 
 from .cognition import (AthleteView, BeliefState, MotorCommand, PhysicalOutcome,
                         Signals, Track, BALL, decide, receive_outcome)
-from .runtime import ALL_FEATURE_ENV, REPO, digest
+from . import core as M1
+from .possession import PossessionTracker, RulesConfig, UnresolvedOutcome
+from .runtime import (ALL_FEATURE_ENV, REPO, digest, PhysicalExecutionPort,
+                      MAX_MOVING_RELEASE_CORRECTION_DEG)
 
 LOCOMOTION = ('carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
               'search', 'keeper_set', 'keeper_save')
@@ -26,8 +30,20 @@ def forbidden(*a, **k):
     raise RuntimeError('legacy tactical controller reached')
 
 
+class _ReleaseAdapter:
+    """Duck-typed `self` so the Base A pass-release-v1 code
+    (runtime.PhysicalExecutionPort._release_due) executes N-athlete releases unchanged."""
+    moving_release_contract = True
+
+    def __init__(self, m):
+        self.m, self.pending, self.records = m, None, []
+
+    def _collect_engine_log(self):
+        pass
+
+
 class MatchPort:
-    def __init__(self, seed, scenario=None):
+    def __init__(self, seed, scenario=None, p1_ms=500):
         sys.path.insert(0, str(REPO))
         for key in ALL_FEATURE_ENV:
             os.environ.pop(key, None)
@@ -44,7 +60,13 @@ class MatchPort:
         self.types, self.geom = P.CORE.types, P.CORE.geometry
         self.seed, self.ratings = seed, prism_ratings_v0.assign(over, names)
         self.settings = {k: P.SETTINGS[k] for k in ('period_seconds', 'periods', 'overtime_seconds', 'play_clock')}
+        # D1 record R-RS: ruleset 1.0.2 for the B1 match instance only (B0 files untouched;
+        # the B0 engine has a config switch for it).
+        m.cfg['ruleset'] = '1.0.2'
         self.ruleset = m.cfg.get('ruleset', '1.0.1')
+        self.rules = PossessionTracker(RulesConfig(direct_possession_threshold_ms=p1_ms,
+                                                   keeper_zone_radius=float(m.s.keeper_zone_radius)))
+        self.was_live, self.release_records, self.kp_checked = None, [], 0
         self.move, self.pending, self.save_mode, self.restart_choice = {}, {}, {}, {}
         self.outcomes, self.feedback, self.flight, self.n_out = [], {}, None, 0
         self.sensors, self.gaze, self.last_ball, self.public = {}, {}, {}, {}
@@ -123,6 +145,8 @@ class MatchPort:
             'possession_ms': int(s.possession_ms), 'score': dict(s.score),
             'restart': (r.team, round(r.x, 2), round(r.y, 2), r.taker or getattr(self.m, 'restart_taker', None)) if r else None,
             'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture) for p in s.players.values() if p.active},
+            'rules': self.rules.public(),
+            'immune': tuple(sorted(p.id for p in s.players.values() if p.active and (now_ms <= p.immune_until or p.frozen(now_ms)))),
             'ms': now_ms, 'quiver': {t: (q.loaded, q.last_release, q.reload_until) for t, q in s.quivers.items()}}))
         del self.snaps[:-40]
         for pid in self.active_ids():
@@ -158,12 +182,14 @@ class MatchPort:
         # except static identity (team, role, slot, attack direction).
         due = now_ms - int(round(pr.latency_s * 1000))
         snap = next((sn for ms, sn in reversed(self.snaps) if ms <= due), self.snaps[0][1])
-        r = snap['restart']
+        r, rs = snap['restart'], snap['rules']
         me = snap['self'].get(pid) or (round(float(a.x), 3), round(float(a.y), 3), a.posture)
         other = 'B' if a.team == 'A' else 'A'
         sig = Signals(snap['phase'], snap['period'], snap['game_ms'], snap['possession_ms'],
                       snap['score'][a.team], snap['score'][other],
-                      r[0] if r else None, (r[1], r[2]) if r else None, bool(r and r[3] == pid))
+                      r[0] if r else None, (r[1], r[2]) if r else None, bool(r and r[3] == pid),
+                      rs.passive_team, rs.direct_team, rs.direct_holder, rs.contested, rs.ball_status,
+                      snap['immune'])
         pend = self.pending.get(pid)
         q = None
         if a.role == 'archer':
@@ -172,11 +198,17 @@ class MatchPort:
             sq = snap['quiver'][a.team]
             q = (0 if snap['ms'] < sq[2] else sq[0], max(sq[1], self.own_release.get(pid, -1)))
         oid = f's30/{now_ms:010d}/{pid}/obs'
-        view = AthleteView(oid, pid, a.team, a.role, a.slot, now_ms, me[0], me[1],
-                           snap['carrier'] == pid, int(s.attack_sign(a.team)), float(s.ends[a.team]),
-                           tracks, sig, pend['cmd'].command_id if pend else None,
-                           pend['cmd'].intent.kind if pend else None, pend.get('due') if pend else None,
-                           q[0] if q else None, (q[1] if q and q[1] > 0 else None), me[2])
+        view = AthleteView(
+            observation_id=oid, athlete=pid, team=a.team, role=a.role, slot=a.slot, delivered_ms=now_ms,
+            x=me[0], y=me[1], holds_ball=snap['carrier'] == pid, attack_sign=int(s.attack_sign(a.team)),
+            own_goal_x=float(s.ends[a.team]), tracks=tracks, signals=sig,
+            pending_command_id=pend['cmd'].command_id if pend else None,
+            pending_kind=pend['cmd'].intent.kind if pend else None,
+            pending_target=pend['cmd'].intent.target if pend else None,
+            pending_release_ms=pend.get('due') if pend else None,
+            arrows_loaded=q[0] if q else None, last_release_ms=(q[1] if q and q[1] > 0 else None),
+            posture=me[2], judgment=round(float(self.ratings[pid]['judgment']), 4),
+            zone_radius=float(self.rules.cfg.keeper_zone_radius))
         fb = tuple(self.feedback.get(pid, ()))
         self.feedback[pid] = []
         belief = BeliefState(oid + '/belief', oid, tracks, fb, int(round(pr.P['memory_s'] * 1000)),
@@ -196,6 +228,12 @@ class MatchPort:
             if pend and intent.related_command_id == pend['cmd'].command_id:
                 return {'status': 'accepted', 'outcome': 'continuing', 'command_id': pend['cmd'].command_id}
             return {'status': 'rejected', 'reason': 'stale_pending_command'}
+        if kind == 'abort_draw':
+            if pend and intent.related_command_id == pend['cmd'].command_id and pend['cmd'].intent.kind == 'draw_release':
+                self.m.pending_draw.pop(p.team, None)
+                self._resolve(pid, 'aborted_by_athlete')
+                return {'status': 'accepted', 'outcome': 'draw_aborted'}
+            return {'status': 'rejected', 'reason': 'stale_pending_command'}
         if kind in PASSIVE:
             if p.role == 'keeper':
                 self.save_mode[pid] = False
@@ -214,8 +252,18 @@ class MatchPort:
                 return {'status': 'rejected', 'reason': 'infeasible'}
             if kind != 'shoot' and (intent.target not in s.players or not s.players[intent.target].active):
                 return {'status': 'rejected', 'reason': 'unknown_target'}
+            velocity = None
+            if kind == 'pass':
+                # pass-release-v1 (Base A): speed and vertical component admitted here from the
+                # semantic aim (the believed receiver position); never from true receiver state.
+                dx, dy = intent.aim[0] - p.x, intent.aim[1] - p.y
+                length = math.hypot(dx, dy)
+                if length < 1e-9:
+                    return {'status': 'rejected', 'reason': 'zero_aim'}
+                speed = float(self.m.cfg['pocket']['pass_speed'])
+                velocity = (dx / length * speed, dy / length * speed, 2.)
             cmd = MotorCommand(intent.intent_id + '/command', intent, s.now, None,
-                               'bow' if kind == 'draw_release' else 'ball')
+                               'bow' if kind == 'draw_release' else 'ball', velocity)
             self.pending[pid] = {'cmd': cmd, 'started': False, 'due': None}
             if kind == 'restart_pass':
                 self.restart_choice[pid] = intent.target
@@ -296,17 +344,31 @@ class MatchPort:
                     m.stats['shot_attempts'] += 1
                     p.next_action = s.now + 500
             else:
-                q = s.players[intent.target]
-                ok = False
-                if m.e.eligible(q):
-                    n0 = len(m.e.log)
-                    m.make_pass(p, q, 'pass', True)
-                    ok = s.ball.carrier != p.id
-                    for rec in m.e.log[n0:]:      # OWN-5: fail loudly if the engine changed the receiver
-                        if rec['event'] == 'pass_plan':
-                            if rec['data']['player'] != p.id or rec['data']['target'] != intent.target:
-                                raise RuntimeError('OWN-5 violation: motor changed pass receiver')
-                            self.own5_checked += 1
+                # Base A pass-release-v1 contract executes the release: horizontal direction is
+                # recomputed from the own-body origin to the fixed semantic aim, bounded at 60
+                # degrees; receiver true state is never read and the receiver cannot change.
+                c0 = pend['cmd']
+                ad = _ReleaseAdapter(m)
+                ad.pending = M1.MotorCommand(c0.command_id, intent, c0.start_ms, s.now, c0.desired_velocity)
+                n0 = len(m.e.log)
+                PhysicalExecutionPort._release_due(ad)
+                rec = ad.records[-1]
+                ok = rec['status'] == 'released'
+                for lr in m.e.log[n0:]:
+                    if lr['event'] == 'release':
+                        if lr['data']['player'] != p.id or lr['data'].get('target') != intent.target:
+                            raise RuntimeError('OWN-5 violation: motor changed pass receiver')
+                        self.own5_checked += 1
+                if len(self.release_records) < 400:
+                    self.release_records.append({k: rec.get(k) for k in (
+                        'command_id', 'status', 'target', 'moving_release_recomputed', 'correction_angle_deg',
+                        'correction_bound_deg', 'release_origin', 'semantic_aim')})
+                if ok:
+                    m.stats['pass_attempts'] += 1
+                    p.next_action = s.now + 400
+                elif rec['status'] != 'rejected':
+                    self._resolve(p.id, rec['status'])      # rejected_geometry / interrupted
+                    return
             self._resolve(p.id, 'released' if ok else 'release_failed')
             if ok:
                 self.flight = {'command': pend['cmd'], 'kind': intent.kind, 'passer': p.id,
@@ -354,21 +416,9 @@ class MatchPort:
                 continue
             m.pending_draw.pop(p.team, None)
             origin = (p.x, p.y, .72 * p.a.height)
-            # PROVISIONAL (SELF-1 / Archer foul mapping open): motor legality interlock. The
-            # release is aborted (never retargeted) when the B0 1.0.1 engine would call a foul:
-            # target immune / ineligible / Keeper in own zone / true range outside 10-70 m /
-            # quiver reloading. This reads true state at motor level only; the Archer just
-            # receives 'interrupted' feedback.
-            t = s.players[intent.target]
-            legal = (t.team != p.team and m.e.eligible(t) and s.now > t.immune_until
-                     and not (t.role == 'keeper' and m.e.zone(t.x, t.y) == s.own_zone(t.team))
-                     and 10 <= math.dist(origin, (t.x, t.y, t.z + .55 * t.a.height)) <= 70
-                     and s.now >= q.reload_until and s.now - q.last_release >= 2000
-                     and m.e.archer_in_lane(p))
-            if not legal:
-                self.hook_calls['archer_interlock_abort'] += 1
-                self._resolve(pid, 'interrupted')
-                continue
+            # No true-state legality interlock (Round 1 gap closed): legality is the Archer's
+            # own belief-driven decision (cognition.archer_target_legal / abort_draw). The
+            # engine adjudicates any illegal release as a foul.
             age = (s.now - intent.decided_ms) / 1000
             bx, by = intent.aim[0] + intent.aim_vel[0] * age, intent.aim[1] + intent.aim_vel[1] * age
             speed = min(m.cfg.get('pocket', {}).get('arrow_limit', 30), p.a.archery_release_speed)
@@ -421,6 +471,66 @@ class MatchPort:
                 targets[p.id] = self.move[p.id]
                 p.next_decision = min(p.next_decision, s.now)
 
+    # ------------------------------------------------------------ rules-state layer
+    def _feed_rules(self, new):
+        """Rule 7: the possession layer reads authoritative engine events only.
+        PRIMITIVE (touch source): 'touching the ball' = the engine carrier, the players in
+        the engine CONTESTED ball mode, and engine 'touch' events; B0 has no hand-level
+        simultaneous-touch model."""
+        m = self.m
+        s, b, T = m.s, m.s.ball, self.types
+        team = lambda pid: s.players[pid].team
+        ev = []
+        for rec in new:
+            e, d = rec['event'], rec['data']
+            if e == 'release':
+                k = d.get('kind')
+                ev.append({'kind': 'shot_release' if k == 'shot' else 'loose' if k == 'loose' else 'pass_release',
+                           'player': d['player'], 'team': team(d['player'])})
+            elif e == 'touch':
+                ev.append({'kind': 'touch', 'player': d['player'], 'team': team(d['player'])})
+            elif e in ('strip', 'c3_strip_in_wind_up'):
+                ev.append({'kind': 'loose'})
+            elif e == 'boundary':
+                ev.append({'kind': 'out_of_play'})
+            elif e == 'restart_awarded':
+                ev.append({'kind': 'restart_awarded', 'team': d['team']})
+            elif e == 'restart_release':
+                ev.append({'kind': 'restart_release', 'team': team(d['taker'])})
+            elif e in ('goal', 'period_end'):
+                ev.append({'kind': 'dead'})
+            elif e in ('engagement', 'c3_hold_start', 'tackle_count') and 'target' in d and 'actor' in d:
+                k = s.players.get(d['target'])
+                if k is not None and k.role == 'keeper' and team(d['actor']) != k.team:
+                    self.kp_checked += 1
+                    if self.rules.keeper_protected(k.team, (k.x, k.y)):
+                        # R-15 breach observed. PRIMITIVE: recorded, not enforced (the B0 engine
+                        # adjudicates contact under its own keeper rules).
+                        self.rules.ledger.append({'t_ms': s.now, 'row': 'R-15', 'event': 'KP_contact_on_protected_keeper',
+                                                  'actor': d['actor'], 'keeper': k.id, 'engine_event': e,
+                                                  'enforcement': 'recorded_only'})
+            elif e == 'freeze':
+                t = s.players[d['player']]
+                try:
+                    legal = self.rules.freeze_legal(t.team, t.role, (t.x, t.y))
+                except UnresolvedOutcome as exc:      # not settled by the record: say so, never guess
+                    legal = 'UNRESOLVED: ' + str(exc)
+                self.rules.ledger.append({'t_ms': s.now, 'row': 'R-17', 'event': 'freeze', 'player': t.id,
+                                          'role': t.role, 'was_carrier': d.get('was_carrier'), 'legal_by_layer': legal})
+        live = s.phase in (T.Phase.LIVE, T.Phase.OPENING, T.Phase.AWARD)
+        if self.was_live is not None and live != self.was_live:
+            ev.append({'kind': 'live' if live else 'dead'})
+        self.was_live = live
+        touching = {}
+        if b.carrier:
+            touching[b.carrier] = team(b.carrier)
+        if b.mode == T.BallMode.CONTESTED:
+            for pid in b.contested:
+                touching[pid] = team(pid)
+        hp = s.players[b.carrier] if b.carrier else None
+        self.rules.step(s.now, touching, (float(b.x), float(b.y)), ev,
+                        (float(hp.x), float(hp.y)) if hp else None)
+
     # ------------------------------------------------------------ world outcomes
     def collect(self):
         m = self.m
@@ -453,6 +563,7 @@ class MatchPort:
             elif ev in ('boundary', 'restart_awarded', 'period_end'):
                 self._outcome(f['command'], f['kind'] + '_dead:' + ev, None, feedback=False)
                 self.flight = None
+        self._feed_rules(log[self.log_seen:])
         self.log_seen = len(log)
         # a restart choice is void once play is live again
         if s.phase == self.types.Phase.LIVE and self.restart_choice:
@@ -463,9 +574,9 @@ class MatchPort:
             self._resolve(pid, 'interrupted')
 
 
-def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None):
+def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500):
     """Stepped N-athlete loop. Returns a compact, hashable result."""
-    port = MatchPort(seed, scenario)
+    port = MatchPort(seed, scenario, p1_ms)
     m = port.m
     s = m.s
     FINAL = port.types.Phase.FINAL
@@ -537,6 +648,9 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
     port.collect()
     outs = [asdict(o) for o in port.outcomes]
     h.update(digest(outs).encode())
+    ledger = json.loads(json.dumps(port.rules.ledger, default=str))
+    h.update(digest(ledger).encode())
+    pub = port.rules.public()
     state = {'now': s.now, 'phase': s.phase.value, 'score': dict(s.score), 'period': s.period,
              'ball': [round(s.ball.x, 6), round(s.ball.y, 6), round(s.ball.z, 6)],
              'players': {p.id: [round(p.x, 6), round(p.y, 6)] for p in sorted(s.players.values(), key=lambda p: p.id) if p.active}}
@@ -553,10 +667,20 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
         'decisions_by_role': dict(sorted(by_role.items())), 'decisions_by_kind': dict(sorted(by_kind.items())),
         'admissions': dict(sorted(admissions.items())), 'outcomes_by_status': dict(sorted(out_kinds.items())),
         'engine_events': dict(sorted(events.items())), 'hook_calls': dict(port.hook_calls), 'own5_pass_releases_checked': port.own5_checked,
+        'rules': {'p1_ms': p1_ms, 'ledger_entries': len(ledger),
+                  'ledger_by_row': dict(sorted(Counter(str(e.get('row')) for e in ledger).items())),
+                  'ledger_by_event': dict(sorted(Counter(str(e.get('event')) for e in ledger).items())),
+                  'final_public_state': json.loads(json.dumps(asdict(pub), default=str)), 'keeper_contacts_checked': port.kp_checked},
+        'release_contract': {'bound_deg': MAX_MOVING_RELEASE_CORRECTION_DEG, 'releases_recorded': len(port.release_records),
+                             'recomputed': sum(bool(r['moving_release_recomputed']) for r in port.release_records),
+                             'rejected_geometry': sum(r['status'] == 'rejected_geometry' for r in port.release_records),
+                             'max_correction_deg': round(max((r['correction_angle_deg'] or 0. for r in port.release_records), default=0.), 3)},
         'trace_hash': h.hexdigest(), 'state_hash': digest(state),
         'final_state': state,
     }
     if telemetry:
         result['trace'] = {'sampled_decisions': samples, 'action_chains': chains,
+                           'rules_ledger': ledger[:400],
+                           'release_records': port.release_records[:200],
                            'outcomes': [o for o in outs if o['command_id'] in cmd_ids or o['command_id'] is None][:600]}
     return result, port

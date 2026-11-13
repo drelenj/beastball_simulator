@@ -7,6 +7,8 @@ immutable AthleteView and the athlete's own BeliefState.
 from dataclasses import dataclass, asdict
 from math import hypot
 
+from . import core as M1          # Base A (governed M1) pure decision code
+
 BALL = 'BALL'
 BALL_KINDS = ('pass', 'shoot', 'draw_release', 'restart_pass')
 FAILED = ('interrupted', 'release_failed')
@@ -36,6 +38,13 @@ class Signals:
     restart_team: str | None
     restart_xy: tuple | None
     i_am_taker: bool
+    # rules signals from the authoritative possession layer (D1 record section 3)
+    passive_team: str | None = None      # PP; None until the first direct possession (R-01)
+    direct_team: str | None = None
+    direct_holder: str | None = None
+    contested: bool = False
+    ball_status: str | None = None
+    immune: tuple = ()                   # players visibly frozen / immune (public)
 
 
 @dataclass(frozen=True)
@@ -55,10 +64,13 @@ class AthleteView:
     signals: Signals
     pending_command_id: str | None = None
     pending_kind: str | None = None
+    pending_target: str | None = None
     pending_release_ms: int | None = None
     arrows_loaded: int | None = None
     last_release_ms: int | None = None
     posture: str = 'upright'
+    judgment: float = 0.7                # SELF-1: own abilities known exactly
+    zone_radius: float = 20.0            # G: inside = distance < R
 
 
 @dataclass(frozen=True)
@@ -92,6 +104,7 @@ class MotorCommand:
     start_ms: int
     release_ms: int | None
     resource: str       # 'ball' | 'bow' | 'locomotion'
+    desired_velocity: tuple | None = None   # pass-release-v1: admitted at ingress
 
 
 @dataclass(frozen=True)
@@ -154,6 +167,38 @@ def _pass_options(view, mates, opps, restart=False):
     return out
 
 
+def _m1_options(view, fresh, carrier, role, **cfg):
+    """Delegate a sub-decision to the Base A (M1) pure decide(); one pipeline."""
+    contacts = tuple(M1.Contact(t.entity, 'neutral' if t.team == 'ball' else t.team, t.x, t.y,
+                                t.captured_ms, t.vx, t.vy, bool(carrier and carrier[0] == t.entity))
+                     for t in fresh if t.role != 'archer')
+    v = M1.AthleteView(view.observation_id, view.athlete, view.team, view.delivered_ms,
+                       view.x, view.y, view.holds_ball, contacts)
+    b = M1.BeliefState(view.observation_id + '/m1', view.observation_id, contacts, (), 10 ** 9)
+    return M1.decide(v, b, M1.DecisionConfig(role=role, **cfg))[1]['options']
+
+
+def in_own_zone(track_team, x, y, view):
+    """G: body centre strictly inside R of that team's own goal centre."""
+    gx = view.own_goal_x if track_team == view.team else view.own_goal_x + view.attack_sign * 100.
+    return hypot(x - gx, y - 50.) < view.zone_radius
+
+
+def keeper_protected(track, view):
+    """KP / R-15 from the view only: Keeper inside own zone while his team has PP."""
+    return (track.role == 'keeper' and view.signals.passive_team == track.team
+            and in_own_zone(track.team, track.x, track.y, view))
+
+
+def archer_target_legal(t, view, now):
+    """Ruleset 1.0.2 (R-17) legality judged from the Archer's own belief and public signals.
+    PRIMITIVE: belief margins (12-62 m, track age <= 700 ms) are hand-set."""
+    d = hypot(t.x - view.x, t.y - view.y)
+    return (t.role != 'archer' and t.entity not in view.signals.immune
+            and not (t.role == 'keeper' and in_own_zone(t.team, t.x, t.y, view))
+            and 12. <= d <= 62. and now - t.captured_ms <= 700)
+
+
 def decide(view: AthleteView, belief: BeliefState):
     if belief.observation_id != view.observation_id:
         raise ValueError('belief/view provenance mismatch')
@@ -186,19 +231,30 @@ def decide(view: AthleteView, belief: BeliefState):
 
     if view.pending_command_id is not None:
         options.append(('continue_current', None, None, 0.))
+        if view.role == 'archer' and view.pending_kind == 'draw_release':
+            # Belief-driven interlock (replaces the Round 1 true-state motor interlock): the
+            # Archer itself aborts the draw when, by its own current belief, the release
+            # would no longer be legal. The motor never checks true state.
+            tgt = next((o for o in opps if o.entity == view.pending_target), None)
+            if (tgt is None or not archer_target_legal(tgt, view, now) or sig.phase != 'live'
+                    or sig.passive_team is None):
+                options.append(('abort_draw', view.pending_target, None, 1.))
     elif view.role == 'archer':
         options.append(('archer_hold', None, None, 0.))
-        # PROVISIONAL (R-RS / ARC-1): ruleset 1.0.1 primitive: only the believed
-        # opposing ball carrier is targeted; Keepers are never targeted.
+        # Ruleset 1.0.2 (D1 record R-17): any eligible player may be frozen; a Keeper inside
+        # his own zone is protected; R-01: no target before the first passive possession.
         ready = (view.arrows_loaded or 0) > 0 and (
-            view.last_release_ms is None or now - view.last_release_ms >= 2500)
-        if (ready and sig.phase == 'live' and carrier and carrier[1] not in (view.team,)
-                and carrier[0] != 'me' and banned != 'draw_release'):
-            t = next(o for o in opps if o.entity == carrier[0])
-            d = hypot(t.x - view.x, t.y - view.y)
-            if t.role != 'keeper' and 10 <= d <= 70:
-                options.append(('draw_release', t.entity, (round(t.x, 3), round(t.y, 3)),
-                                round(3. - .02 * d, 6)))
+            view.last_release_ms is None or now - view.last_release_ms >= 2600)
+        if ready and sig.phase == 'live' and sig.passive_team is not None and banned != 'draw_release':
+            for t in sorted(opps, key=lambda t: t.entity):
+                if not archer_target_legal(t, view, now):
+                    continue
+                d = hypot(t.x - view.x, t.y - view.y)
+                is_carrier = bool(carrier and carrier[0] == t.entity)
+                # PRIMITIVE: carrier preferred; otherwise the opponent nearest the ball
+                near_ball = hypot(t.x - bx, t.y - by) if bx is not None else 40.
+                value = (3. if is_carrier else 1.6 - .04 * near_ball) - .02 * d
+                options.append(('draw_release', t.entity, (round(t.x, 3), round(t.y, 3)), round(value, 6)))
     elif sig.phase not in ('live', 'opening', 'penalty', 'award'):
         if sig.i_am_taker:
             options.append(('restart_wait', None, None, 0.))
@@ -220,7 +276,7 @@ def decide(view: AthleteView, belief: BeliefState):
                 if dg <= 32 and banned != 'shoot':
                     keeper = next((o for o in opps if o.role == 'keeper'), None)
                     side = -1. if keeper is not None and keeper.y > 50 else 1.
-                    value = 5.5 - .2 * dg + (1.5 if near < 3 else 0.) + (
+                    value = 5.5 - .2 * dg + (8. if near < 5.8 else 0.) + (
                         5. if 0 < sig.possession_ms < 5000 else 0.)
                     options.append(('shoot', None, (goal[0], 50. + side * 3.6), round(value, 6)))
                 # carry toward goal, drifting away from the nearest believed opponent ahead
@@ -233,9 +289,23 @@ def decide(view: AthleteView, belief: BeliefState):
                        _clamp(view.y + drift + (.25 * (50 - view.y) if dg < 40 else 0.), 3, 97))
                 options.append(('carry', None, (round(aim[0], 3), round(aim[1], 3)),
                                 round(.8 + .25 * min(near, 8.), 6)))
-            if banned != 'pass':
-                options += [(k, t, a, round(v + (4. if view.role == 'keeper' else 0.), 6))
-                            for k, t, a, v in _pass_options(view, mates, opps)]
+            # Base A (M1) carrier decision supplies the carry-vs-pass valuation.
+            carry_opt = next((o for o in options if o[0] == 'carry'), None)
+            options = [o for o in options if o[0] != 'carry']
+            for k, t, a, v in _m1_options(view, fresh, carrier, 'carrier',
+                                          carry_target=carry_opt[2] if carry_opt else None):
+                if k == 'pass' and banned == 'pass':
+                    continue
+                if k == 'pass':
+                    # PRIMITIVE: belief-based lead. The semantic aim is the receiver's believed
+                    # position advanced by its believed velocity over the nominal flight time
+                    # (cognition's choice; Motor never leads the receiver).
+                    rt = next(x for x in fresh if x.entity == t)
+                    tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
+                    a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
+                if k in ('carry', 'pass'):
+                    options.append((k, t, (round(a[0], 3), round(a[1], 3)),
+                                    round(v + (4. if view.role == 'keeper' and k == 'pass' else 0.), 6)))
     elif view.role == 'keeper':
         gx = view.own_goal_x
         if bx is None:
@@ -280,10 +350,14 @@ def decide(view: AthleteView, belief: BeliefState):
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(c.x - t.x, c.y - t.y) < mine)
             options.append(('mark', None, home_position(view, ball.x, True), 1.))
-            if closer <= 1 and banned != 'press':
-                options.append(('press', c.entity, (round(_clamp(c.x + .3 * c.vx, 1, 99), 3),
-                                                    round(_clamp(c.y + .3 * c.vy, 1, 99), 3)),
-                                round(3. - .02 * mine, 6)))
+            # KP (R-15): no opponent-initiated contact on a protected Keeper
+            if closer <= 1 and banned != 'press' and not keeper_protected(c, view):
+                # Base A (M1) defender decision: pursuit or the continuous lane option
+                for k, t, a, v in _m1_options(view, fresh, carrier, 'defender',
+                                              enable_lane_option=True, defender_judgment=view.judgment):
+                    if k == 'move':
+                        options.append(('press', t, (round(_clamp(a[0], 1, 99), 3), round(_clamp(a[1], 1, 99), 3)),
+                                        round(v - 7., 6)))
 
     chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
     did = f'{view.observation_id}/decision'
@@ -293,7 +367,7 @@ def decide(view: AthleteView, belief: BeliefState):
         aim_vel = (round(t.vx, 3), round(t.vy, 3))
     intent = ActionIntent(did + '/intent', did, view.athlete, chosen[0], chosen[1], chosen[2],
                           aim_vel, (round(gaze[0], 3), round(gaze[1], 3)) if gaze else None, now,
-                          view.pending_command_id if chosen[0] == 'continue_current' else None)
+                          view.pending_command_id if chosen[0] in ('continue_current', 'abort_draw') else None)
     record = {'decision_id': did, 'owner': view.athlete, 'role': view.role,
               'observation_id': view.observation_id, 'belief_revision': belief.revision,
               'fresh_track_ids': [t.entity for t in fresh],
@@ -316,6 +390,7 @@ def view_from_json(d):
     v['tracks'] = tr(v['tracks'])
     s = dict(v['signals'])
     s['restart_xy'] = tuple(s['restart_xy']) if s['restart_xy'] else None
+    s['immune'] = tuple(s.get('immune', ()))
     v['signals'] = Signals(**s)
     b['tracks'] = tr(b['tracks'])
     b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])
