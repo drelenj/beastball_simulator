@@ -238,6 +238,9 @@ class EngineIntegration(unittest.TestCase):
         s.phase = b.types.Phase.DEAD if s.phase != b.types.Phase.DEAD else b.types.Phase.LIVE
         s.possession_ms, s.game_ms, s.score = 1, 1, {'A': 99, 'B': 98}
         s.restart = b.types.Restart('B', 5., 5., 'poison', taker='B3')
+        s.ends = {'A': 100, 'B': 0}
+        for p in s.players.values():
+            p.role, p.slot = ('keeper' if p.role == 'field' else 'field'), 7
         for q in s.quivers.values():
             q.loaded, q.last_release = 0, now
         n = 0
@@ -392,10 +395,9 @@ class EngineIntegration(unittest.TestCase):
         from .registry import PRIMITIVES
         self.assertGreaterEqual(len(PRIMITIVES), 15)
         lim = ROOT / 'SPRINT45_LIMITATIONS.md'
-        if lim.exists():
-            text = lim.read_text()
-            for key in PRIMITIVES:
-                self.assertIn(key, text)
+        text = lim.read_text()               # must exist: no vacuous pass
+        for key in PRIMITIVES:
+            self.assertIn(key, text)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ PRIMITIVE: every scoring constant below is a provisional rule-based policy
 parameter (see b1/registry.py and SPRINT30_LIMITATIONS.md). Inputs are only an
 immutable AthleteView and the athlete's own BeliefState.
 """
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, replace
 from math import hypot
 
 from . import core as M1          # Base A (governed M1) pure decision code
@@ -214,6 +214,9 @@ def decide(view: AthleteView, belief: BeliefState):
     sig = view.signals
     latest = belief.own_feedback[-1] if belief.own_feedback else None
     failed = bool(latest and (latest[1].split(':')[0] in FAILED or latest[1].startswith('rejected_')))
+    if view.holds_ball and any(f[1] in ('released:pass', 'released:shoot') for f in belief.own_feedback):
+        # own-action knowledge (rule 3) overrides the delayed ball-in-hand sense: I just released it
+        view = replace(view, holds_ball=False)
     banned = latest[1].split(':')[-1] if failed and ':' in latest[1] else None
     options = []      # (kind, target, aim, value)
     gaze = (ball.x, ball.y) if ball else (belief.last_ball[:2] if belief.last_ball else None)
@@ -330,9 +333,16 @@ def decide(view: AthleteView, belief: BeliefState):
     else:                               # field player without the ball, live play
         if sig.pass_call and sig.pass_call[1] == view.athlete:
             # PRIMITIVE comms: a teammate called a pass to me; go to the called aim point
-            options.append(('receive', sig.pass_call[0], (sig.pass_call[2], sig.pass_call[3]), 5.))
+            aim = (sig.pass_call[2], sig.pass_call[3])
+            if ball is not None and carrier is None and hypot(ball.vx, ball.vy) > 3.:
+                # ball seen in flight: go to the nearest point of its believed path
+                v2 = ball.vx * ball.vx + ball.vy * ball.vy
+                t = _clamp(((view.x - ball.x) * ball.vx + (view.y - ball.y) * ball.vy) / v2, 0., 1.5)
+                aim = (round(_clamp(ball.x + ball.vx * t, 1, 99), 3), round(_clamp(ball.y + ball.vy * t, 1, 99), 3))
+            options.append(('receive', sig.pass_call[0], aim, 5.))
         if bx is None:
-            options.append(('scan', None, home_position(view, 50., False), 1.))
+            # hold position while looking for the ball (running to a slot abandoned pass targets)
+            options.append(('scan', None, (view.x, view.y), 1.))
         elif ball is None:
             options.append(('search', None, (round(bx, 3), round(by, 3)), 1.))
         elif carrier is None:           # loose or in flight

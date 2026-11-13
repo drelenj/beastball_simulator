@@ -145,7 +145,8 @@ class MatchPort:
             'carrier': b.carrier, 'phase': s.phase.value, 'period': s.period, 'game_ms': int(s.game_ms),
             'possession_ms': int(s.possession_ms), 'score': dict(s.score),
             'restart': (r.team, round(r.x, 2), round(r.y, 2), r.taker or getattr(self.m, 'restart_taker', None)) if r else None,
-            'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture) for p in s.players.values() if p.active},
+            'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture, p.role, p.slot) for p in s.players.values() if p.active},
+            'ends': {t: float(x) for t, x in s.ends.items()},
             'rules': self.rules.public(),
             # PRIMITIVE comms: a pending or just-released pass is shouted to the passer's team
             'calls': dict(self.calls),
@@ -157,6 +158,13 @@ class MatchPort:
             eye = (a.x, a.y, a.z + .72 * a.a.height)
             self.sensor(pid).tick(now_ms / 1000, eye, math.atan2(a.facing[1], a.facing[0]),
                                   [x for x in bodies if x['id'] != pid] + [ball], self.gaze.get(pid))
+
+    def _snap_for(self, pid, due_ms):
+        return next((sn for ms, sn in reversed(self.snaps) if ms <= due_ms and pid in sn['self']), None)
+
+    def ready(self, pid, now_ms):
+        """True once a capture snapshot at least one perception latency old contains this athlete."""
+        return self._snap_for(pid, now_ms - int(round(self.sensor(pid).latency_s * 1000))) is not None
 
     def deliver(self, pid, now_ms):
         s, m = self.m.s, self.m
@@ -184,9 +192,12 @@ class MatchPort:
         # athlete's own perception latency: nothing is read from live state here
         # except static identity (team, role, slot, attack direction).
         due = now_ms - int(round(pr.latency_s * 1000))
-        snap = next((sn for ms, sn in reversed(self.snaps) if ms <= due), self.snaps[0][1])
+        snap = self._snap_for(pid, due)
+        if snap is None:
+            raise RuntimeError('no delayed snapshot for ' + pid + ': deliver() never falls back to live state')
         r, rs = snap['restart'], snap['rules']
-        me = snap['self'].get(pid) or (round(float(a.x), 3), round(float(a.y), 3), a.posture)
+        me = snap['self'][pid]
+        own_goal = snap['ends'][a.team]
         other = 'B' if a.team == 'A' else 'A'
         sig = Signals(snap['phase'], snap['period'], snap['game_ms'], snap['possession_ms'],
                       snap['score'][a.team], snap['score'][other],
@@ -196,16 +207,16 @@ class MatchPort:
                       (lambda c: tuple(c[:4]) if c and c[0] != pid and c[4] >= snap['ms'] else None)(snap['calls'].get(a.team)))
         pend = self.pending.get(pid)
         q = None
-        if a.role == 'archer':
+        if me[3] == 'archer':
             # own equipment from the delayed snapshot; own last release from the Archer's
             # own-action memory (recorded by its motor at release), never from live state.
             sq = snap['quiver'][a.team]
             q = (0 if snap['ms'] < sq[2] else sq[0], max(sq[1], self.own_release.get(pid, -1)))
         oid = f's30/{now_ms:010d}/{pid}/obs'
         view = AthleteView(
-            observation_id=oid, athlete=pid, team=a.team, role=a.role, slot=a.slot, delivered_ms=now_ms,
-            x=me[0], y=me[1], holds_ball=snap['carrier'] == pid, attack_sign=int(s.attack_sign(a.team)),
-            own_goal_x=float(s.ends[a.team]), tracks=tracks, signals=sig,
+            observation_id=oid, athlete=pid, team=a.team, role=me[3], slot=me[4], delivered_ms=now_ms,
+            x=me[0], y=me[1], holds_ball=snap['carrier'] == pid, attack_sign=1 if own_goal < 50 else -1,
+            own_goal_x=own_goal, tracks=tracks, signals=sig,
             pending_command_id=pend['cmd'].command_id if pend else None,
             pending_kind=pend['cmd'].intent.kind if pend else None,
             pending_target=pend['cmd'].intent.target if pend else None,
@@ -606,6 +617,9 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
                 next_dec[pid] = now + int(round(pr.latency_s * 1000))
                 continue
             if now < next_dec[pid]:
+                continue
+            if not port.ready(pid, now):
+                next_dec[pid] = now + 100
                 continue
             view, belief = port.deliver(pid, now)
             if on_view:
