@@ -1,0 +1,2336 @@
+{
+ "admissions": {
+  "accepted": 14,
+  "rejected:infeasible": 1
+ },
+ "decisions_by_athlete": {
+  "A0": 5,
+  "A1": 5,
+  "B0": 5
+ },
+ "decisions_by_kind": {
+  "continue_current": 1,
+  "pass": 2,
+  "press": 4,
+  "pursue": 2,
+  "receive": 3,
+  "scan": 3
+ },
+ "decisions_by_role": {
+  "field": 15
+ },
+ "decisions_total": 15,
+ "end_ms": 2185,
+ "engine_events": {
+  "ball_action_prepared": 1,
+  "c3b_rules": 1,
+  "c3c_rules": 1,
+  "c4_rules": 1,
+  "c4a_rules": 1,
+  "c4b_rules": 1,
+  "c4c2_rules": 1,
+  "c4c_rules": 1,
+  "control": 1,
+  "hunt_start": 1,
+  "lineup_check": 1,
+  "opening_ground_touch": 1,
+  "pocket_final_rules": 1,
+  "pocket_occupancy_sample": 2,
+  "release": 1
+ },
+ "final_state": {
+  "ball": [
+   56.76475,
+   47.0,
+   1.59774
+  ],
+  "now": 2185,
+  "period": 1,
+  "phase": "live",
+  "players": {
+   "A0": [
+    40.800399,
+    50.007343
+   ],
+   "A1": [
+    56.0,
+    47.0
+   ],
+   "B0": [
+    47.2571,
+    53.567202
+   ]
+  },
+  "score": {
+   "A": 0,
+   "B": 0
+  }
+ },
+ "hook_calls": {
+  "archer_motor": 13,
+  "ball_motor": 13,
+  "keeper_motor": 13
+ },
+ "outcomes_by_status": {
+  "pass_completed": 1,
+  "released": 1
+ },
+ "own5_pass_releases_checked": 1,
+ "period": 1,
+ "release_contract": {
+  "bound_deg": 60.0,
+  "max_correction_deg": 0.0,
+  "recomputed": 1,
+  "rejected_geometry": 0,
+  "releases_recorded": 1
+ },
+ "result": "None",
+ "rules": {
+  "final_public_state": {
+   "ball_status": "pass_in_flight",
+   "contested": false,
+   "direct_holder": null,
+   "direct_team": null,
+   "last_toucher": "A1",
+   "passive_team": "A",
+   "team_control": "A",
+   "uncontested_ms": 0,
+   "zone_clock_ms": [
+    [
+     "A",
+     0
+    ],
+    [
+     "B",
+     0
+    ]
+   ],
+   "zone_clock_running": [
+    [
+     "A",
+     false
+    ],
+    [
+     "B",
+     false
+    ]
+   ]
+  },
+  "keeper_contacts_checked": 0,
+  "ledger_by_event": {
+   "direct_possession": 1,
+   "pass_release": 1,
+   "passive_possession": 1,
+   "secured": 2
+  },
+  "ledger_by_row": {
+   "R-02": 2,
+   "R-03": 2,
+   "R-06": 1
+  },
+  "ledger_entries": 5,
+  "p1_ms": 500,
+  "violations_enforced": 0
+ },
+ "ruleset": "1.0.2",
+ "scenario": "g1",
+ "score": {
+  "A": 0,
+  "B": 0
+ },
+ "seed": 1,
+ "settings": {
+  "overtime_seconds": 30,
+  "period_seconds": 120,
+  "periods": 2,
+  "play_clock": 45
+ },
+ "start_ms": 1000,
+ "state_hash": "de97089b8585a78f2eecd6ef7ed1fc5c3a54362c42a1b82e61ba99f9c65d1a1d",
+ "status": "scenario_terminal",
+ "terminal": "pass_completed",
+ "trace": {
+  "action_chains": [
+   {
+    "aim": [
+     56.032,
+     46.967
+    ],
+    "belief_revision": "s30/0000001300/A0/obs/belief",
+    "command_id": "s30/0000001300/A0/obs/decision/intent/command",
+    "decision_id": "s30/0000001300/A0/obs/decision",
+    "intent_id": "s30/0000001300/A0/obs/decision/intent",
+    "kind": "pass",
+    "observation_id": "s30/0000001300/A0/obs",
+    "options": [
+     [
+      "retain",
+      null,
+      null,
+      0.0
+     ],
+     [
+      "carry",
+      null,
+      [
+       50.0,
+       50.0
+      ],
+      2.0
+     ],
+     [
+      "pass",
+      "A1",
+      [
+       56.032,
+       46.967
+      ],
+      6.510509
+     ]
+    ],
+    "selected": [
+     "pass",
+     "A1",
+     [
+      56.032,
+      46.967
+     ],
+     6.510509
+    ],
+    "target": "A1"
+   }
+  ],
+  "outcomes": [
+   {
+    "command_id": "s30/0000001300/A0/obs/decision/intent/command",
+    "entity_id": null,
+    "outcome_id": "s30/0000001615/physics/00000001/outcome",
+    "resolved_ms": 1615,
+    "status": "released"
+   },
+   {
+    "command_id": "s30/0000001300/A0/obs/decision/intent/command",
+    "entity_id": "A1",
+    "outcome_id": "s30/0000002185/physics/00000002/outcome",
+    "resolved_ms": 2185,
+    "status": "pass_completed"
+   }
+  ],
+  "release_records": [
+   {
+    "command_id": "s30/0000001300/A0/obs/decision/intent/command",
+    "correction_angle_deg": 0.0,
+    "correction_bound_deg": 60.0,
+    "moving_release_recomputed": true,
+    "release_origin": [
+     40.0,
+     50.0
+    ],
+    "semantic_aim": [
+     56.032,
+     46.967
+    ],
+    "status": "released",
+    "target": "A1"
+   }
+  ],
+  "rules_ledger": [
+   {
+    "event": "secured",
+    "passive_team": null,
+    "player": "A0",
+    "row": "R-02",
+    "t_ms": 1100,
+    "team": "A"
+   },
+   {
+    "event": "direct_possession",
+    "player": "A0",
+    "row": "R-03",
+    "t_ms": 1600,
+    "team": "A",
+    "uncontested_ms": 500
+   },
+   {
+    "event": "passive_possession",
+    "previous": null,
+    "row": "R-03",
+    "t_ms": 1600,
+    "team": "A"
+   },
+   {
+    "event": "pass_release",
+    "passive_team": "A",
+    "player": "A0",
+    "row": "R-06",
+    "t_ms": 1715,
+    "team": "A"
+   },
+   {
+    "event": "secured",
+    "passive_team": "A",
+    "player": "A1",
+    "row": "R-02",
+    "t_ms": 2185,
+    "team": "A"
+   }
+  ],
+  "sampled_decisions": [
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      40.741,
+      50.01,
+      1000
+     ],
+     "max_track_age_ms": 2812,
+     "observation_id": "s30/0000001300/A0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001300/A0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1000,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 56.032,
+       "y": 46.967
+      },
+      {
+       "captured_ms": 1000,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 40.741,
+       "y": 50.01
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001300/A0/obs/decision/intent/command",
+     "desired_velocity": [
+      26.52942114010862,
+      -5.018945503864115,
+      2.0
+     ],
+     "intent": {
+      "aim": [
+       56.032,
+       46.967
+      ],
+      "aim_vel": null,
+      "athlete": "A0",
+      "decided_ms": 1300,
+      "decision_id": "s30/0000001300/A0/obs/decision",
+      "gaze": [
+       40.741,
+       50.01
+      ],
+      "intent_id": "s30/0000001300/A0/obs/decision/intent",
+      "kind": "pass",
+      "related_command_id": null,
+      "target": "A1"
+     },
+     "release_ms": null,
+     "resource": "ball",
+     "start_ms": 1300
+    },
+    "decision": {
+     "belief_revision": "s30/0000001300/A0/obs/belief",
+     "believed_carrier": [
+      "me",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000001300/A0/obs/decision",
+     "fresh_track_ids": [
+      "A1",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001300/A0/obs",
+     "options": [
+      [
+       "retain",
+       null,
+       null,
+       0.0
+      ],
+      [
+       "carry",
+       null,
+       [
+        50.0,
+        50.0
+       ],
+       2.0
+      ],
+      [
+       "pass",
+       "A1",
+       [
+        56.032,
+        46.967
+       ],
+       6.510509
+      ]
+     ],
+     "owner": "A0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "pass",
+      "A1",
+      [
+       56.032,
+       46.967
+      ],
+      6.510509
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      56.032,
+      46.967
+     ],
+     "aim_vel": null,
+     "athlete": "A0",
+     "decided_ms": 1300,
+     "decision_id": "s30/0000001300/A0/obs/decision",
+     "gaze": [
+      40.741,
+      50.01
+     ],
+     "intent_id": "s30/0000001300/A0/obs/decision/intent",
+     "kind": "pass",
+     "related_command_id": null,
+     "target": "A1"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A0",
+     "attack_sign": 1,
+     "delivered_ms": 1300,
+     "holds_ball": true,
+     "judgment": 0.6873,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001300/A0/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 120000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 1000,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 56.032,
+       "y": 46.967
+      },
+      {
+       "captured_ms": 1000,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 40.741,
+       "y": 50.01
+      }
+     ],
+     "x": 40.0,
+     "y": 50.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 3174,
+     "observation_id": "s30/0000001300/A1/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001300/A1/obs/belief",
+     "tracks": []
+    },
+    "command": {
+     "command_id": "s30/0000001300/A1/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       56.0,
+       47.0
+      ],
+      "aim_vel": null,
+      "athlete": "A1",
+      "decided_ms": 1300,
+      "decision_id": "s30/0000001300/A1/obs/decision",
+      "gaze": null,
+      "intent_id": "s30/0000001300/A1/obs/decision/intent",
+      "kind": "scan",
+      "related_command_id": null,
+      "target": null
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1300
+    },
+    "decision": {
+     "belief_revision": "s30/0000001300/A1/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000001300/A1/obs/decision",
+     "fresh_track_ids": [],
+     "observation_id": "s30/0000001300/A1/obs",
+     "options": [
+      [
+       "scan",
+       null,
+       [
+        56.0,
+        47.0
+       ],
+       1.0
+      ]
+     ],
+     "owner": "A1",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "scan",
+      null,
+      [
+       56.0,
+       47.0
+      ],
+      1.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      56.0,
+      47.0
+     ],
+     "aim_vel": null,
+     "athlete": "A1",
+     "decided_ms": 1300,
+     "decision_id": "s30/0000001300/A1/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000001300/A1/obs/decision/intent",
+     "kind": "scan",
+     "related_command_id": null,
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A1",
+     "attack_sign": 1,
+     "delivered_ms": 1300,
+     "holds_ball": false,
+     "judgment": 0.725,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001300/A1/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 120000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 1,
+     "team": "A",
+     "tracks": [],
+     "x": 56.0,
+     "y": 47.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 3424,
+     "observation_id": "s30/0000001300/B0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001300/B0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1000,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 39.917,
+       "y": 50.01
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001300/B0/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       49.0,
+       56.0
+      ],
+      "aim_vel": null,
+      "athlete": "B0",
+      "decided_ms": 1300,
+      "decision_id": "s30/0000001300/B0/obs/decision",
+      "gaze": null,
+      "intent_id": "s30/0000001300/B0/obs/decision/intent",
+      "kind": "scan",
+      "related_command_id": null,
+      "target": null
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1300
+    },
+    "decision": {
+     "belief_revision": "s30/0000001300/B0/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000001300/B0/obs/decision",
+     "fresh_track_ids": [
+      "A0"
+     ],
+     "observation_id": "s30/0000001300/B0/obs",
+     "options": [
+      [
+       "scan",
+       null,
+       [
+        49.0,
+        56.0
+       ],
+       1.0
+      ]
+     ],
+     "owner": "B0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "scan",
+      null,
+      [
+       49.0,
+       56.0
+      ],
+      1.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      49.0,
+      56.0
+     ],
+     "aim_vel": null,
+     "athlete": "B0",
+     "decided_ms": 1300,
+     "decision_id": "s30/0000001300/B0/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000001300/B0/obs/decision/intent",
+     "kind": "scan",
+     "related_command_id": null,
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "B0",
+     "attack_sign": -1,
+     "delivered_ms": 1300,
+     "holds_ball": false,
+     "judgment": 0.7195,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001300/B0/obs",
+     "own_goal_x": 100.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 120000,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 45000,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "B",
+     "tracks": [
+      {
+       "captured_ms": 1000,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 39.917,
+       "y": 50.01
+      }
+     ],
+     "x": 49.0,
+     "y": 56.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      40.763,
+      49.996,
+      1200
+     ],
+     "max_track_age_ms": 2812,
+     "observation_id": "s30/0000001500/A0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001500/A0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1200,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.012,
+       "vy": 0.152,
+       "x": 56.019,
+       "y": 47.063
+      },
+      {
+       "captured_ms": 1200,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 49.037,
+       "y": 55.925
+      },
+      {
+       "captured_ms": 1200,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.038,
+       "vy": -0.029,
+       "x": 40.763,
+       "y": 49.996
+      }
+     ]
+    },
+    "command": null,
+    "decision": {
+     "belief_revision": "s30/0000001500/A0/obs/belief",
+     "believed_carrier": [
+      "me",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000001500/A0/obs/decision",
+     "fresh_track_ids": [
+      "A1",
+      "B0",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001500/A0/obs",
+     "options": [
+      [
+       "continue_current",
+       null,
+       null,
+       0.0
+      ]
+     ],
+     "owner": "A0",
+     "pending_command_id": "s30/0000001300/A0/obs/decision/intent/command",
+     "role": "field",
+     "selected": [
+      "continue_current",
+      null,
+      null,
+      0.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": null,
+     "aim_vel": null,
+     "athlete": "A0",
+     "decided_ms": 1500,
+     "decision_id": "s30/0000001500/A0/obs/decision",
+     "gaze": [
+      40.763,
+      49.996
+     ],
+     "intent_id": "s30/0000001500/A0/obs/decision/intent",
+     "kind": "continue_current",
+     "related_command_id": "s30/0000001300/A0/obs/decision/intent/command",
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A0",
+     "attack_sign": 1,
+     "delivered_ms": 1500,
+     "holds_ball": true,
+     "judgment": 0.6873,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001500/A0/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": "s30/0000001300/A0/obs/decision/intent/command",
+     "pending_kind": "pass",
+     "pending_release_ms": 1615,
+     "pending_target": "A1",
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 119800,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44800,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 1200,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.012,
+       "vy": 0.152,
+       "x": 56.019,
+       "y": 47.063
+      },
+      {
+       "captured_ms": 1200,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 49.037,
+       "y": 55.925
+      },
+      {
+       "captured_ms": 1200,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.038,
+       "vy": -0.029,
+       "x": 40.763,
+       "y": 49.996
+      }
+     ],
+     "x": 40.0,
+     "y": 50.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 3174,
+     "observation_id": "s30/0000001500/A1/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001500/A1/obs/belief",
+     "tracks": []
+    },
+    "command": {
+     "command_id": "s30/0000001500/A1/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       56.0,
+       47.0
+      ],
+      "aim_vel": null,
+      "athlete": "A1",
+      "decided_ms": 1500,
+      "decision_id": "s30/0000001500/A1/obs/decision",
+      "gaze": null,
+      "intent_id": "s30/0000001500/A1/obs/decision/intent",
+      "kind": "scan",
+      "related_command_id": null,
+      "target": null
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1500
+    },
+    "decision": {
+     "belief_revision": "s30/0000001500/A1/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000001500/A1/obs/decision",
+     "fresh_track_ids": [],
+     "observation_id": "s30/0000001500/A1/obs",
+     "options": [
+      [
+       "scan",
+       null,
+       [
+        56.0,
+        47.0
+       ],
+       1.0
+      ]
+     ],
+     "owner": "A1",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "scan",
+      null,
+      [
+       56.0,
+       47.0
+      ],
+      1.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      56.0,
+      47.0
+     ],
+     "aim_vel": null,
+     "athlete": "A1",
+     "decided_ms": 1500,
+     "decision_id": "s30/0000001500/A1/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000001500/A1/obs/decision/intent",
+     "kind": "scan",
+     "related_command_id": null,
+     "target": null
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A1",
+     "attack_sign": 1,
+     "delivered_ms": 1500,
+     "holds_ball": false,
+     "judgment": 0.725,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001500/A1/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 119800,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44800,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 1,
+     "team": "A",
+     "tracks": [],
+     "x": 56.0,
+     "y": 47.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      40.723,
+      49.997,
+      1100
+     ],
+     "max_track_age_ms": 3424,
+     "observation_id": "s30/0000001500/B0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001500/B0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1200,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.62,
+       "vy": 0.188,
+       "x": 40.224,
+       "y": 50.088
+      },
+      {
+       "captured_ms": 1100,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 40.723,
+       "y": 49.997
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001500/B0/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       45.009,
+       51.539
+      ],
+      "aim_vel": null,
+      "athlete": "B0",
+      "decided_ms": 1500,
+      "decision_id": "s30/0000001500/B0/obs/decision",
+      "gaze": [
+       40.723,
+       49.997
+      ],
+      "intent_id": "s30/0000001500/B0/obs/decision/intent",
+      "kind": "press",
+      "related_command_id": null,
+      "target": "A0"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1500
+    },
+    "decision": {
+     "belief_revision": "s30/0000001500/B0/obs/belief",
+     "believed_carrier": [
+      "A0",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000001500/B0/obs/decision",
+     "fresh_track_ids": [
+      "A0",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001500/B0/obs",
+     "options": [
+      [
+       "mark",
+       null,
+       [
+        38.723,
+        50.0
+       ],
+       1.0
+      ],
+      [
+       "press",
+       "A0",
+       [
+        45.009,
+        51.539
+       ],
+       2.940141
+      ]
+     ],
+     "owner": "B0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "press",
+      "A0",
+      [
+       45.009,
+       51.539
+      ],
+      2.940141
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      45.009,
+      51.539
+     ],
+     "aim_vel": null,
+     "athlete": "B0",
+     "decided_ms": 1500,
+     "decision_id": "s30/0000001500/B0/obs/decision",
+     "gaze": [
+      40.723,
+      49.997
+     ],
+     "intent_id": "s30/0000001500/B0/obs/decision/intent",
+     "kind": "press",
+     "related_command_id": null,
+     "target": "A0"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "B0",
+     "attack_sign": -1,
+     "delivered_ms": 1500,
+     "holds_ball": false,
+     "judgment": 0.7195,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001500/B0/obs",
+     "own_goal_x": 100.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 119800,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44800,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "B",
+     "tracks": [
+      {
+       "captured_ms": 1200,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.62,
+       "vy": 0.188,
+       "x": 40.224,
+       "y": 50.088
+      },
+      {
+       "captured_ms": 1100,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 40.723,
+       "y": 49.997
+      }
+     ],
+     "x": 49.0,
+     "y": 56.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      40.761,
+      50.007,
+      1400
+     ],
+     "max_track_age_ms": 2812,
+     "observation_id": "s30/0000001715/A0/obs",
+     "own_feedback": [
+      [
+       "s30/0000001615/physics/00000001/outcome",
+       "released:pass",
+       1615
+      ]
+     ],
+     "revision": "s30/0000001715/A0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1400,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.081,
+       "vy": -0.049,
+       "x": 56.06,
+       "y": 46.974
+      },
+      {
+       "captured_ms": 1300,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.006,
+       "vy": 0.112,
+       "x": 49.04,
+       "y": 56.0
+      },
+      {
+       "captured_ms": 1400,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.021,
+       "vy": -0.002,
+       "x": 40.761,
+       "y": 50.007
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001715/A0/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       40.763,
+       50.007
+      ],
+      "aim_vel": null,
+      "athlete": "A0",
+      "decided_ms": 1715,
+      "decision_id": "s30/0000001715/A0/obs/decision",
+      "gaze": [
+       40.761,
+       50.007
+      ],
+      "intent_id": "s30/0000001715/A0/obs/decision/intent",
+      "kind": "pursue",
+      "related_command_id": null,
+      "target": "BALL"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1715
+    },
+    "decision": {
+     "belief_revision": "s30/0000001715/A0/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": [
+      "s30/0000001615/physics/00000001/outcome",
+      "released:pass",
+      1615
+     ],
+     "decision_id": "s30/0000001715/A0/obs/decision",
+     "fresh_track_ids": [
+      "A1",
+      "B0",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001715/A0/obs",
+     "options": [
+      [
+       "home",
+       null,
+       [
+        54.761,
+        50.0
+       ],
+       1.0
+      ],
+      [
+       "pursue",
+       "BALL",
+       [
+        40.763,
+        50.007
+       ],
+       3.96186
+      ]
+     ],
+     "owner": "A0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "pursue",
+      "BALL",
+      [
+       40.763,
+       50.007
+      ],
+      3.96186
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      40.763,
+      50.007
+     ],
+     "aim_vel": null,
+     "athlete": "A0",
+     "decided_ms": 1715,
+     "decision_id": "s30/0000001715/A0/obs/decision",
+     "gaze": [
+      40.761,
+      50.007
+     ],
+     "intent_id": "s30/0000001715/A0/obs/decision/intent",
+     "kind": "pursue",
+     "related_command_id": null,
+     "target": "BALL"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A0",
+     "attack_sign": 1,
+     "delivered_ms": 1715,
+     "holds_ball": true,
+     "judgment": 0.6873,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001715/A0/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 119600,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44600,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 1400,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.081,
+       "vy": -0.049,
+       "x": 56.06,
+       "y": 46.974
+      },
+      {
+       "captured_ms": 1300,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.006,
+       "vy": 0.112,
+       "x": 49.04,
+       "y": 56.0
+      },
+      {
+       "captured_ms": 1400,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.021,
+       "vy": -0.002,
+       "x": 40.761,
+       "y": 50.007
+      }
+     ],
+     "x": 40.0,
+     "y": 50.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 3174,
+     "observation_id": "s30/0000001715/A1/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001715/A1/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 49.604,
+       "y": 54.716
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001715/A1/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       56.032,
+       46.967
+      ],
+      "aim_vel": null,
+      "athlete": "A1",
+      "decided_ms": 1715,
+      "decision_id": "s30/0000001715/A1/obs/decision",
+      "gaze": null,
+      "intent_id": "s30/0000001715/A1/obs/decision/intent",
+      "kind": "receive",
+      "related_command_id": null,
+      "target": "A0"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1715
+    },
+    "decision": {
+     "belief_revision": "s30/0000001715/A1/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000001715/A1/obs/decision",
+     "fresh_track_ids": [
+      "B0"
+     ],
+     "observation_id": "s30/0000001715/A1/obs",
+     "options": [
+      [
+       "receive",
+       "A0",
+       [
+        56.032,
+        46.967
+       ],
+       5.0
+      ],
+      [
+       "scan",
+       null,
+       [
+        56.0,
+        47.0
+       ],
+       1.0
+      ]
+     ],
+     "owner": "A1",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "receive",
+      "A0",
+      [
+       56.032,
+       46.967
+      ],
+      5.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      56.032,
+      46.967
+     ],
+     "aim_vel": null,
+     "athlete": "A1",
+     "decided_ms": 1715,
+     "decision_id": "s30/0000001715/A1/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000001715/A1/obs/decision/intent",
+     "kind": "receive",
+     "related_command_id": null,
+     "target": "A0"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A1",
+     "attack_sign": 1,
+     "delivered_ms": 1715,
+     "holds_ball": false,
+     "judgment": 0.725,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001715/A1/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 119500,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": [
+       "A0",
+       "A1",
+       56.032,
+       46.967
+      ],
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44500,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 1,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 49.604,
+       "y": 54.716
+      }
+     ],
+     "x": 56.0,
+     "y": 47.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      40.78,
+      50.003,
+      1400
+     ],
+     "max_track_age_ms": 3424,
+     "observation_id": "s30/0000001715/B0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001715/B0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.282,
+       "vy": 0.017,
+       "x": 40.138,
+       "y": 50.017
+      },
+      {
+       "captured_ms": 1400,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.054,
+       "vy": 0.005,
+       "x": 40.78,
+       "y": 50.003
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001715/B0/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       45.129,
+       50.318
+      ],
+      "aim_vel": null,
+      "athlete": "B0",
+      "decided_ms": 1715,
+      "decision_id": "s30/0000001715/B0/obs/decision",
+      "gaze": [
+       40.78,
+       50.003
+      ],
+      "intent_id": "s30/0000001715/B0/obs/decision/intent",
+      "kind": "press",
+      "related_command_id": null,
+      "target": "A0"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1715
+    },
+    "decision": {
+     "belief_revision": "s30/0000001715/B0/obs/belief",
+     "believed_carrier": [
+      "A0",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000001715/B0/obs/decision",
+     "fresh_track_ids": [
+      "A0",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001715/B0/obs",
+     "options": [
+      [
+       "mark",
+       null,
+       [
+        38.78,
+        50.0
+       ],
+       1.0
+      ],
+      [
+       "press",
+       "A0",
+       [
+        45.129,
+        50.318
+       ],
+       2.931246
+      ]
+     ],
+     "owner": "B0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "press",
+      "A0",
+      [
+       45.129,
+       50.318
+      ],
+      2.931246
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      45.129,
+      50.318
+     ],
+     "aim_vel": null,
+     "athlete": "B0",
+     "decided_ms": 1715,
+     "decision_id": "s30/0000001715/B0/obs/decision",
+     "gaze": [
+      40.78,
+      50.003
+     ],
+     "intent_id": "s30/0000001715/B0/obs/decision/intent",
+     "kind": "press",
+     "related_command_id": null,
+     "target": "A0"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "B0",
+     "attack_sign": -1,
+     "delivered_ms": 1715,
+     "holds_ball": false,
+     "judgment": 0.7195,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001715/B0/obs",
+     "own_goal_x": 100.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "loose_ground",
+      "contested": false,
+      "direct_holder": null,
+      "direct_team": null,
+      "game_ms": 119600,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": null,
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44600,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "B",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.282,
+       "vy": 0.017,
+       "x": 40.138,
+       "y": 50.017
+      },
+      {
+       "captured_ms": 1400,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": 0.054,
+       "vy": 0.005,
+       "x": 40.78,
+       "y": 50.003
+      }
+     ],
+     "x": 49.0,
+     "y": 56.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "rejected:infeasible",
+    "belief": {
+     "last_ball": [
+      40.737,
+      49.998,
+      1600
+     ],
+     "max_track_age_ms": 2812,
+     "observation_id": "s30/0000001915/A0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001915/A0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1600,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.043,
+       "vy": -0.282,
+       "x": 56.036,
+       "y": 46.844
+      },
+      {
+       "captured_ms": 1600,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": -0.033,
+       "vy": 0.175,
+       "x": 49.018,
+       "y": 56.06
+      },
+      {
+       "captured_ms": 1600,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": -0.022,
+       "vy": -0.013,
+       "x": 40.737,
+       "y": 49.998
+      }
+     ]
+    },
+    "command": null,
+    "decision": {
+     "belief_revision": "s30/0000001915/A0/obs/belief",
+     "believed_carrier": [
+      "me",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000001915/A0/obs/decision",
+     "fresh_track_ids": [
+      "A1",
+      "B0",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001915/A0/obs",
+     "options": [
+      [
+       "retain",
+       null,
+       null,
+       0.0
+      ],
+      [
+       "carry",
+       null,
+       [
+        50.0,
+        50.0
+       ],
+       2.0
+      ],
+      [
+       "pass",
+       "A1",
+       [
+        56.062,
+        46.673
+       ],
+       4.197036
+      ]
+     ],
+     "owner": "A0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "pass",
+      "A1",
+      [
+       56.062,
+       46.673
+      ],
+      4.197036
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      56.062,
+      46.673
+     ],
+     "aim_vel": null,
+     "athlete": "A0",
+     "decided_ms": 1915,
+     "decision_id": "s30/0000001915/A0/obs/decision",
+     "gaze": [
+      40.737,
+      49.998
+     ],
+     "intent_id": "s30/0000001915/A0/obs/decision/intent",
+     "kind": "pass",
+     "related_command_id": null,
+     "target": "A1"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A0",
+     "attack_sign": 1,
+     "delivered_ms": 1915,
+     "holds_ball": true,
+     "judgment": 0.6873,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001915/A0/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "carried",
+      "contested": false,
+      "direct_holder": "A0",
+      "direct_team": "A",
+      "game_ms": 119400,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": "A",
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44400,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 1600,
+       "entity": "A1",
+       "role": "field",
+       "team": "A",
+       "vx": 0.043,
+       "vy": -0.282,
+       "x": 56.036,
+       "y": 46.844
+      },
+      {
+       "captured_ms": 1600,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": -0.033,
+       "vy": 0.175,
+       "x": 49.018,
+       "y": 56.06
+      },
+      {
+       "captured_ms": 1600,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": -0.022,
+       "vy": -0.013,
+       "x": 40.737,
+       "y": 49.998
+      }
+     ],
+     "x": 40.0,
+     "y": 50.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": null,
+     "max_track_age_ms": 3174,
+     "observation_id": "s30/0000001915/A1/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001915/A1/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 49.604,
+       "y": 54.716
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001915/A1/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       56.032,
+       46.967
+      ],
+      "aim_vel": null,
+      "athlete": "A1",
+      "decided_ms": 1915,
+      "decision_id": "s30/0000001915/A1/obs/decision",
+      "gaze": null,
+      "intent_id": "s30/0000001915/A1/obs/decision/intent",
+      "kind": "receive",
+      "related_command_id": null,
+      "target": "A0"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1915
+    },
+    "decision": {
+     "belief_revision": "s30/0000001915/A1/obs/belief",
+     "believed_carrier": null,
+     "considered_feedback": null,
+     "decision_id": "s30/0000001915/A1/obs/decision",
+     "fresh_track_ids": [
+      "B0"
+     ],
+     "observation_id": "s30/0000001915/A1/obs",
+     "options": [
+      [
+       "receive",
+       "A0",
+       [
+        56.032,
+        46.967
+       ],
+       5.0
+      ],
+      [
+       "scan",
+       null,
+       [
+        56.0,
+        47.0
+       ],
+       1.0
+      ]
+     ],
+     "owner": "A1",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "receive",
+      "A0",
+      [
+       56.032,
+       46.967
+      ],
+      5.0
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      56.032,
+      46.967
+     ],
+     "aim_vel": null,
+     "athlete": "A1",
+     "decided_ms": 1915,
+     "decision_id": "s30/0000001915/A1/obs/decision",
+     "gaze": null,
+     "intent_id": "s30/0000001915/A1/obs/decision/intent",
+     "kind": "receive",
+     "related_command_id": null,
+     "target": "A0"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "A1",
+     "attack_sign": 1,
+     "delivered_ms": 1915,
+     "holds_ball": false,
+     "judgment": 0.725,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001915/A1/obs",
+     "own_goal_x": 0.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "carried",
+      "contested": false,
+      "direct_holder": "A0",
+      "direct_team": "A",
+      "game_ms": 119400,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": [
+       "A0",
+       "A1",
+       56.032,
+       46.967
+      ],
+      "passive_team": "A",
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44400,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 1,
+     "team": "A",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "B0",
+       "role": "field",
+       "team": "B",
+       "vx": 0.0,
+       "vy": 0.0,
+       "x": 49.604,
+       "y": 54.716
+      }
+     ],
+     "x": 56.0,
+     "y": 47.0,
+     "zone_radius": 20.0
+    }
+   },
+   {
+    "admission": "accepted",
+    "belief": {
+     "last_ball": [
+      40.724,
+      49.981,
+      1600
+     ],
+     "max_track_age_ms": 3424,
+     "observation_id": "s30/0000001915/B0/obs",
+     "own_feedback": [],
+     "revision": "s30/0000001915/B0/obs/belief",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.282,
+       "vy": 0.017,
+       "x": 40.194,
+       "y": 50.02
+      },
+      {
+       "captured_ms": 1600,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": -0.028,
+       "vy": -0.023,
+       "x": 40.724,
+       "y": 49.981
+      }
+     ]
+    },
+    "command": {
+     "command_id": "s30/0000001915/B0/obs/decision/intent/command",
+     "desired_velocity": null,
+     "intent": {
+      "aim": [
+       45.185,
+       50.321
+      ],
+      "aim_vel": null,
+      "athlete": "B0",
+      "decided_ms": 1915,
+      "decision_id": "s30/0000001915/B0/obs/decision",
+      "gaze": [
+       40.724,
+       49.981
+      ],
+      "intent_id": "s30/0000001915/B0/obs/decision/intent",
+      "kind": "press",
+      "related_command_id": null,
+      "target": "A0"
+     },
+     "release_ms": null,
+     "resource": "locomotion",
+     "start_ms": 1915
+    },
+    "decision": {
+     "belief_revision": "s30/0000001915/B0/obs/belief",
+     "believed_carrier": [
+      "A0",
+      "A"
+     ],
+     "considered_feedback": null,
+     "decision_id": "s30/0000001915/B0/obs/decision",
+     "fresh_track_ids": [
+      "A0",
+      "BALL"
+     ],
+     "observation_id": "s30/0000001915/B0/obs",
+     "options": [
+      [
+       "mark",
+       null,
+       [
+        38.724,
+        50.0
+       ],
+       1.0
+      ],
+      [
+       "press",
+       "A0",
+       [
+        45.185,
+        50.321
+       ],
+       2.931584
+      ]
+     ],
+     "owner": "B0",
+     "pending_command_id": null,
+     "role": "field",
+     "selected": [
+      "press",
+      "A0",
+      [
+       45.185,
+       50.321
+      ],
+      2.931584
+     ],
+     "selection_rule": "max(value, kind, target)",
+     "stale_track_ids": []
+    },
+    "intent": {
+     "aim": [
+      45.185,
+      50.321
+     ],
+     "aim_vel": null,
+     "athlete": "B0",
+     "decided_ms": 1915,
+     "decision_id": "s30/0000001915/B0/obs/decision",
+     "gaze": [
+      40.724,
+      49.981
+     ],
+     "intent_id": "s30/0000001915/B0/obs/decision/intent",
+     "kind": "press",
+     "related_command_id": null,
+     "target": "A0"
+    },
+    "view": {
+     "arrows_loaded": null,
+     "athlete": "B0",
+     "attack_sign": -1,
+     "delivered_ms": 1915,
+     "holds_ball": false,
+     "judgment": 0.7195,
+     "last_release_ms": null,
+     "observation_id": "s30/0000001915/B0/obs",
+     "own_goal_x": 100.0,
+     "pending_command_id": null,
+     "pending_kind": null,
+     "pending_release_ms": null,
+     "pending_target": null,
+     "posture": "upright",
+     "role": "field",
+     "signals": {
+      "ball_status": "carried",
+      "contested": false,
+      "direct_holder": "A0",
+      "direct_team": "A",
+      "game_ms": 119400,
+      "i_am_taker": false,
+      "immune": [],
+      "pass_call": null,
+      "passive_team": "A",
+      "period": 1,
+      "phase": "live",
+      "possession_ms": 44400,
+      "restart_team": null,
+      "restart_xy": null,
+      "score_opp": 0,
+      "score_own": 0
+     },
+     "slot": 0,
+     "team": "B",
+     "tracks": [
+      {
+       "captured_ms": 1300,
+       "entity": "A0",
+       "role": "field",
+       "team": "A",
+       "vx": 0.282,
+       "vy": 0.017,
+       "x": 40.194,
+       "y": 50.02
+      },
+      {
+       "captured_ms": 1600,
+       "entity": "BALL",
+       "role": "ball",
+       "team": "ball",
+       "vx": -0.028,
+       "vy": -0.023,
+       "x": 40.724,
+       "y": 49.981
+      }
+     ],
+     "x": 49.0,
+     "y": 56.0,
+     "zone_radius": 20.0
+    }
+   }
+  ]
+ },
+ "trace_hash": "af072c7bc46084ae88792edb13808d91fc3584ff50e35ad706e294dcc1f1bbd8",
+ "wall_s": 0.689
+}

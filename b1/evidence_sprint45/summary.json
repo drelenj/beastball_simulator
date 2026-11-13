@@ -1,0 +1,951 @@
+{
+ "dirty": false,
+ "g1": [
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2185,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 1,
+   "state_hash": "de97089b8585a78f2eecd6ef7ed1fc5c3a54362c42a1b82e61ba99f9c65d1a1d",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "af072c7bc46084ae88792edb13808d91fc3584ff50e35ad706e294dcc1f1bbd8",
+   "wall_s": 0.639
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2193,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 2,
+   "state_hash": "e08b12a07e6e441e7720509628307a78ffc0367d8410e95eceec882d1e12d6fe",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "68300df06fadf2d9dce3fe5a3b6c9ae40ba85763ed425bb8243f6af68f34025d",
+   "wall_s": 0.634
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2217,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 3,
+   "state_hash": "6a8f1a5e28afb4e9649e48b07b38819f534d4a9838ff08406d3e38f09ca7794b",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "d5a089d88a794c4abdd9f276ed7cdf6c452279b5e588d6d251329b8426617e7e",
+   "wall_s": 0.715
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2192,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 4,
+   "state_hash": "44725caf185baffc189fcf1b11ae8e43db2a7320036504ce27c0c2f0aac89933",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "331cf68227c1929c30f77ae38f26780c5253ce8b72179436d6306588cc78db84",
+   "wall_s": 0.639
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2170,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 5,
+   "state_hash": "9a1b944c5fe66d6e4fbaa9f00c8ab247f7d39d8d65c77a70f427e1f186904350",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "cfe8aab4c8d63dbd3c744bd9eef86d7921d8bf5df01046766300a6b3d4393afc",
+   "wall_s": 0.712
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2183,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 6,
+   "state_hash": "eb793ad1a9cf171f2e6bad525c92ae00b51a38a478445da3f2a7c2932fd2c084",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "050b91e38dfc1d40f7b0519ec93cf6b62a028b1d0dd140af3cc9cfdc92db7100",
+   "wall_s": 0.661
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2189,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 7,
+   "state_hash": "50224d6ed2371d616558494150cd4a80241720fbd6ef4ba7d8aa804969fd15db",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "4afda8776e1d86f30729ce74bc5f989e7a2d1088d89f9306914ee14fea43360c",
+   "wall_s": 0.66
+  },
+  {
+   "decisions_by_role": {
+    "field": 42
+   },
+   "decisions_total": 42,
+   "end_ms": 3993,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 8,
+   "state_hash": "b8bb5694fc85e6309c9bcba59f75637ca33549c88ad9e0bfac4b47e101a6d2cb",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "9eca0d29e94033fe99296eba871c27aa09916762e73b120991d560668fb2b45b",
+   "wall_s": 0.739
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2194,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 9,
+   "state_hash": "c2f1959103262d69f9e2cc25e9e3e1f16e7b1b3a699815a024676b8cc8702efb",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "d83e129d3dbc4a25c6e930a2f6f9c369a1a43596f407b97c60ea99f1a5d7fd83",
+   "wall_s": 0.756
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2188,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 10,
+   "state_hash": "5222c063fbb9129e453df4e25dfb5cd2aa9e6ea3b42d53d052754357741d8b08",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "c71061f80b400b6f20b98875c97aa876e43bf251b643237c35c64102aa1a87a0",
+   "wall_s": 0.663
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2212,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 11,
+   "state_hash": "428ccee44d11d979b6fc07b8fa1a1c331cba5d376510ce0f5fd98bc95bd80daf",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "2a563c4d3af46902aa5efe74cfc4eb958b09da98636c5dbf536ea83d25162404",
+   "wall_s": 0.661
+  },
+  {
+   "decisions_by_role": {
+    "field": 15
+   },
+   "decisions_total": 15,
+   "end_ms": 2188,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 12,
+   "state_hash": "fb5f2318de1455c4cffcd042b26f5265065bdd82d47705839fc2e72de3f70347",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "a8a3c319689391bccb65f6ccfd0f3852d61ef10668c214eed7f9a2a17b3386e6",
+   "wall_s": 0.684
+  }
+ ],
+ "g1_close": [
+  {
+   "decisions_by_role": {
+    "field": 30
+   },
+   "decisions_total": 30,
+   "end_ms": 3232,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 1,
+   "state_hash": "3978139256e7eb1c0286e90b2cd2a196bdcbb24589c0101531291fdf982f7c8b",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "07ae20deabac1cb7b037b590330f8a15b477983005f130063864d26bb238b910",
+   "wall_s": 0.7
+  },
+  {
+   "decisions_by_role": {
+    "field": 75
+   },
+   "decisions_total": 75,
+   "end_ms": 6252,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 2,
+   "state_hash": "af8c7fafafe4986c6ea0c0cb042252c79be67d2e8515378375f2b86379e6df14",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "baefc26c8c8e39dcb09a794fa7c9eba245b17a5d713b8de68fd48452a0de5314",
+   "wall_s": 0.684
+  },
+  {
+   "decisions_by_role": {
+    "field": 30
+   },
+   "decisions_total": 30,
+   "end_ms": 3108,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 3,
+   "state_hash": "b563ac5fb367d9a76cc9815c1457d54810a07c926ae83f22445c8788b20ec78d",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "1790004e333765ebb083c00c57f1fa019a7b3cd7ac61f88542afd4cd71adf564",
+   "wall_s": 0.617
+  },
+  {
+   "decisions_by_role": {
+    "field": 66
+   },
+   "decisions_total": 66,
+   "end_ms": 5628,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 4,
+   "state_hash": "1768a04203977720ecf0e3eeeffbc0acfa6e159812c1c3464aaf0c56237dbf6f",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "79340c03ab178b9979686e7b7708aac5ff01280a9b29d0c6ba9d376c2949720e",
+   "wall_s": 0.771
+  },
+  {
+   "decisions_by_role": {
+    "field": 24
+   },
+   "decisions_total": 24,
+   "end_ms": 2882,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 5,
+   "state_hash": "2f319be2b4201f382c8029c92231f1e77a60322c727d421de106487acffc8d5e",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "1171a7d204afe27ab8e8252fc5b958287574353c5e561399ce2b34cf8eb43fd3",
+   "wall_s": 0.676
+  },
+  {
+   "decisions_by_role": {
+    "field": 30
+   },
+   "decisions_total": 30,
+   "end_ms": 3289,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 6,
+   "state_hash": "6ec4d6d55a88acfdece3150d7c6e116f775edc0de13f341d20f0eb68f9dde166",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "dd1208a4401c58a63a748366e9605bcfae64f1d911864b1f2fe6285b1e398f49",
+   "wall_s": 0.669
+  },
+  {
+   "decisions_by_role": {
+    "field": 30
+   },
+   "decisions_total": 30,
+   "end_ms": 3175,
+   "outcomes_by_status": {
+    "pass_intercepted": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 7,
+   "state_hash": "e7280b8cd00ac8faff1575186dd92fdcea15a7fdca3fac2cf64942f2f6327c4f",
+   "status": "scenario_terminal",
+   "terminal": "pass_intercepted",
+   "trace_hash": "e8b1b82b045866466a6f9b5238c9358e3e90f89a381288939b05d27d303374c4",
+   "wall_s": 0.661
+  },
+  {
+   "decisions_by_role": {
+    "field": 69
+   },
+   "decisions_total": 69,
+   "end_ms": 5926,
+   "outcomes_by_status": {
+    "pass_intercepted": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 8,
+   "state_hash": "eb0981119669c3610138e1a20cfc5bb28abcbdb864f3711accd7a6fd30077551",
+   "status": "scenario_terminal",
+   "terminal": "pass_intercepted",
+   "trace_hash": "5b9967fa2645ec92dba61c1b6e32741751587fb6fe8e05f0878d8ee3c18b9016",
+   "wall_s": 0.684
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 3104,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 9,
+   "state_hash": "13a326b7206dc8b874de0b38dd5e46ae068f23c8bf52de9bfd53c438e79e2e8c",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "ee528439595ed80ae8086d606e9f4feb54f80a0adc0b95bd23349afadb6fcb9e",
+   "wall_s": 0.693
+  },
+  {
+   "decisions_by_role": {
+    "field": 57
+   },
+   "decisions_total": 57,
+   "end_ms": 5101,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 10,
+   "state_hash": "687682210f736e26178c90ee740ce7e253dd54117e178646b0f4458677c697d0",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "a009d269c6e957a2e6d9068aa983e95269aa741c6ebe26b3a0926248724f0e56",
+   "wall_s": 0.714
+  },
+  {
+   "decisions_by_role": {
+    "field": 27
+   },
+   "decisions_total": 27,
+   "end_ms": 3117,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 11,
+   "state_hash": "2c3c11b2b8dd60d307f674f53ec29dc5289b2537de3626a000f5bde3290533d9",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "f4fb9ee18e72d127847e7d14a5b0da97056986a66f2f4b96ee2a23e69a67b258",
+   "wall_s": 0.695
+  },
+  {
+   "decisions_by_role": {
+    "field": 33
+   },
+   "decisions_total": 33,
+   "end_ms": 3434,
+   "outcomes_by_status": {
+    "pass_completed": 1,
+    "released": 1
+   },
+   "result": "None",
+   "score": {
+    "A": 0,
+    "B": 0
+   },
+   "seed": 12,
+   "state_hash": "5d776a1dd23a2e3c599a40e4b383ac3f425e21d534f5f4c64c89281efbd904e3",
+   "status": "scenario_terminal",
+   "terminal": "pass_completed",
+   "trace_hash": "ad4295baf4cb630374507a03f1748ac16fc2e7843900759bda66e82cefb61064",
+   "wall_s": 0.688
+  }
+ ],
+ "generated_utc": "2026-11-13T05:42:40Z",
+ "head": "0a8a211f0db5a9d307d4daaf447ed8efa6d258ac",
+ "match_seed1": {
+  "admissions": {
+   "accepted": 55975,
+   "rejected:infeasible": 31,
+   "rejected:unknown_target": 5
+  },
+  "decisions_by_athlete": {
+   "A0": 2339,
+   "A1": 2480,
+   "A10": 1753,
+   "A11": 2580,
+   "A12": 472,
+   "A13": 559,
+   "A14": 183,
+   "A15": 82,
+   "A16": 32,
+   "A17": 32,
+   "A2": 2431,
+   "A3": 2147,
+   "A4": 2476,
+   "A5": 2397,
+   "A6": 2544,
+   "A7": 2459,
+   "A8": 2460,
+   "A9": 2380,
+   "B0": 2529,
+   "B1": 2573,
+   "B10": 1758,
+   "B11": 1797,
+   "B12": 813,
+   "B13": 460,
+   "B14": 273,
+   "B15": 222,
+   "B16": 92,
+   "B17": 146,
+   "B18": 32,
+   "B19": 32,
+   "B2": 2404,
+   "B3": 2530,
+   "B4": 2356,
+   "B5": 2191,
+   "B6": 1575,
+   "B7": 1381,
+   "B8": 1591,
+   "B9": 1450
+  },
+  "decisions_by_kind": {
+   "abort_draw": 18,
+   "archer_hold": 3949,
+   "carry": 371,
+   "continue_current": 1145,
+   "draw_release": 119,
+   "home": 26941,
+   "keeper_save": 16,
+   "keeper_set": 3492,
+   "mark": 3665,
+   "pass": 101,
+   "press": 967,
+   "pursue": 4647,
+   "receive": 561,
+   "restart_pass": 111,
+   "restart_wait": 74,
+   "scan": 199,
+   "search": 5658,
+   "shoot": 7,
+   "support": 3970
+  },
+  "decisions_by_role": {
+   "archer": 4377,
+   "field": 48123,
+   "keeper": 3511
+  },
+  "decisions_total": 56011,
+  "end_ms": 1184795,
+  "hook_calls": {
+   "archer_motor": 3870,
+   "ball_motor": 3870,
+   "keeper_motor": 3870
+  },
+  "outcomes_by_status": {
+   "aborted_by_athlete": 18,
+   "arrow_released": 100,
+   "goal_scored:shoot": 4,
+   "interrupted": 54,
+   "keeper_save_plan:approach": 2,
+   "keeper_save_plan:launch": 1,
+   "keeper_save_plan:step": 1,
+   "pass_completed": 9,
+   "pass_completed_other": 13,
+   "pass_dead:boundary": 15,
+   "pass_dead:restart_awarded": 3,
+   "pass_intercepted": 16,
+   "rejected_not_prepared": 11,
+   "rejected_out_of_range": 1,
+   "released": 118,
+   "unknown:score_change_during_flight": 2
+  },
+  "own5_pass_releases_checked": 59,
+  "period": 4,
+  "release_contract": {
+   "bound_deg": 60.0,
+   "max_correction_deg": 39.184,
+   "recomputed": 59,
+   "rejected_geometry": 0,
+   "releases_recorded": 59
+  },
+  "result": "{'winner': 'A', 'method': 'shootout', 'score': {'A': 8, 'B': 8}, 'shootout': {'A': 1, 'B': 0}}",
+  "rules": {
+   "final_public_state": {
+    "ball_status": "pass_in_flight",
+    "contested": false,
+    "direct_holder": null,
+    "direct_team": null,
+    "last_toucher": "A2",
+    "passive_team": "A",
+    "team_control": "A",
+    "uncontested_ms": 0,
+    "zone_clock_ms": [
+     [
+      "A",
+      0
+     ],
+     [
+      "B",
+      0
+     ]
+    ],
+    "zone_clock_running": [
+     [
+      "A",
+      false
+     ],
+     [
+      "B",
+      false
+     ]
+    ]
+   },
+   "keeper_contacts_checked": 0,
+   "ledger_by_event": {
+    "dead": 70,
+    "defender_touch": 19,
+    "direct_possession": 87,
+    "freeze": 3,
+    "loose": 10,
+    "out_of_play": 32,
+    "pass_release": 59,
+    "passive_possession": 33,
+    "restart_awarded": 58,
+    "restart_release": 58,
+    "secured": 95,
+    "shot_release": 4,
+    "violation": 1,
+    "zone_clock_reset": 14
+   },
+   "ledger_by_row": {
+    "R-02": 95,
+    "R-03": 88,
+    "R-06": 59,
+    "R-07": 4,
+    "R-08": 19,
+    "R-09": 10,
+    "R-10": 32,
+    "R-12": 1,
+    "R-14": 72,
+    "R-17": 3,
+    "R-18": 90,
+    "R-20": 70
+   },
+   "ledger_entries": 543,
+   "p1_ms": 500,
+   "violations_enforced": 1
+  },
+  "ruleset": "1.0.2",
+  "scenario": "regulation_match_B0_P4_DEFAULT",
+  "score": {
+   "A": 8,
+   "B": 8
+  },
+  "seed": 1,
+  "settings": {
+   "overtime_seconds": 30,
+   "period_seconds": 120,
+   "periods": 2,
+   "play_clock": 45
+  },
+  "start_ms": 0,
+  "state_hash": "f24fd17457c2137b74c160f6ff55a7a96f566de13f6e736d41375dc5e1ad79ea",
+  "status": "final",
+  "terminal": null,
+  "trace_hash": "c67680265e8d4a7dff4a0dd8abe2e627ae616d2d17ad4cb21afe3c921a6f1c5b",
+  "wall_s": 56.117
+ },
+ "multi_seed": {
+  "attempted": 3,
+  "completed": 3,
+  "failed": 0,
+  "runs": [
+   {
+    "decisions_by_role": {
+     "archer": 3734,
+     "field": 42335,
+     "keeper": 2927
+    },
+    "decisions_total": 48996,
+    "end_ms": 556093,
+    "outcomes_by_status": {
+     "aborted_by_athlete": 20,
+     "arrow_released": 75,
+     "goal_scored:shoot": 2,
+     "interrupted": 61,
+     "keeper_save_plan:approach": 1,
+     "keeper_save_plan:launch": 1,
+     "pass_completed": 7,
+     "pass_completed_other": 7,
+     "pass_dead:boundary": 16,
+     "pass_dead:restart_awarded": 2,
+     "pass_intercepted": 10,
+     "rejected_by_engine": 1,
+     "rejected_geometry": 1,
+     "rejected_not_prepared": 5,
+     "rejected_out_of_range": 1,
+     "released": 97,
+     "unknown:score_change_during_flight": 1
+    },
+    "result": "{'winner': 'B', 'method': 'regulation', 'score': {'A': 2, 'B': 6}, 'shootout': None}",
+    "score": {
+     "A": 2,
+     "B": 6
+    },
+    "seed": 2,
+    "state_hash": "ceec784c93f70e275b3af8ee983060a62d26c7874cd7993ce016b605da894245",
+    "status": "final",
+    "terminal": null,
+    "trace_hash": "938657121285266f63c58a32a35a279c995686ced42488155b69d7c9640ccb71",
+    "wall_s": 36.724
+   },
+   {
+    "decisions_by_role": {
+     "archer": 2909,
+     "field": 37906,
+     "keeper": 3276
+    },
+    "decisions_total": 44091,
+    "end_ms": 515769,
+    "outcomes_by_status": {
+     "aborted_by_athlete": 26,
+     "arrow_released": 72,
+     "goal_scored:shoot": 2,
+     "interrupted": 44,
+     "keeper_save_plan:approach": 1,
+     "keeper_save_plan:launch": 1,
+     "pass_completed": 6,
+     "pass_completed_other": 10,
+     "pass_dead:boundary": 18,
+     "pass_dead:restart_awarded": 2,
+     "pass_intercepted": 8,
+     "rejected_by_engine": 1,
+     "rejected_not_prepared": 3,
+     "rejected_out_of_range": 2,
+     "released": 96,
+     "unknown:score_change_during_flight": 1
+    },
+    "result": "{'winner': 'A', 'method': 'regulation', 'score': {'A': 4, 'B': 3}, 'shootout': None}",
+    "score": {
+     "A": 4,
+     "B": 3
+    },
+    "seed": 3,
+    "state_hash": "56b38dfd6cc34256f5ea3474472cb42f3a2f97e5b53cdc955fd50263a7a8a785",
+    "status": "final",
+    "terminal": null,
+    "trace_hash": "5f6590025c2f586035f1d59121a4a0a18ad900b37eb44d63f897f41748d97dbb",
+    "wall_s": 34.178
+   },
+   {
+    "decisions_by_role": {
+     "archer": 4293,
+     "field": 40902,
+     "keeper": 2970
+    },
+    "decisions_total": 48165,
+    "end_ms": 557431,
+    "outcomes_by_status": {
+     "aborted_by_athlete": 16,
+     "arrow_released": 80,
+     "goal_scored:shoot": 2,
+     "interrupted": 61,
+     "keeper_save_plan:approach": 1,
+     "keeper_save_plan:launch": 1,
+     "keeper_save_plan:step": 1,
+     "pass_completed": 3,
+     "pass_completed_other": 8,
+     "pass_dead:boundary": 9,
+     "pass_dead:period_end": 2,
+     "pass_dead:restart_awarded": 2,
+     "pass_intercepted": 10,
+     "rejected_not_prepared": 4,
+     "rejected_out_of_range": 6,
+     "released": 93,
+     "unknown:score_change_during_flight": 1
+    },
+    "result": "{'winner': 'B', 'method': 'regulation', 'score': {'A': 3, 'B': 5}, 'shootout': None}",
+    "score": {
+     "A": 3,
+     "B": 5
+    },
+    "seed": 4,
+    "state_hash": "7a28978135264e3bce362fc38983b923c7ecc470da11bcd6cf53f95d60adc9ac",
+    "status": "final",
+    "terminal": null,
+    "trace_hash": "fe92091716b08250c43057fbf75ed051f26793e3832e6b8dc8f8e53eed166b2c",
+    "wall_s": 39.617
+   }
+  ]
+ },
+ "p1_sensitivity": [
+  {
+   "decisions_total": 6414,
+   "ledger_by_event": {
+    "dead": 8,
+    "defender_touch": 5,
+    "direct_possession": 10,
+    "freeze": 1,
+    "loose": 2,
+    "out_of_play": 4,
+    "pass_release": 7,
+    "passive_possession": 6,
+    "restart_awarded": 7,
+    "restart_release": 7,
+    "secured": 11,
+    "shot_release": 1
+   },
+   "p1_ms": 250,
+   "score": {
+    "A": 3,
+    "B": 0
+   },
+   "trace_hash": "f9b71fe64f64e20e27787d88bfc8c055b07eeffc4e18763e9f39ac328459024a"
+  },
+  {
+   "decisions_total": 6414,
+   "ledger_by_event": {
+    "dead": 8,
+    "defender_touch": 5,
+    "direct_possession": 10,
+    "freeze": 1,
+    "loose": 2,
+    "out_of_play": 4,
+    "pass_release": 7,
+    "passive_possession": 6,
+    "restart_awarded": 7,
+    "restart_release": 7,
+    "secured": 11,
+    "shot_release": 1
+   },
+   "p1_ms": 500,
+   "score": {
+    "A": 3,
+    "B": 0
+   },
+   "trace_hash": "cda33e707f3f6dbab15323efac28b95bdc8b72d693424e1a60a387a8fab26184"
+  },
+  {
+   "decisions_total": 6414,
+   "ledger_by_event": {
+    "dead": 8,
+    "defender_touch": 4,
+    "direct_possession": 6,
+    "freeze": 1,
+    "loose": 2,
+    "out_of_play": 4,
+    "pass_release": 7,
+    "passive_possession": 3,
+    "restart_awarded": 7,
+    "restart_release": 7,
+    "secured": 11,
+    "shot_release": 1
+   },
+   "p1_ms": 1000,
+   "score": {
+    "A": 3,
+    "B": 0
+   },
+   "trace_hash": "a3fc31ac881629501f661eab1e65137ddaee10c9061d6e95c766865b05afedb1"
+  }
+ ],
+ "replay": {
+  "identical": true,
+  "run1": [
+   "c67680265e8d4a7dff4a0dd8abe2e627ae616d2d17ad4cb21afe3c921a6f1c5b",
+   "f24fd17457c2137b74c160f6ff55a7a96f566de13f6e736d41375dc5e1ad79ea"
+  ],
+  "run2": [
+   "c67680265e8d4a7dff4a0dd8abe2e627ae616d2d17ad4cb21afe3c921a6f1c5b",
+   "f24fd17457c2137b74c160f6ff55a7a96f566de13f6e736d41375dc5e1ad79ea"
+  ]
+ },
+ "tests": {
+  "by_file": {
+   "b1/test_g1.py": 7,
+   "b1/test_m1.py": 18,
+   "b1/test_possession.py": 30,
+   "b1/test_sprint.py": 29,
+   "b1/test_sprint45.py": 9
+  },
+  "command": "python3 -m pytest -q b1",
+  "not_ok": [
+   "FAILED b1/test_sprint.py::EngineIntegration::test_frozen_B0_file_identity - R..."
+  ],
+  "passed": 93,
+  "returncode": 1,
+  "summary": "1 failed, 93 passed, 23 subtests passed in 73.62s (0:01:13)"
+ }
+}
