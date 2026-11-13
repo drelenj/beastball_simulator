@@ -45,6 +45,7 @@ class Signals:
     contested: bool = False
     ball_status: str | None = None
     immune: tuple = ()                   # players visibly frozen / immune (public)
+    pass_call: tuple | None = None       # teammate's shouted pass: (passer, target, aim_x, aim_y)
 
 
 @dataclass(frozen=True)
@@ -327,6 +328,9 @@ def decide(view: AthleteView, belief: BeliefState):
                 elif speed < 6. and d < 16.:
                     options.append(('pursue', BALL, (round(ball.x, 3), round(ball.y, 3)), 3.))
     else:                               # field player without the ball, live play
+        if sig.pass_call and sig.pass_call[1] == view.athlete:
+            # PRIMITIVE comms: a teammate called a pass to me; go to the called aim point
+            options.append(('receive', sig.pass_call[0], (sig.pass_call[2], sig.pass_call[3]), 5.))
         if bx is None:
             options.append(('scan', None, home_position(view, 50., False), 1.))
         elif ball is None:
@@ -391,6 +395,7 @@ def view_from_json(d):
     s = dict(v['signals'])
     s['restart_xy'] = tuple(s['restart_xy']) if s['restart_xy'] else None
     s['immune'] = tuple(s.get('immune', ()))
+    s['pass_call'] = tuple(s['pass_call']) if s.get('pass_call') else None
     v['signals'] = Signals(**s)
     b['tracks'] = tr(b['tracks'])
     b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])

@@ -18,7 +18,7 @@ from .possession import PossessionTracker, RulesConfig, UnresolvedOutcome
 from .runtime import (ALL_FEATURE_ENV, REPO, digest, PhysicalExecutionPort,
                       MAX_MOVING_RELEASE_CORRECTION_DEG)
 
-LOCOMOTION = ('carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
+LOCOMOTION = ('receive', 'carry', 'pursue', 'press', 'mark', 'support', 'home', 'scan',
               'search', 'keeper_set', 'keeper_save')
 PASSIVE = ('retain', 'archer_hold', 'restart_wait', 'no_action')
 LEGACY_TRAPS = ('c4c2_decide', 'pocket_decide')
@@ -67,6 +67,7 @@ class MatchPort:
         self.rules = PossessionTracker(RulesConfig(direct_possession_threshold_ms=p1_ms,
                                                    keeper_zone_radius=float(m.s.keeper_zone_radius)))
         self.was_live, self.release_records, self.kp_checked = None, [], 0
+        self.calls = {}      # team -> (passer, target, aim_x, aim_y, expires_ms)
         self.move, self.pending, self.save_mode, self.restart_choice = {}, {}, {}, {}
         self.outcomes, self.feedback, self.flight, self.n_out = [], {}, None, 0
         self.sensors, self.gaze, self.last_ball, self.public = {}, {}, {}, {}
@@ -146,6 +147,8 @@ class MatchPort:
             'restart': (r.team, round(r.x, 2), round(r.y, 2), r.taker or getattr(self.m, 'restart_taker', None)) if r else None,
             'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture) for p in s.players.values() if p.active},
             'rules': self.rules.public(),
+            # PRIMITIVE comms: a pending or just-released pass is shouted to the passer's team
+            'calls': dict(self.calls),
             'immune': tuple(sorted(p.id for p in s.players.values() if p.active and (now_ms <= p.immune_until or p.frozen(now_ms)))),
             'ms': now_ms, 'quiver': {t: (q.loaded, q.last_release, q.reload_until) for t, q in s.quivers.items()}}))
         del self.snaps[:-40]
@@ -189,7 +192,8 @@ class MatchPort:
                       snap['score'][a.team], snap['score'][other],
                       r[0] if r else None, (r[1], r[2]) if r else None, bool(r and r[3] == pid),
                       rs.passive_team, rs.direct_team, rs.direct_holder, rs.contested, rs.ball_status,
-                      snap['immune'])
+                      snap['immune'],
+                      (lambda c: tuple(c[:4]) if c and c[0] != pid and c[4] >= snap['ms'] else None)(snap['calls'].get(a.team)))
         pend = self.pending.get(pid)
         q = None
         if a.role == 'archer':
@@ -260,10 +264,12 @@ class MatchPort:
                 length = math.hypot(dx, dy)
                 if length < 1e-9:
                     return {'status': 'rejected', 'reason': 'zero_aim'}
-                speed = float(self.m.cfg['pocket']['pass_speed'])
+                speed = float(self.m.cfg['pocket']['pass_speed'])      # Base A admission, unchanged
                 velocity = (dx / length * speed, dy / length * speed, 2.)
             cmd = MotorCommand(intent.intent_id + '/command', intent, s.now, None,
                                'bow' if kind == 'draw_release' else 'ball', velocity)
+            if kind == 'pass':
+                self.calls[p.team] = (pid, intent.target, float(intent.aim[0]), float(intent.aim[1]), s.now + 2500)
             self.pending[pid] = {'cmd': cmd, 'started': False, 'due': None}
             if kind == 'restart_pass':
                 self.restart_choice[pid] = intent.target
@@ -548,8 +554,10 @@ class MatchPort:
                 continue
             c = rec['carrier']
             if rec['score'] != f['score']:
-                scored = [t for t in rec['score'] if rec['score'][t] != f['score'][t]]
-                self._outcome(f['command'], ('goal_for:' if f['team'] in scored else 'goal_against:') + f['kind'],
+                # cause from the recorded engine goal event only; anything else is unknown
+                d = rec['data'] if rec['event'] == 'goal' else {}
+                mine = d.get('last_offensive_toucher') == f['passer'] and d.get('team') == f['team']
+                self._outcome(f['command'], ('goal_scored:' + f['kind']) if mine else 'unknown:score_change_during_flight',
                               None, feedback=False)
                 self.flight = None
             elif c is not None and c != f['passer']:
@@ -633,7 +641,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
         m.step()
         port.collect()
         if scenario in ('g1', 'g1_close'):
-            done = [o.status for o in port.outcomes if o.status.startswith(('pass_', 'shot_', 'goal_'))]
+            done = [o.status for o in port.outcomes if o.status.startswith(('pass_', 'shot_', 'goal_', 'unknown:'))]
             b = s.ball
             if done:
                 terminal = done[0]

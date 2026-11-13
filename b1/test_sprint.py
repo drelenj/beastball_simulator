@@ -19,11 +19,14 @@ ROOT = Path(__file__).resolve().parents[1]
 J = lambda v: json.dumps(v, sort_keys=True, default=lambda o: dataclasses.asdict(o))
 
 
-def mk_view(tracks, holds=True, role='field', fb=(), pending=None, phase='live', **kw):
-    sig = C.Signals(phase, 1, 100000, 30000, 0, 0, None, None, False)
-    v = C.AthleteView('o', 'A0', 'A', role, 0, 1500, kw.get('x', 40.), kw.get('y', 50.), holds, 1, 0., tuple(tracks), sig,
-                      pending, 'pass' if pending else None, 1700 if pending else None,
-                      kw.get('arrows'), None)
+def mk_view(tracks, holds=True, role='field', fb=(), pending=None, phase='live', pp='A', immune=(), **kw):
+    sig = C.Signals(phase, 1, 100000, 30000, 0, 0, None, None, False, passive_team=pp, immune=tuple(immune))
+    v = C.AthleteView(observation_id='o', athlete='A0', team='A', role=role, slot=0, delivered_ms=1500,
+                      x=kw.get('x', 40.), y=kw.get('y', 50.), holds_ball=holds, attack_sign=1, own_goal_x=0.,
+                      tracks=tuple(tracks), signals=sig, pending_command_id=pending,
+                      pending_kind=kw.get('pending_kind', 'pass') if pending else None,
+                      pending_target=kw.get('pending_target'), pending_release_ms=1700 if pending else None,
+                      arrows_loaded=kw.get('arrows'), last_release_ms=None)
     return v, C.BeliefState('b', 'o', tuple(tracks), tuple(fb), 2000, None)
 
 
@@ -39,7 +42,18 @@ class PureCognition(unittest.TestCase):
                 mods |= {a.name for a in n.names}
             elif isinstance(n, ast.ImportFrom):
                 mods.add(n.module)
-        self.assertEqual(mods, {'dataclasses', 'math'})
+        # cognition may import only the stdlib pure modules and Base A's pure b1.core
+        self.assertEqual(mods, {'dataclasses', 'math', None})
+        rel = [a.name for n in ast.walk(tree) if isinstance(n, ast.ImportFrom) and n.module is None for a in n.names]
+        self.assertEqual(rel, ['core'])
+        core = ast.parse((ROOT / 'b1/core.py').read_text())
+        cm = set()
+        for n in ast.walk(core):
+            if isinstance(n, ast.Import):
+                cm |= {a.name for a in n.names}
+            elif isinstance(n, ast.ImportFrom):
+                cm.add(n.module)
+        self.assertEqual(cm, {'dataclasses', 'math'})
 
     def test_BR2_no_forbidden_symbols(self):
         src = (ROOT / 'b1/cognition.py').read_text()
@@ -48,7 +62,7 @@ class PureCognition(unittest.TestCase):
 
     def test_BR5_motor_command_carries_no_belief_or_options(self):
         self.assertEqual([f.name for f in dataclasses.fields(C.MotorCommand)],
-                         ['command_id', 'intent', 'start_ms', 'release_ms', 'resource'])
+                         ['command_id', 'intent', 'start_ms', 'release_ms', 'resource', 'desired_velocity'])
         self.assertNotIn('options', [f.name for f in dataclasses.fields(C.ActionIntent)])
 
     def test_values_are_immutable(self):
@@ -84,15 +98,48 @@ class PureCognition(unittest.TestCase):
         self.assertNotEqual(i.kind, 'pass')
         self.assertEqual(r['considered_feedback'][1], 'interrupted:pass')
 
-    def test_archer_targets_only_believed_opposing_carrier_never_keeper(self):
+    def test_archer_ruleset_102_legality_from_belief(self):
+        """D1 R-17 / R-01 / KP: any eligible opponent may be targeted; never a Keeper inside his own
+        zone; nothing before the first passive possession; never a visibly immune player."""
         ball = T(C.BALL, 'ball', 60, 40, 'ball')
-        v = mk_view([ball, T('B3', 'B', 60.5, 40), T('B5', 'B', 50, 30)], holds=False, role='archer', arrows=5, x=25., y=-5.)
-        i, _ = C.decide(*v)
-        self.assertEqual((i.kind, i.target), ('draw_release', 'B3'))
-        v = mk_view([ball, T('B10', 'B', 60.5, 40, 'keeper')], holds=False, role='archer', arrows=5, x=25., y=-5.)
-        self.assertEqual(C.decide(*v)[0].kind, 'archer_hold')
-        v = mk_view([ball, T('B3', 'B', 60.5, 40)], holds=False, role='archer', arrows=0, x=25., y=-5.)
-        self.assertEqual(C.decide(*v)[0].kind, 'archer_hold')
+        kw = dict(holds=False, role='archer', arrows=5, x=25., y=-5.)
+        i, _ = C.decide(*mk_view([ball, T('B3', 'B', 60.5, 40), T('B5', 'B', 50, 30)], **kw))
+        self.assertEqual((i.kind, i.target), ('draw_release', 'B3'))            # carrier preferred
+        i, r = C.decide(*mk_view([ball, T('B5', 'B', 50, 30)], **kw))            # 1.0.2: a non-carrier is legal
+        self.assertEqual((i.kind, i.target), ('draw_release', 'B5'))
+        self.assertEqual(C.decide(*mk_view([ball, T('B5', 'B', 50, 30)], pp=None, **kw))[0].kind, 'archer_hold')
+        self.assertEqual(C.decide(*mk_view([ball, T('B5', 'B', 50, 30)], immune=('B5',), **kw))[0].kind, 'archer_hold')
+        inside = T('B10', 'B', 85., 40., 'keeper')       # 18.0 m from (100, 50): inside R = 20
+        outside = T('B10', 'B', 70., 30., 'keeper')      # 36 m from goal centre: outside
+        self.assertEqual(C.decide(*mk_view([ball, inside], x=40., **{k: v for k, v in kw.items() if k != 'x'}))[0].kind, 'archer_hold')
+        i, _ = C.decide(*mk_view([ball, outside], x=40., **{k: v for k, v in kw.items() if k != 'x'}))
+        self.assertEqual((i.kind, i.target), ('draw_release', 'B10'))
+        self.assertEqual(C.decide(*mk_view([ball, T('B5', 'B', 50, 30)], **dict(kw, arrows=0)))[0].kind, 'archer_hold')
+        self.assertEqual(C.decide(*mk_view([ball, T('B5', 'B', 30, 0)], **kw))[0].kind, 'archer_hold')   # believed range < 12 m
+
+    def test_archer_aborts_draw_when_own_belief_says_release_is_illegal(self):
+        ball = T(C.BALL, 'ball', 60, 40, 'ball')
+        kw = dict(holds=False, role='archer', arrows=5, x=25., y=-5., pending='cmd-7', pending_kind='draw_release', pending_target='B5')
+        self.assertEqual(C.decide(*mk_view([ball, T('B5', 'B', 50, 30)], **kw))[0].kind, 'continue_current')
+        i, _ = C.decide(*mk_view([ball, T('B5', 'B', 50, 30)], immune=('B5',), **kw))
+        self.assertEqual((i.kind, i.related_command_id), ('abort_draw', 'cmd-7'))
+        self.assertEqual(C.decide(*mk_view([ball, T('B5', 'B', 50, 30, ms=500)], **kw))[0].kind, 'abort_draw')   # stale track
+        self.assertEqual(C.decide(*mk_view([ball], **kw))[0].kind, 'abort_draw')                               # target lost
+
+    def test_KP_protected_keeper_is_not_pressed_view_change_changes_decision(self):
+        """R-15/R-16 from the view only: Keeper with the ball inside own zone while his team has PP."""
+        mk = lambda kx, pp: C.decide(*mk_view([T(C.BALL, 'ball', kx, 50, 'ball'), T('B10', 'B', kx + .5, 50, 'keeper')],
+                                              holds=False, x=kx - 6., pp=pp))[1]['options']
+        kinds = lambda opts: {o[0] for o in opts}
+        self.assertNotIn('press', kinds(mk(90., 'B')))       # inside zone, his team has PP: protected
+        self.assertIn('press', kinds(mk(90., 'A')))          # his team lacks PP: ordinary rules (R-16)
+        self.assertIn('press', kinds(mk(70., 'B')))          # outside the zone: ordinary rules (R-16)
+
+    def test_possession_is_seen_only_through_signals_and_perception(self):
+        v, b = mk_view([T('A1', 'A', 58, 50)])
+        v2 = dataclasses.replace(v, signals=dataclasses.replace(v.signals, pass_call=('A1', 'A0', 44., 52.)), holds_ball=False)
+        i, _ = C.decide(v2, b)
+        self.assertEqual((i.kind, i.aim), ('receive', (44., 52.)))
 
     def test_keeper_save_intent_from_perceived_flight_only(self):
         ball = T(C.BALL, 'ball', 20, 50, 'ball', vx=-25., vy=0.)
@@ -271,7 +318,7 @@ class EngineIntegration(unittest.TestCase):
             plans = 0
             for rec in port.m.e.log:
                 d = rec['data']
-                if rec['event'] == 'pass_plan':
+                if rec['event'] == 'release' and d.get('kind') == 'pass' and not d.get('forced'):
                     self.assertIn((d['player'], d['target']), want)
                     plans += 1
                 if rec['event'] == 'release' and d.get('kind') == 'shot':
@@ -280,6 +327,10 @@ class EngineIntegration(unittest.TestCase):
                     self.assertIn((d['player'], d['target']), archers)
             # every engine pass release was checked per command at release time (raises on mismatch)
             self.assertEqual(r['own5_pass_releases_checked'], plans)
+            for rr in r['trace']['release_records']:        # pass-release-v1: bound respected
+                if rr['status'] == 'released':
+                    self.assertLessEqual(rr['correction_angle_deg'], rr['correction_bound_deg'])
+                    self.assertEqual(rr['target'], next(c['target'] for c in chains if c['command_id'] == rr['command_id']))
             seen += plans
         self.assertGreaterEqual(seen, 3)
 
@@ -340,7 +391,7 @@ class EngineIntegration(unittest.TestCase):
     def test_primitives_are_registered_and_listed(self):
         from .registry import PRIMITIVES
         self.assertGreaterEqual(len(PRIMITIVES), 15)
-        lim = ROOT / 'SPRINT30_LIMITATIONS.md'
+        lim = ROOT / 'SPRINT45_LIMITATIONS.md'
         if lim.exists():
             text = lim.read_text()
             for key in PRIMITIVES:
