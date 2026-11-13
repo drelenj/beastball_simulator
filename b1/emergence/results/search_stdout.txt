@@ -1,0 +1,1 @@
+{"gen": 0, "wall_s": 262.8, "top": [{"label": "g0m2", "played": 14, "points": 39, "gd": 70, "gf": 80, "w": 13, "d": 0, "l": 1}, {"label": "g0m5", "played": 14, "points": 36, "gd": 61, "gf": 75, "w": 12, "d": 0, "l": 2}, {"label": "g0m7", "played": 14, "points": 21, "gd": -15, "gf": 35, "w": 7, "d": 0, "l": 7}], "failed": 0}

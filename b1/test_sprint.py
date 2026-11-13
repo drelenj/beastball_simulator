@@ -43,7 +43,8 @@ class PureCognition(unittest.TestCase):
             elif isinstance(n, ast.ImportFrom):
                 mods.add(n.module)
         # cognition may import only the stdlib pure modules and Base A's pure b1.core
-        self.assertEqual(mods, {'dataclasses', 'math', None})
+        # EMERGENCE-1: plus the two pure emergence modules (purity checked in b1/emergence/test_emergence.py)
+        self.assertEqual(mods, {'dataclasses', 'math', None, 'emergence.params', 'emergence.positioning'})
         rel = [a.name for n in ast.walk(tree) if isinstance(n, ast.ImportFrom) and n.module is None for a in n.names]
         self.assertEqual(rel, ['core'])
         core = ast.parse((ROOT / 'b1/core.py').read_text())
