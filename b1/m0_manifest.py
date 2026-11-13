@@ -2,9 +2,10 @@
 import hashlib
 import json
 from pathlib import Path
-from .preservation import historical_hashes
+from .preservation import load_inventory
 
 ROOT=Path(__file__).resolve().parents[1]
+BASELINE_INVENTORY=ROOT/'b1/baseline/B0_2abe497_GIT_BLOBS.json'
 INPUTS={
     'readiness_plan':('coordination_review/HP-001_HP-002_B1_IMPLEMENTATION_READINESS_AND_MILESTONE_PLAN.md','44f55b0a4b7439fbbef254bcf1b9ce7fd5ab8e3cfe030c94c35bca91b54bbd47'),
     'o4_v3_5':('upload/HP-002_T6-O4_v3.5_DRAFT.md','0acaa65488fa2786981f8b81ef35f3d1644e5e21c91e9c13bc061d1ce15c2596'),
@@ -34,16 +35,17 @@ def main():
             if actual != expected:
                 raise RuntimeError(f'frozen input mismatch: {relative}')
             records[name]={'path':relative,'available':True,'sha256':actual}
-    source_files=historical_hashes(ROOT)
+    algorithm,source_files,inventory_meta=load_inventory(BASELINE_INVENTORY)
     source_inventory=json.dumps(source_files,sort_keys=True,separators=(',',':')).encode()
     obj={'manifest_schema':'b1-m0-freeze-manifest-v1',
          'baseline':{'profile':'B0-P4-DEFAULT',
                      'accepted_commit':'2abe497ca82588cb2d8c871a7aab61daaae95c12'},
          'contract_freeze':'B1 Core Slice v1 plus IMPL-01..10 in M0_CLOSURE.md',
-         'm1_authorized':True,'m1_accepted':False,'m2_authorized':False,
-         'workspace_b0_source_snapshot':{'file_count':len(source_files),
+         'm1_authorized':True,'m1_accepted':True,'m2_authorized':False,
+         'canonical_b0_source_inventory':{'file_count':len(source_files),
                'inventory_sha256':hashlib.sha256(source_inventory).hexdigest(),
-               'note':'Workspace preservation inventory; not an independent Git checkout attestation.'},
+               'algorithm':algorithm,'commit':inventory_meta.get('commit'),
+               'note':'Canonical committed blob inventory; untracked workspace files are excluded.'},
          'inputs':records}
     out=ROOT/'b1'/'M0_FREEZE_MANIFEST.json'
     out.write_text(json.dumps(obj,sort_keys=True,indent=2)+'\n')
