@@ -49,7 +49,7 @@ class MatchPort:
         self.outcomes, self.feedback, self.flight, self.n_out = [], {}, None, 0
         self.sensors, self.gaze, self.last_ball, self.public = {}, {}, {}, {}
         self.log_seen, self.hook_calls = 0, Counter()
-        self.snaps, self.own5_checked = [], 0
+        self.snaps, self.own5_checked, self.own_release = [], 0, {}
         self._orig_keepers = type(m).c4c_keepers
         self._orig_ready = m.e.ready
         # ---- B1 hooks: instance attributes shadow every legacy tactical entry point
@@ -123,7 +123,7 @@ class MatchPort:
             'possession_ms': int(s.possession_ms), 'score': dict(s.score),
             'restart': (r.team, round(r.x, 2), round(r.y, 2), r.taker or getattr(self.m, 'restart_taker', None)) if r else None,
             'self': {p.id: (round(float(p.x), 3), round(float(p.y), 3), p.posture) for p in s.players.values() if p.active},
-            'quiver': {t: (q.loaded, q.last_release) for t, q in s.quivers.items()}}))
+            'ms': now_ms, 'quiver': {t: (q.loaded, q.last_release, q.reload_until) for t, q in s.quivers.items()}}))
         del self.snaps[:-40]
         for pid in self.active_ids():
             a = s.players[pid]
@@ -167,10 +167,10 @@ class MatchPort:
         pend = self.pending.get(pid)
         q = None
         if a.role == 'archer':
-            # own equipment / own-action memory (rule 3: the athlete knows its own actions):
-            # the Archer knows its own last release and whether it is reloading, without delay.
-            lq = s.quivers[a.team]
-            q = (0 if now_ms < lq.reload_until else lq.loaded, lq.last_release)
+            # own equipment from the delayed snapshot; own last release from the Archer's
+            # own-action memory (recorded by its motor at release), never from live state.
+            sq = snap['quiver'][a.team]
+            q = (0 if snap['ms'] < sq[2] else sq[0], max(sq[1], self.own_release.get(pid, -1)))
         oid = f's30/{now_ms:010d}/{pid}/obs'
         view = AthleteView(oid, pid, a.team, a.role, a.slot, now_ms, me[0], me[1],
                            snap['carrier'] == pid, int(s.attack_sign(a.team)), float(s.ends[a.team]),
@@ -389,6 +389,8 @@ class MatchPort:
             vel = (speed * math.cos(el) * math.cos(az), speed * math.cos(el) * math.sin(az), speed * math.sin(el))
             ar = m.e.shoot_arrow(p.id, intent.target, vel, origin)
             m.last_arrow_decision[p.team] = s.now
+            if ar:
+                self.own_release[pid] = s.now
             self._resolve(pid, 'arrow_released' if ar else 'rejected_by_engine')
 
     def _keeper_motor(self, targets):
