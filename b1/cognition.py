@@ -1,0 +1,323 @@
+"""SPRINT-30 pure per-athlete cognition. No simulation imports.
+
+PRIMITIVE: every scoring constant below is a provisional rule-based policy
+parameter (see b1/registry.py and SPRINT30_LIMITATIONS.md). Inputs are only an
+immutable AthleteView and the athlete's own BeliefState.
+"""
+from dataclasses import dataclass, asdict
+from math import hypot
+
+BALL = 'BALL'
+BALL_KINDS = ('pass', 'shoot', 'draw_release', 'restart_pass')
+FAILED = ('interrupted', 'release_failed')
+
+
+@dataclass(frozen=True)
+class Track:
+    entity: str
+    team: str          # 'A' / 'B' / 'ball'
+    role: str          # public (uniform): field / keeper / archer / ball
+    x: float
+    y: float
+    vx: float
+    vy: float
+    captured_ms: int
+
+
+@dataclass(frozen=True)
+class Signals:
+    """Public officiating / scoreboard signals (not hidden state)."""
+    phase: str
+    period: int
+    game_ms: int
+    possession_ms: int
+    score_own: int
+    score_opp: int
+    restart_team: str | None
+    restart_xy: tuple | None
+    i_am_taker: bool
+
+
+@dataclass(frozen=True)
+class AthleteView:
+    observation_id: str
+    athlete: str
+    team: str
+    role: str
+    slot: int
+    delivered_ms: int
+    x: float
+    y: float
+    holds_ball: bool
+    attack_sign: int
+    own_goal_x: float
+    tracks: tuple
+    signals: Signals
+    pending_command_id: str | None = None
+    pending_kind: str | None = None
+    pending_release_ms: int | None = None
+    arrows_loaded: int | None = None
+    last_release_ms: int | None = None
+    posture: str = 'upright'
+
+
+@dataclass(frozen=True)
+class BeliefState:
+    revision: str
+    observation_id: str
+    tracks: tuple
+    own_feedback: tuple = ()
+    max_track_age_ms: int = 2000
+    last_ball: tuple | None = None      # (x, y, captured_ms) own memory
+
+
+@dataclass(frozen=True)
+class ActionIntent:
+    intent_id: str
+    decision_id: str
+    athlete: str
+    kind: str
+    target: str | None
+    aim: tuple | None
+    aim_vel: tuple | None
+    gaze: tuple | None
+    decided_ms: int
+    related_command_id: str | None = None
+
+
+@dataclass(frozen=True)
+class MotorCommand:
+    command_id: str
+    intent: ActionIntent
+    start_ms: int
+    release_ms: int | None
+    resource: str       # 'ball' | 'bow' | 'locomotion'
+
+
+@dataclass(frozen=True)
+class PhysicalOutcome:
+    outcome_id: str
+    command_id: str | None
+    status: str
+    resolved_ms: int
+    entity_id: str | None = None
+
+
+def receive_outcome(outcome):
+    """Restricted own-action feedback: id, status, time only."""
+    return (outcome.outcome_id, outcome.status, outcome.resolved_ms)
+
+
+def _clamp(v, lo, hi):
+    return lo if v < lo else hi if v > hi else v
+
+
+def home_position(view, ref_x, defending):
+    """PRIMITIVE: slot-grid shape (spec deviation BA-7: externally assigned)."""
+    sg, k = view.attack_sign, view.slot
+    row = (0, -1, -1, -1, 0, 0, 0, 1, 1, 1)[k % 10]
+    lane = (50, 22, 50, 78, 14, 40, 86, 28, 60, 72)[k % 10]
+    if k % 10 == 0:
+        row = 1
+    depth = (-16, 2, 14)[row + 1] - (12 if defending else 0)
+    if defending:
+        lane = 50 + (lane - 50) * .6
+    return (_clamp(ref_x + sg * depth, 6, 94), float(lane))
+
+
+def _lane_clearance(ox, oy, tx, ty, opponents):
+    dx, dy = tx - ox, ty - oy
+    d2 = dx * dx + dy * dy
+    clearance = 10.0
+    for o in opponents:
+        f = _clamp(((o.x - ox) * dx + (o.y - oy) * dy) / d2, 0., 1.) if d2 > 0 else 0.
+        clearance = min(clearance, hypot(o.x - ox - f * dx, o.y - oy - f * dy))
+    return clearance
+
+
+def _pass_options(view, mates, opps, restart=False):
+    out = []
+    sg = view.attack_sign
+    near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=30.)
+    for c in sorted(mates, key=lambda c: c.entity):
+        if c.role == 'archer':
+            continue
+        dx, dy = c.x - view.x, c.y - view.y
+        d = hypot(dx, dy)
+        if not 4 <= d <= 34:
+            continue
+        clearance = _lane_clearance(view.x, view.y, c.x, c.y, opps)
+        value = (min(clearance, 6.) - 3. + .08 * sg * dx - .03 * d
+                 + (2. if near < 3. else 0.) + (3. if restart else 0.))
+        out.append(('restart_pass' if restart else 'pass', c.entity,
+                    (round(c.x, 3), round(c.y, 3)), round(value, 6)))
+    return out
+
+
+def decide(view: AthleteView, belief: BeliefState):
+    if belief.observation_id != view.observation_id:
+        raise ValueError('belief/view provenance mismatch')
+    now = view.delivered_ms
+    fresh = tuple(t for t in belief.tracks
+                  if 0 <= now - t.captured_ms <= belief.max_track_age_ms)
+    ball = next((t for t in fresh if t.entity == BALL), None)
+    mates = [t for t in fresh if t.team == view.team]
+    opps = [t for t in fresh if t.team not in (view.team, 'ball')]
+    sg = view.attack_sign
+    goal = (view.own_goal_x + sg * 100., 50.)
+    sig = view.signals
+    latest = belief.own_feedback[-1] if belief.own_feedback else None
+    failed = bool(latest and (latest[1].split(':')[0] in FAILED or latest[1].startswith('rejected_')))
+    banned = latest[1].split(':')[-1] if failed and ':' in latest[1] else None
+    options = []      # (kind, target, aim, value)
+    gaze = (ball.x, ball.y) if ball else (belief.last_ball[:2] if belief.last_ball else None)
+
+    # believed ball carrier, from perception only
+    carrier = None
+    if view.holds_ball:
+        carrier = ('me', view.team)
+    elif ball is not None:
+        best = min((t for t in mates + opps if t.role != 'archer'),
+                   key=lambda t: (hypot(t.x - ball.x, t.y - ball.y), t.entity), default=None)
+        if best is not None and hypot(best.x - ball.x, best.y - ball.y) < 1.8:
+            carrier = (best.entity, best.team)
+    bx, by = ((view.x, view.y) if view.holds_ball else (ball.x, ball.y) if ball
+              else belief.last_ball[:2] if belief.last_ball else (None, None))
+
+    if view.pending_command_id is not None:
+        options.append(('continue_current', None, None, 0.))
+    elif view.role == 'archer':
+        options.append(('archer_hold', None, None, 0.))
+        # PROVISIONAL (R-RS / ARC-1): ruleset 1.0.1 primitive: only the believed
+        # opposing ball carrier is targeted; Keepers are never targeted.
+        ready = (view.arrows_loaded or 0) > 0 and (
+            view.last_release_ms is None or now - view.last_release_ms >= 2500)
+        if (ready and sig.phase == 'live' and carrier and carrier[1] not in (view.team,)
+                and carrier[0] != 'me' and banned != 'draw_release'):
+            t = next(o for o in opps if o.entity == carrier[0])
+            d = hypot(t.x - view.x, t.y - view.y)
+            if t.role != 'keeper' and 10 <= d <= 70:
+                options.append(('draw_release', t.entity, (round(t.x, 3), round(t.y, 3)),
+                                round(3. - .02 * d, 6)))
+    elif sig.phase not in ('live', 'opening', 'penalty', 'award'):
+        if sig.i_am_taker:
+            options.append(('restart_wait', None, None, 0.))
+            if banned != 'restart_pass':
+                options += _pass_options(view, mates, opps, restart=True)
+        else:
+            ref = sig.restart_xy[0] if sig.restart_xy else (bx if bx is not None else 50.)
+            if view.role == 'keeper':
+                options.append(('keeper_set', None, (view.own_goal_x + sg * 2., 50.), 1.))
+            else:
+                options.append(('home', None, home_position(
+                    view, ref, sig.restart_team not in (None, view.team)), 1.))
+    elif view.holds_ball:
+        options.append(('retain', None, None, 0.))
+        if not failed or True:
+            near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=30.)
+            dg = hypot(goal[0] - view.x, goal[1] - view.y)
+            if view.role != 'keeper':
+                if dg <= 32 and banned != 'shoot':
+                    keeper = next((o for o in opps if o.role == 'keeper'), None)
+                    side = -1. if keeper is not None and keeper.y > 50 else 1.
+                    value = 5.5 - .2 * dg + (1.5 if near < 3 else 0.) + (
+                        5. if 0 < sig.possession_ms < 5000 else 0.)
+                    options.append(('shoot', None, (goal[0], 50. + side * 3.6), round(value, 6)))
+                # carry toward goal, drifting away from the nearest believed opponent ahead
+                ahead = [o for o in opps if sg * (o.x - view.x) > 0 and hypot(o.x - view.x, o.y - view.y) < 9]
+                drift = 0.
+                if ahead:
+                    o = min(ahead, key=lambda o: (hypot(o.x - view.x, o.y - view.y), o.entity))
+                    drift = 6. if o.y <= view.y else -6.
+                aim = (_clamp(view.x + sg * 10., 1, 99),
+                       _clamp(view.y + drift + (.25 * (50 - view.y) if dg < 40 else 0.), 3, 97))
+                options.append(('carry', None, (round(aim[0], 3), round(aim[1], 3)),
+                                round(.8 + .25 * min(near, 8.), 6)))
+            if banned != 'pass':
+                options += [(k, t, a, round(v + (4. if view.role == 'keeper' else 0.), 6))
+                            for k, t, a, v in _pass_options(view, mates, opps)]
+    elif view.role == 'keeper':
+        gx = view.own_goal_x
+        if bx is None:
+            options.append(('keeper_set', None, (gx + sg * 2., 50.), 1.))
+        else:
+            d = hypot(bx - gx, by - 50.)
+            depth = _clamp(.15 * d, 1.5, 6.)
+            ux, uy = ((bx - gx) / d, (by - 50.) / d) if d > 1e-6 else (sg, 0.)
+            options.append(('keeper_set', None, (round(gx + ux * depth, 3), round(50. + uy * depth, 3)), 1.))
+            if ball is not None and carrier is None:
+                speed = hypot(ball.vx, ball.vy)
+                toward = -sg * ball.vx
+                if speed > 7. and toward > 3.:
+                    t_cross = abs(ball.x - gx) / toward
+                    y_cross = ball.y + ball.vy * t_cross
+                    if t_cross < 3. and abs(y_cross - 50.) < 9. and banned != 'keeper_save':
+                        # PROVISIONAL (U-1..U-4 Keeper-zone canon open): save intent
+                        options.append(('keeper_save', BALL, (round(gx, 3), round(y_cross, 3)), 6.))
+                elif speed < 6. and d < 16.:
+                    options.append(('pursue', BALL, (round(ball.x, 3), round(ball.y, 3)), 3.))
+    else:                               # field player without the ball, live play
+        if bx is None:
+            options.append(('scan', None, home_position(view, 50., False), 1.))
+        elif ball is None:
+            options.append(('search', None, (round(bx, 3), round(by, 3)), 1.))
+        elif carrier is None:           # loose or in flight
+            t_lead = min(1., hypot(ball.x - view.x, ball.y - view.y) / 9.)
+            px = _clamp(ball.x + ball.vx * t_lead, 1, 99)
+            py = _clamp(ball.y + ball.vy * t_lead, 1, 99)
+            mine = hypot(px - view.x, py - view.y)
+            closer = sum(1 for t in mates if t.role == 'field'
+                         and hypot(px - t.x, py - t.y) < mine)
+            options.append(('home', None, home_position(view, ball.x, False), 1.))
+            if closer <= 1 or mine < 7.:
+                options.append(('pursue', BALL, (round(px, 3), round(py, 3)),
+                                round(4. - .05 * mine, 6)))
+        elif carrier[1] == view.team:
+            options.append(('support', carrier[0], home_position(view, ball.x, False), 1.))
+        else:
+            c = next(o for o in opps if o.entity == carrier[0])
+            mine = hypot(c.x - view.x, c.y - view.y)
+            closer = sum(1 for t in mates if t.role == 'field'
+                         and hypot(c.x - t.x, c.y - t.y) < mine)
+            options.append(('mark', None, home_position(view, ball.x, True), 1.))
+            if closer <= 1 and banned != 'press':
+                options.append(('press', c.entity, (round(_clamp(c.x + .3 * c.vx, 1, 99), 3),
+                                                    round(_clamp(c.y + .3 * c.vy, 1, 99), 3)),
+                                round(3. - .02 * mine, 6)))
+
+    chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
+    did = f'{view.observation_id}/decision'
+    aim_vel = None
+    if chosen[0] == 'draw_release':
+        t = next(o for o in opps if o.entity == chosen[1])
+        aim_vel = (round(t.vx, 3), round(t.vy, 3))
+    intent = ActionIntent(did + '/intent', did, view.athlete, chosen[0], chosen[1], chosen[2],
+                          aim_vel, (round(gaze[0], 3), round(gaze[1], 3)) if gaze else None, now,
+                          view.pending_command_id if chosen[0] == 'continue_current' else None)
+    record = {'decision_id': did, 'owner': view.athlete, 'role': view.role,
+              'observation_id': view.observation_id, 'belief_revision': belief.revision,
+              'fresh_track_ids': [t.entity for t in fresh],
+              'stale_track_ids': [t.entity for t in belief.tracks if t not in fresh],
+              'believed_carrier': list(carrier) if carrier else None,
+              'considered_feedback': list(latest) if latest else None,
+              'pending_command_id': view.pending_command_id,
+              'options': [list(o) for o in options], 'selected': list(chosen),
+              'selection_rule': 'max(value, kind, target)'}
+    return intent, record
+
+
+def view_to_json(view, belief):
+    return {'view': asdict(view), 'belief': asdict(belief)}
+
+
+def view_from_json(d):
+    v, b = dict(d['view']), dict(d['belief'])
+    tr = lambda xs: tuple(Track(**t) for t in xs)
+    v['tracks'] = tr(v['tracks'])
+    s = dict(v['signals'])
+    s['restart_xy'] = tuple(s['restart_xy']) if s['restart_xy'] else None
+    v['signals'] = Signals(**s)
+    b['tracks'] = tr(b['tracks'])
+    b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])
+    b['last_ball'] = tuple(b['last_ball']) if b['last_ball'] else None
+    return AthleteView(**v), BeliefState(**b)

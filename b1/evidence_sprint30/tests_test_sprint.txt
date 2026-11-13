@@ -1,0 +1,29 @@
+test_BR4_cognition_runs_in_process_without_simulator (b1.test_sprint.EngineIntegration.test_BR4_cognition_runs_in_process_without_simulator) ... ok
+test_BR7_legacy_tactical_controller_is_trapped_and_run_completes (b1.test_sprint.EngineIntegration.test_BR7_legacy_tactical_controller_is_trapped_and_run_completes) ... ok
+test_G1_terminals_vary_with_seed_and_are_physical (b1.test_sprint.EngineIntegration.test_G1_terminals_vary_with_seed_and_are_physical) ... ok
+test_G1_three_athletes_decide_and_physics_resolves_the_pass (b1.test_sprint.EngineIntegration.test_G1_three_athletes_decide_and_physics_resolves_the_pass) ... ok
+test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical (b1.test_sprint.EngineIntegration.test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical) ... ok
+test_OWN4_BR6_decisions_reconstruct_from_trace_alone (b1.test_sprint.EngineIntegration.test_OWN4_BR6_decisions_reconstruct_from_trace_alone) ... ok
+test_OWN5_motor_never_changes_kind_target_or_receiver (b1.test_sprint.EngineIntegration.test_OWN5_motor_never_changes_kind_target_or_receiver) ... ok
+test_OWN6_no_decision_before_delivery_and_no_future_data (b1.test_sprint.EngineIntegration.test_OWN6_no_decision_before_delivery_and_no_future_data) ... ok
+test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth (b1.test_sprint.EngineIntegration.test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth) ... ok
+test_causal_ids_link_decision_command_outcome (b1.test_sprint.EngineIntegration.test_causal_ids_link_decision_command_outcome) ... ok
+test_determinism_across_processes (b1.test_sprint.EngineIntegration.test_determinism_across_processes) ... ok
+test_determinism_same_seed_same_hash_in_process (b1.test_sprint.EngineIntegration.test_determinism_same_seed_same_hash_in_process) ... ok
+test_frozen_B0_file_identity (b1.test_sprint.EngineIntegration.test_frozen_B0_file_identity) ... ERROR
+Independent of the inventory's uncommitted entries: nothing from the ... ok
+test_primitives_are_registered_and_listed (b1.test_sprint.EngineIntegration.test_primitives_are_registered_and_listed) ... ok
+test_public_signal_change_reaches_view_only_after_latency (b1.test_sprint.EngineIntegration.test_public_signal_change_reaches_view_only_after_latency) ... ok
+Counterpart that proves the perturbation test can fail. ... ok
+test_BR1_cognition_imports_no_simulator (b1.test_sprint.PureCognition.test_BR1_cognition_imports_no_simulator) ... ok
+test_BR2_no_forbidden_symbols (b1.test_sprint.PureCognition.test_BR2_no_forbidden_symbols) ... ok
+test_BR5_motor_command_carries_no_belief_or_options (b1.test_sprint.PureCognition.test_BR5_motor_command_carries_no_belief_or_options) ... ok
+test_OWN3_view_change_changes_decision_in_predicted_direction (b1.test_sprint.PureCognition.test_OWN3_view_change_changes_decision_in_predicted_direction) ... ok
+test_archer_targets_only_believed_opposing_carrier_never_keeper (b1.test_sprint.PureCognition.test_archer_targets_only_believed_opposing_carrier_never_keeper) ... ok
+test_keeper_save_intent_from_perceived_flight_only (b1.test_sprint.PureCognition.test_keeper_save_intent_from_perceived_flight_only) ... ok
+test_pending_and_failure_feedback_change_next_decision (b1.test_sprint.PureCognition.test_pending_and_failure_feedback_change_next_decision) ... ok
+test_provenance_mismatch_fails_loudly (b1.test_sprint.PureCognition.test_provenance_mismatch_fails_loudly) ... ok
+test_stale_track_is_not_used (b1.test_sprint.PureCognition.test_stale_track_is_not_used) ... ok
+test_values_are_immutable (b1.test_sprint.PureCognition.test_values_are_immutable) ... ok
+Ran 27 tests in 23.925s
+FAILED (errors=1)

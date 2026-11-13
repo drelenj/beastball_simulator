@@ -1,0 +1,23 @@
+"""SPRINT-30 registry of PRIMITIVE / PROVISIONAL modules (machine-readable)."""
+PRIMITIVES = {
+    'cognition.option_scoring': 'PRIMITIVE: hand-set rule-based option values for all roles; no learning, no lookahead, no teammate-intent model.',
+    'cognition.home_position': 'PRIMITIVE: slot-grid formation assigned from outside the athlete (deviation from BA-7).',
+    'cognition.believed_carrier': 'PRIMITIVE: carrier inferred as nearest perceived non-archer body within 1.8 m of the perceived ball.',
+    'cognition.archer': 'PRIMITIVE+PROVISIONAL (R-RS, ARC-1): targets only the believed opposing carrier, never a Keeper; fixed 2.5 s self-imposed interval.',
+    'cognition.keeper': 'PRIMITIVE+PROVISIONAL (U-1..U-4): line positioning and a save intent from perceived ball velocity; Keeper-zone canon unresolved.',
+    'sensor.ball_as_body': 'PRIMITIVE: the ball is fed to the B0 PRISM perception model as one more body (same FOV, latency and noise as an athlete).',
+    'sensor.public_signals': 'PRIMITIVE: phase, clocks, score, restart spot/team/taker are public officiating signals, delivered exact (no noise) after the athlete own perception latency.',
+    'sensor.proprioception': 'PRIMITIVE: own position, posture, ball-in-hand and quiver count are exact (no noise), delivered after the athlete own perception latency.',
+    'procedure.archer_platform': 'PRIMITIVE: Archer movement along the platform is the B0 engine procedure update_archers (follows the true ball); B1 Archers do not choose their position.',
+    'sensor.gaze': 'PRIMITIVE: gaze focus is the athlete own believed ball position; with no belief the body facing is used.',
+    'motor.pass_release': 'PRIMITIVE: release-time aim uses the B0 plan_pass on the intended receiver true kinematics (receiver cannot be replaced: pass_ranked is empty).',
+    'motor.shot': 'PRIMITIVE: shot aimed at the intent aim point with the B0 release-state / perturbation physics.',
+    'motor.archer': 'PRIMITIVE: ballistic lead from the intent believed position and velocity; nominal target height 1.4 m; low arc only; no obstacle check.',
+    'motor.archer_interlock': 'PROVISIONAL (SELF-1): the Archer motor aborts (never retargets) a release the B0 1.0.1 engine would penalise (immune/ineligible target, Keeper in own zone, true range outside 10-70 m, reloading). Reads true state at motor level.',
+    'motor.keeper_save': 'PRIMITIVE+PROVISIONAL: a B1 keeper_save intent enables the B0 C4c dive/step planner, which tracks the true flight at motor level; without the intent the planner is masked.',
+    'motor.contact_kernel': 'PRIMITIVE: grip/hold/escape micro-behaviour and catch/jump reflexes are the B0 C3/P4 physics kernels, not B1 decisions.',
+    'procedure.dead_ball': 'PROVISIONAL: restart placement (taker walks to mark, opponents clear) is the B0 engine procedure targets_dead; the taker chooses the receiver; after 3 s without a choice the B0 pass-into-space fallback fires.',
+    'procedure.substitutions': 'PRIMITIVE: rotation/substitution is the B0 bench procedure.',
+    'procedure.penalty': 'PRIMITIVE: penalty phase uses the same B1 option scoring; no dedicated penalty cognition.',
+    'match.regulation_profile': 'PRIMITIVE: default run uses the B0-P4-DEFAULT profile (2 x 120 s, ruleset 1.0.1), the same profile as M1; not the 4 x 600 s league profile.',
+}
