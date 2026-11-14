@@ -45,7 +45,7 @@ class PureCognition(unittest.TestCase):
         # cognition may import only the stdlib pure modules and Base A's pure b1.core
         self.assertEqual(mods, {'dataclasses', 'math', None})
         rel = [a.name for n in ast.walk(tree) if isinstance(n, ast.ImportFrom) and n.module is None for a in n.names]
-        self.assertEqual(rel, ['emergence_intents', 'core'])
+        self.assertEqual(rel, ['communication', 'emergence_intents', 'core'])
         core = ast.parse((ROOT / 'b1/core.py').read_text())
         cm = set()
         for n in ast.walk(core):

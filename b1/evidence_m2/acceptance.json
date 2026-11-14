@@ -1,0 +1,15 @@
+{
+  "M2-1": {
+    "full_match_trace_hash": "d2fe8000251ec3a5be254937ddc790097d3b1830acb2f27e7d2b3fe6533fa687",
+    "full_match_state_hash": "79383432f0c77402fb0d0dc732624edae94d3545e68f15b53ce506cc32ae5955",
+    "full_loop_scenarios_equal": 16,
+    "governed_matrix_episodes_equal": 600,
+    "governed_matrix_hash": "3f61f1e6d66a78120281755d2f9e771db0b90959a0806f3e84173d32c33edd12"
+  },
+  "M2-2": "PASS focused tests",
+  "M2-3": "PASS serial/process replay and causal IDs",
+  "M2-4": "PASS bandwidth, ordering and capacities",
+  "M2-5": "PASS full decisions/intents unchanged across role/possession/pending variants",
+  "status": "IMPLEMENTED / TESTED; not ACCEPTED",
+  "frozen_B0_paths_verified": 427
+}

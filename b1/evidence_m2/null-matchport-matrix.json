@@ -1,0 +1,114 @@
+[
+  {
+    "seed": 1,
+    "scenario": "g1",
+    "trace_hash": "af072c7bc46084ae88792edb13808d91fc3584ff50e35ad706e294dcc1f1bbd8",
+    "state_hash": "de97089b8585a78f2eecd6ef7ed1fc5c3a54362c42a1b82e61ba99f9c65d1a1d",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 2,
+    "scenario": "g1",
+    "trace_hash": "68300df06fadf2d9dce3fe5a3b6c9ae40ba85763ed425bb8243f6af68f34025d",
+    "state_hash": "e08b12a07e6e441e7720509628307a78ffc0367d8410e95eceec882d1e12d6fe",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 3,
+    "scenario": "g1",
+    "trace_hash": "d5a089d88a794c4abdd9f276ed7cdf6c452279b5e588d6d251329b8426617e7e",
+    "state_hash": "6a8f1a5e28afb4e9649e48b07b38819f534d4a9838ff08406d3e38f09ca7794b",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 4,
+    "scenario": "g1",
+    "trace_hash": "331cf68227c1929c30f77ae38f26780c5253ce8b72179436d6306588cc78db84",
+    "state_hash": "44725caf185baffc189fcf1b11ae8e43db2a7320036504ce27c0c2f0aac89933",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 5,
+    "scenario": "g1",
+    "trace_hash": "cfe8aab4c8d63dbd3c744bd9eef86d7921d8bf5df01046766300a6b3d4393afc",
+    "state_hash": "9a1b944c5fe66d6e4fbaa9f00c8ab247f7d39d8d65c77a70f427e1f186904350",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 6,
+    "scenario": "g1",
+    "trace_hash": "050b91e38dfc1d40f7b0519ec93cf6b62a028b1d0dd140af3cc9cfdc92db7100",
+    "state_hash": "eb793ad1a9cf171f2e6bad525c92ae00b51a38a478445da3f2a7c2932fd2c084",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 7,
+    "scenario": "g1",
+    "trace_hash": "4afda8776e1d86f30729ce74bc5f989e7a2d1088d89f9306914ee14fea43360c",
+    "state_hash": "50224d6ed2371d616558494150cd4a80241720fbd6ef4ba7d8aa804969fd15db",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 8,
+    "scenario": "g1",
+    "trace_hash": "9eca0d29e94033fe99296eba871c27aa09916762e73b120991d560668fb2b45b",
+    "state_hash": "b8bb5694fc85e6309c9bcba59f75637ca33549c88ad9e0bfac4b47e101a6d2cb",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 1,
+    "scenario": "g1_close",
+    "trace_hash": "07ae20deabac1cb7b037b590330f8a15b477983005f130063864d26bb238b910",
+    "state_hash": "3978139256e7eb1c0286e90b2cd2a196bdcbb24589c0101531291fdf982f7c8b",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 2,
+    "scenario": "g1_close",
+    "trace_hash": "baefc26c8c8e39dcb09a794fa7c9eba245b17a5d713b8de68fd48452a0de5314",
+    "state_hash": "af8c7fafafe4986c6ea0c0cb042252c79be67d2e8515378375f2b86379e6df14",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 3,
+    "scenario": "g1_close",
+    "trace_hash": "1790004e333765ebb083c00c57f1fa019a7b3cd7ac61f88542afd4cd71adf564",
+    "state_hash": "b563ac5fb367d9a76cc9815c1457d54810a07c926ae83f22445c8788b20ec78d",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 4,
+    "scenario": "g1_close",
+    "trace_hash": "79340c03ab178b9979686e7b7708aac5ff01280a9b29d0c6ba9d376c2949720e",
+    "state_hash": "1768a04203977720ecf0e3eeeffbc0acfa6e159812c1c3464aaf0c56237dbf6f",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 5,
+    "scenario": "g1_close",
+    "trace_hash": "1171a7d204afe27ab8e8252fc5b958287574353c5e561399ce2b34cf8eb43fd3",
+    "state_hash": "2f319be2b4201f382c8029c92231f1e77a60322c727d421de106487acffc8d5e",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 6,
+    "scenario": "g1_close",
+    "trace_hash": "dd1208a4401c58a63a748366e9605bcfae64f1d911864b1f2fe6285b1e398f49",
+    "state_hash": "6ec4d6d55a88acfdece3150d7c6e116f775edc0de13f341d20f0eb68f9dde166",
+    "terminal": "pass_completed"
+  },
+  {
+    "seed": 7,
+    "scenario": "g1_close",
+    "trace_hash": "e8b1b82b045866466a6f9b5238c9358e3e90f89a381288939b05d27d303374c4",
+    "state_hash": "e7280b8cd00ac8faff1575186dd92fdcea15a7fdca3fac2cf64942f2f6327c4f",
+    "terminal": "pass_intercepted"
+  },
+  {
+    "seed": 8,
+    "scenario": "g1_close",
+    "trace_hash": "5b9967fa2645ec92dba61c1b6e32741751587fb6fe8e05f0878d8ee3c18b9016",
+    "state_hash": "eb0981119669c3610138e1a20cfc5bb28abcbdb864f3711accd7a6fd30077551",
+    "terminal": "pass_intercepted"
+  }
+]

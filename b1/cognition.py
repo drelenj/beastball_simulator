@@ -7,6 +7,7 @@ immutable AthleteView and the athlete's own BeliefState.
 from dataclasses import dataclass, asdict, replace
 from math import hypot
 
+from . import communication as COM
 from . import emergence_intents as E
 from . import core as M1          # Base A (governed M1) pure decision code
 
@@ -72,6 +73,7 @@ class AthleteView:
     last_release_ms: int | None = None
     posture: str = 'upright'
     judgment: float = 0.7                # SELF-1: own abilities known exactly
+    messages: tuple[COM.Delivery, ...] = ()
     ownership_enabled: bool = False
     ball_course: E.BallCourseBelief | None = None
     own_restraint: float = 0.
@@ -88,6 +90,7 @@ class BeliefState:
     max_track_age_ms: int = 2000
     last_ball: tuple | None = None      # (x, y, captured_ms) own memory
     ball_course: E.BallCourseBelief | None = None
+    messages: tuple[COM.Delivery, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -209,6 +212,7 @@ def archer_target_legal(t, view, now):
 def decide(view: AthleteView, belief: BeliefState):
     if belief.observation_id != view.observation_id:
         raise ValueError('belief/view provenance mismatch')
+    COM.plan_hooks(view, belief)
     now = view.delivered_ms
     fresh = tuple(t for t in belief.tracks
                   if 0 <= now - t.captured_ms <= belief.max_track_age_ms)
@@ -413,7 +417,13 @@ def decide(view: AthleteView, belief: BeliefState):
 
 
 def view_to_json(view, belief):
-    return {'view': asdict(view), 'belief': asdict(belief)}
+    result = {'view': asdict(view), 'belief': asdict(belief)}
+    for d in result.values():
+        for message in d['messages']:
+            e = message['envelope']
+            e['payload'] = e['payload'].hex()
+            e['content_slot'] = e['content_slot'].value
+    return result
 
 
 def view_from_json(d):
@@ -429,6 +439,15 @@ def view_from_json(d):
     b['own_feedback'] = tuple(tuple(f) for f in b['own_feedback'])
     b['last_ball'] = tuple(b['last_ball']) if b['last_ball'] else None
     for d in (v, b):
+        messages = []
+        for raw in d.get('messages', ()):
+            raw = dict(raw)
+            e = dict(raw.pop('envelope'))
+            e['payload'] = bytes.fromhex(e['payload'])
+            e['content_slot'] = COM.ContentSlot(e['content_slot'])
+            e['recipients'] = tuple(e['recipients'])
+            messages.append(COM.Delivery(COM.MessageEnvelope(**e), **raw))
+        d['messages'] = tuple(messages)
         if d.get('ball_course') is not None:
             d['ball_course'] = E.BallCourseBelief(**d['ball_course'])
     return AthleteView(**v), BeliefState(**b)
