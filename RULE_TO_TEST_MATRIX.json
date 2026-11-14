@@ -1,0 +1,646 @@
+{
+  "schema": "native-v0-rule-matrix/1",
+  "authority": "Owner build prompt 2026-11-14",
+  "rows": [
+    {
+      "id": "S1",
+      "rule": "Four 600-second periods, two rosters of 22 and 12 active",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_structure_configuration_and_effective_readback",
+      "reason": ""
+    },
+    {
+      "id": "S2",
+      "rule": "First Hunt opens every regulation and overtime period; any field contestant",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake",
+      "reason": ""
+    },
+    {
+      "id": "S3",
+      "rule": "False start retaken",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake",
+      "reason": ""
+    },
+    {
+      "id": "S4",
+      "rule": "First tied overtime 300 s, runs whole period",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_first_overtime_is_whole_300s_and_later_is_sudden_death",
+      "reason": ""
+    },
+    {
+      "id": "S5",
+      "rule": "Later sudden death ends on any score, full and half forced",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_sudden_death_ends_on_any_score",
+      "reason": ""
+    },
+    {
+      "id": "BALL1",
+      "rule": "No kick releases or strike path",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch",
+      "reason": ""
+    },
+    {
+      "id": "BALL2",
+      "rule": "One throw-and-replay dribble; second offence minor; stoppage and other touch reset",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch",
+      "reason": ""
+    },
+    {
+      "id": "CLOCK1",
+      "rule": "30 s fresh after score and turnover; carries tackle",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover",
+      "reason": "",
+      "additional_tests": [
+        "native/test_rules.py::test_defensive_minor_awards_and_retains"
+      ]
+    },
+    {
+      "id": "CLOCK2",
+      "rule": "Play expiry turnover spot or own 40 nearer attacked goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover",
+      "reason": ""
+    },
+    {
+      "id": "CLOCK3",
+      "rule": "Snap clock runs only when more than ten remained",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover",
+      "reason": ""
+    },
+    {
+      "id": "CLOCK4",
+      "rule": "Game clock stops every dead ball",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover",
+      "reason": ""
+    },
+    {
+      "id": "G1",
+      "rule": "100x100 surface and strict 20 m configured zone arc",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "reason": ""
+    },
+    {
+      "id": "G2",
+      "rule": "3 m goal semicircle and 3 m quadrant depth",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "reason": ""
+    },
+    {
+      "id": "G3",
+      "rule": "Whole ball crosses inside goal section",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "reason": ""
+    },
+    {
+      "id": "G4",
+      "rule": "Platform fixed 5 m high / 5 m back, one per goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "reason": ""
+    },
+    {
+      "id": "G5",
+      "rule": "Platform arrow ballistic reach tested",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic",
+      "reason": ""
+    },
+    {
+      "id": "SCORE1",
+      "rule": "Flat two-point goal and one-point half goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score",
+      "reason": ""
+    },
+    {
+      "id": "SCORE2",
+      "rule": "Carry tracked separately",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score",
+      "reason": ""
+    },
+    {
+      "id": "SCORE3",
+      "rule": "Noncarry release distance and success counters",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_noncarry_goal_release_distance_attempts_and_success",
+      "reason": ""
+    },
+    {
+      "id": "SCORE4",
+      "rule": "Keeper cannot score for own team, own goal for opponents",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score",
+      "reason": ""
+    },
+    {
+      "id": "T1",
+      "rule": "First tackle contact scrimmage inside zone; attacked goal x<10 resets to 10",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover",
+      "reason": ""
+    },
+    {
+      "id": "T2",
+      "rule": "Tackled snapper and tackler recorded",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover",
+      "reason": ""
+    },
+    {
+      "id": "T3",
+      "rule": "Missed ten-second snap window count+1 and 5 m back",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_snap_window_missed_costs_count_and_spot",
+      "reason": ""
+    },
+    {
+      "id": "T4",
+      "rule": "Offence offside count+1 and 5 m back; second turnover",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_scrimmage_offside_procedural",
+      "reason": ""
+    },
+    {
+      "id": "T5",
+      "rule": "Defence offside count-1 floor zero, 5 m forward; no half goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_scrimmage_offside_procedural",
+      "reason": ""
+    },
+    {
+      "id": "T6",
+      "rule": "Second tackle turnover spot or own40 nearer attacked goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover",
+      "reason": ""
+    },
+    {
+      "id": "F1",
+      "rule": "Offence minor count+1, second turnover",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_offence_minor_second_is_turnover_and_defence_costs_count",
+      "reason": ""
+    },
+    {
+      "id": "F2",
+      "rule": "Defence minor decrements; count zero awards half P1-3 / full P4+ and retains",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_defensive_minor_awards_and_retains",
+      "reason": ""
+    },
+    {
+      "id": "F3",
+      "rule": "Unintentional head minor; intent-chosen head/trip major",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_intent_defines_major_not_incidental_head",
+      "reason": ""
+    },
+    {
+      "id": "F4",
+      "rule": "First major 120 s game-time exclusion, second DQ",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion",
+      "reason": ""
+    },
+    {
+      "id": "F5",
+      "rule": "Fourth minor 60 s exclusion, fifth DQ",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion",
+      "reason": ""
+    },
+    {
+      "id": "F6",
+      "rule": "Cover exclusions/DQ and eligible return after time",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion",
+      "reason": ""
+    },
+    {
+      "id": "F7",
+      "rule": "Forfeit only below 12 currently available of 22",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_forfeit_only_below_twelve_currently_available",
+      "reason": ""
+    },
+    {
+      "id": "C1",
+      "rule": "Off-ball legal band, hip push/stab; no pulling/gripping",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints",
+      "reason": ""
+    },
+    {
+      "id": "C2",
+      "rule": "Carrier wrap and knee/joint legal below neck",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints",
+      "reason": ""
+    },
+    {
+      "id": "K1",
+      "rule": "Keeper inside own zone protected from opponent initiation when PP own",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_keeper_immunity_position_at_contact_and_freeze_in_all_phases",
+      "reason": ""
+    },
+    {
+      "id": "K2",
+      "rule": "Keeper never Archer target; inside-zone Keeper never freezes",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_keeper_immunity_position_at_contact_and_freeze_in_all_phases",
+      "reason": ""
+    },
+    {
+      "id": "K3",
+      "rule": "ZR-1/C/T enforced as opponent RST-1 with clock reset",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_possession_zone_violations_are_enforced_as_rst1",
+      "reason": ""
+    },
+    {
+      "id": "A1",
+      "rule": "25 arrows, illegal release spends ammo and minor, abort no spend",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic",
+      "reason": ""
+    },
+    {
+      "id": "A2",
+      "rule": "At most five freezes, freeze5 plus immunity10",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_freeze_cap_and_five_plus_ten_seconds",
+      "reason": ""
+    },
+    {
+      "id": "A3",
+      "rule": "Recovery protection3m/2s",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_recovery_arrow_protection_three_metres_two_seconds",
+      "reason": ""
+    },
+    {
+      "id": "A4",
+      "rule": "Targets opposing fields on offence with control, outside both zones",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic",
+      "reason": ""
+    },
+    {
+      "id": "TIE1",
+      "rule": "Shot release at expiry counts, only shots retain flight",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_shot_release_at_expiry_precedes_clock",
+      "reason": ""
+    },
+    {
+      "id": "TIE2",
+      "rule": "Goal wins coincident catch; boundary wins secure hold",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_exact_goal_catch_and_boundary_secure_ties",
+      "reason": ""
+    },
+    {
+      "id": "OUT1",
+      "rule": "Toss crossing point, goal-line zone slide, thrower outside, 3 m clearance, ready1.5",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_toss_crossing_arc_slide_clearance_ready_no_self_no_direct_score",
+      "reason": ""
+    },
+    {
+      "id": "OUT2",
+      "rule": "Toss within4s of ready",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_toss_deadline_four_seconds_after_ready",
+      "reason": ""
+    },
+    {
+      "id": "OUT3",
+      "rule": "Toss cannot score direct; taker cannot recover",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_toss_crossing_arc_slide_clearance_ready_no_self_no_direct_score",
+      "reason": ""
+    },
+    {
+      "id": "OWN1",
+      "rule": "No hidden attributes in pure decide, commands retain intent IDs",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_information_boundary_and_all_commands_from_pure_decide",
+      "reason": ""
+    },
+    {
+      "id": "OWN2",
+      "rule": "Formation-free parameter vector / residence compliance intent",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_formation_independent_of_slot_and_residence_exit_intent",
+      "reason": ""
+    },
+    {
+      "id": "OWN3",
+      "rule": "Environment cannot turn on legacy layers or mix Native config",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_environment_flags_cannot_enable_a_native_legacy_layer",
+      "reason": ""
+    },
+    {
+      "id": "OWN4",
+      "rule": "Serialized view+belief replays decision",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_native_view_json_replays_exact_decision",
+      "reason": ""
+    },
+    {
+      "id": "M2",
+      "rule": "M2 null present equals absent; paired harness",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_m2_null_absent_short_replay_and_harness_pairs",
+      "reason": ""
+    },
+    {
+      "id": "R-01",
+      "rule": "D1 possession row R-01",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R01_opening_no_possession_no_phase_empty_archer_target_set",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-02",
+      "rule": "D1 possession row R-02",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R02_secured_timer_runs_possession_unchanged_before_threshold",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-03",
+      "rule": "D1 possession row R-03",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R03_threshold_gives_direct_and_passive_possession",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-04",
+      "rule": "D1 possession row R-04",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R04_C1_contest_lapses_direct_not_passive",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-05",
+      "rule": "D1 possession row R-05",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R05_contest_ends_timer_restarts_at_zero",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-06",
+      "rule": "D1 possession row R-06",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R06_pass_release_keeps_team_control_and_passive",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-07",
+      "rule": "D1 possession row R-07",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R07_shot_release_ends_team_control_passive_unchanged",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-08",
+      "rule": "D1 possession row R-08",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R08_defender_touch_ends_control_resets_zone_clock_passive_unchanged",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-09",
+      "rule": "D1 possession row R-09",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R09_loose_ball_keeps_passive_possession",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-10",
+      "rule": "D1 possession row R-10",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R10_opponent_uncontested_control_flips_passive_and_resets_clocks",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-11",
+      "rule": "D1 possession row R-11",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R11_ZRC_carrier_crosses_from_outside_into_own_zone",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-12",
+      "rule": "D1 possession row R-12",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R12_ZRT_pass_from_outside_into_own_zone_teammate_first_touch",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-13",
+      "rule": "D1 possession row R-13",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R13_zone_clock_five_seconds_records_ZR1_once",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-14",
+      "rule": "D1 possession row R-14",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R14_reset_trigger_ball_leaves_zone",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-15",
+      "rule": "D1 possession row R-15",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R15_R16_keeper_protection_needs_passive_possession_and_position",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-16",
+      "rule": "D1 possession row R-16",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R15_R16_keeper_protection_needs_passive_possession_and_position",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-17",
+      "rule": "D1 possession row R-17",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R17_freeze_legal_ruleset_102",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-18",
+      "rule": "D1 possession row R-18",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R18_out_of_play_keeps_passive_until_restart_awards_it",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-19",
+      "rule": "D1 possession row R-19",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R19_RST1_restart_passive_to_opponent_clock_zero_and_stopped",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-20",
+      "rule": "D1 possession row R-20",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R14_R20_reset_trigger_dead_ball_stopped_until_live",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-21",
+      "rule": "D1 possession row R-21",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R21_keeper_catch_passive_stays_with_shooter_until_threshold",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "R-22",
+      "rule": "D1 possession row R-22",
+      "status": "IMPLEMENTED+tested",
+      "test": "b1/test_possession.py::PossessionRows::test_R22_C3_same_instant_touches_contested_no_first_touch_violation",
+      "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged."
+    },
+    {
+      "id": "PH1",
+      "rule": "Hunt choice and first-touch behavior",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake",
+      "reason": "Q-HUNT-1/2, canonical claim admission; radius/clock defaults"
+    },
+    {
+      "id": "PH2",
+      "rule": "Contact Scrimmage alignment, offside avoidance, snap and toss-taker decisions",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover",
+      "reason": "Q-BEHAVIOR-1, pure procedural intents; full-run stall checks required"
+    },
+    {
+      "id": "PH3",
+      "rule": "Attacker five-second residence and marked defender exemption",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_zone_residence_enforced_marked_defender_and_keeper_exempt",
+      "reason": "own-clock exit primitive; unmarked defender grace Q-ZONE-1"
+    },
+    {
+      "id": "PH4",
+      "rule": "Boundary touching body parts / airborne exemption",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_boundary_contact_and_airborne_proxy",
+      "reason": "Q-BOUNDARY-1 body cylinder proxy; detailed anatomical contact deferred"
+    },
+    {
+      "id": "PH5",
+      "rule": "Shared CATCH_V2 energy kernel",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "reason": "Q-CATCH-1: automatic jump/hand-contest extension not installed"
+    },
+    {
+      "id": "PH6",
+      "rule": "THROW_SPLIT mechanics",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_primitive_throw_speed_height_arc_are_intent_owned",
+      "reason": "Q-THROW-1: explicit speed/height/arc, primitive accuracy; not full source-equivalent model"
+    },
+    {
+      "id": "PH7",
+      "rule": "Voluntary HAND_FIGHT repertoire",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints",
+      "reason": "Q-HAND-1: physical contacts and intent-gated carrier wrap; full off-ball choices absent"
+    },
+    {
+      "id": "PH8",
+      "rule": "Substitution cover admission",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion",
+      "reason": "Q-COVER-1 / Q-BEHAVIOR-1 canonical eligible athlete claim"
+    },
+    {
+      "id": "PH9",
+      "rule": "Shot finishing-flight maximum",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_only_shots_get_clock_flight_exception",
+      "reason": "Q-FLIGHT-1 ten-second safety tail"
+    },
+    {
+      "id": "PH10",
+      "rule": "Dribble decision",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch",
+      "reason": "Q-BEHAVIOR-1 no fresh teammates -> trivial self throw choice"
+    },
+    {
+      "id": "PH11",
+      "rule": "Native delayed sensor",
+      "status": "PLACEHOLDER",
+      "test": "native/test_rules.py::test_information_boundary_and_all_commands_from_pure_decide",
+      "reason": "Q-SENSOR-1 immutable noisy cone/occlusion; Claude replacement later"
+    },
+    {
+      "id": "D1",
+      "rule": "Breaks and timeouts",
+      "status": "DEFERRED",
+      "test": null,
+      "reason": "Explicit owner deferral: do not build"
+    },
+    {
+      "id": "D2",
+      "rule": "Hunt penalties beyond false-start retake",
+      "status": "DEFERRED",
+      "test": null,
+      "reason": "Explicit owner deferral: do not build"
+    },
+    {
+      "id": "D3",
+      "rule": "Standard non-flat scoring",
+      "status": "DEFERRED",
+      "test": null,
+      "reason": "Explicit owner deferral: do not build"
+    },
+    {
+      "id": "D4",
+      "rule": "Fatigue and injury",
+      "status": "DEFERRED",
+      "test": null,
+      "reason": "Explicit owner deferral: do not build"
+    },
+    {
+      "id": "D5",
+      "rule": "Ratings development and adaptive learning",
+      "status": "DEFERRED",
+      "test": null,
+      "reason": "Explicit owner deferral: do not build"
+    },
+    {
+      "id": "D6",
+      "rule": "M2 plan and message content",
+      "status": "DEFERRED",
+      "test": null,
+      "reason": "Explicit owner deferral: do not build"
+    }
+  ]
+}

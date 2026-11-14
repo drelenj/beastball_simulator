@@ -32,3 +32,14 @@ OWNER BRIEFING — PHASE 0
 | Fatigue/injury, ratings development, learning, M2 content | owner prompt | explicitly out of scope | no Native evidence claimed | DROP / DEFERRED | uniform 0.70 baseline; no quality tuning |
 
 Provenance and authority: current owner prompt overrides RULES_FLOW_v0.3.md, RULES_V03_IMPL_NOTES.md, RESTARTS_NOTES.md and D1. Read canon record claude/hp002-audit 8e1e82a (HP-002_CANON_RULINGS_2026-11-14.md) and D1. Experiment branches are inspected, not wholesale merged. Each port will cite its source commit; merge only the specifically authorized M2/profile integrations.
+
+Phase-1 implementation provenance (does not designate a baseline)
+- Authorized integrations merged: M2 5c23fe8 (merge 4c5efd1), profile c339b01 (merge ba92633). Legacy B1 helpers default explicitly to legacy-b0; profile CLI retains its named choices. No accepted core/runtime/g1 behavior changed.
+- native/substrate.py loads the frozen core_src geometry/types/policies/engine/match into a fresh private namespace. It changes only asserted in-memory geometry/CATCH anchors and the carrier-wrap admission gate. Frozen source files remain untouched.
+- native/rules.py reimplements each adopted rules_v03/restarts_v1 transition against the owner prompt. Native does not execute either module's environment gates, formation tables, mass/role contestant rankings, top-level legacy restart controller, or PRISM overlay installers.
+- native/cognition.py ports B1 pure decisions (7741539/5c23fe8) and 761dca5's default 16-number positioning. Procedural Hunt/restart/cover/dribble/compliance choices are labelled PLACEHOLDER and remain replaceable. No evolved vector or old-score result is imported.
+- CATCH_V2 disposition is PLACEHOLDER shared energy kernel and .9 reach, not a claim of full catch_v2 overlay equivalence. Automatic field-jump and hand-contest extensions remain absent. Native config records CATCH_V2-energy-placeholder.
+- HAND_FIGHT disposition is PLACEHOLDER: incidental physical contacts plus athlete-intent-gated carrier wraps, not automatic voluntary gripping by every reachable pair. Full voluntary off-ball repertoire remains absent.
+- THROW_SPLIT disposition is PLACEHOLDER: explicit semantic speed/height, drag-aware lead/arc, moving-release correction bound and uniform accuracy error; full power/touch-chain model not yet source-equivalent. Config records THROW_SPLIT-primitive.
+- Config includes complete B0 physical assumption and Pocket records plus uniform body standards before source import; effective settings are read back and compared. Native uses no environment feature switches. Historical legacy-b0 reproduction remains isolated in b1.match_run.
+- Geometry boundary body-part witnesses, sensor constants, Hunt setup/clock details, held-ball resolution and exclusion-availability edge cases are explicit PLACEHOLDERs in QUESTIONS_FOR_OWNER.md and RULE_TO_TEST_MATRIX.json, not invented canon.
