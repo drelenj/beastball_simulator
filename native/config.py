@@ -23,7 +23,7 @@ POCKET = tuple(sorted(dict(player_speed=27.,acceleration=10.,braking=13.5,turnin
 
 @dataclass(frozen=True)
 class NativeConfig:
-    version: str = 'native-v0/1'
+    version: str = 'native-v0/2'
     profile: str = 'native-v0'
     periods: int = 4
     period_seconds: int = 600

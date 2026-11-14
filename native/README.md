@@ -5,7 +5,7 @@ Run conformance: `.venv/bin/python -m pytest -q b1 native`.
 Run isolated full seed soak: `.venv/bin/python -m native.soak --seeds 1 2 3 --workers 2 --out native/evidence/soak` (omit --seeds for 1..50).
 Run legacy B1 evidence: `.venv/bin/python -m b1.match_run --profile legacy-b0 --seed 1 --telemetry-off`.
 
-The default Native config is native-v0/1. Full 4x600 durations cannot be shortened through its profile. Scenario tests change explicit state clocks to test overtime and exact ties. NULL M2 is mandatory; --plumbing-absent is an acceptance comparison only.
+The default Native config is native-v0/2. Full 4x600 durations cannot be shortened through its profile. Scenario tests change explicit state clocks to test overtime and exact ties. NULL M2 is mandatory; --plumbing-absent is an acceptance comparison only.
 
 Physics and rule adjudication own true state. Native observation frames contain only noisy/delayed visual observations and public officiating. Own body/equipment knowledge is exact (SELF-1). A fresh in-memory source namespace per match avoids environment/global patch contamination. The B0 C3 physical substep runs directly; the legacy tactical top-level step is not used.
 

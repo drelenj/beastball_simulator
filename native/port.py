@@ -11,6 +11,7 @@ from b1.communication import DeliveryModel, TeamTransport, receive_messages
 from b1.emergence_intents import BallCourseBelief, AthleteBody, plan_keeper_motor
 from . import cognition as C
 from .config import NativeConfig
+from .perception import visibility
 from .substrate import build_core
 
 
@@ -127,27 +128,24 @@ class NativePort:
         restart=(r.native_id,r.kind,r.team,r.x,r.y,*r.taker_spot,r.taker,r.rs.get('snapper'),r.rs.get('tackler'),r.created_at,r.ready_at is not None) if r else None
         ps=[p for p in s.players.values() if p.active]
         blockers=[(q.id,q.x,q.y,q.z,q.z+q.a.height,q.radius) for q in ps if q.role!='archer']
-        for pid in self.active_ids():
+        ids=self.active_ids()
+        raw_entities=[(q.id,q.team,q.role,q.x,q.y,q.z) for q in ps if q.role!='archer']
+        b=s.ball;raw_entities.append((C.BALL,'ball','ball',b.x,b.y,b.z))
+        mask=visibility([(pid,s.players[pid].x,s.players[pid].y,s.players[pid].z+.72*s.players[pid].a.height,s.players[pid].role=='archer') for pid in ids],
+                        [(eid,x,y,z) for eid,team,role,x,y,z in raw_entities],blockers)
+        for vi,pid in enumerate(ids):
             p=s.players[pid];rng=self.streams[pid]
             tracks=[];course=None
-            entities=[(q.id,q.team,q.role,q.x,q.y,q.z) for q in ps if q.id!=pid and q.role!='archer']
-            b=s.ball;entities.append((C.BALL,'ball','ball',b.x,b.y,b.z))
+            entities=raw_entities
             facing=math.atan2(p.facing[1],p.facing[0])
             # PLACEHOLDER sensor: bounded field cone + body-cylinder occlusion;
             # platform vision has no occlusion; positions noisy, velocities from own reads.
-            for eid,team,role,x,y,z in entities:
+            for ei,(eid,team,role,x,y,z) in enumerate(entities):
+                if eid==pid:continue
                 dx,dy=x-p.x,y-p.y;d=math.hypot(dx,dy)
                 off=(math.atan2(dy,dx)-facing+math.pi)%(2*math.pi)-math.pi
                 if p.role!='archer' and abs(off)>math.radians(120) and d>2:continue
-                occluded=False
-                if p.role!='archer' and d>2:
-                    invd=1/max(d*d,.01);eye=p.z+.72*p.a.height
-                    for qid,qx,qy,qz,qtop,qr in blockers:
-                        if qid in (pid,eid):continue
-                        f=((qx-p.x)*dx+(qy-p.y)*dy)*invd
-                        if .03<f<.97 and (qx-p.x-f*dx)**2+(qy-p.y-f*dy)**2<qr*qr:
-                            if qz<=eye+(z-eye)*f<=qtop:occluded=True;break
-                if occluded:continue
+                if not mask[vi,ei]:continue
                 sigma=.04+.002*d
                 ox,oy,oz=x+rng.gauss(0,sigma),y+rng.gauss(0,sigma),max(.1075,z+rng.gauss(0,.04))
                 old=self.history.get((pid,eid));vx=vy=vz=0.

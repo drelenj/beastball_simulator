@@ -450,3 +450,15 @@ def test_incidental_simultaneous_heads_cannot_bypass_major_intent_gate(port):
     assert s.players['A1'].major_count==s.players['B1'].major_count==0
     assert s.players['A1'].minor_count==s.players['B1'].minor_count==1
     assert port.m.assume['c3_region_policy']==0
+
+
+def test_vector_visibility_matches_reference_geometry_and_platform(port):
+    import random
+    import numpy as np
+    from .perception import visibility,reference_visibility
+    rng=random.Random(131)
+    for _ in range(40):
+        viewers=[(str(i),rng.uniform(0,100),rng.uniform(0,100),1.8,i==0) for i in range(24)]
+        endpoints=[(str(i),rng.uniform(0,100),rng.uniform(0,100),rng.uniform(0,4)) for i in range(22)]+[('BALL',50.,50.,.1)]
+        blockers=[(str(i),x,y,0.,3.,.45) for i,x,y,z in endpoints[:-1]]
+        assert np.array_equal(visibility(viewers,endpoints,blockers),reference_visibility(viewers,endpoints,blockers))
