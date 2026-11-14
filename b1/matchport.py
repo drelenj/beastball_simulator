@@ -48,10 +48,13 @@ class _ReleaseAdapter:
 
 
 class MatchPort:
-    def __init__(self, seed, scenario=None, p1_ms=500, communication_model=DeliveryModel()):
+    def __init__(self, seed, scenario=None, p1_ms=500, communication_model=DeliveryModel(), profile='legacy-b0'):
         sys.path.insert(0, str(REPO))
         for key in ALL_FEATURE_ENV:
             os.environ.pop(key, None)
+        from . import profile as MATCH_PROFILE
+        self.profile_name = profile or MATCH_PROFILE.DEFAULT
+        MATCH_PROFILE.apply(self.profile_name)          # named rules/mechanics profile (b1/profile.py)
         import pocket4_proto as X
         import prism_ratings_v0
         P = X.install(X.load_pocket())
@@ -61,7 +64,8 @@ class MatchPort:
         X.S.on = set(X.SYSTEMS)
         X.S.shape, X.S.extras, X.S.names, X.S.seed, X.S.prism_r = 'sphere', extras, names, seed, None
         P.ROSTER_OVERRIDES = P.validate_roster(over) and over
-        self.m = m = P.CORE.match.Match(P.configuration(dict(P.SETTINGS), seed, copy.deepcopy(P.CALIBRATION)))
+        import rules_v03 as RV03       # same step pocket4_proto.run applies: v0.3 settings (flat scoring, 5 m marking) when RULES_V03=1
+        self.m = m = P.CORE.match.Match(P.configuration(RV03.settings(dict(P.SETTINGS)), seed, copy.deepcopy(P.CALIBRATION)))
         self.types, self.geom = P.CORE.types, P.CORE.geometry
         self.seed, self.ratings = seed, prism_ratings_v0.assign(over, names)
         self.communication = TeamTransport(seed, {p.id:p.team for p in m.s.players.values()}, communication_model)
@@ -70,6 +74,7 @@ class MatchPort:
         # the B0 engine has a config switch for it).
         m.cfg['ruleset'] = '1.0.2'
         self.ruleset = m.cfg.get('ruleset', '1.0.1')
+        self.profile = MATCH_PROFILE.verify(self.profile_name, m)     # raises if the profile is not in effect
         self.rules = PossessionTracker(RulesConfig(direct_possession_threshold_ms=p1_ms,
                                                    keeper_zone_radius=float(m.s.keeper_zone_radius)))
         self.was_live, self.release_records, self.kp_checked = None, [], 0
@@ -601,9 +606,10 @@ class MatchPort:
             self._resolve(pid, 'interrupted')
 
 
-def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500, communication_model=DeliveryModel()):
-    """Stepped N-athlete loop. Returns a compact, hashable result."""
-    port = MatchPort(seed, scenario, p1_ms, communication_model)
+def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_view=None, p1_ms=500, communication_model=DeliveryModel(), profile='legacy-b0'):
+    """Stepped N-athlete loop; legacy-b0 preserves the governed B1 evidence."""
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+
     m = port.m
     s = m.s
     FINAL = port.types.Phase.FINAL
@@ -692,7 +698,7 @@ def run_match(seed=1, scenario=None, max_ms=None, telemetry=True, sample=12, on_
     result = {
         'seed': seed, 'scenario': scenario or 'regulation_match_B0_P4_DEFAULT',
         'status': ('final' if s.phase == FINAL else 'scenario_terminal' if terminal else 'time_limit'),
-        'terminal': terminal, 'ruleset': port.ruleset, 'settings': port.settings,
+        'terminal': terminal, 'ruleset': port.ruleset, 'profile': port.profile, 'settings': port.settings,
         'start_ms': start, 'end_ms': s.now, 'score': dict(s.score), 'period': s.period,
         'result': str(getattr(s, 'result', None)),
         'decisions_total': n_dec, 'decisions_by_athlete': dict(sorted(counts.items())),

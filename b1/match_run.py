@@ -14,11 +14,12 @@ def main():
     ap.add_argument('--out')
     ap.add_argument('--telemetry-off', action='store_true')
     ap.add_argument('--p1-ms', type=int, default=500)
+    ap.add_argument('--profile', default=None, help='match profile (b1/profile.py): experiment-v1 (default) or legacy-b0')
     a = ap.parse_args()
     t = time.perf_counter()
     result, _ = run_match(a.seed, None if a.scenario == 'match' else a.scenario,
                           a.max_ms if a.max_ms else (None if a.scenario == 'match' else 9000),
-                          not a.telemetry_off, p1_ms=a.p1_ms)
+                          not a.telemetry_off, p1_ms=a.p1_ms, profile=a.profile)
     result['wall_s'] = round(time.perf_counter() - t, 3)
     if a.out:
         Path(a.out).parent.mkdir(parents=True, exist_ok=True)
