@@ -568,3 +568,55 @@ def test_physical_step_slices_at_direct_and_freeze_deadlines(port):
     s.players['B0'].freeze_until=s.now+7
     assert e.next_deadline()==s.now+7
     port.step();assert s.players['B0'].freeze_until==s.now
+
+
+def test_platform_readback_checks_active_replacement_not_benched_archer(port):
+    s,e=port.m.s,port.m.e
+    old=s.players['A11'];e.discipline(old.id,'major');port.fill_cover()
+    assert not old.active
+    e.exchange_ends();port.platform_motor(0)
+    # The bench retains its historical pose; only the on-field Archer occupies
+    # and faces from the current platform. Ratings/body readback still covers all.
+    assert old.facing!=(float(s.attack_sign(old.team)),0.)
+    port.verify_effective()
+    active=next(p for p in s.players.values() if p.team=='A' and p.active and p.role=='archer')
+    active.facing=(0.,1.)
+    with pytest.raises(AssertionError):port.verify_effective()
+
+
+def test_bounce_intent_targets_surface_then_uses_physical_rebound(port):
+    s,m=port.m.s,port.m
+    for p in s.players.values():
+        if p.role!='archer' and p.id!='A0':p.x=5.;p.y=5.
+    i=C.ActionIntent('bounce/i','bounce/d','A0','bounce',None,(60.,50.),None,None,s.now,speed=24.,height=2.4)
+    assert port.submit(i)['status']=='accepted'
+    s.now+=250;port.ball_motor()
+    assert port.outcomes[-1].status=='released'
+    assert s.ball.vz<0 and s.ball.carrier is None
+    bounced=False
+    for _ in range(100):
+        old_vz=s.ball.vz;old_speed=math.hypot(s.ball.vx,s.ball.vy)
+        m.advance_ball(10,{p.id:(p.x,p.y,p.z) for p in s.players.values() if p.active})
+        s.now+=10
+        if old_vz<0<s.ball.vz:
+            assert s.ball.z==s.ball.radius and math.hypot(s.ball.vx,s.ball.vy)<old_speed
+            bounced=True;break
+    assert bounced
+
+
+def test_goal_restart_is_conceding_own40_and_requires_all_behind_own40(port):
+    s,e=port.m.s,port.m.e
+    s.ball.x=101;s.ball.y=50;s.ball.z=1.5;s.tackle_count=1;s.possession_ms=123
+    assert e.goal('B',50,1.5)
+    r=s.restart
+    assert (r.kind,r.team,r.x,r.y)==('snap40','B',60.,50.)
+    assert s.tackle_count==0 and s.possession_ms==30000
+    taker=s.players['B0'];taker.x,taker.y=r.taker_spot
+    for p in s.players.values():
+        if p.active and p.role!='archer' and p.id!=taker.id:
+            p.x=30. if p.team=='A' else 70.
+    s.players['A0'].x=41.
+    assert not e.ready(taker.id)
+    s.players['A0'].x=40.
+    assert e.ready(taker.id)
+    assert e.restart_release(taker.id,(-24.,0.,2.),'B1')

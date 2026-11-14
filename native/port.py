@@ -110,9 +110,9 @@ class NativePort:
         assert self.geom.legal_goal(50.,2.8,.1) and not self.geom.legal_goal(50.,3.01,.1)
         for p in m.s.players.values():
             assert all(getattr(p.a,key)==value for key,value in cfg.body_standards)
-            if p.role=='archer':
+            if p.role=='archer' and p.active:
                 assert p.x in (-5.,105.) and p.y==50. and p.z==5.
-                assert p.facing==(float(m.s.attack_sign(p.team)),0.)
+                assert p.facing==(float(m.s.attack_sign(p.team)),0.), (p.id,p.facing,m.s.attack_sign(p.team))
         self.effective=effective
         return effective
 

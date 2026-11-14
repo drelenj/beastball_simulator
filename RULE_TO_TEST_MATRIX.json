@@ -711,6 +711,27 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/test_rules.py::test_physical_step_slices_at_direct_and_freeze_deadlines",
       "reason": "Millisecond deadline integration"
+    },
+    {
+      "id": "G7",
+      "rule": "Platform readback covers the active replacement after end exchange; bench pose is not a platform",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_platform_readback_checks_active_replacement_not_benched_archer",
+      "reason": ""
+    },
+    {
+      "id": "BALL3",
+      "rule": "Bounce option targets a surface spot then physical rebound",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_bounce_intent_targets_surface_then_uses_physical_rebound",
+      "reason": ""
+    },
+    {
+      "id": "T7",
+      "rule": "Score restarts conceding team at own40 centre, fresh clock/count; all at or behind own40",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_goal_restart_is_conceding_own40_and_requires_all_behind_own40",
+      "reason": ""
     }
   ]
 }
