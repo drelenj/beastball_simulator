@@ -704,6 +704,13 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/test_rules.py::test_running_snap_clock_expires_in_dead_ball_at_exact_millisecond",
       "reason": "Configuration/clock conformance"
+    },
+    {
+      "id": "CLOCK7",
+      "rule": "Physical intervals slice at direct-possession, freeze and zone deadlines",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_physical_step_slices_at_direct_and_freeze_deadlines",
+      "reason": "Millisecond deadline integration"
     }
   ]
 }

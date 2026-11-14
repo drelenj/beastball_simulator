@@ -409,6 +409,13 @@ def install(CO, cfg):
         if s.phase in (P.LIVE,P.OPENING):
             due.append(s.now+max(1,s.game_ms))
             if s.owner:due.append(s.now+max(1,s.possession_ms))
+        for player in s.players.values():
+            if player.freeze_until>s.now:due.append(player.freeze_until)
+        if s.phase in (P.LIVE,P.OPENING):
+            if self.possession.unc_start is not None and self.possession.dp_team!=self.possession.unc_team:
+                due.append(max(s.now+1,self.possession.unc_start+cfg.direct_ms))
+            for team,start in self.possession.zone_start.items():
+                if start is not None and not self.possession.zone_violated[team]:due.append(max(s.now+1,start+5000))
         if s.restart:
             due.append(s.restart.snap_deadline)
             if s.restart.clock_runs:due.append(s.now+max(1,s.possession_ms))

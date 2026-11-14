@@ -558,3 +558,13 @@ def test_running_snap_clock_expires_in_dead_ball_at_exact_millisecond(port):
     port.step()
     assert s.now==now+1 and s.restart.team=='B' and s.restart.reason=='possession_expiry'
     assert s.possession_ms==30000
+
+
+def test_physical_step_slices_at_direct_and_freeze_deadlines(port):
+    e,s=port.m.e,port.m.s
+    e.possession.dp_team=None;e.possession.unc_team='A';e.possession.unc_start=s.now-499
+    assert e.next_deadline()==s.now+1
+    port.step();assert e.possession.dp_team=='A'
+    s.players['B0'].freeze_until=s.now+7
+    assert e.next_deadline()==s.now+7
+    port.step();assert s.players['B0'].freeze_until==s.now

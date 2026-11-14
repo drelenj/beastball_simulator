@@ -1,0 +1,8 @@
+{
+  "error": "AssertionError()",
+  "implementation_commit": "9c90eeb8150b8af77d30b2dcdfc91bbf58e20e36",
+  "seed": 1,
+  "soak_status": "failed",
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/soak.py\", line 16, in job\n    result,_=run_match(seed,progress=lambda row:(Path(out)/f'progress-{seed:03d}.json').write_text(json.dumps(row,sort_keys=True)))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 55, in run_match\n    config_digest=port.config.digest,effective=port.verify_effective(),score=dict(s.score),period=s.period,\n                                               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/port.py\", line 115, in verify_effective\n    assert p.facing==(float(m.s.attack_sign(p.team)),0.)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}
