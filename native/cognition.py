@@ -411,7 +411,9 @@ def _base_decide(view: AthleteView, belief: BeliefState):
     bias = {'pass':view.policy.bias_pass,'shoot':view.policy.bias_shoot,
             'press':view.policy.bias_press,'pursue':view.policy.bias_pursue,
             'draw_release':view.policy.archer_eager}
-    options = [(k,t,a,round(v+bias.get(k,0.),6)) for k,t,a,v in options]
+    options = [(k,t,a,round(v+bias.get(k,0.),6)) for k,t,a,v in options
+               if not(k=='pass' and view.policy.pass_min_clearance>0 and
+                      _lane_clearance(view.x,view.y,a[0],a[1],opps)<view.policy.pass_min_clearance)]
     chosen = max(options, key=lambda o: (o[3], o[0], o[1] or ''))
     did = f'{view.observation_id}/decision'
     aim_vel = None

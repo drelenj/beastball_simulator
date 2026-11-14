@@ -440,3 +440,13 @@ def test_stray_arrow_can_freeze_keeper_outside_own_zone_but_cannot_target_him(po
     assert not e.shoot_arrow('A11',k.id,(20,0,1))
     s.phase=port.types.Phase.LIVE;s.restart=None
     assert e.freeze(k.id)
+
+
+def test_incidental_simultaneous_heads_cannot_bypass_major_intent_gate(port):
+    e,s,T=port.m.e,port.m.s,port.types
+    events=[T.Event('foul','A1','B1',{'reason':'head','major':True,'danger':True}),
+            T.Event('foul','B1','A1',{'reason':'head','major':True,'danger':True})]
+    e.batch(events)
+    assert s.players['A1'].major_count==s.players['B1'].major_count==0
+    assert s.players['A1'].minor_count==s.players['B1'].minor_count==1
+    assert port.m.assume['c3_region_policy']==0

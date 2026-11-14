@@ -453,6 +453,15 @@ def install(CO, cfg):
     E.reload=lambda *a,**k:False
 
     def batch_events(self,events):
+        # Normalize legacy danger/hold flags before simultaneous discipline;
+        # incidental head contacts cannot become majors through neutral_offset.
+        for event in events:
+            if event.kind=='foul':
+                actor=self.s.players[event.actor];intent=getattr(actor,'native_intent',None)
+                chosen=bool(intent and getattr(intent,'contact',None) in ('head','trip') and intent.target==event.target)
+                major=chosen and (intent.contact=='head' or self.s.ball.carrier!=event.target)
+                event.data['major']=major;event.data['danger']=major
+                if event.data.get('reason')=='hold':event.data['reason']='holding'
         # Exact coincident boundaries precede catches; goals precede catches.
         goals=[e for e in events if e.kind=='goal']
         boundaries=[e for e in events if e.kind=='boundary']

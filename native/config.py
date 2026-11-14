@@ -12,7 +12,7 @@ def physical_defaults():
     tree=ast.parse((Path(__file__).resolve().parents[1]/'core_src/match.py').read_text())
     node=next(n for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='DEFAULT_ASSUMPTIONS' for t in n.targets))
     values=ast.literal_eval(node.value)
-    values.update(controller=0,fatigue_rate=0.,c1_receiver_routing=0,c1_chasers_read_flight=0)
+    values.update(controller=0,c3_region_policy=0,fatigue_rate=0.,c1_receiver_routing=0,c1_chasers_read_flight=0)
     return tuple(sorted(values.items()))
 
 POCKET = tuple(sorted(dict(player_speed=27.,acceleration=10.,braking=13.5,turning=13.,arrow_speed=29.,
