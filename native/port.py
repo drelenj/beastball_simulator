@@ -110,7 +110,9 @@ class NativePort:
         assert self.geom.legal_goal(50.,2.8,.1) and not self.geom.legal_goal(50.,3.01,.1)
         for p in m.s.players.values():
             assert all(getattr(p.a,key)==value for key,value in cfg.body_standards)
-            if p.role=='archer':assert p.x in (-5.,105.) and p.y==50. and p.z==5.
+            if p.role=='archer':
+                assert p.x in (-5.,105.) and p.y==50. and p.z==5.
+                assert p.facing==(float(m.s.attack_sign(p.team)),0.)
         self.effective=effective
         return effective
 
@@ -118,7 +120,7 @@ class NativePort:
         for p in self.m.s.players.values():
             if p.role=='archer' and p.active:
                 p.x=self.m.s.ends[p.team]+(-self.config.platform_setback if self.m.s.ends[p.team]==0 else self.config.platform_setback)
-                p.y=50.;p.z=self.config.platform_height;p.vx=p.vy=p.vz=0.
+                p.y=50.;p.z=self.config.platform_height;p.vx=p.vy=p.vz=0.;p.facing=(float(self.m.s.attack_sign(p.team)),0.)
 
     def active_ids(self):
         return sorted(p.id for p in self.m.s.players.values() if p.active and p.eligible(self.m.s.now))
@@ -376,10 +378,11 @@ class NativePort:
         if s.phase==P.FINAL:return
         m.c4c_land_due()
         if s.phase==P.DEAD:
-            m.move_players(self.config.dt_ms,self.move)
+            span=min(self.config.dt_ms,max(1,e.next_deadline()-s.now))
+            m.move_players(span,self.move)
             self.platform_motor(0)
             if s.restart and s.restart.taker:e.ready(s.restart.taker)
-            e.elapse(self.config.dt_ms)
+            e.elapse(span)
             self.ball_motor()
         elif s.phase!=P.FINAL:
             span=min(self.config.dt_ms,max(1,e.next_deadline()-s.now))

@@ -690,6 +690,20 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/test_rules.py::test_archer_draw_requires_fresh_release_intent_before_ammo_spent",
       "reason": "Native integration regression"
+    },
+    {
+      "id": "G6",
+      "rule": "Archer platform faces opposing goal before/after end exchange",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_platform_faces_opposing_goal_before_and_after_end_exchange",
+      "reason": "Configuration/clock conformance"
+    },
+    {
+      "id": "CLOCK6",
+      "rule": "Running snap clock expires in dead ball at the exact millisecond",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_running_snap_clock_expires_in_dead_ball_at_exact_millisecond",
+      "reason": "Configuration/clock conformance"
     }
   ]
 }

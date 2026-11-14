@@ -386,6 +386,10 @@ def install(CO, cfg):
             self.emit('hunt_cleared','native')
         if s.phase==P.DEAD and s.restart:
             r=s.restart
+            if r.clock_runs and s.possession_ms<=0:
+                self.close_restart('play_clock_expiry')
+                self.award(s.other(r.team),r.x,r.y,'possession_expiry',fresh=True,normalize=False)
+                self.native_sync();return
             if r.kind=='toss' and s.now>=r.created_at+5500:
                 self.close_restart('toss_timeout');self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True,normalize=False)
             elif s.now>=r.snap_deadline:
@@ -405,7 +409,9 @@ def install(CO, cfg):
         if s.phase in (P.LIVE,P.OPENING):
             due.append(s.now+max(1,s.game_ms))
             if s.owner:due.append(s.now+max(1,s.possession_ms))
-        if s.restart:due.append(s.restart.snap_deadline)
+        if s.restart:
+            due.append(s.restart.snap_deadline)
+            if s.restart.clock_runs:due.append(s.now+max(1,s.possession_ms))
         return max(s.now+1,min(due))
     E.next_deadline=next_deadline
     def elapse(self,dt,resolve=True):

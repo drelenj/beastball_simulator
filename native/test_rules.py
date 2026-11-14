@@ -539,3 +539,22 @@ def test_period_end_cancels_pending_draw_and_rejects_stale_period_intents(port):
     assert 'B11' not in port.pending and s.quivers['B'].spent==before
     stale=replace(i,decided_ms=s.now)
     assert port.submit(stale)=={'status':'rejected','reason':'stale_period'}
+
+
+def test_platform_faces_opposing_goal_before_and_after_end_exchange(port):
+    s,e=port.m.s,port.m.e
+    for _ in range(2):
+        port.platform_motor(0)
+        for p in s.players.values():
+            if p.role=='archer':assert p.facing==(float(s.attack_sign(p.team)),0.)
+        e.exchange_ends()
+
+
+def test_running_snap_clock_expires_in_dead_ball_at_exact_millisecond(port):
+    e,s=port.m.e,port.m.s;s.possession_ms=20000;e.award('A',50,50,'first_tackle')
+    e.offside('defence');assert s.restart.clock_runs
+    s.possession_ms=1;now=s.now
+    assert e.next_deadline()==now+1
+    port.step()
+    assert s.now==now+1 and s.restart.team=='B' and s.restart.reason=='possession_expiry'
+    assert s.possession_ms==30000
