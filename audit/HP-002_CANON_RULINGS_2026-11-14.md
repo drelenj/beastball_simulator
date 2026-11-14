@@ -5,8 +5,8 @@ Claude, 2026-11-14. Records DreLen's statements of 14 Nov 2026 (00:16 and 00:32 
 1. **Accomplished.** The standard-game structure and seven rules are now recorded as canon, and five open questions from the first draft are answered.
 2. **What B1 can do now.** No change. The `experiment-v1` profile (branch `claude/experiment-profile-v1`) already runs flat scoring, 5 m marking, no kicking. It does not yet run the 30 s clock, the whole-period first overtime, sudden death with half goals, the 3 m semicircular goal or the 5 m platform: IMPLEMENTED = none of these.
 3. **Unproven or unbuilt.** Everything below is DESIGN COMPLETE only, except the goal and platform geometry which still need the engine values checked against it.
-4. **Blocking.** One canon question: item O-1 below.
-5. **Recommended action.** Rule on O-1, then Codex implements the clock, overtime and geometry changes in the B1 path.
+4. **Blocking.** No canon question blocks the next step.
+5. **Recommended action.** Codex implements the clock, overtime and geometry changes in the B1 path.
 
 ## 1. Rulings
 | ID | Ruling | Replaces |
@@ -22,6 +22,7 @@ Claude, 2026-11-14. Records DreLen's statements of 14 Nov 2026 (00:16 and 00:32 
 | S-9 | 5 m marking; Keeper immunity as ruled (D1 KP-13) | none |
 | S-10 | Scoring is flat (any goal 2, half goal 1) until the self-play experiment reports; the standard scoring is decided after it | none |
 | S-11 | **Standard play clock is 30 s. Expiry is a turnover** | 45 s possession clock |
+| S-13 | A defensive minor foul at tackle count 0 is a **full goal in the fourth period and in all overtime** (half goal in periods 1 to 3). Ruled 00:47, resolves O-1 | v0.3 wording kept, now explicit for sudden death |
 | S-12 | All specific timing, distance, location and boundary rulings for violations stand as in RULES_FLOW v0.3 and the D1 record, except where S-1..S-11 change them | none |
 
 ## 2. Consequences I derived (READING, not yet confirmed)
@@ -29,7 +30,7 @@ Claude, 2026-11-14. Records DreLen's statements of 14 Nov 2026 (00:16 and 00:32 
 - C-2: the fresh clock after a score or turnover is 30 s, and the 30 s carries through a tackle as the 45 s did.
 
 ## 3. Open (owner)
+O-1 is closed by S-13. Note: with full-goal awards in all overtime, a half goal cannot arise from a foul in sudden death, so S-5's "a half goal can win sudden death" has no source unless half goals come from somewhere else. Not blocking; tell me if S-5 meant something more.
 | ID | Question | Recommended default |
 | --- | --- | --- |
-| O-1 | v0.3 makes a defensive minor foul at count 0 a full goal in Q4 and overtime. S-5 says half goals can win sudden death. Which award applies in the first overtime and in sudden death? | Full goal in Q4 and the first overtime; half goal in sudden death |
-| O-2..O-10 | Archers per goal, overtime opening hunt, dribble stoppage and penalty, boundary rule ratification, breaks and timeouts, what counts as a goal, defensive offside at count 0, hunt violations (see the doc) | defaults in the doc |
+| O-2..O-10 (nine open in the doc) | Archers per goal, overtime opening hunt, dribble stoppage and penalty, boundary rule ratification, breaks and timeouts, what counts as a goal, defensive offside at count 0, hunt violations (see the doc) | defaults in the doc |
