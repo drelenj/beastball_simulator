@@ -9,6 +9,16 @@ from pathlib import Path
 def historical_files(root: Path):
     """Yield files inherited from B0, excluding B1 and runtime byproducts."""
     root = Path(root)
+    canonical = root / 'b1/baseline/B0_2abe497_GIT_BLOBS.json'
+    if canonical.is_file():
+        # New Native source/evidence is not inherited from the frozen commit.
+        # Enumerate its committed inventory, so runtime artifacts cannot masquerade
+        # as B0 changes. Missing frozen paths still fail at read/verification.
+        _, files, _ = load_inventory(canonical)
+        for relative in sorted(files):
+            yield root / relative
+        return
+    # Compatibility with temporary pre-inventory M0 fixtures.
     for path in sorted(root.rglob("*")):
         if not path.is_file():
             continue

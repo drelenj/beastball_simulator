@@ -462,3 +462,38 @@ def test_vector_visibility_matches_reference_geometry_and_platform(port):
         endpoints=[(str(i),rng.uniform(0,100),rng.uniform(0,100),rng.uniform(0,4)) for i in range(22)]+[('BALL',50.,50.,.1)]
         blockers=[(str(i),x,y,0.,3.,.45) for i,x,y,z in endpoints[:-1]]
         assert np.array_equal(visibility(viewers,endpoints,blockers),reference_visibility(viewers,endpoints,blockers))
+
+
+def test_historical_hash_guard_covers_frozen_paths_not_new_native_artifacts(tmp_path):
+    import hashlib,json
+    from b1.preservation import historical_hashes,verify_baseline
+    inventory=tmp_path/'b1/baseline/B0_2abe497_GIT_BLOBS.json';inventory.parent.mkdir(parents=True)
+    frozen=tmp_path/'physical.py';frozen.write_text('frozen')
+    inventory.write_text(json.dumps({'algorithm':'sha256','files':{'physical.py':hashlib.sha256(b'frozen').hexdigest()}}))
+    before=historical_hashes(tmp_path)
+    new=tmp_path/'native';new.mkdir();(new/'result.json').write_text('new evidence')
+    assert historical_hashes(tmp_path)==before and verify_baseline(tmp_path,inventory)==1
+    frozen.write_text('changed')
+    assert historical_hashes(tmp_path)!=before
+    with pytest.raises(RuntimeError):verify_baseline(tmp_path,inventory)
+
+
+def test_stale_restart_cannot_be_rebound_to_another_rule_record(port):
+    e,s=port.m.e,port.m.s;r=e.award('A',50,50,'first_tackle')
+    i=C.ActionIntent('i','d','A1','restart_claim',None,None,None,None,s.now,record_id=r.native_id)
+    e.award('A',55,50,'retake')
+    assert port.submit(i)=={'status':'rejected','reason':'stale_restart_record'}
+    assert s.restart.taker is None
+
+
+def test_archer_draw_requires_fresh_release_intent_before_ammo_spent(port):
+    s,e=port.m.s,port.m.e;p=s.players['B11'];target=s.players['A0']
+    target.x=50;target.y=50
+    i=C.ActionIntent('draw','d',p.id,'draw_release',target.id,(50,50),(0,0),None,s.now)
+    assert port.submit(i)['status']=='accepted'
+    s.now+=1000;before=s.quivers['B'].spent;port.archer_motor()
+    assert s.quivers['B'].spent==before
+    port.capture(s.now);s.now+=300;v,b=port.view(p.id,s.now)
+    release,rec=C.decide(v,b);assert release.kind=='release_arrow'
+    assert port.submit(release)['status']=='accepted';port.archer_motor()
+    assert s.quivers['B'].spent==before+1

@@ -185,6 +185,7 @@ class NativePort:
         messages=self.communication.intake(pid,now) if self.communication else ()
         view=C.AthleteView(oid,pid,p.team,p.role,p.slot,now,p.x,p.y,holds,self.m.s.attack_sign(p.team),self.m.s.ends[p.team],tracks,rs,
                            pending_command_id=pend['cmd'].command_id if pend else None,
+                           pending_release_ms=pend['due'] if pend else None,
                            pending_kind=pend['cmd'].intent.kind if pend else None,pending_target=pend['cmd'].intent.target if pend else None,
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
@@ -207,7 +208,8 @@ class NativePort:
         if p is None or intent.decided_ms!=s.now:return {'status':'rejected','reason':'actor_time'}
         p.native_intent=intent
         self.intents.append(intent);self.decisions[kind]+=1
-        row=[intent.intent_id,kind,intent.target,intent.aim,intent.speed,intent.height]
+        row=[intent.intent_id,kind,intent.target,intent.aim,intent.speed,intent.height,intent.record_id,intent.contact,
+             (intent.auxiliary.intent_id,intent.auxiliary.kind,intent.auxiliary.belief_revision) if intent.auxiliary else None]
         self.trace.update(digest(row).encode())
         if kind=='substitute_claim':
             vacancy=next((v for v in e.vacancies if v[0]==p.team),None)
@@ -217,6 +219,8 @@ class NativePort:
             e.vacancies.remove(vacancy);e.emit('substitute','native',player=p.id,role=role,intent_id=intent.intent_id);self.platform_motor(0)
             return {'status':'accepted'}
         if not p.active:return {'status':'rejected','reason':'inactive'}
+        if kind in ('restart_claim','restart_position','restart_pass','restart_wait') and (s.restart is None or intent.record_id!=s.restart.native_id):
+            return {'status':'rejected','reason':'stale_restart_record'}
         if kind=='hunt_claim':
             if p.role!='field' or p.team in e.hunt_claims or e.hunt_cleared:return {'status':'rejected','reason':'hunt_closed'}
             self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'procedural'))
@@ -232,6 +236,13 @@ class NativePort:
         if kind=='keeper_control':
             self.keeper_intents[p.id]=intent
             self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'keeper'))
+            return {'status':'accepted'}
+        if kind=='release_arrow':
+            pending=self.pending.get(p.id)
+            if not pending or pending['cmd'].intent.kind!='draw_release' or intent.related_command_id!=pending['cmd'].command_id or intent.target!=pending['cmd'].intent.target:
+                return {'status':'rejected','reason':'stale_draw'}
+            pending['release_intent']=intent
+            self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now,'bow'))
             return {'status':'accepted'}
         if kind=='abort_draw':
             self.pending.pop(p.id,None);return {'status':'accepted'}
@@ -277,7 +288,7 @@ class NativePort:
             p=s.players[pid]
             if i.kind=='restart_pass':
                 if s.restart is None:self.resolve(pid,'interrupted');continue
-                if s.restart.taker!=pid:self.resolve(pid,'rejected_taker');continue
+                if s.restart.taker!=pid or i.record_id!=s.restart.native_id:self.resolve(pid,'rejected_taker_or_record');continue
                 # Release is solely the admitted aim; no true receiver lookup.
                 origin=(s.restart.x,s.restart.y,p.hand_height)
             else:origin=(s.ball.x,s.ball.y,s.ball.z)
@@ -303,9 +314,11 @@ class NativePort:
     def archer_motor(self):
         m,s=self.m,self.m.s
         for pid,pend in list(self.pending.items()):
-            i=pend['cmd'].intent
-            if i.kind!='draw_release' or s.now<pend['due']:continue
-            p=s.players[pid];age=(s.now-i.decided_ms)/1000
+            if pend['cmd'].intent.kind!='draw_release' or s.now<pend['due']:continue
+            p=s.players[pid]
+            if not p.eligible(s.now):self.resolve(pid,'interrupted');continue
+            if 'release_intent' not in pend:continue
+            i=pend['release_intent'];age=(s.now-i.decided_ms)/1000
             vx,vy=i.aim_vel or (0,0);target=(i.aim[0]+vx*age,i.aim[1]+vy*age,1.6)
             ans=self.geom.ballistic((p.x,p.y,p.z+.72*p.a.height),target,29.,9.81)
             if ans is None:self.resolve(pid,'rejected_geometry');continue

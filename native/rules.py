@@ -439,9 +439,9 @@ def install(CO, cfg):
     def shoot_arrow(self,pid,target,velocity,origin=None):
         s=self.s;p=s.players[pid];q=s.quivers[p.team]
         if q.spent>=cfg.arrows:return False
-        q.spent+=1;q.loaded=max(0,cfg.arrows-q.spent)
+        q.spent+=1;q.loaded=max(0,cfg.arrows-q.spent);q.last_release=s.now
         self.native_sync();t=s.players.get(target)
-        legal=(s.phase==P.LIVE and self.hunt_cleared and t is not None and t.team!=p.team and t.role=='field' and
+        legal=(p.role=='archer' and p.eligible(s.now) and self.archer_in_lane(p) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.team!=p.team and t.role=='field' and
                self.possession.pp==t.team and self.possession.tc==t.team and self.zone(t.x,t.y) is None and t.eligible(s.now) and s.now>t.immune_until)
         if not legal:self.foul(pid,target if t else None,'archery_target');return False
         point=(p.x,p.y,cfg.platform_height+.72*p.a.height)

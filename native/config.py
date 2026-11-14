@@ -40,6 +40,7 @@ class NativeConfig:
     freeze_ms: int = 5000
     immunity_ms: int = 10000
     direct_ms: int = 500
+    dead_stall_limit_ms: int = 120000
     dt_ms: int = 100
     sense_ms: int = 200
     decision_ms: int = 500

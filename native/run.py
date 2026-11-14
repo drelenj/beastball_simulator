@@ -13,7 +13,7 @@ from . import cognition
 def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None):
     started=time.perf_counter();port=NativePort(seed,config,policies,plumbing)
     m,s,e=port.m,port.m.s,port.m.e
-    next_dec={};next_sense=0;steps=0;last_progress=0
+    next_dec={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
     while s.phase!=port.types.Phase.FINAL:
         now=s.now
         if now>=next_sense:port.capture(now);next_sense=now+port.config.sense_ms
@@ -32,6 +32,9 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
         if progress and s.live_ms-last_progress>=60000:
             last_progress=s.live_ms;progress(dict(seed=seed,period=s.period,live_ms=s.live_ms,now=s.now,steps=steps,score=dict(s.score)))
         if s.now-now<=0 and s.phase!=port.types.Phase.FINAL:raise RuntimeError('clock stalled')
+        if s.live_ms>last_live_ms:last_live_ms=s.live_ms;last_live_at=s.now
+        elif s.phase!=port.types.Phase.FINAL and s.now-last_live_at>port.config.dead_stall_limit_ms:
+            raise RuntimeError('restart stall: no live-clock progress for 120 seconds')
         if s.now>100000000:raise RuntimeError('unbounded match / sudden death: no artificial winner supplied')
     if s.phase==port.types.Phase.FINAL:
         for rid,status in list(e.restart_results.items()):

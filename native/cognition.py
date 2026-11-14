@@ -121,6 +121,7 @@ class ActionIntent:
     height: float = 1.6
     auxiliary: E.KeeperIntent | None = None
     contact: str | None = None
+    record_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -483,7 +484,7 @@ def decide(view, belief):
         did=view.observation_id+'/decision'
         intent=ActionIntent(did+'/intent',did,view.athlete,kind,target,aim,None,None,
                             view.delivered_ms,speed=min(27.,view.max_throw_speed),height=1.6,
-                            auxiliary=aux,contact=contact)
+                            auxiliary=aux,contact=contact,record_id=view.restart[0] if view.restart else None)
         return intent,{'decision_id':did,'observation_id':view.observation_id,
                        'belief_revision':belief.revision,'selected':[kind,target,aim,0.],
                        'options':[[kind,target,aim,0.]],'placeholder':True}
@@ -531,6 +532,14 @@ def decide(view, belief):
                 ux,uy=((dx/d,dy/d) if d else (view.attack_sign,0.))
                 return choice('position',(max(.6,min(99.4,gx+ux*(view.zone_radius+1.))),
                                           max(.6,min(99.4,50+uy*(view.zone_radius+1.)))))
+    if view.role=='archer' and view.pending_command_id and view.pending_release_ms is not None and view.delivered_ms>=view.pending_release_ms:
+        target=next((t for t in belief.tracks if t.entity==view.pending_target),None)
+        if target is None or view.signals.phase!='live' or not archer_target_legal(target,view,view.delivered_ms):
+            intent,rec=choice('abort_draw',target=view.pending_target)
+        else:
+            intent,rec=choice('release_arrow',(target.x,target.y),view.pending_target)
+            intent=replace(intent,aim_vel=(target.vx,target.vy))
+        return replace(intent,related_command_id=view.pending_command_id),rec
     if view.role=='keeper' and not view.holds_ball:
         course=belief.ball_course
         position=None
