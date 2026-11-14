@@ -732,6 +732,13 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/test_rules.py::test_goal_restart_is_conceding_own40_and_requires_all_behind_own40",
       "reason": ""
+    },
+    {
+      "id": "F8",
+      "rule": "Returning substitute receives current public period through AthleteView, not stale on-field vision",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_returning_bench_claim_has_current_public_period_not_old_visual_frame",
+      "reason": ""
     }
   ]
 }

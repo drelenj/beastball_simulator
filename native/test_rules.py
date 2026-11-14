@@ -620,3 +620,20 @@ def test_goal_restart_is_conceding_own40_and_requires_all_behind_own40(port):
     s.players['A0'].x=40.
     assert e.ready(taker.id)
     assert e.restart_release(taker.id,(-24.,0.,2.),'B1')
+
+
+def test_returning_bench_claim_has_current_public_period_not_old_visual_frame(port):
+    s,e=port.m.s,port.m.e
+    returning=s.players['A13'];archer=s.players['A11']
+    archer.active=False;returning.active=True
+    port.capture(s.now)
+    returning.active=False;archer.active=True
+    s.now+=3000;s.period+=1
+    e.discipline(archer.id,'major')
+    view,belief=port.view(returning.id,s.now,bench_role='archer')
+    assert view.signals.period==s.period
+    assert view.ball_course is None
+    intent,_=C.decide(view,belief)
+    assert intent.kind=='substitute_claim'
+    assert port.submit(intent)['status']=='accepted'
+    port.assert_invariants()

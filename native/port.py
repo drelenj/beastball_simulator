@@ -171,7 +171,10 @@ class NativePort:
         frames=self.frames.get(pid,())
         f=next((f for f in reversed(frames) if f.captured_ms<=now-self.config.latency_ms),None)
         if f is None and bench_role is None:return None,None
-        if f is None:
+        if f is None or bench_role is not None:
+            # A cover claim receives current public officiating through its view.
+            # A returned substitute's old on-field visual frame is not a current
+            # period signal and supplies no fresh ball/athlete observations.
             rs=self.rules.public();s=self.m.s
             sig=C.Signals(s.phase.value,s.period,s.game_ms,s.possession_ms,s.score[p.team],s.score[s.other(p.team)],None,None,False)
             f=ObservationFrame(f'native/{now}/{pid}/bench',now,pid,(),None,sig,None,None,False,self.m.e.hunt_cleared)
