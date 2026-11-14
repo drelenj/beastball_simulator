@@ -5,7 +5,7 @@ Claude, 2026-11-14. Records DreLen's statements of 14 Nov 2026 (00:16 and 00:32 
 1. **Accomplished.** The standard-game structure and seven rules are now recorded as canon, and five open questions from the first draft are answered.
 2. **What B1 can do now.** No change. The `experiment-v1` profile (branch `claude/experiment-profile-v1`) already runs flat scoring, 5 m marking, no kicking. It does not yet run the 30 s clock, the whole-period first overtime, sudden death ended by any score, the 3 m semicircular goal or the 5 m platform: IMPLEMENTED = none of these.
 3. **Unproven or unbuilt.** Everything below is DESIGN COMPLETE only, except the goal and platform geometry which still need the engine values checked against it.
-4. **Blocking.** No canon question blocks the next step.
+4. **Blocking.** Nothing. Defaults D-1..D-9 are adopted.
 5. **Recommended action.** Codex implements the clock, overtime and geometry changes in the B1 path.
 
 ## 1. Rulings
@@ -25,12 +25,22 @@ Claude, 2026-11-14. Records DreLen's statements of 14 Nov 2026 (00:16 and 00:32 
 | S-13 | A defensive minor foul at tackle count 0 is a **full goal in the fourth period and in all overtime** (half goal in periods 1 to 3). Ruled 00:47, resolves O-1 | v0.3 wording kept, now explicit for sudden death |
 | S-12 | All specific timing, distance, location and boundary rulings for violations stand as in RULES_FLOW v0.3 and the D1 record, except where S-1..S-11 change them | none |
 
-## 2. Consequences I derived (READING, not yet confirmed)
+## 2. Consequences I derived (now locked by D-1)
 - C-1: on expiry the other team restarts with a scrimmage at the spot or its own 40 m line, whichever is closer to the goal it attacks (same as any turnover).
 - C-2: the fresh clock after a score or turnover is 30 s, and the 30 s carries through a tackle as the 45 s did.
 
-## 3. Open (owner)
-O-1 is closed by S-13. S-5 is clarified: any score ends sudden death, so a half goal is not a special case.
-| ID | Question | Recommended default |
+## 3. Defaults adopted (owner, 00:50: "Go with your recommend defaults and lock them in")
+Nothing is open. These are CANON; none is implemented, tested or accepted.
+| ID | Item | Locked ruling |
 | --- | --- | --- |
-| O-2..O-10 (nine open in the doc) | Archers per goal, overtime opening hunt, dribble stoppage and penalty, boundary rule ratification, breaks and timeouts, what counts as a goal, defensive offside at count 0, hunt violations (see the doc) | defaults in the doc |
+| D-1 | 30 s clock | Carries through a tackle. Fresh 30 s after a score or turnover. Expiry is a turnover scrimmaged at the spot or own 40 m, whichever is closer to the goal attacked (C-1, C-2 above are now locked) |
+| D-2 | Overtime opening | A First Hunt opens each overtime period |
+| D-3 | Archers per goal | One platform per goal, centred on the goal plane |
+| D-4 | Dribble | Stoppage = any dead ball. Second dribble = offence minor foul, count +1, scrimmage at the foul spot |
+| D-5 | Boundaries | Toss-in rules as in the standard-game doc are ratified (crossing point, 3 m clearance, listed timings) |
+| D-6 | Clock, breaks, timeouts | Clock stops on every dead ball. Breaks and timeouts deferred past the first experiment |
+| D-7 | What counts as a goal | Whole ball crosses the goal plane inside the semicircle |
+| D-8 | Defensive offside at count 0 | Procedural penalty, not a minor: no half goal |
+| D-9 | Hunt violations | False start retaken. Further Hunt penalties deferred past the first experiment |
+
+Deferred (not ruled): breaks between periods, timeouts, Hunt penalties beyond the retake.
