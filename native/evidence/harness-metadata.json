@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "check": "Harness play() with stored full-match output: explicit NativeConfig argument; JSON-normalized config, digest and effective readback retained",
+  "source_result": "native/evidence/soak/seed-001.json",
+  "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142",
+  "simulation_reexecuted": false,
+  "simulation_changed": false,
+  "packaging_tests": "2 passed in 6.27s"
+}

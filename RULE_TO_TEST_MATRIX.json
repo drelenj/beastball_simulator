@@ -542,7 +542,7 @@
       "rule": "Attacker five-second residence and marked defender exemption",
       "status": "PLACEHOLDER",
       "test": "native/test_rules.py::test_zone_residence_enforced_marked_defender_and_keeper_exempt",
-      "reason": "own-clock exit primitive; unmarked defender grace Q-ZONE-1"
+      "reason": "own-clock exit primitive; unmarked defender grace Q-ZONE-1; current marking checks offensive field players; Keeper-as-marker coverage unproven"
     },
     {
       "id": "PH4",
@@ -555,7 +555,7 @@
       "id": "PH5",
       "rule": "Shared CATCH_V2 energy kernel",
       "status": "PLACEHOLDER",
-      "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "test": "native/test_rules.py::test_shared_catch_reach_and_heldout_partition",
       "reason": "Q-CATCH-1: automatic jump/hand-contest extension not installed"
     },
     {

@@ -28,7 +28,8 @@ def job(args):
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--seeds',type=int,nargs='+',default=list(range(1,51)));ap.add_argument('--workers',type=int,default=2);ap.add_argument('--out',default='native/evidence/soak')
+    # Owner amendment 2026-11-14: A4 requires 25 full matches, not 50.
+    ap=argparse.ArgumentParser();ap.add_argument('--seeds',type=int,nargs='+',default=list(range(1,26)));ap.add_argument('--workers',type=int,default=2);ap.add_argument('--out',default='native/evidence/soak')
     a=ap.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
     started=time.perf_counter();rows=[]

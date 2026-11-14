@@ -1,0 +1,2097 @@
+{
+  "acceptance": {
+    "A1": "TESTED",
+    "A2": "TESTED",
+    "A3": "TESTED",
+    "A4": "TESTED",
+    "A5": "TESTED",
+    "A6": "TESTED",
+    "A7": "TESTED",
+    "A8": "TESTED"
+  },
+  "acceptance_amendment": {
+    "file": "NATIVE_V0_ACCEPTANCE_AMENDMENT.md",
+    "no_new_batch_started": true,
+    "required_full_matches": 25,
+    "selected_completion_order": [
+      1,
+      8,
+      3,
+      2,
+      5,
+      4,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ]
+  },
+  "accepted": false,
+  "branch": "codex/native-v0",
+  "config": {
+    "arrows": 25,
+    "automatic_containment": false,
+    "automatic_descent": false,
+    "body_standards": [
+      [
+        "height",
+        2.55
+      ],
+      [
+        "mass",
+        230.0
+      ],
+      [
+        "reach",
+        1.173
+      ],
+      [
+        "maximum_speed",
+        27.0
+      ],
+      [
+        "acceleration",
+        10.0
+      ],
+      [
+        "braking",
+        13.5
+      ],
+      [
+        "turning",
+        13.0
+      ],
+      [
+        "decision_speed",
+        0.3
+      ],
+      [
+        "archery_release_speed",
+        29.0
+      ],
+      [
+        "jump_height",
+        1.3
+      ]
+    ],
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "dead_stall_limit_ms": 120000,
+    "decision_ms": 500,
+    "direct_ms": 500,
+    "dt_ms": 100,
+    "fatigue": false,
+    "freeze_ms": 5000,
+    "freezes": 5,
+    "goal_depth": 3.0,
+    "goal_radius": 3.0,
+    "hand_fight": "intent-gated-placeholder",
+    "immunity_ms": 10000,
+    "injury": false,
+    "latency_ms": 200,
+    "legacy_layers": [],
+    "m2": "null",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": [
+      [
+        "arm_pin_grip",
+        0.5
+      ],
+      [
+        "arrow_drag",
+        0.06
+      ],
+      [
+        "arrow_error_scale",
+        1.0
+      ],
+      [
+        "balance_recovery_per_s",
+        1.5
+      ],
+      [
+        "ball_drag",
+        0.015
+      ],
+      [
+        "ball_mass_kg",
+        0.4
+      ],
+      [
+        "ball_restitution",
+        0.7745966692
+      ],
+      [
+        "base_half_width_frac",
+        0.2
+      ],
+      [
+        "blindside_rear_half_angle_deg",
+        15.0
+      ],
+      [
+        "block_force",
+        1.0
+      ],
+      [
+        "body_radius_scale",
+        1.0
+      ],
+      [
+        "bow_draw_ms",
+        600
+      ],
+      [
+        "brace_speed_mps",
+        2.0
+      ],
+      [
+        "c1_catch_model",
+        1
+      ],
+      [
+        "c1_chasers_read_flight",
+        0
+      ],
+      [
+        "c1_pass_planning",
+        1
+      ],
+      [
+        "c1_receiver_routing",
+        0
+      ],
+      [
+        "c3_contact",
+        1
+      ],
+      [
+        "c3_follow_distance",
+        1
+      ],
+      [
+        "c3_prep_round_ms",
+        0
+      ],
+      [
+        "c3_region_policy",
+        0
+      ],
+      [
+        "c3_substep_ms",
+        10
+      ],
+      [
+        "c3b",
+        1
+      ],
+      [
+        "c3c",
+        1
+      ],
+      [
+        "c4_zone",
+        1
+      ],
+      [
+        "c4b",
+        1
+      ],
+      [
+        "c4c",
+        1
+      ],
+      [
+        "c4c2",
+        1
+      ],
+      [
+        "catch_arrest_force_N",
+        1100.0
+      ],
+      [
+        "catch_hand_travel_m",
+        0.6
+      ],
+      [
+        "catch_noise",
+        0.15
+      ],
+      [
+        "catch_reaction_s",
+        0.12
+      ],
+      [
+        "collision_risk_tolerance",
+        0.5
+      ],
+      [
+        "contact_foul_min_shock",
+        0.05
+      ],
+      [
+        "contact_restitution",
+        0.1
+      ],
+      [
+        "contact_roster",
+        0
+      ],
+      [
+        "contact_time_s",
+        0.15
+      ],
+      [
+        "containment_window_s",
+        2.0
+      ],
+      [
+        "controller",
+        0
+      ],
+      [
+        "ctrl_keeper",
+        1
+      ],
+      [
+        "ctrl_lookahead_s",
+        0.6
+      ],
+      [
+        "ctrl_receivers",
+        2
+      ],
+      [
+        "ctrl_short_inbound",
+        1
+      ],
+      [
+        "ctrl_style_A",
+        0
+      ],
+      [
+        "ctrl_style_B",
+        0
+      ],
+      [
+        "ctrl_style_band",
+        0.1
+      ],
+      [
+        "deflection_speed_kept",
+        0.2
+      ],
+      [
+        "descent_time_s",
+        0.5
+      ],
+      [
+        "descent_window_s",
+        2.0
+      ],
+      [
+        "escape_allocation",
+        1
+      ],
+      [
+        "escape_force_N",
+        2500.0
+      ],
+      [
+        "exit_protection",
+        1
+      ],
+      [
+        "fatigue_rate",
+        0.0
+      ],
+      [
+        "frame_thickness",
+        0.2
+      ],
+      [
+        "gait_duty_min",
+        0.22
+      ],
+      [
+        "gait_duty_per_mps",
+        0.03
+      ],
+      [
+        "gait_duty_rest",
+        0.62
+      ],
+      [
+        "gait_half_width_frac",
+        0.09
+      ],
+      [
+        "gait_reset_frac",
+        0.75
+      ],
+      [
+        "gait_step_base_frac",
+        0.25
+      ],
+      [
+        "gait_step_max_frac",
+        1.1
+      ],
+      [
+        "gait_step_per_mps_frac",
+        0.035
+      ],
+      [
+        "gait_still_mps",
+        0.5
+      ],
+      [
+        "get_up_max_slide_mps",
+        1.0
+      ],
+      [
+        "get_up_time_s",
+        0.8
+      ],
+      [
+        "gravity",
+        9.81
+      ],
+      [
+        "grip_delay_ms",
+        300
+      ],
+      [
+        "grip_force_N",
+        2500.0
+      ],
+      [
+        "grip_gain_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_time_s",
+        0.15
+      ],
+      [
+        "grip_resist_per_s",
+        1.0
+      ],
+      [
+        "grip_slip_per_s",
+        2.0
+      ],
+      [
+        "grip_slip_ref_mps",
+        4.0
+      ],
+      [
+        "hold_height_lower_frac",
+        0.45
+      ],
+      [
+        "hold_height_upper_frac",
+        0.7
+      ],
+      [
+        "holder_load_factor",
+        0.35
+      ],
+      [
+        "keeper_aim_frac",
+        0.5
+      ],
+      [
+        "keeper_attempt_margin_m",
+        1.5
+      ],
+      [
+        "keeper_body_restitution",
+        0.3
+      ],
+      [
+        "keeper_confront",
+        1
+      ],
+      [
+        "keeper_confront_m",
+        7.0
+      ],
+      [
+        "keeper_depth_frac",
+        0.25
+      ],
+      [
+        "keeper_depth_max_m",
+        4.0
+      ],
+      [
+        "keeper_depth_min_m",
+        1.0
+      ],
+      [
+        "keeper_dive_hand_frac",
+        0.3
+      ],
+      [
+        "keeper_dive_lean",
+        0.35
+      ],
+      [
+        "keeper_dive_time_s",
+        0.25
+      ],
+      [
+        "keeper_extension_frac",
+        0.3
+      ],
+      [
+        "keeper_gather_m",
+        6.0
+      ],
+      [
+        "keeper_height_m",
+        0.0
+      ],
+      [
+        "keeper_launch_min_s",
+        0.1
+      ],
+      [
+        "keeper_parry_restitution",
+        0.35
+      ],
+      [
+        "keeper_parry_swing_mps",
+        5.0
+      ],
+      [
+        "keeper_pushoff_frac",
+        0.4
+      ],
+      [
+        "keeper_reaction_s",
+        0.2
+      ],
+      [
+        "keeper_set_mps",
+        1.5
+      ],
+      [
+        "keeper_unset_s",
+        0.1
+      ],
+      [
+        "keeper_windup_set",
+        1
+      ],
+      [
+        "lower_hold_leg_factor",
+        0.6
+      ],
+      [
+        "pass_aim_error_deg",
+        3.0
+      ],
+      [
+        "pass_release_ms",
+        250
+      ],
+      [
+        "rearm_gap_m",
+        0.3
+      ],
+      [
+        "recovery_react",
+        1
+      ],
+      [
+        "restraint_error_deg",
+        8.0
+      ],
+      [
+        "restraint_speed_loss",
+        0.5
+      ],
+      [
+        "restraint_weight_matched",
+        1.0
+      ],
+      [
+        "restraint_weight_other",
+        0.3
+      ],
+      [
+        "reversal_rule",
+        0
+      ],
+      [
+        "shock_speed_mps",
+        6.0
+      ],
+      [
+        "slide_friction",
+        0.8
+      ],
+      [
+        "strip_in_motion_factor",
+        4.0
+      ],
+      [
+        "tackle_grip_threshold",
+        0.3
+      ],
+      [
+        "tackle_rate",
+        1.25
+      ],
+      [
+        "tackle_source_majority",
+        0.5
+      ],
+      [
+        "topple_time_s",
+        1.0
+      ],
+      [
+        "traction_coefficient",
+        0.8
+      ],
+      [
+        "tuck_after_delay_frac",
+        1.0
+      ],
+      [
+        "zone_direct_penalty",
+        0
+      ]
+    ],
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": [
+      [
+        "acceleration",
+        10.0
+      ],
+      [
+        "arrow_limit",
+        30.0
+      ],
+      [
+        "arrow_speed",
+        29.0
+      ],
+      [
+        "ball_limit",
+        40.0
+      ],
+      [
+        "braking",
+        13.5
+      ],
+      [
+        "carry_value",
+        2
+      ],
+      [
+        "inner_points",
+        2
+      ],
+      [
+        "inner_zone_radius",
+        15.0
+      ],
+      [
+        "keeper_zone_radius",
+        20.0
+      ],
+      [
+        "marking_distance",
+        5.0
+      ],
+      [
+        "outside_points",
+        2
+      ],
+      [
+        "pass_speed",
+        27.0
+      ],
+      [
+        "player_speed",
+        27.0
+      ],
+      [
+        "release_points",
+        2
+      ],
+      [
+        "release_territories",
+        true
+      ],
+      [
+        "tackles_per_possession",
+        2
+      ],
+      [
+        "turning",
+        13.0
+      ],
+      [
+        "zone_inbound",
+        false
+      ],
+      [
+        "zone_marking",
+        false
+      ],
+      [
+        "zone_only",
+        false
+      ]
+    ],
+    "profile": "native-v0",
+    "ratings": 0.7,
+    "sense_ms": 200,
+    "throw_model": "THROW_SPLIT-primitive",
+    "version": "native-v0/2",
+    "zone_radius": 20.0
+  },
+  "config_digest": "f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035",
+  "conformance_statuses": {
+    "DEFERRED": 6,
+    "IMPLEMENTED+tested": 88,
+    "PLACEHOLDER": 11
+  },
+  "effective_readback": "Verified at construction and result in every match; active platform, all roster physical standards",
+  "environment": {
+    "numpy": "2.5.4",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "pytest": "9.2.0",
+    "python": "3.12.14"
+  },
+  "implementation_commit": "ba568dc84299cc95f86eb83207e0533297569cd7",
+  "inventory_first_commit": "937c52b",
+  "limits": [
+    "Explicit placeholders are part of this primitive baseline, not completed full mechanics.",
+    "Scenario tests cover overtime; the varied-seed cohort is reported separately.",
+    "Repository-wide historical scripts and missing fixtures are not claimed as a passing full repository suite.",
+    "Development cohorts are excluded from acceptance evidence.",
+    "No result is a claim about quality, balance, tactics or emergence."
+  ],
+  "m2_merge_commit": "4c5efd1",
+  "matches": [
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 575,
+      "restart_closed": 575,
+      "restart_released": 419,
+      "runtime_s": 319.054,
+      "seed": 1,
+      "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9",
+      "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 581,
+      "restart_closed": 581,
+      "restart_released": 427,
+      "runtime_s": 376.865,
+      "seed": 2,
+      "state_hash": "cf4c2ead63cb8b111e61d9c238868f5eed9630b3f0fd1c71b8c4d9f617c6557a",
+      "trace_hash": "284cbb6fdc2919b348fb051f25775c3ae52e1f733c205aa0f3daa8da4bfb66be"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 525,
+      "restart_closed": 525,
+      "restart_released": 384,
+      "runtime_s": 359.734,
+      "seed": 3,
+      "state_hash": "195bb3b9e03890445c857bf33b4a61fd29e313e14d6752455c094ce9f8c57378",
+      "trace_hash": "91105cd14fca990f15fc5eef3f6a13a89c8358a454b33f6218c059752c9bf21e"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 582,
+      "restart_closed": 582,
+      "restart_released": 416,
+      "runtime_s": 277.91,
+      "seed": 4,
+      "state_hash": "bbafe2091cfb6ac496ab930d3dc7c71c23af22a9ddf0b5c2590ff1c91a0ef8b9",
+      "trace_hash": "6fc2f7fe40dcb71b922c755b1fec9754ec5f519b4d98612c948627d6742fed87"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 583,
+      "restart_closed": 583,
+      "restart_released": 427,
+      "runtime_s": 262.142,
+      "seed": 5,
+      "state_hash": "7ff7126b48082e45fd26259f3f0221a5e9f55945b9913a7bc42c4befe862af27",
+      "trace_hash": "4ffb4711cfa427379adeba00889a0fbc6f68f54355f1ab2afe56667838c0dd5f"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 521,
+      "restart_closed": 521,
+      "restart_released": 390,
+      "runtime_s": 189.132,
+      "seed": 6,
+      "state_hash": "35385c2a185785e88a23cbfe8277504612ed9e3ef121b701852e9953caec5c4e",
+      "trace_hash": "99524df2632cb471d51f67da0a8aff397b5cb23c61fa1972349ec5ae80a9e959"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 611,
+      "restart_closed": 611,
+      "restart_released": 431,
+      "runtime_s": 205.376,
+      "seed": 7,
+      "state_hash": "49633e27fedde5f754888ad5a7c79977c46f451085c89b5e293c11afdf6fde84",
+      "trace_hash": "00b662ca6944be43b629618690c2759fe533fff177d8b7ed991b3a81e23f5d9b"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 561,
+      "restart_closed": 561,
+      "restart_released": 405,
+      "runtime_s": 323.064,
+      "seed": 8,
+      "state_hash": "daea1c9335ac91f95272da20cc2e20306f8ab36ffce2e11d693ad3d4ee5d48fc",
+      "trace_hash": "71c711fe5922dee450b65da41ba9d121598bfe19234ef3ed9bfcc020ab1ab34a"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 515,
+      "restart_closed": 515,
+      "restart_released": 370,
+      "runtime_s": 193.552,
+      "seed": 9,
+      "state_hash": "bc20e8b4850dd6b91ab75fdb3de32d2364586d40c2e216ec6ca3cb418211891d",
+      "trace_hash": "e78901addcc48f1850551ee308ddb47040f79bea195328673cf5c25e1e980044"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 504,
+      "restart_closed": 504,
+      "restart_released": 352,
+      "runtime_s": 191.098,
+      "seed": 10,
+      "state_hash": "53088d2d6e5d7d2508346912d854eb2ef4e8042af3c5402bcb0bde5d4df67b3c",
+      "trace_hash": "e71a5f78e0b8aa4985ffa2138725b84e6c676796e34737ffd9aa9bd114e5c2af"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 543,
+      "restart_closed": 543,
+      "restart_released": 393,
+      "runtime_s": 200.746,
+      "seed": 11,
+      "state_hash": "dbcf9644dacac116822e05e3a3e4244c5c0061ab0b8c6cae49f826aed4140473",
+      "trace_hash": "462744a06d0f21a2dab4cc0bb6ea0d6f45ca1674f56a0f77a10d761cbbfc4e86"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 586,
+      "restart_closed": 586,
+      "restart_released": 420,
+      "runtime_s": 202.021,
+      "seed": 12,
+      "state_hash": "f09740871f2f3398581617448ef0baca5fbbfc3f2d0be22ef580d880104b4a0d",
+      "trace_hash": "c14bfe65706d6b48830ec23068a0319ed1ee3e8cd32bb7480afa9b2e113a11ef"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 601,
+      "restart_closed": 601,
+      "restart_released": 429,
+      "runtime_s": 187.325,
+      "seed": 13,
+      "state_hash": "49b329d3a941baa31142df31a9ad4b9a75f1bd7fe80b665f8a74690ea8a90774",
+      "trace_hash": "d8fe80d9d903e91d869fb9e1e71cfe4fbe983621eead59e42aa6b83f99ad6608"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 581,
+      "restart_closed": 581,
+      "restart_released": 412,
+      "runtime_s": 186.959,
+      "seed": 14,
+      "state_hash": "cf80cbad64cb60617b2d06b932cc873ca659ce8a2fc74d3270e615c05d65cdca",
+      "trace_hash": "67f5097301be0ad8ebe4a8fff5728f903a45ab6fe1cb86f09dbbc75f21908b1b"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 554,
+      "restart_closed": 554,
+      "restart_released": 394,
+      "runtime_s": 191.08,
+      "seed": 15,
+      "state_hash": "cefd1c822099719a19a1995b0eb7f7409395c50d8b94b9f9b38df1f33c9395de",
+      "trace_hash": "81f23dde316384b69821afdb398d6692b216baf358622a1709b37116b9894373"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 596,
+      "restart_closed": 596,
+      "restart_released": 428,
+      "runtime_s": 188.936,
+      "seed": 16,
+      "state_hash": "e5a27a742b308bb23333e2c97b682fa87e44c9d10e3822aa899ea7eccb407937",
+      "trace_hash": "01536c8267d1c84a39cd6f3a5b39c05e72bffc46d4f71f7a2bb91f91a9a5bcb9"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 504,
+      "restart_closed": 504,
+      "restart_released": 351,
+      "runtime_s": 200.168,
+      "seed": 17,
+      "state_hash": "d1f95d88a7765b67d1d22b7624ca3f374aa439f0338c99a1221e6a953159049c",
+      "trace_hash": "9a0375fa705c3dda12c77f218fde27fbca068ad74657b015191ff361377b3cd1"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 542,
+      "restart_closed": 542,
+      "restart_released": 390,
+      "runtime_s": 204.606,
+      "seed": 18,
+      "state_hash": "efbdd064a55368fe856ca183a34dbb070e91c21ea926cfbfd4b83452fde64296",
+      "trace_hash": "030eb14ee83a657884064037e14b9481ccc0b3e2bc96da0dc33ac43e4846a653"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 584,
+      "restart_closed": 584,
+      "restart_released": 421,
+      "runtime_s": 197.45,
+      "seed": 19,
+      "state_hash": "c06e31fbbad1401e0da5dc7aa211026e742945e880ff0c054e774be2139cfbeb",
+      "trace_hash": "a4a9d28249b32b10765ed4c9d946079faa00034323efda63462c298b9c3ddb5c"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 522,
+      "restart_closed": 522,
+      "restart_released": 370,
+      "runtime_s": 190.571,
+      "seed": 20,
+      "state_hash": "42f9ea73316943ce8054a44791b7e6bc35623ce9b421ab129225f498684bd60a",
+      "trace_hash": "fa79748a49d925e14e1ef8b2f77371b5ca9b874f865c296a0fa644f34785c068"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 547,
+      "restart_closed": 547,
+      "restart_released": 406,
+      "runtime_s": 186.544,
+      "seed": 21,
+      "state_hash": "dadcb624dd7ab33da02b412e74e922ae084000a5e45986289e97871d73ec3cef",
+      "trace_hash": "5aaf46e5a8f19a5da186dbe414973690465ca4df8f3517e0f6a84c3ccf9a2047"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 554,
+      "restart_closed": 554,
+      "restart_released": 390,
+      "runtime_s": 186.846,
+      "seed": 22,
+      "state_hash": "1f989efde2d49e240f4c52248790567d472689fe0f362ed1137183994f489fe1",
+      "trace_hash": "fa618d581844efe1ca47530e7fa39240acdc9e0fdeb77367fda9c3e88444ead5"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 550,
+      "restart_closed": 550,
+      "restart_released": 402,
+      "runtime_s": 176.692,
+      "seed": 23,
+      "state_hash": "d63f7e7cb7fcd523b7dc4dcb9bf8c0ca803e118a6baacc6fd9f7b0a9680c6dba",
+      "trace_hash": "c8fc091379e83741f874d761c71be0ee0796b904337c0d1c167cac996f2437e7"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 601,
+      "restart_closed": 601,
+      "restart_released": 434,
+      "runtime_s": 185.822,
+      "seed": 24,
+      "state_hash": "1766fb2c67d569393980ccb71d719bc90f444c1d1f03f7a2b19e34baa9d231cd",
+      "trace_hash": "c7e37d585698d994770fe03c6ce3b70cac44daeec4a0f7c3bf74a8af58952070"
+    },
+    {
+      "live_ms": 2400000,
+      "period": 4,
+      "restart_awarded": 603,
+      "restart_closed": 603,
+      "restart_released": 413,
+      "runtime_s": 191.493,
+      "seed": 25,
+      "state_hash": "dd8f3bf87bbb3e7f6e39fcf6db279ee9a463dbd2dbd969b36badf0e78437f417",
+      "trace_hash": "1762538209fe09ea24aaedf0597fdea83d63e1981401103f72b0670d3565dae9"
+    }
+  ],
+  "name": "NATIVE-PRISM-0",
+  "packaging_followup": {
+    "additional_existing_tests_rerun": 2,
+    "changed_python": [
+      "native/emergence/harness.py",
+      "native/soak.py"
+    ],
+    "log": "native/evidence/tests-packaging.txt",
+    "metadata_check": "native/evidence/harness-metadata.json",
+    "scope": "Experiment harness result metadata and owner-amended default soak count25; no match logic changed, no new soak batch or experiment executed",
+    "simulation_paths_unchanged": true
+  },
+  "preservation": {
+    "B0_commit": "2abe497",
+    "accepted_B1_commit": "4b19719",
+    "accepted_files_unchanged": [
+      "b1/core.py",
+      "b1/runtime.py",
+      "b1/g1.py"
+    ],
+    "frozen_files_verified": 427
+  },
+  "profile_merge_commit": "ba92633",
+  "questions_and_placeholders": "OWNER BRIEFING\n1. Native build uses the following smallest working PLACEHOLDERs where implementation or canon detail is incomplete.\n2. These are explicit defaults, not accepted canon or evidence of good play.\n3. No question here currently blocks engineering. Acceptance and baseline designation remain the owner's decision.\n\n| ID | Question / replaceable default | Class and current handling |\n|---|---|---|\n| Q-HUNT-1 | Centre-circle radius and setup distances are not specified numerically in the build prompt. | CANON detail; PLACEHOLDER keep restarts_v1's 5 m radius, contestants approach physically from legal initial scatter. No assigned formation or role-ranked contestant. |\n| Q-HUNT-2 | Exact clock activation within the First Hunt is not specified in the authoritative prompt. | CANON detail; PLACEHOLDER clock runs in the opening phase, including approaches; false start retakes and no Archer until whole ball exits circle. |\n| Q-ZONE-1 | Unmarked defenders cannot remain indefinitely, but the permitted grace interval is not stated. | CANON detail; PLACEHOLDER 5 s unmarked residence, inherited duration; marked defenders exempt, Keepers exempt. |\n| Q-FLIGHT-1 | Maximum shot finishing-flight duration is not stated. | CANON detail; PLACEHOLDER 10 s safety tail, normally ends on ground/control/out/goal. Only shots get an exception. |\n| Q-BOUNDARY-1 | Exact anatomical witnesses for every touching body part need more motor integration. | ENGINEERING; PLACEHOLDER ground body-cylinder envelope with airborne exemption. Native v1 replaces it with support/anatomical witnesses. Goal whole-ball test is separate. |\n| Q-COVER-1 | If simultaneous exclusions temporarily leave fewer than 12 eligible among 22, does \"available\" include excluded athletes? | CANON edge case; PLACEHOLDER excluded athletes are unavailable until their exclusion expires, so fewer than 12 currently eligible causes a forfeit. No unavailable athlete is fielded to hide this case. |\n| Q-SIMULT-1 | Simultaneous offsetting minor fouls outside the three specified exact ties have no explicit procedure. | CANON detail; PLACEHOLDER retain B0 neutral offset: record each sanction and restart with existing possession/count, no automatic major classification. |\n| Q-HELD-1 | Unresolved physical joint-ball control has no resolution duration in the prompt. | CANON detail; PLACEHOLDER retain B0 one-second held-ball reset/alternating scrimmage; Hunt joint control retakes without a penalty. |\n| Q-SENSOR-1 | Native sensor cadence/noise constants are not canon. | ENGINEERING; PLACEHOLDER immutable delayed/noisy cone/occlusion observations with independent per-athlete RNG, no true fallback. Claude replaces/takes ownership. |\n| Q-THROW-1 | Full THROW_SPLIT mechanics and arbitrary-speed error calibration are not yet ported. | ENGINEERING; PLACEHOLDER explicit intent speed/height, drag-aware arc, 60-degree moving-release bound, uniform accuracy error. Do not claim full throwing_v1 equivalence. |\n| Q-HAND-1 | Full voluntary off-ball hand-fight repertoire is not yet ported. | BEHAVIORAL/ENGINEERING; PLACEHOLDER retained incidental contact physics, intent-gated carrier wraps, no automatic random gripping. Native v1 adds PRISM-owned off-ball actions. |\n| Q-CONTACT-1 | B0 automatic containment/descent choices used true-state tactical triggers. | ENGINEERING; disabled in Native. Motor may retain already admitted Keeper commitments; new semantic choices come from decide(). |\n| Q-CATCH-1 | CATCH_V2 shared energy kernel is ported; automatic jump/hand-contest overlay is not installed. | ENGINEERING; PLACEHOLDER B0 simultaneous secure-contact handling plus shared threshold kernel. No second Keeper decider. |\n| Q-BEHAVIOR-1 | Minimal Hunt claims, restart claims/alignment/wait/snap, dribble and cover policies need replacement. | BEHAVIORAL; PLACEHOLDER procedural decisions in the same view/belief/intent pipeline, canonical admission, no quality claim. Claude owns their later cognition replacements. |\n\nExplicit DEFERRED: breaks, timeouts, Hunt penalties beyond false-start retake, standard scoring, fatigue, injury, rating development, adaptive learning, M2 plan/message content. No implementation of those deferred features is authorized by this baseline.\n\nPH3 implementation limit (ENGINEERING, not a canon escalation): the current defender-marking exemption checks offensive field players. Keeper-as-marker coverage is not established by the conformance test. Native v1 must cover every offensive-player role permitted by the rule. This residence model remains PLACEHOLDER; the five-second attacker rule and field-player marking case are tested.\n",
+  "repository_collection": {
+    "collected": 444,
+    "command": ".venv/bin/python -m pytest --collect-only -q",
+    "errors": 5,
+    "implementation_at_collection": "1e7383cbccfdd415e91e3f1babdcec50d498231a",
+    "log": "native/evidence/repository-collection.txt",
+    "reasons": [
+      "block_test.py and rs_test.py are command-line scripts collected as tests",
+      "lab tests require unavailable Playwright",
+      "results_v37/capability_table_v37.json is absent"
+    ],
+    "status": "development-wide collection blocked; excluded from acceptance"
+  },
+  "restart_release_ratio": 0.7182375588193355,
+  "restart_statuses": {
+    "released": 10074,
+    "snap_timeout": 369,
+    "superseded:defence_minor": 27,
+    "superseded:offence_minor": 247,
+    "toss_timeout": 3309
+  },
+  "rule_matrix": {
+    "authority": "Owner build prompt 2026-11-14",
+    "rows": [
+      {
+        "id": "S1",
+        "reason": "",
+        "rule": "Four 600-second periods, two rosters of 22 and 12 active",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_structure_configuration_and_effective_readback"
+      },
+      {
+        "id": "S2",
+        "reason": "",
+        "rule": "First Hunt opens every regulation and overtime period; any field contestant",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake"
+      },
+      {
+        "id": "S3",
+        "reason": "",
+        "rule": "False start retaken",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake"
+      },
+      {
+        "id": "S4",
+        "reason": "",
+        "rule": "First tied overtime 300 s, runs whole period",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_first_overtime_is_whole_300s_and_later_is_sudden_death"
+      },
+      {
+        "id": "S5",
+        "reason": "",
+        "rule": "Later sudden death ends on any score, full and half forced",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_sudden_death_ends_on_any_score"
+      },
+      {
+        "id": "BALL1",
+        "reason": "",
+        "rule": "No kick releases or strike path",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch"
+      },
+      {
+        "id": "BALL2",
+        "reason": "",
+        "rule": "One throw-and-replay dribble; second offence minor; stoppage and other touch reset",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch"
+      },
+      {
+        "additional_tests": [
+          "native/test_rules.py::test_defensive_minor_awards_and_retains"
+        ],
+        "id": "CLOCK1",
+        "reason": "",
+        "rule": "30 s fresh after score and turnover; carries tackle",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover"
+      },
+      {
+        "id": "CLOCK2",
+        "reason": "",
+        "rule": "Play expiry turnover spot or own 40 nearer attacked goal",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover"
+      },
+      {
+        "id": "CLOCK3",
+        "reason": "",
+        "rule": "Snap clock runs only when more than ten remained",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover"
+      },
+      {
+        "id": "CLOCK4",
+        "reason": "",
+        "rule": "Game clock stops every dead ball",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover"
+      },
+      {
+        "id": "G1",
+        "reason": "",
+        "rule": "100x100 surface and strict 20 m configured zone arc",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform"
+      },
+      {
+        "id": "G2",
+        "reason": "",
+        "rule": "3 m goal semicircle and 3 m quadrant depth",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform"
+      },
+      {
+        "id": "G3",
+        "reason": "",
+        "rule": "Whole ball crosses inside goal section",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform"
+      },
+      {
+        "id": "G4",
+        "reason": "",
+        "rule": "Platform fixed 5 m high / 5 m back, one per goal",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform"
+      },
+      {
+        "id": "G5",
+        "reason": "",
+        "rule": "Platform arrow ballistic reach tested",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic"
+      },
+      {
+        "id": "SCORE1",
+        "reason": "",
+        "rule": "Flat two-point goal and one-point half goal",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score"
+      },
+      {
+        "id": "SCORE2",
+        "reason": "",
+        "rule": "Carry tracked separately",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score"
+      },
+      {
+        "id": "SCORE3",
+        "reason": "",
+        "rule": "Noncarry release distance and success counters",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_noncarry_goal_release_distance_attempts_and_success"
+      },
+      {
+        "id": "SCORE4",
+        "reason": "",
+        "rule": "Keeper cannot score for own team, own goal for opponents",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score"
+      },
+      {
+        "id": "T1",
+        "reason": "",
+        "rule": "First tackle contact scrimmage inside zone; attacked goal x<10 resets to 10",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover"
+      },
+      {
+        "id": "T2",
+        "reason": "",
+        "rule": "Tackled snapper and tackler recorded",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover"
+      },
+      {
+        "id": "T3",
+        "reason": "",
+        "rule": "Missed ten-second snap window count+1 and 5 m back",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_snap_window_missed_costs_count_and_spot"
+      },
+      {
+        "id": "T4",
+        "reason": "",
+        "rule": "Offence offside count+1 and 5 m back; second turnover",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_scrimmage_offside_procedural"
+      },
+      {
+        "id": "T5",
+        "reason": "",
+        "rule": "Defence offside count-1 floor zero, 5 m forward; no half goal",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_scrimmage_offside_procedural"
+      },
+      {
+        "id": "T6",
+        "reason": "",
+        "rule": "Second tackle turnover spot or own40 nearer attacked goal",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover"
+      },
+      {
+        "id": "F1",
+        "reason": "",
+        "rule": "Offence minor count+1, second turnover",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_offence_minor_second_is_turnover_and_defence_costs_count"
+      },
+      {
+        "id": "F2",
+        "reason": "",
+        "rule": "Defence minor decrements; count zero awards half P1-3 / full P4+ and retains",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_defensive_minor_awards_and_retains"
+      },
+      {
+        "id": "F3",
+        "reason": "",
+        "rule": "Unintentional head minor; intent-chosen head/trip major",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_intent_defines_major_not_incidental_head"
+      },
+      {
+        "id": "F4",
+        "reason": "",
+        "rule": "First major 120 s game-time exclusion, second DQ",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion"
+      },
+      {
+        "id": "F5",
+        "reason": "",
+        "rule": "Fourth minor 60 s exclusion, fifth DQ",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion"
+      },
+      {
+        "id": "F6",
+        "reason": "",
+        "rule": "Cover exclusions/DQ and eligible return after time",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion"
+      },
+      {
+        "id": "F7",
+        "reason": "",
+        "rule": "Forfeit only below 12 currently available of 22",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_forfeit_only_below_twelve_currently_available"
+      },
+      {
+        "id": "C1",
+        "reason": "",
+        "rule": "Off-ball legal band, hip push/stab; no pulling/gripping",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints"
+      },
+      {
+        "id": "C2",
+        "reason": "",
+        "rule": "Carrier wrap and knee/joint legal below neck",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints"
+      },
+      {
+        "id": "K1",
+        "reason": "",
+        "rule": "Keeper inside own zone protected from opponent initiation when PP own",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_keeper_immunity_position_at_contact_and_freeze_in_all_phases"
+      },
+      {
+        "id": "K2",
+        "reason": "",
+        "rule": "Keeper never Archer target; inside-zone Keeper never freezes",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_keeper_immunity_position_at_contact_and_freeze_in_all_phases"
+      },
+      {
+        "id": "K3",
+        "reason": "",
+        "rule": "ZR-1/C/T enforced as opponent RST-1 with clock reset",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_possession_zone_violations_are_enforced_as_rst1"
+      },
+      {
+        "id": "A1",
+        "reason": "",
+        "rule": "25 arrows, illegal release spends ammo and minor, abort no spend",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic"
+      },
+      {
+        "id": "A2",
+        "reason": "",
+        "rule": "At most five freezes, freeze5 plus immunity10",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_freeze_cap_and_five_plus_ten_seconds"
+      },
+      {
+        "id": "A3",
+        "reason": "",
+        "rule": "Recovery protection3m/2s",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_recovery_arrow_protection_three_metres_two_seconds"
+      },
+      {
+        "id": "A4",
+        "reason": "",
+        "rule": "Targets opposing fields on offence with control, outside both zones",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic"
+      },
+      {
+        "id": "TIE1",
+        "reason": "",
+        "rule": "Shot release at expiry counts, only shots retain flight",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_shot_release_at_expiry_precedes_clock"
+      },
+      {
+        "id": "TIE2",
+        "reason": "",
+        "rule": "Goal wins coincident catch; boundary wins secure hold",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_exact_goal_catch_and_boundary_secure_ties"
+      },
+      {
+        "id": "OUT1",
+        "reason": "",
+        "rule": "Toss crossing point, goal-line zone slide, thrower outside, 3 m clearance, ready1.5",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_toss_crossing_arc_slide_clearance_ready_no_self_no_direct_score"
+      },
+      {
+        "id": "OUT2",
+        "reason": "",
+        "rule": "Toss within4s of ready",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_toss_deadline_four_seconds_after_ready"
+      },
+      {
+        "id": "OUT3",
+        "reason": "",
+        "rule": "Toss cannot score direct; taker cannot recover",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_toss_crossing_arc_slide_clearance_ready_no_self_no_direct_score"
+      },
+      {
+        "id": "OWN1",
+        "reason": "",
+        "rule": "No hidden attributes in pure decide, commands retain intent IDs",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_information_boundary_and_all_commands_from_pure_decide"
+      },
+      {
+        "id": "OWN2",
+        "reason": "",
+        "rule": "Formation-free parameter vector / residence compliance intent",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_formation_independent_of_slot_and_residence_exit_intent"
+      },
+      {
+        "id": "OWN3",
+        "reason": "",
+        "rule": "Environment cannot turn on legacy layers or mix Native config",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_environment_flags_cannot_enable_a_native_legacy_layer"
+      },
+      {
+        "id": "OWN4",
+        "reason": "",
+        "rule": "Serialized view+belief replays decision",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_native_view_json_replays_exact_decision"
+      },
+      {
+        "id": "M2",
+        "reason": "",
+        "rule": "M2 null present equals absent; paired harness",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_m2_null_absent_short_replay_and_harness_pairs"
+      },
+      {
+        "id": "R-01",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-01",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R01_opening_no_possession_no_phase_empty_archer_target_set"
+      },
+      {
+        "id": "R-02",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-02",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R02_secured_timer_runs_possession_unchanged_before_threshold"
+      },
+      {
+        "id": "R-03",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-03",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R03_threshold_gives_direct_and_passive_possession"
+      },
+      {
+        "id": "R-04",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-04",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R04_C1_contest_lapses_direct_not_passive"
+      },
+      {
+        "id": "R-05",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-05",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R05_contest_ends_timer_restarts_at_zero"
+      },
+      {
+        "id": "R-06",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-06",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R06_pass_release_keeps_team_control_and_passive"
+      },
+      {
+        "id": "R-07",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-07",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R07_shot_release_ends_team_control_passive_unchanged"
+      },
+      {
+        "id": "R-08",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-08",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R08_defender_touch_ends_control_resets_zone_clock_passive_unchanged"
+      },
+      {
+        "id": "R-09",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-09",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R09_loose_ball_keeps_passive_possession"
+      },
+      {
+        "id": "R-10",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-10",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R10_opponent_uncontested_control_flips_passive_and_resets_clocks"
+      },
+      {
+        "id": "R-11",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-11",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R11_ZRC_carrier_crosses_from_outside_into_own_zone"
+      },
+      {
+        "id": "R-12",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-12",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R12_ZRT_pass_from_outside_into_own_zone_teammate_first_touch"
+      },
+      {
+        "id": "R-13",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-13",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R13_zone_clock_five_seconds_records_ZR1_once"
+      },
+      {
+        "id": "R-14",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-14",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R14_reset_trigger_ball_leaves_zone"
+      },
+      {
+        "id": "R-15",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-15",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R15_R16_keeper_protection_needs_passive_possession_and_position"
+      },
+      {
+        "id": "R-16",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-16",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R15_R16_keeper_protection_needs_passive_possession_and_position"
+      },
+      {
+        "id": "R-17",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-17",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R17_freeze_legal_ruleset_102"
+      },
+      {
+        "id": "R-18",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-18",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R18_out_of_play_keeps_passive_until_restart_awards_it"
+      },
+      {
+        "id": "R-19",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-19",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R19_RST1_restart_passive_to_opponent_clock_zero_and_stopped"
+      },
+      {
+        "id": "R-20",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-20",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R14_R20_reset_trigger_dead_ball_stopped_until_live"
+      },
+      {
+        "id": "R-21",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-21",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R21_keeper_catch_passive_stays_with_shooter_until_threshold"
+      },
+      {
+        "id": "R-22",
+        "reason": "Native enforcement covered by K3 and Native direct/body-contact tests; pure kernel tests unchanged.",
+        "rule": "D1 possession row R-22",
+        "status": "IMPLEMENTED+tested",
+        "test": "b1/test_possession.py::PossessionRows::test_R22_C3_same_instant_touches_contested_no_first_touch_violation"
+      },
+      {
+        "id": "PH1",
+        "reason": "Q-HUNT-1/2, canonical claim admission; radius/clock defaults",
+        "rule": "Hunt choice and first-touch behavior",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake"
+      },
+      {
+        "id": "PH2",
+        "reason": "Q-BEHAVIOR-1, pure procedural intents; full-run stall checks required",
+        "rule": "Contact Scrimmage alignment, offside avoidance, snap and toss-taker decisions",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover"
+      },
+      {
+        "id": "PH3",
+        "reason": "own-clock exit primitive; unmarked defender grace Q-ZONE-1; current marking checks offensive field players; Keeper-as-marker coverage unproven",
+        "rule": "Attacker five-second residence and marked defender exemption",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_zone_residence_enforced_marked_defender_and_keeper_exempt"
+      },
+      {
+        "id": "PH4",
+        "reason": "Q-BOUNDARY-1 body cylinder proxy; detailed anatomical contact deferred",
+        "rule": "Boundary touching body parts / airborne exemption",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_boundary_contact_and_airborne_proxy"
+      },
+      {
+        "id": "PH5",
+        "reason": "Q-CATCH-1: automatic jump/hand-contest extension not installed",
+        "rule": "Shared CATCH_V2 energy kernel",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_shared_catch_reach_and_heldout_partition"
+      },
+      {
+        "id": "PH6",
+        "reason": "Q-THROW-1: explicit speed/height/arc, primitive accuracy; not full source-equivalent model",
+        "rule": "THROW_SPLIT mechanics",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_primitive_throw_speed_height_arc_are_intent_owned"
+      },
+      {
+        "id": "PH7",
+        "reason": "Q-HAND-1: physical contacts and intent-gated carrier wrap; full off-ball choices absent",
+        "rule": "Voluntary HAND_FIGHT repertoire",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints"
+      },
+      {
+        "id": "PH8",
+        "reason": "Q-COVER-1 / Q-BEHAVIOR-1 canonical eligible athlete claim",
+        "rule": "Substitution cover admission",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion"
+      },
+      {
+        "id": "PH9",
+        "reason": "Q-FLIGHT-1 ten-second safety tail",
+        "rule": "Shot finishing-flight maximum",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_only_shots_get_clock_flight_exception"
+      },
+      {
+        "id": "PH10",
+        "reason": "Q-BEHAVIOR-1 no fresh teammates -> trivial self throw choice",
+        "rule": "Dribble decision",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch"
+      },
+      {
+        "id": "PH11",
+        "reason": "Q-SENSOR-1 immutable noisy cone/occlusion; Claude replacement later",
+        "rule": "Native delayed sensor",
+        "status": "PLACEHOLDER",
+        "test": "native/test_rules.py::test_information_boundary_and_all_commands_from_pure_decide"
+      },
+      {
+        "id": "D1",
+        "reason": "Explicit owner deferral: do not build",
+        "rule": "Breaks and timeouts",
+        "status": "DEFERRED",
+        "test": null
+      },
+      {
+        "id": "D2",
+        "reason": "Explicit owner deferral: do not build",
+        "rule": "Hunt penalties beyond false-start retake",
+        "status": "DEFERRED",
+        "test": null
+      },
+      {
+        "id": "D3",
+        "reason": "Explicit owner deferral: do not build",
+        "rule": "Standard non-flat scoring",
+        "status": "DEFERRED",
+        "test": null
+      },
+      {
+        "id": "D4",
+        "reason": "Explicit owner deferral: do not build",
+        "rule": "Fatigue and injury",
+        "status": "DEFERRED",
+        "test": null
+      },
+      {
+        "id": "D5",
+        "reason": "Explicit owner deferral: do not build",
+        "rule": "Ratings development and adaptive learning",
+        "status": "DEFERRED",
+        "test": null
+      },
+      {
+        "id": "D6",
+        "reason": "Explicit owner deferral: do not build",
+        "rule": "M2 plan and message content",
+        "status": "DEFERRED",
+        "test": null
+      },
+      {
+        "id": "CTX1",
+        "reason": "Native integration regression",
+        "rule": "Restart command cannot be rebound to a different rule record",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_stale_restart_cannot_be_rebound_to_another_rule_record"
+      },
+      {
+        "id": "CTX2",
+        "reason": "Native integration regression",
+        "rule": "Restart record outranks stale Hunt flag",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_restart_record_takes_precedence_over_uncleared_hunt_flag"
+      },
+      {
+        "id": "CTX3",
+        "reason": "Native integration regression",
+        "rule": "Period boundary cancels pending draws and rejects stale-period intents",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_period_end_cancels_pending_draw_and_rejects_stale_period_intents"
+      },
+      {
+        "id": "MOTOR1",
+        "reason": "Native integration regression",
+        "rule": "Keeper lands in dead time without a new decision",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_keeper_landing_completes_in_dead_ball_without_new_semantic_choice"
+      },
+      {
+        "id": "MOTOR2",
+        "reason": "Native integration regression",
+        "rule": "Completed match blocks further body movement or landings",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_physical_port_cannot_land_or_move_bodies_after_finality"
+      },
+      {
+        "id": "CLOCK5",
+        "reason": "Native integration regression",
+        "rule": "Offside retake retains the original tackle snap-clock run flag",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_defensive_offside_retake_preserves_tackle_clock_run_flag"
+      },
+      {
+        "id": "ARROW5",
+        "reason": "Native integration regression",
+        "rule": "Completed draw requires a fresh release/abort intent",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_archer_draw_requires_fresh_release_intent_before_ammo_spent"
+      },
+      {
+        "id": "G6",
+        "reason": "Configuration/clock conformance",
+        "rule": "Archer platform faces opposing goal before/after end exchange",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_platform_faces_opposing_goal_before_and_after_end_exchange"
+      },
+      {
+        "id": "CLOCK6",
+        "reason": "Configuration/clock conformance",
+        "rule": "Running snap clock expires in dead ball at the exact millisecond",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_running_snap_clock_expires_in_dead_ball_at_exact_millisecond"
+      },
+      {
+        "id": "CLOCK7",
+        "reason": "Millisecond deadline integration",
+        "rule": "Physical intervals slice at direct-possession, freeze and zone deadlines",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_physical_step_slices_at_direct_and_freeze_deadlines"
+      },
+      {
+        "id": "G7",
+        "reason": "",
+        "rule": "Platform readback covers the active replacement after end exchange; bench pose is not a platform",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_platform_readback_checks_active_replacement_not_benched_archer"
+      },
+      {
+        "id": "BALL3",
+        "reason": "",
+        "rule": "Bounce option targets a surface spot then physical rebound",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_bounce_intent_targets_surface_then_uses_physical_rebound"
+      },
+      {
+        "id": "T7",
+        "reason": "",
+        "rule": "Score restarts conceding team at own40 centre, fresh clock/count; all at or behind own40",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_goal_restart_is_conceding_own40_and_requires_all_behind_own40"
+      },
+      {
+        "id": "F8",
+        "reason": "",
+        "rule": "Returning substitute receives current public period through AthleteView, not stale on-field vision",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/test_rules.py::test_returning_bench_claim_has_current_public_period_not_old_visual_frame"
+      }
+    ],
+    "schema": "native-v0-rule-matrix/1"
+  },
+  "runtime_summary_s": {
+    "max": 376.865,
+    "median": 193.552,
+    "min": 176.692,
+    "sum": 5575.186
+  },
+  "schema": "native-prism-0-manifest/1",
+  "seed1_decisions_by_kind": {
+    "abort_draw": 165,
+    "archer_hold": 18177,
+    "carry": 1251,
+    "continue_current": 699,
+    "draw_release": 772,
+    "dribble": 15,
+    "hunt_claim": 80,
+    "keeper_control": 9225,
+    "mark": 10335,
+    "pass": 598,
+    "position": 21972,
+    "press": 5426,
+    "pursue": 10506,
+    "receive": 1614,
+    "release_arrow": 605,
+    "restart_claim": 5600,
+    "restart_pass": 998,
+    "restart_position": 115592,
+    "restart_wait": 547,
+    "retain": 59,
+    "scan": 26256,
+    "shoot": 51,
+    "substitute_claim": 24,
+    "support": 14295
+  },
+  "seed1_replay": {
+    "null_vs_absent_matches": true,
+    "parallel_vs_serial_matches": true,
+    "runtime_s": {
+      "absent": 462.484,
+      "serial": 414.192,
+      "soak": 319.054
+    },
+    "serial_repeat_matches": true,
+    "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9",
+    "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142"
+  },
+  "soak": {
+    "completed_at_stop": 28,
+    "completion_order": [
+      1,
+      8,
+      3,
+      2,
+      5,
+      4,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "failed": [],
+    "full_regulation": 25,
+    "implementation_commit": "ba568dc84299cc95f86eb83207e0533297569cd7",
+    "interrupted_excluded": [
+      29,
+      30
+    ],
+    "matches": 25,
+    "passed": 25,
+    "required_matches": 25,
+    "restart_awarded": 14026,
+    "restart_closed": 14026,
+    "restart_completion_ratio": 1.0,
+    "restart_release_ratio": 0.7182375588193355,
+    "restart_released": 10074,
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "stop_recorded_utc": "2026-11-14T18:15:48.275181+00:00",
+    "stopped_on_owner_amendment": true,
+    "supplemental_completed_excluded": 3
+  },
+  "status": "TESTED; awaiting DreLen acceptance",
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q b1 native",
+    "log": "native/evidence/tests-b1-native.txt",
+    "nodes": [
+      "b1/test_communication.py::test_M2_2_delay_loss_noise_and_view_only_intake",
+      "b1/test_communication.py::test_poison_before_view_delivery_and_empty_registry_do_not_change_decisions",
+      "b1/test_communication.py::test_M2_3_serial_parallel_and_causal_ids",
+      "b1/test_communication.py::test_M2_4_bandwidth_ordering_capacity_and_team_routing",
+      "b1/test_communication.py::test_M2_5_messages_cannot_change_action_kind_target_receiver_or_aim",
+      "b1/test_communication.py::test_M2_1_null_does_not_iterate_send_or_touch_rng_and_matches_short_replay",
+      "b1/test_communication.py::test_bad_models_and_envelopes_rejected",
+      "b1/test_emergence_ownership.py::KeeperOwnershipTests::test_belief_changes_threat_while_stale_has_no_truth_fallback",
+      "b1/test_emergence_ownership.py::KeeperOwnershipTests::test_motor_rejection_does_not_rewrite_save_as_no_attempt",
+      "b1/test_emergence_ownership.py::KeeperOwnershipTests::test_same_delivered_belief_is_the_complete_decision_input",
+      "b1/test_emergence_ownership.py::RestartOwnershipTests::test_claim_admission_and_position_are_intent_driven",
+      "b1/test_emergence_ownership.py::RestartOwnershipTests::test_claim_requires_physical_arrival_and_approach_is_an_intent",
+      "b1/test_emergence_ownership.py::RestartOwnershipTests::test_recorded_snapper_is_exclusive_until_35_second_fallback",
+      "b1/test_emergence_ownership.py::RestartOwnershipTests::test_rule_record_can_publish_mandatory_spot_without_engine_planning",
+      "b1/test_emergence_ownership.py::ArcherAndReleaseOwnershipTests::test_admitted_keeper_approach_persists_until_reread",
+      "b1/test_emergence_ownership.py::ArcherAndReleaseOwnershipTests::test_archer_tracks_belief_not_true_ball",
+      "b1/test_emergence_ownership.py::ArcherAndReleaseOwnershipTests::test_overlay_disables_only_the_legacy_withhold_gate",
+      "b1/test_emergence_ownership.py::ArcherAndReleaseOwnershipTests::test_withhold_is_an_explicit_athlete_choice",
+      "b1/test_emergence_ownership.py::BaselineInventoryTests::test_clean_tree_guard_ignores_additions_but_rejects_changes",
+      "b1/test_emergence_ownership.py::BaselineInventoryTests::test_inventory_is_the_complete_accepted_commit_tree",
+      "b1/test_g1.py::GovernedScenarioTests::test_conditions_are_declared",
+      "b1/test_g1.py::GovernedScenarioTests::test_defender_tracks_released_ball_from_belief",
+      "b1/test_g1.py::GovernedScenarioTests::test_failure_attribution_can_report_unknown",
+      "b1/test_g1.py::GovernedScenarioTests::test_mr1_twenty_seeds_final_direction_matches_semantic_aim",
+      "b1/test_g1.py::GovernedScenarioTests::test_only_carrier_and_defender_have_cognition",
+      "b1/test_g1.py::GovernedScenarioTests::test_real_kernel_exhibits_required_outcomes",
+      "b1/test_g1.py::GovernedScenarioTests::test_replay_and_telemetry_are_observer_neutral",
+      "b1/test_m1.py::PureBoundaryTests::test_baseline_guard_detects_preexisting_modification_and_missing_file",
+      "b1/test_m1.py::PureBoundaryTests::test_cognition_has_no_engine_import",
+      "b1/test_m1.py::PureBoundaryTests::test_decision_values_are_immutable",
+      "b1/test_m1.py::PureBoundaryTests::test_observation_changes_selection",
+      "b1/test_m1.py::PureBoundaryTests::test_pending_action_and_failure_feedback_change_the_decision",
+      "b1/test_m1.py::PureBoundaryTests::test_stale_belief_is_not_treated_as_current",
+      "b1/test_m1.py::MovingReleaseContractTests::test_mr2_outcome_preserves_action_target_and_semantic_aim",
+      "b1/test_m1.py::MovingReleaseContractTests::test_mr3_hidden_opponent_and_receiver_state_do_not_change_release",
+      "b1/test_m1.py::MovingReleaseContractTests::test_mr4_over_bound_rejects_and_feedback_reaches_cognition",
+      "b1/test_m1.py::MovingReleaseContractTests::test_mr5_stationary_release_matches_contract_off",
+      "b1/test_m1.py::WorkerTests::test_batch_permutation_and_legacy_traps",
+      "b1/test_m1.py::WorkerTests::test_command_replay_independent_of_cognition",
+      "b1/test_m1.py::WorkerTests::test_defender_pursuit_is_derived_from_belief",
+      "b1/test_m1.py::WorkerTests::test_interruption",
+      "b1/test_m1.py::WorkerTests::test_judgment_continuously_moves_belief_aim_toward_lane",
+      "b1/test_m1.py::WorkerTests::test_projector_uses_physical_world_and_poisoned_true_state_isolated",
+      "b1/test_m1.py::WorkerTests::test_replay_and_observer_neutrality",
+      "b1/test_m1.py::WorkerTests::test_retain",
+      "b1/test_match_ownership.py::test_live_truth_poison_cannot_change_delivered_course_or_release_choice",
+      "b1/test_match_ownership.py::test_overlay_is_installed_and_course_is_delivered",
+      "b1/test_match_ownership.py::test_release_withholding_is_pure_athlete_choice",
+      "b1/test_possession.py::PossessionRows::test_C2_body_contact_alone_does_not_contest",
+      "b1/test_possession.py::PossessionRows::test_P1_threshold_250_500_1000_flip_exactly_at_threshold_not_before",
+      "b1/test_possession.py::PossessionRows::test_P3_awarded_restart_sets_passive_before_any_direct_possession",
+      "b1/test_possession.py::PossessionRows::test_R01_opening_no_possession_no_phase_empty_archer_target_set",
+      "b1/test_possession.py::PossessionRows::test_R02_secured_timer_runs_possession_unchanged_before_threshold",
+      "b1/test_possession.py::PossessionRows::test_R03_threshold_gives_direct_and_passive_possession",
+      "b1/test_possession.py::PossessionRows::test_R04_C1_contest_lapses_direct_not_passive",
+      "b1/test_possession.py::PossessionRows::test_R05_contest_ends_timer_restarts_at_zero",
+      "b1/test_possession.py::PossessionRows::test_R06_pass_release_keeps_team_control_and_passive",
+      "b1/test_possession.py::PossessionRows::test_R07_shot_release_ends_team_control_passive_unchanged",
+      "b1/test_possession.py::PossessionRows::test_R08_defender_touch_ends_control_resets_zone_clock_passive_unchanged",
+      "b1/test_possession.py::PossessionRows::test_R09_loose_ball_keeps_passive_possession",
+      "b1/test_possession.py::PossessionRows::test_R10_opponent_uncontested_control_flips_passive_and_resets_clocks",
+      "b1/test_possession.py::PossessionRows::test_R11_ZRC_carrier_crosses_from_outside_into_own_zone",
+      "b1/test_possession.py::PossessionRows::test_R12_ZRT_pass_from_outside_into_own_zone_teammate_first_touch",
+      "b1/test_possession.py::PossessionRows::test_R13_zone_clock_five_seconds_records_ZR1_once",
+      "b1/test_possession.py::PossessionRows::test_R14_R20_reset_trigger_dead_ball_stopped_until_live",
+      "b1/test_possession.py::PossessionRows::test_R14_reset_trigger_ball_leaves_zone",
+      "b1/test_possession.py::PossessionRows::test_R14_reset_trigger_defender_touch_restarts_from_zero",
+      "b1/test_possession.py::PossessionRows::test_R14_reset_trigger_passive_possession_change",
+      "b1/test_possession.py::PossessionRows::test_R14_reset_trigger_restart",
+      "b1/test_possession.py::PossessionRows::test_R15_R16_keeper_protection_needs_passive_possession_and_position",
+      "b1/test_possession.py::PossessionRows::test_R17_freeze_legal_ruleset_102",
+      "b1/test_possession.py::PossessionRows::test_R18_out_of_play_keeps_passive_until_restart_awards_it",
+      "b1/test_possession.py::PossessionRows::test_R19_RST1_restart_passive_to_opponent_clock_zero_and_stopped",
+      "b1/test_possession.py::PossessionRows::test_R21_keeper_catch_passive_stays_with_shooter_until_threshold",
+      "b1/test_possession.py::PossessionRows::test_R22_C3_same_instant_touches_contested_no_first_touch_violation",
+      "b1/test_possession.py::PossessionRows::test_determinism_same_inputs_same_ledger_and_state",
+      "b1/test_possession.py::PossessionRows::test_module_is_pure_imports",
+      "b1/test_possession.py::PossessionRows::test_unknown_event_is_unresolved_not_invented",
+      "b1/test_profile.py::ProfileTests::test_default_is_experiment_v1_and_effective",
+      "b1/test_profile.py::ProfileTests::test_default_profile_does_not_stall_on_restarts",
+      "b1/test_profile.py::ProfileTests::test_legacy_profile_reproduces_sprint45_values",
+      "b1/test_profile.py::ProfileTests::test_one_profile_per_process",
+      "b1/test_profile.py::ProfileTests::test_unknown_profile_rejected",
+      "b1/test_sprint.py::PureCognition::test_BR1_cognition_imports_no_simulator",
+      "b1/test_sprint.py::PureCognition::test_BR2_no_forbidden_symbols",
+      "b1/test_sprint.py::PureCognition::test_BR5_motor_command_carries_no_belief_or_options",
+      "b1/test_sprint.py::PureCognition::test_KP_protected_keeper_is_not_pressed_view_change_changes_decision",
+      "b1/test_sprint.py::PureCognition::test_OWN3_view_change_changes_decision_in_predicted_direction",
+      "b1/test_sprint.py::PureCognition::test_archer_aborts_draw_when_own_belief_says_release_is_illegal",
+      "b1/test_sprint.py::PureCognition::test_archer_ruleset_102_legality_from_belief",
+      "b1/test_sprint.py::PureCognition::test_keeper_save_intent_from_perceived_flight_only",
+      "b1/test_sprint.py::PureCognition::test_pending_and_failure_feedback_change_next_decision",
+      "b1/test_sprint.py::PureCognition::test_possession_is_seen_only_through_signals_and_perception",
+      "b1/test_sprint.py::PureCognition::test_provenance_mismatch_fails_loudly",
+      "b1/test_sprint.py::PureCognition::test_stale_track_is_not_used",
+      "b1/test_sprint.py::PureCognition::test_values_are_immutable",
+      "b1/test_sprint.py::EngineIntegration::test_BR4_cognition_runs_in_process_without_simulator",
+      "b1/test_sprint.py::EngineIntegration::test_BR7_legacy_tactical_controller_is_trapped_and_run_completes",
+      "b1/test_sprint.py::EngineIntegration::test_G1_terminals_vary_with_seed_and_are_physical",
+      "b1/test_sprint.py::EngineIntegration::test_G1_three_athletes_decide_and_physics_resolves_the_pass",
+      "b1/test_sprint.py::EngineIntegration::test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical",
+      "b1/test_sprint.py::EngineIntegration::test_OWN4_BR6_decisions_reconstruct_from_trace_alone",
+      "b1/test_sprint.py::EngineIntegration::test_OWN5_motor_never_changes_kind_target_or_receiver",
+      "b1/test_sprint.py::EngineIntegration::test_OWN6_no_decision_before_delivery_and_no_future_data",
+      "b1/test_sprint.py::EngineIntegration::test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth",
+      "b1/test_sprint.py::EngineIntegration::test_causal_ids_link_decision_command_outcome",
+      "b1/test_sprint.py::EngineIntegration::test_determinism_across_processes",
+      "b1/test_sprint.py::EngineIntegration::test_determinism_same_seed_same_hash_in_process",
+      "b1/test_sprint.py::EngineIntegration::test_frozen_B0_file_identity",
+      "b1/test_sprint.py::EngineIntegration::test_frozen_B0_git_identity_and_no_modified_inventory_file",
+      "b1/test_sprint.py::EngineIntegration::test_primitives_are_registered_and_listed",
+      "b1/test_sprint.py::EngineIntegration::test_public_signal_change_reaches_view_only_after_latency",
+      "b1/test_sprint.py::EngineIntegration::test_sensor_is_sensitive_observed_world_change_changes_view",
+      "b1/test_sprint45.py::Round2Engine::test_P1_threshold_in_engine_run_250_500_1000",
+      "b1/test_sprint45.py::Round2Engine::test_archer_motor_has_no_true_state_interlock_wrong_belief_becomes_engine_foul",
+      "b1/test_sprint45.py::Round2Engine::test_determinism_with_rules_layer",
+      "b1/test_sprint45.py::Round2Engine::test_passive_possession_only_changes_after_direct_possession_or_restart_award",
+      "b1/test_sprint45.py::Round2Engine::test_possession_signal_reaches_view_only_through_delayed_snapshot",
+      "b1/test_sprint45.py::Round2Engine::test_release_contract_is_base_A_code_and_geometry_rejection_feeds_back",
+      "b1/test_sprint45.py::Round2Engine::test_repeated_possessions_at_each_threshold_on_engine_state",
+      "b1/test_sprint45.py::Round2Engine::test_rules_layer_reads_engine_events_not_beliefs",
+      "b1/test_sprint45.py::Round2Engine::test_ruleset_102_is_set_for_the_B1_instance_only",
+      "b1/test_sprint45.py::Round2Engine::test_zone_violation_is_fed_to_B0_restart_and_not_when_disabled",
+      "native/test_rules.py::test_structure_configuration_and_effective_readback",
+      "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake",
+      "native/test_rules.py::test_first_overtime_is_whole_300s_and_later_is_sudden_death",
+      "native/test_rules.py::test_sudden_death_ends_on_any_score[2-release]",
+      "native/test_rules.py::test_sudden_death_ends_on_any_score[1-half_goal]",
+      "native/test_rules.py::test_geometry_goal_semicircle_whole_ball_quadrant_and_platform",
+      "native/test_rules.py::test_boundary_contact_and_airborne_proxy",
+      "native/test_rules.py::test_flat_goals_carry_distance_and_keeper_cannot_score",
+      "native/test_rules.py::test_clock_stops_dead_carries_first_tackle_and_expiry_turnover",
+      "native/test_rules.py::test_only_shots_get_clock_flight_exception",
+      "native/test_rules.py::test_shot_release_at_expiry_precedes_clock",
+      "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover",
+      "native/test_rules.py::test_scrimmage_offside_procedural[0-offence-1-A-45]",
+      "native/test_rules.py::test_scrimmage_offside_procedural[1-offence-0-B-45]",
+      "native/test_rules.py::test_scrimmage_offside_procedural[1-defence-0-A-55]",
+      "native/test_rules.py::test_scrimmage_offside_procedural[0-defence-0-A-55]",
+      "native/test_rules.py::test_snap_window_missed_costs_count_and_spot",
+      "native/test_rules.py::test_defensive_minor_awards_and_retains[1-1]",
+      "native/test_rules.py::test_defensive_minor_awards_and_retains[2-1]",
+      "native/test_rules.py::test_defensive_minor_awards_and_retains[3-1]",
+      "native/test_rules.py::test_defensive_minor_awards_and_retains[4-2]",
+      "native/test_rules.py::test_defensive_minor_awards_and_retains[5-2]",
+      "native/test_rules.py::test_offence_minor_second_is_turnover_and_defence_costs_count",
+      "native/test_rules.py::test_discipline_ladder_cover_and_game_time_exclusion",
+      "native/test_rules.py::test_intent_defines_major_not_incidental_head",
+      "native/test_rules.py::test_contact_legal_band_grip_and_carrier_joints",
+      "native/test_rules.py::test_keeper_immunity_position_at_contact_and_freeze_in_all_phases",
+      "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic",
+      "native/test_rules.py::test_freeze_cap_and_five_plus_ten_seconds",
+      "native/test_rules.py::test_dribble_second_foul_reset_stoppage_and_other_touch",
+      "native/test_rules.py::test_toss_crossing_arc_slide_clearance_ready_no_self_no_direct_score",
+      "native/test_rules.py::test_exact_goal_catch_and_boundary_secure_ties",
+      "native/test_rules.py::test_information_boundary_and_all_commands_from_pure_decide",
+      "native/test_rules.py::test_primitive_throw_speed_height_arc_are_intent_owned",
+      "native/test_rules.py::test_possession_zone_violations_are_enforced_as_rst1[ZR-1]",
+      "native/test_rules.py::test_possession_zone_violations_are_enforced_as_rst1[ZR-C]",
+      "native/test_rules.py::test_possession_zone_violations_are_enforced_as_rst1[ZR-T]",
+      "native/test_rules.py::test_recovery_arrow_protection_three_metres_two_seconds",
+      "native/test_rules.py::test_toss_deadline_four_seconds_after_ready",
+      "native/test_rules.py::test_formation_independent_of_slot_and_residence_exit_intent",
+      "native/test_rules.py::test_environment_flags_cannot_enable_a_native_legacy_layer",
+      "native/test_rules.py::test_native_view_json_replays_exact_decision",
+      "native/test_rules.py::test_native_direct_possession_threshold_is_enforced_in_real_port",
+      "native/test_rules.py::test_native_body_contact_does_not_contest_but_joint_ball_touch_does",
+      "native/test_rules.py::test_forfeit_only_below_twelve_currently_available",
+      "native/test_rules.py::test_final_transition_needs_no_time_advance",
+      "native/test_rules.py::test_noncarry_goal_release_distance_attempts_and_success",
+      "native/test_rules.py::test_m2_null_absent_short_replay_and_harness_pairs",
+      "native/test_rules.py::test_zone_residence_enforced_marked_defender_and_keeper_exempt",
+      "native/test_rules.py::test_mandatory_keeper_snapper_can_restart_outside_own_zone",
+      "native/test_rules.py::test_native_port_direct_threshold_sensitivity[250]",
+      "native/test_rules.py::test_native_port_direct_threshold_sensitivity[500]",
+      "native/test_rules.py::test_native_port_direct_threshold_sensitivity[1000]",
+      "native/test_rules.py::test_shared_catch_reach_and_heldout_partition",
+      "native/test_rules.py::test_native_finality_gate_closes_new_mutators",
+      "native/test_rules.py::test_keeper_touch_cannot_create_own_team_goal",
+      "native/test_rules.py::test_stray_arrow_can_freeze_keeper_outside_own_zone_but_cannot_target_him",
+      "native/test_rules.py::test_incidental_simultaneous_heads_cannot_bypass_major_intent_gate",
+      "native/test_rules.py::test_vector_visibility_matches_reference_geometry_and_platform",
+      "native/test_rules.py::test_historical_hash_guard_covers_frozen_paths_not_new_native_artifacts",
+      "native/test_rules.py::test_stale_restart_cannot_be_rebound_to_another_rule_record",
+      "native/test_rules.py::test_archer_draw_requires_fresh_release_intent_before_ammo_spent",
+      "native/test_rules.py::test_keeper_landing_completes_in_dead_ball_without_new_semantic_choice",
+      "native/test_rules.py::test_defensive_offside_retake_preserves_tackle_clock_run_flag",
+      "native/test_rules.py::test_physical_port_cannot_land_or_move_bodies_after_finality",
+      "native/test_rules.py::test_restart_record_takes_precedence_over_uncleared_hunt_flag",
+      "native/test_rules.py::test_period_end_cancels_pending_draw_and_rejects_stale_period_intents",
+      "native/test_rules.py::test_platform_faces_opposing_goal_before_and_after_end_exchange",
+      "native/test_rules.py::test_running_snap_clock_expires_in_dead_ball_at_exact_millisecond",
+      "native/test_rules.py::test_physical_step_slices_at_direct_and_freeze_deadlines",
+      "native/test_rules.py::test_platform_readback_checks_active_replacement_not_benched_archer",
+      "native/test_rules.py::test_bounce_intent_targets_surface_then_uses_physical_rebound",
+      "native/test_rules.py::test_goal_restart_is_conceding_own40_and_requires_all_behind_own40",
+      "native/test_rules.py::test_returning_bench_claim_has_current_public_period_not_old_visual_frame"
+    ],
+    "passed": 197,
+    "subtests_passed": 23
+  }
+}

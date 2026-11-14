@@ -1,0 +1,1 @@
+Excluded from amended A4 acceptance: seeds26–28 completed before the owner reduced the requirement and are supplemental only. Seeds29–30 were interrupted by the authorized stop, not classified as simulation failures. No new batch was started.

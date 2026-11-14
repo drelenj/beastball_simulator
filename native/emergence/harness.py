@@ -41,9 +41,12 @@ def held_out_jobs(training_seeds, held_out_seeds, label_a, params_a, label_b, pa
 def play(j):
     if j['period_s'] != FULL_PERIOD_S:
         raise ValueError('Native harness requires full canon duration')
+    from ..config import NativeConfig
+    config = NativeConfig()
     t = time.perf_counter()
     row = {k: j[k] for k in ('id', 'seed', 'period_s', 'label_A', 'label_B', 'params_A', 'params_B')}
     row['proxy'] = j['period_s'] != FULL_PERIOD_S
+    row.update(config=config.record(), config_digest=config.digest)
     try:
         from ..run import run_match
         try:
@@ -52,10 +55,11 @@ def play(j):
         except Exception:
             mc = None
         pol = {'A': PolicyParams.from_dict(j['params_A']), 'B': PolicyParams.from_dict(j['params_B'])}
-        r, port = run_match(j['seed'], policies=pol)
+        r, port = run_match(j['seed'], config=config, policies=pol)
         sc = r['score']
         res = getattr(port.m.s, 'result', None) or {}
         row.update(status=r['status'], score=sc, method=res.get('method'),
+                   effective=r['effective'],
                    winner=res.get('winner') if res.get('winner') in ('A', 'B') else ('A' if sc['A'] > sc['B'] else 'B' if sc['B'] > sc['A'] else None),
                    trace_hash=r['trace_hash'], state_hash=r['state_hash'], end_ms=r['end_ms'],
                    decisions_total=r['decisions_total'], decisions_by_kind=r['decisions_by_kind'],
