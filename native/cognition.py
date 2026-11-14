@@ -122,6 +122,7 @@ class ActionIntent:
     auxiliary: E.KeeperIntent | None = None
     contact: str | None = None
     record_id: str | None = None
+    period: int | None = None
 
 
 @dataclass(frozen=True)
@@ -484,13 +485,13 @@ def decide(view, belief):
         did=view.observation_id+'/decision'
         intent=ActionIntent(did+'/intent',did,view.athlete,kind,target,aim,None,None,
                             view.delivered_ms,speed=min(27.,view.max_throw_speed),height=1.6,
-                            auxiliary=aux,contact=contact,record_id=view.restart[0] if view.restart else None)
+                            auxiliary=aux,contact=contact,record_id=view.restart[0] if view.restart else None,period=view.signals.period)
         return intent,{'decision_id':did,'observation_id':view.observation_id,
                        'belief_revision':belief.revision,'selected':[kind,target,aim,0.],
                        'options':[[kind,target,aim,0.]],'placeholder':True}
     if view.bench_role:
         return choice('substitute_claim')
-    if view.hunt and not view.hunt_cleared and not view.holds_ball:
+    if view.hunt and view.restart is None and not view.hunt_cleared and not view.holds_ball:
         if view.role=='field' and view.contestant is None:return choice('hunt_claim')
         if view.contestant==view.athlete:return choice('pursue',(50.,50.),BALL)
         if view.role=='field':
@@ -554,7 +555,7 @@ def decide(view, belief):
     # PLACEHOLDER: expose release speed and height as athlete-owned inputs.
     # The semantic pass already leads the believed receiver in the B1 policy.
     intent=replace(intent,speed=min(27.,view.max_throw_speed),height=1.6,
-                   contact='wrap' if intent.kind=='press' else None)
+                   contact='wrap' if intent.kind=='press' else None,period=view.signals.period)
     if intent.kind=='pass' and intent.aim and not in_own_zone(view.team,view.x,view.y,view) and in_own_zone(view.team,*intent.aim,view):
         return choice('retain')
     if view.holds_ball and view.role=='field' and not view.dribble_used and view.pending_command_id is None:

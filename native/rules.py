@@ -307,9 +307,9 @@ def install(CO, cfg):
         self.close_restart('procedural:'+side)
         self.emit('scrimmage_penalty','native',side=side,team=team)
         if side=='offence' and count>=1:return self.award(s.other(team),r.x-sg*5,r.y,'turnover',fresh=True,normalize=False)
-        snapper,tackler=r.rs.get('snapper'),r.rs.get('tackler')
+        snapper,tackler=r.rs.get('snapper'),r.rs.get('tackler');clock_runs=r.clock_runs
         nr=self.award(team,r.x+sg*(5 if side=='defence' else -5),r.y,'offside',normalize=False)
-        nr.rs.update(snapper=snapper,tackler=tackler);s.tackle_count=max(0,count-1) if side=='defence' else count+1
+        nr.rs.update(snapper=snapper,tackler=tackler);nr.clock_runs=clock_runs;s.tackle_count=max(0,count-1) if side=='defence' else count+1
         return nr
     E.offside=offside
     def ready(self,taker):

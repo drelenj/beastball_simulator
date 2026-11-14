@@ -34,7 +34,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
         if s.now-now<=0 and s.phase!=port.types.Phase.FINAL:raise RuntimeError('clock stalled')
         if s.live_ms>last_live_ms:last_live_ms=s.live_ms;last_live_at=s.now
         elif s.phase!=port.types.Phase.FINAL and s.now-last_live_at>port.config.dead_stall_limit_ms:
-            raise RuntimeError('restart stall: no live-clock progress for 120 seconds')
+            raise RuntimeError('restart stall: '+json.dumps({'now':s.now,'live_ms':s.live_ms,'restart':asdict(s.restart) if s.restart else None,'record':getattr(s.restart,'native_id',None),'players':{p.id:{'x':p.x,'y':p.y,'target':p.target,'role':p.role,'posture':p.posture,'launch':getattr(p,'c4c_launch',None),'intent':getattr(getattr(p,'native_intent',None),'kind',None)} for p in s.players.values() if p.active},'pending':{pid:pend['cmd'].intent.kind for pid,pend in port.pending.items()}},sort_keys=True))
         if s.now>100000000:raise RuntimeError('unbounded match / sudden death: no artificial winner supplied')
     if s.phase==port.types.Phase.FINAL:
         for rid,status in list(e.restart_results.items()):

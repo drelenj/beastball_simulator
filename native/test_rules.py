@@ -497,3 +497,45 @@ def test_archer_draw_requires_fresh_release_intent_before_ammo_spent(port):
     release,rec=C.decide(v,b);assert release.kind=='release_arrow'
     assert port.submit(release)['status']=='accepted';port.archer_motor()
     assert s.quivers['B'].spent==before+1
+
+
+def test_keeper_landing_completes_in_dead_ball_without_new_semantic_choice(port):
+    s,e,m=port.m.s,port.m.e,port.m;p=s.players['A10']
+    p.posture='airborne';p.z=.1;p.vx=1;p.vz=-1
+    p.c4c_launch={'t_land':s.now+50,'t0':s.now-100,'off':(0.,0.,0.),'lean':0.,'dir':(1.,0.),'dive':False}
+    e.award('A',50,50,'first_tackle')
+    port.step()
+    assert p.c4c_launch is None and p.posture!='airborne' and p.z==0
+
+
+def test_defensive_offside_retake_preserves_tackle_clock_run_flag(port):
+    e,s=port.m.e,port.m.s;s.possession_ms=20000;e.award('A',50,50,'first_tackle');s.tackle_count=1
+    assert s.restart.clock_runs
+    e.offside('defence');assert s.restart.clock_runs
+    e.elapse(1000);assert s.possession_ms==19000
+
+
+def test_physical_port_cannot_land_or_move_bodies_after_finality(port):
+    from dataclasses import asdict
+    e,s=port.m.e,port.m.s;p=s.players['A10'];p.posture='airborne';p.z=2
+    p.c4c_launch={'t_land':s.now-1,'t0':0,'off':(0,0,0),'lean':0,'dir':(1,0),'dive':False}
+    e.complete('regulation','A');before=asdict(s)
+    port.step();assert asdict(s)==before
+
+
+def test_restart_record_takes_precedence_over_uncleared_hunt_flag(port):
+    e,s=port.m.e,port.m.s;e.begin_hunt();e.award('A',50,50,'offence_minor');port.capture(s.now);s.now+=300
+    v,b=port.view('A1',s.now)
+    v=replace(v,hunt=True,hunt_cleared=False,contestant='A1')
+    i,_=C.decide(v,b);assert i.kind=='restart_claim' and i.record_id==s.restart.native_id
+
+
+def test_period_end_cancels_pending_draw_and_rejects_stale_period_intents(port):
+    s,e=port.m.s,port.m.e
+    i=C.ActionIntent('draw','d','B11','draw_release','A0',(50,50),(0,0),None,s.now,period=1)
+    assert port.submit(i)['status']=='accepted'
+    s.period=2;e.begin_hunt();s.now+=1000
+    before=s.quivers['B'].spent;port.archer_motor()
+    assert 'B11' not in port.pending and s.quivers['B'].spent==before
+    stale=replace(i,decided_ms=s.now)
+    assert port.submit(stale)=={'status':'rejected','reason':'stale_period'}

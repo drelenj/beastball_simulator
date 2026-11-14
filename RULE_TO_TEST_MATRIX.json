@@ -641,6 +641,55 @@
       "status": "DEFERRED",
       "test": null,
       "reason": "Explicit owner deferral: do not build"
+    },
+    {
+      "id": "CTX1",
+      "rule": "Restart command cannot be rebound to a different rule record",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_stale_restart_cannot_be_rebound_to_another_rule_record",
+      "reason": "Native integration regression"
+    },
+    {
+      "id": "CTX2",
+      "rule": "Restart record outranks stale Hunt flag",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_restart_record_takes_precedence_over_uncleared_hunt_flag",
+      "reason": "Native integration regression"
+    },
+    {
+      "id": "CTX3",
+      "rule": "Period boundary cancels pending draws and rejects stale-period intents",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_period_end_cancels_pending_draw_and_rejects_stale_period_intents",
+      "reason": "Native integration regression"
+    },
+    {
+      "id": "MOTOR1",
+      "rule": "Keeper lands in dead time without a new decision",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_keeper_landing_completes_in_dead_ball_without_new_semantic_choice",
+      "reason": "Native integration regression"
+    },
+    {
+      "id": "MOTOR2",
+      "rule": "Completed match blocks further body movement or landings",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_physical_port_cannot_land_or_move_bodies_after_finality",
+      "reason": "Native integration regression"
+    },
+    {
+      "id": "CLOCK5",
+      "rule": "Offside retake retains the original tackle snap-clock run flag",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_defensive_offside_retake_preserves_tackle_clock_run_flag",
+      "reason": "Native integration regression"
+    },
+    {
+      "id": "ARROW5",
+      "rule": "Completed draw requires a fresh release/abort intent",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_rules.py::test_archer_draw_requires_fresh_release_intent_before_ammo_spent",
+      "reason": "Native integration regression"
     }
   ]
 }

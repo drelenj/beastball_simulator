@@ -159,7 +159,7 @@ class NativePort:
                           r.team if r else None,(r.x,r.y) if r else None,bool(r and r.taker==pid),
                           rs.passive_team,rs.direct_team,rs.direct_holder,rs.contested,rs.ball_status,
                           tuple(q.id for q in ps if q.frozen(now) or now<=q.immune_until),call[:4] if call and call[4]>=now and call[0]!=pid else None)
-            frame=ObservationFrame(f'native/{now}/{pid}',now,pid,tuple(tracks),course,sig,restart,e.hunt_claims.get(p.team),not e.hunt_cleared,e.hunt_cleared)
+            frame=ObservationFrame(f'native/{now}/{pid}',now,pid,tuple(tracks),course,sig,restart,e.hunt_claims.get(p.team),s.phase==self.types.Phase.OPENING and not e.hunt_cleared,e.hunt_cleared)
             self.frames.setdefault(pid,deque()).append(frame)
             while len(self.frames[pid])>20:self.frames[pid].popleft()
 
@@ -206,6 +206,7 @@ class NativePort:
     def _submit_intent(self,intent):
         m,s,e=self.m,self.m.s,self.m.e;p=s.players.get(intent.athlete);kind=intent.kind
         if p is None or intent.decided_ms!=s.now:return {'status':'rejected','reason':'actor_time'}
+        if intent.period is not None and intent.period!=s.period:return {'status':'rejected','reason':'stale_period'}
         p.native_intent=intent
         self.intents.append(intent);self.decisions[kind]+=1
         row=[intent.intent_id,kind,intent.target,intent.aim,intent.speed,intent.height,intent.record_id,intent.contact,
@@ -264,7 +265,7 @@ class NativePort:
             if kind!='draw_release' and ans is None:return {'status':'rejected','reason':'geometry'}
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now+(600 if kind=='draw_release' else 250),
                                'bow' if kind=='draw_release' else 'ball',ans[0] if ans else None)
-            self.pending[p.id]={'cmd':cmd,'velocity':ans[0] if ans else None,'due':cmd.release_ms}
+            self.pending[p.id]={'cmd':cmd,'velocity':ans[0] if ans else None,'due':cmd.release_ms,'period':s.period}
             self.command_log.append(cmd)
             if kind=='pass':self.calls[p.team]=(p.id,intent.target,*intent.aim,s.now+2500)
             if kind not in ('draw_release','restart_pass'):self.move[p.id]=(p.x,p.y)
@@ -282,6 +283,7 @@ class NativePort:
         self.hook_calls['ball_motor']+=1
         for pid,pend in list(self.pending.items()):
             i=pend['cmd'].intent
+            if pend['period']!=s.period:self.resolve(pid,'interrupted');continue
             if i.kind=='draw_release':continue
             if i.kind!='restart_pass' and s.ball.carrier!=pid:self.resolve(pid,'interrupted');continue
             if s.now<pend['due']:continue
@@ -314,6 +316,7 @@ class NativePort:
     def archer_motor(self):
         m,s=self.m,self.m.s
         for pid,pend in list(self.pending.items()):
+            if pend['period']!=s.period:self.resolve(pid,'interrupted');continue
             if pend['cmd'].intent.kind!='draw_release' or s.now<pend['due']:continue
             p=s.players[pid]
             if not p.eligible(s.now):self.resolve(pid,'interrupted');continue
@@ -364,8 +367,14 @@ class NativePort:
         before_live=s.live_ms
         previous_carrier=s.ball.carrier
         previous_xy=(s.players[previous_carrier].x,s.players[previous_carrier].y) if previous_carrier else (s.ball.x,s.ball.y)
-        self.ball_motor();self.archer_motor()
+        if s.phase==P.FINAL:return
+        self.ball_motor()
+        if s.phase==P.FINAL:return
+        self.archer_motor()
+        if s.phase==P.FINAL:return
         e.resolve_timers()
+        if s.phase==P.FINAL:return
+        m.c4c_land_due()
         if s.phase==P.DEAD:
             m.move_players(self.config.dt_ms,self.move)
             self.platform_motor(0)
@@ -375,6 +384,8 @@ class NativePort:
         elif s.phase!=P.FINAL:
             span=min(self.config.dt_ms,max(1,e.next_deadline()-s.now))
             m.c3_step(span,self.move.copy());m.step_count+=1;m.record()
+        if s.phase==P.FINAL:return
+        m.c4c_land_due()
         self.fill_cover();e.native_sync()
         self.rules=e.possession
         if previous_carrier and s.live_ms>before_live:

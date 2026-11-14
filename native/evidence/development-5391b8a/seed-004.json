@@ -1,0 +1,8 @@
+{
+  "error": "RuntimeError('restart stall: no live-clock progress for 120 seconds')",
+  "implementation_commit": "5391b8a84b02e371ecca6f2bb24cb915ba2b2a54",
+  "seed": 4,
+  "soak_status": "failed",
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/soak.py\", line 16, in job\n    result,_=run_match(seed,progress=lambda row:(Path(out)/f'progress-{seed:03d}.json').write_text(json.dumps(row,sort_keys=True)))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 37, in run_match\n    raise RuntimeError('restart stall: no live-clock progress for 120 seconds')\nRuntimeError: restart stall: no live-clock progress for 120 seconds\n"
+}
