@@ -73,3 +73,18 @@ def install(co,cfg):
   if kind=='kick':self.foul(pid,reason='kicking');return False
   return old_release(self,pid,velocity,kind,*args,**kw)
  E.release=release
+ old_restart=E.restart_release
+ def restart(self,pid,velocity,*args,**kw):
+  s=self.s;r=s.restart
+  if r and r.taker==pid:
+   p=s.players[pid]
+   for q in sorted(s.players.values(),key=lambda q:q.id):
+    if q.active and q.team!=p.team and q.role!='archer' and q.id!=r.rs.get('tackler') and math.hypot(q.x-p.x,q.y-p.y)<5:
+     self.foul(q.id,pid,'marking_pre_live');return False
+  return old_restart(self,pid,velocity,*args,**kw)
+ E.restart_release=restart
+ old_award=E.award
+ def award(self,team,x,y,reason,*args,**kw):
+  if reason=='zone_residence':x=self.s.ends[team]+self.s.attack_sign(team)*cfg.zone_radius
+  return old_award(self,team,x,y,reason,*args,**kw)
+ E.award=award

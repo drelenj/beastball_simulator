@@ -20,7 +20,7 @@ class Authorities:
     possession: str|None = None
 
     def ruling(self,kind,**data):
-        authority='goal_judge_A' if kind in ('goal','no_goal') else 'line_judge_1' if kind=='boundary' else 'zone_judge' if kind=='keeper_immunity' else 'clock_official' if kind in ('break','timeout') else 'referee'
+        authority='goal_judge_'+data.get('defending','A') if kind in ('goal','no_goal') else ('line_judge_1' if data.get('y',0)<=50 else 'line_judge_2') if kind=='boundary' else 'zone_judge' if kind=='keeper_immunity' else 'clock_official' if kind in ('break','timeout') else 'referee'
         row=dict(id=len(self.calls)+1,kind=kind,authority=authority,period=self.period,**data);self.calls.append(row);return row
 
     def enter_period(self,period):

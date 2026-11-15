@@ -62,6 +62,9 @@ class RulebookPort(NativePort):
             visible={t.entity for t in f.tracks}|{pid}
             self.indicator_frames[f.frame_id]=tuple((q.id,'red' if q.frozen(now) else 'amber' if now<=q.immune_until else 'off') for q in self.m.s.players.values() if q.id in visible)
 
+        keep={f.frame_id for frames in self.frames.values() for f in frames}
+        self.indicator_frames={i:v for i,v in self.indicator_frames.items() if i in keep}
+
     def view(self,pid,now,bench_role=None):
         v,b=super().view(pid,now,bench_role)
         if v is None:return v,b
@@ -89,3 +92,10 @@ class RulebookPort(NativePort):
             ans=self.geom.ballistic((p.x,p.y,p.z+.72*p.a.height),target,self.config.arrow_speed,9.81)
             if ans is None:self.resolve(pid,'rejected_geometry');continue
             ok=m.e.shoot_arrow(pid,i.target,ans[0]);self.resolve(pid,'arrow_released' if ok else 'rejected_by_engine')
+
+    @staticmethod
+    def view_from_json(payload):
+        from copy import deepcopy
+        data=deepcopy(payload);status=data['view'].pop('status_indicators',());officials=data['view'].pop('officials',CREW)
+        v,b=C.view_from_json(data)
+        return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials)),b

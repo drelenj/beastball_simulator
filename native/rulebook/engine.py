@@ -90,3 +90,14 @@ def install(co,cfg):
     install_archery(co,cfg)
     from .scoring import install as install_scoring
     install_scoring(co,cfg)
+    from .review import install as install_review
+    install_review(co,cfg)
+    from functools import wraps
+    def terminal(fn):
+        @wraps(fn)
+        def guarded(self,*a,**kw):
+            if self.s.phase==P.FINAL:return None
+            return fn(self,*a,**kw)
+        return guarded
+    for name in ('elapse','end_period','begin_hunt','release','strike','foul','discipline','goal','boundary','shoot_arrow','freeze','award','restart_release','rb_substitute','rb_force_injury','rb_fill_slots','rb_review','rb_force_goal_call','rb_force_boundary_call','rb_force_keeper_call','rb_publish'):
+        setattr(E,name,terminal(getattr(E,name)))

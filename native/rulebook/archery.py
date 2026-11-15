@@ -36,6 +36,7 @@ def install(co,cfg):
   if ok:
    self.rb.quotas[team]['freezes']+=1
    p.rb_recover=(p.x,p.y,p.freeze_until)
+   self.rb_publish(self.rb.ruling('freeze',player=pid,until=p.freeze_until,immune_until=p.immune_until))
   return ok
  E.freeze=freeze
  def ready(self,p):
