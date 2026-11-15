@@ -31,7 +31,9 @@ def port2():
 def clear_field(port,keep=()):
     """Park every non-archer athlete far from the test lane."""
     for i,q in enumerate(port.m.active_field()):
-        if q.id not in keep:q.x=5.+.01*i;q.y=95.;q.vx=q.vy=0.
+        if q.id not in keep:
+            q.x=3.+2.*(i//2);q.y=97. if q.team=='A' else 3.;q.vx=q.vy=0.
+            q.target=(q.x,q.y);port.move[q.id]=(q.x,q.y)
 
 
 # ---------------------------------------------------------------- FAB-1a
@@ -152,3 +154,250 @@ def test_v3_archer_motor_releases_at_config_speed_and_freezes_static_target(port
         if not ar.live:break
     assert t.frozen(s.now) and any(r['event']=='freeze' and r['data']['player']=='A0' for r in e.log)
     assert not any(r['event']=='foul' for r in e.log)
+
+
+# ---------------------------------------------------------------- FAB-1b
+from collections import Counter
+from dataclasses import asdict
+import ast
+import json
+from pathlib import Path
+from . import cognition_v3 as C3
+
+
+def intent(port,pid,kind,target=None,aim=None,contact=None,tag='t'):
+    s=port.m.s
+    return C.ActionIntent(f'{pid}/{tag}/{s.now}/intent',f'{pid}/{tag}/{s.now}',pid,kind,target,aim,None,None,s.now,contact=contact,period=s.period)
+
+
+def duel(port,defender,carrier=None,steps=40):
+    """Carrier A0 runs at defender B0. Contact choices are scripted intents; the
+    engine alone decides reach, legality, grip, balance and grounding."""
+    s=port.m.s;clear_field(port,('A0','B0'));a,b=s.players['A0'],s.players['B0']
+    a.x,a.y,a.vx,a.vy=40.,50.,0.,0.;b.x,b.y=52.,50.;s.ball.x,s.ball.y=40.,50.
+    for n in range(steps):
+        if n%5==0:
+            assert port.submit(intent(port,'A0','carry',None,(90.,50.),carrier,n))['status']=='accepted'
+            assert port.submit(intent(port,'B0','tackle' if defender=='takedown' else 'press','A0',(a.x,a.y),defender,n))['status']=='accepted'
+        port.step()
+        if s.restart:break
+    return Counter(r['event'] for r in port.m.e.log)
+
+
+def test_v3_takedown_intent_grounds_carrier_through_engine_physics(port3):
+    ev=duel(port3,'takedown');s=port3.m.s
+    assert ev['c3_hold_start']==1 and ev['c3_grounding']==1 and ev['tackle_count']==1
+    assert s.restart.reason=='first_tackle' and s.restart.kind=='scrim' and s.tackle_count==1
+    assert s.restart.rs['snapper']=='A0' and s.restart.rs['tackler']=='B0'
+    g=next(r['data'] for r in port3.m.e.log if r['event']=='c3_grounding')
+    assert g['cls']=='tackle_under_hold' and g['manner']=='defence_driven' and g['credited']=='B0'
+
+
+def test_v3_no_contact_intent_means_no_hold_and_no_takedown(port3):
+    ev=duel(port3,None)
+    assert ev['c3_collision']>=1          # bodies still meet
+    assert not ev['c3_hold_start'] and not ev['tackle_count'] and not ev['c3_grounding']
+    assert port3.m.s.restart is None and port3.m.s.ball.carrier=='A0'
+
+
+def test_v3_wrap_intent_holds_without_driving_down(port3):
+    ev=duel(port3,'wrap')
+    assert ev['c3_hold_start']>=1 and ev['c3_containment']>=1
+    assert not ev['tackle_count'] and not ev['c3_grounding']
+    ends=[r['data'] for r in port3.m.e.log if r['event']=='c3_hold_end']
+    assert all(e['contained_ms']>0 for e in ends if e['peak_grip']>=.3)
+
+
+def test_v3_escape_effort_is_the_carriers_own_run_through_intent(port3):
+    duel(port3,'takedown','run_through')
+    fought=[r['data'] for r in port3.m.e.log if r['event']=='c3_hold_end']
+    assert fought and all(e['escape_effort_ms']>0 for e in fought)
+    quiet=live(NativePort(1,NativeConfigV3()));duel(quiet,'takedown',None)
+    assert all(r['data']['escape_effort_ms']==0 for r in quiet.m.e.log if r['event']=='c3_hold_end')
+    braced=live(NativePort(1,NativeConfigV3()));duel(braced,'takedown','brace')
+    assert all(r['data']['escape_effort_ms']==0 for r in braced.m.e.log if r['event']=='c3_hold_end')
+
+
+def test_v3_engine_contact_controllers_read_only_athlete_intents(port3,port2):
+    m=port3.m;s=m.s;d,car=s.players['B0'],s.players['A0']
+    for contact,auth,contain in ((None,False,True),('wrap',True,True),('takedown',True,False),('head',False,True)):
+        d.native_intent=intent(port3,'B0','tackle','A0',(50.,50.),contact)
+        assert m.native_wrap_authorized(d,car) is auth and m.c3_contain(d,car) is contain
+    d.native_intent=intent(port3,'B0','tackle','A1',(50.,50.),'takedown')     # aimed at somebody else
+    assert not m.native_wrap_authorized(d,car)
+    for kind,contact,windup,effort in (('carry','run_through',None,1.),('carry','brace',None,0.),('carry','dodge',None,0.),
+                                       ('carry',None,None,0.),('pass','run_through',None,0.),('carry','run_through',(0,'pass'),0.)):
+        car.native_intent=intent(port3,'A0',kind,None,(60.,50.),contact)
+        assert m.c3_escape_effort(car,windup)==effort
+    del car.native_intent;assert m.c3_escape_effort(car,None)==0.            # no intent: no effort
+    # automatic descent stays off; nothing but an intent can ground a carrier on purpose
+    assert m.c3_fix_descent is False and not m.c3_descend(car)
+    # native-v0/2 keeps its original controllers
+    assert port2.m.c3_fix_contain is False and port2.m.c3_escape_effort(port2.m.s.players['A0'],None)==1.
+    assert port2.submit(intent(port2,'B0','tackle','A0',(50.,50.),'takedown'))=={'status':'rejected','reason':'unknown_kind'}
+
+
+def scene(port,defender_xy=(54.,50.),facing=(-1.,0.)):
+    """A0 carries at midfield, A1 in support, B0 the only opponent in view."""
+    s=port.m.s;clear_field(port,('A0','A1','B0'));a,b,c=s.players['A0'],s.players['B0'],s.players['A1']
+    a.x,a.y=50.,50.;c.x,c.y=44.,58.;b.x,b.y=defender_xy;b.facing=facing;a.facing=(1.,0.)
+    s.ball.x,s.ball.y=50.,50.
+    port.capture(s.now);s.now+=300
+    return port
+
+
+def test_v3_defender_decision_commits_to_takedown_inside_believed_gap(port3):
+    scene(port3);v,b=port3.view('B0',port3.m.s.now);i,rec=C.decide(v,b)
+    assert v.cognition=='native-v0/3' and (i.kind,i.contact,i.target)==('tackle','takedown','A0')
+    assert rec['contact_selected']=='takedown' and rec['believed_gap']<C3.TACKLE_COMMIT_M
+    assert {o[4] for o in rec['contact_options']}=={'wrap','takedown'}
+    assert port3.submit(i)['status']=='accepted' and port3.move['B0']==i.aim
+    # the same athlete under native-v0/2 keeps the old press/wrap intent
+    i2,_=C.decide(replace(v,cognition='native-v0/2'),b);assert (i2.kind,i2.contact)==('press','wrap')
+
+
+def test_v3_defender_far_from_carrier_only_presses(port3):
+    scene(port3,(62.,50.));v,b=port3.view('B0',port3.m.s.now);i,rec=C.decide(v,b)
+    assert i.kind=='press' and i.contact=='wrap' and rec['believed_gap']>C3.TACKLE_COMMIT_M
+
+
+def test_v3_defender_never_tackles_a_carrier_he_does_not_believe_in(port3):
+    """No true-state fallback: the true carrier is beside him, but he has no track of him."""
+    scene(port3);v,b=port3.view('B0',port3.m.s.now)
+    blind=tuple(t for t in v.tracks if t.entity not in ('A0',C.BALL))
+    v=replace(v,tracks=blind);b=replace(b,tracks=blind,ball_course=None)
+    i,_=C.decide(v,b);assert i.kind!='tackle' and i.contact is None
+    # and a protected Keeper is never a takedown target
+    scene(port3);v,b=port3.view('B0',port3.m.s.now)
+    rec={'believed_carrier':['A0','A']}
+    keeper=tuple(replace(t,role='keeper',x=5.,y=50.) if t.entity=='A0' else t for t in b.tracks)
+    v=replace(v,signals=replace(v.signals,passive_team='A'))
+    out,_=C3.defender_contact(v,replace(b,tracks=keeper),intent(port3,'B0','press','A0',(5.,50.),'wrap'),rec)
+    assert out.kind=='press' and out.contact is None
+
+
+def carrier_view(port,**own):
+    v,b=port.view('A0',port.m.s.now)
+    return replace(v,**own),b
+
+
+def test_v3_carrier_decision_dodge_run_through_and_brace(port3):
+    base=C.ActionIntent('i','d','A0','carry',None,(60.,50.),None,None,port3.m.s.now)
+    scene(port3,(58.,50.));v,b=carrier_view(port3)
+    def threat(vx,x=58.,y=50.):
+        tr=tuple(replace(t,x=x,y=y,vx=vx,vy=0.) if t.entity=='B0' else t for t in b.tracks)
+        return replace(v,tracks=tr),replace(b,tracks=tr)
+    # warned in time: dodge to the side the threat is not on (aim leaves the straight line)
+    v1,b1=threat(-10.,58.,50.4);i,rec=C3.carrier_contact(v1,b1,base,{})
+    assert i.contact=='dodge' and i.aim[1]<50. and rec['believed_threats'][0][1]=='B0'
+    # no warning: run through, original aim kept
+    v2,b2=threat(-20.,52.,50.);i,rec=C3.carrier_contact(v2,b2,base,{})
+    assert i.contact=='run_through' and i.aim==base.aim
+    # no believed threat and not held: decision unchanged
+    v3,b3=threat(+5.,80.,50.);i,rec=C3.carrier_contact(v3,b3,base,{'x':1})
+    assert i is base and rec=={'x':1}
+    # held: fights the grip while balance allows, braces when nearly down
+    i,rec=C3.carrier_contact(replace(v3,own_held=1,own_balance_load=.2),b3,base,{})
+    assert i.contact=='run_through' and rec['own_held']==1
+    i,rec=C3.carrier_contact(replace(v3,own_held=1,own_balance_load=.9),b3,base,{})
+    assert i.contact=='brace' and i.aim==(round(v.x,3),round(v.y,3))
+    # through decide(): only a field carrier who is carrying gets a contact response
+    i,_=C.decide(replace(v2,own_held=1),b2)
+    assert i.contact in (None,'run_through','brace','dodge') and (i.kind=='carry')==(i.contact is not None)
+
+
+def test_v3_own_contact_view_fields_are_own_body_only(port3):
+    scene(port3);m=port3.m
+    m.c3_holds[('B0','A0')]={'actor':'B0','target':'A0','g':.4,'region':'lower'};m.s.players['A0'].bal_src={('hold','B0',True):.35}
+    va,_=port3.view('A0',m.s.now);vb,_=port3.view('B0',m.s.now);vc,_=port3.view('A1',m.s.now)
+    assert (va.own_held,va.own_balance_load,va.own_hold_target)==(1,.35,None)
+    assert (vb.own_held,vb.own_hold_target)==(0,'A0')
+    assert (vc.own_held,vc.own_balance_load,vc.own_hold_target)==(0,0.,None)   # nobody else's contact state
+    m.c3_holds.clear()
+    names={f for f in C.AthleteView.__dataclass_fields__}
+    assert {'cognition','own_held','own_balance_load','own_hold_target'}<=names
+
+
+def test_v3_poison_hidden_state_cannot_change_new_decisions(port3):
+    """Decisions depend on the delivered view and belief only."""
+    scene(port3);s=port3.m.s
+    views={pid:port3.view(pid,s.now) for pid in ('A0','B0','A1')}
+    before={pid:C.decide(v,b) for pid,(v,b) in views.items()}
+    for p in s.players.values():                       # poison true state after delivery
+        p.x=-999.;p.y=-999.;p.vx=77.;p.a.strength=0.;p.a.tackling=1.;p.posture='hidden-sentinel';p.native_intent=None
+    s.ball.x=s.ball.y=9999.;s.ball.carrier='B7';port3.m.c3_holds[('B5','A0')]={'actor':'B5','target':'A0','g':1.,'region':'upper'}
+    s.tackle_count=1;port3.move.clear()
+    assert {pid:C.decide(v,b) for pid,(v,b) in views.items()}==before
+    # the view is plain data: it survives a JSON round trip and replays the same decision
+    for pid,(v,b) in views.items():
+        blob=json.loads(json.dumps(C.view_to_json(v,b)))
+        assert C.decide(*C.view_from_json(blob))==before[pid]
+
+
+def test_v3_poison_hidden_attributes_before_capture_leave_views_identical():
+    def build(poison):
+        p=scene(live(NativePort(1,NativeConfigV3())));s=p.m.s
+        if poison:
+            for q in s.players.values():
+                q.a.strength=.01;q.a.tackling=.99;q.a.balance=.01;q.fatigue=.2;q.target=(1.,1.);q.next_decision=10**9
+                q.native_intent='poison'
+            p.move.clear()
+        s.now+=200;p.capture(s.now);s.now+=300
+        return {pid:p.view(pid,s.now) for pid in ('A0','B0')}
+    clean,dirty=build(False),build(True)
+    for pid in clean:
+        (v1,b1),(v2,b2)=clean[pid],dirty[pid]
+        assert asdict(v1)==asdict(v2) and b1==b2 and C.decide(v1,b1)==C.decide(v2,b2)
+
+
+def test_v3_cognition_module_is_pure(port3):
+    tree=ast.parse(Path(C3.__file__).read_text())
+    modules={n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)}|{a.name for n in ast.walk(tree) if isinstance(n,ast.Import) for a in n.names}
+    assert modules<={'dataclasses','math','cognition',None} and not any(m and ('port' in m or 'engine' in m or 'rules' in m or 'substrate' in m) for m in modules)
+    names={n.id for n in ast.walk(tree) if isinstance(n,ast.Name)}|{n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute)}
+    assert not names&{'players','c3_holds','native_intent','quivers','engine','possession','random','rng'}
+
+
+def drive(port,steps):
+    """The run_match loop on a prepared port."""
+    s=port.m.s;next_dec={};next_sense=0;P=port.types.Phase
+    for _ in range(steps):
+        now=s.now
+        if s.phase==P.FINAL:break
+        if now>=next_sense:port.capture(now);next_sense=now+port.config.sense_ms
+        for pid in port.active_ids():
+            if now<next_dec.get(pid,0):continue
+            v,b=port.view(pid,now)
+            if v is None:continue
+            i,rec=C.decide(v,b);a=port.submit(i)
+            if a['status']=='rejected':port.feedback.setdefault(pid,[]).append((i.intent_id+'/rejected','rejected_'+a.get('reason','unknown')+':'+i.kind,now))
+            next_dec[pid]=now+port.config.decision_ms
+        port.m.pending_break=[];port.step()
+
+
+@pytest.fixture(scope='module')
+def played():
+    """One 3000-step native-v0/3 window of ordinary play (about 5 minutes of match time)."""
+    from .run import run_match
+    return run_match(1,NativeConfigV3(),max_steps=3000)
+
+
+def test_v3_play_every_hold_and_tackle_traces_to_a_decide_intent(played):
+    result,port=played;log=port.m.e.log
+    by_id={i.intent_id:i for i in port.intents}
+    assert all(cmd.intent.intent_id in by_id and cmd.command_id.startswith(cmd.intent.intent_id) for cmd in port.command_log)
+    timeline={}
+    for i in port.intents:timeline.setdefault(i.athlete,[]).append(i)
+    def latest(pid,t):
+        return next((i for i in reversed(timeline.get(pid,())) if i.decided_ms<=t),None)
+    holds=[r for r in log if r['event']=='c3_hold_start'];tackles=[r for r in log if r['event']=='tackle_count']
+    assert holds and tackles                                         # coverage: they occur in play
+    for r in holds:
+        i=latest(r['data']['actor'],r['t_ms'])
+        assert i is not None and i.contact in ('wrap','takedown') and i.target==r['data']['target']
+    for r in tackles:
+        assert any(i.athlete==r['data']['actor'] and i.contact=='takedown' and i.target==r['data']['target']
+                   and r['t_ms']-4000<=i.decided_ms<=r['t_ms'] for i in port.intents)
+    assert not port.m.stats.get('c3_descents_attempted')             # no automatic descent
+    assert result['contact_intents'].keys()<={'wrap','takedown','run_through','brace','dodge'}
+    assert not any(i.kind=='kick' for i in port.intents)

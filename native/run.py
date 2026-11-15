@@ -61,6 +61,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 restart_awarded=total,restart_released=released,restart_closed=total-pending,
                 restart_completion_ratio=(total-pending)/total if total else 1.,restart_release_ratio=released/total if total else 1.,
                 restart_statuses=dict(Counter(e.restart_results.values())),invariants='passed',
+                restart_metric=port.restart_metric.summary(e.restart_results),contact_intents=dict(Counter(i.contact for i in port.intents if i.contact)),
                 foul_reasons=dict(Counter(row['data'].get('reason') for row in e.log if row['event']=='foul')),
                 engine_events=dict(Counter(row['event'] for row in e.log)),team_stats={t:dict(c) for t,c in e.native_stats.items()},
                 release_distances={t:{str(d):{'attempts':n,'goals':e.release_successes[t].get(d,0),'success_rate':e.release_successes[t].get(d,0)/n} for d,n in e.release_attempts[t].items()} for t in ('A','B')},
