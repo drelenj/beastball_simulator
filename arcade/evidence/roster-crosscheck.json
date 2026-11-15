@@ -1,0 +1,4049 @@
+{
+  "conflicts": [
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-09",
+      "primary": 98,
+      "teamSheet": 92
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-04",
+      "primary": 95,
+      "teamSheet": 92
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-22",
+      "primary": 94,
+      "teamSheet": 91
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-05",
+      "primary": 94,
+      "teamSheet": 91
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-08",
+      "primary": 94,
+      "teamSheet": 91
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-03",
+      "primary": 94,
+      "teamSheet": 90
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-12",
+      "primary": 93,
+      "teamSheet": 90
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-01",
+      "primary": 92,
+      "teamSheet": 89
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-14",
+      "primary": 92,
+      "teamSheet": 89
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-13",
+      "primary": 92,
+      "teamSheet": 88
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-11",
+      "primary": 92,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-10",
+      "primary": 92,
+      "teamSheet": 91
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-06",
+      "primary": 92,
+      "teamSheet": 90
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-21",
+      "primary": 91,
+      "teamSheet": 89
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-19",
+      "primary": 91,
+      "teamSheet": 87
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-20",
+      "primary": 91,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL24-01-17",
+      "primary": 91,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "UFA26-BB-04",
+      "primary": 91,
+      "teamSheet": 80
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "DRAFT26-44",
+      "primary": 91,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "UFA26-BB-45",
+      "primary": 91,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "UFA26-BB-05",
+      "primary": 91,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL25-D18",
+      "primary": 91,
+      "teamSheet": 75
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "UFA26-BB-34",
+      "primary": 90,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "UFA26-BB-43",
+      "primary": 90,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "NBL25-D40",
+      "primary": 90,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ala Apex",
+      "playerId": "UFA26-BB-13",
+      "primary": 90,
+      "teamSheet": 68
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-04",
+      "primary": 90,
+      "teamSheet": 98
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-13-09",
+      "primary": 90,
+      "teamSheet": 94
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-01-02",
+      "primary": 90,
+      "teamSheet": 92
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-01",
+      "primary": 90,
+      "teamSheet": 92
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-05",
+      "primary": 90,
+      "teamSheet": 89
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-12",
+      "primary": 89,
+      "teamSheet": 88
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-09-19",
+      "primary": 89,
+      "teamSheet": 88
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-02",
+      "primary": 89,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "MID25_Jabari_Ironveil",
+      "primary": 89,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-10",
+      "primary": 89,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-09",
+      "primary": 89,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-08-04",
+      "primary": 89,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-08",
+      "primary": 89,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-17",
+      "primary": 89,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-13",
+      "primary": 89,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-21-12",
+      "primary": 89,
+      "teamSheet": 84
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-20",
+      "primary": 89,
+      "teamSheet": 83
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-11",
+      "primary": 89,
+      "teamSheet": 83
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-18",
+      "primary": 89,
+      "teamSheet": 82
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-03",
+      "primary": 88,
+      "teamSheet": 80
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "UFA26-BB-09",
+      "primary": 88,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL24-02-16",
+      "primary": 88,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "2026-KNOWN-053",
+      "primary": 88,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "2026-KNOWN-054",
+      "primary": 88,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ala Marauders",
+      "playerId": "NBL25-D42",
+      "primary": 88,
+      "teamSheet": 71
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-01-18",
+      "primary": 88,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-02-15",
+      "primary": 88,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-01-15",
+      "primary": 88,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-19-19",
+      "primary": 88,
+      "teamSheet": 83
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-674",
+      "primary": 88,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL25-D07",
+      "primary": 87,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-10-18",
+      "primary": 87,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL25-D12",
+      "primary": 87,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-14-06",
+      "primary": 87,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-21-14",
+      "primary": 87,
+      "teamSheet": 75
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-664",
+      "primary": 86,
+      "teamSheet": 74
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-663",
+      "primary": 86,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "DRAFT26-30",
+      "primary": 86,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "FA26-CONF-01",
+      "primary": 86,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-04-18",
+      "primary": 86,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-05-14",
+      "primary": 86,
+      "teamSheet": 75
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-666",
+      "primary": 86,
+      "teamSheet": 74
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "NBL24-04-14",
+      "primary": 86,
+      "teamSheet": 74
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-BB-24",
+      "primary": 86,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-669",
+      "primary": 86,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-667",
+      "primary": 86,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-672",
+      "primary": 86,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-665",
+      "primary": 86,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "2026-KNOWN-057",
+      "primary": 86,
+      "teamSheet": 71
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-673",
+      "primary": 86,
+      "teamSheet": 71
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-671",
+      "primary": 86,
+      "teamSheet": 67
+    },
+    {
+      "team": "Ashkara Ignivars",
+      "playerId": "UFA26-GEN-668",
+      "primary": 86,
+      "teamSheet": 66
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-05",
+      "primary": 86,
+      "teamSheet": 85
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-14",
+      "primary": 86,
+      "teamSheet": 84
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-02",
+      "primary": 86,
+      "teamSheet": 83
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-12",
+      "primary": 86,
+      "teamSheet": 83
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-10",
+      "primary": 86,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-03",
+      "primary": 86,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-06",
+      "primary": 85,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-13",
+      "primary": 85,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-07",
+      "primary": 85,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-08",
+      "primary": 85,
+      "teamSheet": 80
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-18",
+      "primary": 85,
+      "teamSheet": 80
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-04",
+      "primary": 85,
+      "teamSheet": 79
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-11",
+      "primary": 85,
+      "teamSheet": 82
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-09",
+      "primary": 85,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-20",
+      "primary": 85,
+      "teamSheet": 78
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "MID25_Tariq_Emberclaw",
+      "primary": 85,
+      "teamSheet": 77
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL25-D08",
+      "primary": 85,
+      "teamSheet": 77
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "UFA26-BB-23",
+      "primary": 85,
+      "teamSheet": 77
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-17",
+      "primary": 85,
+      "teamSheet": 76
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-21",
+      "primary": 85,
+      "teamSheet": 75
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-16",
+      "primary": 85,
+      "teamSheet": 74
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-15",
+      "primary": 85,
+      "teamSheet": 73
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL24-03-19",
+      "primary": 85,
+      "teamSheet": 73
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "DRAFT26-52",
+      "primary": 85,
+      "teamSheet": 73
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "NBL25-D30",
+      "primary": 85,
+      "teamSheet": 72
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "2026-KNOWN-065",
+      "primary": 85,
+      "teamSheet": 70
+    },
+    {
+      "team": "Bibi Nupi Barbarians",
+      "playerId": "DRAFT26-17",
+      "primary": 85,
+      "teamSheet": 70
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-09",
+      "primary": 85,
+      "teamSheet": 87
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-10",
+      "primary": 85,
+      "teamSheet": 86
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-13",
+      "primary": 85,
+      "teamSheet": 84
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-11",
+      "primary": 85,
+      "teamSheet": 84
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-03",
+      "primary": 85,
+      "teamSheet": 84
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-02",
+      "primary": 84,
+      "teamSheet": 83
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-17",
+      "primary": 84,
+      "teamSheet": 83
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-05-12",
+      "primary": 84,
+      "teamSheet": 82
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-07",
+      "primary": 84,
+      "teamSheet": 83
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-22",
+      "primary": 84,
+      "teamSheet": 82
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-12-15",
+      "primary": 84,
+      "teamSheet": 82
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-08",
+      "primary": 84,
+      "teamSheet": 81
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "UFA26-BB-39",
+      "primary": 84,
+      "teamSheet": 80
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-20",
+      "primary": 84,
+      "teamSheet": 78
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "UFA26-BB-21",
+      "primary": 84,
+      "teamSheet": 76
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-21",
+      "primary": 84,
+      "teamSheet": 75
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-16",
+      "primary": 84,
+      "teamSheet": 75
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL24-04-19",
+      "primary": 84,
+      "teamSheet": 74
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "DRAFT26-22",
+      "primary": 84,
+      "teamSheet": 73
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "NBL25-D31",
+      "primary": 84,
+      "teamSheet": 72
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "UFA26-BB-14",
+      "primary": 84,
+      "teamSheet": 70
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "UFA26-BB-33",
+      "primary": 84,
+      "teamSheet": 70
+    },
+    {
+      "team": "Bryjeer Flame Devils",
+      "playerId": "UFA26-BB-57",
+      "primary": 84,
+      "teamSheet": 67
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-05",
+      "primary": 84,
+      "teamSheet": 81
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-02",
+      "primary": 84,
+      "teamSheet": 81
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-13",
+      "primary": 84,
+      "teamSheet": 81
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-11",
+      "primary": 83,
+      "teamSheet": 81
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-06",
+      "primary": 83,
+      "teamSheet": 80
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-03",
+      "primary": 83,
+      "teamSheet": 80
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-30",
+      "primary": 83,
+      "teamSheet": 80
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-10",
+      "primary": 83,
+      "teamSheet": 79
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-07-12",
+      "primary": 83,
+      "teamSheet": 79
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-02",
+      "primary": 83,
+      "teamSheet": 78
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-08",
+      "primary": 83,
+      "teamSheet": 80
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-15",
+      "primary": 83,
+      "teamSheet": 80
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-21",
+      "primary": 83,
+      "teamSheet": 79
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-07",
+      "primary": 83,
+      "teamSheet": 78
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-25",
+      "primary": 83,
+      "teamSheet": 77
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "DRAFT26-19",
+      "primary": 83,
+      "teamSheet": 74
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-18",
+      "primary": 83,
+      "teamSheet": 74
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-22",
+      "primary": 83,
+      "teamSheet": 73
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-19",
+      "primary": 83,
+      "teamSheet": 72
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "DRAFT26-45",
+      "primary": 83,
+      "teamSheet": 72
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-20",
+      "primary": 83,
+      "teamSheet": 72
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-17",
+      "primary": 83,
+      "teamSheet": 71
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "NBL24-05-16",
+      "primary": 83,
+      "teamSheet": 69
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-44",
+      "primary": 83,
+      "teamSheet": 68
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-70",
+      "primary": 83,
+      "teamSheet": 68
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-65",
+      "primary": 83,
+      "teamSheet": 67
+    },
+    {
+      "team": "Dōmyu Dominators",
+      "playerId": "UFA26-BB-06",
+      "primary": 83,
+      "teamSheet": 67
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-08",
+      "primary": 83,
+      "teamSheet": 88
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "MID25_Malik_Stonewall",
+      "primary": 83,
+      "teamSheet": 87
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-09",
+      "primary": 83,
+      "teamSheet": 86
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-12",
+      "primary": 83,
+      "teamSheet": 86
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-04",
+      "primary": 83,
+      "teamSheet": 86
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-01",
+      "primary": 83,
+      "teamSheet": 84
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-02",
+      "primary": 83,
+      "teamSheet": 84
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-05",
+      "primary": 83,
+      "teamSheet": 82
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-06",
+      "primary": 83,
+      "teamSheet": 82
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "DRAFT26-46",
+      "primary": 83,
+      "teamSheet": 80
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-18",
+      "primary": 83,
+      "teamSheet": 86
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-04-12",
+      "primary": 82,
+      "teamSheet": 84
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-13",
+      "primary": 82,
+      "teamSheet": 84
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "UFA26-BB-49",
+      "primary": 82,
+      "teamSheet": 79
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-19",
+      "primary": 82,
+      "teamSheet": 79
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-17",
+      "primary": 82,
+      "teamSheet": 77
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-21",
+      "primary": 82,
+      "teamSheet": 76
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL25-D17",
+      "primary": 82,
+      "teamSheet": 76
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-10",
+      "primary": 82,
+      "teamSheet": 75
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "UFA26-BB-28",
+      "primary": 82,
+      "teamSheet": 75
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "NBL24-06-20",
+      "primary": 82,
+      "teamSheet": 73
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "DRAFT26-20",
+      "primary": 82,
+      "teamSheet": 70
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "UFA26-BB-37",
+      "primary": 82,
+      "teamSheet": 69
+    },
+    {
+      "team": "Garahviq Immortals",
+      "playerId": "UFA26-BB-55",
+      "primary": 82,
+      "teamSheet": 67
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-01",
+      "primary": 82,
+      "teamSheet": 81
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-09",
+      "primary": 82,
+      "teamSheet": 81
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-02",
+      "primary": 82,
+      "teamSheet": 80
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-06",
+      "primary": 82,
+      "teamSheet": 80
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-11",
+      "primary": 82,
+      "teamSheet": 79
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-17",
+      "primary": 82,
+      "teamSheet": 79
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-08",
+      "primary": 82,
+      "teamSheet": 78
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-03",
+      "primary": 82,
+      "teamSheet": 78
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-13",
+      "primary": 82,
+      "teamSheet": 78
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "DRAFT26-09",
+      "primary": 81,
+      "teamSheet": 78
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-10",
+      "primary": 81,
+      "teamSheet": 78
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-15-03",
+      "primary": 81,
+      "teamSheet": 76
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL25-D06",
+      "primary": 81,
+      "teamSheet": 78
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-18",
+      "primary": 81,
+      "teamSheet": 77
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-20",
+      "primary": 81,
+      "teamSheet": 77
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-04",
+      "primary": 81,
+      "teamSheet": 76
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-07",
+      "primary": 81,
+      "teamSheet": 76
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-14",
+      "primary": 81,
+      "teamSheet": 75
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL25-D32",
+      "primary": 81,
+      "teamSheet": 74
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-16",
+      "primary": 81,
+      "teamSheet": 73
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-22",
+      "primary": 81,
+      "teamSheet": 73
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL25-D28",
+      "primary": 81,
+      "teamSheet": 72
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-21",
+      "primary": 81,
+      "teamSheet": 72
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-19",
+      "primary": 81,
+      "teamSheet": 71
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-08-18",
+      "primary": 81,
+      "teamSheet": 71
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "2026-KNOWN-066",
+      "primary": 81,
+      "teamSheet": 70
+    },
+    {
+      "team": "Garvian Guardians",
+      "playerId": "NBL24-07-15",
+      "primary": 81,
+      "teamSheet": 70
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-04",
+      "primary": 81,
+      "teamSheet": 92
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-10",
+      "primary": 81,
+      "teamSheet": 90
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-11",
+      "primary": 81,
+      "teamSheet": 89
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-02",
+      "primary": 81,
+      "teamSheet": 89
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-09",
+      "primary": 81,
+      "teamSheet": 89
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-01",
+      "primary": 81,
+      "teamSheet": 89
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-12",
+      "primary": 81,
+      "teamSheet": 88
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-08",
+      "primary": 81,
+      "teamSheet": 88
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-05",
+      "primary": 81,
+      "teamSheet": 88
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-06",
+      "primary": 81,
+      "teamSheet": 88
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-21",
+      "primary": 81,
+      "teamSheet": 86
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-07",
+      "primary": 81,
+      "teamSheet": 85
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "MID25_Darius_Windwalker",
+      "primary": 81,
+      "teamSheet": 83
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-18",
+      "primary": 81,
+      "teamSheet": 83
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-16-12",
+      "primary": 81,
+      "teamSheet": 83
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "UFA26-GEN-605",
+      "primary": 81,
+      "teamSheet": 82
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-16",
+      "primary": 81,
+      "teamSheet": 80
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-20",
+      "primary": 81,
+      "teamSheet": 79
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL24-09-03",
+      "primary": 81,
+      "teamSheet": 78
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL25-D21",
+      "primary": 81,
+      "teamSheet": 75
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "DRAFT26-23",
+      "primary": 81,
+      "teamSheet": 74
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "DRAFT26-49",
+      "primary": 81,
+      "teamSheet": 74
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "UFA26-BB-08",
+      "primary": 81,
+      "teamSheet": 72
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "NBL25-D43",
+      "primary": 81,
+      "teamSheet": 72
+    },
+    {
+      "team": "Güunlekia Serpents",
+      "playerId": "2026-KNOWN-060",
+      "primary": 81,
+      "teamSheet": 71
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-17-08",
+      "primary": 81,
+      "teamSheet": 86
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-08",
+      "primary": 81,
+      "teamSheet": 86
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-01",
+      "primary": 81,
+      "teamSheet": 84
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-12",
+      "primary": 80,
+      "teamSheet": 84
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-07-05",
+      "primary": 80,
+      "teamSheet": 83
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-09",
+      "primary": 80,
+      "teamSheet": 83
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-05",
+      "primary": 80,
+      "teamSheet": 83
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-07",
+      "primary": 80,
+      "teamSheet": 82
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-03",
+      "primary": 80,
+      "teamSheet": 82
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-06",
+      "primary": 80,
+      "teamSheet": 82
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-11",
+      "primary": 80,
+      "teamSheet": 81
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-02",
+      "primary": 80,
+      "teamSheet": 81
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-10",
+      "primary": 80,
+      "teamSheet": 82
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "DRAFT26-03",
+      "primary": 80,
+      "teamSheet": 81
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-17",
+      "primary": 80,
+      "teamSheet": 78
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-13",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-16",
+      "primary": 80,
+      "teamSheet": 74
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-19",
+      "primary": 80,
+      "teamSheet": 73
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-20",
+      "primary": 80,
+      "teamSheet": 73
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-22",
+      "primary": 80,
+      "teamSheet": 72
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL25-D37",
+      "primary": 80,
+      "teamSheet": 72
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-15",
+      "primary": 80,
+      "teamSheet": 71
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-14",
+      "primary": 80,
+      "teamSheet": 71
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "NBL24-08-21",
+      "primary": 80,
+      "teamSheet": 70
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "DRAFT26-29",
+      "primary": 80,
+      "teamSheet": 69
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "UFA26-GEN-608",
+      "primary": 80,
+      "teamSheet": 67
+    },
+    {
+      "team": "G’Yanka Vanagu",
+      "playerId": "UFA26-GEN-609",
+      "primary": 80,
+      "teamSheet": 65
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "MID25_Obasi_Blackriver",
+      "primary": 80,
+      "teamSheet": 83
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL25-D02",
+      "primary": 80,
+      "teamSheet": 81
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-05",
+      "primary": 80,
+      "teamSheet": 81
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-12-06",
+      "primary": 80,
+      "teamSheet": 79
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-10",
+      "primary": 80,
+      "teamSheet": 78
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-02",
+      "primary": 80,
+      "teamSheet": 78
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-11",
+      "primary": 80,
+      "teamSheet": 77
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-09",
+      "primary": 80,
+      "teamSheet": 77
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-07",
+      "primary": 80,
+      "teamSheet": 77
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-01",
+      "primary": 80,
+      "teamSheet": 77
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-16",
+      "primary": 80,
+      "teamSheet": 78
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "UFA26-GEN-612",
+      "primary": 80,
+      "teamSheet": 78
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "2026-KNOWN-070",
+      "primary": 80,
+      "teamSheet": 77
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "UFA26-GEN-610",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-15",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-14",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-03",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-19",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-13",
+      "primary": 80,
+      "teamSheet": 76
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "UFA26-GEN-614",
+      "primary": 80,
+      "teamSheet": 75
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-17",
+      "primary": 80,
+      "teamSheet": 74
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-08",
+      "primary": 79,
+      "teamSheet": 73
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL25-D24",
+      "primary": 79,
+      "teamSheet": 73
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "UFA26-GEN-611",
+      "primary": 79,
+      "teamSheet": 73
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-04",
+      "primary": 79,
+      "teamSheet": 71
+    },
+    {
+      "team": "Hina’sola Hunters",
+      "playerId": "NBL24-10-21",
+      "primary": 79,
+      "teamSheet": 69
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-12",
+      "primary": 79,
+      "teamSheet": 85
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-01",
+      "primary": 79,
+      "teamSheet": 84
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-17-17",
+      "primary": 79,
+      "teamSheet": 83
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-04",
+      "primary": 79,
+      "teamSheet": 83
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-09",
+      "primary": 79,
+      "teamSheet": 83
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-08",
+      "primary": 79,
+      "teamSheet": 83
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-22",
+      "primary": 79,
+      "teamSheet": 81
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-02",
+      "primary": 79,
+      "teamSheet": 81
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-05",
+      "primary": 79,
+      "teamSheet": 81
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-11",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-21",
+      "primary": 79,
+      "teamSheet": 77
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-20",
+      "primary": 79,
+      "teamSheet": 75
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-13",
+      "primary": 79,
+      "teamSheet": 83
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-10",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "UFA26-BB-66",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-15",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-14",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-16",
+      "primary": 79,
+      "teamSheet": 76
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "UFA26-BB-47",
+      "primary": 79,
+      "teamSheet": 76
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-07",
+      "primary": 79,
+      "teamSheet": 74
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-06",
+      "primary": 79,
+      "teamSheet": 74
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-17",
+      "primary": 79,
+      "teamSheet": 73
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL24-22-03",
+      "primary": 79,
+      "teamSheet": 72
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "UFA26-GEN-616",
+      "primary": 79,
+      "teamSheet": 72
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "NBL25-D36",
+      "primary": 79,
+      "teamSheet": 72
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "UFA26-GEN-617",
+      "primary": 79,
+      "teamSheet": 72
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "DRAFT26-37",
+      "primary": 79,
+      "teamSheet": 69
+    },
+    {
+      "team": "Isu’Kari Sirenwings",
+      "playerId": "DRAFT26-11",
+      "primary": 79,
+      "teamSheet": 69
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-13-18",
+      "primary": 79,
+      "teamSheet": 89
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-11-07",
+      "primary": 79,
+      "teamSheet": 83
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-13-16",
+      "primary": 79,
+      "teamSheet": 82
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-11-17",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-06-15",
+      "primary": 79,
+      "teamSheet": 80
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL25-D09",
+      "primary": 79,
+      "teamSheet": 78
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "DRAFT26-32",
+      "primary": 79,
+      "teamSheet": 78
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-698",
+      "primary": 79,
+      "teamSheet": 77
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-14-03",
+      "primary": 78,
+      "teamSheet": 77
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-689",
+      "primary": 78,
+      "teamSheet": 76
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-14-15",
+      "primary": 78,
+      "teamSheet": 74
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-700",
+      "primary": 78,
+      "teamSheet": 79
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-695",
+      "primary": 78,
+      "teamSheet": 77
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-17-16",
+      "primary": 78,
+      "teamSheet": 77
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-697",
+      "primary": 78,
+      "teamSheet": 76
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-692",
+      "primary": 78,
+      "teamSheet": 76
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-699",
+      "primary": 78,
+      "teamSheet": 75
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-15-07",
+      "primary": 78,
+      "teamSheet": 75
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-18-21",
+      "primary": 78,
+      "teamSheet": 75
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "NBL24-22-19",
+      "primary": 78,
+      "teamSheet": 75
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-690",
+      "primary": 78,
+      "teamSheet": 75
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-696",
+      "primary": 78,
+      "teamSheet": 75
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-693",
+      "primary": 78,
+      "teamSheet": 73
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-694",
+      "primary": 78,
+      "teamSheet": 73
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-691",
+      "primary": 78,
+      "teamSheet": 71
+    },
+    {
+      "team": "Kalundu Shockwave",
+      "playerId": "UFA26-GEN-688",
+      "primary": 78,
+      "teamSheet": 70
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-08",
+      "primary": 78,
+      "teamSheet": 91
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-04",
+      "primary": 78,
+      "teamSheet": 90
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-09",
+      "primary": 78,
+      "teamSheet": 88
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-05",
+      "primary": 78,
+      "teamSheet": 87
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-02",
+      "primary": 78,
+      "teamSheet": 86
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-18",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-06",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-03",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-13",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-19",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-11",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-17-12",
+      "primary": 78,
+      "teamSheet": 84
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-12",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-01",
+      "primary": 78,
+      "teamSheet": 85
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-16",
+      "primary": 78,
+      "teamSheet": 84
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "MID25_Sefu_Nightguard",
+      "primary": 78,
+      "teamSheet": 84
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "UFA26-GEN-619",
+      "primary": 78,
+      "teamSheet": 80
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "UFA26-GEN-621",
+      "primary": 78,
+      "teamSheet": 79
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-14",
+      "primary": 78,
+      "teamSheet": 79
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-21",
+      "primary": 78,
+      "teamSheet": 79
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL24-11-10",
+      "primary": 78,
+      "teamSheet": 77
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "2026-KNOWN-063",
+      "primary": 78,
+      "teamSheet": 76
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "UFA26-GEN-622",
+      "primary": 78,
+      "teamSheet": 76
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL25-D19",
+      "primary": 78,
+      "teamSheet": 76
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "NBL25-D41",
+      "primary": 78,
+      "teamSheet": 71
+    },
+    {
+      "team": "Kasuf Bloodravens",
+      "playerId": "UFA26-GEN-620",
+      "primary": 78,
+      "teamSheet": 68
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-13-19",
+      "primary": 77,
+      "teamSheet": 89
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-01-16",
+      "primary": 77,
+      "teamSheet": 85
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-02-19",
+      "primary": 77,
+      "teamSheet": 82
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-BB-40",
+      "primary": 77,
+      "teamSheet": 81
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-BB-72",
+      "primary": 77,
+      "teamSheet": 81
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-19-22",
+      "primary": 77,
+      "teamSheet": 80
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-09-13",
+      "primary": 77,
+      "teamSheet": 80
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-678",
+      "primary": 77,
+      "teamSheet": 80
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-BB-74",
+      "primary": 77,
+      "teamSheet": 80
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "2026-KNOWN-055",
+      "primary": 77,
+      "teamSheet": 79
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-21-21",
+      "primary": 77,
+      "teamSheet": 79
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-675",
+      "primary": 77,
+      "teamSheet": 78
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-21-07",
+      "primary": 77,
+      "teamSheet": 76
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL25-D10",
+      "primary": 77,
+      "teamSheet": 76
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-16-18",
+      "primary": 77,
+      "teamSheet": 76
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "NBL24-06-16",
+      "primary": 77,
+      "teamSheet": 75
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-BB-51",
+      "primary": 77,
+      "teamSheet": 74
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-687",
+      "primary": 77,
+      "teamSheet": 73
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-681",
+      "primary": 77,
+      "teamSheet": 73
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-676",
+      "primary": 77,
+      "teamSheet": 72
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-684",
+      "primary": 77,
+      "teamSheet": 72
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-685",
+      "primary": 77,
+      "teamSheet": 72
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "2026-KNOWN-064",
+      "primary": 77,
+      "teamSheet": 71
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-680",
+      "primary": 77,
+      "teamSheet": 68
+    },
+    {
+      "team": "Khemara Sunscourge",
+      "playerId": "UFA26-GEN-686",
+      "primary": 77,
+      "teamSheet": 66
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-12",
+      "primary": 77,
+      "teamSheet": 80
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL25-D03",
+      "primary": 77,
+      "teamSheet": 79
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-04-15",
+      "primary": 77,
+      "teamSheet": 79
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-09",
+      "primary": 77,
+      "teamSheet": 78
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "UFA26-GEN-625",
+      "primary": 77,
+      "teamSheet": 76
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-07",
+      "primary": 77,
+      "teamSheet": 76
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-03",
+      "primary": 77,
+      "teamSheet": 75
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-22",
+      "primary": 77,
+      "teamSheet": 72
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL25-U03",
+      "primary": 77,
+      "teamSheet": 71
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-14",
+      "primary": 77,
+      "teamSheet": 76
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-08",
+      "primary": 77,
+      "teamSheet": 75
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "2026-KNOWN-067",
+      "primary": 77,
+      "teamSheet": 74
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL25-D25",
+      "primary": 77,
+      "teamSheet": 74
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-18",
+      "primary": 77,
+      "teamSheet": 74
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "UFA26-GEN-623",
+      "primary": 77,
+      "teamSheet": 73
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-05",
+      "primary": 77,
+      "teamSheet": 71
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-17",
+      "primary": 77,
+      "teamSheet": 70
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-19",
+      "primary": 77,
+      "teamSheet": 70
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "UFA26-GEN-624",
+      "primary": 77,
+      "teamSheet": 69
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-21",
+      "primary": 77,
+      "teamSheet": 68
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-04",
+      "primary": 76,
+      "teamSheet": 67
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-20",
+      "primary": 76,
+      "teamSheet": 66
+    },
+    {
+      "team": "Lykessia Wolverines",
+      "playerId": "NBL24-12-16",
+      "primary": 76,
+      "teamSheet": 65
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-12",
+      "primary": 76,
+      "teamSheet": 95
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-03",
+      "primary": 76,
+      "teamSheet": 94
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-01",
+      "primary": 76,
+      "teamSheet": 94
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-02",
+      "primary": 76,
+      "teamSheet": 94
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-06",
+      "primary": 76,
+      "teamSheet": 93
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-07",
+      "primary": 76,
+      "teamSheet": 91
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-13",
+      "primary": 76,
+      "teamSheet": 91
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-10",
+      "primary": 76,
+      "teamSheet": 91
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-11",
+      "primary": 76,
+      "teamSheet": 91
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-08",
+      "primary": 76,
+      "teamSheet": 90
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-17",
+      "primary": 76,
+      "teamSheet": 89
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-20",
+      "primary": 76,
+      "teamSheet": 86
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-04",
+      "primary": 76,
+      "teamSheet": 92
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-22",
+      "primary": 76,
+      "teamSheet": 90
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-21",
+      "primary": 76,
+      "teamSheet": 89
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-15",
+      "primary": 76,
+      "teamSheet": 88
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-05",
+      "primary": 76,
+      "teamSheet": 86
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL24-13-14",
+      "primary": 76,
+      "teamSheet": 81
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "2026-KNOWN-061",
+      "primary": 76,
+      "teamSheet": 79
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "UFA26-GEN-629",
+      "primary": 76,
+      "teamSheet": 78
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "UFA26-BB-75",
+      "primary": 76,
+      "teamSheet": 78
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "UFA26-GEN-628",
+      "primary": 76,
+      "teamSheet": 75
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "UFA26-BB-50",
+      "primary": 76,
+      "teamSheet": 71
+    },
+    {
+      "team": "Mbuya Ïmu Moonhawks",
+      "playerId": "NBL25-D44",
+      "primary": 76,
+      "teamSheet": 70
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-05-01",
+      "primary": 76,
+      "teamSheet": 82
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-05",
+      "primary": 76,
+      "teamSheet": 82
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-09",
+      "primary": 76,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-08",
+      "primary": 76,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-07",
+      "primary": 76,
+      "teamSheet": 80
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-06",
+      "primary": 76,
+      "teamSheet": 80
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-02",
+      "primary": 76,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-15",
+      "primary": 76,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-11",
+      "primary": 76,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-01",
+      "primary": 76,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-10",
+      "primary": 76,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-03",
+      "primary": 76,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "DRAFT26-27",
+      "primary": 76,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-14",
+      "primary": 76,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-13",
+      "primary": 76,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-21",
+      "primary": 76,
+      "teamSheet": 75
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-20",
+      "primary": 76,
+      "teamSheet": 75
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL25-D29",
+      "primary": 75,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-04",
+      "primary": 75,
+      "teamSheet": 71
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-19",
+      "primary": 75,
+      "teamSheet": 71
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-16",
+      "primary": 75,
+      "teamSheet": 70
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "UFA26-GEN-635",
+      "primary": 75,
+      "teamSheet": 69
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "NBL24-16-22",
+      "primary": 75,
+      "teamSheet": 68
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "UFA26-GEN-634",
+      "primary": 75,
+      "teamSheet": 67
+    },
+    {
+      "team": "Ndomiri Sentinels",
+      "playerId": "UFA26-GEN-633",
+      "primary": 75,
+      "teamSheet": 67
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL25-D01",
+      "primary": 75,
+      "teamSheet": 82
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-20",
+      "primary": 75,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-04",
+      "primary": 75,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-12",
+      "primary": 75,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-11",
+      "primary": 75,
+      "teamSheet": 80
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-21",
+      "primary": 75,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-09",
+      "primary": 75,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-07",
+      "primary": 75,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-02",
+      "primary": 75,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-05",
+      "primary": 75,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-13",
+      "primary": 75,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "UFA26-GEN-632",
+      "primary": 75,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-10",
+      "primary": 75,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-14",
+      "primary": 75,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-08",
+      "primary": 75,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL25-D20",
+      "primary": 75,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-17",
+      "primary": 75,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL25-D23",
+      "primary": 75,
+      "teamSheet": 74
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "UFA26-GEN-631",
+      "primary": 75,
+      "teamSheet": 74
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "MID25_Khalil_Sunrunner",
+      "primary": 75,
+      "teamSheet": 74
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "DRAFT26-36",
+      "primary": 75,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "DRAFT26-38",
+      "primary": 75,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-18",
+      "primary": 75,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "NBL24-14-19",
+      "primary": 75,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "2026-KNOWN-059",
+      "primary": 75,
+      "teamSheet": 72
+    },
+    {
+      "team": "Ndumba Specters",
+      "playerId": "2026-KNOWN-062",
+      "primary": 75,
+      "teamSheet": 70
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-12",
+      "primary": 75,
+      "teamSheet": 80
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL25-D04",
+      "primary": 75,
+      "teamSheet": 79
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "UFA26-GEN-638",
+      "primary": 74,
+      "teamSheet": 79
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-10",
+      "primary": 74,
+      "teamSheet": 79
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-09",
+      "primary": 74,
+      "teamSheet": 79
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-02",
+      "primary": 74,
+      "teamSheet": 78
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-11",
+      "primary": 74,
+      "teamSheet": 77
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-04",
+      "primary": 74,
+      "teamSheet": 77
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "UFA26-GEN-641",
+      "primary": 74,
+      "teamSheet": 77
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-05",
+      "primary": 74,
+      "teamSheet": 77
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-08",
+      "primary": 74,
+      "teamSheet": 77
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-06",
+      "primary": 74,
+      "teamSheet": 76
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-14",
+      "primary": 74,
+      "teamSheet": 79
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "DRAFT26-40",
+      "primary": 74,
+      "teamSheet": 78
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-17",
+      "primary": 74,
+      "teamSheet": 77
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-01",
+      "primary": 74,
+      "teamSheet": 76
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "UFA26-BB-59",
+      "primary": 74,
+      "teamSheet": 75
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-16",
+      "primary": 74,
+      "teamSheet": 75
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-13",
+      "primary": 74,
+      "teamSheet": 75
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-20",
+      "primary": 74,
+      "teamSheet": 73
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-21",
+      "primary": 74,
+      "teamSheet": 72
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-18",
+      "primary": 74,
+      "teamSheet": 71
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-22",
+      "primary": 74,
+      "teamSheet": 71
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "DRAFT26-14",
+      "primary": 74,
+      "teamSheet": 70
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-19",
+      "primary": 74,
+      "teamSheet": 69
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "NBL24-15-15",
+      "primary": 74,
+      "teamSheet": 69
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "UFA26-GEN-637",
+      "primary": 74,
+      "teamSheet": 68
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "UFA26-BB-42",
+      "primary": 74,
+      "teamSheet": 67
+    },
+    {
+      "team": "Nuk’yl Chiefs",
+      "playerId": "UFA26-GEN-636",
+      "primary": 74,
+      "teamSheet": 66
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-09",
+      "primary": 73,
+      "teamSheet": 86
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-19",
+      "primary": 73,
+      "teamSheet": 85
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-14",
+      "primary": 73,
+      "teamSheet": 84
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-21",
+      "primary": 73,
+      "teamSheet": 83
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-10",
+      "primary": 73,
+      "teamSheet": 83
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-04",
+      "primary": 73,
+      "teamSheet": 83
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-02",
+      "primary": 73,
+      "teamSheet": 82
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-01",
+      "primary": 73,
+      "teamSheet": 81
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-03",
+      "primary": 73,
+      "teamSheet": 81
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-13",
+      "primary": 73,
+      "teamSheet": 80
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "UFA26-BB-15",
+      "primary": 73,
+      "teamSheet": 78
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-15",
+      "primary": 73,
+      "teamSheet": 77
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-06",
+      "primary": 73,
+      "teamSheet": 81
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-07",
+      "primary": 73,
+      "teamSheet": 80
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-11",
+      "primary": 73,
+      "teamSheet": 80
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "MID25_Kendrick_Moonfall",
+      "primary": 73,
+      "teamSheet": 79
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "UFA26-GEN-646",
+      "primary": 73,
+      "teamSheet": 78
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-20",
+      "primary": 73,
+      "teamSheet": 77
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "UFA26-GEN-645",
+      "primary": 73,
+      "teamSheet": 75
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "DRAFT26-51",
+      "primary": 73,
+      "teamSheet": 75
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL24-17-18",
+      "primary": 73,
+      "teamSheet": 74
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "DRAFT26-21",
+      "primary": 73,
+      "teamSheet": 74
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL25-U01",
+      "primary": 73,
+      "teamSheet": 72
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL25-D34",
+      "primary": 73,
+      "teamSheet": 72
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "UFA26-GEN-648",
+      "primary": 73,
+      "teamSheet": 71
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "NBL25-U02",
+      "primary": 73,
+      "teamSheet": 70
+    },
+    {
+      "team": "Priya Arpaqu",
+      "playerId": "UFA26-GEN-647",
+      "primary": 73,
+      "teamSheet": 68
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-04",
+      "primary": 73,
+      "teamSheet": 90
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-09",
+      "primary": 73,
+      "teamSheet": 90
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-01",
+      "primary": 73,
+      "teamSheet": 89
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-12",
+      "primary": 73,
+      "teamSheet": 89
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-02",
+      "primary": 73,
+      "teamSheet": 88
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-21",
+      "primary": 73,
+      "teamSheet": 87
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-05",
+      "primary": 73,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-07",
+      "primary": 72,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-13",
+      "primary": 72,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-11",
+      "primary": 72,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-06",
+      "primary": 72,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-16",
+      "primary": 72,
+      "teamSheet": 84
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-03",
+      "primary": 72,
+      "teamSheet": 86
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-14",
+      "primary": 72,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-08",
+      "primary": 72,
+      "teamSheet": 85
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-18",
+      "primary": 72,
+      "teamSheet": 84
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "UFA26-GEN-651",
+      "primary": 72,
+      "teamSheet": 81
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "UFA26-GEN-652",
+      "primary": 72,
+      "teamSheet": 79
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "UFA26-GEN-653",
+      "primary": 72,
+      "teamSheet": 78
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-20",
+      "primary": 72,
+      "teamSheet": 77
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL24-19-15",
+      "primary": 72,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "DRAFT26-28",
+      "primary": 72,
+      "teamSheet": 76
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL25-D16",
+      "primary": 72,
+      "teamSheet": 75
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "NBL25-D38",
+      "primary": 72,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "DRAFT26-02",
+      "primary": 72,
+      "teamSheet": 73
+    },
+    {
+      "team": "Ursiria 65ers",
+      "playerId": "UFA26-GEN-649",
+      "primary": 72,
+      "teamSheet": 66
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-05-09",
+      "primary": 72,
+      "teamSheet": 86
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-12",
+      "primary": 72,
+      "teamSheet": 85
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-04",
+      "primary": 72,
+      "teamSheet": 83
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-08",
+      "primary": 72,
+      "teamSheet": 83
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-01",
+      "primary": 72,
+      "teamSheet": 83
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-09",
+      "primary": 72,
+      "teamSheet": 82
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-13",
+      "primary": 72,
+      "teamSheet": 82
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-02",
+      "primary": 72,
+      "teamSheet": 81
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-11",
+      "primary": 72,
+      "teamSheet": 81
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "UFA26-BB-58",
+      "primary": 72,
+      "teamSheet": 81
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-05",
+      "primary": 72,
+      "teamSheet": 81
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-07",
+      "primary": 72,
+      "teamSheet": 80
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "MID25_Jalen_Ironstride",
+      "primary": 72,
+      "teamSheet": 82
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-10",
+      "primary": 72,
+      "teamSheet": 80
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-03",
+      "primary": 72,
+      "teamSheet": 79
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "DRAFT26-16",
+      "primary": 72,
+      "teamSheet": 78
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-18",
+      "primary": 72,
+      "teamSheet": 77
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-20",
+      "primary": 72,
+      "teamSheet": 77
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "UFA26-GEN-654",
+      "primary": 72,
+      "teamSheet": 75
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-16",
+      "primary": 71,
+      "teamSheet": 75
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "DRAFT26-42",
+      "primary": 71,
+      "teamSheet": 75
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-15",
+      "primary": 71,
+      "teamSheet": 74
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-14",
+      "primary": 71,
+      "teamSheet": 73
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-19",
+      "primary": 71,
+      "teamSheet": 72
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL25-D33",
+      "primary": 71,
+      "teamSheet": 72
+    },
+    {
+      "team": "Wibatu Rangers",
+      "playerId": "NBL24-18-17",
+      "primary": 71,
+      "teamSheet": 70
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-08",
+      "primary": 71,
+      "teamSheet": 84
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-12",
+      "primary": 71,
+      "teamSheet": 83
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-04",
+      "primary": 71,
+      "teamSheet": 83
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-01",
+      "primary": 71,
+      "teamSheet": 83
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-09",
+      "primary": 71,
+      "teamSheet": 83
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-02",
+      "primary": 71,
+      "teamSheet": 81
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-05",
+      "primary": 71,
+      "teamSheet": 80
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-11",
+      "primary": 71,
+      "teamSheet": 80
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL25-D05",
+      "primary": 71,
+      "teamSheet": 79
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-10",
+      "primary": 71,
+      "teamSheet": 79
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-18",
+      "primary": 71,
+      "teamSheet": 78
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-03",
+      "primary": 71,
+      "teamSheet": 77
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-16",
+      "primary": 71,
+      "teamSheet": 78
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-12-13",
+      "primary": 71,
+      "teamSheet": 76
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-06",
+      "primary": 71,
+      "teamSheet": 76
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-15",
+      "primary": 71,
+      "teamSheet": 75
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "2026-KNOWN-069",
+      "primary": 71,
+      "teamSheet": 75
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL25-D27",
+      "primary": 71,
+      "teamSheet": 74
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "UFA26-GEN-656",
+      "primary": 70,
+      "teamSheet": 73
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-07",
+      "primary": 70,
+      "teamSheet": 73
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "DRAFT26-13",
+      "primary": 70,
+      "teamSheet": 72
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-13",
+      "primary": 70,
+      "teamSheet": 71
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-20",
+      "primary": 70,
+      "teamSheet": 71
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-14",
+      "primary": 70,
+      "teamSheet": 69
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "NBL24-20-17",
+      "primary": 70,
+      "teamSheet": 69
+    },
+    {
+      "team": "Xenar Ignite",
+      "playerId": "UFA26-GEN-657",
+      "primary": 70,
+      "teamSheet": 67
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-04",
+      "primary": 70,
+      "teamSheet": 85
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-05",
+      "primary": 70,
+      "teamSheet": 84
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-09",
+      "primary": 70,
+      "teamSheet": 83
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-08",
+      "primary": 70,
+      "teamSheet": 83
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-01",
+      "primary": 70,
+      "teamSheet": 83
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-02",
+      "primary": 70,
+      "teamSheet": 82
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-03",
+      "primary": 70,
+      "teamSheet": 81
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-10",
+      "primary": 70,
+      "teamSheet": 81
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-11",
+      "primary": 70,
+      "teamSheet": 81
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "UFA26-GEN-659",
+      "primary": 70,
+      "teamSheet": 80
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-02-14",
+      "primary": 69,
+      "teamSheet": 79
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-19",
+      "primary": 69,
+      "teamSheet": 77
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-16",
+      "primary": 69,
+      "teamSheet": 81
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "UFA26-GEN-662",
+      "primary": 69,
+      "teamSheet": 81
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-17",
+      "primary": 69,
+      "teamSheet": 80
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-13",
+      "primary": 69,
+      "teamSheet": 78
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "DRAFT26-34",
+      "primary": 69,
+      "teamSheet": 78
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-20",
+      "primary": 69,
+      "teamSheet": 77
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "UFA26-BB-27",
+      "primary": 69,
+      "teamSheet": 77
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-15",
+      "primary": 69,
+      "teamSheet": 76
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL25-D13",
+      "primary": 69,
+      "teamSheet": 76
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-22",
+      "primary": 69,
+      "teamSheet": 75
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "UFA26-GEN-661",
+      "primary": 69,
+      "teamSheet": 74
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL25-D35",
+      "primary": 69,
+      "teamSheet": 73
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-18",
+      "primary": 69,
+      "teamSheet": 71
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "NBL24-21-06",
+      "primary": 68,
+      "teamSheet": 71
+    },
+    {
+      "team": "Yukïma Cowhands",
+      "playerId": "DRAFT26-08",
+      "primary": 68,
+      "teamSheet": 69
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-09-17",
+      "primary": 68,
+      "teamSheet": 84
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-02-07",
+      "primary": 68,
+      "teamSheet": 83
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-705",
+      "primary": 68,
+      "teamSheet": 81
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-09-15",
+      "primary": 68,
+      "teamSheet": 80
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-19-17",
+      "primary": 68,
+      "teamSheet": 80
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-02-21",
+      "primary": 68,
+      "teamSheet": 80
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-06-07",
+      "primary": 68,
+      "teamSheet": 80
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-706",
+      "primary": 68,
+      "teamSheet": 80
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-701",
+      "primary": 67,
+      "teamSheet": 79
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-11-15",
+      "primary": 67,
+      "teamSheet": 78
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-20-22",
+      "primary": 67,
+      "teamSheet": 77
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-20-21",
+      "primary": 67,
+      "teamSheet": 76
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-707",
+      "primary": 67,
+      "teamSheet": 79
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL25-D11",
+      "primary": 67,
+      "teamSheet": 77
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL25-D15",
+      "primary": 67,
+      "teamSheet": 77
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL24-20-19",
+      "primary": 67,
+      "teamSheet": 76
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-703",
+      "primary": 67,
+      "teamSheet": 76
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "NBL25-D26",
+      "primary": 67,
+      "teamSheet": 73
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-711",
+      "primary": 67,
+      "teamSheet": 72
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-702",
+      "primary": 66,
+      "teamSheet": 72
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "2026-KNOWN-058",
+      "primary": 66,
+      "teamSheet": 72
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-710",
+      "primary": 66,
+      "teamSheet": 72
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-712",
+      "primary": 66,
+      "teamSheet": 70
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "DRAFT26-33",
+      "primary": 66,
+      "teamSheet": 69
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-704",
+      "primary": 65,
+      "teamSheet": 69
+    },
+    {
+      "team": "Zafiren Tidewings",
+      "playerId": "UFA26-GEN-709",
+      "primary": 65,
+      "teamSheet": 68
+    }
+  ],
+  "policy": "All 712 Players is authoritative for this import"
+}

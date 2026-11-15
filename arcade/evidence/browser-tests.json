@@ -1,0 +1,77 @@
+{
+  "checks": [
+    {
+      "name": "Browser launch, main menu and controls",
+      "passed": true
+    },
+    {
+      "name": "Both team selections, seed, match start, pause",
+      "passed": true
+    },
+    {
+      "name": "Actual rendered AI vs AI match reaches four-quarter final, with speed changes",
+      "passed": true,
+      "score": [
+        15,
+        27
+      ],
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5",
+      "keeperSaves": [
+        1,
+        2
+      ],
+      "archerShots": [
+        15,
+        14
+      ]
+    },
+    {
+      "name": "Rematch reproduces every event and statistic",
+      "passed": true
+    },
+    {
+      "name": "Real keyboard movement and sprint",
+      "passed": true,
+      "jogDistance": 7.988999999999955,
+      "sprintDistance": 9.614346302222224
+    },
+    {
+      "name": "K switches to a useful nearby defender (set-play)",
+      "passed": true
+    },
+    {
+      "name": "Space pass, physical catch, automatic control transfer (set-play)",
+      "passed": true
+    },
+    {
+      "name": "J resolves legal carrier tackle (set-play)",
+      "passed": true
+    },
+    {
+      "name": "L scores a 3-point goal from actual release flight (set-play)",
+      "passed": true
+    },
+    {
+      "name": "Carry across goal plane updates scoreboard by 5 (set-play)",
+      "passed": true
+    },
+    {
+      "name": "E fires actual Archer projectile and freezes carrier (set-play)",
+      "passed": true
+    },
+    {
+      "name": "Escape pause/resume and live statistics",
+      "passed": true
+    },
+    {
+      "name": "390px viewport selection has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "No fatal errors, console errors, or failed requests",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failedRequests": []
+}

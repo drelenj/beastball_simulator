@@ -1,0 +1,25 @@
+
+> ndagii-beastball-arcade@0.1.0 test
+> node --import tsx --test --test-isolation=none tests/engine.test.ts
+
+✔ all 712 original athletes, 26 franchises and 24 correct starting athletes per match (13.018115ms)
+✔ human intention produces immediate acceleration, sprint and braking (10.733911ms)
+✔ pass flight resolves a catch and transfers possession and selection (3.303843ms)
+✔ legal tackles preserve first recovery, protect it, and turn over on second (5.791193ms)
+✔ goal crossings award 5 carry / 3 release; own goals award release value (3.62966ms)
+✔ wide shots and side boundaries do not score (3.815079ms)
+✔ Keeper catches an actual incoming scoring flight (1.625937ms)
+✔ Archer projectile freezes carrier, displaces ball and grants timed immunity (21.453394ms)
+✔ quivers reload in five seconds and never exceed 20 arrows a quarter (17.813655ms)
+✔ freezes and immunity survive possession restarts; frozen athletes cannot receive a restart (1.316918ms)
+✔ possession and Keeper Zone occupancy expire with turnovers (41.473555ms)
+✔ full regulation Ala Marauders vs Xenar Ignite match completes from physical events (6291.231262ms)
+✔ same seed produces identical complete events and results at 30 / 60 / 144 FPS and 1× / 2× / 4× / 8× (1068.424173ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7822.914345

@@ -1,16 +1,19 @@
 import './style.css';
 import { Engine, teams, Team, DT, Input, blankInput, PlayerStats } from './engine';
 import { Renderer } from './renderer';
+import { FixedStepper } from './timing';
+import logoManifest from './logos.json';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const escape = (s: string) => s.replace(/[&<>"']/g, x => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[x]!));
-const logoIds = new Set(['ala-marauders', 'xenar-ignite']);
+const logoIds = new Set(logoManifest.assets.filter(a => !a.status.startsWith('unmapped')).map(a => a.teamId));
 const logo = (t: Team, cls = '') => logoIds.has(t.id) ? `<img class="team-logo ${cls}" src="/logos/${t.id}.webp" alt="${escape(t.name)} official logo"/>` : `<span class="team-monogram ${cls}" style="--team:${t.color}" title="Official logo not yet verified">${escape(t.name.split(' ').map(w => w[0]).slice(0, 2).join(''))}</span>`;
 let home = teams.find(t => t.name === 'Ala Marauders')!, away = teams.find(t => t.name === 'Xenar Ignite')!;
 let mode: 'human' | 'spectator' = 'human', seed = 202627, clockRate = 6;
 let game = new Engine({ home, away, mode: 'spectator', seed, clockRate: 6 });
 let screen: 'menu' | 'select' | 'match' = 'menu', slot: 'home' | 'away' = 'home';
-let paused = false, playback = 1, accumulator = 0, last = performance.now(), hudTime = 0;
+let paused = false, playback = 1, last = performance.now(), hudTime = 0;
+const stepper = new FixedStepper();
 let overlay = '', eventIndex = 0, sound = false, audioContext: AudioContext | null = null;
 let renderer: Renderer;
 const keys = new Set<string>(); let edges = blankInput();
@@ -19,7 +22,7 @@ const brand = `<a class="brand" href="#" data-action="menu" aria-label="Beastbal
 function shell(content: string, className: string) {
   app.innerHTML = `<div class="shell ${className}"><canvas id="pitch" aria-label="Live 2.5D Beastball pitch"></canvas>${content}</div>`;
   renderer = new Renderer(document.querySelector<HTMLCanvasElement>('#pitch')!);
-  accumulator = 0; last = performance.now();
+  stepper.reset(); last = performance.now();
 }
 function menu() {
   screen = 'menu'; paused = false; overlay = ''; keys.clear();
@@ -89,7 +92,7 @@ function showStats() {
   modal('THE NUMBERS BEHIND THE HUNT', `<div class="stats-teams"><span>${escape(home.name)}</span><span>${escape(away.name)}</span></div>${statTable()}<h3>INDIVIDUAL PERFORMANCE</h3><div class="player-stats"><table><thead><tr><th>Athlete</th><th>Role</th><th>Pts</th><th>Pass</th><th>Tkl</th><th>Save</th><th>Arrow</th></tr></thead><tbody>${game.players.map(p => `<tr><td><span style="color:${(p.side === 0 ? home : away).color}">●</span> ${escape(p.data.Player)}</td><td>${p.data.Position}</td><td>${p.stats.points}</td><td>${p.stats.completions}/${p.stats.passes}</td><td>${p.stats.tackles}/${p.stats.tackleAttempts}</td><td>${p.stats.saves}</td><td>${p.stats.arrowHits}/${p.stats.arrowShots}</td></tr>`).join('')}</tbody></table></div><p class="data-note">All statistics are recorded from resolved gameplay events. Pass, tackle, and arrow columns show successes / attempts.</p>`);
 }
 function about() {
-  modal('A SPORT OF ITS OWN.', `<p>A 100 × 100 m pitch. Ten field athletes, one Keeper, and one Archer per side. Four 10-minute quarters; 45-second possessions. Carry the ball across the goal plane for <b>5 points</b>, or release it through the semicircular goal for <b>3 points</b>. No kicking.</p><p>First tackle: protected recovery. Second tackle: turnover. Attackers have five seconds inside the Keeper Zone. The Keeper defends a 6 m semicircular goal; the zone extends 20 m. A free release scores only when its visible flight crosses the goal.</p><p>Archers operate in assigned sideline lanes: 20 arrows per quarter, five loaded, five-second reload. Only eligible carriers can be frozen: five seconds frozen, followed by ten seconds of arrow immunity. Keepers are protected from arrows in their own zone. Archer range is 10–70 m.</p><h3>ROSTERS & ASSETS</h3><p>All 26 NBL franchises and 712 registered players come from the supplied <b>NBL_2026-27_Opening_Night_Rosters_CANON_OVR.xlsx</b>, “All 712 Players.” Opening-day OVR is displayed verbatim and influences arcade skills. Starting lineups use the opening-night roles. The primary and team worksheets disagree on 674 ratings; the primary sheet wins. Original IDs, formation, readiness and development fields are preserved in the data.</p><p>Official local logos: Ala Marauders and Xenar Ignite, from the supplied Google Drive folder. Other franchise marks are explicitly temporary monograms. Jersey numbers were absent; rendered numbers are temporary bibs. Team colors and motion coefficients are arcade presentation choices.</p><h3>ARCADE ADAPTER</h3><p>This isolated engine uses the v1.0 5/3 scoring path in the repository’s Pocket engine. Later v0.3 flat-scoring experiments are separate. The original Python and PRISM systems are preserved. Full foul adjudication, injuries, substitutions, penalties, and support-foot tracking are not implemented. Contact recovery is simplified. Human and AI providers share one 60 Hz engine. Match-clock acceleration shortens quarters; possession, freeze and reload timers retain simulation seconds.</p><p class="data-note">Arrow speed, acceleration, fatigue, and AI choices are tuned for arcade play, not certified canonical physics. Original procedural graphics; no Tecmo artwork or external reference code imported.</p>`);
+  modal('A SPORT OF ITS OWN.', `<p>A 100 × 100 m pitch. Ten field athletes, one Keeper, and one Archer per side. Four 10-minute quarters; 45-second possessions. Carry the ball across the goal plane for <b>5 points</b>, or release it through the semicircular goal for <b>3 points</b>. No kicking.</p><p>First tackle: protected recovery. Second tackle: turnover. Attackers have five seconds inside the Keeper Zone. The Keeper defends a 6 m semicircular goal; the zone extends 20 m. A free release scores only when its visible flight crosses the goal.</p><p>Archers operate in assigned sideline lanes: 20 arrows per quarter, five loaded, five-second reload. Only eligible carriers can be frozen: five seconds frozen, followed by ten seconds of arrow immunity. Keepers are protected from arrows in their own zone. Archer range is 10–70 m.</p><h3>ROSTERS & ASSETS</h3><p>All 26 NBL franchises and 712 registered players come from the supplied <b>NBL_2026-27_Opening_Night_Rosters_CANON_OVR.xlsx</b>, “All 712 Players.” Opening-day OVR is displayed verbatim and influences arcade skills. Starting lineups use the opening-night roles. The primary and team worksheets disagree on 674 ratings; the primary sheet wins. Original IDs, formation, readiness and development fields are preserved in the data.</p><p>20 official local logos, including Ala Marauders and Xenar Ignite, from the supplied Google Drive folder. Six franchise marks are explicitly temporary monograms; five opaque filenames and the Priya Arpagu / Arpaqu spelling discrepancy remain unmapped. Jersey numbers were absent; rendered numbers are temporary bibs. Team colors and motion coefficients are arcade presentation choices.</p><h3>ARCADE ADAPTER</h3><p>This isolated engine uses the v1.0 5/3 scoring path in the repository’s Pocket engine. Later v0.3 flat-scoring experiments are separate. The original Python and PRISM systems are preserved. Full foul adjudication, injuries, substitutions, penalties, and support-foot tracking are not implemented. Contact recovery is simplified. Human and AI providers share one 60 Hz engine. Match-clock acceleration shortens quarters; possession, freeze and reload timers retain simulation seconds.</p><p class="data-note">Arrow speed, acceleration, fatigue, and AI choices are tuned for arcade play, not certified canonical physics. Original procedural graphics; no Tecmo artwork or external reference code imported.</p>`);
 }
 function tone(type: string) {
   if (!sound) return;
@@ -145,7 +148,7 @@ document.addEventListener('keydown', ev => {
 });
 document.addEventListener('keyup', ev => keys.delete(ev.code));
 window.addEventListener('blur', () => { keys.clear(); edges = blankInput(); if (screen === 'match' && game.phase !== 'final') { paused = true; updateHUD(); } });
-let gamepadPrevious: boolean[] = [];
+let gamepadPrevious: boolean[] = [], gamepadPauseHeld = false;
 function input(): Input {
   const i = { ...edges };
   i.x = Number(keys.has('KeyD') || keys.has('ArrowRight')) - Number(keys.has('KeyA') || keys.has('ArrowLeft'));
@@ -156,20 +159,22 @@ function input(): Input {
     if (Math.abs(pad.axes[0]) > .18) i.x = pad.axes[0]; if (Math.abs(pad.axes[1]) > .18) i.y = pad.axes[1];
     const b = pad.buttons.map(x => x.pressed), press = (n: number) => b[n] && !gamepadPrevious[n];
     i.pass ||= press(0); i.tackle ||= press(1); i.switch ||= press(2); i.shoot ||= press(3); i.fire ||= press(5); i.sprint ||= b[7];
-    if (press(9) && screen === 'match') { paused = !paused; updateHUD(); } gamepadPrevious = b;
+    gamepadPrevious = b;
   }
   edges = blankInput(); return i;
 }
 function frame(now: number) {
   const elapsed = Math.min(.1, (now - last) / 1000); last = now;
+  const startPressed = navigator.getGamepads?.()[0]?.buttons[9]?.pressed ?? false;
+  if (screen === 'match' && startPressed && !gamepadPauseHeld) { paused = !paused; updateHUD(); }
+  gamepadPauseHeld = startPressed;
   if (screen !== 'select' && !paused && game.phase !== 'final') {
-    accumulator += elapsed * (screen === 'match' ? playback : 1);
-    let nextInput = accumulator + 1e-10 >= DT ? input() : blankInput(), steps = 0;
-    // A hitch leaves a backlog, never a variable step or a changed rule outcome.
-    while (accumulator + 1e-10 >= DT && steps++ < 120) {
-      game.step(screen === 'match' ? nextInput : blankInput()); accumulator -= DT;
+    const speed = screen === 'match' ? playback : 1;
+    let nextInput = stepper.accumulator + elapsed * speed + 1e-10 >= DT ? input() : blankInput();
+    stepper.advance(elapsed, speed, () => {
+      game.step(screen === 'match' ? nextInput : blankInput());
       nextInput = { ...nextInput, pass: false, shoot: false, tackle: false, fire: false, switch: false };
-    }
+    });
     for (const ev of game.events.slice(eventIndex)) if (['goal', 'tackle', 'freeze', 'save'].includes(ev.type) && screen === 'match') tone(ev.type);
     eventIndex = game.events.length;
   }
@@ -179,7 +184,7 @@ function frame(now: number) {
   requestAnimationFrame(frame);
 }
 
-// Read-only inspection and exact-step access for acceptance testing. No alternative simulator.
+// Inspection and exact-step hooks for acceptance testing. No alternative simulator.
 declare global { interface Window { beastball: { engine: () => Engine; snapshot: () => ReturnType<Engine['result']>; advance: (ticks: number) => void; pause: (value: boolean) => void } } }
 window.beastball = {
   engine: () => game, snapshot: () => game.result(),

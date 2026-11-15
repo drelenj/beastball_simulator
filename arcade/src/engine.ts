@@ -6,6 +6,10 @@ export const RULES = Object.freeze({ pitch: 100, goalRadius: 6, keeperZone: 20, 
 export type Team = (typeof league.teams)[number];
 export type RosterPlayer = Team['players'][number];
 export const teams: Team[] = league.teams;
+// Project source: positional_tendencies_v1.py GROUP and POS.att_lead.
+// This is the existing Beastball position taxonomy, shared by NBL position codes.
+export const POSITION_LINE: Record<string, number> = { TRP: 0, GRD: 0, PFD: 1, HNT: 1, TRK: 1, SEN: 1, PDR: 2, STR: 2, SCT: 2 };
+const SUPPORT_LEAD: Record<string, number> = { PDR: 10, STR: 18, SCT: 9, PFD: -5, HNT: 0, TRK: 1, SEN: -11, TRP: -9, GRD: -18 };
 export type Side = 0 | 1;
 export type Mode = 'human' | 'spectator';
 export type Phase = 'live' | 'goal' | 'break' | 'final';
@@ -68,7 +72,8 @@ export class AIController {
       const target = e.passTarget(p);
       const progress = target ? (target.x - p.x) * dir : 0;
       if (p.cooldown <= 0 && e.ball.age > .55) {
-        out.shoot = dGoal < 25 && Math.abs(p.y - 50) < 23 && (pressure > 0 || dGoal > 12 || p.stamina < .35);
+        const shotRange = p.data.Position === 'SCT' ? 30 : POSITION_LINE[p.data.Position] === 0 ? 18 : 25;
+        out.shoot = dGoal < shotRange && Math.abs(p.y - 50) < 23 && (pressure > 0 || dGoal > 12 || p.stamina < .35);
         out.pass = !out.shoot && !!target && ((pressure > 0 && progress > -9) || (progress > 8 && e.random() < .5));
       }
       let dx = (goal - p.x) / Math.max(dGoal, 1), dy = (50 - p.y) / Math.max(dGoal, 1);
@@ -103,7 +108,7 @@ export class AIController {
     }
     // Position-specific support lanes, anchored by the canonical formation.
     const advance = carrier ? (carrier.x - 50) * dir : 0;
-    const attackBias = ['STR', 'HNT', 'SCT'].includes(p.data.Position) ? 9 : ['GRD', 'PFD'].includes(p.data.Position) ? -8 : 2;
+    const attackBias = SUPPORT_LEAD[p.data.Position] ?? 0;
     const target = { x: clamp(p.home.x + dir * (advance * .6 + attackBias + 14), 7, 93), y: clamp(p.home.y * .62 + e.ball.y * .38, 8, 92) };
     if (carrier) target.x = clamp(carrier.x + dir * (attackBias + (p.bib % 3) * 3), 8, 92);
     out.move = distance(p, target) > 1.5 ? toward(p, target) : { x: 0, y: 0 };
@@ -143,26 +148,29 @@ export class Engine {
     this.events.push({ tick: this.tick, type, text, side, player, ...(points === undefined ? {} : { points }) });
   }
   add(p: Athlete, key: keyof PlayerStats, amount = 1) { p.stats[key] += amount; this.teamStats[p.side][key] += amount; }
-  setupFormation() {
+  setupFormation(resetEffects = false) {
     for (const side of [0, 1] as Side[]) {
       const t = side === 0 ? this.settings.home : this.settings.away;
       const lines = t.formation.split(/[–-]/).map(Number); let i = 0;
+      const field = this.players.filter(p => p.side === side && p.role === 'field')
+        .sort((a, b) => POSITION_LINE[a.data.Position] - POSITION_LINE[b.data.Position] || a.id - b.id);
       for (let l = 0; l < 3; l++) for (let j = 0; j < lines[l]; j++) {
-        const p = this.players[side * 12 + i++];
+        const p = field[i++];
         p.home = { x: this.ownGoal(side) + this.direction(side) * (22 + l * 13), y: 15 + 70 * (j + .5) / lines[l] };
       }
       this.players[side * 12 + 10].home = { x: this.ownGoal(side) + this.direction(side) * 3, y: 50 };
       this.players[side * 12 + 11].home = { x: 50, y: side === 0 ? -7 : 107 };
     }
     for (const p of this.players) {
-      p.x = p.home.x; p.y = p.home.y; p.vx = p.vy = 0; p.freeze = p.immune = p.down = p.zoneTime = 0;
+      p.x = p.home.x; p.y = p.home.y; p.vx = p.vy = 0; p.zoneTime = 0;
+      if (resetEffects) p.freeze = p.immune = p.down = 0;
       p.protected = .7; p.cooldown = .4; p.decision = 0; p.action = ''; p.intention = { move: { x: 0, y: 0 } };
     }
   }
   newQuarter() {
     this.clock = RULES.quarter; this.possessionClock = RULES.possession; this.tackles = 0;
     this.quivers = [{ spent: 0, loaded: 5, reload: 0, cooldown: 1 }, { spent: 0, loaded: 5, reload: 0, cooldown: 1 }];
-    this.setupFormation(); this.owner = null; this.recovery = null; this.arrows = [];
+    this.setupFormation(true); this.owner = null; this.recovery = null; this.arrows = [];
     this.ball = { x: 50, y: 50, z: .22, vx: 0, vy: 0, vz: 0, carrier: null, lastSide: 0, passer: null, shooter: null, kind: 'loose', age: 0, ignore: null };
     for (const side of [0, 1] as Side[]) {
       const hunter = this.players[side * 12]; hunter.x = 50 - this.direction(side) * 5; hunter.y = 50;
@@ -192,7 +200,8 @@ export class Engine {
   restart(side: Side, x?: number, y = 50) {
     this.setupFormation(); this.arrows = []; this.recovery = null;
     this.owner = null; this.setOwner(side);
-    const p = this.players[side * 12];
+    const p = this.players.find(p => p.side === side && p.role === 'field' && p.freeze <= 0 && p.down <= 0)
+      ?? this.players[side * 12 + 10];
     p.x = x === undefined ? this.ownGoal(side) + this.direction(side) * 40 : clamp(x, 1, 99); p.y = clamp(y, 5, 95);
     for (const q of this.players) if (q.id !== p.id && q.role === 'field' && distance(q, p) < 7) q.x = clamp(p.x - this.direction(q.side) * 8, 2, 98);
     this.ball = { x: p.x, y: p.y, z: 1.3, vx: 0, vy: 0, vz: 0, carrier: null, lastSide: side, passer: null, shooter: null, kind: 'loose', age: 0, ignore: null };
@@ -251,7 +260,15 @@ export class Engine {
     if (target.role === 'keeper' && distance(target, { x: this.ownGoal(target.side), y: 50 }) <= RULES.keeperZone) return;
     const range = distance(p, target); if (range < 10 || range > 70) return;
     // Tuned arcade arrow speed, not a canonical physical performance limit.
-    const speed = 62, time = range / speed;
+    const speed = 62;
+    const rx = target.x - p.x, ry = target.y - p.y;
+    const a = target.vx ** 2 + target.vy ** 2 - speed ** 2;
+    const b = 2 * (rx * target.vx + ry * target.vy), c = range ** 2;
+    const discriminant = b * b - 4 * a * c;
+    const roots = discriminant >= 0 && Math.abs(a) > .001
+      ? [(-b + Math.sqrt(discriminant)) / (2 * a), (-b - Math.sqrt(discriminant)) / (2 * a)].filter(t => t > 0)
+      : [];
+    const time = roots.length ? Math.min(...roots) : range / speed;
     const error = (100 - p.data['Opening-day OVR']) * .055;
     const aim = { x: target.x + target.vx * time + (this.random() - .5) * error, y: target.y + target.vy * time + (this.random() - .5) * error };
     const v = toward(p, aim);
@@ -326,7 +343,7 @@ export class Engine {
   private quarterLiveTicks() { return this.liveTicks - this.quarterStartLive; }
   private motor(p: Athlete) {
     const m = p.intention.move, rating = p.data['Opening-day OVR'] / 100;
-    const roleSpeed = p.role === 'keeper' ? .82 : p.role === 'archer' ? .65 : ['SCT', 'HNT', 'STR'].includes(p.data.Position) ? 1.06 : 1;
+    const roleSpeed = p.role === 'keeper' ? .82 : p.role === 'archer' ? .65 : ['SCT', 'PDR', 'STR'].includes(p.data.Position) ? 1.06 : 1;
     const sprint = p.intention.sprint && p.stamina > .12;
     const speed = (13.5 + rating * 5) * roleSpeed * (sprint ? 1.28 : 1) * (.8 + .2 * p.stamina);
     const acceleration = 34 + rating * 9;
@@ -336,10 +353,19 @@ export class Engine {
     p.stamina = clamp(p.stamina + (sprint && Math.hypot(p.vx, p.vy) > 4 ? -.013 : .025) * DT, .05, 1);
     if (p.role === 'archer') { p.x = clamp(p.x, 5, 95); p.y = p.side === 0 ? -7 : 107; }
     else {
-      p.y = clamp(p.y, .8, 99.2);
+      if (this.ball.carrier === p.id && (p.y < -.22 || p.y > 100.22)) {
+        this.turnover('SIDELINE · TURNOVER'); return;
+      }
+      p.y = clamp(p.y, .1, 99.9);
       // A controlled whole-ball crossing of the actual goal plane is a carry.
       if (this.ball.carrier === p.id) {
         const goal = this.attackGoal(p.side), crossed = this.direction(p.side) > 0 ? p.x > 100.22 : p.x < -.22;
+        const ownCrossed = this.direction(p.side) > 0 ? p.x < -.22 : p.x > 100.22;
+        if (ownCrossed) {
+          if (Math.hypot(p.y - 50, 1.3) < RULES.goalRadius - .22) this.goal((1 - p.side) as Side, false, null);
+          else this.turnover('OWN END LINE · TURNOVER');
+          return;
+        }
         if (crossed) {
           if (Math.hypot(p.y - 50, 1.3) < RULES.goalRadius - .22) this.goal(p.side, true, p.id);
           else this.turnover('END LINE · TURNOVER');

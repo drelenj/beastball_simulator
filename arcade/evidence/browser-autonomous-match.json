@@ -1,0 +1,2304 @@
+{
+  "seed": 202627,
+  "teams": [
+    "Ala Marauders",
+    "Xenar Ignite"
+  ],
+  "score": [
+    15,
+    27
+  ],
+  "phase": "final",
+  "quarter": 4,
+  "tick": 9051,
+  "liveTicks": 7200,
+  "teamStats": [
+    {
+      "points": 15,
+      "carries": 0,
+      "releaseGoals": 5,
+      "shots": 8,
+      "passes": 36,
+      "completions": 16,
+      "tackleAttempts": 7,
+      "tackles": 6,
+      "turnovers": 22,
+      "saves": 1,
+      "arrowShots": 15,
+      "arrowHits": 0,
+      "possessionTime": 62.14999999999775,
+      "possessionChanges": 30,
+      "recoveries": 25
+    },
+    {
+      "points": 27,
+      "carries": 3,
+      "releaseGoals": 4,
+      "shots": 6,
+      "passes": 26,
+      "completions": 8,
+      "tackleAttempts": 11,
+      "tackles": 8,
+      "turnovers": 19,
+      "saves": 2,
+      "arrowShots": 14,
+      "arrowHits": 0,
+      "possessionTime": 57.24999999999803,
+      "possessionChanges": 27,
+      "recoveries": 16
+    }
+  ],
+  "players": [
+    {
+      "id": "NBL24-02-04",
+      "name": "Kamasi Sinella",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 3,
+        "carries": 0,
+        "releaseGoals": 1,
+        "shots": 1,
+        "passes": 12,
+        "completions": 6,
+        "tackleAttempts": 1,
+        "tackles": 1,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-13-09",
+      "name": "Miles Starlight",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 3,
+        "carries": 0,
+        "releaseGoals": 1,
+        "shots": 4,
+        "passes": 1,
+        "completions": 1,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-01-02",
+      "name": "Amari Stormblade",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 2,
+        "completions": 0,
+        "tackleAttempts": 1,
+        "tackles": 1,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-02-01",
+      "name": "Kofi Starfire",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 0,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-02-06",
+      "name": "Aaron Starfall",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 7,
+        "completions": 2,
+        "tackleAttempts": 2,
+        "tackles": 2,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-19-10",
+      "name": "Idris Nightblade",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 6,
+        "carries": 0,
+        "releaseGoals": 2,
+        "shots": 2,
+        "passes": 5,
+        "completions": 3,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-02-05",
+      "name": "Elijah Mwangi",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 4,
+        "completions": 3,
+        "tackleAttempts": 2,
+        "tackles": 1,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-09-19",
+      "name": "Kadir Yeboah",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 0,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-02-02",
+      "name": "Sipho Moonsmith",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 2,
+        "completions": 1,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-02-10",
+      "name": "Zuberi Nightwatcher",
+      "side": 0,
+      "role": "field",
+      "stats": {
+        "points": 3,
+        "carries": 0,
+        "releaseGoals": 1,
+        "shots": 1,
+        "passes": 1,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "MID25_Jabari_Ironveil",
+      "name": "Yeboah Ironveil",
+      "side": 0,
+      "role": "keeper",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 2,
+        "completions": 0,
+        "tackleAttempts": 1,
+        "tackles": 1,
+        "turnovers": 0,
+        "saves": 1,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-02-12",
+      "name": "Jomo Skywatcher",
+      "side": 0,
+      "role": "archer",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 0,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 15,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-08",
+      "name": "Chisom Nightflame",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 11,
+        "completions": 5,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-04",
+      "name": "Babacar Inferno",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 1,
+        "completions": 0,
+        "tackleAttempts": 1,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-01",
+      "name": "Kidane Burnstorm",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 2,
+        "completions": 1,
+        "tackleAttempts": 1,
+        "tackles": 1,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-09",
+      "name": "Odion Firestorm",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 10,
+        "carries": 2,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 1,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-02",
+      "name": "Warsame Flamewarden",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 2,
+        "completions": 0,
+        "tackleAttempts": 3,
+        "tackles": 3,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-05",
+      "name": "Azizou Firestorm",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 1,
+        "completions": 1,
+        "tackleAttempts": 1,
+        "tackles": 1,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL25-D05",
+      "name": "Ekon Nnamdi",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 4,
+        "completions": 0,
+        "tackleAttempts": 4,
+        "tackles": 3,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-10",
+      "name": "Tumelo Blazewalker",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 17,
+        "carries": 1,
+        "releaseGoals": 4,
+        "shots": 6,
+        "passes": 1,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-18",
+      "name": "Ismael Mwamba",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 0,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-03",
+      "name": "Phenyo Mansa",
+      "side": 1,
+      "role": "field",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 2,
+        "completions": 0,
+        "tackleAttempts": 1,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-11",
+      "name": "Xavier Flameguard",
+      "side": 1,
+      "role": "keeper",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 1,
+        "completions": 1,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 1,
+        "saves": 2,
+        "arrowShots": 0,
+        "arrowHits": 0
+      }
+    },
+    {
+      "id": "NBL24-20-12",
+      "name": "Afolabi Firebow",
+      "side": 1,
+      "role": "archer",
+      "stats": {
+        "points": 0,
+        "carries": 0,
+        "releaseGoals": 0,
+        "shots": 0,
+        "passes": 0,
+        "completions": 0,
+        "tackleAttempts": 0,
+        "tackles": 0,
+        "turnovers": 0,
+        "saves": 0,
+        "arrowShots": 14,
+        "arrowHits": 0
+      }
+    }
+  ],
+  "events": [
+    {
+      "tick": 0,
+      "type": "quarter",
+      "text": "Q1 · FIRST HUNT",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 45,
+      "type": "tackle",
+      "text": "Ekon Nnamdi · BIG TACKLE",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 110,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 145,
+      "type": "pass",
+      "text": "Idris Nightblade · PASS",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 255,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 322,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 399,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 436,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 457,
+      "type": "catch",
+      "text": "Elijah Mwangi · CATCH",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 479,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 488,
+      "type": "tackle",
+      "text": "Warsame Flamewarden · BIG TACKLE",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 553,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 589,
+      "type": "pass",
+      "text": "Elijah Mwangi · PASS",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 593,
+      "type": "interception",
+      "text": "Odion Firestorm · INTERCEPTION",
+      "side": 1,
+      "player": 15
+    },
+    {
+      "tick": 593,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 616,
+      "type": "tackle",
+      "text": "Kamasi Sinella · BIG TACKLE",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 681,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 1,
+      "player": 15
+    },
+    {
+      "tick": 719,
+      "type": "pass",
+      "text": "Odion Firestorm · PASS",
+      "side": 1,
+      "player": 15
+    },
+    {
+      "tick": 719,
+      "type": "interception",
+      "text": "Miles Starlight · INTERCEPTION",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 719,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 760,
+      "type": "pass",
+      "text": "Miles Starlight · PASS",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 777,
+      "type": "catch",
+      "text": "Elijah Mwangi · CATCH",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 799,
+      "type": "tackle",
+      "text": "Warsame Flamewarden · BIG TACKLE",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 864,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 904,
+      "type": "pass",
+      "text": "Elijah Mwangi · PASS",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 934,
+      "type": "catch",
+      "text": "Miles Starlight · CATCH",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 956,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 976,
+      "type": "shot",
+      "text": "Miles Starlight · RELEASE",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 976,
+      "type": "interception",
+      "text": "Xavier Flameguard · INTERCEPTION",
+      "side": 1,
+      "player": 22
+    },
+    {
+      "tick": 976,
+      "type": "save",
+      "text": "Xavier Flameguard · KEEPER SAVE",
+      "side": 1,
+      "player": 22
+    },
+    {
+      "tick": 976,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 1001,
+      "type": "pass",
+      "text": "Xavier Flameguard · PASS",
+      "side": 1,
+      "player": 22
+    },
+    {
+      "tick": 1027,
+      "type": "catch",
+      "text": "Ekon Nnamdi · CATCH",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 1050,
+      "type": "tackle",
+      "text": "Aaron Starfall · BIG TACKLE",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 1115,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 1159,
+      "type": "pass",
+      "text": "Ekon Nnamdi · PASS",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 1248,
+      "type": "interception",
+      "text": "Amari Stormblade · INTERCEPTION",
+      "side": 0,
+      "player": 2
+    },
+    {
+      "tick": 1248,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 1291,
+      "type": "pass",
+      "text": "Amari Stormblade · PASS",
+      "side": 0,
+      "player": 2
+    },
+    {
+      "tick": 1291,
+      "type": "interception",
+      "text": "Babacar Inferno · INTERCEPTION",
+      "side": 1,
+      "player": 13
+    },
+    {
+      "tick": 1291,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 1314,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 1327,
+      "type": "tackle",
+      "text": "Aaron Starfall · BIG TACKLE",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 1392,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 1,
+      "player": 13
+    },
+    {
+      "tick": 1434,
+      "type": "pass",
+      "text": "Babacar Inferno · PASS",
+      "side": 1,
+      "player": 13
+    },
+    {
+      "tick": 1487,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 1524,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 1534,
+      "type": "catch",
+      "text": "Aaron Starfall · CATCH",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 1569,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 1571,
+      "type": "interception",
+      "text": "Kidane Burnstorm · INTERCEPTION",
+      "side": 1,
+      "player": 14
+    },
+    {
+      "tick": 1571,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 1594,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 1609,
+      "type": "pass",
+      "text": "Kidane Burnstorm · PASS",
+      "side": 1,
+      "player": 14
+    },
+    {
+      "tick": 1636,
+      "type": "catch",
+      "text": "Tumelo Blazewalker · CATCH",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 1675,
+      "type": "shot",
+      "text": "Tumelo Blazewalker · RELEASE",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 1716,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 1,
+      "player": 19,
+      "points": 3
+    },
+    {
+      "tick": 1880,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 1909,
+      "type": "break",
+      "text": "END OF Q1",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 2090,
+      "type": "quarter",
+      "text": "Q2 · FIRST HUNT",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 2135,
+      "type": "tackle",
+      "text": "Ekon Nnamdi · BIG TACKLE",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 2200,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 2235,
+      "type": "pass",
+      "text": "Idris Nightblade · PASS",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 2235,
+      "type": "interception",
+      "text": "Ekon Nnamdi · INTERCEPTION",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 2235,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 2258,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 2278,
+      "type": "pass",
+      "text": "Ekon Nnamdi · PASS",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 2281,
+      "type": "interception",
+      "text": "Elijah Mwangi · INTERCEPTION",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 2281,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 2303,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 2316,
+      "type": "pass",
+      "text": "Elijah Mwangi · PASS",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 2316,
+      "type": "catch",
+      "text": "Idris Nightblade · CATCH",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 2352,
+      "type": "pass",
+      "text": "Idris Nightblade · PASS",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 2380,
+      "type": "catch",
+      "text": "Miles Starlight · CATCH",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 2415,
+      "type": "shot",
+      "text": "Miles Starlight · RELEASE",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 2435,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 0,
+      "player": 1,
+      "points": 3
+    },
+    {
+      "tick": 2622,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 2644,
+      "type": "catch",
+      "text": "Tumelo Blazewalker · CATCH",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 2667,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 2688,
+      "type": "shot",
+      "text": "Tumelo Blazewalker · RELEASE",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 2702,
+      "type": "interception",
+      "text": "Yeboah Ironveil · INTERCEPTION",
+      "side": 0,
+      "player": 10
+    },
+    {
+      "tick": 2702,
+      "type": "save",
+      "text": "Yeboah Ironveil · KEEPER SAVE",
+      "side": 0,
+      "player": 10
+    },
+    {
+      "tick": 2702,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 2727,
+      "type": "pass",
+      "text": "Yeboah Ironveil · PASS",
+      "side": 0,
+      "player": 10
+    },
+    {
+      "tick": 2727,
+      "type": "interception",
+      "text": "Tumelo Blazewalker · INTERCEPTION",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 2727,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 2744,
+      "type": "goal",
+      "text": "CARRY GOAL · +5",
+      "side": 1,
+      "player": 19,
+      "points": 5
+    },
+    {
+      "tick": 2908,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 3051,
+      "type": "catch",
+      "text": "Miles Starlight · CATCH",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 3085,
+      "type": "tackle",
+      "text": "Kidane Burnstorm · BIG TACKLE",
+      "side": 1,
+      "player": 14
+    },
+    {
+      "tick": 3150,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 3223,
+      "type": "shot",
+      "text": "Miles Starlight · RELEASE",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 3238,
+      "type": "interception",
+      "text": "Xavier Flameguard · INTERCEPTION",
+      "side": 1,
+      "player": 22
+    },
+    {
+      "tick": 3238,
+      "type": "save",
+      "text": "Xavier Flameguard · KEEPER SAVE",
+      "side": 1,
+      "player": 22
+    },
+    {
+      "tick": 3238,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 3239,
+      "type": "turnover",
+      "text": "OWN END LINE · TURNOVER",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 3276,
+      "type": "shot",
+      "text": "Kamasi Sinella · RELEASE",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 3279,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 0,
+      "player": 0,
+      "points": 3
+    },
+    {
+      "tick": 3466,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 3483,
+      "type": "catch",
+      "text": "Tumelo Blazewalker · CATCH",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 3506,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 3521,
+      "type": "shot",
+      "text": "Tumelo Blazewalker · RELEASE",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 3569,
+      "type": "tackle",
+      "text": "Yeboah Ironveil · BIG TACKLE",
+      "side": 0,
+      "player": 10
+    },
+    {
+      "tick": 3634,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 1,
+      "player": 15
+    },
+    {
+      "tick": 3663,
+      "type": "goal",
+      "text": "CARRY GOAL · +5",
+      "side": 1,
+      "player": 15,
+      "points": 5
+    },
+    {
+      "tick": 3836,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 3844,
+      "type": "interception",
+      "text": "Phenyo Mansa · INTERCEPTION",
+      "side": 1,
+      "player": 21
+    },
+    {
+      "tick": 3844,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 3867,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 3883,
+      "type": "pass",
+      "text": "Phenyo Mansa · PASS",
+      "side": 1,
+      "player": 21
+    },
+    {
+      "tick": 3883,
+      "type": "interception",
+      "text": "Aaron Starfall · INTERCEPTION",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 3883,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 3905,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 3926,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 3926,
+      "type": "interception",
+      "text": "Ekon Nnamdi · INTERCEPTION",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 3926,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 3971,
+      "type": "pass",
+      "text": "Ekon Nnamdi · PASS",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 3979,
+      "type": "interception",
+      "text": "Sipho Moonsmith · INTERCEPTION",
+      "side": 0,
+      "player": 8
+    },
+    {
+      "tick": 3979,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 4016,
+      "type": "pass",
+      "text": "Sipho Moonsmith · PASS",
+      "side": 0,
+      "player": 8
+    },
+    {
+      "tick": 4023,
+      "type": "catch",
+      "text": "Zuberi Nightwatcher · CATCH",
+      "side": 0,
+      "player": 9
+    },
+    {
+      "tick": 4045,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 4061,
+      "type": "pass",
+      "text": "Zuberi Nightwatcher · PASS",
+      "side": 0,
+      "player": 9
+    },
+    {
+      "tick": 4130,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 4197,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 4205,
+      "type": "interception",
+      "text": "Amari Stormblade · INTERCEPTION",
+      "side": 0,
+      "player": 2
+    },
+    {
+      "tick": 4205,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 4227,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 4248,
+      "type": "pass",
+      "text": "Amari Stormblade · PASS",
+      "side": 0,
+      "player": 2
+    },
+    {
+      "tick": 4257,
+      "type": "interception",
+      "text": "Kidane Burnstorm · INTERCEPTION",
+      "side": 1,
+      "player": 14
+    },
+    {
+      "tick": 4257,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 4280,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 4296,
+      "type": "pass",
+      "text": "Kidane Burnstorm · PASS",
+      "side": 1,
+      "player": 14
+    },
+    {
+      "tick": 4312,
+      "type": "interception",
+      "text": "Elijah Mwangi · INTERCEPTION",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 4312,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 4326,
+      "type": "break",
+      "text": "END OF Q2",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 4507,
+      "type": "quarter",
+      "text": "Q3 · FIRST HUNT",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 4552,
+      "type": "tackle",
+      "text": "Ekon Nnamdi · BIG TACKLE",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 4617,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 4652,
+      "type": "pass",
+      "text": "Idris Nightblade · PASS",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 4653,
+      "type": "catch",
+      "text": "Elijah Mwangi · CATCH",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 4675,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 4688,
+      "type": "pass",
+      "text": "Elijah Mwangi · PASS",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 4702,
+      "type": "catch",
+      "text": "Aaron Starfall · CATCH",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 4742,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 4754,
+      "type": "catch",
+      "text": "Idris Nightblade · CATCH",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 4796,
+      "type": "shot",
+      "text": "Idris Nightblade · RELEASE",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 4807,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 0,
+      "player": 5,
+      "points": 3
+    },
+    {
+      "tick": 4994,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 5013,
+      "type": "catch",
+      "text": "Tumelo Blazewalker · CATCH",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 5036,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 5049,
+      "type": "shot",
+      "text": "Tumelo Blazewalker · RELEASE",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 5082,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 1,
+      "player": 19,
+      "points": 3
+    },
+    {
+      "tick": 5255,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 5263,
+      "type": "interception",
+      "text": "Phenyo Mansa · INTERCEPTION",
+      "side": 1,
+      "player": 21
+    },
+    {
+      "tick": 5263,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 5286,
+      "type": "tackle",
+      "text": "Elijah Mwangi · BIG TACKLE",
+      "side": 0,
+      "player": 6
+    },
+    {
+      "tick": 5351,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 1,
+      "player": 21
+    },
+    {
+      "tick": 5390,
+      "type": "pass",
+      "text": "Phenyo Mansa · PASS",
+      "side": 1,
+      "player": 21
+    },
+    {
+      "tick": 5394,
+      "type": "interception",
+      "text": "Aaron Starfall · INTERCEPTION",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 5394,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 5416,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 5423,
+      "type": "tackle",
+      "text": "Azizou Firestorm · BIG TACKLE",
+      "side": 1,
+      "player": 17
+    },
+    {
+      "tick": 5488,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 5525,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 5525,
+      "type": "interception",
+      "text": "Ekon Nnamdi · INTERCEPTION",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 5525,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 5548,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 5566,
+      "type": "pass",
+      "text": "Ekon Nnamdi · PASS",
+      "side": 1,
+      "player": 18
+    },
+    {
+      "tick": 5570,
+      "type": "interception",
+      "text": "Miles Starlight · INTERCEPTION",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 5570,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 5615,
+      "type": "shot",
+      "text": "Miles Starlight · RELEASE",
+      "side": 0,
+      "player": 1
+    },
+    {
+      "tick": 5615,
+      "type": "interception",
+      "text": "Azizou Firestorm · INTERCEPTION",
+      "side": 1,
+      "player": 17
+    },
+    {
+      "tick": 5615,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 5665,
+      "type": "pass",
+      "text": "Azizou Firestorm · PASS",
+      "side": 1,
+      "player": 17
+    },
+    {
+      "tick": 5669,
+      "type": "catch",
+      "text": "Chisom Nightflame · CATCH",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 5692,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 5720,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 5880,
+      "type": "turnover",
+      "text": "SIDELINE · TURNOVER",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 5926,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 5929,
+      "type": "interception",
+      "text": "Tumelo Blazewalker · INTERCEPTION",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 5929,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 5969,
+      "type": "pass",
+      "text": "Tumelo Blazewalker · PASS",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 5980,
+      "type": "interception",
+      "text": "Sipho Moonsmith · INTERCEPTION",
+      "side": 0,
+      "player": 8
+    },
+    {
+      "tick": 5980,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 6002,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 6016,
+      "type": "pass",
+      "text": "Sipho Moonsmith · PASS",
+      "side": 0,
+      "player": 8
+    },
+    {
+      "tick": 6157,
+      "type": "turnover",
+      "text": "SIDELINE · TURNOVER",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 6202,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 6208,
+      "type": "interception",
+      "text": "Kamasi Sinella · INTERCEPTION",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 6208,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 6248,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 6292,
+      "type": "catch",
+      "text": "Idris Nightblade · CATCH",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 6319,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 6329,
+      "type": "shot",
+      "text": "Idris Nightblade · RELEASE",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 6348,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 0,
+      "player": 5,
+      "points": 3
+    },
+    {
+      "tick": 6535,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 6553,
+      "type": "catch",
+      "text": "Tumelo Blazewalker · CATCH",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 6576,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 6590,
+      "type": "shot",
+      "text": "Tumelo Blazewalker · RELEASE",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 6623,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 1,
+      "player": 19,
+      "points": 3
+    },
+    {
+      "tick": 6743,
+      "type": "break",
+      "text": "END OF Q3",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 6924,
+      "type": "quarter",
+      "text": "Q4 · FIRST HUNT",
+      "side": null,
+      "player": null
+    },
+    {
+      "tick": 6970,
+      "type": "pass",
+      "text": "Idris Nightblade · PASS",
+      "side": 0,
+      "player": 5
+    },
+    {
+      "tick": 6991,
+      "type": "catch",
+      "text": "Aaron Starfall · CATCH",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 7013,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 7024,
+      "type": "tackle",
+      "text": "Warsame Flamewarden · BIG TACKLE",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 7089,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 7132,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 7156,
+      "type": "catch",
+      "text": "Zuberi Nightwatcher · CATCH",
+      "side": 0,
+      "player": 9
+    },
+    {
+      "tick": 7178,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 7195,
+      "type": "shot",
+      "text": "Zuberi Nightwatcher · RELEASE",
+      "side": 0,
+      "player": 9
+    },
+    {
+      "tick": 7216,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 0,
+      "player": 9,
+      "points": 3
+    },
+    {
+      "tick": 7403,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 7421,
+      "type": "catch",
+      "text": "Tumelo Blazewalker · CATCH",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 7444,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 7458,
+      "type": "shot",
+      "text": "Tumelo Blazewalker · RELEASE",
+      "side": 1,
+      "player": 19
+    },
+    {
+      "tick": 7492,
+      "type": "goal",
+      "text": "RELEASE GOAL · +3",
+      "side": 1,
+      "player": 19,
+      "points": 3
+    },
+    {
+      "tick": 7665,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 7770,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 7848,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 7988,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 8025,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 8034,
+      "type": "catch",
+      "text": "Aaron Starfall · CATCH",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 8056,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 8070,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 8071,
+      "type": "interception",
+      "text": "Warsame Flamewarden · INTERCEPTION",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 8071,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 8094,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 8106,
+      "type": "tackle",
+      "text": "Amari Stormblade · BIG TACKLE",
+      "side": 0,
+      "player": 2
+    },
+    {
+      "tick": 8171,
+      "type": "recovery",
+      "text": "FIRST TACKLE · PROTECTED RECOVERY",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 8209,
+      "type": "pass",
+      "text": "Warsame Flamewarden · PASS",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 8280,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 8326,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 8344,
+      "type": "catch",
+      "text": "Aaron Starfall · CATCH",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 8366,
+      "type": "arrow",
+      "text": "Afolabi Firebow · ARROW",
+      "side": 1,
+      "player": 23
+    },
+    {
+      "tick": 8380,
+      "type": "pass",
+      "text": "Aaron Starfall · PASS",
+      "side": 0,
+      "player": 4
+    },
+    {
+      "tick": 8383,
+      "type": "interception",
+      "text": "Warsame Flamewarden · INTERCEPTION",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 8383,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 8406,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 8424,
+      "type": "pass",
+      "text": "Warsame Flamewarden · PASS",
+      "side": 1,
+      "player": 16
+    },
+    {
+      "tick": 8510,
+      "type": "interception",
+      "text": "Yeboah Ironveil · INTERCEPTION",
+      "side": 0,
+      "player": 10
+    },
+    {
+      "tick": 8510,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 0,
+      "player": null
+    },
+    {
+      "tick": 8535,
+      "type": "pass",
+      "text": "Yeboah Ironveil · PASS",
+      "side": 0,
+      "player": 10
+    },
+    {
+      "tick": 8541,
+      "type": "interception",
+      "text": "Odion Firestorm · INTERCEPTION",
+      "side": 1,
+      "player": 15
+    },
+    {
+      "tick": 8541,
+      "type": "turnover",
+      "text": "POSSESSION CHANGE",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 8564,
+      "type": "arrow",
+      "text": "Jomo Skywatcher · ARROW",
+      "side": 0,
+      "player": 11
+    },
+    {
+      "tick": 8569,
+      "type": "goal",
+      "text": "CARRY GOAL · +5",
+      "side": 1,
+      "player": 15,
+      "points": 5
+    },
+    {
+      "tick": 8742,
+      "type": "pass",
+      "text": "Kamasi Sinella · PASS",
+      "side": 0,
+      "player": 0
+    },
+    {
+      "tick": 8842,
+      "type": "turnover",
+      "text": "RELEASE WIDE · TURNOVER",
+      "side": 1,
+      "player": null
+    },
+    {
+      "tick": 8920,
+      "type": "pass",
+      "text": "Chisom Nightflame · PASS",
+      "side": 1,
+      "player": 12
+    },
+    {
+      "tick": 9051,
+      "type": "final",
+      "text": "FULL TIME",
+      "side": null,
+      "player": null
+    }
+  ]
+}

@@ -7,8 +7,8 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node --import tsx --test tests/engine.test.ts",
-    "test:browser": "node tests/browser.mjs",
+    "test": "node --import tsx --test --test-isolation=none tests/engine.test.ts",
+    "test:browser": "node --import tsx tests/browser.mjs",
     "match": "node --import tsx scripts/match.ts"
   },
   "devDependencies": {

@@ -1,0 +1,441 @@
+{
+  "folder": "https://drive.google.com/drive/folders/1Y8JhgMbo1-yZD6Z7tOaM7AQliE4CqiFN",
+  "assets": [
+    {
+      "teamId": "isukari-sirenwings",
+      "driveId": "1ynCVURH7G7jzqq7A84H1-_DCHupI5ozI",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_ISUKARI_SIRENWINGS._Color_sch_1d3bceec-7b11-4639-82ee-c1dd3dad0044.png",
+      "sourceUrl": "https://drive.google.com/file/d/1ynCVURH7G7jzqq7A84H1-_DCHupI5ozI/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/e71489a2-8720-44ad-b6e2-8959745f2306/drebenzi_Sports_team_logo_for_the_ISUKARI_SIRENWINGS._Color_sch_1d3bceec-7b11-4639-82ee-c1dd3dad0044.png",
+      "localPath": "/logos/isukari-sirenwings.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "5a0f94c77f661278f96fe0bc6b69e7340146243039a82a848dc200b807c6aa67",
+      "sourceDimensions": [
+        2048,
+        2048
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "e3495145f13a9f65f7f5e1161f846f34a14b4793928c8521fdb2fccb6b8c93c0"
+    },
+    {
+      "teamId": "guunlekia-serpents",
+      "driveId": "1kcDwnokQK8hUOpDnkOzz2fTb6jX4pVxs",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_GUUNLEKIA_SERPENTS._Color_sch_66336512-07a4-49b0-b05d-ca0baf6e97b6.png",
+      "sourceUrl": "https://drive.google.com/file/d/1kcDwnokQK8hUOpDnkOzz2fTb6jX4pVxs/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/6b0a576c-c628-43ab-a47a-7e47e6703b79/drebenzi_Sports_team_logo_for_the_GUUNLEKIA_SERPENTS._Color_sch_66336512-07a4-49b0-b05d-ca0baf6e97b6.png",
+      "localPath": "/logos/guunlekia-serpents.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "300ebdae2bd6bb08cf2e65226ff4b9611a459e0d6aa325a2d61dee50e733e1a9",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "ba93cc579eb25d61afffc9941ed7d19f199b56172166b197d6ea37f377c8eee7"
+    },
+    {
+      "teamId": "hinasola-hunters",
+      "driveId": "1-4zw60uduvJB3XpBJwqswt1AujM0irkk",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_HINASOLA_HUNTERS_futuristic_s_fff535d9-95c8-4e3d-ae92-2113662dfed2.png",
+      "sourceUrl": "https://drive.google.com/file/d/1-4zw60uduvJB3XpBJwqswt1AujM0irkk/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/36970700-67af-442c-8388-fee2852d8121/drebenzi_Sports_team_logo_for_the_HINASOLA_HUNTERS_futuristic_s_fff535d9-95c8-4e3d-ae92-2113662dfed2.png",
+      "localPath": "/logos/hinasola-hunters.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "c631f54bcbb864814275fb3fffe6048a84924a090436e52e78934c388c5abaad",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "83d11daca5ce50ba1fee526156c2e6c97a14da2d18fb1ae07f0de57e5c17d5ab"
+    },
+    {
+      "teamId": "priya-arpaqu",
+      "driveId": "19t3RA1uZMmZET_Ms_X-XuHd9tUKdgTXn",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_PRIYA_ARPAGU_3ded2740-9377-4f15-9e1c-61bca993b234.png",
+      "sourceUrl": "https://drive.google.com/file/d/19t3RA1uZMmZET_Ms_X-XuHd9tUKdgTXn/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/31402c66-e5b5-41d5-9ed0-8a29fa267196/drebenzi_Sports_team_logo_for_the_PRIYA_ARPAGU_3ded2740-9377-4f15-9e1c-61bca993b234.png",
+      "localPath": "/logos/priya-arpaqu.webp",
+      "status": "unmapped: filename says ARPAGU, roster says Arpaqu"
+    },
+    {
+      "teamId": "bryjeer-flame-devils",
+      "driveId": "1yMpkVZchrAmAFGJuosSP15hzL8R87Wq9",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_BRYJEER_FLAME_DEVILS_._Flame__9fdfcc29-9051-4aba-b1da-bbffc29a523d.png",
+      "sourceUrl": "https://drive.google.com/file/d/1yMpkVZchrAmAFGJuosSP15hzL8R87Wq9/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/d2225d47-86a8-4b3c-a5e4-6e5b431ef437/drebenzi_Sports_team_logo_for_the_BRYJEER_FLAME_DEVILS_._Flame__9fdfcc29-9051-4aba-b1da-bbffc29a523d.png",
+      "localPath": "/logos/bryjeer-flame-devils.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "e7384783d25ed4fa635bb60ae77e041d4936de13e263cfda9ecb1979ed0fb22e",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "4c00e44e5210aa5539858255b20140e8646112658d6d7f913840a31320b3f980"
+    },
+    {
+      "teamId": "garvian-guardians",
+      "driveId": "1mTpFMasidvyZanZ-xSGnRUVgDPq2n1N6",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_GARVIAN._Lion._Color_scheme_i_a7aa9865-dd1e-4dd6-8db9-c654aed41ffc.png",
+      "sourceUrl": "https://drive.google.com/file/d/1mTpFMasidvyZanZ-xSGnRUVgDPq2n1N6/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/b434850e-b5e9-427d-a6fb-f05c7fd3b07b/drebenzi_Sports_team_logo_for_the_GARVIAN._Lion._Color_scheme_i_a7aa9865-dd1e-4dd6-8db9-c654aed41ffc.png",
+      "localPath": "/logos/garvian-guardians.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "0e0cbe0b662895026959434933dfee8891bb5fc0a83dd5a37c34ff6771910e0f",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "20243f66e2d52872283b8dfbacd6aacac4e049c15913b25fb7e3e4331d57c6e5"
+    },
+    {
+      "teamId": "ursiria-65ers",
+      "driveId": "1jl4renrLejFNqbwvwCv-ef12QmK0T4E_",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_65ERS._Grizzly_Bear._Color_sc_bd13369f-f4b7-412e-b667-a50e61ac3397.png",
+      "sourceUrl": "https://drive.google.com/file/d/1jl4renrLejFNqbwvwCv-ef12QmK0T4E_/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/03741c56-c228-436f-a2b2-d4068ffbb110/drebenzi_Sports_team_logo_for_the_65ERS._Grizzly_Bear._Color_sc_bd13369f-f4b7-412e-b667-a50e61ac3397.png",
+      "localPath": "/logos/ursiria-65ers.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "a99eddd18b0b47329498fceea18ba28ad58393f23cd75cea92bdadc21b6b0fd5",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "9d838dbb3a9294a56f532dc690819dc45b399f83c5cca193e3b4b9d9e211a44a"
+    },
+    {
+      "teamId": "domyu-dominators",
+      "driveId": "1itsn1wzXN9EVYoDLYHTwgBg66XX9_AIO",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_DOMYU_DOMINATORS._Afrocentric_ea5f99a3-4e6f-48fc-88e9-5ae296fe0360.png",
+      "sourceUrl": "https://drive.google.com/file/d/1itsn1wzXN9EVYoDLYHTwgBg66XX9_AIO/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/9d3f95e0-3080-46f8-9348-3f7801b07315/drebenzi_Sports_team_logo_for_the_DOMYU_DOMINATORS._Afrocentric_ea5f99a3-4e6f-48fc-88e9-5ae296fe0360.png",
+      "localPath": "/logos/domyu-dominators.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "66790c97e7edeb2098173cd8096908ef389fa023a4455daafbaeae4c32ce9875",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "e3383cac96e325ffd39392ae5141b639750639b8ebaa89357f2123f8bbe71d5d"
+    },
+    {
+      "teamId": "garahviq-immortals",
+      "driveId": "1vnfgzMGkkjJVKA3nZ6SZMgOdopbZ3gMa",
+      "originalFilename": "drebenzi_Sports_team_logo_with_dragon_motifs_for_the_GARAHVIQ_I_fe5b844d-3965-4ca2-bf40-ecef94610593.png",
+      "sourceUrl": "https://drive.google.com/file/d/1vnfgzMGkkjJVKA3nZ6SZMgOdopbZ3gMa/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/80346d78-6d64-428b-bd0e-64a45ec9b5e5/drebenzi_Sports_team_logo_with_dragon_motifs_for_the_GARAHVIQ_I_fe5b844d-3965-4ca2-bf40-ecef94610593.png",
+      "localPath": "/logos/garahviq-immortals.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "b4c033a9027d5bbdeb3e602622959e54f751c151006c7adcf6e8c5960265188c",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "ed2a08a0517f1f1d310a0ab065d2c5b06e1b78dab6a86287955b992943f04af1"
+    },
+    {
+      "teamId": "ala-apex",
+      "driveId": "1sXhu-1qk-0QcEi2uv7R41T80vhqJxNdp",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_ALA_APEX._Color_scheme_is_Roy_b35844d7-bd4d-44e3-8e0b-e9486f5cad1a.png",
+      "sourceUrl": "https://drive.google.com/file/d/1sXhu-1qk-0QcEi2uv7R41T80vhqJxNdp/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/0302e62a-3546-43c2-8470-63d451938596/drebenzi_Sports_team_logo_for_the_ALA_APEX._Color_scheme_is_Roy_b35844d7-bd4d-44e3-8e0b-e9486f5cad1a.png",
+      "localPath": "/logos/ala-apex.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "4f1495b47f7979288767ace76a433c15c25332508c2140ccc5af039df78b5b77",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "0f060b5ef114859b824c1965f917e1b304d9136ad0129beee1e9e1e38375ad61"
+    },
+    {
+      "teamId": "lykessia-wolverines",
+      "driveId": "1n2P5u-T3xc3pbwAVJt8MVHEU3IHti6r5",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_LYKESSIA_WOLVERINES_._Color_s_3d611854-ca7c-469d-83ad-b56c6fc0fdcc.png",
+      "sourceUrl": "https://drive.google.com/file/d/1n2P5u-T3xc3pbwAVJt8MVHEU3IHti6r5/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/7d4303bb-c29a-4824-868d-a03a9e7fd7a2/drebenzi_Sports_team_logo_for_the_LYKESSIA_WOLVERINES_._Color_s_3d611854-ca7c-469d-83ad-b56c6fc0fdcc.png",
+      "localPath": "/logos/lykessia-wolverines.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "49556f4ced6f8a2e419566d6c953cbe04c30d90e069505288a723f4ee600bf1d",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "77affde5cd8aeb6ecdcf2073b73ec2b8ff2aa30ca41a664da9a9808ccb98f3f7"
+    },
+    {
+      "teamId": "kasuf-bloodravens",
+      "driveId": "1VqyDgv5WqwA0uo_iUKZrWFvFla639goX",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_KASUF_BLOODRAVENS_._Color_sch_9b449f69-3770-4e11-953e-173fb0f5f623.png",
+      "sourceUrl": "https://drive.google.com/file/d/1VqyDgv5WqwA0uo_iUKZrWFvFla639goX/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/fb32b34d-c988-4699-a286-8c0b77a6091e/drebenzi_Sports_team_logo_for_the_KASUF_BLOODRAVENS_._Color_sch_9b449f69-3770-4e11-953e-173fb0f5f623.png",
+      "localPath": "/logos/kasuf-bloodravens.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "1636668a7e0e2886f8806b820d9538fa17549f9ad2e88bc9e5ea5624fa5ccae2",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "004d12ae774d0f69814a18a2af0eca9d3ccadad585d95275a77a2cd3c84fbcc6"
+    },
+    {
+      "teamId": "wibatu-rangers",
+      "driveId": "1TrmAu3O4nZbNpWhshm_-aWvh0aHBqD5m",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_WIBATU_RANGERS_._Letter_W._Co_3d783e0b-bcc5-4a1e-9b06-8fc4cd20b246.png",
+      "sourceUrl": "https://drive.google.com/file/d/1TrmAu3O4nZbNpWhshm_-aWvh0aHBqD5m/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/bb37de05-ba0a-4d4c-9786-c9d9449ed0a4/drebenzi_Sports_team_logo_for_the_WIBATU_RANGERS_._Letter_W._Co_3d783e0b-bcc5-4a1e-9b06-8fc4cd20b246.png",
+      "localPath": "/logos/wibatu-rangers.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "682ac9930f15587e1dcc78678ef52c5c7d2e86952a2a9a35ed0a5342c43a9be8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "e5c95b47a9f282af46c8190b84f5658d530ab95fd01f3c85ea2a45e573ba617e"
+    },
+    {
+      "teamId": "ndomiri-sentinels",
+      "driveId": "1LMgYU-9jrdhe3F-zsCgdimhx86j5Ppmx",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_NDOMIRI_SENTINELS._Color_sche_99ad3c36-5f2c-4060-bb13-d09697d5f35b.png",
+      "sourceUrl": "https://drive.google.com/file/d/1LMgYU-9jrdhe3F-zsCgdimhx86j5Ppmx/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/8f3b2fed-aad4-434c-9edb-58bd7b42f084/drebenzi_Sports_team_logo_for_the_NDOMIRI_SENTINELS._Color_sche_99ad3c36-5f2c-4060-bb13-d09697d5f35b.png",
+      "localPath": "/logos/ndomiri-sentinels.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "8c6496fdd33f3f9aee561b807e2626604ee308c0f0b43d6f2c0b099852b89254",
+      "sourceDimensions": [
+        2048,
+        2048
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "53acd2c31f630f1be85210292087fc5994a0e332d9565976be7de29ab207534e"
+    },
+    {
+      "teamId": "yukima-cowhands",
+      "driveId": "1FeFlB3MCD61hX9AUBX4dPYyrZbN9btHH",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_YUKIMA_COWHANDS_._Angry_Bull__afdee17d-98fb-406b-ad90-437816d78371.png",
+      "sourceUrl": "https://drive.google.com/file/d/1FeFlB3MCD61hX9AUBX4dPYyrZbN9btHH/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/614581b9-b391-44a7-a314-894cbad5b6f8/drebenzi_Sports_team_logo_for_the_YUKIMA_COWHANDS_._Angry_Bull__afdee17d-98fb-406b-ad90-437816d78371.png",
+      "localPath": "/logos/yukima-cowhands.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "f2011fdf3dfdc4c623db848682bc3467488a0124be4b23065e74decdd72f2613",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "89903a87f91ee2869102eaea7e2aa227fbdb8e371c6df2bcca37a8251fdc0137"
+    },
+    {
+      "teamId": "nukyl-chiefs",
+      "driveId": "1DbMcgels1bIqFwihG3bc0BLsXlH3h679",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_NUKYL_CHIEFS_._Shaka_Zulu._Co_4c60ed40-4390-44c2-81a1-424595de02af.png",
+      "sourceUrl": "https://drive.google.com/file/d/1DbMcgels1bIqFwihG3bc0BLsXlH3h679/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/2dfa79f9-64f6-4056-a91f-4a32cda37c52/drebenzi_Sports_team_logo_for_the_NUKYL_CHIEFS_._Shaka_Zulu._Co_4c60ed40-4390-44c2-81a1-424595de02af.png",
+      "localPath": "/logos/nukyl-chiefs.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "625615a2e742b90d46ede210ef48025d7071845cd3683ca87d1b331f0ed8a5b2",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "9c328271f588ffb28feaf13f511d8eaaa4eef1162916cce05f01f948aec1b7b0"
+    },
+    {
+      "teamId": "gyanka-vanagu",
+      "driveId": "18G2eKKjyfYiEVSexiIQWHiqRSzQmklyy",
+      "originalFilename": "danyoljaye_a_Sports_team_logo_for_the_GYANKA_VANAGU_black_raven_c63b39cb-e6a9-466b-a46c-37311b5c4afa.png",
+      "sourceUrl": "https://drive.google.com/file/d/18G2eKKjyfYiEVSexiIQWHiqRSzQmklyy/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/64ef2512-5630-429c-bf6f-f534ca0bc004/danyoljaye_a_Sports_team_logo_for_the_GYANKA_VANAGU_black_raven_c63b39cb-e6a9-466b-a46c-37311b5c4afa.png",
+      "localPath": "/logos/gyanka-vanagu.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "8b8ce96c9dc12e08457e84d0f3aa83aaf1b1ee498c45c26a31907cf5c9b07eda",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "a5a984436e79d65cdaf605da2b5c323efe5d9629e76bbd1922beb9ef9c211c19"
+    },
+    {
+      "teamId": "mbuya-imu-moonhawks",
+      "driveId": "1z4QT427pyYH6DiFh7J8lwClFSB1KqiPx",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_MBUYA_IMU_MOONHAWKS_._Color_s_f102e657-6e4b-4755-a424-ba796887faeb.png",
+      "sourceUrl": "https://drive.google.com/file/d/1z4QT427pyYH6DiFh7J8lwClFSB1KqiPx/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/cb2226ae-7592-4345-8bdb-ccf5455f3540/drebenzi_Sports_team_logo_for_the_MBUYA_IMU_MOONHAWKS_._Color_s_f102e657-6e4b-4755-a424-ba796887faeb.png",
+      "localPath": "/logos/mbuya-imu-moonhawks.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "e8cb369cdf24fcb8115ad9c2d72778a499392b8d6a38bbf77cc62a9b8e250885",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "9abe2ce03f3dccf37001a8266c63a97c316dde0ea42f56b40ecf075feb815353"
+    },
+    {
+      "teamId": "ndumba-specters",
+      "driveId": "1WY0e8dlEjHxtH4mSC2P_TUM2DXx9cfxH",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_NDUMBA_SPECTERS._Ghostly_figu_18571248-0082-4ff8-b49a-5e2a477dfb3c.png",
+      "sourceUrl": "https://drive.google.com/file/d/1WY0e8dlEjHxtH4mSC2P_TUM2DXx9cfxH/view?usp=drivesdk",
+      "sourcePath": "/workspace/attachments/ca6b7bb7-d33f-43b5-8b60-5088842cd638/drebenzi_Sports_team_logo_for_the_NDUMBA_SPECTERS._Ghostly_figu_18571248-0082-4ff8-b49a-5e2a477dfb3c.png",
+      "localPath": "/logos/ndumba-specters.webp",
+      "status": "mapped by unique franchise name in filename; diacritics normalized",
+      "sourceSha256": "dd2a4a418087e76d46397975ae031ca01f27c66be50a4a329d5bdaae3d35ffd5",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "51fab274d7ab1c8a2fa9390dcd73631a73c0acee911aa3f952e88d024101335f"
+    },
+    {
+      "teamId": "ala-marauders",
+      "driveId": "1lFow9Ovd2ApyWlvGMSN-yjJIcpFIi-VE",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_ALA_MARAUDERS_._Red_Black_and_15b4c784-ed89-4e54-a981-af4c6a4bdbe4.png",
+      "sourceUrl": "https://drive.google.com/file/d/1lFow9Ovd2ApyWlvGMSN-yjJIcpFIi-VE/view",
+      "sourcePath": "/workspace/attachments/7e4191b6-b1cd-4825-83ac-eeab08133eba/drebenzi_Sports_team_logo_for_the_ALA_MARAUDERS_._Red_Black_and_15b4c784-ed89-4e54-a981-af4c6a4bdbe4.png",
+      "localPath": "/logos/ala-marauders.webp",
+      "status": "mapped by exact franchise name",
+      "sourceSha256": "6481b02224e60266048f6dfa1d793c6bd30e0d068e2fca592a2a548a8c79a1f3",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "fbb42ce6ab0cb0b5a1458cbb3b8cb853a53167f1eb707e0b89130e2f4958db0e"
+    },
+    {
+      "teamId": "xenar-ignite",
+      "driveId": "11jPt8TtNrz1mZKDcErfkkqCkCPiwXBG1",
+      "originalFilename": "drebenzi_Sports_team_logo_for_the_XENAR_IGNITE_._Color_scheme_i_fffd0c84-4244-4fa7-b6a6-03cec062ec54.png",
+      "sourceUrl": "https://drive.google.com/file/d/11jPt8TtNrz1mZKDcErfkkqCkCPiwXBG1/view",
+      "sourcePath": "/workspace/attachments/91f8c280-d4b6-4120-b10f-ac34dcac3bdb/drebenzi_Sports_team_logo_for_the_XENAR_IGNITE_._Color_scheme_i_fffd0c84-4244-4fa7-b6a6-03cec062ec54.png",
+      "localPath": "/logos/xenar-ignite.webp",
+      "status": "mapped by exact franchise name",
+      "sourceSha256": "248244ef3146d96ffa26e8ec50be284646866a25d295cdc6e945adf96da2d091",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "hasAlpha": false,
+      "optimizedDimensions": [
+        512,
+        512
+      ],
+      "optimizedSha256": "9d999a0ff1be33b88b0720a101d571196af17bc3e544d828841494c528db57e1"
+    }
+  ],
+  "unmapped": [
+    {
+      "driveId": "1nUpZyreyQbXnK6qCSRKJaQzS_4j1wo-l",
+      "originalFilename": "drebenzi_Color_scheme_is_Deep_maroon_Gold_and_Brown._28088393-01e7-495a-9a13-ab557ddba07a.png",
+      "reason": "Filename does not identify franchise"
+    },
+    {
+      "driveId": "15vBe5dhnYX25eu_QaVIL2WDkzm6q0W5Q",
+      "originalFilename": "1E16C4E0-D7D3-40F8-BC5B-CA4D3F0E68B0.png",
+      "reason": "Filename does not identify franchise"
+    },
+    {
+      "driveId": "1UC77M8OD7ijFZgV9VNnO-mbbMMR4_7jG",
+      "originalFilename": "f0daed4b-e689-43aa-9a12-efa509cbfa57.png",
+      "reason": "Filename does not identify franchise"
+    },
+    {
+      "driveId": "1FRx08QW9oak0oqGGK11pI7jxv1Q3zz2Y",
+      "originalFilename": "cc471768-5c69-4e64-9c80-819c027936ec.png",
+      "reason": "Filename does not identify franchise"
+    },
+    {
+      "driveId": "16B5Tbjr6vo-6a4-e-kKgTQyT3kxSSlNn",
+      "originalFilename": "ccd19833-2dbc-4772-baeb-f0521912d4c3.png",
+      "reason": "Filename does not identify franchise"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "seed": 202627,
+  "clockRate": 20,
+  "score": [
+    15,
+    27
+  ],
+  "checks": [
+    {
+      "speed": 1,
+      "fps": 60,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    },
+    {
+      "speed": 1,
+      "fps": 30,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    },
+    {
+      "speed": 1,
+      "fps": 144,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    },
+    {
+      "speed": 2,
+      "fps": 60,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    },
+    {
+      "speed": 4,
+      "fps": 144,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    },
+    {
+      "speed": 8,
+      "fps": 30,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    },
+    {
+      "speed": 8,
+      "fps": 60,
+      "hash": "aa2e78e2a5ab6a0515d155f95e0f7e627b60d7d95cadd32a98ed8b553c4858c5"
+    }
+  ]
+}

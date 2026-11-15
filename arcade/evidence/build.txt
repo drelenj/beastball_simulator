@@ -1,0 +1,17 @@
+
+> build
+> npm --prefix arcade run build
+
+
+> ndagii-beastball-arcade@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 9 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.61 kB │ gzip:  0.40 kB
+dist/assets/index-DnrdTtL6.css   21.94 kB │ gzip:  5.53 kB
+dist/assets/index-Pmx4ywLS.js   347.31 kB │ gzip: 56.47 kB
+✓ built in 421ms

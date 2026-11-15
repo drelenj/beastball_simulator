@@ -1,0 +1,47 @@
+{
+  "seed": 202627,
+  "score": [
+    225,
+    306
+  ],
+  "liveTicks": 144000,
+  "quarters": 4,
+  "sha256": "eb59fd59379b8ead50399492beef76ae3a0faa9fac8a664921ce864c28be29a6",
+  "replayAt8x30Fps": "eb59fd59379b8ead50399492beef76ae3a0faa9fac8a664921ce864c28be29a6",
+  "teamStats": [
+    {
+      "points": 225,
+      "carries": 15,
+      "releaseGoals": 50,
+      "shots": 92,
+      "passes": 661,
+      "completions": 249,
+      "tackleAttempts": 267,
+      "tackles": 196,
+      "turnovers": 496,
+      "saves": 54,
+      "arrowShots": 80,
+      "arrowHits": 1,
+      "possessionTime": 1181.033333332588,
+      "possessionChanges": 563,
+      "recoveries": 320
+    },
+    {
+      "points": 306,
+      "carries": 30,
+      "releaseGoals": 52,
+      "shots": 125,
+      "passes": 560,
+      "completions": 188,
+      "tackleAttempts": 284,
+      "tackles": 151,
+      "turnovers": 477,
+      "saves": 32,
+      "arrowShots": 80,
+      "arrowHits": 4,
+      "possessionTime": 1218.3666666658874,
+      "possessionChanges": 561,
+      "recoveries": 386
+    }
+  ]
+}
