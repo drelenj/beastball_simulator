@@ -19,7 +19,24 @@ def install(co,cfg):
  def foul(self,actor,victim=None,reason='hold',major=False,danger=False,**kw):
   s=self.s
   if s.phase==P.FINAL:return
-  a=s.players[actor];v=s.players.get(victim);intent=getattr(a,'native_intent',None)
+  a=s.players[actor]
+  if s.phase==P.DEAD:
+   episode=(s.period,s.live_ms)
+   if getattr(self,'rb_dead_foul_episode',None)!=episode:
+    self.rb_dead_foul_episode=episode;self.rb_dead_fouls=set()
+   key=(actor,reason)
+   if key in self.rb_dead_fouls:
+    # Procedural correction, not an athlete tactical assignment. Retakes at
+    # one stopped-clock instant cannot manufacture repeated exclusions.
+    r=s.restart
+    if r and a.role!='archer':
+     if r.kind=='snap40':a.x=s.ends[a.team]+s.attack_sign(a.team)*39
+     else:a.x=max(.6,min(99.4,r.x-s.attack_sign(r.team)*(1 if a.team==r.team else -1)))
+     a.vx=a.vy=0.;a.target=(a.x,a.y)
+    self.rb_publish(self.rb.ruling('warning',player=actor,reason='repeated_dead_ball_foul',offence=reason))
+    return
+   self.rb_dead_fouls.add(key)
+  v=s.players.get(victim);intent=getattr(a,'native_intent',None)
   intentional=bool(intent and intent.target==victim and getattr(intent,'contact',None) in ('head','neck','trip','tackle'))
   immune=bool(v and (v.frozen(s.now) or s.now<=v.immune_until or v.role=='keeper' and self.possession.keeper_protected(v.team,(v.x,v.y))))
   ismajor=(reason in ('striking','after_whistle','protected_keeper','frozen_contact','immune_contact') or immune or intentional and (intent.contact in ('head','neck') or s.ball.carrier!=victim))
@@ -36,7 +53,7 @@ def install(co,cfg):
    if x in (0.,100.):
     r.x=s.ball.x=x;r.taker_spot=(max(.6,min(99.4,x)),y);r.rs['goal_line']=True
    self.rb_publish(self.rb.ruling('major',actor=actor,victim=victim,spot=[x,y]))
-  elif a.team==off or reason in ('kicking','delay_of_game','marking_pre_live') or reason in ('hold','holding','hooking','noncarrier_grip') and v and s.ball.carrier!=v.id:
+  elif a.team==off or reason in ('kicking','delay_of_game') or reason in ('hold','holding','hooking','noncarrier_grip') and v and s.ball.carrier!=v.id:
    if count>=1:self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
    else:self.award(off,x,y,'minor_count_plus',normalize=False);s.tackle_count=1
   else:
@@ -75,14 +92,8 @@ def install(co,cfg):
  E.release=release
  old_restart=E.restart_release
  def restart(self,pid,velocity,*args,**kw):
-  s=self.s;r=s.restart
-  if r and r.taker==pid:
-   if not self.ready(pid):return False
-   p=s.players[pid]
-   # PLACEHOLDER: measure pre-live opponent marking from the restart ball.
-   for q in sorted(s.players.values(),key=lambda q:q.id):
-    if q.active and q.team!=p.team and q.role!='archer' and q.id!=r.rs.get('tackler') and math.hypot(q.x-r.x,q.y-r.y)<5:
-     self.foul(q.id,pid,'marking_pre_live');return False
+  # Retain the engine ordering fix. No pre-live marking admission exists.
+  if self.s.restart and self.s.restart.taker==pid and not self.ready(pid):return False
   return old_restart(self,pid,velocity,*args,**kw)
  E.restart_release=restart
  old_award=E.award

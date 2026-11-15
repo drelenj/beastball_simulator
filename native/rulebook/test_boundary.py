@@ -11,34 +11,15 @@ def test_extended_view_replay_and_poison():
  s.players['B0'].x=-9999;s.ball.z=99999;p.m.e.rb.timeouts['A']=0
  assert C.decide(v,b)==before
 
-def test_premarking_minor_and_zone_line():
- p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture');s.restart.taker='A0'
- for q in s.players.values():
-  if q.role!='archer':q.x=45 if q.team=='A' else 55;q.y=80
- s.players['A0'].x=50;s.players['A0'].y=50;s.players['B0'].x=51;s.players['B0'].y=50
- assert not e.restart_release('A0',(20,0,1),'A1')
- assert s.players['B0'].minor_count==1 and s.tackle_count==1
+def test_zone_residence_restart_line():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e
  e.award('B',95,50,'zone_residence',fresh=True,normalize=False)
- assert s.restart.x==80
+ assert s.restart.x==80 and p.config.marking_distance==5
 
 def test_short_integrated_replay():
  a,_=run_match(1,max_steps=100)
  b,_=run_match(1,max_steps=100)
  assert (a['trace_hash'],a['state_hash'])==(b['trace_hash'],b['state_hash'])
-
-def test_restart_intent_inside_placeholder_ball_clearance():
- p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture');s.restart.taker='A0'
- for q in s.players.values():
-  if q.role!='archer':q.x=45 if q.team=='A' else 55;q.y=80
- s.players['A0'].x=50;s.players['A0'].y=50;s.players['B0'].x=51;s.players['B0'].y=50
- p.capture(s.now);s.now+=300
- v,b=p.view('B0',s.now);intent,_=C.decide(v,b)
- assert intent.kind=='restart_position'
- assert ((intent.aim[0]-50)**2+(intent.aim[1]-50)**2)**.5<5
- # This pins the unresolved incompatibility, not a passing full-match gate.
- assert p.submit(intent)['status']=='accepted'
- assert e.restart_release('A0',(20,0,1),'A1') is False
- assert s.players['B0'].minor_count==1
 
 def test_final_rb_score_and_injury_hooks_cannot_mutate_completed_match():
  p=RulebookPort(1);s,e=p.m.s,p.m.e;s.period=6
@@ -48,9 +29,19 @@ def test_final_rb_score_and_injury_hooks_cannot_mutate_completed_match():
  assert s.score=={'A':1,'B':0} and e.rb.scores==history and e.rb.calls==calls
  assert e.rb_pause is None and s.now==now
 
-def test_not_ready_restart_does_not_sanction_marking():
+def test_not_ready_restart_cannot_release():
  p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture');s.restart.taker='A0'
- s.players['A0'].x=40;s.players['A0'].y=50;s.players['B0'].x=41;s.players['B0'].y=50
- assert not e.ready('A0')
- assert not e.restart_release('A0',(20,0,1),'A1')
- assert s.players['B0'].minor_count==0
+ s.players['A0'].x=40;s.players['A0'].y=50
+ assert not e.ready('A0') and not e.restart_release('A0',(20,0,1),'A1')
+
+def test_repeated_dead_ball_foul_corrects_offender_without_retake_loop():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture')
+ e.foul('A0',reason='kicking');serial=e.restart_serial;count=s.players['A0'].minor_count
+ for _ in range(8):e.foul('A0',reason='kicking')
+ assert s.players['A0'].minor_count==count==1 and e.restart_serial==serial
+ assert s.players['A0'].exclusion_ms==0
+ for q in s.players.values():
+  if q.role!='archer' and q.active:q.x=45 if q.team=='A' else 55;q.y=80
+ r=s.restart;r.taker='A1';s.players['A1'].x,s.players['A1'].y=r.taker_spot
+ assert e.restart_release('A1',(20,0,1),'A2')
+ assert s.phase==p.types.Phase.LIVE
