@@ -18,6 +18,94 @@
       "status": "passed",
       "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142",
       "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9"
+    },
+    {
+      "id": 3,
+      "profile": "native-rb/1",
+      "seed": 1,
+      "label": "serial-seed1-0",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "6bd1ee99694225a2c7ccc65cc83432b1342b2e77",
+      "trace_hash": "7d8e7992a0b4a4c8fca23fe65d64355faa9bfed70d6da54717fb787c331631d7",
+      "state_hash": "9757052b1ea00bed5fae23f838e745d15dfe8205c2a986b0c150b4508d0e53b2",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 246.763,
+      "live_ms": 2400000,
+      "score": {
+        "A": 93,
+        "B": 75
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 122,
+        "majors": 1,
+        "exclusions": 47,
+        "DQs": 23,
+        "quota_resets": 599,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 44
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 3,
+            "goals": 1,
+            "success_rate": 0.3333333333333333
+          },
+          "10_to20": {
+            "attempts": 25,
+            "goals": 8,
+            "success_rate": 0.32
+          },
+          "20plus": {
+            "attempts": 545,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 6,
+            "goals": 3,
+            "success_rate": 0.5
+          },
+          "10_to20": {
+            "attempts": 26,
+            "goals": 6,
+            "success_rate": 0.23076923076923078
+          },
+          "20plus": {
+            "attempts": 461,
+            "goals": 1,
+            "success_rate": 0.0021691973969631237
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-serial-seed1-0.json"
     }
   ]
 }

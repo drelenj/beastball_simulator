@@ -1,0 +1,1198 @@
+................................................. [ 17%]
+.................................................FFF.F.F.FF...FFEEEEEEEE [ 44%]
+EE...................................................................... [ 70%]
+..................................................................E..... [ 96%]
+.........                                                                [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of Round2Engine.test_P1_threshold_in_engine_run_250_500_1000 __
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_archer_motor_has_no_true_state_interlock_wrong_belief_becomes_engine_foul _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_______ ERROR at setup of Round2Engine.test_determinism_with_rules_layer _______
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_passive_possession_only_changes_after_direct_possession_or_restart_award _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_possession_signal_reaches_view_only_through_delayed_snapshot _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_release_contract_is_base_A_code_and_geometry_rejection_feeds_back _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_repeated_possessions_at_each_threshold_on_engine_state _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_rules_layer_reads_engine_events_not_beliefs _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_ruleset_102_is_set_for_the_B1_instance_only _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of Round2Engine.test_zone_violation_is_fed_to_B0_restart_and_not_when_disabled _
+
+cls = <class 'b1.test_sprint45.Round2Engine'>
+
+    @classmethod
+    def setUpClass(cls):
+        from .matchport import run_match, MatchPort
+        cls.run_match, cls.MatchPort = staticmethod(run_match), MatchPort
+>       cls.runs = {p1: run_match(1, None, 45000, True, p1_ms=p1) for p1 in (250, 500, 1000)}
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint45.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_g9mb8705'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ ERROR at setup of test_historical_hash_guard_covers_frozen_paths_not_new_native_artifacts _
+
+cls = <class '_pytest.runner.CallInfo'>
+func = <function call_and_report.<locals>.<lambda> at 0x7f68f8d62660>
+when = 'setup'
+reraise = (<class '_pytest.outcomes.Exit'>, <class 'KeyboardInterrupt'>)
+
+    @classmethod
+    def from_call(
+        cls,
+        func: Callable[[], TResult],
+        when: Literal["collect", "setup", "call", "teardown"],
+        reraise: type[BaseException] | tuple[type[BaseException], ...] | None = None,
+    ) -> CallInfo[TResult]:
+        """Call func, wrapping the result in a CallInfo.
+    
+        :param func:
+            The function to call. Called without arguments.
+        :type func: Callable[[], _pytest.runner.TResult]
+        :param when:
+            The phase in which the function is called.
+        :param reraise:
+            Exception or exceptions that shall propagate if raised by the
+            function, instead of being wrapped in the CallInfo.
+        """
+        excinfo = None
+        instant = timing.Instant()
+        try:
+>           result: TResult | None = func()
+                                     ^^^^^^
+
+.venv/lib/python3.12/site-packages/_pytest/runner.py:361: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/_pytest/runner.py:250: in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pluggy/_caller.py:197: in __call__
+    return self._hookexec(
+.venv/lib/python3.12/site-packages/pluggy/_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/logging.py:871: in pytest_runtest_setup
+    yield
+.venv/lib/python3.12/site-packages/_pytest/capture.py:901: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+.venv/lib/python3.12/site-packages/_pytest/runner.py:170: in pytest_runtest_setup
+    item.session._setupstate.setup(item)
+.venv/lib/python3.12/site-packages/_pytest/runner.py:536: in setup
+    col.setup()
+.venv/lib/python3.12/site-packages/_pytest/python.py:1801: in setup
+    self._request._fillfixtures()
+.venv/lib/python3.12/site-packages/_pytest/fixtures.py:877: in _fillfixtures
+    item.funcargs[argname] = self.getfixturevalue(argname)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/fixtures.py:701: in getfixturevalue
+    fixturedef = self._get_active_fixturedef(argname)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/fixtures.py:797: in _get_active_fixturedef
+    fixturedef.execute(request=subrequest)
+.venv/lib/python3.12/site-packages/_pytest/fixtures.py:1301: in execute
+    result: FixtureValue = ihook.pytest_fixture_setup(
+.venv/lib/python3.12/site-packages/pluggy/_caller.py:197: in __call__
+    return self._hookexec(
+.venv/lib/python3.12/site-packages/pluggy/_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/setuponly.py:36: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+.venv/lib/python3.12/site-packages/_pytest/fixtures.py:1407: in pytest_fixture_setup
+    result = call_fixture_func(fixturefunc, request, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/fixtures.py:1067: in call_fixture_func
+    fixture_result = next(generator)
+                     ^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/tmpdir.py:338: in tmp_path
+    path = _mk_tmp(request, tmp_path_factory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/tmpdir.py:325: in _mk_tmp
+    return factory.mktemp(name, numbered=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/tmpdir.py:138: in mktemp
+    basename = self._ensure_relative_to_basetemp(basename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/tmpdir.py:118: in _ensure_relative_to_basetemp
+    if (self.getbasetemp() / basename).resolve().parent != self.getbasetemp():
+        ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/tmpdir.py:253: in getbasetemp
+    basetemp = make_numbered_dir_with_cleanup(
+.venv/lib/python3.12/site-packages/_pytest/pathlib.py:464: in make_numbered_dir_with_cleanup
+    raise e
+.venv/lib/python3.12/site-packages/_pytest/pathlib.py:445: in make_numbered_dir_with_cleanup
+    p = make_numbered_dir(root, prefix, mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-agent'), prefix = 'pytest-', mode = 448
+
+    def make_numbered_dir(root: Path, prefix: str, mode: int = 0o700) -> Path:
+        """Create a directory with an increased number as suffix for the given prefix."""
+        for i in range(10):
+            # try up to 10 times to create the directory
+            max_existing = max(map(parse_num, find_suffixes(root, prefix)), default=-1)
+            new_number = max_existing + 1
+            new_path = root.joinpath(f"{prefix}{new_number}")
+            try:
+                new_path.mkdir(mode=mode)
+            except Exception:
+                pass
+            else:
+                _force_symlink(root, prefix + "current", new_path)
+                return new_path
+        else:
+>           raise OSError(
+                "could not create numbered dir with prefix "
+                f"{prefix} in {root} after 10 tries"
+            )
+E           OSError: could not create numbered dir with prefix pytest- in /tmp/pytest-of-agent after 10 tries
+
+.venv/lib/python3.12/site-packages/_pytest/pathlib.py:283: OSError
+=================================== FAILURES ===================================
+_____ EngineIntegration.test_G1_terminals_vary_with_seed_and_are_physical ______
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_G1_terminals_vary_with_seed_and_are_physical>
+
+    def test_G1_terminals_vary_with_seed_and_are_physical(self):
+>       terms = {s: self.run_match(s, 'g1', 9000, False)[0]['terminal'] for s in range(1, 9)}
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:193: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_wj67gxbt'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ EngineIntegration.test_G1_three_athletes_decide_and_physics_resolves_the_pass _
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_G1_three_athletes_decide_and_physics_resolves_the_pass>
+
+    def test_G1_three_athletes_decide_and_physics_resolves_the_pass(self):
+>       r, port = self.run_match(1, 'g1', 9000)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_6yy7d7_2'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ EngineIntegration.test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical _
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical>
+
+    def test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical(self):
+>       a, b = self._twin_ports()
+               ^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/test_sprint.py:216: in _twin_ports
+    a = self.run_match(4, None, t, False)[1]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_cix3f2nh'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+___ EngineIntegration.test_OWN5_motor_never_changes_kind_target_or_receiver ____
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_OWN5_motor_never_changes_kind_target_or_receiver>
+
+    def test_OWN5_motor_never_changes_kind_target_or_receiver(self):
+        seen = 0
+>       runs = [(self.match, self.port)] + [self.run_match(sd, 'g1', 9000) for sd in (1, 2, 3)]
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:315: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_usf2w_av'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ EngineIntegration.test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth _
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth>
+
+    def test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth(self):
+>       port = self.run_match(1, 'g1', 1400, False)[1]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:349: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_hqwqxscc'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_____________ EngineIntegration.test_determinism_across_processes ______________
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_determinism_across_processes>
+
+    def test_determinism_across_processes(self):
+        outs = []
+        for _ in range(2):
+            r = subprocess.run([sys.executable, '-m', 'b1.match_run', '--seed', '2', '--max-ms', '20000', '--telemetry-off'],
+                               cwd=ROOT, text=True, capture_output=True, timeout=300)
+>           self.assertEqual(r.returncode, 0, r.stderr[-2000:])
+E           AssertionError: 1 != 0 : Traceback (most recent call last):
+E             File "<frozen runpy>", line 198, in _run_module_as_main
+E             File "<frozen runpy>", line 88, in _run_code
+E             File "/workspace/beastball_simulator/b1/match_run.py", line 31, in <module>
+E               main()
+E             File "/workspace/beastball_simulator/b1/match_run.py", line 20, in main
+E               result, _ = run_match(a.seed, None if a.scenario == 'match' else a.scenario,
+E                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/workspace/beastball_simulator/b1/matchport.py", line 611, in run_match
+E               port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+E                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/workspace/beastball_simulator/b1/matchport.py", line 60, in __init__
+E               P = X.install(X.load_pocket())
+E                             ^^^^^^^^^^^^^^^
+E             File "/workspace/beastball_simulator/pocket4_proto.py", line 116, in load_pocket
+E               path = patch_source(path)
+E                      ^^^^^^^^^^^^^^^^^^
+E             File "/workspace/beastball_simulator/pocket4_proto.py", line 111, in patch_source
+E               d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+E                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py", line 384, in mkdtemp
+E               _os.mkdir(file, 0o700)
+E           OSError: [Errno 28] No space left on device: '/tmp/pk_011f2dsy'
+
+b1/test_sprint.py:209: AssertionError
+______ EngineIntegration.test_determinism_same_seed_same_hash_in_process _______
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_determinism_same_seed_same_hash_in_process>
+
+    def test_determinism_same_seed_same_hash_in_process(self):
+>       a = self.run_match(3, 'g1', 9000, False)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:198: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_9pzstnaq'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ EngineIntegration.test_public_signal_change_reaches_view_only_after_latency __
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_public_signal_change_reaches_view_only_after_latency>
+
+    def test_public_signal_change_reaches_view_only_after_latency(self):
+>       a, b = self._twin_ports()
+               ^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/test_sprint.py:216: in _twin_ports
+    a = self.run_match(4, None, t, False)[1]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_z7160kpm'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+_ EngineIntegration.test_sensor_is_sensitive_observed_world_change_changes_view _
+
+self = <b1.test_sprint.EngineIntegration testMethod=test_sensor_is_sensitive_observed_world_change_changes_view>
+
+    def test_sensor_is_sensitive_observed_world_change_changes_view(self):
+        """Counterpart that proves the perturbation test can fail."""
+>       a, b = self._twin_ports()
+               ^^^^^^^^^^^^^^^^^^
+
+b1/test_sprint.py:271: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+b1/test_sprint.py:216: in _twin_ports
+    a = self.run_match(4, None, t, False)[1]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:611: in run_match
+    port = MatchPort(seed, scenario, p1_ms, communication_model, profile)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b1/matchport.py:60: in __init__
+    P = X.install(X.load_pocket())
+                  ^^^^^^^^^^^^^^^
+pocket4_proto.py:116: in load_pocket
+    path = patch_source(path)
+           ^^^^^^^^^^^^^^^^^^
+pocket4_proto.py:111: in patch_source
+    d = tempfile.mkdtemp(prefix='pk_'); out = os.path.join(d, 'Pocket20_patched.py'); open(out, 'w', encoding='utf-8').write(t); return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+suffix = '', prefix = 'pk_', dir = '/tmp'
+
+    def mkdtemp(suffix=None, prefix=None, dir=None):
+        """User-callable function to create and return a unique temporary
+        directory.  The return value is the pathname of the directory.
+    
+        Arguments are as for mkstemp, except that the 'text' argument is
+        not accepted.
+    
+        The directory is readable, writable, and searchable only by the
+        creating user.
+    
+        Caller is responsible for deleting the directory when done with it.
+        """
+    
+        prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+    
+        names = _get_candidate_names()
+        if output_type is bytes:
+            names = map(_os.fsencode, names)
+    
+        for seq in range(TMP_MAX):
+            name = next(names)
+            file = _os.path.join(dir, prefix + name + suffix)
+            _sys.audit("tempfile.mkdtemp", file)
+            try:
+>               _os.mkdir(file, 0o700)
+E               OSError: [Errno 28] No space left on device: '/tmp/pk_qkbhe7py'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py:384: OSError
+=========================== short test summary info ============================
+FAILED b1/test_sprint.py::EngineIntegration::test_G1_terminals_vary_with_seed_and_are_physical
+FAILED b1/test_sprint.py::EngineIntegration::test_G1_three_athletes_decide_and_physics_resolves_the_pass
+FAILED b1/test_sprint.py::EngineIntegration::test_OWN1_OWN2_hidden_true_state_perturbation_leaves_decisions_identical
+FAILED b1/test_sprint.py::EngineIntegration::test_OWN5_motor_never_changes_kind_target_or_receiver
+FAILED b1/test_sprint.py::EngineIntegration::test_OWN7_unobserved_body_goes_stale_and_does_not_jump_to_truth
+FAILED b1/test_sprint.py::EngineIntegration::test_determinism_across_processes
+FAILED b1/test_sprint.py::EngineIntegration::test_determinism_same_seed_same_hash_in_process
+FAILED b1/test_sprint.py::EngineIntegration::test_public_signal_change_reaches_view_only_after_latency
+FAILED b1/test_sprint.py::EngineIntegration::test_sensor_is_sensitive_observed_world_change_changes_view
+ERROR b1/test_sprint45.py::Round2Engine::test_P1_threshold_in_engine_run_250_500_1000
+ERROR b1/test_sprint45.py::Round2Engine::test_archer_motor_has_no_true_state_interlock_wrong_belief_becomes_engine_foul
+ERROR b1/test_sprint45.py::Round2Engine::test_determinism_with_rules_layer - ...
+ERROR b1/test_sprint45.py::Round2Engine::test_passive_possession_only_changes_after_direct_possession_or_restart_award
+ERROR b1/test_sprint45.py::Round2Engine::test_possession_signal_reaches_view_only_through_delayed_snapshot
+ERROR b1/test_sprint45.py::Round2Engine::test_release_contract_is_base_A_code_and_geometry_rejection_feeds_back
+ERROR b1/test_sprint45.py::Round2Engine::test_repeated_possessions_at_each_threshold_on_engine_state
+ERROR b1/test_sprint45.py::Round2Engine::test_rules_layer_reads_engine_events_not_beliefs
+ERROR b1/test_sprint45.py::Round2Engine::test_ruleset_102_is_set_for_the_B1_instance_only
+ERROR b1/test_sprint45.py::Round2Engine::test_zone_violation_is_fed_to_B0_restart_and_not_when_disabled
+ERROR native/test_rules.py::test_historical_hash_guard_covers_frozen_paths_not_new_native_artifacts
+9 failed, 254 passed, 11 errors, 23 subtests passed in 133.16s (0:02:13)

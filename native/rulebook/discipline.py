@@ -72,6 +72,27 @@ def install(co,cfg):
   if self.s.now<=t.immune_until:return False,'immune_contact'
   return old_contact(self,a,t,kind,surface,reach)
  E.contact_legal=contact
+ # Frozen bodies are absent from B0's eligible moving-pair kernel. Detect
+ # actual swept entry into their body envelope; legality remains engine-owned.
+ M=co.match.Match;old_contacts=M.player_contacts
+ def contacts(self,ms,old_positions=None):
+  events=old_contacts(self,ms,old_positions)
+  if self.s.phase!=P.LIVE or not old_positions:return events
+  for q in self.s.players.values():
+   if not q.active or not q.frozen(self.s.now):continue
+   for p in self.s.players.values():
+    if not p.active or p.team==q.team or p.role=='archer' or not p.eligible(self.s.now):continue
+    key=tuple(sorted((p.id,q.id)))
+    if self.s.now<self.contact_cooldown.get(key,-1):continue
+    a=old_positions.get(p.id,(p.x,p.y));b=old_positions.get(q.id,(q.x,q.y))
+    radius=p.radius+q.radius
+    distance,f=co.geometry.segment_distance(0,0,a[0]-b[0],a[1]-b[1],p.x-q.x,p.y-q.y)
+    approach=(p.x-a[0])*(q.x-a[0])+(p.y-a[1])*(q.y-a[1])
+    if distance<=radius and math.hypot(a[0]-b[0],a[1]-b[1])>radius and approach>0:
+     events.append(T.Event('foul',p.id,q.id,{'reason':'frozen_contact','major':True,'danger':True},at=int(f*ms)))
+     self.contact_cooldown[key]=self.s.now+1500
+  return events
+ M.player_contacts=contacts
  def elapse(self,dt,resolve=True):
   result=old_elapse(self,dt,resolve)
   for p in self.s.players.values():

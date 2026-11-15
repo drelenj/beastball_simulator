@@ -36,3 +36,14 @@ def test_keeper_opponent_goal_is_no_goal_ruling():
  s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=101,y=50,z=1.5,scoring=True,last_releaser='A10',last_touch='A')
  assert not e.goal('B') and s.score=={'A':0,'B':0}
  assert not any(c['kind']=='goal' for c in e.rb.calls)
+
+def test_bounced_shot_keeps_original_release_band():
+ p=RulebookPort(1,RulebookConfig(scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE
+ s.owner='A';s.players['A0'].x,s.players['A0'].y=75,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=75,y=50,z=1.5,scoring=True)
+ assert e.release('A0',(25,0,-30),'shot')
+ p.m.advance_ball(100,{})
+ assert s.ball.vz>0 and s.ball.rb_release_band=='20plus'
+ s.ball.x,s.ball.y,s.ball.z=101,50,1.5
+ assert e.goal('B') and s.score['A']==4
+ assert e.rb_bands['A']['20plus_attempts']==e.rb_bands['A']['20plus_goals']==1
