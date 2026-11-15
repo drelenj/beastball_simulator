@@ -97,7 +97,11 @@ def main():
                 check(in_range(cat[k], v, slots), f'{tid}: {k}={v!r} outside its range')
         check(tp['hunt.contestant_slot'] in slots, f'{tid}: Hunt contestant slot missing')
         # canon limits on values
-        check(tp['zone.dwell_max_s'] < 5, f'{tid}: zone dwell not under the 5 s limit')
+        # the attacker starts to leave at dwell_max; from rest at 10 m/s2 (today's acceleration) he must be out by 4.5 s
+        depth = max([20 - s['anchors']['offence']['inside_range_m'][0] for s in t['slots']
+                     if s['anchors']['offence']['type'] == 'zone_cycle'] or [10.])
+        check(tp['zone.dwell_max_s'] + math.sqrt(2 * depth / 10.) <= 4.5,
+              f'{tid}: zone visit (dwell plus run out from {depth} m) not inside the 5 s limit with 0.5 s to spare')
         check(max(tp['tempo.snap_delay_s'].values()) < 10, f'{tid}: snap delay not inside the 10 s window')
         check(tp['tempo.shot_window_s'][1] <= 30 - 0, f'{tid}: shot window beyond the 30 s clock')
         check(tp['tempo.shot_window_s'][1] + 0 <= 30 and tp['tempo.must_shoot_remaining_s'] > 0, f'{tid}: no shot before expiry')

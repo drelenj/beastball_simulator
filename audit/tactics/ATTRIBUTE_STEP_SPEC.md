@@ -62,7 +62,7 @@ This is the only rating-to-parameter mapping in this document that is canon. Not
 The shape below 1.0 is open (Q-ATTR-1). The alternative is proportional, `44.704 x r`, which gives 26.8 m/s at 0.60, close to today's 27. The two differ by 9 m/s at the bottom of the professional band. A comment in `player_gen_v1.py` calls "nobody slower than 80 mph" canon; this spec does not, because only the 1.0 point was given to me as canon.
 
 ### 4.2 Movement
-Today's Native value is reproduced at the middle of the professional band (0.80), and the parameter is proportional to the rating: `value = present value x 1.25 x r`.
+For the first three rows today's Native value is reproduced at the middle of the professional band (0.80), and the parameter is proportional to the rating: `value = present value x 1.25 x r`. The jump row keeps the earlier project rule instead, so an athlete at 0.80 jumps 1.04 m against today's 1.30 m.
 
 | Input | Engine parameter | Formula | At 0.60 / 0.80 / 1.00 | Tag |
 | --- | --- | --- | --- | --- |
@@ -89,7 +89,7 @@ Passed through unchanged. What each does inside the engine is whatever the prese
 | --- | --- | --- |
 | `strength`, `agility`, `balance`, `contact_resistance`, `tackling`, `blocking`, `ball_handling`, `catching`, `awareness`, `archery_accuracy`, `keeper_skill` | same name | PLACEHOLDER (identity) |
 | `stamina` | `endurance` | PLACEHOLDER (identity). **Inert** while fatigue is off in Native |
-| `throw_accuracy` | `passing` | PLACEHOLDER (identity) |
+| `throw_accuracy` | `passing` | PLACEHOLDER (identity). This is storage in the engine's own attribute; the consumer is the error formula of 4.5. Codex confirms nothing else in the Native paths reads `passing`, so the rating is not applied twice |
 
 ### 4.5 Throwing
 | Input | Engine parameter | Formula | At 0.60 / 0.80 / 1.00 | Tag |
@@ -99,7 +99,7 @@ Passed through unchanged. What each does inside the engine is whatever the prese
 
 Native's throw model is a primitive with a uniform error (Q-THROW-1). Codex maps the standard deviation above onto that model and documents how. The catch kernel already reads `catching` through `(skill - 0.4) / 0.6`; it now receives each athlete's own value.
 
-A larger maximum changes nothing until the athlete chooses his release speed. Today cognition releases every ball at `min(27, max)` m/s and 1.6 m height (R10 F-4). Choosing the speed is cognition work (Claude) that follows this step.
+A larger maximum changes nothing until the athlete chooses a faster release. The intent already carries a release speed, but today cognition always sends `min(27, max)` m/s at 1.6 m height (R10 F-4). Choosing the speed is cognition work (Claude) that follows this step.
 
 ### 4.6 Perception
 | Input | Parameter | Formula | Tag |
@@ -121,8 +121,8 @@ A larger maximum changes nothing until the athlete chooses his release speed. To
 | E-1 | Roster loader and validation (section 2), one roster per team | Input |
 | E-2 | `native/port.py`: when a roster is supplied, set each athlete's attributes from section 4 in place of `cfg.ratings` and `cfg.body_standards` | The step itself |
 | E-3 | Arrow speed becomes the constant 250 m/s. v0/3 computes it as a ratio times the fastest athlete's speed (27), which a roster would change | Canon |
-| E-4 | Remove the 27 m/s couplings: `pass_speed` 27 and `ball_limit` 40 in the pocket settings become the thrower's own maximum; audit every speed literal in `native/` and the Native paths of `core_src/` and list each as changed or kept | Otherwise throw power cannot matter and stale caps remain |
-| E-5 | The athlete's view carries his own mass and his own maximum release speed, exact (SELF-1). It carries no other athlete's attributes | Cognition needs them; IA-001 forbids the rest |
+| E-4 | Remove the speed couplings: the engine honours an intent's release speed only up to `ball_limit` 40; that cap becomes the thrower's own maximum, and `pass_speed` 27 goes; audit every speed literal in `native/` and the Native paths of `core_src/` and list each as changed or kept | Otherwise throw power cannot matter and stale caps remain |
+| E-5 | The athlete's view carries his own mass, and its existing `max_throw_speed` field is filled from his own throw power (today it is a default of 40). Exact (SELF-1). It carries no other athlete's attributes | Cognition needs them; IA-001 forbids the rest |
 | E-6 | Public tackle count in `Signals` | Needed by two tactic parameters; a scoreboard fact, not hidden state |
 | E-7 | A new config version. Its digest covers the roster digest and a mapping version string (`attr-map/1`). native-v0/2 and native-v0/3 stay byte-identical when no roster is supplied | Reproducibility |
 | E-8 | Check time-step safety at the new speeds. A 100 ms step moves a 44.7 m/s athlete 4.5 m; two closing athletes 8.9 m | Contact, tackle reach and boundary detection were built at 27 m/s |
@@ -134,11 +134,11 @@ None exists yet. "Lab" means a forced scenario with two athletes that differ in 
 
 | ID | Test | Pass |
 | --- | --- | --- |
-| AT-1 | Canon speed. Rating 1.0 in, read `maximum_speed`; then a straight-line run to steady speed | Attribute equals 44.704 exactly; measured top speed within 0.5% |
+| AT-1 | Canon speed. Rating 1.0 in, read `maximum_speed`; then a straight-line run to steady speed in a lab with no field boundary and at least 400 m of runway (the 100 m field is too short at the placeholder acceleration) | Attribute equals 44.704 exactly; measured top speed within 0.5% |
 | AT-2 | Speed curve. Ratings 0, 0.60, 0.80 | 22.352, 35.7632, 40.2336; the config record marks the curve as placeholder |
 | AT-3 | No roster, no change. Seed 1 under native-v0/2 and native-v0/3 with no roster | Trace and state hashes equal the recorded values for both versions |
 | AT-4 | Table test. For every row of section 4, feed 0, 0.40, 0.60, 0.80, 1.00 | The engine parameter equals the formula |
-| AT-5 | Monotone. Sweep each rating from 0 to 1 in steps of 0.05 | Each mapped parameter never decreases (the direction error never increases) |
+| AT-5 | Monotone. Sweep each rating from 0 to 1 in steps of 0.05 | Each mapped parameter never decreases. The two error terms (throw direction error, sensor noise scale) never increase |
 | AT-6 | Independence. Change one rating at a time | Only the parameters mapped from it change |
 | AT-7 | Sensitivity audit. For every rating, one lab with a stated expected direction (for example higher tackling, more groundings) over 200 trials at 0.60 against 1.00 | A report per rating: direction as expected, reversed, or no effect. A rating with no effect is reported **INERT**. The test passes when the report is complete; it does not require an effect |
 | AT-8 | Body readback. Height, mass, reach | Eye height, body radius and catch reach equal the engine formulas |
@@ -148,7 +148,7 @@ None exists yet. "Lab" means a forced scenario with two athletes that differ in 
 | AT-12 | Roster shape. 22 athletes with the reserves canon requires; a roster with no Archer | Accepted; rejected. No field athlete holds a fixed role |
 | AT-13 | Determinism. Same roster and seed twice; serial against parallel | Identical hashes; the roster digest is in the trace |
 | AT-14 | Information boundary. Inspect every view of a 600 s window | An athlete's view holds his own body and abilities only. Poison: change a teammate's ratings with positions forced equal; the view is unchanged |
-| AT-15 | Step safety. Forced head-on contact, tackle reach and boundary crossing at a closing speed of 89 m/s, run at 100 ms and at 20 ms steps | The same outcome at both step lengths |
+| AT-15 | Step safety. Forced head-on contact, tackle reach and boundary crossing at a closing speed of 89 m/s, run at 100 ms and at 20 ms steps | The same categorical outcome (contact or none, tackle or none, in or out) at both step lengths, with contact time within 100 ms and position within 0.5 m |
 | AT-16 | Canon label. Read the config record's list of canon mappings | The list is exactly the speed 1.0 point. Every other mapping is marked placeholder |
 
 One functional check, not a conformance test: a 600 s window with a roster drawn from the envelope (the generator in `audit/tactics/tools/roster_tools.py`) completes with all invariants passing. It shows the step runs. It shows nothing about play.

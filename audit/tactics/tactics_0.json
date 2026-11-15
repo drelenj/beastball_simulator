@@ -56,12 +56,12 @@
   "mirror": "With mirror or spread \"mirror\", the lateral or bearing band is a magnitude and instances are placed on both sides.",
   "toss_in": "At a toss-in slots use their live-play anchors, with opponents 3 m clear of the spot.",
   "beliefs": "Every anchor is evaluated by the athlete from his own believed positions. No anchor is a position the engine places anyone at.",
-  "bands": "ELITE 0.90 or more; KEY 0.85 or more; SUPPORT 0.75 to 0.80; BASE 0.70. Body gates sit near the middle of the range. A slot has one KEY rating, or two where the method needs both in one body."
+  "bands": "ELITE 0.90 or more; KEY 0.85 or more; SUPPORT 0.75 to 0.80; BASE 0.70. Body gates sit near the middle of the range. The slots that define a style gate one rating at KEY or above, or two where the method needs both in one body; other slots gate at SUPPORT and BASE."
  },
  "classes": {
   "EXPRESSIBLE NOW": "Native v0/3 can run it today with no code change. In practice this means the parameter is one of the 16 team-wide PolicyParams fields, with the same value for every teammate.",
-  "NEEDS COORDINATION": "The engine mechanics, intent kinds and view fields exist in Native v0/3, but the athlete does not hold the value: it differs by slot, replaces a constant in cognition, or only works if teammates hold the same plan. Needs the pre-match playbook of TACTIC_INTERFACE.md and cognition that reads it. No physics or rules change.",
-  "NEEDS ENGINE WORK": "Needs something the engine, port or rules layer does not provide in Native v0/3: ratings and bodies per athlete (ATTRIBUTE_STEP_SPEC.md), athlete-chosen release speed, voluntary off-ball contact, or a public signal missing from the view."
+  "NEEDS COORDINATION": "The engine mechanics and intent kinds exist in Native v0/3, but the athlete does not hold the value: it differs by slot, replaces a constant in cognition, or only works if teammates hold the same plan. Needs the pre-match playbook of TACTIC_INTERFACE.md (Codex delivers it in the view; Claude writes the cognition that reads it). No physics or rules change.",
+  "NEEDS ENGINE WORK": "Needs something the engine, port or rules layer does not provide in Native v0/3: ratings and bodies per athlete (ATTRIBUTE_STEP_SPEC.md), athlete-chosen release speed, voluntary off-ball contact, an own-action memory that lasts between decisions, or a public signal missing from the view."
  },
  "parameter_catalog": {
   "carrier.bias_pass": {
@@ -165,9 +165,9 @@
     1.0
    ],
    "unit": null,
-   "class": "NEEDS ENGINE WORK",
+   "class": "NEEDS COORDINATION",
    "route": null,
-   "reason": "v0/3 releases every pass and shot at min(27, max) m/s and 1.6 m height (R10 F-4). Athlete-chosen release speed and a per-athlete maximum from throw_power are engine and attribute-step work.",
+   "reason": "The intent already carries a release speed and the engine honours it up to 40 m/s, but v0/3 cognition always sends min(27, max) m/s at 1.6 m height (R10 F-4). The playbook value must be read in cognition. A maximum that differs by athlete comes only with the attribute step.",
    "joint": false,
    "needs_attribute_step_to_matter": true
   },
@@ -179,9 +179,9 @@
     60
    ],
    "unit": "m",
-   "class": "NEEDS ENGINE WORK",
+   "class": "NEEDS COORDINATION",
    "route": null,
-   "reason": "v0/3 pass options are fixed to a believed 4 to 34 m at 27 m/s. Bands beyond 34 m, or needing a faster ball, depend on athlete-chosen release speed. A band inside 4 to 34 m would need only the playbook.",
+   "reason": "The 4 to 34 m window and the 27 m/s release are constants in v0/3 cognition; the playbook must replace them. Whether a 50 m pass arrives and is caught depends on throw power and catching, which need the attribute step.",
    "joint": false,
    "needs_attribute_step_to_matter": true
   },
@@ -193,9 +193,9 @@
     30
    ],
    "unit": "s",
-   "class": "NEEDS COORDINATION",
+   "class": "NEEDS ENGINE WORK",
    "route": null,
-   "reason": "v0/3 has no own-possession timer. Needs an own-action memory of when I gained the ball (own knowledge) and a playbook threshold.",
+   "reason": "Needs the athlete to remember when he gained the ball. v0/3 rebuilds the belief at every decision and keeps no such own-action memory; the port must carry one.",
    "joint": false,
    "needs_attribute_step_to_matter": false
   },
@@ -260,7 +260,7 @@
    "unit": "s",
    "class": "NEEDS COORDINATION",
    "route": null,
-   "reason": "The possession clock is a public signal in the view. v0/3 has only a fixed +5 shoot value in the first 5 s. Needs playbook values.",
+   "reason": "The possession clock is a public signal in the view. v0/3 has only a fixed +5 shoot value when under 5 s remain. Needs playbook values.",
    "joint": false,
    "needs_attribute_step_to_matter": false
   },
@@ -294,7 +294,7 @@
    "unit": "s",
    "class": "NEEDS COORDINATION",
    "route": null,
-   "reason": "v0/3 releases as soon as a legal throw exists. Score is public. Assumes waiting inside the legal window is not delay of game (Q-TAC-4).",
+   "reason": "v0/3 releases as soon as a legal throw exists. Score is public. No style uses it: the game clock is stopped during the window.",
    "joint": false,
    "needs_attribute_step_to_matter": false
   },
@@ -320,9 +320,9 @@
     10
    ],
    "unit": "s",
-   "class": "NEEDS COORDINATION",
+   "class": "NEEDS ENGINE WORK",
    "route": null,
-   "reason": "Needs an own-action memory of when I gained the ball and a playbook threshold.",
+   "reason": "As carrier.touch_time_max_s: needs an own-action memory that v0/3 does not keep.",
    "joint": false,
    "needs_attribute_step_to_matter": false
   },
@@ -446,9 +446,9 @@
     3
    ],
    "unit": null,
-   "class": "EXPRESSIBLE NOW",
+   "class": "NEEDS COORDINATION",
    "route": "PolicyParams.pos_lane",
-   "reason": "Is PolicyParams.pos_lane.",
+   "reason": "Is PolicyParams.pos_lane, but the term is inert in v0/3: cognition passes no believed carrier position to the positioning function. Needs a cognition change, no engine change.",
    "joint": false,
    "needs_attribute_step_to_matter": false
   },
@@ -498,11 +498,11 @@
    "needs_attribute_step_to_matter": false
   },
   "zone.dwell_max_s": {
-   "meaning": "An attacker leaves the zone when his own residence reaches this. Canon limit is 5 s.",
+   "meaning": "An attacker starts to leave the zone when his own residence reaches this. The value must leave time to get out before the 5 s limit.",
    "type": "number",
    "range": [
     0,
-    4.5
+    3.5
    ],
    "unit": "s",
    "class": "NEEDS COORDINATION",
@@ -533,9 +533,9 @@
     5
    ],
    "unit": "s",
-   "class": "NEEDS COORDINATION",
+   "class": "NEEDS ENGINE WORK",
    "route": null,
-   "reason": "Own knowledge and a playbook value. Canon states no minimum time outside (Q-TAC-1).",
+   "reason": "Needs the athlete to remember when he last left the zone; v0/3 keeps no such memory. Canon states no minimum time outside (Q-TAC-1).",
    "joint": false,
    "needs_attribute_step_to_matter": false
   },
@@ -547,9 +547,9 @@
     5
    ],
    "unit": "s",
-   "class": "NEEDS COORDINATION",
+   "class": "NEEDS ENGINE WORK",
    "route": null,
-   "reason": "A timing agreement between teammates with no live channel: each acts on his own belief of the partner leaving.",
+   "reason": "A timing agreement with no live channel: each acts on his own belief of the partner entering, and must remember when he saw it. v0/3 keeps no such memory.",
    "joint": true,
    "needs_attribute_step_to_matter": false
   },
@@ -978,7 +978,7 @@
   "class": "NEEDS ENGINE WORK",
   "input": "A roster table: id, role (field, keeper, archer), the ratings on a 0 to 1 scale, height_m, mass_kg. At least 10 field athletes, 1 keeper, 1 archer.",
   "steps": [
-   "Keeper and Archer slots take the highest-scoring athlete of that role. Field athletes never fill them (canon).",
+   "Keeper and Archer slots take an in-band athlete of that role if there is one, else the highest-scoring. Field athletes never fill them (canon).",
    "Field slot instances are taken in the tactic's slot order, which is its priority order.",
    "An athlete is in band for a slot if he meets every minimum in requires.",
    "In-band placement is a maximum matching between instances and in-band athletes (augmenting paths; instances in priority order; candidates in descending slot score; ties by roster order), so no in-band placement is lost to an earlier choice.",
@@ -995,7 +995,7 @@
   "quick_swing": "The taker throws 6 to 8 m back and to one side to a named handler slot, who starts the normal offence. All teammates start behind the ball line.",
   "wedge_snap": "The taker throws 5 m straight back to a RAM. The PLOWs stand 0.8 to 1.5 m behind the ball line in a V and move on the release. All teammates start behind the ball line.",
   "zone_stack": "The taker throws 7 m back to a HUB. DARTs stand wide on the ball line and enter the zone on the release, in their rotation order.",
-  "safe_reset": "The taker throws 8 m back to a METRONOME and the team re-forms its passing diamond. The taker waits tempo.snap_delay_s inside the legal window first.",
+  "safe_reset": "The taker throws 8 m back to a METRONOME and the team re-forms its passing diamond.",
   "go_routes": "The taker throws 7 m back to a CANNON. BOLTs stand on the ball line at wide, centre, wide and sprint on the release; the CANNON throws long into the space ahead of one of them.",
   "short_toss": "The thrower tosses 6 to 10 m infield to the nearest named handler slot. The thrower may not recover the ball himself and the ball cannot score until another player controls it.",
   "line_toss": "The thrower tosses up the boundary to a BOLT running into space. Same toss-in limits.",
@@ -1019,7 +1019,7 @@
    "tags": [
     "deep_throws"
    ],
-   "idea": "Keep every attacker outside the Keeper Zone on the 21 to 24 m arc, move the ball by quick passes, and score with hard throws released from 20 m or more. The bet is that a fast, accurate deep throw beats a Keeper who has no help, because defenders may not wait inside the zone without an attacker to mark.",
+   "idea": "Keep every attacker outside the Keeper Zone on the 21 to 24 m arc, move the ball by quick passes, and score with hard throws released from 20 m or more. The bet is that a fast, accurate deep throw beats a Keeper who has no help, because defenders may wait inside the zone only within 5 m of an attacker, and all attackers are outside it.",
    "formation": "3 GUN on the arc, 3 SCREEN paired goal-side of them, 2 FEED behind, 2 SAFETY held back",
    "slots": [
     {
@@ -1583,7 +1583,7 @@
    },
    "strengths": [
     "Never puts an attacker on the 5 s zone limit.",
-    "Keeps the defence out of the zone by rule: a defender may stay there only within 5 m of an attacker.",
+    "Keeps defenders out of the goal mouth: a defender may stay in the zone only within 5 m of an attacker, so with attackers on the arc no defender may wait deeper than about 4.5 m inside it.",
     "Deep throws are the highest-valued throws on the provisional scale (4)."
    ],
    "weaknesses": [
@@ -1611,7 +1611,7 @@
     "struggles_against": [
      {
       "vs": "ANVIL",
-      "why": "Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball."
+      "why": "Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. Arc's screens cover three GUNs at most and only from straight behind the goal; whether they work is unmeasured."
      },
      {
       "vs": "PRESS",
@@ -1636,7 +1636,7 @@
    "staffing_arithmetic": {
     "rosters": 2000,
     "not_broken_rate": 0.748,
-    "full_rate": 0.115,
+    "full_rate": 0.127,
     "broken_rate": 0.253,
     "mean_field_slots_in_band_of_10": 8.61,
     "broken_by_slot_rate": {
@@ -1660,7 +1660,7 @@
    "tags": [
     "keeper_zone_5s_exploit"
    ],
-   "idea": "The 5 s limit is counted per attacker and \"at a time\", so the team rotates attackers through the Keeper Zone in short visits of 3.5 s and always has fresh ones inside. Attackers inside the zone are not legal arrow targets, and they finish with close and mid throws or a carry.",
+   "idea": "The 5 s limit is counted per attacker and \"at a time\", so the team rotates attackers through the Keeper Zone in short visits (each attacker turns for the arc after 2.5 s) and always has fresh ones inside. Attackers inside the zone are not legal arrow targets, and they finish with close and mid throws or a carry.",
    "formation": "2 HUB outside the arc, 4 DART in two alternating pairs, 2 PIVOT alternating at the goal front, 2 ANCHOR held back",
    "slots": [
     {
@@ -1754,7 +1754,7 @@
      "id": "DART",
      "count": 4,
      "role": "field",
-     "what": "In-and-out runner: enters the zone, receives, finishes or leaves before 3.5 s.",
+     "what": "In-and-out runner: enters the zone, receives, finishes, or turns to leave at 2.5 s.",
      "requires": {
       "agility": 0.85,
       "speed": 0.75,
@@ -1769,15 +1769,15 @@
      "understaffed": {
       "mode": "failure",
       "fail_below_in_band": 2,
-      "effect": "FAILURE below two in band: there is no pair quick enough to get in and out inside 3.5 s; either the zone empties or residence turnovers rise. With two or three the weaker pair makes shorter, shallower visits (graceful)."
+      "effect": "FAILURE below two in band: there is no pair quick enough to get in and out inside the limit; either the zone empties or residence turnovers rise. With two or three the weaker pair makes shorter, shallower visits (graceful)."
      },
      "anchors": {
       "offence": {
        "type": "zone_cycle",
        "goal": "attacked",
        "inside_range_m": [
-        6,
-        13
+        10,
+        16
        ],
        "bearing_deg": [
         -60,
@@ -1868,8 +1868,8 @@
        "type": "zone_cycle",
        "goal": "attacked",
        "inside_range_m": [
-        8,
-        14
+        10,
+        15
        ],
        "bearing_deg": [
         -25,
@@ -2145,7 +2145,7 @@
     "pos.edge_zone": 0.0,
     "pos.anchor_pull": 2.0,
     "zone.entry_mode": "rotation",
-    "zone.dwell_max_s": 3.5,
+    "zone.dwell_max_s": 2.5,
     "zone.occupancy_target": 3,
     "zone.min_outside_s": 1.0,
     "zone.entry_stagger_s": 1.75,
@@ -2221,7 +2221,7 @@
     },
     "attacker_zone_dwell_s_p95": {
      "op": "<=",
-     "value": 4.0
+     "value": 4.5
     },
     "zone_residence_turnovers_per_possession": {
      "op": "<=",
@@ -2235,12 +2235,12 @@
    ],
    "weaknesses": [
     "The rotation is a timing agreement with no live channel; each athlete acts on his own belief of where his partner is.",
-    "Only 1.5 s of margin on the limit: any hold-up inside the zone risks a turnover.",
+    "About 1 s of margin on the limit after the run out: any hold-up inside the zone risks a turnover.",
     "Close and mid throws are the lowest-valued throws on the provisional scale (2 and 3).",
     "HUBs outside the arc remain arrow targets."
    ],
    "canon_checks": [
-    "Every visit ends at 3.5 s, inside the 5 s limit; expiry would be a turnover.",
+    "Each attacker turns to leave at 2.5 s from no deeper than 10 m inside the arc, which is out by about 4 s from a standing start at today's acceleration; the limit is 5 s and expiry would be a turnover.",
     "Reads the Rulebook wording \"at most 5 seconds at a time\" as a fresh 5 s on re-entry. Canon states no minimum time outside; the plan imposes 1.0 s on itself (PLACEHOLDER, Q-TAC-1).",
     "No contact on the Keeper inside his zone."
    ],
@@ -2252,13 +2252,13 @@
      },
      {
       "vs": "RAM",
-      "why": "Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every 3.5 s makes them follow attackers in and out of the zone or stand unmarked."
+      "why": "Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every few seconds makes them follow attackers in and out of the zone or stand unmarked."
      }
     ],
     "struggles_against": [
      {
       "vs": "LOCK",
-      "why": "Wave enters the zone by design with 1.5 s of margin. A hold-up of 1.5 s turns a visit into a residence turnover."
+      "why": "Wave enters the zone by design with about 1 s of margin. A DART or PIVOT who receives inside becomes the ball carrier and may be wrapped; a hold-up of a second or more turns his visit into a residence turnover."
      }
     ],
     "no_prediction": [
@@ -2283,7 +2283,7 @@
    "staffing_arithmetic": {
     "rosters": 2000,
     "not_broken_rate": 0.82,
-    "full_rate": 0.115,
+    "full_rate": 0.129,
     "broken_rate": 0.18,
     "mean_field_slots_in_band_of_10": 8.46,
     "broken_by_slot_rate": {
@@ -2333,8 +2333,8 @@
      },
      "understaffed": {
       "mode": "failure",
-      "fail_below_in_band": 1,
-      "effect": "FAILURE with none in band: a carrier who goes down on first contact uses both tackles before the arc. With one in band there is no relief carrier (graceful)."
+      "fail_below_in_band": 2,
+      "effect": "FAILURE below two in band: by rule the tackled carrier is the snapper, so after the first tackle the other RAM makes the scoring run. One strong carrier is half a plan."
      },
      "anchors": {
       "offence": {
@@ -2793,7 +2793,7 @@
     "pos.edge_zone": 0.5,
     "pos.anchor_pull": 2.0,
     "zone.entry_mode": "drive",
-    "zone.dwell_max_s": 4.0,
+    "zone.dwell_max_s": 3.0,
     "zone.occupancy_target": 5,
     "zone.min_outside_s": 1.0,
     "zone.entry_stagger_s": 0.0,
@@ -2887,7 +2887,7 @@
    ],
    "canon_checks": [
     "Blocks are shoulder and push contact below the neck and above the hip, no grip, never on the Keeper in his zone; tripping or tackling a player without the ball is a major foul and is not used.",
-    "Wedge and carrier leave the zone inside 4 s if the carry stalls.",
+    "If the carry stalls, wedge and carrier turn to leave at 3 s, which is out before 5 s from 10 m inside.",
     "One dribble per possession is not used."
    ],
    "matchups": {
@@ -2908,7 +2908,7 @@
     "struggles_against": [
      {
       "vs": "WAVE",
-      "why": "Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every 3.5 s makes them follow attackers in and out of the zone or stand unmarked."
+      "why": "Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every few seconds makes them follow attackers in and out of the zone or stand unmarked."
      },
      {
       "vs": "ANVIL",
@@ -2928,13 +2928,13 @@
    },
    "staffing_arithmetic": {
     "rosters": 2000,
-    "not_broken_rate": 0.426,
-    "full_rate": 0.013,
-    "broken_rate": 0.574,
+    "not_broken_rate": 0.262,
+    "full_rate": 0.017,
+    "broken_rate": 0.739,
     "mean_field_slots_in_band_of_10": 6.85,
     "broken_by_slot_rate": {
      "PLOW": 0.473,
-     "RAM": 0.189
+     "RAM": 0.53
     },
     "flat_average_roster": {
      "status": "BROKEN",
@@ -2956,7 +2956,7 @@
    "tags": [
     "archer"
    ],
-   "idea": "The field defence does not try to win the ball itself. It contains the carrier in the Archer's lane, outside the Keeper Zone, and lets the Archer spend the full 15 arrows and 5 freezes; defenders then play the loose ball and break.",
+   "idea": "The field defence does not try to win the ball itself. It contains the carrier in the Archer's lane, outside the Keeper Zone, and lets the Archer release as often as the rules and his rate allow (at most 15 arrows and 5 freezes); defenders then play the loose ball and break.",
    "formation": "Archer as the stopper; 3 SHADOW containing the ball, 4 RING on the arc, 3 LID on the receivers",
    "slots": [
     {
@@ -3429,7 +3429,7 @@
     "As built, a frozen ball holder drops the ball (engine behaviour, not Rulebook text: Q-TAC-2)."
    ],
    "weaknesses": [
-    "Rests on one athlete. The roster carries two Archers at most.",
+    "Rests on one athlete, and a roster has few Archers (canon requires one reserve).",
     "Attackers inside the zone cannot be frozen.",
     "A quick score arrives before the Archer has released more than a few arrows.",
     "Arrows may not be shot at a player outside the Archer's own half (ratified, not built in v0/3)."
@@ -3443,7 +3443,7 @@
     "edge_over": [
      {
       "vs": "ARC",
-      "why": "Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball."
+      "why": "Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. Arc's screens cover three GUNs at most and only from straight behind the goal; whether they work is unmeasured."
      },
      {
       "vs": "RAM",
@@ -3451,7 +3451,7 @@
      },
      {
       "vs": "COUNT",
-      "why": "Once Count crosses halfway it still holds the ball for 10 s or more outside the zone, the longest exposure of any style. The edge is larger in Native v0/3, which does not enforce the own-half arrow rule."
+      "why": "Count has many touches by few handlers, and in Native v0/3, which does not enforce the own-half arrow rule, it is a legal target for most of a 20 s possession. With the rule enforced the exposure falls to the 4 to 9 s after it crosses halfway, and the prediction is weaker."
      }
     ],
     "struggles_against": [
@@ -3477,12 +3477,12 @@
    },
    "staffing_arithmetic": {
     "rosters": 2000,
-    "not_broken_rate": 0.295,
-    "full_rate": 0.051,
-    "broken_rate": 0.705,
+    "not_broken_rate": 0.302,
+    "full_rate": 0.054,
+    "broken_rate": 0.698,
     "mean_field_slots_in_band_of_10": 8.21,
     "broken_by_slot_rate": {
-     "ARCHER": 0.601,
+     "ARCHER": 0.592,
      "SHADOW": 0.253
     },
     "flat_average_roster": {
@@ -3981,7 +3981,7 @@
     "Gives a slow-building opponent no time to set its shape."
    ],
    "weaknesses": [
-    "Ten players upfield; only two behind the ball.",
+    "Eight players upfield; only two behind the ball.",
     "A defensive minor at tackle count 0 is a half goal (a full goal in period 4 and overtime), and tackling at first reach invites fouls.",
     "After the first tackle the scrimmage puts every defender back behind the ball line, so the press has to be rebuilt.",
     "Stamina cannot matter in Native v0/3: fatigue is off."
@@ -4168,7 +4168,7 @@
      "understaffed": {
       "mode": "graceful",
       "fail_below_in_band": 0,
-      "effect": "Graceful: more passes are dropped or cut out, in proportion."
+      "effect": "Graceful: more passes are dropped or cut out, in proportion. A dropped short pass is a loose ball with three REST players behind it; a handler who loses the ball under pressure is not covered that way, which is why METRONOME is the failure slot."
      },
      "anchors": {
       "offence": {
@@ -4438,8 +4438,8 @@
     ],
     "tempo.must_shoot_remaining_s": 3.0,
     "tempo.snap_delay_s": {
-     "leading": 8.0,
-     "otherwise": 2.0
+     "leading": 0.0,
+     "otherwise": 0.0
     },
     "tempo.hold_own_half_until_remaining_s": 12.0,
     "off.first_action_max_s": 10.0,
@@ -4549,7 +4549,7 @@
    ],
    "canon_checks": [
     "The attempt is released before the 30 s clock expires; a throw released as the clock expires counts.",
-    "The snap is always inside the 10 s window. Waiting 8 s inside it is assumed legal; \"delay of game\" is a minor foul after a warning and its boundary is not stated (PLACEHOLDER, Q-TAC-4).",
+    "The snap is taken at once. The game clock stops on every dead ball, so waiting in the snap window would spend only the team's own play clock.",
     "No pass or carry goes back into the own Keeper Zone; a ball in the own zone leaves within 5 s (ZR-1)."
    ],
    "matchups": {
@@ -4570,7 +4570,7 @@
      },
      {
       "vs": "ANVIL",
-      "why": "Once Count crosses halfway it still holds the ball for 10 s or more outside the zone, the longest exposure of any style. The edge is larger in Native v0/3, which does not enforce the own-half arrow rule."
+      "why": "Count has many touches by few handlers, and in Native v0/3, which does not enforce the own-half arrow rule, it is a legal target for most of a 20 s possession. With the rule enforced the exposure falls to the 4 to 9 s after it crosses halfway, and the prediction is weaker."
      },
      {
       "vs": "PRESS",
@@ -4591,7 +4591,7 @@
    "staffing_arithmetic": {
     "rosters": 2000,
     "not_broken_rate": 0.769,
-    "full_rate": 0.131,
+    "full_rate": 0.148,
     "broken_rate": 0.231,
     "mean_field_slots_in_band_of_10": 8.65,
     "broken_by_slot_rate": {
@@ -5147,7 +5147,7 @@
    "staffing_arithmetic": {
     "rosters": 2000,
     "not_broken_rate": 0.785,
-    "full_rate": 0.04,
+    "full_rate": 0.047,
     "broken_rate": 0.215,
     "mean_field_slots_in_band_of_10": 7.94,
     "broken_by_slot_rate": {
@@ -5289,7 +5289,7 @@
      "understaffed": {
       "mode": "graceful",
       "fail_below_in_band": 0,
-      "effect": "Graceful: more entries are made away from the door, where no hold-up is waiting."
+      "effect": "Graceful: more entries are made away from the door, where no hold-up is waiting; the door itself still works for entries through it."
      },
      "anchors": {
       "offence": {
@@ -5371,7 +5371,7 @@
      "understaffed": {
       "mode": "graceful",
       "fail_below_in_band": 0,
-      "effect": "Graceful: the held-up carrier finds a pass out more often and the 5 s is not used up."
+      "effect": "Graceful: the held-up carrier finds a pass out more often, in proportion to how often his receiver gets free."
      },
      "anchors": {
       "offence": {
@@ -5663,15 +5663,16 @@
    ],
    "canon_checks": [
     "A wrap is legal on the ball carrier from below the neck down.",
-    "Hands go on the body, not the ball: two opponents holding the ball for 1 s is a held ball, play stops and the zone clock resets.",
+    "Hands go on the body, not the ball: two opponents holding the ball for 1 s is a held ball (Rulebook, ratified), play stops and the zone clock resets.",
     "Defenders wait outside the zone (20.5 m or more) and enter only with the carrier, within 5 m of him.",
-    "No contact on a Keeper in his zone; the plan applies to the ball carrier only."
+    "No contact on a Keeper in his zone; the plan applies to the ball carrier only.",
+    "Assumes the 5 s keeps running while the attacker is held, and that canon sets no limit on how long a carrier may be held up (Q-TAC-7)."
    ],
    "matchups": {
     "edge_over": [
      {
       "vs": "WAVE",
-      "why": "Wave enters the zone by design with 1.5 s of margin. A hold-up of 1.5 s turns a visit into a residence turnover."
+      "why": "Wave enters the zone by design with about 1 s of margin. A DART or PIVOT who receives inside becomes the ball carrier and may be wrapped; a hold-up of a second or more turns his visit into a residence turnover."
      },
      {
       "vs": "COUNT",
@@ -5706,7 +5707,7 @@
    "staffing_arithmetic": {
     "rosters": 2000,
     "not_broken_rate": 0.42,
-    "full_rate": 0.046,
+    "full_rate": 0.051,
     "broken_rate": 0.58,
     "mean_field_slots_in_band_of_10": 7.54,
     "broken_by_slot_rate": {
@@ -5730,7 +5731,7 @@
    "a": "ANVIL",
    "b": "ARC",
    "predicted_edge": "ANVIL",
-   "reason": "Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball."
+   "reason": "Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. Arc's screens cover three GUNs at most and only from straight behind the goal; whether they work is unmeasured."
   },
   {
    "a": "PRESS",
@@ -5760,13 +5761,13 @@
    "a": "WAVE",
    "b": "RAM",
    "predicted_edge": "WAVE",
-   "reason": "Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every 3.5 s makes them follow attackers in and out of the zone or stand unmarked."
+   "reason": "Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every few seconds makes them follow attackers in and out of the zone or stand unmarked."
   },
   {
    "a": "LOCK",
    "b": "WAVE",
    "predicted_edge": "LOCK",
-   "reason": "Wave enters the zone by design with 1.5 s of margin. A hold-up of 1.5 s turns a visit into a residence turnover."
+   "reason": "Wave enters the zone by design with about 1 s of margin. A DART or PIVOT who receives inside becomes the ball carrier and may be wrapped; a hold-up of a second or more turns his visit into a residence turnover."
   },
   {
    "a": "ANVIL",
@@ -5802,7 +5803,7 @@
    "a": "ANVIL",
    "b": "COUNT",
    "predicted_edge": "ANVIL",
-   "reason": "Once Count crosses halfway it still holds the ball for 10 s or more outside the zone, the longest exposure of any style. The edge is larger in Native v0/3, which does not enforce the own-half arrow rule."
+   "reason": "Count has many touches by few handlers, and in Native v0/3, which does not enforce the own-half arrow rule, it is a legal target for most of a 20 s possession. With the rule enforced the exposure falls to the 4 to 9 s after it crosses halfway, and the prediction is weaker."
   },
   {
    "a": "STRIKE",

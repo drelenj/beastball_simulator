@@ -4,21 +4,21 @@ Status: **DESIGN COMPLETE**. Not IMPLEMENTED, not TESTED, not ACCEPTED. Generate
 
 ## OWNER BRIEFING
 1. **Accomplished.** Eight ways to play are written down as formations of role slots, the rating bands each slot needs, numeric tendencies, restart and Hunt plans, and a prediction for 19 of the 28 pairings. One exploits the 5 s Keeper Zone limit in attack and one in defence, one is built on deep throws, one on carries, one leans on the Archer.
-2. **What the simulator can do now.** Nothing new. Native v0/3 can express 17 of the 62 tactic parameters, and only as one value for the whole team. It has no slots and ignores ratings, so it cannot play any of these styles as written.
+2. **What the simulator can do now.** Nothing new. Native v0/3 can express 16 of the 62 tactic parameters, and only as one value for the whole team. It has no slots and ignores ratings, so it cannot play any of these styles as written.
 3. **Unimplemented or unproven.** All of it. These are reasoned guesses about play. No value was searched or tuned and no match was run. Predictions are there to be checked, and several rest on engine behaviour nobody has measured (for example whether a wrap can hold a carrier for seconds).
-4. **Blocking.** Two builds must exist before any style can be tested: the attribute step (`ATTRIBUTE_STEP_SPEC.md`, Codex) and the playbook interface (`TACTIC_INTERFACE.md`, Codex and Claude). Nine owner questions are open in `QUESTIONS_FOR_OWNER.md` (Q-TAC-1 to 6, Q-ATTR-1 to 3); each has a placeholder, so none blocks the design.
-5. **Recommended action.** Relay the attribute step spec to Codex. Answer the nine questions when convenient; Q-ATTR-1 (the speed curve) first.
+4. **Blocking.** Two builds must exist before any style can be tested: the attribute step (`ATTRIBUTE_STEP_SPEC.md`, Codex) and the playbook interface (`TACTIC_INTERFACE.md`, Codex and Claude). Ten owner questions are open in `QUESTIONS_FOR_OWNER.md` (Q-TAC-1 to 3, 5 to 8, Q-ATTR-1 to 3); each has a placeholder, so none blocks the design.
+5. **Recommended action.** Relay the attribute step spec to Codex. Answer the ten questions when convenient; Q-ATTR-1 (the speed curve) first.
 
 ## 1. How to read this
 - **Hypotheses.** A style here is a guess that a method could work under the rules. Match results decide, later. Nothing below is called good.
 - **Generic personnel.** By the owner amendment of 14 Nov 2026 22:42 the Ala and Xenar rosters were not read and are not used. Every slot is described by rating bands only. There are no player names.
 - **Design envelope (PLACEHOLDER, not canon).** Ratings run 0 to 1 and a typical professional sits at 0.60 to 1.00 on every rating. Heights are about 2.40 to 2.95 m and masses about 155 to 285 kg. The one canon number is that a speed rating of 1.0 is 44.704 m/s. Every band below is written against this envelope and moves if the envelope moves.
-- **Bands.** ELITE 0.90 or more (the top quarter of the professional band); KEY 0.85 or more (top three eighths); SUPPORT 0.75 to 0.80; BASE 0.70. Body gates sit near the middle of the range. A slot has one KEY rating, or two where the method needs both in one body.
+- **Bands.** ELITE 0.90 or more (the top quarter of the professional band); KEY 0.85 or more (top three eighths); SUPPORT 0.75 to 0.80; BASE 0.70. Body gates sit near the middle of the range. The slots that define a style gate one rating at KEY or above, or two where the method needs both in one body; the other slots gate at SUPPORT and BASE.
 - **Three tags on every parameter** (full definitions in section 6): NOW = Native v0/3 can run it today; COORD = the mechanics exist but athletes need a shared pre-match plan; ENGINE = the engine, port or rules layer lacks something.
 - **Personnel profiles** (the amended D2) are in `PERSONNEL_PROFILES.md`. The machine-readable form is `tactics_0.json`.
 
 ## 2. What the styles are built on
-Each line is tagged CANON (ruled or ratified by DreLen), AS BUILT (what Native v0/3 does; not Rulebook text) or PLACEHOLDER.
+Each line is tagged CANON (ruled or ratified by DreLen), AS BUILT (what Native v0/3 does; not Rulebook text) or PLACEHOLDER. Canon here means the repository records (`HP-002_CANON_RULINGS`, `HP-002_RULEBOOK_RATIFICATION`, `HP-002_RB1_ADDENDUM`, the D1 record, `RULES_FLOW_v0.3`) **and the text of the doc "Beastball Rulebook (Draft 1.0)"**, which DreLen ratified in full on 14 Nov 2026 and which is not in the repository. Lines marked (Rulebook) are found only in that doc: the own-half arrow rule, the 1 s held ball, the fouls for marking inside 5 m before the ball is live and for tackling a player without the ball, and the exact-tie rule that a throw released as the clock expires counts.
 
 | Fact | Tag | Used by |
 | --- | --- | --- |
@@ -33,15 +33,15 @@ Each line is tagged CANON (ruled or ratified by DreLen), AS BUILT (what Native v
 | How long an unmarked defender may stay before it is a foul: 5 s | PLACEHOLDER (Q-ZONE-1) | Zone Waves |
 | No minimum time outside before an attacker may re-enter | AS BUILT; canon is silent (Q-TAC-1) | Zone Waves |
 | The Archer may shoot only opposing field players whose team has control of the ball, outside both zones, not frozen or immune, after the Hunt has cleared | CANON, AS BUILT | Archer's Anvil, Zone Waves |
-| No arrow at a player outside the Archer's own half | CANON (ratified); not built in v0/3 | Long Count |
+| No arrow at a player outside the Archer's own half | CANON (Rulebook); not built in v0/3 | Long Count |
 | 15 arrows and 5 freezes per opposing possession; freeze 5 s, then 10 s immunity; arrow 250 m/s | CANON (v0/3 still allows 25 arrows; RB-1 item) | Archer's Anvil |
 | A frozen ball holder drops the ball; a tackle on a frozen player is cancelled | AS BUILT (Q-TAC-2) | Archer's Anvil |
-| The Archer releases at most one arrow every 2.6 s | AS BUILT (a constant in cognition; Q-TAC-3) | Arc Siege, First Strike |
+| The Archer releases at most one arrow every 2.6 s, so about 11 in a 30 s possession, under the limit of 15 | AS BUILT (a constant in cognition; Q-TAC-3) | Arc Siege, First Strike, Archer's Anvil |
 | No offside in live play; offside is judged at scrimmages against the ball line | CANON | First Strike |
-| No defender within 5 m of an opponent before the ball is live | CANON | all restarts |
+| No defender within 5 m of an opponent before the ball is live | CANON (Rulebook) | all restarts |
 | A carrier may not carry, and a team may not pass to a teammate, from outside into its own Keeper Zone; a ball in the own zone must leave within 5 s | CANON (D1 record R-11 to R-13) | Long Count |
-| A defender may wrap the carrier from below the neck down. Two opponents holding the ball itself for 1 s is a held ball | CANON | Zone Lock |
-| Off-ball contact is legal below the neck and above the hip, with no grip; tripping or tackling a player without the ball is a major foul | CANON | Carry Train, High Press |
+| A defender may wrap the carrier from below the neck down. Two opponents holding the ball itself for 1 s is a held ball | CANON (Rulebook; the native questions file still lists the 1 s as Q-HELD-1) | Zone Lock |
+| Off-ball contact is legal below the neck and above the hip, with no grip; tripping or tackling a player without the ball is a major foul | CANON (RULES_FLOW for the trip; Rulebook for the tackle) | Carry Train, High Press |
 | A defensive minor foul at tackle count 0 is a half goal (a full goal in period 4 and overtime) | CANON | High Press |
 | One dribble per possession; no kicking | CANON | First Strike |
 | Scoring: flat (goal 2, half goal 1) in force; the banded scale (carry 5, throws 2/3/4, half goal 1, award 3, own goal 2) is PROVISIONAL | CANON | all |
@@ -59,33 +59,33 @@ Substitutions are unlimited at dead balls by canon, but TACTICS-0 does not use t
 - **Hunt.** One contestant per team; the ball is live when it has left the centre circle; Archers hold until then. Everyone else waits in his own half at least 7 m from the centre spot (PLACEHOLDER, as built: canon gives no set-up distances, Q-HUNT-1).
 
 ### Neutral default
-Where a style has no opinion it uses the neutral value, which is Native v0/3's present behaviour wherever one exists. Substitutions are `cover only` for every style.
+Where a style has no opinion it uses the neutral value. For the 16 `PolicyParams` fields, the pressers, the commit gap, the zone dwell and the pass window, the neutral value is Native v0/3's present value. The other neutral values (for example must-shoot at 4 s, the Archer's target weights, the Keeper depth band, the contact weights) are new first values, not present behaviour. Substitutions are `cover only` for every style.
 
 | Area | Parameter | Neutral value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | 0 | NOW |
 | Ball movement | pass min clearance m | 0 | NOW |
-| Ball movement | pass len band m | 4 to 34 | ENGINE |
-| Ball movement | touch time max s | 30 | COORD |
+| Ball movement | pass len band m | 4 to 34 | COORD |
+| Ball movement | touch time max s | 30 | ENGINE |
 | Ball movement | dribble use | none | COORD |
 | Scoring method | finish pref | carry 0.3, close 0.3, mid 0.25, deep 0.15 | COORD |
 | Scoring method | bias shoot | 0 | NOW |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | 32 | NOW |
-| Scoring method | shot speed frac | 0.9 | ENGINE |
+| Scoring method | shot speed frac | 0.9 | COORD |
 | Tempo and clock | shot window s | 0 to 26 | COORD |
 | Tempo and clock | must shoot remaining s | 4 | COORD |
 | Tempo and clock | snap delay s | leading 0, otherwise 0 | COORD |
 | Tempo and clock | hold own half until remaining s | 30 | COORD |
-| Tempo and clock | first action max s | 10 | COORD |
+| Tempo and clock | first action max s | 10 | ENGINE |
 | Tempo and clock | short field trigger m | 0 | COORD |
 | Carrier in contact | contact response | run through 0.5, dodge 0.3, brace 0.2 | COORD |
 | Carrier in contact | first tackle bank m | 100 | ENGINE |
 | Keeper Zone (attack) | entry mode | late only | COORD |
 | Keeper Zone (attack) | dwell max s | 3 | COORD |
 | Keeper Zone (attack) | occupancy target | 1 | COORD |
-| Keeper Zone (attack) | min outside s | 1 | COORD |
-| Keeper Zone (attack) | entry stagger s | 0 | COORD |
+| Keeper Zone (attack) | min outside s | 1 | ENGINE |
+| Keeper Zone (attack) | entry stagger s | 0 | ENGINE |
 | Keeper Zone (attack) | wedge | no | ENGINE |
 | Keeper Zone (attack) | arrow screen | no | COORD |
 | Tackle aggression | scheme | arc shell | COORD |
@@ -117,7 +117,7 @@ Where a style has no opinion it uses the neutral value, which is Native v0/3's p
 | Positioning weights | spread | 1 | NOW |
 | Positioning weights | opp att | 0.6 | NOW |
 | Positioning weights | opp def | 0.6 | NOW |
-| Positioning weights | lane | 0.8 | NOW |
+| Positioning weights | lane | 0.8 | COORD |
 | Positioning weights | edge zone | 1 | NOW |
 | Positioning weights | anchor pull | 2 | COORD |
 
@@ -125,7 +125,7 @@ Where a style has no opinion it uses the neutral value, which is Native v0/3's p
 
 ### 1. Arc Siege (ARC)
 
-**Idea.** Keep every attacker outside the Keeper Zone on the 21 to 24 m arc, move the ball by quick passes, and score with hard throws released from 20 m or more. The bet is that a fast, accurate deep throw beats a Keeper who has no help, because defenders may not wait inside the zone without an attacker to mark.
+**Idea.** Keep every attacker outside the Keeper Zone on the 21 to 24 m arc, move the ball by quick passes, and score with hard throws released from 20 m or more. The bet is that a fast, accurate deep throw beats a Keeper who has no help, because defenders may wait inside the zone only within 5 m of an attacker, and all attackers are outside it.
 
 **Formation.** 3 GUN on the arc, 3 SCREEN paired goal-side of them, 2 FEED behind, 2 SAFETY held back.
 
@@ -157,13 +157,13 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | --- | --- | --- | --- |
 | Ball movement | bias pass | **1.5** | NOW |
 | Ball movement | pass min clearance m | **2** | NOW |
-| Ball movement | pass len band m | **8 to 30** | ENGINE |
-| Ball movement | touch time max s | **1.5** | COORD |
+| Ball movement | pass len band m | **8 to 30** | COORD |
+| Ball movement | touch time max s | **1.5** | ENGINE |
 | Scoring method | finish pref | **carry 0.1, close 0.05, mid 0.15, deep 0.7** | COORD |
 | Scoring method | bias shoot | **3** | NOW |
 | Scoring method | shot range min m | **20** | COORD |
 | Scoring method | shot range max m | **27** | NOW |
-| Scoring method | shot speed frac | **1** | ENGINE |
+| Scoring method | shot speed frac | **1** | COORD |
 | Tempo and clock | shot window s | **8 to 22** | COORD |
 | Tempo and clock | must shoot remaining s | **5** | COORD |
 | Carrier in contact | contact response | **run through 0.2, dodge 0.6, brace 0.2** | COORD |
@@ -187,7 +187,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Hunt | win action | tip out | COORD |
 | Positioning weights | ball att | **0.3** | NOW |
 | Positioning weights | spread | **1.5** | NOW |
-| Positioning weights | lane | **1.5** | NOW |
+| Positioning weights | lane | **1.5** | COORD |
 | Positioning weights | edge zone | **3** | NOW |
 
 **Plays named above.** *quick swing*: The taker throws 6 to 8 m back and to one side to a named handler slot, who starts the normal offence. All teammates start behind the ball line. *short toss*: The thrower tosses 6 to 10 m infield to the nearest named handler slot. The thrower may not recover the ball himself and the ball cannot score until another player controls it.
@@ -202,7 +202,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 **Strengths (reasoned, untested).**
 
 - Never puts an attacker on the 5 s zone limit.
-- Keeps the defence out of the zone by rule: a defender may stay there only within 5 m of an attacker.
+- Keeps defenders out of the goal mouth: a defender may stay in the zone only within 5 m of an attacker, so with attackers on the arc no defender may wait deeper than about 4.5 m inside it.
 - Deep throws are the highest-valued throws on the provisional scale (4).
 
 **Weaknesses (reasoned, untested).**
@@ -224,7 +224,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | --- | --- | --- |
 | Long Count | edge to Arc Siege | Count's shell waits on the arc and commits late (4 m). In-band GUNs release from 21 to 24 m over it, and Count's long possessions do not lower the quality of Arc's attempts. |
 | Zone Lock | edge to Arc Siege | Lock's trap needs a zone entry and Arc does not enter. Lock contains outside its takedown line, so GUNs release unhurried. |
-| Archer's Anvil | edge to Archer's Anvil | Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. |
+| Archer's Anvil | edge to Archer's Anvil | Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. Arc's screens cover three GUNs at most and only from straight behind the goal; whether they work is unmeasured. |
 | High Press | edge to High Press | Arc needs time to set five players on the arc and circulate. The press tackles the first receiver before the arc forms, and GUN and SCREEN profiles are not chosen for escaping pressure. |
 | Zone Waves | none | Neither method touches the other's. Outside finishing against man marking, inside finishing against an arc shell: no prediction. |
 | Carry Train | none | Ram's Wall stands at 24 to 28 m, right where GUNs release, but its heavy profiles are slow to close: no prediction. |
@@ -232,7 +232,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 
 ### 2. Zone Waves (WAVE)
 
-**Idea.** The 5 s limit is counted per attacker and "at a time", so the team rotates attackers through the Keeper Zone in short visits of 3.5 s and always has fresh ones inside. Attackers inside the zone are not legal arrow targets, and they finish with close and mid throws or a carry.
+**Idea.** The 5 s limit is counted per attacker and "at a time", so the team rotates attackers through the Keeper Zone in short visits (each attacker turns for the arc after 2.5 s) and always has fresh ones inside. Attackers inside the zone are not legal arrow targets, and they finish with close and mid throws or a carry.
 
 **Formation.** 2 HUB outside the arc, 4 DART in two alternating pairs, 2 PIVOT alternating at the goal front, 2 ANCHOR held back.
 
@@ -241,7 +241,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Slot | Job | Needs (minimum bands) | If filled by a weaker player |
 | --- | --- | --- | --- |
 | HUB x2 | Feeder: holds the ball outside the arc and passes to attackers as they enter. | awareness 0.85 or more, throw accuracy 0.75 or more, ball handling 0.70 or more | FAILURE with none in band: entries are fed late or to the wrong man and attackers burn their 5 s without the ball. With one in band the feed comes from one side only (graceful). |
-| DART x4 | In-and-out runner: enters the zone, receives, finishes or leaves before 3.5 s. | agility 0.85 or more, speed 0.75 or more, catching 0.70 or more | FAILURE below two in band: there is no pair quick enough to get in and out inside 3.5 s; either the zone empties or residence turnovers rise. With two or three the weaker pair makes shorter, shallower visits (graceful). |
+| DART x4 | In-and-out runner: enters the zone, receives, finishes, or turns to leave at 2.5 s. | agility 0.85 or more, speed 0.75 or more, catching 0.70 or more | FAILURE below two in band: there is no pair quick enough to get in and out inside the limit; either the zone empties or residence turnovers rise. With two or three the weaker pair makes shorter, shallower visits (graceful). |
 | PIVOT x2 | Target at the goal front: receives with his back to goal, turns and throws or hands off. | strength 0.80 or more, balance 0.75 or more, catching 0.70 or more | Graceful: a lighter or shorter PIVOT is moved off his spot and the team loses the target at the goal front; DARTs still rotate. |
 | ANCHOR x2 | Last line in attack, ball pressure in defence, Hunt contestant. | speed 0.80 or more, tackling 0.70 or more | Graceful: a slower ANCHOR concedes more runs after a save. |
 | KEEPER x1 | Goalkeeper (fixed role by canon). | keeper skill 0.80 or more, catching 0.70 or more | Graceful: a weaker Keeper concedes more of the throws that reach the goal; no part of the plan stops working. |
@@ -252,8 +252,8 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Slot | Offence | Defence | Own restart | Opponent restart | Hunt |
 | --- | --- | --- | --- | --- | --- |
 | HUB | 24 to 30 m from the attacked goal, 12 to 30 degrees off centre, one each side | marks the nearest unmarked opponent, goal side, at 1.5 to 3 m | 6 to 8 m behind the line, 2.4 to 6 m to each side (takes the zone_stack throw) | 5.5 to 7 m behind the line, 4 to 10 m to each side | 38 to 45 m from the own goal line, 7 to 14 m off the centre line, one each side (own half, at least 7 m from the centre spot, to take a tip-out) |
-| DART | in and out: inside at 6 to 13 m from the attacked goal (bearings -60 to 60 degrees) for at most the dwell time, then out to 21 to 24 m (two pairs; one pair inside while the other is out) | marks the nearest unmarked opponent, goal side, at 1.5 to 3 m | 0.8 to 1.5 m behind the line, lateral -22 to 22 m (wide on the ball line) | 5.5 to 6.5 m behind the line, lateral -20 to 20 m | 25 to 40 m from the own goal line, lateral -25 to 25 m (own half, outside the centre circle) |
-| PIVOT | in and out: inside at 8 to 14 m from the attacked goal (bearings -25 to 25 degrees) for at most the dwell time, then out to 21 to 23 m (the two PIVOTs alternate: one inside, one out) | marks the nearest unmarked opponent, goal side, at 1.5 to 3 m | 0.8 to 2 m behind the line, 1.6 to 4 m to each side | 5.5 to 6.5 m behind the line, 1.6 to 4 m to each side | 25 to 40 m from the own goal line, lateral -25 to 25 m (own half, outside the centre circle) |
+| DART | in and out: inside at 10 to 16 m from the attacked goal (bearings -60 to 60 degrees) for at most the dwell time, then out to 21 to 24 m (two pairs; one pair inside while the other is out) | marks the nearest unmarked opponent, goal side, at 1.5 to 3 m | 0.8 to 1.5 m behind the line, lateral -22 to 22 m (wide on the ball line) | 5.5 to 6.5 m behind the line, lateral -20 to 20 m | 25 to 40 m from the own goal line, lateral -25 to 25 m (own half, outside the centre circle) |
+| PIVOT | in and out: inside at 10 to 15 m from the attacked goal (bearings -25 to 25 degrees) for at most the dwell time, then out to 21 to 23 m (the two PIVOTs alternate: one inside, one out) | marks the nearest unmarked opponent, goal side, at 1.5 to 3 m | 0.8 to 2 m behind the line, 1.6 to 4 m to each side | 5.5 to 6.5 m behind the line, 1.6 to 4 m to each side | 25 to 40 m from the own goal line, lateral -25 to 25 m (own half, outside the centre circle) |
 | ANCHOR | 45 to 55 m from the own goal line, 4.8 to 12 m off the centre line, one each side | marks the ball carrier, goal side, at 0 to 6 m | 14 to 22 m behind the line, 4 to 10 m to each side | 10 to 16 m behind the line, 4 to 10 m to each side | The faster ANCHOR is the contestant; the other stands 12 m behind the centre spot. |
 
 Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the platform).
@@ -263,20 +263,20 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Area | Parameter | Value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | **1** | NOW |
-| Ball movement | pass len band m | **6 to 22** | ENGINE |
-| Ball movement | touch time max s | **2.5** | COORD |
+| Ball movement | pass len band m | **6 to 22** | COORD |
+| Ball movement | touch time max s | **2.5** | ENGINE |
 | Scoring method | finish pref | **carry 0.2, close 0.5, mid 0.25, deep 0.05** | COORD |
 | Scoring method | bias shoot | **1** | NOW |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | **18** | NOW |
-| Scoring method | shot speed frac | **0.8** | ENGINE |
+| Scoring method | shot speed frac | **0.8** | COORD |
 | Tempo and clock | shot window s | **6 to 20** | COORD |
 | Tempo and clock | must shoot remaining s | 4 | COORD |
 | Carrier in contact | contact response | **run through 0.2, dodge 0.6, brace 0.2** | COORD |
 | Keeper Zone (attack) | entry mode | **rotation** | COORD |
-| Keeper Zone (attack) | dwell max s | **3.5** | COORD |
+| Keeper Zone (attack) | dwell max s | **2.5** | COORD |
 | Keeper Zone (attack) | occupancy target | **3** | COORD |
-| Keeper Zone (attack) | entry stagger s | **1.75** | COORD |
+| Keeper Zone (attack) | entry stagger s | **1.75** | ENGINE |
 | Tackle aggression | scheme | **man** | COORD |
 | Tackle aggression | pressers max | **1** | COORD |
 | Tackle aggression | press line m | **40** | COORD |
@@ -292,7 +292,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Hunt | contestant slot | **ANCHOR** | COORD |
 | Hunt | win action | tip out | COORD |
 | Positioning weights | goal att | **2** | NOW |
-| Positioning weights | lane | **1.2** | NOW |
+| Positioning weights | lane | **1.2** | COORD |
 | Positioning weights | edge zone | **0** | NOW |
 
 **Plays named above.** *zone stack*: The taker throws 7 m back to a HUB. DARTs stand wide on the ball line and enter the zone on the release, in their rotation order. *quick swing*: The taker throws 6 to 8 m back and to one side to a named handler slot, who starts the normal offence. All teammates start behind the ball line. *short toss*: The thrower tosses 6 to 10 m infield to the nearest named handler slot. The thrower may not recover the ball himself and the ball cannot score until another player controls it.
@@ -302,7 +302,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 
 - shots released inside zone share: >= 0.65
 - attackers in zone mean settled: between 2 to 3
-- attacker zone dwell s p95: <= 4
+- attacker zone dwell s p95: <= 4.5
 - zone residence turnovers per possession: <= 0.05
 
 **Strengths (reasoned, untested).**
@@ -314,13 +314,13 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 **Weaknesses (reasoned, untested).**
 
 - The rotation is a timing agreement with no live channel; each athlete acts on his own belief of where his partner is.
-- Only 1.5 s of margin on the limit: any hold-up inside the zone risks a turnover.
+- About 1 s of margin on the limit after the run out: any hold-up inside the zone risks a turnover.
 - Close and mid throws are the lowest-valued throws on the provisional scale (2 and 3).
 - HUBs outside the arc remain arrow targets.
 
 **Canon check.**
 
-- Every visit ends at 3.5 s, inside the 5 s limit; expiry would be a turnover.
+- Each attacker turns to leave at 2.5 s from no deeper than 10 m inside the arc, which is out by about 4 s from a standing start at today's acceleration; the limit is 5 s and expiry would be a turnover.
 - Reads the Rulebook wording "at most 5 seconds at a time" as a fresh 5 s on re-entry. Canon states no minimum time outside; the plan imposes 1.0 s on itself (PLACEHOLDER, Q-TAC-1).
 - No contact on the Keeper inside his zone.
 
@@ -329,8 +329,8 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Opponent | Prediction | Why |
 | --- | --- | --- |
 | Archer's Anvil | edge to Zone Waves | Attackers inside the zone are not legal arrow targets and Wave keeps its finishers there. Anvil's shadows contain without tackling, which gives the rotation time. |
-| Carry Train | edge to Zone Waves | Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every 3.5 s makes them follow attackers in and out of the zone or stand unmarked. |
-| Zone Lock | edge to Zone Lock | Wave enters the zone by design with 1.5 s of margin. A hold-up of 1.5 s turns a visit into a residence turnover. |
+| Carry Train | edge to Zone Waves | Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every few seconds makes them follow attackers in and out of the zone or stand unmarked. |
+| Zone Lock | edge to Zone Lock | Wave enters the zone by design with about 1 s of margin. A DART or PIVOT who receives inside becomes the ball carrier and may be wrapped; a hold-up of a second or more turns his visit into a residence turnover. |
 | Arc Siege | none | Neither method touches the other's. Outside finishing against man marking, inside finishing against an arc shell: no prediction. |
 | High Press | none | The press may break the rotation before it forms, or its man marking may be dragged in and out of the zone: no prediction. |
 | Long Count | none | Count's shell must follow attackers into the zone or leave them free; whether it copes is not something reasoning settles. |
@@ -346,7 +346,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 
 | Slot | Job | Needs (minimum bands) | If filled by a weaker player |
 | --- | --- | --- | --- |
-| RAM x2 | Power carrier: carries into contact and stays up. | strength 0.85 or more, balance 0.75 or more, ball handling 0.70 or more, mass 220 kg or more | FAILURE with none in band: a carrier who goes down on first contact uses both tackles before the arc. With one in band there is no relief carrier (graceful). |
+| RAM x2 | Power carrier: carries into contact and stays up. | strength 0.85 or more, balance 0.75 or more, ball handling 0.70 or more, mass 220 kg or more | FAILURE below two in band: by rule the tackled carrier is the snapper, so after the first tackle the other RAM makes the scoring run. One strong carrier is half a plan. |
 | PLOW x4 | Lead blocker: clears the carrier's path by legal off-ball contact. | blocking 0.85 or more, strength 0.75 or more, mass 220 kg or more | FAILURE below two in band: no wedge forms and the carrier meets the first tackler alone. With two or three the wedge covers one side only (graceful). |
 | FLANK x2 | Wide outlet level with the ball. | speed 0.80 or more, catching 0.75 or more, ball handling 0.70 or more | Graceful: without a reliable outlet the carrier has no pass when the wedge stalls. |
 | TAIL x2 | Trailer: recovers loose balls and is the last line. | tackling 0.80 or more, speed 0.70 or more | Graceful: loose balls behind the wedge are lost more often. |
@@ -369,18 +369,18 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Area | Parameter | Value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | **-4** | NOW |
-| Ball movement | pass len band m | **4 to 12** | ENGINE |
+| Ball movement | pass len band m | **4 to 12** | COORD |
 | Scoring method | finish pref | **carry 0.75, close 0.2, mid 0.05, deep 0** | COORD |
 | Scoring method | bias shoot | **-1** | NOW |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | **12** | NOW |
-| Scoring method | shot speed frac | **0.7** | ENGINE |
+| Scoring method | shot speed frac | **0.7** | COORD |
 | Tempo and clock | shot window s | **6 to 24** | COORD |
 | Tempo and clock | must shoot remaining s | **3** | COORD |
 | Carrier in contact | contact response | **run through 0.7, dodge 0.1, brace 0.2** | COORD |
 | Carrier in contact | first tackle bank m | **30** | ENGINE |
 | Keeper Zone (attack) | entry mode | **drive** | COORD |
-| Keeper Zone (attack) | dwell max s | **4** | COORD |
+| Keeper Zone (attack) | dwell max s | 3 | COORD |
 | Keeper Zone (attack) | occupancy target | **5** | COORD |
 | Keeper Zone (attack) | wedge | **yes** | ENGINE |
 | Tackle aggression | scheme | **wall** | COORD |
@@ -429,7 +429,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 **Canon check.**
 
 - Blocks are shoulder and push contact below the neck and above the hip, no grip, never on the Keeper in his zone; tripping or tackling a player without the ball is a major foul and is not used.
-- Wedge and carrier leave the zone inside 4 s if the carry stalls.
+- If the carry stalls, wedge and carrier turn to leave at 3 s, which is out before 5 s from 10 m inside.
 - One dribble per possession is not used.
 
 **Against the other seven (predictions to be tested, not results).**
@@ -439,14 +439,14 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Long Count | edge to Carry Train | Count's shell commits late and avoids contact; a wedge reaches the arc at speed and needs under 2 s inside. Ram's Wall tackles hard and a 20 s possession offers it many chances. |
 | First Strike | edge to Carry Train | Strike defends with seven, so the wedge meets fewer tacklers. Ram's turnovers are mostly dead balls, which deny Strike the live gain it needs. |
 | Zone Lock | edge to Carry Train | The trap needs about 5 s of hold-up. A wedge-led carry needs under 2 s from arc to goal plane, and Lock chooses not to ground a carrier in the zone at count 0. |
-| Zone Waves | edge to Zone Waves | Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every 3.5 s makes them follow attackers in and out of the zone or stand unmarked. |
+| Zone Waves | edge to Zone Waves | Ram's Wall is staffed by heavy RAM and PLOW profiles. A rotation every few seconds makes them follow attackers in and out of the zone or stand unmarked. |
 | Archer's Anvil | edge to Archer's Anvil | Ram puts the whole possession on one carrier who runs 40 m or more outside the zone: the Archer's first target. As built a freeze makes him drop the ball. |
 | High Press | edge to High Press | Ram wants its free first tackle close to goal. The press forces it far out, leaving a second run of 50 m or more with no tackle left. |
 | Arc Siege | none | Ram's Wall stands at 24 to 28 m, right where GUNs release, but its heavy profiles are slow to close: no prediction. |
 
 ### 4. Archer's Anvil (ANVIL)
 
-**Idea.** The field defence does not try to win the ball itself. It contains the carrier in the Archer's lane, outside the Keeper Zone, and lets the Archer spend the full 15 arrows and 5 freezes; defenders then play the loose ball and break.
+**Idea.** The field defence does not try to win the ball itself. It contains the carrier in the Archer's lane, outside the Keeper Zone, and lets the Archer release as often as the rules and his rate allow (at most 15 arrows and 5 freezes); defenders then play the loose ball and break.
 
 **Formation.** Archer as the stopper; 3 SHADOW containing the ball, 4 RING on the arc, 3 LID on the receivers.
 
@@ -475,13 +475,13 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Area | Parameter | Value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | 0 | NOW |
-| Ball movement | pass len band m | 4 to 34 | ENGINE |
+| Ball movement | pass len band m | 4 to 34 | COORD |
 | Scoring method | finish pref | carry 0.3, close 0.3, mid 0.25, deep 0.15 | COORD |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | **28** | NOW |
 | Tempo and clock | shot window s | 0 to 26 | COORD |
 | Tempo and clock | must shoot remaining s | 4 | COORD |
-| Tempo and clock | first action max s | **1.5** | COORD |
+| Tempo and clock | first action max s | **1.5** | ENGINE |
 | Keeper Zone (attack) | entry mode | late only | COORD |
 | Keeper Zone (attack) | dwell max s | 3 | COORD |
 | Keeper Zone (attack) | occupancy target | 1 | COORD |
@@ -524,7 +524,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 
 **Weaknesses (reasoned, untested).**
 
-- Rests on one athlete. The roster carries two Archers at most.
+- Rests on one athlete, and a roster has few Archers (canon requires one reserve).
 - Attackers inside the zone cannot be frozen.
 - A quick score arrives before the Archer has released more than a few arrows.
 - Arrows may not be shot at a player outside the Archer's own half (ratified, not built in v0/3).
@@ -539,9 +539,9 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 
 | Opponent | Prediction | Why |
 | --- | --- | --- |
-| Arc Siege | edge to Archer's Anvil | Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. |
+| Arc Siege | edge to Archer's Anvil | Arc's throwers and feeders stand outside the zone in the Archer's half for the whole possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. Arc's screens cover three GUNs at most and only from straight behind the goal; whether they work is unmeasured. |
 | Carry Train | edge to Archer's Anvil | Ram puts the whole possession on one carrier who runs 40 m or more outside the zone: the Archer's first target. As built a freeze makes him drop the ball. |
-| Long Count | edge to Archer's Anvil | Once Count crosses halfway it still holds the ball for 10 s or more outside the zone, the longest exposure of any style. The edge is larger in Native v0/3, which does not enforce the own-half arrow rule. |
+| Long Count | edge to Archer's Anvil | Count has many touches by few handlers, and in Native v0/3, which does not enforce the own-half arrow rule, it is a legal target for most of a 20 s possession. With the rule enforced the exposure falls to the 4 to 9 s after it crosses halfway, and the prediction is weaker. |
 | Zone Waves | edge to Zone Waves | Attackers inside the zone are not legal arrow targets and Wave keeps its finishers there. Anvil's shadows contain without tackling, which gives the rotation time. |
 | First Strike | edge to First Strike | Strike attempts within 8 s, before the Archer has released more than a few arrows, and its long passes travel over shadows who are containing, not tackling. |
 | High Press | none | Two defensive styles with plain offences. The press shortens the field, which also shortens the Archer's time: no prediction. |
@@ -578,14 +578,14 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Area | Parameter | Value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | 0 | NOW |
-| Ball movement | pass len band m | 4 to 34 | ENGINE |
+| Ball movement | pass len band m | 4 to 34 | COORD |
 | Scoring method | finish pref | carry 0.3, close 0.3, mid 0.25, deep 0.15 | COORD |
 | Scoring method | bias shoot | **1** | NOW |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | **30** | NOW |
 | Tempo and clock | shot window s | **2 to 14** | COORD |
 | Tempo and clock | must shoot remaining s | 4 | COORD |
-| Tempo and clock | first action max s | **2** | COORD |
+| Tempo and clock | first action max s | **2** | ENGINE |
 | Tempo and clock | short field trigger m | **45** | COORD |
 | Keeper Zone (attack) | entry mode | late only | COORD |
 | Keeper Zone (attack) | dwell max s | 3 | COORD |
@@ -628,7 +628,7 @@ Slot overrides: SWEEP uses press line m = 45; SWEEP uses commit gap m = 5.
 
 **Weaknesses (reasoned, untested).**
 
-- Ten players upfield; only two behind the ball.
+- Eight players upfield; only two behind the ball.
 - A defensive minor at tackle count 0 is a half goal (a full goal in period 4 and overtime), and tackling at first reach invites fouls.
 - After the first tackle the scrimmage puts every defender back behind the ball line, so the press has to be rebuilt.
 - Stamina cannot matter in Native v0/3: fatigue is off.
@@ -662,7 +662,7 @@ Slot overrides: SWEEP uses press line m = 45; SWEEP uses commit gap m = 5.
 | Slot | Job | Needs (minimum bands) | If filled by a weaker player |
 | --- | --- | --- | --- |
 | METRONOME x3 | Handler: receives, protects and moves the ball without risk. | ball handling 0.85 or more, throw accuracy 0.75 or more, awareness 0.75 or more | FAILURE below two in band: a 20 s possession is 8 or more passes; with weak handlers one of them is lost. With two the third handler is a risk the others pass around (graceful). |
-| LINK x4 | Receiver 8 to 15 m from the ball, always showing an open lane. | catching 0.80 or more, agility 0.70 or more, awareness 0.70 or more | Graceful: more passes are dropped or cut out, in proportion. |
+| LINK x4 | Receiver 8 to 15 m from the ball, always showing an open lane. | catching 0.80 or more, agility 0.70 or more, awareness 0.70 or more | Graceful: more passes are dropped or cut out, in proportion. A dropped short pass is a loose ball with three REST players behind it; a handler who loses the ball under pressure is not covered that way, which is why METRONOME is the failure slot. |
 | REST x3 | Stays behind the ball in attack so a lost ball meets defenders. | tackling 0.75 or more, speed 0.75 or more | Graceful: a lost ball is more often a goal against. |
 | KEEPER x1 | Goalkeeper (fixed role by canon). | keeper skill 0.80 or more, catching 0.70 or more | Graceful: a weaker Keeper concedes more of the throws that reach the goal; no part of the plan stops working. |
 | ARCHER x1 | Archer (fixed role by canon). | archery accuracy 0.75 or more, awareness 0.70 or more | Graceful: fewer freezes per opposing possession; no part of the plan stops working. |
@@ -683,15 +683,14 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | --- | --- | --- | --- |
 | Ball movement | bias pass | **3** | NOW |
 | Ball movement | pass min clearance m | **4** | NOW |
-| Ball movement | pass len band m | **6 to 15** | ENGINE |
-| Ball movement | touch time max s | **3** | COORD |
+| Ball movement | pass len band m | **6 to 15** | COORD |
+| Ball movement | touch time max s | **3** | ENGINE |
 | Scoring method | finish pref | **carry 0.1, close 0.3, mid 0.3, deep 0.3** | COORD |
 | Scoring method | bias shoot | **-3** | NOW |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | **24** | NOW |
 | Tempo and clock | shot window s | **22 to 27** | COORD |
 | Tempo and clock | must shoot remaining s | **3** | COORD |
-| Tempo and clock | snap delay s | **leading 8, otherwise 2** | COORD |
 | Tempo and clock | hold own half until remaining s | **12** | COORD |
 | Carrier in contact | contact response | **run through 0.1, dodge 0.7, brace 0.2** | COORD |
 | Keeper Zone (attack) | entry mode | late only | COORD |
@@ -718,9 +717,9 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Positioning weights | goal def | **2** | NOW |
 | Positioning weights | spread | **2** | NOW |
 | Positioning weights | opp att | **1.5** | NOW |
-| Positioning weights | lane | **2** | NOW |
+| Positioning weights | lane | **2** | COORD |
 
-**Plays named above.** *safe reset*: The taker throws 8 m back to a METRONOME and the team re-forms its passing diamond. The taker waits tempo.snap_delay_s inside the legal window first. *short toss*: The thrower tosses 6 to 10 m infield to the nearest named handler slot. The thrower may not recover the ball himself and the ball cannot score until another player controls it.
+**Plays named above.** *safe reset*: The taker throws 8 m back to a METRONOME and the team re-forms its passing diamond. *short toss*: The thrower tosses 6 to 10 m infield to the nearest named handler slot. The thrower may not recover the ball himself and the ball cannot score until another player controls it.
 *Defensive alignment (shell)*: All field defenders stand 5.5 m or more on their own side of the restraining line, between ball and goal.
 
 **What the style should look like if it is being played** (checked before any result is read):
@@ -747,7 +746,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 **Canon check.**
 
 - The attempt is released before the 30 s clock expires; a throw released as the clock expires counts.
-- The snap is always inside the 10 s window. Waiting 8 s inside it is assumed legal; "delay of game" is a minor foul after a warning and its boundary is not stated (PLACEHOLDER, Q-TAC-4).
+- The snap is taken at once. The game clock stops on every dead ball, so waiting in the snap window would spend only the team's own play clock.
 - No pass or carry goes back into the own Keeper Zone; a ball in the own zone leaves within 5 s (ZR-1).
 
 **Against the other seven (predictions to be tested, not results).**
@@ -757,7 +756,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | First Strike | edge to Long Count | Count gives up few live turnovers and keeps three REST players behind the ball, so the BOLTs waiting high receive little; and Count attacks a seven-player defence. |
 | Arc Siege | edge to Arc Siege | Count's shell waits on the arc and commits late (4 m). In-band GUNs release from 21 to 24 m over it, and Count's long possessions do not lower the quality of Arc's attempts. |
 | Carry Train | edge to Carry Train | Count's shell commits late and avoids contact; a wedge reaches the arc at speed and needs under 2 s inside. Ram's Wall tackles hard and a 20 s possession offers it many chances. |
-| Archer's Anvil | edge to Archer's Anvil | Once Count crosses halfway it still holds the ball for 10 s or more outside the zone, the longest exposure of any style. The edge is larger in Native v0/3, which does not enforce the own-half arrow rule. |
+| Archer's Anvil | edge to Archer's Anvil | Count has many touches by few handlers, and in Native v0/3, which does not enforce the own-half arrow rule, it is a legal target for most of a 20 s possession. With the rule enforced the exposure falls to the 4 to 9 s after it crosses halfway, and the prediction is weaker. |
 | High Press | edge to High Press | Count's short passes are exactly what man pressure contests, and Count may not retreat into its own zone, so the press compresses it against the arc. |
 | Zone Lock | edge to Zone Lock | Count attempts with 3 to 8 s left. A hold-up at the door squeezes it between the zone limit and the play clock with no time to recycle. |
 | Zone Waves | none | Count's shell must follow attackers into the zone or leave them free; whether it copes is not something reasoning settles. |
@@ -793,8 +792,8 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Area | Parameter | Value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | **2** | NOW |
-| Ball movement | pass len band m | **20 to 50** | ENGINE |
-| Ball movement | touch time max s | **2** | COORD |
+| Ball movement | pass len band m | **20 to 50** | COORD |
+| Ball movement | touch time max s | **2** | ENGINE |
 | Ball movement | dribble use | **advance** | COORD |
 | Scoring method | finish pref | **carry 0.35, close 0.35, mid 0.2, deep 0.1** | COORD |
 | Scoring method | bias shoot | **2** | NOW |
@@ -802,7 +801,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Scoring method | shot range max m | **30** | NOW |
 | Tempo and clock | shot window s | **2 to 8** | COORD |
 | Tempo and clock | must shoot remaining s | 4 | COORD |
-| Tempo and clock | first action max s | **1.5** | COORD |
+| Tempo and clock | first action max s | **1.5** | ENGINE |
 | Carrier in contact | contact response | **run through 0.2, dodge 0.7, brace 0.1** | COORD |
 | Keeper Zone (attack) | entry mode | **drive** | COORD |
 | Keeper Zone (attack) | dwell max s | 3 | COORD |
@@ -881,8 +880,8 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Slot | Job | Needs (minimum bands) | If filled by a weaker player |
 | --- | --- | --- | --- |
 | CLAMP x2 | Door jamb: wraps the carrier as he enters and holds him up inside the zone. | strength 0.85 or more, tackling 0.80 or more, mass 230 kg or more | FAILURE below two in band: a carrier who breaks the wrap is 20 m from goal with no one in front of him but the Keeper. There is no graceful case: the door needs both jambs. |
-| GATE x4 | Arc guard away from the door. | tackling 0.80 or more, strength 0.70 or more, speed 0.70 or more | Graceful: more entries are made away from the door, where no hold-up is waiting. |
-| DENY x4 | Outlet cover: takes away the pass out of the zone. | speed 0.80 or more, awareness 0.75 or more, agility 0.70 or more | Graceful: the held-up carrier finds a pass out more often and the 5 s is not used up. |
+| GATE x4 | Arc guard away from the door. | tackling 0.80 or more, strength 0.70 or more, speed 0.70 or more | Graceful: more entries are made away from the door, where no hold-up is waiting; the door itself still works for entries through it. |
+| DENY x4 | Outlet cover: takes away the pass out of the zone. | speed 0.80 or more, awareness 0.75 or more, agility 0.70 or more | Graceful: the held-up carrier finds a pass out more often, in proportion to how often his receiver gets free. |
 | KEEPER x1 | Goalkeeper (fixed role by canon). | keeper skill 0.80 or more, catching 0.70 or more | Graceful: a weaker Keeper concedes more of the throws that reach the goal; no part of the plan stops working. |
 | ARCHER x1 | Archer (fixed role by canon). | archery accuracy 0.75 or more, awareness 0.70 or more | Graceful: fewer freezes per opposing possession; no part of the plan stops working. |
 
@@ -901,7 +900,7 @@ Keeper and Archer hold their fixed posts (Keeper inside his zone, Archer on the 
 | Area | Parameter | Value | Tag |
 | --- | --- | --- | --- |
 | Ball movement | bias pass | 0 | NOW |
-| Ball movement | pass len band m | 4 to 34 | ENGINE |
+| Ball movement | pass len band m | 4 to 34 | COORD |
 | Scoring method | finish pref | carry 0.3, close 0.3, mid 0.25, deep 0.15 | COORD |
 | Scoring method | shot range min m | 0 | COORD |
 | Scoring method | shot range max m | 32 | NOW |
@@ -958,15 +957,16 @@ Slot overrides: CLAMP uses holdup drive = into zone.
 **Canon check.**
 
 - A wrap is legal on the ball carrier from below the neck down.
-- Hands go on the body, not the ball: two opponents holding the ball for 1 s is a held ball, play stops and the zone clock resets.
+- Hands go on the body, not the ball: two opponents holding the ball for 1 s is a held ball (Rulebook, ratified), play stops and the zone clock resets.
 - Defenders wait outside the zone (20.5 m or more) and enter only with the carrier, within 5 m of him.
 - No contact on a Keeper in his zone; the plan applies to the ball carrier only.
+- Assumes the 5 s keeps running while the attacker is held, and that canon sets no limit on how long a carrier may be held up (Q-TAC-7).
 
 **Against the other seven (predictions to be tested, not results).**
 
 | Opponent | Prediction | Why |
 | --- | --- | --- |
-| Zone Waves | edge to Zone Lock | Wave enters the zone by design with 1.5 s of margin. A hold-up of 1.5 s turns a visit into a residence turnover. |
+| Zone Waves | edge to Zone Lock | Wave enters the zone by design with about 1 s of margin. A DART or PIVOT who receives inside becomes the ball carrier and may be wrapped; a hold-up of a second or more turns his visit into a residence turnover. |
 | Long Count | edge to Zone Lock | Count attempts with 3 to 8 s left. A hold-up at the door squeezes it between the zone limit and the play clock with no time to recycle. |
 | First Strike | edge to Zone Lock | Lock does not press upfield, so its defenders are at the arc when the long pass arrives. The break ends in a zone entry against a set trap. |
 | Arc Siege | edge to Arc Siege | Lock's trap needs a zone entry and Arc does not enter. Lock contains outside its takedown line, so GUNs release unhurried. |
@@ -992,11 +992,11 @@ Slot overrides: CLAMP uses holdup drive = into zone.
 Reading it as a whole says something about the reasoning, not about the styles. On paper Long Count has one predicted edge and five predicted deficits, because slowing the game changes how many possessions there are and not what each is worth; an equal-roster round-robin is the least favourable test for it. Nothing here says the eight are evenly matched, and nothing was adjusted to make them so.
 
 ## 6. Parameter catalogue and classification
-62 parameters. 17 are EXPRESSIBLE NOW, 37 NEED COORDINATION, 8 NEED ENGINE WORK.
+62 parameters. 16 are EXPRESSIBLE NOW, 36 NEED COORDINATION, 10 NEED ENGINE WORK.
 
-- **EXPRESSIBLE NOW.** Native v0/3 can run it today with no code change. In practice the parameter is one of the 16 team-wide `PolicyParams` fields (or a behaviour that is already the only one built), with one value for every teammate.
-- **NEEDS COORDINATION.** The engine mechanics, intent kinds and view fields exist, but the athlete does not hold the value: it differs by slot, replaces a constant in cognition, or works only if teammates hold the same plan. It needs the pre-match playbook of `TACTIC_INTERFACE.md` and cognition that reads it. No physics or rules change.
-- **NEEDS ENGINE WORK.** The engine, port or rules layer lacks something: ratings and bodies per athlete, athlete-chosen release speed, voluntary off-ball contact, or a public signal missing from the view.
+- **EXPRESSIBLE NOW.** Native v0/3 can run it today with no code change. In practice the parameter is one of the team-wide `PolicyParams` fields that has an effect in v0/3 (15 of the 16; the lane term is inert), or a behaviour that is already the only one built, with one value for every teammate.
+- **NEEDS COORDINATION.** The engine mechanics and intent kinds exist, but the athlete does not hold the value: it differs by slot, replaces a constant in cognition, or works only if teammates hold the same plan. It needs the pre-match playbook of `TACTIC_INTERFACE.md` (Codex delivers it in the view; Claude writes the cognition that reads it). No physics or rules change.
+- **NEEDS ENGINE WORK.** The engine, port or rules layer lacks something: ratings and bodies per athlete, voluntary off-ball contact, an own-action memory that lasts between decisions, or a public signal missing from the view.
 
 | Parameter | Meaning | Range | Class | Reason |
 | --- | --- | --- | --- | --- |
@@ -1006,17 +1006,17 @@ Reading it as a whole says something about the reasoning, not about the styles. 
 | `carrier.shot_range_max_m` | Largest believed distance to goal at which a throw at goal is an option. | 8 to 60 m | EXPRESSIBLE NOW | Is PolicyParams.shot_range. |
 | `carrier.shot_range_min_m` | Smallest believed distance to goal at which a throw at goal is an option. | 0 to 40 m | NEEDS COORDINATION | v0/3 cognition has no minimum-distance filter on the shoot option; the playbook value must be read in cognition. |
 | `carrier.finish_pref` | Preference weights over scoring methods: carry in, close throw (under 10 m), mid throw (10 to 20 m), deep throw (20 m or more). | carry, close, mid, deep: each 0 to 1, sum 1 | NEEDS COORDINATION | v0/3 values one shoot option and one carry option with no distance bands; the bands need playbook weights in cognition. Release distance is the athlete's own believed distance. |
-| `carrier.shot_speed_frac` | Release speed of a throw at goal as a fraction of the thrower's own maximum. | 0.3 to 1 | NEEDS ENGINE WORK | v0/3 releases every pass and shot at min(27, max) m/s and 1.6 m height (R10 F-4). Athlete-chosen release speed and a per-athlete maximum from throw_power are engine and attribute-step work. |
-| `carrier.pass_len_band_m` | Preferred believed pass length. | 4 to 60 m | NEEDS ENGINE WORK | v0/3 pass options are fixed to a believed 4 to 34 m at 27 m/s. Bands beyond 34 m, or needing a faster ball, depend on athlete-chosen release speed. A band inside 4 to 34 m would need only the playbook. |
-| `carrier.touch_time_max_s` | Longest time a ball holder outside the Keeper Zone keeps the ball before passing or throwing. 30 means no limit. | 0.5 to 30 s | NEEDS COORDINATION | v0/3 has no own-possession timer. Needs an own-action memory of when I gained the ball (own knowledge) and a playbook threshold. |
+| `carrier.shot_speed_frac` | Release speed of a throw at goal as a fraction of the thrower's own maximum. | 0.3 to 1 | NEEDS COORDINATION | The intent already carries a release speed and the engine honours it up to 40 m/s, but v0/3 cognition always sends min(27, max) m/s at 1.6 m height (R10 F-4). The playbook value must be read in cognition. A maximum that differs by athlete comes only with the attribute step. |
+| `carrier.pass_len_band_m` | Preferred believed pass length. | 4 to 60 m | NEEDS COORDINATION | The 4 to 34 m window and the 27 m/s release are constants in v0/3 cognition; the playbook must replace them. Whether a 50 m pass arrives and is caught depends on throw power and catching, which need the attribute step. |
+| `carrier.touch_time_max_s` | Longest time a ball holder outside the Keeper Zone keeps the ball before passing or throwing. 30 means no limit. | 0.5 to 30 s | NEEDS ENGINE WORK | Needs the athlete to remember when he gained the ball. v0/3 rebuilds the belief at every decision and keeps no such own-action memory; the port must carry one. |
 | `carrier.contact_response` | Preference weights among run through, dodge and brace when a tackler is believed to be arriving. | run_through, dodge, brace: each 0 to 1, sum 1 | NEEDS COORDINATION | The three intents exist in v0/3 but are chosen from constants (THREAT_HORIZON_S, DODGE_MIN_S, BRACE_LOAD). The playbook must replace them. |
 | `carrier.first_tackle_bank_m` | While the tackle count is 0, the carrier accepts contact only inside this distance of the attacked goal; farther out he prefers to dodge or pass. 100 means anywhere. | 0 to 100 m | NEEDS ENGINE WORK | Needs the public tackle count in the athlete's view. v0/3 Signals carry no tackle count. |
 | `carrier.dribble_use` | When the one dribble per possession is used. | none / escape / advance | NEEDS COORDINATION | The dribble intent exists; v0/3 uses it only when no teammate is believed visible. A playbook rule must choose it. |
-| `tempo.shot_window_s` | Seconds into the 30 s play clock in which the team prefers to take its scoring attempt. | 0 to 30 s | NEEDS COORDINATION | The possession clock is a public signal in the view. v0/3 has only a fixed +5 shoot value in the first 5 s. Needs playbook values. |
+| `tempo.shot_window_s` | Seconds into the 30 s play clock in which the team prefers to take its scoring attempt. | 0 to 30 s | NEEDS COORDINATION | The possession clock is a public signal in the view. v0/3 has only a fixed +5 shoot value when under 5 s remain. Needs playbook values. |
 | `tempo.must_shoot_remaining_s` | With this much play clock left, the ball holder attempts to score from where he is. | 0 to 10 s | NEEDS COORDINATION | Same public clock; no such rule in v0/3 cognition. |
-| `tempo.snap_delay_s` | Seconds the snapper waits inside the legal 10 s snap window, when leading and otherwise. | leading, otherwise: each 0 to 8 | NEEDS COORDINATION | v0/3 releases as soon as a legal throw exists. Score is public. Assumes waiting inside the legal window is not delay of game (Q-TAC-4). |
+| `tempo.snap_delay_s` | Seconds the snapper waits inside the legal 10 s snap window, when leading and otherwise. | leading, otherwise: each 0 to 8 | NEEDS COORDINATION | v0/3 releases as soon as a legal throw exists. Score is public. No style uses it: the game clock is stopped during the window. |
 | `tempo.hold_own_half_until_remaining_s` | The team keeps the ball in its own half until this much play clock remains. 30 means it does not hold. | 0 to 30 s | NEEDS COORDINATION | A position and hold rule from the public clock; needs the playbook. Its purpose (no legal arrow target outside the Archer's own half) rests on a ratified rule that v0/3 does not enforce. |
-| `off.first_action_max_s` | After gaining a live ball, longest time before the first forward pass or carry. | 0.5 to 10 s | NEEDS COORDINATION | Needs an own-action memory of when I gained the ball and a playbook threshold. |
+| `off.first_action_max_s` | After gaining a live ball, longest time before the first forward pass or carry. | 0.5 to 10 s | NEEDS ENGINE WORK | As carrier.touch_time_max_s: needs an own-action memory that v0/3 does not keep. |
 | `off.short_field_trigger_m` | If possession is gained within this distance of the attacked goal, the team attempts to score at once. 0 means never. | 0 to 100 m | NEEDS COORDINATION | Own believed position and a playbook threshold. |
 | `pos.ball_att` | In possession: pull toward the believed ball. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_ball_att. |
 | `pos.ball_def` | Out of possession: pull toward the believed ball. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_ball_def. |
@@ -1025,14 +1025,14 @@ Reading it as a whole says something about the reasoning, not about the styles. 
 | `pos.spread` | Prefer distance from the nearest believed teammate. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_spread. |
 | `pos.opp_att` | In possession: prefer distance from the nearest believed opponent. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_opp_att. |
 | `pos.opp_def` | Out of possession: prefer closeness to the nearest believed opponent. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_opp_def. |
-| `pos.lane` | In possession: prefer an open believed lane from the carrier. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_lane. |
+| `pos.lane` | In possession: prefer an open believed lane from the carrier. | -3 to 3 | NEEDS COORDINATION | Is PolicyParams.pos_lane, but the term is inert in v0/3: cognition passes no believed carrier position to the positioning function. Needs a cognition change, no engine change. |
 | `pos.edge_zone` | Penalty for standing near a field edge or inside either Keeper Zone. | 0 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_edge_zone. |
 | `pos.anchor_pull` | Weight of the athlete's own slot anchor against the nine belief-driven terms above. 0 means the anchor is ignored. | 0 to 6 | NEEDS COORDINATION | There is no anchor in v0/3. The weight is read from the playbook by cognition; it sets how strongly the plan pulls and is the same unsearched value for every style. |
 | `zone.entry_mode` | How attackers use the attacked Keeper Zone. | avoid / rebound_only / late_only / drive / rotation | NEEDS COORDINATION | v0/3 has one behaviour (a position penalty for zones). A mode needs the playbook. |
-| `zone.dwell_max_s` | An attacker leaves the zone when his own residence reaches this. Canon limit is 5 s. | 0 to 4.5 s | NEEDS COORDINATION | v0/3 leaves at a fixed 3.0 s. Own residence time is already in the view; the playbook must supply the threshold. |
+| `zone.dwell_max_s` | An attacker starts to leave the zone when his own residence reaches this. The value must leave time to get out before the 5 s limit. | 0 to 3.5 s | NEEDS COORDINATION | v0/3 leaves at a fixed 3.0 s. Own residence time is already in the view; the playbook must supply the threshold. |
 | `zone.occupancy_target` | Number of attackers the team tries to keep inside the zone in settled offence. | 0 to 6 | NEEDS COORDINATION | Each athlete can count believed teammates inside, but who goes in next is a shared arrangement held in the playbook. |
-| `zone.min_outside_s` | Self-imposed minimum time outside before the same attacker re-enters. | 0 to 5 s | NEEDS COORDINATION | Own knowledge and a playbook value. Canon states no minimum time outside (Q-TAC-1). |
-| `zone.entry_stagger_s` | Offset between the entries of paired attackers in a rotation. | 0 to 5 s | NEEDS COORDINATION | A timing agreement between teammates with no live channel: each acts on his own belief of the partner leaving. |
+| `zone.min_outside_s` | Self-imposed minimum time outside before the same attacker re-enters. | 0 to 5 s | NEEDS ENGINE WORK | Needs the athlete to remember when he last left the zone; v0/3 keeps no such memory. Canon states no minimum time outside (Q-TAC-1). |
+| `zone.entry_stagger_s` | Offset between the entries of paired attackers in a rotation. | 0 to 5 s | NEEDS ENGINE WORK | A timing agreement with no live channel: each acts on his own belief of the partner entering, and must remember when he saw it. v0/3 keeps no such memory. |
 | `block.wedge` | Lead blockers make legal off-ball contact (shoulder, push; no grip) ahead of the carrier. | boolean | NEEDS ENGINE WORK | Native has no voluntary off-ball contact intents (Q-HAND-1). Without them the wedge is only bodies in the way. |
 | `screen.arrow_screen` | A screener stands between the Archer platform and a paired thrower. | boolean | NEEDS COORDINATION | Position only, held in the playbook and paired with one teammate. Rests on arrow-body collision, which the engine has. Effect unmeasured. |
 | `def.bias_press` | Added to the value of closing on the believed carrier. | -6 to 6 | EXPRESSIBLE NOW | Is PolicyParams.bias_press. |
@@ -1063,11 +1063,11 @@ Reading it as a whole says something about the reasoning, not about the styles. 
 | `assignment.rule` | Pre-match rule that fills slots from a supplied roster by rating band. | rule | NEEDS ENGINE WORK | A step outside the engine, but there is nothing to assign until rosters carry ratings, and the harness has no per-athlete playbook input. |
 | `subs.policy` | Use of substitutions. | cover_only | EXPRESSIBLE NOW | As built: substitutes only cover exclusions and disqualifications. TACTICS-0 keeps the same ten field starters in every phase. |
 
-Every style's `policy_params_projection` in `tactics_0.json` holds its 16 EXPRESSIBLE NOW values. Running a projection in Native v0/3 would show a team-wide lean, not the style.
+Every style's `policy_params_projection` in `tactics_0.json` holds its 16 `PolicyParams` values. Running a projection in Native v0/3 would show a team-wide lean, not the style.
 
 ## 7. Limits of this document
 - No style has been played. Strengths, weaknesses and predictions are reasoning.
 - The numbers are first values chosen by reasoning from the rules and from Native v0/3's defaults. None was searched.
 - Several styles rest on mechanics that Native v0/3 has but nobody has measured: how long a wrap holds, whether a body screens an arrow, how often a fast long pass is caught.
 - The bands depend on the PLACEHOLDER envelope and on how ratings will map to bodies and skills, which `ATTRIBUTE_STEP_SPEC.md` leaves as placeholders except for speed.
-- A rule reading that turns out wrong (Q-TAC-1 to Q-TAC-4) changes the style that leans on it; each such reading is marked in that style's canon check.
+- A rule reading that turns out wrong (Q-TAC-1 to Q-TAC-3, Q-TAC-7) changes the style that leans on it; each such reading is marked in that style's canon check.

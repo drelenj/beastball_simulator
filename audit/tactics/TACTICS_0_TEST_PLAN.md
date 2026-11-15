@@ -26,7 +26,7 @@ By the owner amendment of 14 Nov 2026 22:42 the test uses randomly drawn rosters
 - **Generator.** `audit/tactics/tools/roster_tools.py`, `generate(seed)`, version `tactics0-roster-gen/1`. 22 athletes: 18 field, 2 Keepers, 2 Archers. Every rating independent and uniform on 0.60 to 1.00; height uniform on 2.40 to 2.95 m; mass uniform on 155 to 285 kg. All PLACEHOLDER (the envelope is not canon).
 - **Same for both teams.** In every match both teams field the **same generated roster**. Each team assigns it to its own style by the rating-band rule. The only difference between the teams is the style, so no result can come from one side having better players.
 - **Check values.** First 16 hex digits of the SHA-256 of the roster as compact sorted JSON: seed 1001 `a1b7239693dc5d21`, 1002 `677f7422bdc7cfb0`, 1003 `fa11a670f9c704d5`, 1004 `86a1e9b788504b2b`, 2001 `9dbadb35588fbfff`.
-- **Random rosters often break a style.** On seeds 1001 to 1004 each style is BROKEN on between zero and four of the four rosters. That is intended for the round-robin: it tests styles on rosters nobody chose for them. Every result is reported with the staffing status of both teams. Stage 3 tests staffed rosters separately.
+- **Random rosters often break a style.** On seeds 1001 to 1004 each style is BROKEN on between zero and four of the four rosters. That is intended for stage 1: it tests styles on rosters nobody chose for them. Every result is reported with the staffing status of both teams. Stage 3 tests staffed rosters separately.
 - Independent ratings are unrealistic. A second generator with correlated ratings is a possible later stage, not part of this plan.
 
 ## 3. Stages
@@ -35,13 +35,15 @@ A full match is 4 x 600 s and took 85 to 90 s to compute on Native v0/3. Cost af
 | Stage | Purpose | Design | Matches |
 | --- | --- | --- | --- |
 | 0 | Is each style being played at all | Each style against the neutral plan, 2 rosters (1001, 1002), 1 match seed, **600 s window** | 16 short windows |
-| 1 | Round-robin | 28 pairings and 8 self-pairings; 4 rosters (1001 to 1004) x 3 match seeds (1 to 3) x both sides | 36 x 24 = 864 |
-| 2 | Confirmation on seeds not seen before | Every pairing with a prediction, and every other pairing whose stage 1 interval excludes zero; 6 rosters (2001 to 2006) x 4 match seeds (101 to 104) x both sides | up to 28 x 48 = 1,344 |
+| 1 | Round-robin | 28 pairings and 8 self-pairings; 12 rosters (1001 to 1012) x 1 match seed x both sides | 36 x 24 = 864 |
+| 2 | Confirmation on rosters not seen before, with both styles staffed | Every pairing with a prediction, and every other pairing whose stage 1 interval excludes zero; for each pairing the first 24 generated rosters from seed 2001 up on which neither style is BROKEN, 1 match seed x both sides | up to 28 x 48 = 1,344 |
 | 3 | Personnel profiles | Each style against the neutral plan under about 5 roster conditions; 3 rosters x 3 match seeds x both sides | about 8 x 5 x 18 = 720 |
 
 **Stage 0** reads only the signature marks of section 4. A style whose marks are absent is fixed or withdrawn before stage 1; its outcome is not read.
 
-**Stage 1 seed count:** 12 roster-and-seed blocks per pairing, each played from both sides. The 8 self-pairings (a style against itself) have a true difference of zero and give the noise floor.
+**Stage 1 seed count:** 12 rosters per pairing, one match seed each, each played from both sides. Rosters, not match seeds, are the independent unit, so the budget goes to rosters. The 8 self-pairings (a style against itself) have a true difference of zero; the standard deviation of their block values is the noise floor.
+
+**Stage 1 mostly tests understaffed styles.** Under this generator Carry Train, Zone Lock and Archer's Anvil are BROKEN on most random rosters, and the 19 predictions were reasoned for staffed styles. Stage 1 therefore answers "what happens on rosters nobody chose", and its results are split by staffing status. The predictions are scored on stage 2, where both styles are staffed.
 
 **Stage 3 conditions** for each style, both teams always holding the same roster and the opponent playing the neutral plan:
 - *Staffed:* the first generated rosters (seeds from 30001 up) on which the style's status is FULL.
@@ -73,15 +75,15 @@ Per team, per match, from the event log.
 Not recorded today and needed: first and second tackle split; turnover cause; release distance per attempt; visit length per zone entry; decision source.
 
 ## 6. Reading the results
-**Unit.** One block is one roster and one match seed, played from both sides; its value for a pairing X against Y is X's mean margin over the two matches. Report the mean over blocks with a 95% bootstrap interval resampled by roster, the win share, and the same for each metric of section 5.
+**Unit.** One block is one roster, played from both sides; its value for a pairing X against Y is X's mean margin over the two matches. **Margin is the one primary outcome.** Report its mean over blocks with a 95% interval from a bootstrap over rosters (12 in stage 1, 24 in stage 2) and the win share. With 12 rosters the stage 1 interval is rough and is used only to choose what goes to stage 2. Every other metric of section 5 is descriptive: reported, never tested, because testing dozens of metrics per pairing would produce signals by chance.
 
 **Rules.**
 1. **Played before scored.** No outcome is read for a style whose signature marks are absent in that stage.
-2. **A difference counts only if** its stage 1 interval excludes zero, it is larger than the spread of the 8 self-pairings, and it repeats with the same sign and an interval excluding zero in stage 2. With 28 pairings about one false signal is expected at stage 1; stage 2 is there to catch it.
+2. **A difference counts only if** its stage 2 interval excludes zero, with the same sign as stage 1, and its mean is larger than twice the standard deviation of the self-pairing block values divided by the square root of the number of blocks. With 28 pairings some stage 1 signals will be chance; stage 2 on fresh rosters is there to catch them.
 3. **Say what was measured.** The sentence form is: "X outscored Y by d (interval) points per match on these rosters and seeds, under mapping `attr-map/1`, flat scoring, and this playbook weight." Every figure carries those conditions.
 4. **Words not used:** optimal, balanced, best, dominant, proven, emergent. Nothing in this plan can establish any of them. The values in `tactics_0.json` were never searched, so a result is about these values, not about the idea behind the style.
 5. **A loss has three possible causes** that this test cannot separate: the style was poorly expressed by the cognition, its numbers are poorly chosen, or the method is weak. Say so each time.
-6. **Predictions scorecard.** Of the 19 predicted pairings, count those that agree, disagree, and cannot be told apart from zero. It grades the reasoning in `TACTICS_0.md`, not the styles.
+6. **Predictions scorecard.** On stage 2 (both styles staffed), of the 19 predicted pairings, count those that agree, disagree, and cannot be told apart from zero. It grades the reasoning in `TACTICS_0.md`, not the styles.
 7. **Both scorings.** A result that changes sign between flat and provisional scoring is reported as depending on the scoring.
 8. **Rosters.** Report each pairing by roster as well. If the sign differs between rosters, the finding is "depends on the roster". Report staffing status beside every result.
 9. **Personnel (stage 3).** A FAILURE label is supported if weakening that slot removes the signature marks or costs clearly more margin than weakening a graceful slot. The tolerance judgement (Long Count) is supported if its all-average margin falls least from its staffed margin. Either can be refuted.

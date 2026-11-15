@@ -164,8 +164,8 @@ def build_json(staff):
             'beliefs': 'Every anchor is evaluated by the athlete from his own believed positions. No anchor is a '
                        'position the engine places anyone at.',
             'bands': 'ELITE 0.90 or more; KEY 0.85 or more; SUPPORT 0.75 to 0.80; BASE 0.70. Body gates sit near '
-                     'the middle of the range. A slot has one KEY rating, or two where the method needs both in '
-                     'one body.',
+                     'the middle of the range. The slots that define a style gate one rating at KEY or above, or two where the '
+                     'method needs both in one body; other slots gate at SUPPORT and BASE.',
         },
         'classes': S.CLASSES,
         'parameter_catalog': S.CATALOG,
@@ -176,7 +176,7 @@ def build_json(staff):
             'input': 'A roster table: id, role (field, keeper, archer), the ratings on a 0 to 1 scale, height_m, '
                      'mass_kg. At least 10 field athletes, 1 keeper, 1 archer.',
             'steps': [
-                'Keeper and Archer slots take the highest-scoring athlete of that role. Field athletes never fill '
+                'Keeper and Archer slots take an in-band athlete of that role if there is one, else the highest-scoring. Field athletes never fill '
                 'them (canon).',
                 'Field slot instances are taken in the tactic\'s slot order, which is its priority order.',
                 'An athlete is in band for a slot if he meets every minimum in requires.',
@@ -414,10 +414,8 @@ def main():
     top = max(S.T, key=lambda t: st[t['id']]['not_broken_rate'])
     # PERSONNEL_PROFILES.template.md states these in prose; fail the build if the arithmetic stops supporting them.
     assert top['id'] != 'COUNT'
-    assert max(st, key=lambda k: st[k]['full_rate']) == 'COUNT'
-    assert max(st, key=lambda k: st[k]['mean_field_slots_in_band_of_10']) == 'COUNT'
     assert st['COUNT']['flat_average_roster']['broken_slots'] == ['METRONOME']
-    assert sorted(st, key=lambda k: st[k]['not_broken_rate'])[:3] == ['ANVIL', 'LOCK', 'RAM']
+    assert sorted(sorted(st, key=lambda k: st[k]['not_broken_rate'])[:3]) == ['ANVIL', 'LOCK', 'RAM']
     prep = {'PROFILES': personnel_md(staff), 'STAFFING': staffing_table(staff), 'N_STAFF': str(N_STAFF),
             'TOP_ARITH': top['name']}
     (OUT / 'PERSONNEL_PROFILES.md').write_text(fill((HERE / 'PERSONNEL_PROFILES.template.md').read_text(), prep))

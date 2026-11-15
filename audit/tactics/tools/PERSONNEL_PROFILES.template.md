@@ -11,14 +11,14 @@ Claude (Fable), 2026-11-15. Status: **DESIGN COMPLETE**. Not IMPLEMENTED, not TE
 ## 1. Scope
 - By the owner amendment of 14 Nov 2026 22:42 this file replaces roster fit. The Ala and Xenar rosters were not read. There are no named players, no roster fit scores and no "best styles for a team".
 - **Design envelope (PLACEHOLDER, not canon):** ratings 0 to 1, typical professionals 0.60 to 1.00 on every rating; heights about 2.40 to 2.95 m; masses about 155 to 285 kg. Canon: a speed rating of 1.0 is 44.704 m/s. All bands below are written against this envelope.
-- **Bands.** ELITE 0.90 or more; KEY 0.85 or more; SUPPORT 0.75 to 0.80; BASE 0.70. A slot has one KEY rating, or two where the method needs both in one body. Body gates sit near the middle of the range.
+- **Bands.** ELITE 0.90 or more; KEY 0.85 or more; SUPPORT 0.75 to 0.80; BASE 0.70. The slots that define a style gate one rating at KEY or above, or two where the method needs both in one body; the other slots gate at SUPPORT and BASE. Body gates sit near the middle of the range.
 - **Failure or graceful.** A slot is marked FAILURE when the style's method stops existing without it: the number given is how many in-band players the slot needs for the method to exist at all (usually a pair, or one). Every other shortfall is graceful: the style still runs and does that job less well, roughly in proportion to the shortfall.
 - **Keeper and Archer** are fixed roles by canon and are filled only from the roster's Keepers and Archers.
 
 ## 2. Assignment rule: assign by rating band from a supplied roster
 Input: any roster table with an id, a role (field, keeper, archer), the ratings on a 0 to 1 scale, height and mass. The rule is the same for every style and every roster.
 
-1. Keeper and Archer slots take the highest-scoring athlete of that role.
+1. Keeper and Archer slots take an in-band athlete of that role if there is one, otherwise the highest-scoring.
 2. Field slot instances are taken in the style's slot order, which is its priority order.
 3. An athlete is **in band** for a slot if he meets every minimum.
 4. In-band placement is a maximum matching between instances and in-band athletes, so no in-band placement is lost to an earlier choice. Candidates are tried in descending slot score; ties go to roster order.
@@ -27,7 +27,7 @@ Input: any roster table with an id, a role (field, keeper, archer), the ratings 
 7. Status: **BROKEN** if any FAILURE slot has fewer in-band players than it needs; **FULL** if every instance is in band; otherwise **DEGRADED**.
 8. The rest are the bench. A substitute takes the slot of the athlete he replaces.
 
-Reference implementation: `audit/tactics/tools/roster_tools.py`, function `assign`. It is deterministic. It reports the shortfalls; it produces no fit score.
+Reference implementation: `audit/tactics/tools/roster_tools.py`, function `assign`. It is deterministic. It reports a status (FULL, DEGRADED, BROKEN) and the shortfalls for whatever roster it is given. That is a staffing check, not a ranking of styles for a team, but applied to a real roster it would say which styles that roster can staff; whether that is wanted is for the owner.
 
 ## 3. Profiles by style
 
@@ -46,10 +46,10 @@ What the arithmetic shows:
 - The styles that break most often are those that need two heavy, strong specialists (Carry Train, Zone Lock) or that hang on one of only two Archers (Archer's Anvil).
 - These rates come from a generator in which ratings are independent. Real rosters have correlated ratings (a strong player is often heavy), which would raise the rates for the power styles. The rates describe the bands under that generator and nothing else.
 
-**Judgement (a hypothesis, to be tested in stage 3 of the test plan).** I expect **Long Count** to be the most tolerant of an average roster, although it is not first in the table:
+**Judgement (a hypothesis, to be tested in stage 3 of the test plan).** The arithmetic does not pick a winner: every style breaks on the all-average roster, and the top four are within a few points of each other, which is inside the sampling noise of the count. My pick, from reasoning about the method and not from the table, is **Long Count**:
 - It has one FAILURE slot, and on the all-average roster that slot is short by 0.05 on a single rating (ball handling 0.80 against 0.85), with the other two bands met.
 - Its method is low-risk by construction: short passes into open lanes, no contact sought, three players behind the ball. A handler slightly under band loses a few more passes; nothing collapses in one play.
-- It has the highest share of rosters fully in band and the most field slots in band on average.
+- Arc Siege has the same number of FAILURE slots and near-identical arithmetic, so the table cannot separate the two. I rank Long Count ahead because a weak GUN removes Arc Siege's only scoring route, while a weak METRONOME costs Long Count some passes.
 - {{TOP_ARITH}} breaks less often by count, but its method is the least forgiving of a slow player when it is staffed thin: one late exit from the zone is a turnover, not a slightly worse possession.
 
 Least tolerant, by the same reasoning: **Archer's Anvil** (one athlete carries the method and a roster has two candidates) and **Zone Lock** (the door needs two players who are strong, heavy and sound tacklers at once, and a broken wrap is a free run at goal).

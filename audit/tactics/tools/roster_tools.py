@@ -67,7 +67,8 @@ def shortfalls(player, requires):
 def assign(tactic, roster):
     """Assign by rating band from a supplied roster.
 
-    1. Keeper and Archer slots take the highest-scoring athlete of that role (canon: fixed roles).
+    1. Keeper and Archer slots take an in-band athlete of that role if there is one, else the
+       highest-scoring (canon: fixed roles).
     2. Field slot instances are listed in the tactic's slot order (its priority order).
     3. In-band placement: a maximum matching between instances and the field athletes who meet
        every `requires` minimum (augmenting paths, instances in priority order, candidates in
@@ -85,7 +86,8 @@ def assign(tactic, roster):
     for s in tactic['slots']:
         if s['role'] != 'field':
             pool = by_role[s['role']]
-            best = max(pool, key=lambda p: (score(p, s['prefers']), -order[p['id']])) if pool else None
+            best = max(pool, key=lambda p: (not shortfalls(p, s['requires']), score(p, s['prefers']),
+                                            -order[p['id']])) if pool else None
             rows.append((s, 1, best))
             continue
         inst += [(s, i + 1) for i in range(s['count'])]

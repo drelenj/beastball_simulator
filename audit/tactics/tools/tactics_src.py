@@ -29,13 +29,15 @@ CLASSES = {
     'EXPRESSIBLE NOW': 'Native v0/3 can run it today with no code change. In practice this means the '
                        'parameter is one of the 16 team-wide PolicyParams fields, with the same value for '
                        'every teammate.',
-    'NEEDS COORDINATION': 'The engine mechanics, intent kinds and view fields exist in Native v0/3, but the '
+    'NEEDS COORDINATION': 'The engine mechanics and intent kinds exist in Native v0/3, but the '
                           'athlete does not hold the value: it differs by slot, replaces a constant in '
                           'cognition, or only works if teammates hold the same plan. Needs the pre-match '
-                          'playbook of TACTIC_INTERFACE.md and cognition that reads it. No physics or rules change.',
+                          'playbook of TACTIC_INTERFACE.md (Codex delivers it in the view; Claude writes the cognition that reads '
+                          'it). No physics or rules change.',
     'NEEDS ENGINE WORK': 'Needs something the engine, port or rules layer does not provide in Native v0/3: '
                          'ratings and bodies per athlete (ATTRIBUTE_STEP_SPEC.md), athlete-chosen release speed, '
-                         'voluntary off-ball contact, or a public signal missing from the view.',
+                         'voluntary off-ball contact, an own-action memory that lasts between decisions, or a public signal '
+                         'missing from the view.',
 }
 NOW, COORD, ENGINE = 'EXPRESSIBLE NOW', 'NEEDS COORDINATION', 'NEEDS ENGINE WORK'
 
@@ -73,18 +75,20 @@ CATALOG = {
                              'bands need playbook weights in cognition. Release distance is the athlete\'s own '
                              'believed distance.', d5=True),
     'carrier.shot_speed_frac': P('Release speed of a throw at goal as a fraction of the thrower\'s own maximum.',
-                                 'number', [0.3, 1.0], ENGINE,
-                                 'v0/3 releases every pass and shot at min(27, max) m/s and 1.6 m height (R10 F-4). '
-                                 'Athlete-chosen release speed and a per-athlete maximum from throw_power are '
-                                 'engine and attribute-step work.', d5=True),
-    'carrier.pass_len_band_m': P('Preferred believed pass length.', 'band', [4, 60], ENGINE,
-                                 'v0/3 pass options are fixed to a believed 4 to 34 m at 27 m/s. Bands beyond 34 m, '
-                                 'or needing a faster ball, depend on athlete-chosen release speed. A band inside '
-                                 '4 to 34 m would need only the playbook.', d5=True, unit='m'),
+                                 'number', [0.3, 1.0], COORD,
+                                 'The intent already carries a release speed and the engine honours it up to 40 m/s, '
+                                 'but v0/3 cognition always sends min(27, max) m/s at 1.6 m height (R10 F-4). The '
+                                 'playbook value must be read in cognition. A maximum that differs by athlete comes '
+                                 'only with the attribute step.', d5=True),
+    'carrier.pass_len_band_m': P('Preferred believed pass length.', 'band', [4, 60], COORD,
+                                 'The 4 to 34 m window and the 27 m/s release are constants in v0/3 cognition; the '
+                                 'playbook must replace them. Whether a 50 m pass arrives and is caught depends on '
+                                 'throw power and catching, which need the attribute step.', d5=True, unit='m'),
     'carrier.touch_time_max_s': P('Longest time a ball holder outside the Keeper Zone keeps the ball before '
-                                  'passing or throwing. 30 means no limit.', 'number', [0.5, 30], COORD,
-                                  'v0/3 has no own-possession timer. Needs an own-action memory of when I gained '
-                                  'the ball (own knowledge) and a playbook threshold.', unit='s'),
+                                  'passing or throwing. 30 means no limit.', 'number', [0.5, 30], ENGINE,
+                                  'Needs the athlete to remember when he gained the ball. v0/3 rebuilds the belief '
+                                  'at every decision and keeps no such own-action memory; the port must carry one.',
+                                  unit='s'),
     'carrier.contact_response': P('Preference weights among run through, dodge and brace when a tackler is '
                                   'believed to be arriving.', 'weights', W3, COORD,
                                   'The three intents exist in v0/3 but are chosen from constants '
@@ -103,14 +107,14 @@ CATALOG = {
     'tempo.shot_window_s': P('Seconds into the 30 s play clock in which the team prefers to take its scoring '
                              'attempt.', 'band', [0, 30], COORD,
                              'The possession clock is a public signal in the view. v0/3 has only a fixed +5 shoot '
-                             'value in the first 5 s. Needs playbook values.', unit='s'),
+                             'value when under 5 s remain. Needs playbook values.', unit='s'),
     'tempo.must_shoot_remaining_s': P('With this much play clock left, the ball holder attempts to score from '
                                       'where he is.', 'number', [0, 10], COORD,
                                       'Same public clock; no such rule in v0/3 cognition.', unit='s'),
     'tempo.snap_delay_s': P('Seconds the snapper waits inside the legal 10 s snap window, when leading and '
                             'otherwise.', 'object', {'keys': ['leading', 'otherwise'], 'each': [0, 8]}, COORD,
-                            'v0/3 releases as soon as a legal throw exists. Score is public. Assumes waiting '
-                            'inside the legal window is not delay of game (Q-TAC-4).', unit='s'),
+                            'v0/3 releases as soon as a legal throw exists. Score is public. No style uses it: '
+                            'the game clock is stopped during the window.', unit='s'),
     'tempo.hold_own_half_until_remaining_s': P('The team keeps the ball in its own half until this much play '
                                                'clock remains. 30 means it does not hold.', 'number', [0, 30], COORD,
                                                'A position and hold rule from the public clock; needs the playbook. '
@@ -118,8 +122,8 @@ CATALOG = {
                                                'rests on a ratified rule that v0/3 does not enforce.',
                                                joint=True, unit='s'),
     'off.first_action_max_s': P('After gaining a live ball, longest time before the first forward pass or carry.',
-                                'number', [0.5, 10], COORD,
-                                'Needs an own-action memory of when I gained the ball and a playbook threshold.',
+                                'number', [0.5, 10], ENGINE,
+                                'As carrier.touch_time_max_s: needs an own-action memory that v0/3 does not keep.',
                                 unit='s'),
     'off.short_field_trigger_m': P('If possession is gained within this distance of the attacked goal, the team '
                                    'attempts to score at once. 0 means never.', 'number', [0, 100], COORD,
@@ -139,8 +143,10 @@ CATALOG = {
                      'Is PolicyParams.pos_opp_att.', 'PolicyParams.pos_opp_att'),
     'pos.opp_def': P('Out of possession: prefer closeness to the nearest believed opponent.', 'number', [-3, 3],
                      NOW, 'Is PolicyParams.pos_opp_def.', 'PolicyParams.pos_opp_def'),
-    'pos.lane': P('In possession: prefer an open believed lane from the carrier.', 'number', [-3, 3], NOW,
-                  'Is PolicyParams.pos_lane.', 'PolicyParams.pos_lane'),
+    'pos.lane': P('In possession: prefer an open believed lane from the carrier.', 'number', [-3, 3], COORD,
+                  'Is PolicyParams.pos_lane, but the term is inert in v0/3: cognition passes no believed carrier '
+                  'position to the positioning function. Needs a cognition change, no engine change.',
+                  'PolicyParams.pos_lane'),
     'pos.edge_zone': P('Penalty for standing near a field edge or inside either Keeper Zone.', 'number', [0, 3],
                        NOW, 'Is PolicyParams.pos_edge_zone.', 'PolicyParams.pos_edge_zone'),
     'pos.anchor_pull': P('Weight of the athlete\'s own slot anchor against the nine belief-driven terms above. '
@@ -151,8 +157,9 @@ CATALOG = {
     'zone.entry_mode': P('How attackers use the attacked Keeper Zone.', 'enum',
                          ['avoid', 'rebound_only', 'late_only', 'drive', 'rotation'], COORD,
                          'v0/3 has one behaviour (a position penalty for zones). A mode needs the playbook.'),
-    'zone.dwell_max_s': P('An attacker leaves the zone when his own residence reaches this. Canon limit is 5 s.',
-                          'number', [0, 4.5], COORD,
+    'zone.dwell_max_s': P('An attacker starts to leave the zone when his own residence reaches this. The value '
+                          'must leave time to get out before the 5 s limit.',
+                          'number', [0, 3.5], COORD,
                           'v0/3 leaves at a fixed 3.0 s. Own residence time is already in the view; the playbook '
                           'must supply the threshold.', unit='s'),
     'zone.occupancy_target': P('Number of attackers the team tries to keep inside the zone in settled offence.',
@@ -160,12 +167,13 @@ CATALOG = {
                                'Each athlete can count believed teammates inside, but who goes in next is a shared '
                                'arrangement held in the playbook.', joint=True),
     'zone.min_outside_s': P('Self-imposed minimum time outside before the same attacker re-enters.', 'number',
-                            [0, 5], COORD,
-                            'Own knowledge and a playbook value. Canon states no minimum time outside (Q-TAC-1).',
-                            unit='s'),
+                            [0, 5], ENGINE,
+                            'Needs the athlete to remember when he last left the zone; v0/3 keeps no such memory. '
+                            'Canon states no minimum time outside (Q-TAC-1).', unit='s'),
     'zone.entry_stagger_s': P('Offset between the entries of paired attackers in a rotation.', 'number', [0, 5],
-                              COORD, 'A timing agreement between teammates with no live channel: each acts on his '
-                              'own belief of the partner leaving.', joint=True, unit='s'),
+                              ENGINE, 'A timing agreement with no live channel: each acts on his own belief of the '
+                              'partner entering, and must remember when he saw it. v0/3 keeps no such memory.',
+                              joint=True, unit='s'),
     'block.wedge': P('Lead blockers make legal off-ball contact (shoulder, push; no grip) ahead of the carrier.',
                      'boolean', None, ENGINE,
                      'Native has no voluntary off-ball contact intents (Q-HAND-1). Without them the wedge is only '
@@ -381,8 +389,7 @@ PLAYS = {
                   'in a V and move on the release. All teammates start behind the ball line.',
     'zone_stack': 'The taker throws 7 m back to a HUB. DARTs stand wide on the ball line and enter the zone on the '
                   'release, in their rotation order.',
-    'safe_reset': 'The taker throws 8 m back to a METRONOME and the team re-forms its passing diamond. The taker '
-                  'waits tempo.snap_delay_s inside the legal window first.',
+    'safe_reset': 'The taker throws 8 m back to a METRONOME and the team re-forms its passing diamond.',
     'go_routes': 'The taker throws 7 m back to a CANNON. BOLTs stand on the ball line at wide, centre, wide and '
                  'sprint on the release; the CANNON throws long into the space ahead of one of them.',
     'short_toss': 'The thrower tosses 6 to 10 m infield to the nearest named handler slot. The thrower may not '
@@ -417,7 +424,7 @@ T.append(dict(
     id='ARC', name='Arc Siege', tags=['deep_throws'],
     idea='Keep every attacker outside the Keeper Zone on the 21 to 24 m arc, move the ball by quick passes, and '
          'score with hard throws released from 20 m or more. The bet is that a fast, accurate deep throw beats a '
-         'Keeper who has no help, because defenders may not wait inside the zone without an attacker to mark.',
+         'Keeper who has no help, because defenders may wait inside the zone only within 5 m of an attacker, and all attackers are outside it.',
     formation='3 GUN on the arc, 3 SCREEN paired goal-side of them, 2 FEED behind, 2 SAFETY held back',
     slots=[
         slot('GUN', 3, 'field', {'throw_power': .85, 'throw_accuracy': .80, 'catching': .70},
@@ -475,7 +482,8 @@ T.append(dict(
     signature={'shots_released_20m_plus_share': ['>=', .60], 'attacker_zone_seconds_per_possession': ['<=', 2.0],
                'ball_holder_touch_time_s_median': ['<=', 1.8]},
     strengths=['Never puts an attacker on the 5 s zone limit.',
-               'Keeps the defence out of the zone by rule: a defender may stay there only within 5 m of an attacker.',
+               'Keeps defenders out of the goal mouth: a defender may stay in the zone only within 5 m of an attacker, '
+               'so with attackers on the arc no defender may wait deeper than about 4.5 m inside it.',
                'Deep throws are the highest-valued throws on the provisional scale (4).'],
     weaknesses=['Every attacker is a legal arrow target for the whole possession.',
                 'Needs two rare players: high throw power and high accuracy together.',
@@ -491,7 +499,7 @@ T.append(dict(
 T.append(dict(
     id='WAVE', name='Zone Waves', tags=['keeper_zone_5s_exploit'],
     idea='The 5 s limit is counted per attacker and "at a time", so the team rotates attackers through the '
-         'Keeper Zone in short visits of 3.5 s and always has fresh ones inside. Attackers inside the zone are not '
+         'Keeper Zone in short visits (each attacker turns for the arc after 2.5 s) and always has fresh ones inside. Attackers inside the zone are not '
          'legal arrow targets, and they finish with close and mid throws or a carry.',
     formation='2 HUB outside the arc, 4 DART in two alternating pairs, 2 PIVOT alternating at the goal front, '
               '2 ANCHOR held back',
@@ -508,20 +516,20 @@ T.append(dict(
              'Feeder: holds the ball outside the arc and passes to attackers as they enter.'),
         slot('DART', 4, 'field', {'agility': .85, 'speed': .75, 'catching': .70},
              {'agility': .35, 'speed': .25, 'catching': .25, 'throw_accuracy': .15}, 2,
-             'FAILURE below two in band: there is no pair quick enough to get in and out inside 3.5 s; either the '
+             'FAILURE below two in band: there is no pair quick enough to get in and out inside the limit; either the '
              'zone empties or residence turnovers rise. With two or three the weaker pair makes shorter, '
              'shallower visits (graceful).',
-             dict(offence=cycle((6, 13), (-60, 60), (21, 24), note='two pairs; one pair inside while the other is out'),
+             dict(offence=cycle((10, 16), (-60, 60), (21, 24), note='two pairs; one pair inside while the other is out'),
                   defence=mark('nearest_unmarked_opponent', 'goal_side', (1.5, 3)),
                   restart_own=line((-1.5, -0.8), (-22, 22), note='wide on the ball line'),
                   restart_opp=line((-6.5, -5.5), (-20, 20)),
                   hunt=HUNT_BACK),
-             'In-and-out runner: enters the zone, receives, finishes or leaves before 3.5 s.'),
+             'In-and-out runner: enters the zone, receives, finishes, or turns to leave at 2.5 s.'),
         slot('PIVOT', 2, 'field', {'strength': .80, 'balance': .75, 'catching': .70},
              {'strength': .3, 'balance': .3, 'catching': .2, 'height_m': .2}, 0,
              'Graceful: a lighter or shorter PIVOT is moved off his spot and the team loses the target at the '
              'goal front; DARTs still rotate.',
-             dict(offence=cycle((8, 14), (-25, 25), (21, 23), note='the two PIVOTs alternate: one inside, one out'),
+             dict(offence=cycle((10, 15), (-25, 25), (21, 23), note='the two PIVOTs alternate: one inside, one out'),
                   defence=mark('nearest_unmarked_opponent', 'goal_side', (1.5, 3)),
                   restart_own=line((-2, -0.8), (1.6, 4), True),
                   restart_opp=line((-6.5, -5.5), (1.6, 4), True),
@@ -543,22 +551,23 @@ T.append(dict(
               carrier__shot_speed_frac=.8, carrier__pass_len_band_m=[6, 22], carrier__touch_time_max_s=2.5,
               carrier__contact_response=dict(run_through=.2, dodge=.6, brace=.2),
               tempo__shot_window_s=[6, 20], pos__goal_att=2., pos__lane=1.2, pos__edge_zone=0.,
-              zone__entry_mode='rotation', zone__dwell_max_s=3.5, zone__occupancy_target=3,
+              zone__entry_mode='rotation', zone__dwell_max_s=2.5, zone__occupancy_target=3,
               zone__min_outside_s=1.0, zone__entry_stagger_s=1.75,
               def__scheme='man', def__pressers_max=1, def__press_line_m=40.,
               restart__scrim_play='zone_stack', restart__snap40_play='quick_swing', restart__def_alignment='man_up',
               restart__taker_slot='HUB', hunt__contestant_slot='ANCHOR'),
     signature={'shots_released_inside_zone_share': ['>=', .65], 'attackers_in_zone_mean_settled': ['between', [2, 3]],
-               'attacker_zone_dwell_s_p95': ['<=', 4.0], 'zone_residence_turnovers_per_possession': ['<=', .05]},
+               'attacker_zone_dwell_s_p95': ['<=', 4.5], 'zone_residence_turnovers_per_possession': ['<=', .05]},
     strengths=['Finishers are sheltered from the Archer while inside the zone.',
                'Close and mid throws give the Keeper the least time.',
                'Defenders who follow an attacker in must leave again when he leaves, or become unmarked.'],
     weaknesses=['The rotation is a timing agreement with no live channel; each athlete acts on his own belief of '
                 'where his partner is.',
-                'Only 1.5 s of margin on the limit: any hold-up inside the zone risks a turnover.',
+                'About 1 s of margin on the limit after the run out: any hold-up inside the zone risks a turnover.',
                 'Close and mid throws are the lowest-valued throws on the provisional scale (2 and 3).',
                 'HUBs outside the arc remain arrow targets.'],
-    canon=['Every visit ends at 3.5 s, inside the 5 s limit; expiry would be a turnover.',
+    canon=['Each attacker turns to leave at 2.5 s from no deeper than 10 m inside the arc, which is out by about 4 s '
+           'from a standing start at today\'s acceleration; the limit is 5 s and expiry would be a turnover.',
            'Reads the Rulebook wording "at most 5 seconds at a time" as a fresh 5 s on re-entry. Canon states no '
            'minimum time outside; the plan imposes 1.0 s on itself (PLACEHOLDER, Q-TAC-1).',
            'No contact on the Keeper inside his zone.'],
@@ -573,9 +582,9 @@ T.append(dict(
     formation='2 RAM (carrier and relief), 4 PLOW in a V ahead of the ball, 2 FLANK wide, 2 TAIL behind',
     slots=[
         slot('RAM', 2, 'field', {'strength': .85, 'balance': .75, 'ball_handling': .70, 'mass_kg': 220.},
-             {'strength': .25, 'balance': .25, 'ball_handling': .15, 'contact_resistance': .15, 'mass_kg': .2}, 1,
-             'FAILURE with none in band: a carrier who goes down on first contact uses both tackles before the '
-             'arc. With one in band there is no relief carrier (graceful).',
+             {'strength': .25, 'balance': .25, 'ball_handling': .15, 'contact_resistance': .15, 'mass_kg': .2}, 2,
+             'FAILURE below two in band: by rule the tackled carrier is the snapper, so after the first tackle '
+             'the other RAM makes the scoring run. One strong carrier is half a plan.',
              dict(offence=ball((-6, 0), (-1, 1), note='one carries; the other trails 4 to 6 m behind as relief'),
                   defence=arc('own', (24, 28), (4.8, 12), 'mirror'),
                   restart_own=line((-6, -4), (-1, 1), note='takes the wedge_snap throw 5 m behind the ball'),
@@ -619,7 +628,7 @@ T.append(dict(
               carrier__contact_response=dict(run_through=.7, dodge=.1, brace=.2),
               carrier__first_tackle_bank_m=30., tempo__shot_window_s=[6, 24], tempo__must_shoot_remaining_s=3.,
               pos__ball_att=2., pos__spread=.2, pos__edge_zone=.5,
-              zone__entry_mode='drive', zone__dwell_max_s=4.0, zone__occupancy_target=5, block__wedge=True,
+              zone__entry_mode='drive', zone__dwell_max_s=3.0, zone__occupancy_target=5, block__wedge=True,
               def__bias_press=1., def__scheme='wall', def__press_line_m=35., def__commit_gap_m=5.,
               restart__scrim_play='wedge_snap', restart__snap40_play='wedge_snap', restart__def_alignment='wall',
               restart__taker_slot='TAIL', hunt__contestant_slot='RAM', hunt__win_action='carry_out'),
@@ -636,7 +645,7 @@ T.append(dict(
                 'Under flat scoring a carry goal is worth no more than a throw.'],
     canon=['Blocks are shoulder and push contact below the neck and above the hip, no grip, never on the Keeper '
            'in his zone; tripping or tackling a player without the ball is a major foul and is not used.',
-           'Wedge and carrier leave the zone inside 4 s if the carry stalls.',
+           'If the carry stalls, wedge and carrier turn to leave at 3 s, which is out before 5 s from 10 m inside.',
            'One dribble per possession is not used.'],
 ))
 
@@ -644,7 +653,7 @@ T.append(dict(
 T.append(dict(
     id='ANVIL', name="Archer's Anvil", tags=['archer'],
     idea='The field defence does not try to win the ball itself. It contains the carrier in the Archer\'s lane, '
-         'outside the Keeper Zone, and lets the Archer spend the full 15 arrows and 5 freezes; defenders then '
+         'outside the Keeper Zone, and lets the Archer release as often as the rules and his rate allow (at most 15 arrows and 5 freezes); defenders then '
          'play the loose ball and break.',
     formation='Archer as the stopper; 3 SHADOW containing the ball, 4 RING on the arc, 3 LID on the receivers',
     slots=[
@@ -698,7 +707,7 @@ T.append(dict(
                'Each freeze removes an attacker for 5 s of a 30 s clock.',
                'Field defenders stay on their feet and in shape, so few defensive fouls.',
                'As built, a frozen ball holder drops the ball (engine behaviour, not Rulebook text: Q-TAC-2).'],
-    weaknesses=['Rests on one athlete. The roster carries two Archers at most.',
+    weaknesses=['Rests on one athlete, and a roster has few Archers (canon requires one reserve).',
                 'Attackers inside the zone cannot be frozen.',
                 'A quick score arrives before the Archer has released more than a few arrows.',
                 'Arrows may not be shot at a player outside the Archer\'s own half (ratified, not built in v0/3).'],
@@ -764,7 +773,7 @@ T.append(dict(
     strengths=['Uses the two-tackle rule directly: each takedown is half of a turnover.',
                'A turnover high up the field is scrimmaged there, a short field for the next attack.',
                'Gives a slow-building opponent no time to set its shape.'],
-    weaknesses=['Ten players upfield; only two behind the ball.',
+    weaknesses=['Eight players upfield; only two behind the ball.',
                 'A defensive minor at tackle count 0 is a half goal (a full goal in period 4 and overtime), and '
                 'tackling at first reach invites fouls.',
                 'After the first tackle the scrimmage puts every defender back behind the ball line, so the press '
@@ -796,7 +805,9 @@ T.append(dict(
              'Handler: receives, protects and moves the ball without risk.'),
         slot('LINK', 4, 'field', {'catching': .80, 'agility': .70, 'awareness': .70},
              {'catching': .4, 'agility': .3, 'awareness': .3}, 0,
-             'Graceful: more passes are dropped or cut out, in proportion.',
+             'Graceful: more passes are dropped or cut out, in proportion. A dropped short pass is a loose ball with '
+             'three REST players behind it; a handler who loses the ball under pressure is not covered that way, '
+             'which is why METRONOME is the failure slot.',
              dict(offence=ball((-2, 10), (8, 15), True),
                   defence=arc('own', (21, 24), (-60, 60)),
                   restart_own=line((-4, -0.8), (8, 15), True),
@@ -821,7 +832,7 @@ T.append(dict(
               carrier__pass_len_band_m=[6, 15], carrier__touch_time_max_s=3.,
               carrier__contact_response=dict(run_through=.1, dodge=.7, brace=.2),
               tempo__shot_window_s=[22, 27], tempo__must_shoot_remaining_s=3.,
-              tempo__snap_delay_s=dict(leading=8., otherwise=2.), tempo__hold_own_half_until_remaining_s=12.,
+              tempo__hold_own_half_until_remaining_s=12.,
               pos__goal_att=.2, pos__goal_def=2., pos__ball_def=.6, pos__spread=2., pos__opp_att=1.5, pos__lane=2.,
               zone__entry_mode='late_only', def__bias_press=-1., def__scheme='deep_shell', def__pressers_max=1,
               def__press_line_m=30., def__commit_gap_m=4., def__takedown_line_m=30.,
@@ -840,8 +851,8 @@ T.append(dict(
                 'May not retreat into its own Keeper Zone (ZR-C, ZR-T), so pressure can pin it at the arc.',
                 'Play-clock expiry is a turnover.'],
     canon=['The attempt is released before the 30 s clock expires; a throw released as the clock expires counts.',
-           'The snap is always inside the 10 s window. Waiting 8 s inside it is assumed legal; "delay of game" is '
-           'a minor foul after a warning and its boundary is not stated (PLACEHOLDER, Q-TAC-4).',
+           'The snap is taken at once. The game clock stops on every dead ball, so waiting in the snap window '
+           'would spend only the team\'s own play clock.',
            'No pass or carry goes back into the own Keeper Zone; a ball in the own zone leaves within 5 s (ZR-1).'],
 ))
 
@@ -939,7 +950,8 @@ T.append(dict(
              overrides={'def.holdup_drive': 'into_zone'}),
         slot('GATE', 4, 'field', {'tackling': .80, 'strength': .70, 'speed': .70},
              {'tackling': .4, 'strength': .3, 'speed': .3}, 0,
-             'Graceful: more entries are made away from the door, where no hold-up is waiting.',
+             'Graceful: more entries are made away from the door, where no hold-up is waiting; the door itself still '
+             'works for entries through it.',
              dict(offence=arc('attacked', (22, 30), (-55, 55)),
                   defence=arc('own', (20.5, 23), (25, 60), 'mirror',
                               note='two each side; shuts the way out behind a carrier who has entered'),
@@ -950,7 +962,8 @@ T.append(dict(
              'Arc guard away from the door.'),
         slot('DENY', 4, 'field', {'speed': .80, 'awareness': .75, 'agility': .70},
              {'speed': .35, 'awareness': .35, 'agility': .3}, 0,
-             'Graceful: the held-up carrier finds a pass out more often and the 5 s is not used up.',
+             'Graceful: the held-up carrier finds a pass out more often, in proportion to how often his receiver '
+             'gets free.',
              dict(offence=ball((-10, 6), (-18, 18)),
                   defence=mark('nearest_unmarked_opponent', 'ball_side', (1.5, 3),
                                note='on the receivers outside the arc, 24 to 34 m from the own goal'),
@@ -978,10 +991,12 @@ T.append(dict(
                 'Whether a wrap can hold a carrier for seconds in the engine is unmeasured.',
                 'The count-1 switch to takedown needs a tackle count the athlete cannot see in Native v0/3.'],
     canon=['A wrap is legal on the ball carrier from below the neck down.',
-           'Hands go on the body, not the ball: two opponents holding the ball for 1 s is a held ball, play stops '
-           'and the zone clock resets.',
+           'Hands go on the body, not the ball: two opponents holding the ball for 1 s is a held ball (Rulebook, '
+           'ratified), play stops and the zone clock resets.',
            'Defenders wait outside the zone (20.5 m or more) and enter only with the carrier, within 5 m of him.',
-           'No contact on a Keeper in his zone; the plan applies to the ball carrier only.'],
+           'No contact on a Keeper in his zone; the plan applies to the ball carrier only.',
+           'Assumes the 5 s keeps running while the attacker is held, and that canon sets no limit on how long a '
+           'carrier may be held up (Q-TAC-7).'],
 ))
 
 IDS = [t['id'] for t in T]
@@ -999,7 +1014,8 @@ def open_(a, b, q):
 
 
 edge('ANVIL', 'ARC', 'Arc\'s throwers and feeders stand outside the zone in the Archer\'s half for the whole '
-     'possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball.')
+     'possession: up to five freezes on near-stationary targets, and as built a frozen ball holder drops the ball. '
+     'Arc\'s screens cover three GUNs at most and only from straight behind the goal; whether they work is unmeasured.')
 edge('PRESS', 'ARC', 'Arc needs time to set five players on the arc and circulate. The press tackles the first '
      'receiver before the arc forms, and GUN and SCREEN profiles are not chosen for escaping pressure.')
 edge('ARC', 'COUNT', 'Count\'s shell waits on the arc and commits late (4 m). In-band GUNs release from 21 to 24 m '
@@ -1008,10 +1024,10 @@ edge('ARC', 'LOCK', 'Lock\'s trap needs a zone entry and Arc does not enter. Loc
      'line, so GUNs release unhurried.')
 edge('WAVE', 'ANVIL', 'Attackers inside the zone are not legal arrow targets and Wave keeps its finishers there. '
      'Anvil\'s shadows contain without tackling, which gives the rotation time.')
-edge('WAVE', 'RAM', 'Ram\'s Wall is staffed by heavy RAM and PLOW profiles. A rotation every 3.5 s makes them '
+edge('WAVE', 'RAM', 'Ram\'s Wall is staffed by heavy RAM and PLOW profiles. A rotation every few seconds makes them '
      'follow attackers in and out of the zone or stand unmarked.')
-edge('LOCK', 'WAVE', 'Wave enters the zone by design with 1.5 s of margin. A hold-up of 1.5 s turns a visit into '
-     'a residence turnover.')
+edge('LOCK', 'WAVE', 'Wave enters the zone by design with about 1 s of margin. A DART or PIVOT who receives inside becomes the '
+     'ball carrier and may be wrapped; a hold-up of a second or more turns his visit into a residence turnover.')
 edge('ANVIL', 'RAM', 'Ram puts the whole possession on one carrier who runs 40 m or more outside the zone: the '
      'Archer\'s first target. As built a freeze makes him drop the ball.')
 edge('PRESS', 'RAM', 'Ram wants its free first tackle close to goal. The press forces it far out, leaving a '
@@ -1022,9 +1038,9 @@ edge('RAM', 'STRIKE', 'Strike defends with seven, so the wedge meets fewer tackl
      'dead balls, which deny Strike the live gain it needs.')
 edge('RAM', 'LOCK', 'The trap needs about 5 s of hold-up. A wedge-led carry needs under 2 s from arc to goal '
      'plane, and Lock chooses not to ground a carrier in the zone at count 0.')
-edge('ANVIL', 'COUNT', 'Once Count crosses halfway it still holds the ball for 10 s or more outside the zone, the '
-     'longest exposure of any style. The edge is larger in Native v0/3, which does not enforce the own-half '
-     'arrow rule.')
+edge('ANVIL', 'COUNT', 'Count has many touches by few handlers, and in Native v0/3, which does not enforce the own-half '
+     'arrow rule, it is a legal target for most of a 20 s possession. With the rule enforced the exposure falls to '
+     'the 4 to 9 s after it crosses halfway, and the prediction is weaker.')
 edge('STRIKE', 'ANVIL', 'Strike attempts within 8 s, before the Archer has released more than a few arrows, and '
      'its long passes travel over shadows who are containing, not tackling.')
 edge('PRESS', 'COUNT', 'Count\'s short passes are exactly what man pressure contests, and Count may not retreat '

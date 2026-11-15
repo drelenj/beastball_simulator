@@ -7,14 +7,14 @@ Status: **DESIGN COMPLETE**. Not IMPLEMENTED, not TESTED, not ACCEPTED.
 2. **What the simulator can do now.** Native v0/3 already has a small version of this: a 16-number team vector that is fixed before the match and reaches each athlete only through his own view. It is the same for all teammates, so it cannot carry slots.
 3. **Unimplemented or unproven.** The playbook, its delivery, the cognition that reads it and all fourteen tests. Whether athletes can run a timed joint play from a shared plan and their own beliefs, with no messages, is unknown.
 4. **Blocking.** Nothing blocks the design. Building it needs Codex (the view field, the harness input, one public signal) and Claude (the playbook compiler and the cognition).
-5. **Recommended action.** Relay sections 3 and 6 to Codex with the attribute step spec. Decide Q-TAC-6 (may a plan change at a break or timeout) when convenient; the placeholder is no.
+5. **Recommended action.** Relay sections 3 and 6 to Codex with the attribute step spec. Decide Q-TAC-6 (may a plan change at a break or timeout; placeholder no) and Q-TAC-8 (may an athlete know the team's slot chart; placeholder yes) when convenient.
 
 ## 1. The rule this must keep
 **IA-001 (decided by DreLen).** Athletes hold individual, imperfect knowledge that improves with realistic observation and experience; the engine keeps authoritative true state for physical resolution. Cognition and Motor Control never read hidden state.
 
 What follows from it here:
 - An athlete decides from his own view and his own belief. Nothing else enters `decide(view, belief)`.
-- There is no live team channel in Native. M2 message content is null and stays null.
+- There is no live team channel for plans in Native. M2 message content is null and stays null. One live team signal does exist in v0/3: a teammate's shouted pass call (`Signals.pass_call`: passer, target, aim point), delivered to teammates only. The playbook adds no other and does not change that one.
 - The engine does not prescribe: it places nobody, chooses for nobody and corrects nobody toward a plan.
 - An athlete may not read another athlete's hidden attributes, including a teammate's ratings.
 
@@ -32,7 +32,7 @@ One immutable record per athlete. Team-level content is identical in every teamm
 | `my_slot` | My slot id and instance number (for example GUN 2) | Mine |
 | `my_parameters` | Every team parameter of `tactics_0.json`, with my slot's overrides applied | Mine (team values are shared) |
 | `my_anchors` | My slot's five anchors: offence, defence, own restart, opponent restart, Hunt | Mine |
-| `slot_chart` | For every teammate id: slot id and instance. For every slot instance: the bench order | Team meeting. Contains no ratings |
+| `slot_chart` | For every teammate id: slot id and instance. For every slot instance: the bench order | Team meeting. Contains no ratings, but see section 9: the chart itself says something about who is good at what |
 | `plays` | The named restart and Hunt plays, written by slot | Team meeting |
 | `policy_params` | The 16 `PolicyParams` values (the EXPRESSIBLE NOW part), so present cognition keeps working | Team meeting |
 
@@ -92,11 +92,13 @@ Two athletes can believe different things and both go, or neither. That is a leg
 | --- | --- |
 | `playbooks` input to the harness and port; `AthleteView.playbook`; digest in the trace hash; JSON round trip | Codex |
 | Public tackle count in `Signals` (needed by two parameters) | Codex |
+| An own-action memory that lasts between decisions (when I gained the ball, when I left the zone, when I last saw my partner enter). v0/3 rebuilds the belief at every decision. Needed by four parameters | Codex (port), Claude (what is stored) |
+| The public substitution event (who left, who entered) in the view of the entering athlete | Codex |
 | `Playbook` type, `compile_playbooks`, the assignment rule | Claude |
 | Cognition that reads the playbook; decision-record source tag | Claude |
 | Tests IB-1 to IB-14 | Claude writes the cognition-side tests; Codex the port-side ones |
 
-**Substitutions.** A substitute takes the slot of the athlete he replaces. Who left is public officiating, and the bench order is in the chart, so the substitute knows his slot without being told anything during play. If a team is short-handed during an exclusion, the others keep their own slots.
+**Substitutions.** A substitute takes the slot of the athlete he replaces. The chart (bench order) is in every playbook from the start. What the substitute learns at the substitution is only who left, which is public officiating; v0/3 does not yet put that in the bench view, so it is listed as Codex work above. If a team is short-handed during an exclusion, the others keep their own slots.
 
 **Stages.** P0, available now: the 16-value projection, team-wide. P1: playbook delivery and each athlete's own thresholds and preferences. P2: anchors and joint plays. P3: the NEEDS ENGINE WORK parameters, after the attribute step.
 
@@ -113,25 +115,26 @@ None exists yet. "Poison" means replacing a value the athlete must not use with 
 
 | ID | What it shows | Method | Pass |
 | --- | --- | --- | --- |
-| IB-1 | Decisions depend only on view and belief | Purity scan of the cognition modules (AST: no engine, port or rules import); call `decide` twice on the same view and belief with different true state behind them | Identical intent and record |
-| IB-2 | No cross-team leak | Build the first views of a match twice, changing only team B's playbook | Every team A view is byte-identical |
+| IB-1 | Decisions depend only on view and belief | Purity scan of the cognition modules (AST: no engine, port or rules import, no module-level mutable state); in a running match, change true state that is in no view (a hidden opponent's position and ratings) and compare the next decisions of athletes who cannot see him | Identical intents and records |
+| IB-2 | No cross-team leak | Schema: no team A view field is derived from team B's playbook. Run: build the first views twice, changing only team B's playbook; then, in a 600 s window with team B's athletes' intents forced equal in both runs, compare every team A view | Byte-identical in both parts |
 | IB-3 | The playbook does not change | Hash each athlete's playbook at every decision in a full match | One hash per athlete |
 | IB-4 | The engine does not read the plan | Wrap the playbook so that any attribute read outside the cognition modules raises; run a 600 s window | No raise; AST scan finds no playbook read in engine, port or rules beyond the copy into the view |
 | IB-5 | No playbook means Native v0/3 | Run seed 1 with `playbooks=None` | Trace hash and state hash equal the recorded native-v0/3 values |
-| IB-6 | A neutral playbook changes nothing by accident | Run with a playbook that holds only the neutral values and `pos.anchor_pull = 0` | Same hashes as IB-5 apart from the digest term; decision kinds identical |
-| IB-7 | An athlete holds only his own slice | Change a teammate's slot override; compare my view | My view and my decisions unchanged |
-| IB-8 | No message carries the plan | Inspect every M2 envelope of a match | Payload length 0; no playbook bytes |
+| IB-6 | An empty playbook changes nothing by accident | Run with a playbook in which the 16 `PolicyParams` values are the v0/3 defaults, every other parameter is unset (cognition then uses its v0/3 constant) and `pos.anchor_pull = 0` | Same decisions as IB-5: identical intents at every step. (The neutral values of `TACTICS_0.md` are not all v0/3 behaviour, so they are not used here) |
+| IB-7 | An athlete holds only his own slice | Change a teammate's slot override; compare my view apart from the team digest | My parameters, anchors and decisions unchanged |
+| IB-8 | No message carries the plan | Inspect every M2 envelope and every `pass_call` of a match | M2 payload length 0; `pass_call` holds only passer, target and aim point, as in v0/3 |
 | IB-9 | Anchors use beliefs | Poison: give an athlete a believed ball position 15 m from the true one | His anchor candidate follows the believed position |
 | IB-10 | Joint triggers use public signals and beliefs | Poison: true partner position inside the zone, believed position outside | The athlete acts on the believed position |
-| IB-11 | No teammate ratings reach an athlete | Schema check of the compiled playbook; change a teammate's ratings with the assignment held fixed | Playbooks byte-identical |
+| IB-11 | No teammate ratings reach an athlete | Schema check of the compiled playbook (no rating or body field); change a teammate's ratings by an amount that does not change the assignment | Playbooks byte-identical. This shows that only the assignment travels; it cannot show the assignment tells him nothing (section 9) |
 | IB-12 | No opponent data | Schema check; compile team A's playbooks with two different team B rosters | Byte-identical |
-| IB-13 | A substitute learns his slot only from the public substitution | Force a substitution; compare the substitute's bench view before with his field view after | Slot appears only after the public event |
+| IB-13 | A substitute acts on a slot only after the public substitution | Force a substitution; inspect the substitute's views | The chart is present throughout; `my_slot` is empty on the bench and is set in the first view after the public event naming who left |
 | IB-14 | Determinism | Same seed and playbooks twice; serial against parallel | Identical trace and state hashes |
 
 Two further checks belong to the formation-free arm and are not new: a run without playbooks contains no decision record with source `plan` (DO-3), and no report from a playbook run uses the word emergence.
 
 ## 9. Risks and limits
 - **A plan can become an order.** A very high `pos.anchor_pull` makes an athlete hold his post whatever he sees. That still obeys IA-001, because he decides, but it is a formation grid under another name. The weight is logged and reported with every result.
-- **Timing without a channel may not work.** A 3.5 s rotation leaves 1.5 s of margin; athletes sense every 200 ms with 200 ms of latency and decide every 500 ms. The margin may be too thin. That is a finding to make, not a reason to add a channel.
+- **Timing without a channel may not work.** A zone visit leaves about 1 s of margin on the 5 s limit; athletes sense every 200 ms with 200 ms of latency and decide every 500 ms. The margin may be too thin. That is a finding to make, not a reason to add a channel.
 - **Cognition is where a leak would happen.** The tests above can show that a playbook is static and private. They cannot show that every future cognition change reads only beliefs; IB-1, IB-9 and IB-10 must run on every change.
+- **The chart carries a little rating information.** The coach assigns slots and instance order by rating, so a player who reads the chart can infer that the GUNs throw hard and that instance 1 of a slot scored highest. Several plays use this ("the faster SAFETY is the contestant" means instance 1). This is what a team sheet tells any player, but it is knowledge of teammates' abilities that IA-001 does not obviously grant, and no test above can remove it. It is put to the owner as Q-TAC-8.
 - **The coach step sees ratings.** It runs before the match and hands each athlete only a slot. If a later design lets athletes know teammates' abilities, that is an IA-001 question for the owner, not an engineering choice.
