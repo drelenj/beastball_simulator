@@ -10,7 +10,7 @@ import random
 from b1.communication import DeliveryModel, TeamTransport, receive_messages
 from b1.emergence_intents import BallCourseBelief, AthleteBody, plan_keeper_motor
 from . import cognition as C
-from .config import NativeConfig
+from .config import NativeConfig, is_v3
 from .perception import visibility
 from .substrate import build_core
 
@@ -66,6 +66,8 @@ class NativePort:
         m.s.keeper_zone_radius=cfg.zone_radius
         for pol in m.pol.values():pol.pocket=pocket
         self.seed=seed;self.rules=m.e.possession;self.settings=settings
+        self.v3=is_v3(cfg)
+        self.arrow_speed=cfg.arrow_speed if self.v3 else 29. # v0/2 literal retained
         self.pending,self.move,self.feedback={}, {}, {}
         self.outcomes=[];self.intents=[];self.decisions=Counter();self.admissions=Counter()
         self.frames={};self.memory={};self.history={};self.gaze={};self.next_frame={};self.course_beliefs={}
@@ -328,7 +330,7 @@ class NativePort:
             if 'release_intent' not in pend:continue
             i=pend['release_intent'];age=(s.now-i.decided_ms)/1000
             vx,vy=i.aim_vel or (0,0);target=(i.aim[0]+vx*age,i.aim[1]+vy*age,1.6)
-            ans=self.geom.ballistic((p.x,p.y,p.z+.72*p.a.height),target,29.,9.81)
+            ans=self.geom.ballistic((p.x,p.y,p.z+.72*p.a.height),target,self.arrow_speed,9.81)
             if ans is None:self.resolve(pid,'rejected_geometry');continue
             ok=m.e.shoot_arrow(pid,i.target,ans[0]);self.resolve(pid,'arrow_released' if ok else 'rejected_by_engine')
 

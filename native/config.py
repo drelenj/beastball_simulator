@@ -73,3 +73,66 @@ class NativeConfig:
     @property
     def digest(self):
         return hashlib.sha256(json.dumps(self.record(),sort_keys=True).encode()).hexdigest()
+
+
+# ---------------------------------------------------------------------------
+# native-v0/3 (FAB-1). NativeConfig above is native-v0/2 and is not altered:
+# its record, digest and behaviour stay byte-identical (Native PRISM 0).
+# ---------------------------------------------------------------------------
+CANON_ARROW_SPEED = 250.          # m/s, owner-confirmed (FAB-1a)
+
+def _standards_v3(arrow_speed):
+    return tuple((k,arrow_speed if k=='archery_release_speed' else v) for k,v in NativeConfig.body_standards)
+
+def _pocket_v3(arrow_speed):
+    # No arrow_limit key: canon has no arrow speed cap.
+    return tuple(sorted((k,arrow_speed if k=='arrow_speed' else v) for k,v in POCKET if k!='arrow_limit'))
+
+@dataclass(frozen=True)
+class NativeConfigV3(NativeConfig):
+    version: str = 'native-v0/3'
+    # FAB-1a. Arrow release speed = arrow_speed_ratio x fastest-player maximum_speed.
+    # Default reproduces the canon 250 m/s at the engine's present 27 m/s top speed.
+    # Change this one number (or pass --arrow-speed-ratio) to change arrow speed.
+    arrow_speed_ratio: float = CANON_ARROW_SPEED/27.
+    arrow_speed_cap: float | None = None      # canon: no cap
+    # FAB-1b. Wrap, takedown, run-through, brace and dodge are athlete intents;
+    # the engine's hold-mode and escape-effort placeholder controllers are not used.
+    athlete_contact: str = 'intent-owned-v1'
+    # FAB-1c. Belief-based restart claim / target / position decisions.
+    restart_cognition: str = 'belief-v1'
+    body_standards: tuple = ()                # derived in __post_init__
+    pocket_settings: tuple = ()               # derived in __post_init__
+
+    def __post_init__(self):
+        if not self.arrow_speed_ratio>0:raise ValueError('arrow_speed_ratio must be positive')
+        if self.arrow_speed_cap is not None:raise ValueError('canon has no arrow speed cap')
+        speed=self.arrow_speed
+        for name,want in (('body_standards',_standards_v3(speed)),('pocket_settings',_pocket_v3(speed))):
+            if getattr(self,name) not in ((),want):raise ValueError('native-v0/3 derives '+name+' from arrow_speed_ratio')
+            object.__setattr__(self,name,want)
+        if self.physical_assumptions!=physical_defaults():
+            raise ValueError('native-v0 mechanics are versioned together; profile mixing rejected')
+        if self.version!='native-v0/3' or self.profile!='native-v0' or self.m2!='null' or self.legacy_layers:
+            raise ValueError('Native does not mix profiles or enable legacy deciders')
+        if self.periods!=4 or self.period_seconds!=600 or self.overtime_seconds!=300:
+            raise ValueError('full canon duration required; scenarios set state clocks explicitly')
+        if self.athlete_contact!='intent-owned-v1' or self.restart_cognition!='belief-v1':
+            raise ValueError('native-v0/3 mechanics are versioned together')
+
+    @property
+    def fastest_player_speed(self):
+        return dict(NativeConfig.body_standards)['maximum_speed']
+
+    @property
+    def arrow_speed(self):
+        return round(self.arrow_speed_ratio*self.fastest_player_speed,6)
+
+
+VERSIONS = {'native-v0/2':NativeConfig,'native-v0/3':NativeConfigV3}
+
+def config_for(version='native-v0/2',**overrides):
+    return VERSIONS[version](**overrides)
+
+def is_v3(config):
+    return isinstance(config,NativeConfigV3)

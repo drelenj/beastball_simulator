@@ -459,7 +459,8 @@ def install(CO, cfg):
         if not legal:self.foul(pid,target if t else None,'archery_target');return False
         point=(p.x,p.y,cfg.platform_height+.72*p.a.height)
         speed=math.sqrt(sum(v*v for v in velocity))
-        if speed>30+1e-6:self.foul(pid,reason='arrow_speed');return False
+        cap=getattr(cfg,'arrow_speed_cap',30.) # native-v0/2: 30; native-v0/3: None (canon, no cap)
+        if cap is not None and speed>cap+1e-6:self.foul(pid,reason='arrow_speed');return False
         ar=T.Arrow(self.next_arrow,p.team,pid,target,*point,*velocity,point,s.now);self.next_arrow+=1;s.arrows.append(ar);q.last_release=s.now
         self.emit('arrow_release','native',player=pid,target=target,arrow=ar.id,velocity=list(velocity),origin=list(point));return ar
     E.shoot_arrow=shoot_arrow
