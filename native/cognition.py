@@ -91,6 +91,11 @@ class AthleteView:
     own_restraint: float = 0.
     tuck_fraction: float = 0.
     zone_radius: float = 20.0            # G: inside = distance < R
+    # native-v0/3 (FAB-1); defaults leave native-v0/2 decisions unchanged
+    cognition: str = 'native-v0/2'
+    own_held: int = 0                    # SELF-1 touch: opponents' holds on my own body
+    own_balance_load: float = 0.         # SELF-1: own balance, 0 settled .. 1 grounded
+    own_hold_target: str | None = None   # own action: whom my own hands hold
 
 
 @dataclass(frozen=True)
@@ -218,8 +223,12 @@ def keeper_protected(track, view):
 
 def archer_target_legal(t, view, now):
     # Canon: opposing fields on offence with team control, outside either zone.
+    # native-v0/3 PLACEHOLDER (Q-FAB1-2): the rules layer as built has no team control while a
+    # pass is in flight, so a release then is an archery_target foul; the v0/3 Archer does not
+    # choose it. v0/2 keeps its original predicate.
+    statuses = ('carried',) if view.cognition=='native-v0/3' else ('carried','pass_in_flight')
     return (view.hunt_cleared and t.role=='field' and
-            t.team==view.signals.passive_team and view.signals.ball_status in ('carried','pass_in_flight') and
+            t.team==view.signals.passive_team and view.signals.ball_status in statuses and
             t.entity not in view.signals.immune and
             not in_own_zone(t.team,t.x,t.y,view) and
             not in_own_zone(view.team,t.x,t.y,view) and now-t.captured_ms<=700)
@@ -479,6 +488,14 @@ def view_from_json(d):
 
 
 def decide(view, belief):
+    """All Native semantic commands. The view names its own decision set."""
+    if view.cognition == 'native-v0/3':
+        from . import cognition_v3
+        return cognition_v3.decide(view, belief)
+    return decide_v2(view, belief)
+
+
+def decide_v2(view, belief):
     """All Native semantic commands, including PLACEHOLDER procedural choices."""
     if view.observation_id != belief.observation_id:raise ValueError('provenance mismatch')
     def choice(kind,aim=None,target=None,aux=None,contact=None):

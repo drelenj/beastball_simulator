@@ -13,6 +13,7 @@ from . import cognition as C
 from .config import NativeConfig, is_v3
 from .perception import visibility
 from .substrate import build_core
+from .restart_metric import RestartMetric
 
 
 def digest(value):
@@ -67,6 +68,7 @@ class NativePort:
         for pol in m.pol.values():pol.pocket=pocket
         self.seed=seed;self.rules=m.e.possession;self.settings=settings
         self.v3=is_v3(cfg)
+        self.restart_metric=RestartMetric() # read-only measurement (FAB-1c)
         self.arrow_speed=cfg.arrow_speed if self.v3 else 29. # v0/2 literal retained
         self.pending,self.move,self.feedback={}, {}, {}
         self.outcomes=[];self.intents=[];self.decisions=Counter();self.admissions=Counter()
@@ -87,6 +89,12 @@ class NativePort:
         m.c3_withhold=lambda *a:False
         m.c3_fix_contain=False;m.c3_fix_descent=False
         m.native_wrap_authorized=lambda p,q:bool(getattr(p,'native_intent',None) and p.native_intent.contact=='wrap' and p.native_intent.target==q.id)
+        if self.v3:
+            # FAB-1b: hold mode and escape effort are athlete intents, never engine controllers.
+            contact=lambda p:getattr(getattr(p,'native_intent',None),'contact',None)
+            m.native_wrap_authorized=lambda p,q:bool(contact(p) in ('wrap','takedown') and p.native_intent.target==q.id)
+            m.c3_contain=lambda d,car:contact(d)!='takedown'
+            m.c3_escape_effort=lambda car,windup:1. if windup is None and car.id not in m.c3_descent and contact(car)=='run_through' and car.native_intent.kind=='carry' else 0.
         for pol in m.pol.values():pol.t=replace(pol.t,pace=1.)
         # Pure policies cannot call back into retired controllers.
         def forbidden(*a,**k):raise RuntimeError('retired tactical controller reached')
@@ -200,9 +208,18 @@ class NativePort:
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            hunt_cleared=f.hunt_cleared,messages=messages,ownership_enabled=True,ball_course=course,
-                           own_restraint=self.m.c3_rho(p,'pass'),tuck_fraction=self.m.assume['tuck_after_delay_frac'],zone_radius=self.config.zone_radius)
+                           own_restraint=self.m.c3_rho(p,'pass'),tuck_fraction=self.m.assume['tuck_after_delay_frac'],zone_radius=self.config.zone_radius,
+                           **(self.own_contact(p) if self.v3 else {}))
         belief=C.BeliefState(oid+'/belief',oid,tracks,tuple(self.feedback.pop(pid,())),2000,None,course,receive_messages(view))
         return view,belief
+
+    def own_contact(self,p):
+        """SELF-1 own-body knowledge only: holds on me, my balance, whom I hold."""
+        holds=self.m.c3_holds
+        return dict(cognition=self.config.version,
+                    own_held=sum(1 for (a,t),h in holds.items() if t==p.id and h['g']>0),
+                    own_balance_load=round(min(1.,self.m.c3_bal(p)),4),
+                    own_hold_target=next((t for (a,t),h in sorted(holds.items()) if a==p.id),None))
 
     def submit(self,intent):
         admission=self._submit_intent(intent)
@@ -256,7 +273,7 @@ class NativePort:
             self.pending.pop(p.id,None);return {'status':'accepted'}
         if kind=='continue_current':return {'status':'accepted' if p.id in self.pending else 'rejected'}
         if kind in ('retain','archer_hold','restart_wait','scan','no_action'):return {'status':'accepted'}
-        if kind in ('position','restart_position','carry','pursue','press','mark','support','receive','search','keeper_set','keeper_save'):
+        if kind in ('position','restart_position','carry','pursue','press','mark','support','receive','search','keeper_set','keeper_save') or (kind=='tackle' and self.v3):
             if intent.aim is None:return {'status':'rejected','reason':'missing_aim'}
             self.move[p.id]=intent.aim
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'locomotion')
@@ -421,6 +438,7 @@ class NativePort:
         carrier=s.players.get(s.ball.carrier)
         if carrier and body_out(carrier) and s.phase in (P.LIVE,P.OPENING):
             e.boundary(carrier.x,carrier.y,carrier.id)
+        self.restart_metric.observe(self)
         self.assert_invariants()
 
     def assert_invariants(self):
