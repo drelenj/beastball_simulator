@@ -12,6 +12,8 @@ def install(co,cfg):
   s=self.s;p=s.players.get(outgoing);q=s.players.get(incoming)
   dead=s.phase==P.DEAD or setup and s.phase==P.OPENING and not self.rb_hunt_running
   if not dead or not q or q.active or not self.rb_can_enter(q):return False
+  if p is None and not(setup and s.phase==P.OPENING and not self.rb_hunt_running and s.period==1 and s.live_ms==0 and not self.rb.exclusions):return False
+  if p and role is not None and role!=p.role:return False
   if p and (p.team!=q.team or not p.active and outgoing not in self.rb_slots):return False
   if p and p.exclusion_ms>0 and p.id not in self.rb.injuries and self.rb.evaluated.get(p.id)!=s.period:return False
   target_role=role or (p.role if p else 'field')

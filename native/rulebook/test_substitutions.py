@@ -36,3 +36,12 @@ def test_keeper_fallback_without_reserve(p):
  e.rb_force_injury('A10')
  assert any(q.active and q.team=='A' and q.role=='keeper' for q in s.players.values())
  assert any(r['kind']=='keeper_fallback' for r in e.rb.calls)
+
+def test_exclusion_cannot_be_bypassed_with_empty_slot_or_role_change(p):
+ s,e=p.m.s,p.m.e;e.discipline('A0','major');e.award('A',50,50,'fixture')
+ assert not e.rb_substitute(None,'A14')
+ assert not e.rb_substitute(None,'A14',setup=True)
+ assert not e.rb_substitute('A0','A14')
+ assert not e.rb_substitute('A1','A14',role='keeper')
+ assert e.rb_substitute('A1','A14')
+ assert sum(q.active and q.team=='A' and q.role!='archer' for q in s.players.values())==11
