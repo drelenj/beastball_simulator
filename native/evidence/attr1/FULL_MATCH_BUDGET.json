@@ -1,4 +1,162 @@
 {
   "cap": 12,
-  "attempts": []
+  "attempts": [
+    {
+      "id": 1,
+      "profile": "native-v0/2",
+      "seed": 1,
+      "label": "preserve-v02-seed1-0",
+      "status": "passed",
+      "commit": "9ae57d2ab2833e02c66c6a175c0bcba6d81b1248",
+      "config_digest": "f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035",
+      "roster_digests": {},
+      "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142",
+      "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9",
+      "runtime_s": 176.194,
+      "score": {
+        "A": 58,
+        "B": 77
+      },
+      "live_ms": 2400000,
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "goal": 24,
+        "foul": 75,
+        "discipline": 75,
+        "tackle_count": 5,
+        "arrow_release": 435,
+        "freeze": 14,
+        "boundary": 293,
+        "restart_awarded": 575,
+        "restart_release": 419,
+        "match_complete": 1
+      },
+      "decisions": 244862,
+      "all_commands_have_intents": true,
+      "no_kicks": true,
+      "evidence": "/workspace/beastball_simulator/native/evidence/attr1/preserve-v02-seed1-0.json"
+    },
+    {
+      "id": 2,
+      "profile": "native-v0/3",
+      "seed": 1,
+      "label": "preserve-v03-seed1-0",
+      "status": "passed",
+      "commit": "9ae57d2ab2833e02c66c6a175c0bcba6d81b1248",
+      "config_digest": "2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b",
+      "roster_digests": {},
+      "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2",
+      "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012",
+      "runtime_s": 164.141,
+      "score": {
+        "A": 26,
+        "B": 27
+      },
+      "live_ms": 2400000,
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "goal": 20,
+        "foul": 27,
+        "discipline": 27,
+        "tackle_count": 81,
+        "arrow_release": 169,
+        "freeze": 38,
+        "boundary": 245,
+        "restart_awarded": 400,
+        "restart_release": 381,
+        "match_complete": 1
+      },
+      "decisions": 187073,
+      "all_commands_have_intents": true,
+      "no_kicks": true,
+      "evidence": "/workspace/beastball_simulator/native/evidence/attr1/preserve-v03-seed1-0.json"
+    },
+    {
+      "id": 3,
+      "profile": "attr-map/1",
+      "seed": 1,
+      "label": "attr-parallel-seed1-0",
+      "status": "passed",
+      "commit": "9ae57d2ab2833e02c66c6a175c0bcba6d81b1248",
+      "config_digest": "97b69081a3c486adc3887e7374db41fc48656cc384802620247b7d87ddd8d182",
+      "roster_digests": {
+        "A": "4627c96e61b12abb299dadcc22ffba539c1c444d3a04bd27ddd85f036807efb1",
+        "B": "b9aa7873dd59a789f5b695519b53856c55a8c5daeb2568031d5f8f1f9f987587"
+      },
+      "trace_hash": "7eca62c747fe03f88151c5c93b07c1eba71db539a898a4bd7484c26cdeb48a38",
+      "state_hash": "1f40dcba1d63f1be05e32b49ec1684f2a10edc36f04632b7874cd5a6903a8caa",
+      "runtime_s": 278.929,
+      "score": {
+        "A": 18,
+        "B": 25
+      },
+      "live_ms": 2400000,
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "goal": 14,
+        "foul": 18,
+        "discipline": 18,
+        "tackle_count": 61,
+        "arrow_release": 194,
+        "freeze": 50,
+        "boundary": 227,
+        "restart_awarded": 358,
+        "restart_release": 347,
+        "match_complete": 1
+      },
+      "decisions": 180953,
+      "all_commands_have_intents": true,
+      "no_kicks": true,
+      "evidence": "/workspace/beastball_simulator/native/evidence/attr1/attr-parallel-seed1-0.json"
+    },
+    {
+      "id": 4,
+      "profile": "attr-map/1",
+      "seed": 2,
+      "label": "attr-parallel-seed2-1",
+      "status": "passed",
+      "commit": "9ae57d2ab2833e02c66c6a175c0bcba6d81b1248",
+      "config_digest": "97b69081a3c486adc3887e7374db41fc48656cc384802620247b7d87ddd8d182",
+      "roster_digests": {
+        "A": "4627c96e61b12abb299dadcc22ffba539c1c444d3a04bd27ddd85f036807efb1",
+        "B": "b9aa7873dd59a789f5b695519b53856c55a8c5daeb2568031d5f8f1f9f987587"
+      },
+      "trace_hash": "2c90ce85279e558c3c657f9f1a4a6cef8ac6f8f425b781a4ba02948e2aa8e252",
+      "state_hash": "2329686cdc13e881824689524040c86278cf000f2e5770d65908ddf74797e0e4",
+      "runtime_s": 277.546,
+      "score": {
+        "A": 18,
+        "B": 22
+      },
+      "live_ms": 2400000,
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "goal": 15,
+        "foul": 22,
+        "discipline": 22,
+        "tackle_count": 75,
+        "arrow_release": 175,
+        "freeze": 37,
+        "boundary": 240,
+        "restart_awarded": 378,
+        "restart_release": 362,
+        "match_complete": 1
+      },
+      "decisions": 180615,
+      "all_commands_have_intents": true,
+      "no_kicks": true,
+      "evidence": "/workspace/beastball_simulator/native/evidence/attr1/attr-parallel-seed2-1.json"
+    },
+    {
+      "id": 5,
+      "profile": "attr-map/1",
+      "seed": 3,
+      "label": "attr-parallel-seed3-2",
+      "status": "failed",
+      "commit": "9ae57d2ab2833e02c66c6a175c0bcba6d81b1248",
+      "error": "RuntimeError(\"cover unavailable: [('B:b01', True, False, 0, True), ('B:b02', True, False, 0, True), ('B:b03', True, False, 0, True), ('B:b04', True, False, 0, True), ('B:b05', True, False, 0, True), ('B:b06', True, False, 0, True), ('B:b07', True, False, 0, True), ('B:b08', True, False, 0, True), ('B:b09', True, False, 0, True), ('B:b10', True, False, 0, True), ('B:b19', True, False, 0, True), ('B:b21', False, True, 0, True), ('B:b11', False, False, 0, True), ('B:b12', False, False, 0, True), ('B:b13', False, False, 0, True), ('B:b14', False, False, 0, True), ('B:b15', False, False, 0, True), ('B:b16', False, False, 0, True), ('B:b17', False, False, 0, True), ('B:b18', False, False, 0, True), ('B:b20', False, False, 0, True), ('B:b22', False, True, 0, True)]\")",
+      "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/validate_attr.py\", line 38, in one\n    result,port=run_match(seed,config,rosters=rosters)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 30, in run_match\n    port.step();steps+=1\n    ^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/port.py\", line 458, in step\n    self.fill_cover();e.native_sync()\n    ^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/port.py\", line 431, in fill_cover\n    else:raise RuntimeError('cover unavailable: '+str([(p.id,p.active,p.disqualified,p.exclusion_ms,p.available) for p in s.players.values() if p.team==vacancy[0]]))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: cover unavailable: [('B:b01', True, False, 0, True), ('B:b02', True, False, 0, True), ('B:b03', True, False, 0, True), ('B:b04', True, False, 0, True), ('B:b05', True, False, 0, True), ('B:b06', True, False, 0, True), ('B:b07', True, False, 0, True), ('B:b08', True, False, 0, True), ('B:b09', True, False, 0, True), ('B:b10', True, False, 0, True), ('B:b19', True, False, 0, True), ('B:b21', False, True, 0, True), ('B:b11', False, False, 0, True), ('B:b12', False, False, 0, True), ('B:b13', False, False, 0, True), ('B:b14', False, False, 0, True), ('B:b15', False, False, 0, True), ('B:b16', False, False, 0, True), ('B:b17', False, False, 0, True), ('B:b18', False, False, 0, True), ('B:b20', False, False, 0, True), ('B:b22', False, True, 0, True)]\n",
+      "runtime_s": 287.155
+    }
+  ]
 }

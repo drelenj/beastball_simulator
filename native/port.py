@@ -428,7 +428,13 @@ class NativePort:
             for pid in candidates:
                 v,b=self.view(pid,s.now,bench_role=vacancy[1]);intent,rec=C.decide(v,b)
                 if self.submit(intent)['status']=='accepted':break
-            else:raise RuntimeError('cover unavailable: '+str([(p.id,p.active,p.disqualified,p.exclusion_ms,p.available) for p in s.players.values() if p.team==vacancy[0]]))
+            else:
+                if self.attr:
+                    # PLACEHOLDER: never promote a field athlete into a canon
+                    # Keeper/Archer role when all fixed-role cover is exhausted.
+                    e.forfeit(vacancy[0],'no_fixed_role_cover')
+                    return
+                raise RuntimeError('cover unavailable: '+str([(p.id,p.active,p.disqualified,p.exclusion_ms,p.available) for p in s.players.values() if p.team==vacancy[0]]))
 
     def step(self):
         m,s,e=self.m,self.m.s,self.m.e;P=self.types.Phase

@@ -163,6 +163,17 @@ def test_at12_shape_and_fixed_roles():
     assert p._submit_intent(__import__('native.cognition',fromlist=['ActionIntent']).ActionIntent('i','d','A:pA12','substitute_claim',None,None,None,None,s.now))['status']=='rejected'
 
 
+def test_fixed_role_exhaustion_uses_rules_forfeit_not_field_promotion():
+    rs=rosters();p=NativePort(1,config(rs),rosters=rs);s=p.m.s;e=p.m.e
+    active=s.players['A:pA20'];reserve=s.players['A:pA21']
+    assert active.role==reserve.role=='archer'
+    active.active=False;active.disqualified=True;reserve.disqualified=True
+    e.vacancies.append(('A','archer',active.slot,active.x,active.y))
+    p.fill_cover()
+    assert s.phase==p.types.Phase.FINAL and s.result['method']=='forfeit'
+    assert any(row['event']=='forfeit' and row['data']['reason']=='no_fixed_role_cover' for row in e.log)
+
+
 def test_engine_and_ingress_use_thrower_maximum():
     raw=rows();raw[0]['throw_power']=.6;rs={t:load_rows(raw,t) for t in ('A','B')};p=NativePort(1,config(rs),rosters=rs)
     s,e=p.m.s,p.m.e;q=s.players['A:p0'];s.phase=p.types.Phase.LIVE
