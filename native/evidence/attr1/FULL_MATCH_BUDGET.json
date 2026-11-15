@@ -157,6 +157,82 @@
       "error": "RuntimeError(\"cover unavailable: [('B:b01', True, False, 0, True), ('B:b02', True, False, 0, True), ('B:b03', True, False, 0, True), ('B:b04', True, False, 0, True), ('B:b05', True, False, 0, True), ('B:b06', True, False, 0, True), ('B:b07', True, False, 0, True), ('B:b08', True, False, 0, True), ('B:b09', True, False, 0, True), ('B:b10', True, False, 0, True), ('B:b19', True, False, 0, True), ('B:b21', False, True, 0, True), ('B:b11', False, False, 0, True), ('B:b12', False, False, 0, True), ('B:b13', False, False, 0, True), ('B:b14', False, False, 0, True), ('B:b15', False, False, 0, True), ('B:b16', False, False, 0, True), ('B:b17', False, False, 0, True), ('B:b18', False, False, 0, True), ('B:b20', False, False, 0, True), ('B:b22', False, True, 0, True)]\")",
       "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/validate_attr.py\", line 38, in one\n    result,port=run_match(seed,config,rosters=rosters)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 30, in run_match\n    port.step();steps+=1\n    ^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/port.py\", line 458, in step\n    self.fill_cover();e.native_sync()\n    ^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/port.py\", line 431, in fill_cover\n    else:raise RuntimeError('cover unavailable: '+str([(p.id,p.active,p.disqualified,p.exclusion_ms,p.available) for p in s.players.values() if p.team==vacancy[0]]))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: cover unavailable: [('B:b01', True, False, 0, True), ('B:b02', True, False, 0, True), ('B:b03', True, False, 0, True), ('B:b04', True, False, 0, True), ('B:b05', True, False, 0, True), ('B:b06', True, False, 0, True), ('B:b07', True, False, 0, True), ('B:b08', True, False, 0, True), ('B:b09', True, False, 0, True), ('B:b10', True, False, 0, True), ('B:b19', True, False, 0, True), ('B:b21', False, True, 0, True), ('B:b11', False, False, 0, True), ('B:b12', False, False, 0, True), ('B:b13', False, False, 0, True), ('B:b14', False, False, 0, True), ('B:b15', False, False, 0, True), ('B:b16', False, False, 0, True), ('B:b17', False, False, 0, True), ('B:b18', False, False, 0, True), ('B:b20', False, False, 0, True), ('B:b22', False, True, 0, True)]\n",
       "runtime_s": 287.155
+    },
+    {
+      "id": 6,
+      "profile": "attr-map/1",
+      "seed": 3,
+      "label": "attr-fixed-seed3-0",
+      "status": "passed",
+      "commit": "7386917c1dff4e467ad3ac9f469ceb4be18b6ec9",
+      "config_digest": "97b69081a3c486adc3887e7374db41fc48656cc384802620247b7d87ddd8d182",
+      "roster_digests": {
+        "A": "4627c96e61b12abb299dadcc22ffba539c1c444d3a04bd27ddd85f036807efb1",
+        "B": "b9aa7873dd59a789f5b695519b53856c55a8c5daeb2568031d5f8f1f9f987587"
+      },
+      "trace_hash": "2bcad949bc43c866d1738125620a609329c3dd9c79f4a48baf355e1aaf4ee130",
+      "state_hash": "0f91a131be168613e6bfdc597d70eae344a20b1483ed540c96d10a0c0cca8a6f",
+      "runtime_s": 163.765,
+      "score": {
+        "B": 0,
+        "A": 5
+      },
+      "live_ms": 2563042,
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "goal": 11,
+        "foul": 25,
+        "discipline": 25,
+        "tackle_count": 81,
+        "arrow_release": 192,
+        "freeze": 45,
+        "boundary": 246,
+        "restart_awarded": 391,
+        "restart_release": 376,
+        "match_complete": 1
+      },
+      "decisions": 192400,
+      "all_commands_have_intents": true,
+      "no_kicks": true,
+      "evidence": "/workspace/beastball_simulator/native/evidence/attr1/attr-fixed-seed3-0.json"
+    },
+    {
+      "id": 7,
+      "profile": "attr-map/1",
+      "seed": 1,
+      "label": "attr-serial-replay-seed1-0",
+      "status": "passed",
+      "commit": "7386917c1dff4e467ad3ac9f469ceb4be18b6ec9",
+      "config_digest": "97b69081a3c486adc3887e7374db41fc48656cc384802620247b7d87ddd8d182",
+      "roster_digests": {
+        "A": "4627c96e61b12abb299dadcc22ffba539c1c444d3a04bd27ddd85f036807efb1",
+        "B": "b9aa7873dd59a789f5b695519b53856c55a8c5daeb2568031d5f8f1f9f987587"
+      },
+      "trace_hash": "7eca62c747fe03f88151c5c93b07c1eba71db539a898a4bd7484c26cdeb48a38",
+      "state_hash": "1f40dcba1d63f1be05e32b49ec1684f2a10edc36f04632b7874cd5a6903a8caa",
+      "runtime_s": 157.361,
+      "score": {
+        "A": 18,
+        "B": 25
+      },
+      "live_ms": 2400000,
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "goal": 14,
+        "foul": 18,
+        "discipline": 18,
+        "tackle_count": 61,
+        "arrow_release": 194,
+        "freeze": 50,
+        "boundary": 227,
+        "restart_awarded": 358,
+        "restart_release": 347,
+        "match_complete": 1
+      },
+      "decisions": 180953,
+      "all_commands_have_intents": true,
+      "no_kicks": true,
+      "evidence": "/workspace/beastball_simulator/native/evidence/attr1/attr-serial-replay-seed1-0.json"
     }
   ]
 }

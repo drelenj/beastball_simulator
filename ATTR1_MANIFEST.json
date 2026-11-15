@@ -1,0 +1,37 @@
+{
+  "schema": "attr1-manifest-v1",
+  "status": "TESTED_NOT_ACCEPTED",
+  "base_commit": "8613280d145cfd56e11fa4f6249ab31dfaaa34fe",
+  "implementation_commit": "7386917",
+  "branch": "codex/attribute-1",
+  "mapping_version": "attr-map/1",
+  "config_digest": "97b69081a3c486adc3887e7374db41fc48656cc384802620247b7d87ddd8d182",
+  "roster_digests": {
+    "A": "4627c96e61b12abb299dadcc22ffba539c1c444d3a04bd27ddd85f036807efb1",
+    "B": "b9aa7873dd59a789f5b695519b53856c55a8c5daeb2568031d5f8f1f9f987587"
+  },
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q b1 native",
+    "result": "266 passed, 23 subtests passed",
+    "fixed_role_regression": "included in the complete result",
+    "b0_files_verified": 427,
+    "accepted_files_byte_identical_to_base": ["b1/core.py", "b1/runtime.py", "b1/g1.py"]
+  },
+  "preservation": {
+    "native-v0/2": {
+      "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142",
+      "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9"
+    },
+    "native-v0/3": {
+      "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2",
+      "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012"
+    }
+  },
+  "attr_full_matches": {
+    "seed_1": ["7eca62c747fe03f88151c5c93b07c1eba71db539a898a4bd7484c26cdeb48a38", "1f40dcba1d63f1be05e32b49ec1684f2a10edc36f04632b7874cd5a6903a8caa"],
+    "seed_2": ["2c90ce85279e558c3c657f9f1a4a6cef8ac6f8f425b781a4ba02948e2aa8e252", "2329686cdc13e881824689524040c86278cf000f2e5770d65908ddf74797e0e4"],
+    "seed_3_fixed": ["2bcad949bc43c866d1738125620a609329c3dd9c79f4a48baf355e1aaf4ee130", "0f91a131be168613e6bfdc597d70eae344a20b1483ed540c96d10a0c0cca8a6f"]
+  },
+  "full_match_budget": {"cap": 12, "used": 7, "passed": 6, "failed_before_fix": 1},
+  "sensitivity_report": "native/evidence/attr1/AT7_SENSITIVITY.md"
+}
