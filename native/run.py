@@ -10,8 +10,8 @@ from .port import NativePort, digest
 from . import cognition
 
 
-def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None):
-    started=time.perf_counter();port=NativePort(seed,config,policies,plumbing)
+def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,rosters=None):
+    started=time.perf_counter();port=NativePort(seed,config,policies,plumbing,rosters)
     m,s,e=port.m,port.m.s,port.m.e
     next_dec={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
     while s.phase!=port.types.Phase.FINAL:
@@ -72,13 +72,21 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--seed',type=int,default=1);ap.add_argument('--out');ap.add_argument('--max-steps',type=int);ap.add_argument('--progress',action='store_true');ap.add_argument('--plumbing-absent',action='store_true')
-    ap.add_argument('--config-version',default='native-v0/2',choices=('native-v0/2','native-v0/3'));ap.add_argument('--arrow-speed-ratio',type=float)
+    ap.add_argument('--config-version',default='native-v0/2',choices=('native-v0/2','native-v0/3','attr-map/1'));ap.add_argument('--arrow-speed-ratio',type=float)
+    ap.add_argument('--roster-a');ap.add_argument('--roster-b')
     a=ap.parse_args()
     config=None
-    if a.config_version!='native-v0/2' or a.arrow_speed_ratio is not None:
+    rosters=None
+    if a.config_version=='attr-map/1':
+        if not a.roster_a or not a.roster_b:ap.error('attr-map/1 requires --roster-a and --roster-b')
+        from .roster import load_csv
+        rosters={t:load_csv(path,t) for t,path in (('A',a.roster_a),('B',a.roster_b))}
+        from .config import AttrConfig
+        config=AttrConfig(roster_digests=tuple(rosters[t].digest for t in ('A','B')))
+    elif a.config_version!='native-v0/2' or a.arrow_speed_ratio is not None:
         from .config import config_for
         config=config_for(a.config_version,**({'arrow_speed_ratio':a.arrow_speed_ratio} if a.arrow_speed_ratio is not None else {}))
-    r,_=run_match(a.seed,config,plumbing=not a.plumbing_absent,max_steps=a.max_steps,
+    r,_=run_match(a.seed,config,plumbing=not a.plumbing_absent,max_steps=a.max_steps,rosters=rosters,
                   progress=(lambda row:print(json.dumps(row),flush=True)) if a.progress else None)
     if a.out:Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(r,indent=2,sort_keys=True)+'\n')
     print(json.dumps(r,sort_keys=True))

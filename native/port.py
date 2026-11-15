@@ -10,7 +10,8 @@ import random
 from b1.communication import DeliveryModel, TeamTransport, receive_messages
 from b1.emergence_intents import BallCourseBelief, AthleteBody, plan_keeper_motor
 from . import cognition as C
-from .config import NativeConfig, is_v3
+from .config import NativeConfig, is_v3, is_attr
+from .roster import engine_order, mapped_values, max_throw_speed, throw_error_base_deg, sensor_noise_scale
 from .perception import visibility
 from .substrate import build_core
 from .restart_metric import RestartMetric
@@ -39,13 +40,35 @@ def body(p):
 
 
 class NativePort:
-    def __init__(self,seed=1,config=None,policies=None,plumbing=True):
+    def __init__(self,seed=1,config=None,policies=None,plumbing=True,rosters=None):
         self.config=config or NativeConfig()
         self.CO=build_core(self.config);co=self.CO;cfg=self.config
         self.types,self.geom=co.types,co.geometry
         make_roster=co.match.make_roster
+        self.attr=is_attr(cfg)
+        if self.attr:
+            if not rosters or set(rosters)!=set(('A','B')):raise ValueError('ATTR-1 requires A and B rosters')
+            if tuple(rosters[t].digest for t in ('A','B'))!=cfg.roster_digests:raise ValueError('roster digest/config mismatch')
+            def attr_validate(a):
+                assert 1.4<=a.height<=3.6576 and 0<=a.maximum_speed<=44.704 and a.mass>0
+                assert a.acceleration>=0 and a.braking>=0
+                for key in ('strength','agility','endurance','balance','contact_resistance','tackling','blocking','ball_handling','passing','kicking','catching','awareness','archery_accuracy','keeper_skill'):
+                    assert 0<=getattr(a,key)<=1,(key,getattr(a,key))
+            co.types.Attributes.validate=attr_validate
         def uniform(team,archetype,rng):
             players=make_roster(team,archetype,rng)
+            if self.attr:
+                ordered=engine_order(rosters[team]);result={}
+                for slot,(old,record) in enumerate(zip(players.values(),ordered)):
+                    old.id=f'{team}:{record.source_id}';old.slot=slot;old.role=record.role;old.active=slot<12
+                    for key,value in mapped_values(record).items():setattr(old.a,key,value)
+                    raw=dict(record.values)
+                    old.native_source_id=record.source_id
+                    old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
+                    old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
+                    old.native_sensor_noise_scale=sensor_noise_scale(raw['awareness'])
+                    old.fatigue=1.;old.a.validate();result[old.id]=old
+                return result
             for p in players.values():
                 for key in ('strength','agility','endurance','balance','contact_resistance','tackling','blocking','ball_handling','passing','catching','awareness','archery_accuracy','keeper_skill'):
                     setattr(p.a,key,cfg.ratings)
@@ -68,8 +91,18 @@ class NativePort:
         for pol in m.pol.values():pol.pocket=pocket
         self.seed=seed;self.rules=m.e.possession;self.settings=settings
         self.v3=is_v3(cfg)
+        if self.attr:
+            from types import MethodType
+            old_release,old_restart=m.e.release,m.e.restart_release
+            def within(pid,velocity):
+                return math.sqrt(sum(v*v for v in velocity))<=m.s.players[pid].native_max_throw_speed+1e-7
+            def attr_release(engine,pid,velocity,*args,**kwargs):
+                return old_release(pid,velocity,*args,**kwargs) if within(pid,velocity) else False
+            def attr_restart(engine,pid,velocity,*args,**kwargs):
+                return old_restart(pid,velocity,*args,**kwargs) if within(pid,velocity) else False
+            m.e.release=MethodType(attr_release,m.e);m.e.restart_release=MethodType(attr_restart,m.e)
         self.restart_metric=RestartMetric() # read-only measurement (FAB-1c)
-        self.arrow_speed=cfg.arrow_speed if self.v3 else 29. # v0/2 literal retained
+        self.arrow_speed=cfg.arrow_speed if self.v3 else 29. # ATTR and v0/3 are fixed/derived in config; v0/2 retained
         self.pending,self.move,self.feedback={}, {}, {}
         self.outcomes=[];self.intents=[];self.decisions=Counter();self.admissions=Counter()
         self.frames={};self.memory={};self.history={};self.gaze={};self.next_frame={};self.course_beliefs={}
@@ -95,7 +128,7 @@ class NativePort:
             m.native_wrap_authorized=lambda p,q:bool(contact(p) in ('wrap','takedown') and p.native_intent.target==q.id)
             m.c3_contain=lambda d,car:contact(d)!='takedown'
             m.c3_escape_effort=lambda car,windup:1. if windup is None and car.id not in m.c3_descent and contact(car)=='run_through' and car.native_intent.kind=='carry' else 0.
-        for pol in m.pol.values():pol.t=replace(pol.t,pace=1.)
+        for pol in m.pol.values():pol.t=replace(pol.t,pace=(1/.9 if self.attr else 1.))
         # Pure policies cannot call back into retired controllers.
         def forbidden(*a,**k):raise RuntimeError('retired tactical controller reached')
         for name in ('carrier_decision','arrow_decisions','targets_dead','update_archers','c4c2_decide','pocket_decide'):
@@ -119,7 +152,7 @@ class NativePort:
         effective['pocket_settings']=dict(self.m.e.pocket)
         assert self.geom.legal_goal(50.,2.8,.1) and not self.geom.legal_goal(50.,3.01,.1)
         for p in m.s.players.values():
-            assert all(getattr(p.a,key)==value for key,value in cfg.body_standards)
+            assert self.attr or all(getattr(p.a,key)==value for key,value in cfg.body_standards)
             if p.role=='archer' and p.active:
                 assert p.x in (-5.,105.) and p.y==50. and p.z==5.
                 assert p.facing==(float(m.s.attack_sign(p.team)),0.), (p.id,p.facing,m.s.attack_sign(p.team))
@@ -158,7 +191,7 @@ class NativePort:
                 off=(math.atan2(dy,dx)-facing+math.pi)%(2*math.pi)-math.pi
                 if p.role!='archer' and abs(off)>math.radians(120) and d>2:continue
                 if not mask[vi,ei]:continue
-                sigma=.04+.002*d
+                sigma=(.04+.002*d)*(p.native_sensor_noise_scale if self.attr else 1.)
                 ox,oy,oz=x+rng.gauss(0,sigma),y+rng.gauss(0,sigma),max(.1075,z+rng.gauss(0,.04))
                 old=self.history.get((pid,eid));vx=vy=vz=0.
                 if old and now>old[0]:
@@ -170,7 +203,8 @@ class NativePort:
             sig=C.Signals(s.phase.value,s.period,s.game_ms,s.possession_ms,s.score[p.team],s.score[s.other(p.team)],
                           r.team if r else None,(r.x,r.y) if r else None,bool(r and r.taker==pid),
                           rs.passive_team,rs.direct_team,rs.direct_holder,rs.contested,rs.ball_status,
-                          tuple(q.id for q in ps if q.frozen(now) or now<=q.immune_until),call[:4] if call and call[4]>=now and call[0]!=pid else None)
+                          tuple(q.id for q in ps if q.frozen(now) or now<=q.immune_until),call[:4] if call and call[4]>=now and call[0]!=pid else None,
+                          tackle_count=s.tackle_count)
             frame=ObservationFrame(f'native/{now}/{pid}',now,pid,tuple(tracks),course,sig,restart,e.hunt_claims.get(p.team),s.phase==self.types.Phase.OPENING and not e.hunt_cleared,e.hunt_cleared)
             self.frames.setdefault(pid,deque()).append(frame)
             while len(self.frames[pid])>20:self.frames[pid].popleft()
@@ -207,6 +241,8 @@ class NativePort:
                            posture=p.posture,judgment=.7,policy=self.policies[p.team],body=body(p),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
+                           max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
+                           own_skills=tuple((key,getattr(p.a,key)) for key in ('strength','agility','endurance','balance','contact_resistance','tackling','blocking','ball_handling','passing','catching','awareness','archery_accuracy','keeper_skill')) if self.attr else (),
                            hunt_cleared=f.hunt_cleared,messages=messages,ownership_enabled=True,ball_course=course,
                            own_restraint=self.m.c3_rho(p,'pass'),tuck_fraction=self.m.assume['tuck_after_delay_frac'],zone_radius=self.config.zone_radius,
                            **(self.own_contact(p) if self.v3 else {}))
@@ -216,7 +252,7 @@ class NativePort:
     def own_contact(self,p):
         """SELF-1 own-body knowledge only: holds on me, my balance, whom I hold."""
         holds=self.m.c3_holds
-        return dict(cognition=self.config.version,
+        return dict(cognition='native-v0/3' if self.attr else self.config.version,
                     own_held=sum(1 for (a,t),h in holds.items() if t==p.id and h['g']>0),
                     own_balance_load=round(min(1.,self.m.c3_bal(p)),4),
                     own_hold_target=next((t for (a,t),h in sorted(holds.items()) if a==p.id),None))
@@ -239,6 +275,7 @@ class NativePort:
         if kind=='substitute_claim':
             vacancy=next((v for v in e.vacancies if v[0]==p.team),None)
             if p.active or not vacancy or not p.available or p.disqualified or p.exclusion_ms>0:return {'status':'rejected','reason':'ineligible_cover'}
+            if self.attr and p.role!=vacancy[1]:return {'status':'rejected','reason':'fixed_role'}
             _,role,slot,x,y=vacancy;p.active=True;p.role=role;p.slot=slot;p.x=x;p.y=y;p.z=0;p.vx=p.vy=p.vz=0
             self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'procedural'))
             e.vacancies.remove(vacancy);e.emit('substitute','native',player=p.id,role=role,intent_id=intent.intent_id);self.platform_motor(0)
@@ -285,7 +322,9 @@ class NativePort:
             target_height=.1075 if kind in ('bounce','dribble') else intent.height
             origin=(s.ball.x,s.ball.y,s.ball.z) if kind!='draw_release' else (p.x,p.y,p.z+.72*p.a.height)
             target=(*intent.aim,target_height)
-            ans=self.geom.launch_for(origin,target,min(intent.speed,40.),9.81,.015) if kind!='draw_release' else None
+            limit=p.native_max_throw_speed if self.attr else 40.
+            if kind!='draw_release' and intent.speed>limit+1e-9:return {'status':'rejected','reason':'throw_speed'}
+            ans=self.geom.launch_for(origin,target,min(intent.speed,limit),9.81,.015) if kind!='draw_release' else None
             if kind!='draw_release' and ans is None:return {'status':'rejected','reason':'geometry'}
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now+(600 if kind=='draw_release' else 250),
                                'bow' if kind=='draw_release' else 'ball',ans[0] if ans else None)
@@ -331,8 +370,13 @@ class NativePort:
                     # Retain this athlete command until legal readiness; procedural deadline still applies.
                     continue
             else:
-                # PLACEHOLDER THROW_SPLIT: uniform touch .70; independent physical aim noise.
-                yaw=m.rng['ball'].gauss(0,math.radians((1-.7)*3))
+                # ATTR maps a requested angular SD onto the primitive uniform
+                # direction error: half-width = sqrt(3)*SD. Legacy replay keeps
+                # its historical Gaussian exactly.
+                if self.attr:
+                    sd=p.native_throw_error_base_deg*i.speed/67.
+                    yaw=math.radians(m.rng['ball'].uniform(-math.sqrt(3)*sd,math.sqrt(3)*sd))
+                else:yaw=m.rng['ball'].gauss(0,math.radians((1-.7)*3))
                 vx,vy,vz=new;new=(vx*math.cos(yaw)-vy*math.sin(yaw),vx*math.sin(yaw)+vy*math.cos(yaw),vz)
                 ok=e.release(pid,new,'shot' if i.kind=='shoot' else 'dribble' if i.kind=='dribble' else 'pass',i.target)
             self.resolve(pid,'released' if ok else 'rejected_by_engine')
@@ -380,7 +424,7 @@ class NativePort:
         e,s=self.m.e,self.m.s
         if s.phase==self.types.Phase.FINAL:return
         for vacancy in list(e.vacancies):
-            candidates=sorted(p.id for p in s.players.values() if p.team==vacancy[0] and not p.active and p.available and not p.disqualified and p.exclusion_ms==0)
+            candidates=sorted(p.id for p in s.players.values() if p.team==vacancy[0] and not p.active and p.available and not p.disqualified and p.exclusion_ms==0 and (not self.attr or p.role==vacancy[1]))
             for pid in candidates:
                 v,b=self.view(pid,s.now,bench_role=vacancy[1]);intent,rec=C.decide(v,b)
                 if self.submit(intent)['status']=='accepted':break

@@ -34,3 +34,15 @@ These apply to config `native-v0/3` only. None blocks engineering; each has the 
 | Q-FAB1-3 | A defender may hold a carrier up (wrap) or bring him down (takedown); a carrier may run through, brace or dodge. The values that choose between them are unsearched (commit to a takedown inside a believed 6 m gap; brace above 0.7 balance load; dodge with 0.3 s or more of warning). | BEHAVIORAL; PRIMITIVE functional defaults, no quality claim. Brace has no physical benefit in the present engine beyond not prying at the grip (engine fidelity is Codex's). |
 | Q-FAB1-4 | Restart claims: the believed-nearest teammate claims, and each athlete delays his own claim by 25 ms per metre from the spot. Two nearest teammates stand 8 m from the spot so a legal throw exists. With no believed target the taker throws to legal space only in the last 1.5 s. | BEHAVIORAL; PRIMITIVE / PLACEHOLDER defaults replacing Q-BEHAVIOR-1 for restarts under v0/3. Hunt claims, dribble and cover policies stay as in v0/2. |
 | Q-FAB1-5 | A toss timeout on the goal line is followed by a scrimmage placed 0.5 m from the goal line, leaving the defence half a metre of legal ground. | CANON / rules detail for Codex (RB-1): where does a turnover scrimmage go when the spot is on or near a goal line? Unchanged here; v0/3 athletes stand in the half metre. |
+## ATTR-1 / attr-map/1
+
+ATTR-1 implements the owner-ratified proportional speed curve and records the following replaceable engineering choices. None blocks implementation.
+
+| ID | Class | Current handling |
+|---|---|---|
+| Q-ATTR-1 | PLACEHOLDER input aliasing | `name`, `position`, `archetype`, and `overall` are accepted only as ignored columns. They never supply ID, role, ratings, or digest content. Known generator metadata is also ignored. |
+| Q-ATTR-2 | PLACEHOLDER body envelope | Height 2.40–2.95 m and mass 155–285 kg generate warning counts only. Engine height 1.4–3.6576 m and positive mass are enforced. |
+| Q-ATTR-3 | Owner-kept acceleration effect | Mapped acceleration means a roughly 40 m/s athlete needs about four seconds and 80 m to approach top speed. No tuning was made. |
+| Q-ATTR-4 | PLACEHOLDER uniform throw error | Requested angular SD is converted to a uniform half-width of `sqrt(3) * SD`; this preserves the specified standard deviation. |
+| Q-ATTR-5 | Existing generator compatibility | Current generated CSVs lack required `id`; some express ratings as 0–100 and one uses `role` for lineup status. ATTR rejects them explicitly. A generator/export adapter must emit canonical `id`, fixed role and 0–1 ratings; it may retain labels because the loader ignores them. |
+| Q-ATTR-6 | Inert ratings | Stamina is inert while fatigue is off. Keeper skill and Archer accuracy are stored but inert in the active Native path: shared catching uses catching, and athlete-owned Archer execution is exact ballistic release. Sensitivity evidence reports them as INERT. |
