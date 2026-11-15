@@ -12,3 +12,8 @@ Claude, 2026-11-14. DreLen ratified "Beastball Rulebook (Draft 1.0)" in full at 
 - Q-FAB1-2 (CANON): a team keeps team control while its pass is in flight. The Archer may not shoot to gain advantage from a pass in flight beyond the normal quota; the native-v0/3 Archer change stands.
 - Q-FAB1-5 (CANON, for Codex, RB-1): a toss timeout on the goal line is spotted at the nearest point 5 m out from the goal line.
 - Archer quota (15 arrows, 5 freezes per team possession) stays an RB-1 item for Codex.
+
+## Addendum, 15 Nov 2026 05:49 America/Chicago (owner: "Revoke it")
+- REVOKED: the minor foul "Marking inside 5 m before the ball is live" (Rulebook minor-foul table and violations table; RB-1 R-D). It was a Claude proposal ratified 14 Nov, not an owner ruling. It duplicated offside, the tackler alignment (opposite or 5 m behind) and the 3 m toss-in clearance, and caused the RB-BLOCK-1 stall.
+- UNCHANGED: the canon 5 m marking distance for Keeper Zone defenders (a defender may stay in the zone while within 5 m of an attacker).
+- ENGINEERING (Codex): a dead-ball foul that forces a retake must resolve (offender moved back or warned) and must never loop; exclusions must not be created in a loop while the game clock is stopped.
