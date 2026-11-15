@@ -206,3 +206,17 @@ Screenshots: `tests/evidence/04_play.png` (gameplay, tackle), `07_ava.png` (AI v
 - Catch speed penalty retuned (passes 27 m/s threshold, shots 16 m/s) so faster balls stay catchable.
 - Effect over 8 headless matches (before -> after): pass completion 69% -> 72%, goals/match 6.1 -> 9.1, saves 35 -> 43, tackles/match 171 -> 143. Scoring is higher and carriers release the ball sooner; unchanged from this: determinism (same seed, same result).
 - The human-tackle checks now place the athlete beside an opponent carrier (labelled in the test name) and use the real J key / TACKLE button, because chasing a carrier in real time became unreliable once opponents pass faster.
+
+## Addendum: catching
+
+Problems found: after a human pass, control stayed on the passer (the human could never be the receiver); AI receivers aimed at a high-lob landing spot and ignored the path of a fast flat pass; the catch roll repeated on every step the ball was near (odd real odds), and a miss sent the ball off in a random direction; no feedback.
+
+Changes:
+- **Control hand-over:** when a human passes, control jumps to the intended receiver; when the opponent passes, to the teammate who can reach the flight first. K still switches.
+- **Catch assist:** the receiver runs onto the ball automatically unless you steer.
+- **Intercept solver** (`src/engine/intercept.ts`): earliest point on the ball's flight an athlete can reach. Used by the AI (from its remembered ball state, so the information boundary holds), by the human assist, and for hand-over.
+- **Catch rules:** swept collision (fast balls cannot tunnel), one catch roll per athlete per flight, intended receiver has +0.35 m reach and first claim; reliable catches of a teammate's pass (about 90%+ when open, lower when marked or very hard), interceptions still harder; a drop pops the ball off and everyone else gets a fresh chance.
+- **Feedback:** pass-target ring and arrow over the receiver, catch burst, "DROP" text; `catch` / `drop` events.
+- **AI shot selection** damped (range and probability) so better receiving does not inflate scoring.
+- **Numbers (8 headless matches, before catching -> after):** pass completion 72% -> 79%, shots/match 61 -> 57, goals/match 9.1 -> 6.9, total score 20.9 -> 18.5.
+- **Tests:** `tests/catch_check.cjs` (human passes with hands off): control switched on 12/12 passes, receiver caught 10/12 by assist alone, 1 intercepted. Desktop 16/16 and touch 14/14 re-run. The tackle checks now force an opponent carrier with a test hook (named in the test) because the user's team now keeps the ball longer.

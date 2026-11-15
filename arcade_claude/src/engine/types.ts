@@ -45,7 +45,8 @@ export interface Athlete {
   excludedT: number; dq: boolean; minors: number; majors: number;
   kzT: number;
   // AI state (perception-bounded)
-  mem: Map<number, Memory>; ballMem: { x: number; y: number; z: number; vx: number; vy: number; t: number; holder: number };
+  mem: Map<number, Memory>; ballMem: { x: number; y: number; z: number; vx: number; vy: number; vz: number; t: number; holder: number };
+  rolledPass: number;
   nextThink: number; tx: number; ty: number; aiSprint: boolean; aiPassAt: number; plan: Intent; lastFire: number;
   stats: Stats;
   look: { skin: number; hair: number; build: number; height: number; face: number };

@@ -137,6 +137,13 @@ export class Renderer {
           ctx.strokeStyle = a.team === 0 ? '#ffe14d' : '#4dd2ff'; ctx.lineWidth = 2.5;
           ctx.beginPath(); ctx.ellipse(sx, sy, this.cam.s * 0.75, this.cam.s * 0.36, 0, 0, 7); ctx.stroke();
         }
+        if (e.ball.holder < 0 && e.ball.receiver === a.idx) { // intended receiver of the pass in flight
+          const pulse = 0.75 + 0.25 * Math.sin(wallT * 14);
+          ctx.strokeStyle = a.team === 0 ? '#ffe14d' : '#4dd2ff'; ctx.lineWidth = 3; ctx.globalAlpha = 0.9;
+          ctx.beginPath(); ctx.ellipse(sx, sy, this.cam.s * 1.0 * pulse, this.cam.s * 0.48 * pulse, 0, 0, 7); ctx.stroke(); ctx.globalAlpha = 1;
+          ctx.fillStyle = ctx.strokeStyle; const ty = sy - this.cam.s * 2.5 - Math.abs(Math.sin(wallT * 9)) * 4;
+          ctx.beginPath(); ctx.moveTo(sx - 7, ty - 9); ctx.lineTo(sx + 7, ty - 9); ctx.lineTo(sx, ty); ctx.closePath(); ctx.fill();
+        }
         if (e.ball.holder === a.idx) { ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.ellipse(sx, sy, this.cam.s * 0.95, this.cam.s * 0.46, 0, 0, 7); ctx.stroke(); ctx.setLineDash([]); }
         const facingLeft = Math.cos(a.facing) < -0.05;
         drawAthlete(ctx, a, col, sx, sy, this.cam.s, { anim: animFor(a, e.ball.holder === a.idx), t: wallT + a.idx * 0.37, speed: 0, facingLeft });
@@ -177,6 +184,17 @@ export class Renderer {
     } });
     items.sort((p, q) => p.y - q.y);
     for (const it of items) it.f();
+    // catch / drop feedback
+    for (const f of e.catchFx) {
+      const life = f.ok ? 0.4 : 0.55, u = 1 - f.t / life; const [fx, fy] = this.P(f.x, f.y, f.z);
+      if (f.ok) {
+        ctx.strokeStyle = `rgba(255,255,255,${1 - u})`; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(fx, fy, 8 + u * 30, 0, 7); ctx.stroke();
+        ctx.lineWidth = 2; for (let k = 0; k < 8; k++) { const ang = k * Math.PI / 4, r0 = 12 + u * 22, r1 = 20 + u * 30; ctx.beginPath(); ctx.moveTo(fx + Math.cos(ang) * r0, fy + Math.sin(ang) * r0 * 0.7); ctx.lineTo(fx + Math.cos(ang) * r1, fy + Math.sin(ang) * r1 * 0.7); ctx.stroke(); }
+      } else {
+        ctx.font = 'bold 15px Arial'; ctx.textAlign = 'center'; ctx.lineWidth = 3; ctx.strokeStyle = `rgba(0,0,0,${1 - u})`; ctx.fillStyle = `rgba(255,150,40,${1 - u})`;
+        ctx.strokeText('DROP', fx, fy - 14 - u * 22); ctx.fillText('DROP', fx, fy - 14 - u * 22);
+      }
+    }
     // arrows: fast tracers
     for (const ar of e.arrows) {
       const [x1, y1] = this.P(ar.x, ar.y, ar.z), [x0, y0] = this.P(ar.x - ar.vx * 0.06, ar.y - ar.vy * 0.06, ar.z - ar.vz * 0.06);

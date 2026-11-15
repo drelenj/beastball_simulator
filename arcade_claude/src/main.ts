@@ -4,6 +4,7 @@ import { DT } from './engine/constants';
 import { Intent, NO_INTENT, Settings } from './engine/types';
 import { Renderer, fmtClock } from './render';
 import { touch, consumeTouchEdges, detectTouch, initTouch } from './touch';
+import { ballTraj, interceptAt, REACH } from './engine/intercept';
 
 const $ = (id: string) => document.getElementById(id)!;
 const canvas = $('c') as HTMLCanvasElement;
@@ -199,12 +200,32 @@ function humanControl(e: Engine, team: 0 | 1, b: Binding, padIdx: number) {
     const tgt = holder ?? e.ball; T.selected = nearestTo(tgt.x, tgt.y).idx;
   }
   (T as any)._lastPoss = e.poss;
+  // a pass is in flight: take over the athlete who can catch it (our pass -> its receiver; their pass -> our best interceptor)
+  const bl = e.ball;
+  if (bl.holder < 0 && bl.passId !== (T as any)._seenPass) {
+    (T as any)._seenPass = bl.passId;
+    const passer = bl.passer >= 0 && !bl.isShot ? e.ath[bl.passer] : null;
+    if (passer && passer.team === team && bl.receiver >= 0 && e.active(e.ath[bl.receiver])) T.selected = bl.receiver;
+    else if (passer && passer.team !== team) {
+      const traj = ballTraj(bl);
+      let bestI = -1, bestT = 1e9;
+      for (const a of fieldMates) { if (a.frozenT > 0 || a.groundedT > 0) continue; const r = interceptAt(traj, 0, a.x, a.y, a.a.top * 0.85, REACH.field); if (r.t < bestT) { bestT = r.t; bestI = a.idx; } }
+      if (bestI >= 0) T.selected = bestI;
+    }
+  }
   if (hit(b.sw) || pad?.sw || tc?.sw) {
     const others = fieldMates.filter((a) => a.idx !== T.selected && a.frozenT <= 0 && a.role !== 'keeper').sort((p, q) => Math.hypot(p.x - e.ball.x, p.y - e.ball.y) - Math.hypot(q.x - e.ball.x, q.y - e.ball.y));
     if (others[0] && !(holder && holder.team === team)) T.selected = others[0].idx;
   }
   const me = e.ath[T.selected];
+  const itBase = { mx, my };
   const it: Intent = { ...NO_INTENT(), mx, my, sprint: any(b.sprint) || !!pad?.sprint || !!tc?.sprintBtn || !!tc?.stickSprint };
+  // catch assist: if you are the target of a pass and are not steering, you run onto the ball automatically
+  if (!holder && bl.receiver === me.idx && Math.hypot(itBase.mx, itBase.my) < 0.15) {
+    const ic = interceptAt(ballTraj(bl), 0, me.x, me.y, me.a.top * 0.85, REACH.field + REACH.intendedBonus);
+    const dx = ic.x - me.x, dy = ic.y - me.y, d = Math.hypot(dx, dy);
+    if (d > 0.3) { const k = Math.min(1, d / 1.5); it.mx = dx / d * k; it.my = dy / d * k; it.sprint = d > 3; }
+  }
   if ((hit(b.pass) || pad?.pass || tc?.pass) && holder === me) {
     // pass to the open teammate closest to the pushed direction (or facing)
     const dir = (mx || my) ? Math.atan2(my, mx) : me.facing;

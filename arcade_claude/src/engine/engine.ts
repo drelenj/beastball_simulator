@@ -7,6 +7,7 @@ import { Rng } from './rng';
 import { Arrow, Athlete, GameEvent, Intent, NO_INTENT, Phase, Settings, TeamData, newStats } from './types';
 import { attrsFromOvr, buildLineup, lookFor } from './data';
 import { aiThink, aiSteer } from './ai';
+import { REACH } from './intercept';
 
 export interface Controller { kind: 'human' | 'ai'; }
 
@@ -20,6 +21,7 @@ export interface Ball {
   x: number; y: number; z: number; vx: number; vy: number; vz: number;
   holder: number; lastTouch: number; lastTouchTeam: number;
   passer: number; isShot: boolean; shotTeam: number; releaseDist: number; inFlight: boolean;
+  receiver: number; passId: number;   // intended receiver of the pass in flight; id of the current flight (one catch roll per athlete per flight)
 }
 
 const dist2 = (ax: number, ay: number, bx: number, by: number) => (ax - bx) * (ax - bx) + (ay - by) * (ay - by);
@@ -40,6 +42,7 @@ export class Engine {
   flash: { text: string; t: number; team: number } | null = null;
   humanIntent: [Intent | null, Intent | null] = [null, null];
   checkpoints: string[] = [];
+  catchFx: { x: number; y: number; z: number; t: number; ok: boolean; team: number }[] = [];
 
   constructor(home: TeamData, away: TeamData, settings: Settings, human: [boolean, boolean] = [false, false]) {
     this.s = settings;
@@ -47,7 +50,7 @@ export class Engine {
     this.clock = settings.periodLen;
     const mk = (d: TeamData, dir: 1 | -1, h: boolean): TeamState => ({ data: d, dir, score: 0, arrowsLeft: C.ARROWS_PER_POSS, freezesLeft: C.FREEZES_PER_POSS, possTime: 0, breakdown: { carry: 0, thrown: 0, half: 0, award: 0, own: 0, points: 0 }, human: h, selected: -1 });
     this.teams = [mk(home, 1, human[0]), mk(away, -1, human[1])];
-    this.ball = { x: 0, y: 0, z: C.BALL_R, vx: 0, vy: 0, vz: 0, holder: -1, lastTouch: -1, lastTouchTeam: -1, passer: -1, isShot: false, shotTeam: -1, releaseDist: 0, inFlight: false };
+    this.ball = { x: 0, y: 0, z: C.BALL_R, vx: 0, vy: 0, vz: 0, holder: -1, lastTouch: -1, lastTouchTeam: -1, passer: -1, isShot: false, shotTeam: -1, releaseDist: 0, inFlight: false, receiver: -1, passId: 0 };
     [home, away].forEach((td, ti) => {
       const lu = buildLineup(td);
       const add = (p: typeof lu.keeper, role: Athlete['role'], line: number, slotY: number) => {
@@ -56,7 +59,7 @@ export class Engine {
           x: 0, y: 0, z: 0, vx: 0, vy: 0, facing: 0, intent: NO_INTENT(),
           frozenT: 0, immuneT: 0, recoverT: 0, groundedT: 0, stumbleT: 0, actT: 0, act: '', celebrateT: 0, noCatchT: 0,
           excludedT: 0, dq: false, minors: 0, majors: 0, kzT: 0,
-          mem: new Map(), ballMem: { x: 0, y: 0, z: 0, vx: 0, vy: 0, t: -99, holder: -1 },
+          mem: new Map(), ballMem: { x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, t: -99, holder: -1 }, rolledPass: -1,
           nextThink: 0, tx: 0, ty: 0, aiSprint: false, aiPassAt: 0, plan: NO_INTENT(), lastFire: -99,
           stats: newStats(), look: lookFor(p.id, p.pos),
         };
@@ -164,7 +167,7 @@ export class Engine {
   setHolder(idx: number, viaPlay: boolean) {
     const a = this.ath[idx];
     const b = this.ball;
-    b.holder = idx; this.holderSince = this.time; b.lastTouch = idx; b.lastTouchTeam = a.team; b.inFlight = false; b.vx = b.vy = b.vz = 0;
+    b.holder = idx; b.receiver = -1; this.holderSince = this.time; b.lastTouch = idx; b.lastTouchTeam = a.team; b.inFlight = false; b.vx = b.vy = b.vz = 0;
     if (this.poss !== a.team) this.changePossession(a.team, viaPlay ? 'secured' : 'restart');
   }
   changePossession(team: number, why: string) {
@@ -258,6 +261,7 @@ export class Engine {
     const T = Math.max(0.12, dh / speed);
     const vz = dz / T + 0.5 * C.G * T;
     Object.assign(b, { holder: -1, x: sx, y: sy, z: sz, vx: dx / T, vy: dy / T, vz, inFlight: true, passer: a.idx, isShot, shotTeam: a.team, lastTouch: a.idx, lastTouchTeam: a.team });
+    b.receiver = receiver; b.passId++;
     b.releaseDist = Math.sqrt(dist2(a.x, a.y, this.oppGoalX(a.team), 0));
     a.act = 'throw'; a.actT = 0.35; a.noCatchT = 0.35;
     if (!isShot) { a.stats.passAtt++; }
@@ -337,6 +341,7 @@ export class Engine {
     const dt = C.DT;
     this.tick++; this.time += dt;
     if (this.tick % 3600 === 0) this.checkpoints.push(this.hash());
+    if (this.catchFx.length) { for (const f of this.catchFx) f.t -= dt; this.catchFx = this.catchFx.filter((f) => f.t > 0); }
     if (this.flash) { this.flash.t -= dt; if (this.flash.t <= 0) this.flash = null; }
 
     if (this.phase === 'dead') {
@@ -505,47 +510,73 @@ export class Engine {
       }
     }
     if (Math.abs(b.x) > C.FIELD_HALF + 0.3 || Math.abs(b.y) > C.FIELD_HALF + 0.3) { this.outOfPlay(px, py); return; }
-    this.catches();
+    this.catches(px, py, pz);
   }
 
-  catches() {
+  /**
+   * Catch resolution. The ball path of this step is swept against every athlete's reach (so fast balls
+   * cannot tunnel), each athlete gets ONE catch roll per flight, and the intended receiver has a longer
+   * reach and a much better chance than a defender trying to intercept.
+   */
+  catches(px: number, py: number, pz: number) {
     const b = this.ball;
     if (b.holder >= 0) return;
     const sp = hyp(b.vx, b.vy, b.vz);
-    let best: Athlete | null = null, bestD = 99;
+    const sx = b.x - px, sy = b.y - py, sz = b.z - pz, sl = sx * sx + sy * sy;
+    let best: Athlete | null = null, bestScore = 1e9, bestD = 0, bestZ = 0;
     for (const a of this.ath) {
-      if (!this.canAct(a) || a.noCatchT > 0 || a.stumbleT > 0) continue;
+      if (!this.canAct(a) || a.noCatchT > 0 || a.stumbleT > 0 || a.rolledPass === b.passId) continue;
       const keeper = a.role === 'keeper';
-      const reachH = keeper ? 1.5 : 1.0, reachZ = keeper ? 3.0 : 2.4;
-      if (b.z > reachZ) continue;
-      const d = Math.sqrt(dist2(a.x, a.y, b.x, b.y));
-      if (d < reachH && d < bestD) { best = a; bestD = d; }
+      const intended = a.idx === b.receiver;
+      const reachH = (keeper ? REACH.keeper : REACH.field) + (intended ? REACH.intendedBonus : 0), reachZ = keeper ? REACH.zKeeper : REACH.z;
+      let k = sl > 1e-9 ? ((a.x - px) * sx + (a.y - py) * sy) / sl : 1; k = Math.max(0, Math.min(1, k));
+      const cx = px + sx * k, cy = py + sy * k, cz = pz + sz * k;
+      if (cz > reachZ || cz < -0.2) continue;
+      const d = Math.sqrt(dist2(a.x, a.y, cx, cy));
+      if (d >= reachH) continue;
+      const score = d - (intended ? 0.6 : 0);   // the target of the pass gets first claim on it
+      if (score < bestScore) { best = a; bestScore = score; bestD = d; bestZ = cz; }
     }
     if (!best) return;
     const a = best;
-    const ground = b.z < 0.35 && sp < 6;
-    let p = ground ? 0.85 + a.a.catchS * 0.1 : a.a.catchS - Math.max(0, sp - (b.isShot ? 16 : 27)) * 0.02 - bestD * 0.15;
-    if (b.isShot && a.team !== b.shotTeam) p = a.role === 'keeper' ? a.a.catchS * 0.85 : p * 0.6;
-    const opp = b.passer >= 0 && this.ath[b.passer].team !== a.team;
-    if (opp && !b.isShot) p *= 0.8; // interceptions are harder
+    a.rolledPass = b.passId;
+    const intended = a.idx === b.receiver;
+    const passer = b.passer >= 0 ? this.ath[b.passer] : null;
+    const ownPass = !!passer && passer.team === a.team && !b.isShot;
+    const ground = bestZ < 0.35 && sp < 8;
+    let p: number;
+    if (ground) p = 0.9 + a.a.catchS * 0.08;
+    else if (ownPass) {
+      // a teammate's pass: reliable, worse when the throw is very hard, off-line, or the receiver is marked
+      let covered = 0;
+      for (const o of this.ath) if (o.team !== a.team && o.role !== 'archer' && this.canAct(o) && dist2(o.x, o.y, a.x, a.y) < 1.8 * 1.8) { covered = 1; break; }
+      p = (intended ? 0.8 : 0.62) + a.a.catchS * (intended ? 0.18 : 0.3) - Math.max(0, sp - 27) * 0.015 - Math.max(0, bestD - 0.8) * 0.1 - covered * 0.12;
+      p = Math.max(0.55, p);
+    } else {
+      p = a.a.catchS - Math.max(0, sp - (b.isShot ? 16 : 27)) * 0.02 - bestD * 0.15;
+      if (b.isShot && a.team !== b.shotTeam) p = a.role === 'keeper' ? a.a.catchS * 0.85 : p * 0.6;
+      else if (!b.isShot) p *= 0.8; // interceptions are harder than catching your own side's pass
+    }
     if (this.rng.chance(Math.max(0.05, Math.min(0.97, p)))) {
-      const passer = b.passer >= 0 ? this.ath[b.passer] : null;
       const wasShot = b.isShot && b.shotTeam !== a.team;
       if (passer && passer.idx !== a.idx && !b.isShot) {
-        if (passer.team === a.team) passer.stats.passComp++;
+        if (passer.team === a.team) { passer.stats.passComp++; if (intended) this.ev('catch', a.team, a.idx, `${a.d.name} catches the pass`); }
         else { a.stats.interceptions++; passer.stats.turnovers++; this.ev('interception', a.team, a.idx, `${a.d.name} intercepts`); this.say('INTERCEPTED', a.team, 1.1); }
       }
       if (wasShot && a.role === 'keeper') { a.stats.saves++; this.ev('save', a.team, a.idx, `${a.d.name} saves`); this.say('KEEPER SAVE', a.team, 1.1); }
       else if (wasShot) this.ev('block', a.team, a.idx, `${a.d.name} blocks the shot`);
       if (this.huntActive && this.poss < 0) this.ev('hunt', a.team, a.idx, `${a.d.name} wins the First Hunt`);
       b.passer = -1; b.isShot = false;
-      a.act = 'catch'; a.actT = 0.25;
+      a.act = 'catch'; a.actT = 0.4;
+      this.catchFx.push({ x: a.x, y: a.y, z: Math.max(0.8, bestZ), t: 0.4, ok: true, team: a.team });
       this.setHolder(a.idx, true);
     } else {
-      // deflection
-      a.noCatchT = 0.4;
+      // dropped: the ball pops off the hands; everybody else gets a fresh chance at it
+      a.noCatchT = 0.4; b.passId++; b.receiver = -1;
+      this.catchFx.push({ x: a.x, y: a.y, z: Math.max(0.8, bestZ), t: 0.55, ok: false, team: a.team });
       if (b.isShot && a.role === 'keeper' && a.team !== b.shotTeam) { a.stats.saves++; this.ev('save', a.team, a.idx, `${a.d.name} parries`); this.say('PARRIED', a.team, 1.0); b.isShot = false; }
-      b.vx = -b.vx * 0.35 + this.rng.range(-2, 2); b.vy = b.vy * 0.4 + this.rng.range(-3, 3); b.vz = Math.abs(b.vz) * 0.3 + 1.5;
+      else if (ownPass) this.ev('drop', a.team, a.idx, `${a.d.name} drops the pass`);
+      b.vx = -b.vx * 0.2 + this.rng.range(-2, 2); b.vy = b.vy * 0.25 + this.rng.range(-2.5, 2.5); b.vz = Math.abs(b.vz) * 0.3 + 1.5;
       b.lastTouch = a.idx; b.lastTouchTeam = a.team;
     }
   }

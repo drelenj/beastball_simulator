@@ -42,6 +42,8 @@ const E = (p, f, arg) => p.evaluate(f, arg);
     passes = s.passAtt; tackles = s.tackles;
     if (s.phase === 'final') break;
     if (s.phase === 'break') { await p.click('#brSkip'); continue; }
+    // test hook: after the first pass, hand the ball to the opponent (forced turnover) so there is a carrier to tackle
+    if (s.mine && s.passAtt >= 1) { await E(p, () => { const e = window.__arcade.engine; const h = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null; if (h && h.team === 0 && e.phase === 'live') e.turnover(1, h.x, h.y, 'test harness: force an opponent carrier'); }); await p.waitForTimeout(400); continue; }
     if (s.mine) { await p.keyboard.press('Space'); await p.waitForTimeout(250); continue; }
     // opponent carries the ball: harness puts the selected athlete next to the carrier (movement is covered by the check above),
     // then the REAL J key tackles
@@ -55,7 +57,7 @@ const E = (p, f, arg) => p.evaluate(f, arg);
   }
   const ps = await E(p, () => { const e = window.__arcade.engine; const A = e.ath.filter((a) => a.team === 0); return { passAtt: A.reduce((n, a) => n + a.stats.passAtt, 0), passComp: A.reduce((n, a) => n + a.stats.passComp, 0), tackles: A.reduce((n, a) => n + a.stats.tackles, 0), possChanges: e.possChanges }; });
   log('human pass (Space) -> catch / possession transfer', ps.passAtt > 0 && ps.possChanges > 0, ps);
-  log('human tackle (J key, athlete placed beside the carrier by the harness) grounds a carrier', ps.tackles > 0, ps);
+  log('human tackle (J key; opponent carrier forced by a test hook, athlete placed beside them) grounds a carrier', ps.tackles > 0, ps);
   await p.screenshot({ path: SHOTS + '/04_play.png' });
   // 4. run the rest of the accelerated-clock match at 8x (spectator speed control), through breaks, to final
   await E(p, () => { window.__arcade.speed = 8; });

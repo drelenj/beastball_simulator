@@ -7,6 +7,7 @@ import * as C from './constants';
 const hyp = (...v: number[]) => { let s = 0; for (const x of v) s += x * x; return Math.sqrt(s); };
 import type { Engine } from './engine';
 import { Athlete, Intent, NO_INTENT } from './types';
+import { REACH, TRAJ_DT, ballTraj, interceptAt } from './intercept';
 
 const FOV = (200 * Math.PI) / 180;
 const STALE = 3.0;
@@ -32,7 +33,7 @@ export function perceive(e: Engine, a: Athlete) {
   const holder = b.holder >= 0 ? e.ath[b.holder] : null;
   const bx = holder ? holder.x : b.x, by = holder ? holder.y : b.y;
   if (b.holder === a.idx || sees(bx, by)) {
-    a.ballMem = { x: b.x, y: b.y, z: b.z, vx: holder ? holder.vx : b.vx, vy: holder ? holder.vy : b.vy, t: e.time, holder: b.holder };
+    a.ballMem = { x: b.x, y: b.y, z: b.z, vx: holder ? holder.vx : b.vx, vy: holder ? holder.vy : b.vy, vz: holder ? 0 : b.vz, t: e.time, holder: b.holder };
   }
 }
 
@@ -135,7 +136,7 @@ function carrierThink(e: Engine, a: Athlete) {
     if (e.time - e.holderSince > 0.6) { const r = bestPass(e, a, true); if (r >= 0) { a.plan.pass = r; return; } }
     setTarget(a, a.x, a.y, false); return;
   }
-  const shootRange = 18 + 10 * q + (a.d.pos === 'STR' ? 4 : 0) + (a.d.pos === 'PFD' ? 2 : 0);
+  const shootRange = 14 + 9 * q + (a.d.pos === 'STR' ? 4 : 0) + (a.d.pos === 'PFD' ? 2 : 0);
   const angleOk = Math.abs(a.y) < Math.max(4, Math.abs(gx - a.x) * 0.9);
   const kz = e.inKZ(a.x, a.y, gx);
   const rng = e.rng;
@@ -143,7 +144,7 @@ function carrierThink(e: Engine, a: Athlete) {
   const keeper = list.find((s) => s.team !== a.team && s.role === 'keeper');
   const keeperOff = !keeper || hyp(keeper.x - gx, keeper.y) > 4;
   if (dGoal < 6 && keeperOff && pressure > 2) { setTarget(a, gx + Math.sign(gx) * 2, 0, true); return; } // carry goal attempt
-  if ((dGoal < shootRange && angleOk && rng.chance(0.3 + (shootRange - dGoal) * 0.05)) || (kz && a.kzT > 2.5) || (e.playClock < 4 && dGoal < 30)) {
+  if ((dGoal < shootRange && angleOk && rng.chance(0.18 + (shootRange - dGoal) * 0.04)) || (kz && a.kzT > 2.5) || (e.playClock < 4 && dGoal < 30)) {
     a.plan.shoot = true; return;
   }
   const mustMove = pressure < 3.2 || (e.tackleCount === 1 && pressure < 5) || e.playClock < 8;
@@ -218,20 +219,32 @@ function defendThink(e: Engine, a: Athlete, b: { x: number; y: number; holder: n
 }
 
 function looseThink(e: Engine, a: Athlete, b: { x: number; y: number; z: number }) {
+  // Predict the flight of the ball from what this athlete last saw, then run onto the earliest point
+  // on that flight they can reach (not just where it lands): fast, flat passes must be met in the air.
   const list = seen(e, a);
   const m = a.ballMem;
-  // predict where the ball comes down to ~1.2 m
-  let px = b.x, py = b.y;
-  if (m.z > 1.2 && e.time - m.t < 1) {
-    const vz = 0; const tt = Math.sqrt(2 * Math.max(0, m.z - 1.2) / C.G) + vz;
-    px = m.x + m.vx * tt; py = m.y + m.vy * tt;
+  const age = Math.min(1.2, e.time - m.t);
+  const traj = ballTraj({ x: m.x, y: m.y, z: m.z, vx: m.vx, vy: m.vy, vz: m.vz }, 2.4);
+  const k0 = Math.round(age / TRAJ_DT);
+  const speed = a.a.top * 0.85;
+  const mine = interceptAt(traj, k0, a.x, a.y, speed, REACH.field);
+  // the pass call (who threw it, who it is for) is public: the receiver hears it
+  const intended = e.ball.receiver === a.idx;
+  const passerTeam = e.ball.passer >= 0 ? e.ath[e.ball.passer].team : -1;
+  if (intended) { setTarget(a, mine.x, mine.y, true); return; }
+  if (passerTeam === a.team && e.ball.receiver >= 0) { // a teammate is receiving: support, do not crowd the ball
+    const spot = formationSpot(e, a, mine.x, true); setTarget(a, spot.x, spot.y, false); return;
   }
-  const myD = hyp(px - a.x, py - a.y);
-  let closer = 0;
-  for (const s of list) if (s.team === a.team && s.role === 'field' && !s.frozen && hyp(px - s.x, py - s.y) < myD) closer++;
-  if (closer < 2 || myD < 6) { setTarget(a, px, py, true); return; }
-  const spot = formationSpot(e, a, px, e.poss === a.team);
-  setTarget(a, (spot.x * 2 + px) / 3, (spot.y * 2 + py) / 3, false);
+  // loose or opposing ball: the two quickest players (as this athlete perceives them) go for it
+  let quicker = 0;
+  for (const s of list) {
+    if (s.team !== a.team || s.role === 'archer' || s.frozen) continue;
+    const r = interceptAt(traj, k0, s.x, s.y, speed, REACH.field);
+    if (r.t < mine.t - 0.05) quicker++;
+  }
+  if (quicker < 2) { setTarget(a, mine.x, mine.y, true); return; }
+  const spot = formationSpot(e, a, mine.x, e.poss === a.team);
+  setTarget(a, (spot.x * 2 + mine.x) / 3, (spot.y * 2 + mine.y) / 3, false);
 }
 
 function keeperThink(e: Engine, a: Athlete, b: { x: number; y: number; holder: number }) {

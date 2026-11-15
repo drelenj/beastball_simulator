@@ -58,7 +58,8 @@ const results = []; const log = (n, ok, i) => { results.push({ n, ok, i }); cons
     cycles++;
     const st = await E(() => { const e = window.__arcade.engine; const sel = e.ath[e.teams[0].selected]; const h = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null; return { phase: e.phase, mine: !!h && h.team === 0, ph: e.phase, sel: [sel.x, sel.y], tgt: h ? [h.x, h.y] : [e.ball.x, e.ball.y], over: e.phase === 'final' || e.phase === 'break' }; });
     if (st.over) break;
-    if (st.mine && passDone) { await p.waitForTimeout(150); continue; } // wait for the AI to win the ball back, then tackle
+    // test hook: once a pass has been made, hand the ball to the opponent (a forced turnover) so there is a carrier to tackle
+    if (st.mine && passDone) { await E(() => { const e = window.__arcade.engine; const h = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null; if (h && h.team === 0 && e.phase === 'live') e.turnover(1, h.x, h.y, 'test harness: force an opponent carrier'); }); await p.waitForTimeout(400); continue; }
     if (st.mine) { // second finger taps PASS while finger 1 still holds the stick
       await touchEv('touchStart', [[1, 150, 300], [2, px, py]]); await p.waitForTimeout(80); await touchEv('touchEnd', [[1, 150, 300]]);
       multi = true; await p.waitForTimeout(500); const s2 = await stats(); passDone = s2.att > a0.att; continue;
@@ -72,7 +73,7 @@ const results = []; const log = (n, ok, i) => { results.push({ n, ok, i }); cons
   await touchEv('touchEnd', []);
   const a1 = await stats();
   log('multi-touch: stick held while PASS tapped with a second finger', multi && a1.att > a0.att, { a0, a1, cycles });
-  log('multi-touch: TACKLE button tapped with a second finger grounds a carrier (athlete placed beside carrier by harness)', a1.tk > a0.tk, { a0, a1 });
+  log('multi-touch: TACKLE button tapped with a second finger grounds a carrier (opponent carrier forced by a test hook, athlete placed beside them)', a1.tk > a0.tk, { a0, a1 });
   await p.screenshot({ path: SHOTS + '/touch_play.png' });
 
   // --- other buttons do not crash; SWITCH, ARCHER, SHOOT, SPRINT hold
