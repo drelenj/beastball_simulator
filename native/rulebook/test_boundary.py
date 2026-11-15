@@ -35,3 +35,11 @@ def test_blocker_unchanged_restart_intent_remains_inside_ratified_clearance():
  assert p.submit(intent)['status']=='accepted'
  assert e.restart_release('A0',(20,0,1),'A1') is False
  assert s.players['B0'].minor_count==1
+
+def test_final_rb_score_and_injury_hooks_cannot_mutate_completed_match():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.period=6
+ e.add_score('A',1,'half_goal');assert s.phase==p.types.Phase.FINAL
+ history=list(e.rb.scores);calls=list(e.rb.calls);now=s.now
+ e.add_score('B',9,'release');e.rb_force_injury('A0');e.rb_begin_pause('timeout',45000);e.elapse(1)
+ assert s.score=={'A':1,'B':0} and e.rb.scores==history and e.rb.calls==calls
+ assert e.rb_pause is None and s.now==now
