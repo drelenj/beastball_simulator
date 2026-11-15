@@ -7,6 +7,10 @@ class RulebookPort(NativePort):
         super().__init__(seed,config or RulebookConfig(),policies,plumbing)
         self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values() if p.role!='archer'}
         self.last_reset_period=1
+        self.m.e.rb_port=self
+        for team in ("A","B"):
+            assert self.m.e.rb_substitute(None,team+"12",setup=True)
+        self.platform_motor(0)
 
     @property
     def intermission_pending(self):return self.m.e.rb_pause is not None
@@ -30,3 +34,11 @@ class RulebookPort(NativePort):
                 if e.rb_timeout(team):self.advance_intermission();return
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         super().step()
+
+    def fill_cover(self):
+        self.m.e.rb_fill_slots()
+
+    def assert_invariants(self):
+        self.m.e.assert_invariants()
+        assert all(sum(p.team==team for p in self.m.s.players.values())==22 for team in ('A','B'))
+        assert 0<=self.m.s.tackle_count<=1

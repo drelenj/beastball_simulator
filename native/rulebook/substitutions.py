@@ -1,0 +1,78 @@
+"""Roster admission and forced injury hook. No stochastic injury model."""
+def install(co,cfg):
+ E,T=co.engine.Engine,co.types;P=T.Phase
+ old_init=E.__init__
+ def init(self,*args,**kw):
+  old_init(self,*args,**kw);self.rb_slots={};self.rb_reserves={t:t+'13' for t in ('A','B')}
+ E.__init__=init
+ def can_enter(self,p):
+  return p.available and not p.injured and self.rb.can_enter(p,self.s.live_ms) and p.exclusion_ms<=0
+ E.rb_can_enter=can_enter
+ def substitute(self,outgoing,incoming,role=None,setup=False):
+  s=self.s;p=s.players.get(outgoing);q=s.players.get(incoming)
+  dead=s.phase==P.DEAD or setup and s.phase==P.OPENING and not self.rb_hunt_running
+  if not dead or not q or q.active or not self.rb_can_enter(q):return False
+  if p and (p.team!=q.team or not p.active and outgoing not in self.rb_slots):return False
+  if p and p.exclusion_ms>0 and p.id not in self.rb.injuries and self.rb.evaluated.get(p.id)!=s.period:return False
+  target_role=role or (p.role if p else 'field')
+  count=sum(x.active and x.team==q.team and x.role!='archer' for x in s.players.values())
+  removed=bool(p and p.active and p.role!='archer')
+  if target_role!='archer' and count-removed>=cfg.field_roster_limit:return False
+  if target_role=='archer' and any(x.active and x.team==q.team and x.role=='archer' and x is not p for x in s.players.values()):return False
+  if p:p.active=False
+  q.active=True;q.role=target_role;q.slot=p.slot if p else q.slot
+  q.x,q.y=(p.x,p.y) if p else (s.ends[q.team]+s.attack_sign(q.team)*30,50.)
+  q.z=q.vx=q.vy=q.vz=0.;q.posture='upright';q.target=(q.x,q.y);q.c4c_plan=q.c4c_launch=None
+  if p:self.rb_slots.pop(p.id,None)
+  self.rb_publish(self.rb.ruling('substitution',outgoing=outgoing,incoming=incoming,role=target_role,injury_exempt=bool(p and (p.id in self.rb.injuries or self.rb.evaluated.get(p.id)==s.period))))
+  port=getattr(self,'rb_port',None)
+  if port:
+   for pid in (outgoing,incoming):
+    port.pending.pop(pid,None);port.move.pop(pid,None);port.keeper_intents.pop(pid,None)
+   port.platform_motor(0)
+  return True
+ E.rb_substitute=substitute
+ def fill(self):
+  s=self.s
+  if s.phase!=P.DEAD:return
+  for pid,slot in list(self.rb_slots.items()):
+   if s.live_ms<slot['until'] and not slot.get('injury'):continue
+   role=slot['role'];team=slot['team']
+   candidates=[q for q in s.players.values() if q.team==team and not q.active and self.rb_can_enter(q)]
+   # PLACEHOLDER team selection: named reserve Keeper, else canonical ID; no ratings.
+   candidates.sort(key=lambda q:(0 if role=='keeper' and q.id==self.rb_reserves[team] else 1,q.id))
+   if candidates:self.rb_substitute(pid,candidates[0].id,role)
+   elif role=='keeper':
+    candidate=next((q for q in sorted(s.players.values(),key=lambda q:q.id) if q.active and q.team==team and q.role=='field'),None)
+    if candidate:
+     candidate.role='keeper';self.rb_slots.pop(pid,None)
+     self.rb_publish(self.rb.ruling('keeper_fallback',player=candidate.id))
+ E.rb_fill_slots=fill
+ def injury(self,pid,head=False):
+  s=self.s
+  if s.phase==P.FINAL:return False
+  p=s.players[pid];self.rb.injury(p,head);p.injured=True
+  self.rb_slots[pid]=dict(team=p.team,role=p.role,until=s.live_ms,injury=True)
+  owner=self.possession.pp or s.owner or p.team;play=s.possession_ms
+  self.award(owner,s.ball.x,s.ball.y,'injury',normalize=False);s.possession_ms=play
+  self.rb_publish(self.rb.ruling('head_evaluation' if head else 'injury',player=pid))
+  self.rb_fill_slots();return True
+ E.rb_force_injury=injury
+ old_period=E.end_period
+ def end_period(self):
+  old_period(self)
+  for pid,period in self.rb.evaluated.items():
+   if period<self.s.period:self.s.players[pid].injured=False
+ E.end_period=end_period
+ def invariants(self):
+  s=self.s;b=s.ball
+  assert s.game_ms>=0 and s.possession_ms>=0
+  assert not(b.carrier and b.contested)
+  if b.carrier:assert b.mode==T.BallMode.CONTROLLED and s.players[b.carrier].eligible(s.now)
+  if s.phase==P.DEAD:assert s.restart is not None or self.rb_pause is not None
+  for team in ('A','B'):
+   assert sum(p.active and p.team==team and p.role!='archer' for p in s.players.values())<=cfg.field_roster_limit
+   assert sum(p.active and p.team==team and p.role=='archer' for p in s.players.values())<=1
+  for q in s.quivers.values():assert 0<=q.spent<=q.allocation and 0<=q.loaded<=cfg.arrows
+  return True
+ E.assert_invariants=invariants

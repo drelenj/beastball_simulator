@@ -5,6 +5,7 @@ from native.config import NativeConfig
 class RulebookConfig(NativeConfig):
     version: str = 'native-rb/1'
     profile: str = 'native-rb'
+    field_roster_limit: int = 12
     scoring: str = 'flat'
     carry_points: int = 5
     release_bands: tuple = ((10.,2),(20.,3),(None,4))

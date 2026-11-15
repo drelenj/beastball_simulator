@@ -82,3 +82,5 @@ def install(co,cfg):
             return True
         return old_assert(self)
     E.assert_invariants=invariants
+    from .substitutions import install as install_substitutions
+    install_substitutions(co,cfg)

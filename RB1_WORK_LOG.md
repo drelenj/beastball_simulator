@@ -23,3 +23,4 @@ Outstanding before RB-1 submission:
 RB-1 is IN PROGRESS, not ready for acceptance. The immutable configuration schema exists, but there is no supported RB match entry point yet. The engine is still Native v0/2. No RB-1 functional acceptance claim is made.
 
 Step1 integrated: clocks, official Hunt release, all period/OT breaks, every-period ends exchange, deterministic timeout policy and suspended restart deadlines.19 RB tests pass. Native v0 paths are selected unchanged by default. A driver hook advances planned dead time without the restart watchdog mistaking a ten-minute halftime for a stall.
+Step2 integrated and tested:23 RB tests pass. Dead-ball substitutions, returning players, Archer exemption from the12-field-player limit, forced injury/head evaluation, named reserve Keeper and fallback. No injury RNG/model. PLACEHOLDER nomination is canonical eligible ID with named-reserve priority; no skill ranking or cognition change.
