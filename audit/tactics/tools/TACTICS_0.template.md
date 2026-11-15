@@ -6,8 +6,8 @@ Status: **DESIGN COMPLETE**. Not IMPLEMENTED, not TESTED, not ACCEPTED. Generate
 1. **Accomplished.** Eight ways to play are written down as formations of role slots, the rating bands each slot needs, numeric tendencies, restart and Hunt plans, and a prediction for {{N_PRED}} of the 28 pairings. One exploits the 5 s Keeper Zone limit in attack and one in defence, one is built on deep throws, one on carries, one leans on the Archer.
 2. **What the simulator can do now.** Nothing new. Native v0/3 can express {{N_NOW}} of the {{N_PARAMS}} tactic parameters, and only as one value for the whole team. It has no slots and ignores ratings, so it cannot play any of these styles as written.
 3. **Unimplemented or unproven.** All of it. These are reasoned guesses about play. No value was searched or tuned and no match was run. Predictions are there to be checked, and several rest on engine behaviour nobody has measured (for example whether a wrap can hold a carrier for seconds).
-4. **Blocking.** Two builds must exist before any style can be tested: the attribute step (`ATTRIBUTE_STEP_SPEC.md`, Codex) and the playbook interface (`TACTIC_INTERFACE.md`, Codex and Claude). Five canon questions are open in `QUESTIONS_FOR_OWNER.md`; each has a placeholder, so none blocks the design.
-5. **Recommended action.** Relay the attribute step spec to Codex. Answer Q-TAC-1 to Q-TAC-5 when convenient.
+4. **Blocking.** Two builds must exist before any style can be tested: the attribute step (`ATTRIBUTE_STEP_SPEC.md`, Codex) and the playbook interface (`TACTIC_INTERFACE.md`, Codex and Claude). Nine owner questions are open in `QUESTIONS_FOR_OWNER.md` (Q-TAC-1 to 6, Q-ATTR-1 to 3); each has a placeholder, so none blocks the design.
+5. **Recommended action.** Relay the attribute step spec to Codex. Answer the nine questions when convenient; Q-ATTR-1 (the speed curve) first.
 
 ## 1. How to read this
 - **Hypotheses.** A style here is a guess that a method could work under the rules. Match results decide, later. Nothing below is called good.
@@ -90,4 +90,4 @@ Every style's `policy_params_projection` in `tactics_0.json` holds its 16 EXPRES
 - The numbers are first values chosen by reasoning from the rules and from Native v0/3's defaults. None was searched.
 - Several styles rest on mechanics that Native v0/3 has but nobody has measured: how long a wrap holds, whether a body screens an arrow, how often a fast long pass is caught.
 - The bands depend on the PLACEHOLDER envelope and on how ratings will map to bodies and skills, which `ATTRIBUTE_STEP_SPEC.md` leaves as placeholders except for speed.
-- A rule reading that turns out wrong (Q-TAC-1 to Q-TAC-5) changes the style that leans on it; each such reading is marked in that style's canon check.
+- A rule reading that turns out wrong (Q-TAC-1 to Q-TAC-4) changes the style that leans on it; each such reading is marked in that style's canon check.
