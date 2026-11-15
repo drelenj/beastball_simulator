@@ -8,6 +8,7 @@ def test_real_release_band_and_goal(distance,points):
  p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
  s.owner='A';s.players['A0'].x=100-distance;s.players['A0'].y=50
  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=100-distance,y=50,z=1.5,scoring=True)
+ e.follow_carrier();s.players['A0'].x+=(100-distance)-s.ball.x
  assert e.release('A0',(25,0,1),'shot');s.ball.x=101;s.ball.y=50;s.ball.z=1.5
  assert e.goal('B');assert s.score['A']==points
  assert e.rb_attempts[-1]['distance']==pytest.approx(distance)
