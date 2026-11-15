@@ -75,8 +75,13 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--seed',type=int,default=1);ap.add_argument('--out');ap.add_argument('--max-steps',type=int);ap.add_argument('--progress',action='store_true');ap.add_argument('--plumbing-absent',action='store_true')
+    ap.add_argument('--config-version',default='native-v0/2',choices=('native-v0/2','native-v0/3'));ap.add_argument('--arrow-speed-ratio',type=float)
     a=ap.parse_args()
-    r,_=run_match(a.seed,plumbing=not a.plumbing_absent,max_steps=a.max_steps,
+    config=None
+    if a.config_version!='native-v0/2' or a.arrow_speed_ratio is not None:
+        from .config import config_for
+        config=config_for(a.config_version,**({'arrow_speed_ratio':a.arrow_speed_ratio} if a.arrow_speed_ratio is not None else {}))
+    r,_=run_match(a.seed,config,plumbing=not a.plumbing_absent,max_steps=a.max_steps,
                   progress=(lambda row:print(json.dumps(row),flush=True)) if a.progress else None)
     if a.out:Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(r,indent=2,sort_keys=True)+'\n')
     print(json.dumps(r,sort_keys=True))
