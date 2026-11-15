@@ -33,7 +33,7 @@ const results = []; const log = (n, ok, i) => { results.push({ n, ok, i }); cons
   log('control switches to the intended receiver on every pass', n > 0 && sw === n, { switched: sw, of: n });
   log('hands off: receiver catches most passes by catch-assist alone (>= 60%)', n > 0 && ca / n >= 0.6, { caught: ca, interceptedByAI: ic, of: n, rate: +(ca / Math.max(1, n)).toFixed(2) });
   log('catch effect fired', sawFx, {});
-  await p.screenshot({ path: (process.env.SHOTS || '.') + '/catch_state.png' });
+  await p.screenshot({ path: (process.env.SHOTS || '/tmp') + '/catch_state.png' });
   log('no console errors', errs.length === 0, errs.slice(0, 3));
   await b.close();
 })();
