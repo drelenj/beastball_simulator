@@ -66,6 +66,8 @@ def install(co,cfg):
    self.rb_force_injury(v.id,head=True)
  E.foul=foul
  def contact(self,a,t,kind='tackle',surface='torso',reach=True):
+  if self.s.phase==P.DEAD:return False,'after_whistle'
+  if hasattr(self,'rb_recovery_blocked') and self.rb_recovery_blocked(a):return False,'freeze_recovery'
   if t.frozen(self.s.now):return False,'frozen_contact'
   if self.s.now<=t.immune_until:return False,'immune_contact'
   return old_contact(self,a,t,kind,surface,reach)

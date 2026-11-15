@@ -40,3 +40,16 @@ def test_status_view_is_captured_not_live_truth(p):
  v,b=p.view('A11',s.now);assert ('B0','red') in v.status_indicators
  q.freeze_until=0;q.immune_until=0
  assert ('B0','red') in v.status_indicators
+
+def test_five_actual_freezes_then_cap_and_captured_amber(p):
+ s,e=live(p)
+ for n in range(5):assert e.freeze('B'+str(n))
+ assert e.rb.quotas['A']['freezes']==5
+ assert not e.freeze('B5')
+ q=s.players['B0'];s.now=q.freeze_until
+ assert not q.frozen(s.now) and s.now<q.immune_until
+ p.capture(s.now);s.now+=300
+ v,b=p.view('B0',s.now);assert ('B0','amber') in v.status_indicators
+ assert not e.freeze('B0')
+ s.now=q.immune_until+1;e.possession.pp='A';e.native_sync()
+ assert e.freeze('B0')

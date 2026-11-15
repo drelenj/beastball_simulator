@@ -43,6 +43,33 @@ def install(co,cfg):
   r=getattr(p,'rb_recover',None)
   return not r or self.s.now>=r[2]+2000 and self.s.attack_sign(p.team)*(r[0]-p.x)>=3
  E.rb_recovery_ready=ready
+ # The same rule applies at execution, including commands admitted before
+ # a freeze. Recovery locomotion is permitted; ball/contact acts are not.
+ def blocked(self,p):return self.zone(p.x,p.y) is not None and not self.rb_recovery_ready(p)
+ E.rb_recovery_blocked=blocked
+ from functools import wraps
+ def gate(fn):
+  @wraps(fn)
+  def call(self,pid,*a,**kw):
+   if self.rb_recovery_blocked(self.s.players[pid]):return False
+   return fn(self,pid,*a,**kw)
+  return call
+ for name in ('acquire','touch','release','restart_release'):
+  setattr(E,name,gate(getattr(E,name)))
+ old_move=M.move_players
+ def move(self,ms,targets):
+  allowed=dict(targets)
+  for p in self.s.players.values():
+   if not p.active or self.e.rb_recovery_ready(p):continue
+   aim=allowed.get(p.id,p.target)
+   if aim is None:continue
+   back=self.s.attack_sign(p.team)*(p.x-aim[0])>0
+   enters=any(co.geometry.segment_distance(gx,50,p.x,p.y,*aim)[0]<cfg.zone_radius for gx in (0.,100.))
+   if enters and not back:
+    # Cancel prohibited propulsion; do not choose a new destination.
+    allowed[p.id]=(p.x,p.y);p.target=(p.x,p.y);p.vx=p.vy=0.
+  return old_move(self,ms,allowed)
+ M.move_players=move
  def arrows(self,ms):
   s=self.s;events=[];dt=ms/1000;g=self.assume['gravity'];previous=getattr(self,'rb_previous_positions',{})
   for ar in s.arrows:

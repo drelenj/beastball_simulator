@@ -34,3 +34,36 @@ def test_review_no_goal_reversed_to_keeper_own_goal():
  s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=-1,y=50,z=1.5,scoring=True,last_releaser='A10',last_touch='A')
  call=e.rb_force_goal_call('A',False);assert e.rb_review('B',call)
  assert s.score['B']==2
+
+@pytest.mark.parametrize('period',[1,2,4,6])
+def test_review_reverses_wrong_goal_during_break_or_after_final(period):
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.period=e.rb.period=period
+ s.phase=p.types.Phase.LIVE;s.owner='A';s.game_ms=0 if period<6 else 1000
+ s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=100+s.ball.radius-.1,y=50,z=1.5,scoring=True,last_releaser='A0')
+ call=e.rb_force_goal_call('B',True)
+ assert s.phase in (p.types.Phase.DEAD,p.types.Phase.FINAL)
+ if period<4:assert e.rb_pause and e.rb_pause['kind']=='break'
+ else:assert s.phase==p.types.Phase.FINAL
+ assert e.rb_review('B',call)
+ assert s.score['A']==0 and s.phase==p.types.Phase.DEAD and s.period==period
+ assert e.rb_pause is None and s.result is None
+ # Correction resumes through normal period/OT machinery, not a forced result.
+ e.resolve_timers()
+ assert s.phase!=p.types.Phase.FINAL
+ assert not e.rb_review('B',call)
+
+def test_lost_review_in_halftime_costs_old_half_resources_only():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.period=e.rb.period=2
+ s.phase=p.types.Phase.LIVE;s.owner='A';s.game_ms=0
+ s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=101,y=50,z=1.5,scoring=True,last_releaser='A0')
+ assert e.goal('B');call=max(e.rb_evidence)
+ assert s.period==3 and e.rb_pause
+ assert not e.rb_review('B',call)
+ assert e.rb.timeouts['B']==2 and e.rb.challenges['B']==1
+
+def test_final_correct_goal_can_be_reviewed_and_stands():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.period=e.rb.period=6;s.phase=p.types.Phase.LIVE
+ s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=101,y=50,z=1.5,scoring=True,last_releaser='A0')
+ assert e.goal('B');assert s.phase==p.types.Phase.FINAL
+ assert not e.rb_review('B',max(e.rb_evidence))
+ assert s.result['winner']=='A' and e.rb.challenges['B']==0

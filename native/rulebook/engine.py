@@ -19,7 +19,9 @@ def install(co,cfg):
     E.begin_hunt=begin_hunt
     def hunt_release(self):
         if self.s.phase!=P.OPENING or self.rb_hunt_running:return False
-        self.rb_hunt_running=True;self.rb_publish(self.rb.ruling('hunt_release'))
+        self.rb_hunt_running=True
+        if hasattr(self,'rb_evidence'):self.rb_evidence={i:v for i,v in self.rb_evidence.items() if v.before.period==self.s.period}
+        self.rb_publish(self.rb.ruling('hunt_release'))
         return True
     E.rb_hunt_release=hunt_release
     def pause(self,kind,duration):
@@ -99,5 +101,5 @@ def install(co,cfg):
             if self.s.phase==P.FINAL:return None
             return fn(self,*a,**kw)
         return guarded
-    for name in ('add_score','rb_begin_pause','rb_finish_pause','elapse','end_period','begin_hunt','release','strike','foul','discipline','goal','boundary','shoot_arrow','freeze','award','restart_release','rb_substitute','rb_force_injury','rb_fill_slots','rb_review','rb_force_goal_call','rb_force_boundary_call','rb_force_keeper_call','rb_publish'):
+    for name in ('add_score','rb_begin_pause','rb_finish_pause','elapse','end_period','begin_hunt','release','strike','foul','discipline','goal','boundary','shoot_arrow','freeze','award','restart_release','rb_substitute','rb_force_injury','rb_fill_slots','rb_force_goal_call','rb_force_boundary_call','rb_force_keeper_call','rb_publish'):
         setattr(E,name,terminal(getattr(E,name)))

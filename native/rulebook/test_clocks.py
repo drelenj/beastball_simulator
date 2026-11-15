@@ -41,3 +41,28 @@ def test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog(p):
  assert sum(r['kind']=='timeout' for r in e.rb.calls)==3
  assert s.now>=135000 and s.live_ms==0 and s.game_ms==60000
  assert result['status']=='partial'
+
+def test_real_tackle_keeps_play_clock_and_snap_window_runs_only_above_ten(p):
+ s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
+ s.owner='A';e.possession.pp=e.possession.tc='A';s.possession_ms=17000
+ s.players['A0'].x,s.players['A0'].y=50,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=50,y=50,z=1.5,scoring=True)
+ assert e.tackle('B0','A0',witnessed=True)
+ assert s.possession_ms==17000 and s.tackle_count==1 and s.restart.rs['snapper']=='A0'
+ e.elapse(100,False);assert s.possession_ms==16900
+ s.phase=p.types.Phase.LIVE;s.tackle_count=0;s.possession_ms=10000
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A1',x=50,y=50,z=1.5,scoring=True)
+ assert e.tackle('B1','A1',witnessed=True)
+ e.elapse(100,False);assert s.possession_ms==10000
+
+@pytest.mark.parametrize('points,kind',[(2,'release'),(1,'half_goal'),(3,'full_goal_award')])
+def test_whole_first_overtime_then_any_score_sudden_death(p,points,kind):
+ s,e=p.m.s,p.m.e;s.period=e.rb.period=4;s.game_ms=0;s.score={'A':0,'B':0}
+ e.end_period();p.advance_intermission();e.rb_hunt_release()
+ assert s.period==5 and s.game_ms==300000
+ e.add_score('A',2,'release');assert s.phase!=p.types.Phase.FINAL
+ e.add_score('B',2,'release');e.elapse(299999)
+ assert s.period==5 and s.phase!=p.types.Phase.FINAL
+ e.elapse(1);assert s.period==6 and e.rb_pause
+ p.advance_intermission();e.rb_hunt_release();e.add_score('A',points,kind)
+ assert s.phase==p.types.Phase.FINAL and s.result['winner']=='A'

@@ -79,7 +79,8 @@ class RulebookPort(NativePort):
         p=self.m.s.players.get(intent.athlete)
         if self.intermission_pending:return {'status':'rejected','reason':'official_pause'}
         if p and not self.m.e.rb_can_enter(p):return {'status':'rejected','reason':'ineligible'}
-        if p and self.m.e.zone(p.x,p.y) is not None and not self.m.e.rb_recovery_ready(p):
+        recovery_move=bool(p and intent.kind in ('position','restart_position','pursue','search') and intent.aim and self.m.s.attack_sign(p.team)*(p.x-intent.aim[0])>0)
+        if p and self.m.e.rb_recovery_blocked(p) and not recovery_move:
             return {'status':'rejected','reason':'freeze_recovery'}
         return super()._submit_intent(intent)
 
