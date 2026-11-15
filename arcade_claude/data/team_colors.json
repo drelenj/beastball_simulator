@@ -1,0 +1,291 @@
+{
+ "_note": "Colours extracted from the franchise logos by scripts/extract_logos.py; number colour chosen for >=3:1 contrast on primary.",
+ "teams": {
+  "Ala Apex": {
+   "abbr": "APX",
+   "slug": "ala_apex",
+   "primary": "#162551",
+   "secondary": "#7c95b4",
+   "accent": "#c6cad1",
+   "number": "#ffffff",
+   "numberContrast": 14.81,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_ALA_APEX._Color_scheme_is_Roy_b35844d7-bd4d-44e3-8e0b-e9486f5cad1a.png"
+  },
+  "Ala Marauders": {
+   "abbr": "MAR",
+   "slug": "ala_marauders",
+   "primary": "#b21e24",
+   "secondary": "#e5d385",
+   "accent": "#2a1611",
+   "number": "#ffffff",
+   "numberContrast": 6.77,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_ALA_MARAUDERS_._Red_Black_and_15b4c784-ed89-4e54-a981-af4c6a4bdbe4.png"
+  },
+  "Ashkara Ignivars": {
+   "abbr": "ASH",
+   "slug": "ashkara_ignivars",
+   "primary": "#903115",
+   "secondary": "#280d09",
+   "accent": "#c37b3f",
+   "number": "#ffffff",
+   "numberContrast": 7.97,
+   "palette": "EXTRACTED",
+   "sourceFile": "ccd19833-2dbc-4772-baeb-f0521912d4c3.png"
+  },
+  "Bibi Nupi Barbarians": {
+   "abbr": "BNB",
+   "slug": "bibi_nupi_barbarians",
+   "primary": "#f3c247",
+   "secondary": "#ba843d",
+   "accent": "#8e4343",
+   "number": "#101010",
+   "numberContrast": 11.43,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Color_scheme_is_Deep_maroon_Gold_and_Brown._28088393-01e7-495a-9a13-ab557ddba07a.png"
+  },
+  "Bryjeer Flame Devils": {
+   "abbr": "BFD",
+   "slug": "bryjeer_flame_devils",
+   "primary": "#fc7243",
+   "secondary": "#191317",
+   "accent": "#c3b6b2",
+   "number": "#191317",
+   "numberContrast": 6.65,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_BRYJEER_FLAME_DEVILS_._Flame__9fdfcc29-9051-4aba-b1da-bbffc29a523d.png"
+  },
+  "Dōmyu Dominators": {
+   "abbr": "DOM",
+   "slug": "domyu_dominators",
+   "primary": "#f8862d",
+   "secondary": "#658349",
+   "accent": "#b66d2e",
+   "number": "#101010",
+   "numberContrast": 7.65,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_DOMYU_DOMINATORS._Afrocentric_ea5f99a3-4e6f-48fc-88e9-5ae296fe0360.png"
+  },
+  "Garahviq Immortals": {
+   "abbr": "GIM",
+   "slug": "garahviq_immortals",
+   "primary": "#f63632",
+   "secondary": "#a52825",
+   "accent": "#220a0a",
+   "number": "#101010",
+   "numberContrast": 4.98,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_with_dragon_motifs_for_the_GARAHVIQ_I_fe5b844d-3965-4ca2-bf40-ecef94610593.png"
+  },
+  "Garvian Guardians": {
+   "abbr": "GAR",
+   "slug": "garvian_guardians",
+   "primary": "#ebdc3d",
+   "secondary": "#2e4e75",
+   "accent": "#9ba166",
+   "number": "#101010",
+   "numberContrast": 13.44,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_GARVIAN._Lion._Color_scheme_i_a7aa9865-dd1e-4dd6-8db9-c654aed41ffc.png"
+  },
+  "Güunlekia Serpents": {
+   "abbr": "GSP",
+   "slug": "guunlekia_serpents",
+   "primary": "#e6c891",
+   "secondary": "#4f774d",
+   "accent": "#042019",
+   "number": "#101010",
+   "numberContrast": 11.81,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_GUUNLEKIA_SERPENTS._Color_sch_66336512-07a4-49b0-b05d-ca0baf6e97b6.png"
+  },
+  "G’Yanka Vanagu": {
+   "abbr": "GYV",
+   "slug": "gyanka_vanagu",
+   "primary": "#990c41",
+   "secondary": "#4f3c67",
+   "accent": "#1a1923",
+   "number": "#ffffff",
+   "numberContrast": 8.46,
+   "palette": "EXTRACTED",
+   "sourceFile": "danyoljaye_a_Sports_team_logo_for_the_GYANKA_VANAGU_black_raven_c63b39cb-e6a9-466b-a46c-37311b5c4afa.png"
+  },
+  "Hina’sola Hunters": {
+   "abbr": "HSH",
+   "slug": "hinasola_hunters",
+   "primary": "#6300d1",
+   "secondary": "#ca45cb",
+   "accent": "#77208b",
+   "number": "#ffffff",
+   "numberContrast": 8.57,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_HINASOLA_HUNTERS_futuristic_s_fff535d9-95c8-4e3d-ae92-2113662dfed2.png"
+  },
+  "Isu’Kari Sirenwings": {
+   "abbr": "ISW",
+   "slug": "isukari_sirenwings",
+   "primary": "#031634",
+   "secondary": "#4d5863",
+   "accent": "#7d8991",
+   "number": "#ffffff",
+   "numberContrast": 17.98,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_ISUKARI_SIRENWINGS._Color_sch_1d3bceec-7b11-4639-82ee-c1dd3dad0044.png"
+  },
+  "Kalundu Shockwave": {
+   "abbr": "KSW",
+   "slug": "kalundu_shockwave",
+   "primary": "#b4282f",
+   "secondary": "#c2647b",
+   "accent": "#340e32",
+   "number": "#ffffff",
+   "numberContrast": 6.39,
+   "palette": "EXTRACTED",
+   "sourceFile": "1E16C4E0-D7D3-40F8-BC5B-CA4D3F0E68B0.png"
+  },
+  "Kasuf Bloodravens": {
+   "abbr": "KBR",
+   "slug": "kasuf_bloodravens",
+   "primary": "#0dadaf",
+   "secondary": "#e05019",
+   "accent": "#e67e57",
+   "number": "#101010",
+   "numberContrast": 6.9,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_KASUF_BLOODRAVENS_._Color_sch_9b449f69-3770-4e11-953e-173fb0f5f623.png"
+  },
+  "Khemara Sunscourge": {
+   "abbr": "KSS",
+   "slug": "khemara_sunscourge",
+   "primary": "#c75e38",
+   "secondary": "#83251e",
+   "accent": "#f0be79",
+   "number": "#101010",
+   "numberContrast": 4.61,
+   "palette": "EXTRACTED",
+   "sourceFile": "f0daed4b-e689-43aa-9a12-efa509cbfa57.png"
+  },
+  "Lykessia Wolverines": {
+   "abbr": "LYW",
+   "slug": "lykessia_wolverines",
+   "primary": "#597987",
+   "secondary": "#06081f",
+   "accent": "#c5cacf",
+   "number": "#06081f",
+   "numberContrast": 4.25,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_LYKESSIA_WOLVERINES_._Color_s_3d611854-ca7c-469d-83ad-b56c6fc0fdcc.png"
+  },
+  "Mbuya Ïmu Moonhawks": {
+   "abbr": "MIM",
+   "slug": "mbuya_imu_moonhawks",
+   "primary": "#37427f",
+   "secondary": "#798091",
+   "accent": "#b5b8c5",
+   "number": "#ffffff",
+   "numberContrast": 9.34,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_MBUYA_IMU_MOONHAWKS_._Color_s_f102e657-6e4b-4755-a424-ba796887faeb.png"
+  },
+  "Ndomiri Sentinels": {
+   "abbr": "NDS",
+   "slug": "ndomiri_sentinels",
+   "primary": "#074331",
+   "secondary": "#c7aa6a",
+   "accent": "#7c784e",
+   "number": "#ffffff",
+   "numberContrast": 11.31,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_NDOMIRI_SENTINELS._Color_sche_99ad3c36-5f2c-4060-bb13-d09697d5f35b.png"
+  },
+  "Ndumba Specters": {
+   "abbr": "NSP",
+   "slug": "ndumba_specters",
+   "primary": "#3d3c3c",
+   "secondary": "#b9b8b8",
+   "accent": "#7f7e7e",
+   "number": "#ffffff",
+   "numberContrast": 10.99,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_NDUMBA_SPECTERS._Ghostly_figu_18571248-0082-4ff8-b49a-5e2a477dfb3c.png"
+  },
+  "Nuk’yl Chiefs": {
+   "abbr": "NUK",
+   "slug": "nukyl_chiefs",
+   "primary": "#bd2f3a",
+   "secondary": "#c9a86e",
+   "accent": "#fef0ab",
+   "number": "#ffffff",
+   "numberContrast": 5.78,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_NUKYL_CHIEFS_._Shaka_Zulu._Co_4c60ed40-4390-44c2-81a1-424595de02af.png"
+  },
+  "Priya Arpaqu": {
+   "abbr": "PRA",
+   "slug": "priya_arpaqu",
+   "primary": "#dd6451",
+   "secondary": "#a2384a",
+   "accent": "#5e8bc1",
+   "number": "#101010",
+   "numberContrast": 5.45,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_PRIYA_ARPAGU_3ded2740-9377-4f15-9e1c-61bca993b234.png"
+  },
+  "Ursiria 65ers": {
+   "abbr": "U65",
+   "slug": "ursiria_65ers",
+   "primary": "#fe808b",
+   "secondary": "#7fd2c4",
+   "accent": "#262625",
+   "number": "#101010",
+   "numberContrast": 7.86,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_65ERS._Grizzly_Bear._Color_sc_bd13369f-f4b7-412e-b667-a50e61ac3397.png"
+  },
+  "Wibatu Rangers": {
+   "abbr": "WIB",
+   "slug": "wibatu_rangers",
+   "primary": "#c6a459",
+   "secondary": "#3f7339",
+   "accent": "#87894a",
+   "number": "#101010",
+   "numberContrast": 8.02,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_WIBATU_RANGERS_._Letter_W._Co_3d783e0b-bcc5-4a1e-9b06-8fc4cd20b246.png"
+  },
+  "Xenar Ignite": {
+   "abbr": "XEN",
+   "slug": "xenar_ignite",
+   "primary": "#6ffd2b",
+   "secondary": "#c5fe1b",
+   "accent": "#063e63",
+   "number": "#101010",
+   "numberContrast": 14.28,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_XENAR_IGNITE_._Color_scheme_i_fffd0c84-4244-4fa7-b6a6-03cec062ec54.png"
+  },
+  "Yukïma Cowhands": {
+   "abbr": "YUK",
+   "slug": "yukima_cowhands",
+   "primary": "#092b2f",
+   "secondary": "#b17f3d",
+   "accent": "#89352c",
+   "number": "#ffffff",
+   "numberContrast": 15.02,
+   "palette": "EXTRACTED",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_YUKIMA_COWHANDS_._Angry_Bull__afdee17d-98fb-406b-ad90-437816d78371.png"
+  },
+  "Zafiren Tidewings": {
+   "abbr": "ZTW",
+   "slug": "zafiren_tidewings",
+   "primary": "#01162b",
+   "secondary": "#11798d",
+   "accent": "#46a9b1",
+   "number": "#ffffff",
+   "numberContrast": 18.25,
+   "palette": "EXTRACTED",
+   "sourceFile": "cc471768-5c69-4e64-9c80-819c027936ec.png"
+  }
+ }
+}

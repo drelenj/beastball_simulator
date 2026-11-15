@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BEASTBALL: ARCADE</title>
+<style>
+  :root { --bg:#0b0e16; --panel:#151a28ee; --acc:#ffcf3d; --txt:#eef1f7; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--txt); font-family: 'Segoe UI', Arial, sans-serif; overflow:hidden; }
+  canvas { display:block; width:100vw; height:100vh; }
+  .screen { position:fixed; inset:0; display:none; align-items:center; justify-content:center; flex-direction:column; background:radial-gradient(ellipse at center, #1a2236ee, #07090fee); z-index:10; overflow:auto; padding:20px; }
+  .screen.on { display:flex; }
+  h1 { font-size:56px; letter-spacing:4px; margin:0 0 6px; color:var(--acc); text-shadow:0 4px 0 #6b3d00; font-weight:900; }
+  h2 { margin:6px 0 14px; letter-spacing:2px; }
+  .sub { opacity:.75; margin-bottom:22px; }
+  button { background:#262f48; color:var(--txt); border:2px solid #3b4870; border-radius:8px; padding:10px 18px; margin:5px; font-size:16px; font-weight:700; cursor:pointer; }
+  button:hover, button:focus { border-color:var(--acc); outline:none; }
+  button.primary { background:var(--acc); color:#1a1205; border-color:#fff3; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; align-items:center; }
+  .grid { display:grid; grid-template-columns: repeat(13, 64px); gap:6px; margin:6px 0 12px; }
+  .team { width:64px; height:72px; border:2px solid #2a3350; border-radius:8px; background:#121827; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; font-size:10px; font-weight:800; }
+  .team img { width:48px; height:48px; object-fit:contain; }
+  .team.selH { border-color:#ffe14d; box-shadow:0 0 0 2px #ffe14d55; }
+  .team.selA { border-color:#4dd2ff; box-shadow:0 0 0 2px #4dd2ff55; }
+  .team.selH.selA { border-color:#fff; }
+  .matchup { display:flex; align-items:center; gap:26px; margin:8px 0; }
+  .matchup img { width:128px; height:128px; object-fit:contain; }
+  .vs { font-size:34px; font-weight:900; color:var(--acc); }
+  .tname { font-weight:800; font-size:18px; text-align:center; }
+  label { margin:0 8px; }
+  select, input { background:#121827; color:var(--txt); border:1px solid #3b4870; border-radius:6px; padding:6px; font-size:14px; }
+  #hud { position:fixed; top:8px; left:50%; transform:translateX(-50%); display:none; z-index:5; pointer-events:none; }
+  #hud.on { display:block; }
+  .board { display:flex; align-items:stretch; background:#0c1020e8; border:2px solid #39446a; border-radius:10px; overflow:hidden; font-weight:800; }
+  .board .side { display:flex; align-items:center; gap:8px; padding:4px 12px; min-width:200px; }
+  .board .side img { width:40px; height:40px; object-fit:contain; }
+  .board .score { font-size:30px; min-width:40px; text-align:center; }
+  .board .mid { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2px 14px; background:#1b2340; min-width:150px; }
+  .board .clock { font-size:24px; font-family: Consolas, monospace; }
+  .small { font-size:12px; opacity:.9; font-weight:600; }
+  .ammo { font-size:11px; font-weight:700; opacity:.95; }
+  .poss { width:10px; height:10px; border-radius:50%; background:#fff; display:inline-block; visibility:hidden; }
+  #flash { position:fixed; top:34%; left:0; right:0; text-align:center; font-size:56px; font-weight:900; letter-spacing:3px; color:#fff; text-shadow:0 4px 0 #000, 0 0 24px #000; pointer-events:none; z-index:6; display:none; }
+  #ticker { position:fixed; left:10px; bottom:10px; width:420px; font-size:12px; background:#0008; border-radius:6px; padding:6px 8px; z-index:5; pointer-events:none; display:none; max-height:110px; overflow:hidden; }
+  #help { position:fixed; right:10px; bottom:10px; font-size:12px; background:#000a; border-radius:6px; padding:6px 10px; z-index:5; display:none; line-height:1.5; }
+  #spec { position:fixed; right:10px; top:84px; z-index:7; display:none; background:#000a; border-radius:8px; padding:4px; }
+  #spec button { padding:5px 9px; font-size:13px; margin:2px; }
+  #spec button.on { background:var(--acc); color:#111; }
+  table.stats { border-collapse:collapse; margin:10px 0; font-size:14px; }
+  table.stats td, table.stats th { padding:4px 12px; border-bottom:1px solid #2a3350; text-align:center; }
+  table.stats td:first-child, table.stats th:first-child { text-align:left; }
+  .kbd { display:inline-block; min-width:22px; padding:1px 6px; border:1px solid #889; border-radius:4px; background:#222a; font-family:monospace; margin-right:4px; }
+  .ctrl td { padding:3px 14px; }
+  .note { max-width:820px; font-size:12px; opacity:.7; text-align:center; margin-top:10px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud"><div class="board">
+  <div class="side" id="hs0"><img id="hl0" alt="" /><div><div id="hn0">HOME</div><div class="ammo" id="ha0"></div></div><span class="poss" id="hp0"></span><div class="score" id="hsc0">0</div></div>
+  <div class="mid"><div class="small" id="hper">P1</div><div class="clock" id="hclk">10:00</div><div class="small" id="hplay">PLAY 30 · TACKLE 0</div></div>
+  <div class="side" id="hs1"><div class="score" id="hsc1">0</div><span class="poss" id="hp1"></span><div><div id="hn1">AWAY</div><div class="ammo" id="ha1"></div></div><img id="hl1" alt="" /></div>
+</div></div>
+<div id="flash"></div>
+<div id="ticker"></div>
+<div id="help"></div>
+<div id="spec">
+  <button data-speed="1" class="on">1x</button><button data-speed="2">2x</button><button data-speed="4">4x</button><button data-speed="8">8x</button>
+  <button id="specPause">Pause</button><button id="specCam">Cam: Ball</button><button id="specNext">Next athlete</button>
+</div>
+
+<div class="screen on" id="scrMenu">
+  <h1>BEASTBALL</h1><div class="sub">ARCADE · NBL 2026-27 OPENING NIGHT</div>
+  <div class="row" style="flex-direction:column">
+    <button class="primary" id="mPlay">Play: Human vs AI</button>
+    <button id="mWatch">Watch: AI vs AI</button>
+    <button id="mHvH">Local: Human vs Human</button>
+    <button id="mControls">Controls</button>
+  </div>
+  <div class="note">Separate TypeScript arcade implementation of the canon (Rulebook 1.0). Arcade results are not simulator evidence. Attributes derived from OVR are ARCADE PLACEHOLDERS.</div>
+</div>
+
+<div class="screen" id="scrSelect">
+  <h2 id="selTitle">SELECT TEAMS</h2>
+  <div class="matchup"><div><img id="selL0" alt="" /><div class="tname" id="selN0"></div><div class="small" style="text-align:center;color:#ffe14d">HOME (click: left)</div></div><div class="vs">VS</div><div><img id="selL1" alt="" /><div class="tname" id="selN1"></div><div class="small" style="text-align:center;color:#4dd2ff">AWAY (click: right / shift)</div></div></div>
+  <div class="grid" id="teamGrid"></div>
+  <div class="row">
+    <label>Mode <select id="optMode"><option value="hva">Human vs AI</option><option value="ava">AI vs AI (spectator)</option><option value="hvh">Human vs Human</option></select></label>
+    <label>Scoring <select id="optScoring"><option value="flat">Flat (default): goal 2, half goal 1</option><option value="banded">Provisional banded scale</option></select></label>
+    <label>Clock <select id="optClock"><option value="600">Canon 4 x 600 s</option><option value="120">Accelerated 4 x 120 s</option><option value="60">Accelerated 4 x 60 s</option></select></label>
+    <label>Seed <input id="optSeed" type="number" value="20261115" style="width:110px" /></label>
+  </div>
+  <div class="row"><button class="primary" id="selStart">Start match</button><button id="selBack">Back</button></div>
+</div>
+
+<div class="screen" id="scrControls">
+  <h2>CONTROLS</h2>
+  <table class="ctrl">
+    <tr><td><b>Action</b></td><td><b>Player 1</b></td><td><b>Player 2 (HvH)</b></td><td><b>Gamepad</b></td></tr>
+    <tr><td>Move</td><td><span class="kbd">W A S D</span> / arrows (1P)</td><td><span class="kbd">Arrows</span></td><td>Left stick / D-pad</td></tr>
+    <tr><td>Sprint</td><td><span class="kbd">Shift</span></td><td><span class="kbd">Right Ctrl</span></td><td>RB / RT</td></tr>
+    <tr><td>Pass / release (snap)</td><td><span class="kbd">Space</span></td><td><span class="kbd">Enter</span></td><td>A</td></tr>
+    <tr><td>Tackle (carrier only)</td><td><span class="kbd">J</span></td><td><span class="kbd">.</span></td><td>B</td></tr>
+    <tr><td>Switch athlete</td><td><span class="kbd">K</span></td><td><span class="kbd">,</span></td><td>Y</td></tr>
+    <tr><td>Shoot at goal</td><td><span class="kbd">L</span></td><td><span class="kbd">/</span></td><td>X</td></tr>
+    <tr><td>Archer aim &amp; fire (auto-aim)</td><td><span class="kbd">E</span></td><td><span class="kbd">'</span></td><td>LB</td></tr>
+    <tr><td>Pause</td><td><span class="kbd">Esc</span></td><td><span class="kbd">Esc</span></td><td>Start</td></tr>
+    <tr><td>Spectator: speed / camera</td><td><span class="kbd">1 2 3 4</span> <span class="kbd">C</span> <span class="kbd">N</span></td><td></td><td></td></tr>
+  </table>
+  <div class="note">On defence a useful defender is auto-selected (nearest to the carrier); K switches to the teammate nearest the ball. Pass goes to the open teammate closest to the direction you are pushing.</div>
+  <button class="primary" id="ctrlBack">Back</button>
+</div>
+
+<div class="screen" id="scrPause">
+  <h2>PAUSED</h2>
+  <div class="row" style="flex-direction:column"><button class="primary" id="pResume">Resume</button><button id="pRestart">Restart match (same seed)</button><button id="pControls">Controls</button><button id="pMenu">Quit to menu</button></div>
+</div>
+
+<div class="screen" id="scrBreak">
+  <h2 id="brTitle">HALFTIME</h2>
+  <div class="matchup"><div><img id="brL0" alt="" /></div><div class="vs" id="brScore">0 - 0</div><div><img id="brL1" alt="" /></div></div>
+  <div class="small" id="brInfo"></div>
+  <table class="stats" id="brStats"></table>
+  <button class="primary" id="brSkip">Continue (ends exchanged)</button>
+</div>
+
+<div class="screen" id="scrFinal">
+  <h2>FINAL</h2>
+  <div class="matchup"><div><img id="fiL0" alt="" /><div class="tname" id="fiN0"></div></div><div class="vs" id="fiScore">0 - 0</div><div><img id="fiL1" alt="" /><div class="tname" id="fiN1"></div></div></div>
+  <div class="small" id="fiInfo"></div>
+  <table class="stats" id="fiStats"></table>
+  <table class="stats" id="fiTop"></table>
+  <div class="row"><button class="primary" id="fiRematch">Rematch (same teams &amp; seed)</button><button id="fiMenu">Main menu</button></div>
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

@@ -1,0 +1,553 @@
+{
+ "_note": "Provenance of every shipped logo sprite. Originals are not committed.",
+ "driveFolder": "1Y8JhgMbo1-yZD6Z7tOaM7AQliE4CqiFN",
+ "totalLogoBytes": 895588,
+ "logos": [
+  {
+   "franchise": "Ala Apex",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_ALA_APEX._Color_scheme_is_Roy_b35844d7-bd4d-44e3-8e0b-e9486f5cad1a.png",
+   "driveFileId": "1sXhu-1qk-0QcEi2uv7R41T80vhqJxNdp",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/ala_apex_128.webp",
+     "bytes": 9440,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/ala_apex_256.webp",
+     "bytes": 22790,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #181c3e removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 17138
+  },
+  {
+   "franchise": "Ala Marauders",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_ALA_MARAUDERS_._Red_Black_and_15b4c784-ed89-4e54-a981-af4c6a4bdbe4.png",
+   "driveFileId": "1lFow9Ovd2ApyWlvGMSN-yjJIcpFIi-VE",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/ala_marauders_128.webp",
+     "bytes": 11480,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/ala_marauders_256.webp",
+     "bytes": 22564,
+     "webpQuality": 80
+    }
+   ],
+   "background": "uniform background #f3f3f1 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 16262
+  },
+  {
+   "franchise": "Ashkara Ignivars",
+   "sourceFile": "ccd19833-2dbc-4772-baeb-f0521912d4c3.png",
+   "driveFileId": "16B5Tbjr6vo-6a4-e-kKgTQyT3kxSSlNn",
+   "match": "logo text 'ASHKARA IGNIVARS' (file name has no team)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/ashkara_ignivars_128.webp",
+     "bytes": 10264,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/ashkara_ignivars_256.webp",
+     "bytes": 24354,
+     "webpQuality": 80
+    }
+   ],
+   "background": "uniform background #f7f5ef removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 16038
+  },
+  {
+   "franchise": "Bibi Nupi Barbarians",
+   "sourceFile": "drebenzi_Color_scheme_is_Deep_maroon_Gold_and_Brown._28088393-01e7-495a-9a13-ab557ddba07a.png",
+   "driveFileId": "1nUpZyreyQbXnK6qCSRKJaQzS_4j1wo-l",
+   "match": "logo text 'BIBI NUPI BARBARIANS' (file name has no team)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/bibi_nupi_barbarians_128.webp",
+     "bytes": 9054,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/bibi_nupi_barbarians_256.webp",
+     "bytes": 22310,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #60272f removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 17726
+  },
+  {
+   "franchise": "Bryjeer Flame Devils",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_BRYJEER_FLAME_DEVILS_._Flame__9fdfcc29-9051-4aba-b1da-bbffc29a523d.png",
+   "driveFileId": "1yMpkVZchrAmAFGJuosSP15hzL8R87Wq9",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/bryjeer_flame_devils_128.webp",
+     "bytes": 9824,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/bryjeer_flame_devils_256.webp",
+     "bytes": 21436,
+     "webpQuality": 80
+    }
+   ],
+   "background": "uniform background #fefefe removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 16353
+  },
+  {
+   "franchise": "Dōmyu Dominators",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_DOMYU_DOMINATORS._Afrocentric_ea5f99a3-4e6f-48fc-88e9-5ae296fe0360.png",
+   "driveFileId": "1itsn1wzXN9EVYoDLYHTwgBg66XX9_AIO",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/domyu_dominators_128.webp",
+     "bytes": 16766,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/domyu_dominators_256.webp",
+     "bytes": 25124,
+     "webpQuality": 50
+    }
+   ],
+   "background": "uniform background #162625 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 8512
+  },
+  {
+   "franchise": "Garahviq Immortals",
+   "sourceFile": "drebenzi_Sports_team_logo_with_dragon_motifs_for_the_GARAHVIQ_I_fe5b844d-3965-4ca2-bf40-ecef94610593.png",
+   "driveFileId": "1vnfgzMGkkjJVKA3nZ6SZMgOdopbZ3gMa",
+   "match": "file name (+ logo text IMMORTALS)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/garahviq_immortals_128.webp",
+     "bytes": 17094,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/garahviq_immortals_256.webp",
+     "bytes": 23376,
+     "webpQuality": 40
+    }
+   ],
+   "background": "uniform background #010000 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 9619
+  },
+  {
+   "franchise": "Garvian Guardians",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_GARVIAN._Lion._Color_scheme_i_a7aa9865-dd1e-4dd6-8db9-c654aed41ffc.png",
+   "driveFileId": "1mTpFMasidvyZanZ-xSGnRUVgDPq2n1N6",
+   "match": "file name (+ logo text GUARDIANS)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/garvian_guardians_128.webp",
+     "bytes": 9038,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/garvian_guardians_256.webp",
+     "bytes": 21218,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #f2f5f7 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 16903
+  },
+  {
+   "franchise": "Güunlekia Serpents",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_GUUNLEKIA_SERPENTS._Color_sch_66336512-07a4-49b0-b05d-ca0baf6e97b6.png",
+   "driveFileId": "1kcDwnokQK8hUOpDnkOzz2fTb6jX4pVxs",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/guunlekia_serpents_128.webp",
+     "bytes": 10300,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/guunlekia_serpents_256.webp",
+     "bytes": 22310,
+     "webpQuality": 80
+    }
+   ],
+   "background": "uniform background #48764a removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 19848
+  },
+  {
+   "franchise": "G’Yanka Vanagu",
+   "sourceFile": "danyoljaye_a_Sports_team_logo_for_the_GYANKA_VANAGU_black_raven_c63b39cb-e6a9-466b-a46c-37311b5c4afa.png",
+   "driveFileId": "18G2eKKjyfYiEVSexiIQWHiqRSzQmklyy",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/gyanka_vanagu_128.webp",
+     "bytes": 11508,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/gyanka_vanagu_256.webp",
+     "bytes": 21364,
+     "webpQuality": 70
+    }
+   ],
+   "background": "uniform background #000000 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 11767
+  },
+  {
+   "franchise": "Hina’sola Hunters",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_HINASOLA_HUNTERS_futuristic_s_fff535d9-95c8-4e3d-ae92-2113662dfed2.png",
+   "driveFileId": "1-4zw60uduvJB3XpBJwqswt1AujM0irkk",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/hinasola_hunters_128.webp",
+     "bytes": 10038,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/hinasola_hunters_256.webp",
+     "bytes": 23974,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #1d1031 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 18325
+  },
+  {
+   "franchise": "Isu’Kari Sirenwings",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_ISUKARI_SIRENWINGS._Color_sch_1d3bceec-7b11-4639-82ee-c1dd3dad0044.png",
+   "driveFileId": "1ynCVURH7G7jzqq7A84H1-_DCHupI5ozI",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/isukari_sirenwings_128.webp",
+     "bytes": 10820,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/isukari_sirenwings_256.webp",
+     "bytes": 25374,
+     "webpQuality": 80
+    }
+   ],
+   "background": "uniform background #fafdfc removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 19844
+  },
+  {
+   "franchise": "Kalundu Shockwave",
+   "sourceFile": "1E16C4E0-D7D3-40F8-BC5B-CA4D3F0E68B0.png",
+   "driveFileId": "15vBe5dhnYX25eu_QaVIL2WDkzm6q0W5Q",
+   "match": "logo text 'KALUNDU SHOCKWAVE' (file name has no team)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/kalundu_shockwave_128.webp",
+     "bytes": 14016,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/kalundu_shockwave_256.webp",
+     "bytes": 25376,
+     "webpQuality": 50
+    }
+   ],
+   "background": "uniform background #180e29 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 21236
+  },
+  {
+   "franchise": "Kasuf Bloodravens",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_KASUF_BLOODRAVENS_._Color_sch_9b449f69-3770-4e11-953e-173fb0f5f623.png",
+   "driveFileId": "1VqyDgv5WqwA0uo_iUKZrWFvFla639goX",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/kasuf_bloodravens_128.webp",
+     "bytes": 12100,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/kasuf_bloodravens_256.webp",
+     "bytes": 20140,
+     "webpQuality": 70
+    }
+   ],
+   "background": "uniform background #fefefe removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 13102
+  },
+  {
+   "franchise": "Khemara Sunscourge",
+   "sourceFile": "f0daed4b-e689-43aa-9a12-efa509cbfa57.png",
+   "driveFileId": "1UC77M8OD7ijFZgV9VNnO-mbbMMR4_7jG",
+   "match": "logo text 'KHEMARA SUNSCOURGE' (file name has no team)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/khemara_sunscourge_128.webp",
+     "bytes": 12526,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/khemara_sunscourge_256.webp",
+     "bytes": 24122,
+     "webpQuality": 70
+    }
+   ],
+   "background": "uniform background #fdfdf9 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 15337
+  },
+  {
+   "franchise": "Lykessia Wolverines",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_LYKESSIA_WOLVERINES_._Color_s_3d611854-ca7c-469d-83ad-b56c6fc0fdcc.png",
+   "driveFileId": "1n2P5u-T3xc3pbwAVJt8MVHEU3IHti6r5",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/lykessia_wolverines_128.webp",
+     "bytes": 9674,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/lykessia_wolverines_256.webp",
+     "bytes": 24098,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #161622 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 16330
+  },
+  {
+   "franchise": "Mbuya Ïmu Moonhawks",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_MBUYA_IMU_MOONHAWKS_._Color_s_f102e657-6e4b-4755-a424-ba796887faeb.png",
+   "driveFileId": "1z4QT427pyYH6DiFh7J8lwClFSB1KqiPx",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/mbuya_imu_moonhawks_128.webp",
+     "bytes": 14824,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/mbuya_imu_moonhawks_256.webp",
+     "bytes": 24542,
+     "webpQuality": 60
+    }
+   ],
+   "background": "uniform background #060841 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 9227
+  },
+  {
+   "franchise": "Ndomiri Sentinels",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_NDOMIRI_SENTINELS._Color_sche_99ad3c36-5f2c-4060-bb13-d09697d5f35b.png",
+   "driveFileId": "1LMgYU-9jrdhe3F-zsCgdimhx86j5Ppmx",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/ndomiri_sentinels_128.webp",
+     "bytes": 10258,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/ndomiri_sentinels_256.webp",
+     "bytes": 23742,
+     "webpQuality": 80
+    }
+   ],
+   "background": "uniform background #fafbfa removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 19506
+  },
+  {
+   "franchise": "Ndumba Specters",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_NDUMBA_SPECTERS._Ghostly_figu_18571248-0082-4ff8-b49a-5e2a477dfb3c.png",
+   "driveFileId": "1WY0e8dlEjHxtH4mSC2P_TUM2DXx9cfxH",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/ndumba_specters_128.webp",
+     "bytes": 11522,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/ndumba_specters_256.webp",
+     "bytes": 19414,
+     "webpQuality": 70
+    }
+   ],
+   "background": "uniform background #000000 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 7050
+  },
+  {
+   "franchise": "Nuk’yl Chiefs",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_NUKYL_CHIEFS_._Shaka_Zulu._Co_4c60ed40-4390-44c2-81a1-424595de02af.png",
+   "driveFileId": "1DbMcgels1bIqFwihG3bc0BLsXlH3h679",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/nukyl_chiefs_128.webp",
+     "bytes": 9054,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/nukyl_chiefs_256.webp",
+     "bytes": 25178,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #732e31 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 14149
+  },
+  {
+   "franchise": "Priya Arpaqu",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_PRIYA_ARPAGU_3ded2740-9377-4f15-9e1c-61bca993b234.png",
+   "driveFileId": "19t3RA1uZMmZET_Ms_X-XuHd9tUKdgTXn",
+   "match": "file name (spelled ARPAGU in file and logo; workbook spells Arpaqu)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/priya_arpaqu_128.webp",
+     "bytes": 12240,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/priya_arpaqu_256.webp",
+     "bytes": 21742,
+     "webpQuality": 70
+    }
+   ],
+   "background": "uniform background #111b2d removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 9081
+  },
+  {
+   "franchise": "Ursiria 65ers",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_65ERS._Grizzly_Bear._Color_sc_bd13369f-f4b7-412e-b667-a50e61ac3397.png",
+   "driveFileId": "1jl4renrLejFNqbwvwCv-ef12QmK0T4E_",
+   "match": "file name (+ logo text URSIRIA)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/ursiria_65ers_128.webp",
+     "bytes": 9418,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/ursiria_65ers_256.webp",
+     "bytes": 22642,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #383634 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 17840
+  },
+  {
+   "franchise": "Wibatu Rangers",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_WIBATU_RANGERS_._Letter_W._Co_3d783e0b-bcc5-4a1e-9b06-8fc4cd20b246.png",
+   "driveFileId": "1TrmAu3O4nZbNpWhshm_-aWvh0aHBqD5m",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/wibatu_rangers_128.webp",
+     "bytes": 9052,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/wibatu_rangers_256.webp",
+     "bytes": 20930,
+     "webpQuality": 88
+    }
+   ],
+   "background": "uniform background #fefefd removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 19423
+  },
+  {
+   "franchise": "Xenar Ignite",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_XENAR_IGNITE_._Color_scheme_i_fffd0c84-4244-4fa7-b6a6-03cec062ec54.png",
+   "driveFileId": "11jPt8TtNrz1mZKDcErfkkqCkCPiwXBG1",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/xenar_ignite_128.webp",
+     "bytes": 16722,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/xenar_ignite_256.webp",
+     "bytes": 24914,
+     "webpQuality": 50
+    }
+   ],
+   "background": "uniform background #050d46 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 6908
+  },
+  {
+   "franchise": "Yukïma Cowhands",
+   "sourceFile": "drebenzi_Sports_team_logo_for_the_YUKIMA_COWHANDS_._Angry_Bull__afdee17d-98fb-406b-ad90-437816d78371.png",
+   "driveFileId": "1FeFlB3MCD61hX9AUBX4dPYyrZbN9btHH",
+   "match": "file name",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/yukima_cowhands_128.webp",
+     "bytes": 9478,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/yukima_cowhands_256.webp",
+     "bytes": 21396,
+     "webpQuality": 80
+    }
+   ],
+   "background": "textured background kept, rounded-square mask",
+   "sourcePixelsSampled": 25224
+  },
+  {
+   "franchise": "Zafiren Tidewings",
+   "sourceFile": "cc471768-5c69-4e64-9c80-819c027936ec.png",
+   "driveFileId": "1FRx08QW9oak0oqGGK11pI7jxv1Q3zz2Y",
+   "match": "logo text 'ZAFIREN TIDEWINGS' (file name has no team)",
+   "status": "MAPPED",
+   "outputs": [
+    {
+     "file": "assets/logos/zafiren_tidewings_128.webp",
+     "bytes": 12166,
+     "webpQuality": 88
+    },
+    {
+     "file": "assets/logos/zafiren_tidewings_256.webp",
+     "bytes": 22482,
+     "webpQuality": 70
+    }
+   ],
+   "background": "uniform background #fafaf7 removed (flood fill, tol 38)",
+   "sourcePixelsSampled": 16497
+  }
+ ]
+}
