@@ -1,0 +1,42 @@
+import pytest,math
+from .port import RulebookPort
+@pytest.fixture
+def p():return RulebookPort(1)
+
+def live(p):
+ s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.hunt_cleared=True;e.rb_hunt_running=True
+ s.owner='B';e.possession.pp=e.possession.tc='B';e.rb.possession='B'
+ for q in s.players.values():
+  if q.role!='archer':q.x=80;q.y=80
+ s.players['B0'].x=40;s.players['B0'].y=50
+ return s,e
+
+def test_speed_quota_own_half_illegal_spends_and_no_tunnelling(p):
+ s,e=live(p);a=e.shoot_arrow('A11','B0',(1,0,0))
+ assert math.sqrt(a.vx*a.vx+a.vy*a.vy+a.vz*a.vz)==pytest.approx(250)
+ a.x=30;a.y=50;a.z=1.5;a.vz=0
+ events=p.m.advance_arrows(100)
+ assert any(ev.target=='B0' for ev in events)
+ s.players['B0'].x=60
+ for _ in range(14):assert not e.shoot_arrow('A11','B0',(1,0,0))
+ assert e.rb.quotas['A']['arrows']==15
+ assert not e.shoot_arrow('A11','B0',(1,0,0))
+
+def test_freeze_cap_panel_recovery_and_turnover(p):
+ s,e=live(p);q=s.players['B0']
+ assert not e.freeze(q.id,panel=False)
+ assert e.freeze(q.id,panel=True)
+ assert not e.freeze(q.id,panel=True)
+ s.now=q.freeze_until+2000;q.x-=3
+ assert not e.rb_recovery_ready(q)
+ q.x+=6;assert e.rb_recovery_ready(q)
+ e.rb.quotas['A']['arrows']=15
+ e.possession.pp='A';e.possession.tc='A';e.native_sync()
+ assert e.rb.quotas['A']['arrows']==0
+
+def test_status_view_is_captured_not_live_truth(p):
+ s,e=live(p);q=s.players['B0'];q.freeze_until=s.now+5000;q.immune_until=s.now+15000
+ p.capture(s.now);s.now+=300
+ v,b=p.view('A11',s.now);assert ('B0','red') in v.status_indicators
+ q.freeze_until=0;q.immune_until=0
+ assert ('B0','red') in v.status_indicators

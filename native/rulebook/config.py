@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from native.config import NativeConfig
 
+RB_BODY=tuple((k,44.7 if k=="maximum_speed" else 250. if k=="archery_release_speed" else v) for k,v in NativeConfig().body_standards)
+
 @dataclass(frozen=True)
 class RulebookConfig(NativeConfig):
     version: str = 'native-rb/1'
@@ -12,6 +14,7 @@ class RulebookConfig(NativeConfig):
     full_award_points: int = 3
     own_goal_points: int = 2
     arrows: int = 15
+    body_standards: tuple = RB_BODY
     fastest_player_speed: float = 44.7
     arrow_speed_ratio: float = 250./44.7
     breaks_ms: tuple = (120000,600000,120000,180000)

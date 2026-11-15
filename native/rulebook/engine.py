@@ -86,3 +86,5 @@ def install(co,cfg):
     install_substitutions(co,cfg)
     from .discipline import install as install_discipline
     install_discipline(co,cfg)
+    from .archery import install as install_archery
+    install_archery(co,cfg)
