@@ -191,7 +191,7 @@
       "per_match": {
         "arrows_missed": 97.8,
         "arrows_released": 182.9,
-        "first_tackles": 0.0,
+        "first_tackles": null,
         "foul_awards": 11.4,
         "freezes": 42.6,
         "goals": 14.4,
@@ -199,7 +199,7 @@
         "major_fouls": 0.0,
         "minor_fouls": 24.4,
         "offside_calls": 2.0,
-        "second_tackles": 0.0,
+        "second_tackles": null,
         "snaps_released": 133.9,
         "strips": 11.9,
         "tackle_count_events": 70.9,

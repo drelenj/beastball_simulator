@@ -45,7 +45,7 @@ def totals(rows):
                       timeout_rate=round(to/a, 4) if a else None, eligible=el, eligible_timeout=elt,
                       eligible_timeout_rate=round(elt/el, 4) if el else None)
     n = len(rows)
-    per = lambda f: round(s(f)/n, 2)
+    per = lambda f: None if any(f(r) is None for r in rows) else round(s(f)/n, 2)   # None = not recorded
     return dict(matches=n, restarts=out,
                 per_match=dict(groundings=per(lambda r: r['groundings']), tackle_count_events=per(lambda r: r['tackle_count_events']),
                                first_tackles=per(lambda r: r['first_tackles']), second_tackles=per(lambda r: r['second_tackles']),
