@@ -1,0 +1,14 @@
+{
+  "cap": 20,
+  "attempts": [
+    {
+      "id": 1,
+      "profile": "native-v0/2",
+      "seed": 1,
+      "purpose": "V1 baseline preservation replay",
+      "status": "passed",
+      "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142",
+      "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9"
+    }
+  ]
+}
