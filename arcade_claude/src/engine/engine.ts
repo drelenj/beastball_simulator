@@ -255,7 +255,7 @@ export class Engine {
     const sx = a.x + Math.cos(a.facing) * 0.4, sy = a.y + Math.sin(a.facing) * 0.4, sz = 1.8;
     const dx = tx - sx, dy = ty - sy, dh = Math.sqrt(dx * dx + dy * dy), dz = tz - sz;
     // choose flight time so horizontal speed ~ speed; solve vz for gravity
-    const T = Math.max(0.25, dh / speed);
+    const T = Math.max(0.12, dh / speed);
     const vz = dz / T + 0.5 * C.G * T;
     Object.assign(b, { holder: -1, x: sx, y: sy, z: sz, vx: dx / T, vy: dy / T, vz, inFlight: true, passer: a.idx, isShot, shotTeam: a.team, lastTouch: a.idx, lastTouchTeam: a.team });
     b.releaseDist = Math.sqrt(dist2(a.x, a.y, this.oppGoalX(a.team), 0));
@@ -266,7 +266,8 @@ export class Engine {
   }
   passTo(a: Athlete, r: Athlete) {
     const d = Math.sqrt(dist2(a.x, a.y, r.x, r.y));
-    const speed = Math.min(a.a.throwV, 9 + d * 0.55);
+    // snappy, flat passes: fast release, low arc (flight ~0.35 s at 10 m, ~0.6 s at 20 m)
+    const speed = Math.max(15, Math.min(a.a.throwV * 1.3, 13 + d * 0.95));
     const T = d / speed;
     this.throwBall(a, r.x + r.vx * T * 0.9, r.y + r.vy * T * 0.9, 1.3, speed, false, r.idx);
   }
@@ -274,7 +275,7 @@ export class Engine {
     const gx = this.oppGoalX(a.team);
     const ty = this.rng.range(-1.9, 1.9), tz = this.rng.range(0.5, 1.9);
     const d = Math.sqrt(dist2(a.x, a.y, gx, 0));
-    this.throwBall(a, gx + Math.sign(gx) * 0.6, ty, tz, a.a.throwV, true);
+    this.throwBall(a, gx + Math.sign(gx) * 0.6, ty, tz, a.a.throwV * 1.3, true);
     this.ev('shot', a.team, a.idx, `${a.d.name} shoots from ${d.toFixed(1)} m`, { dist: d });
   }
   tryTackle(a: Athlete) {
@@ -523,7 +524,7 @@ export class Engine {
     if (!best) return;
     const a = best;
     const ground = b.z < 0.35 && sp < 6;
-    let p = ground ? 0.85 + a.a.catchS * 0.1 : a.a.catchS - Math.max(0, sp - 12) * 0.02 - bestD * 0.15;
+    let p = ground ? 0.85 + a.a.catchS * 0.1 : a.a.catchS - Math.max(0, sp - (b.isShot ? 16 : 27)) * 0.02 - bestD * 0.15;
     if (b.isShot && a.team !== b.shotTeam) p = a.role === 'keeper' ? a.a.catchS * 0.85 : p * 0.6;
     const opp = b.passer >= 0 && this.ath[b.passer].team !== a.team;
     if (opp && !b.isShot) p *= 0.8; // interceptions are harder

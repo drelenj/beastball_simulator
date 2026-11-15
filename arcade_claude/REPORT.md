@@ -198,3 +198,11 @@ Screenshots: `tests/evidence/04_play.png` (gameplay, tackle), `07_ava.png` (AI v
   - retina-sharp canvas (DPR capped at 2), iOS meta tags, pinch and double-tap zoom blocked during play, rotate hint in portrait.
 - Touch drives team 0 only, so Human vs Human is still a keyboard/gamepad mode.
 - **Tests:** `node tests/touch_check.cjs` (emulated iPhone, landscape, DPR 3, real CDP touch events including two simultaneous fingers): 14/14 PASS. Desktop suite re-run after the change: 16/16 PASS. Not tested on a physical iPhone.
+
+## Addendum: throw and pass feel
+
+- Passes fly at `min(1.3 x throwV, 13 + 0.95 x distance)` m/s (was `min(throwV, 9 + 0.55 x distance)`): about 0.35 s at 10 m and 0.6 s at 20 m, on a low arc. Shots are 1.3x faster. In-flight speeds measured in the browser: 29-31 m/s.
+- The ball is drawn as a football aligned with its flight direction, with swinging laces to show spin and a speed trail.
+- Catch speed penalty retuned (passes 27 m/s threshold, shots 16 m/s) so faster balls stay catchable.
+- Effect over 8 headless matches (before -> after): pass completion 69% -> 72%, goals/match 6.1 -> 9.1, saves 35 -> 43, tackles/match 171 -> 143. Scoring is higher and carriers release the ball sooner; unchanged from this: determinism (same seed, same result).
+- The human-tackle checks now place the athlete beside an opponent carrier (labelled in the test name) and use the real J key / TACKLE button, because chasing a carrier in real time became unreliable once opponents pass faster.

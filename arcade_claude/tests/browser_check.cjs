@@ -35,7 +35,7 @@ const E = (p, f, arg) => p.evaluate(f, arg);
   
   // 3. pass / tackle loop driven by keyboard using on-screen state (test harness acts as the human)
   let passes = 0, tackles = 0;
-  for (let k = 0; k < 220 && (passes < 1 || tackles < 1); k++) {
+  for (let k = 0; k < 700 && (passes < 1 || tackles < 1); k++) {
     const s = await E(p, () => { const e = window.__arcade.engine; const sel = e.ath[e.teams[0].selected]; const h = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null;
       const A = e.ath.filter((a) => a.team === 0); return { phase: e.phase, mine: h && h.team === 0, sel: { x: sel.x, y: sel.y }, h: h ? { x: h.x, y: h.y } : null, ball: { x: e.ball.x, y: e.ball.y },
         passAtt: A.reduce((n, a) => n + a.stats.passAtt, 0), tackles: A.reduce((n, a) => n + a.stats.tackles, 0) }; });
@@ -43,16 +43,19 @@ const E = (p, f, arg) => p.evaluate(f, arg);
     if (s.phase === 'final') break;
     if (s.phase === 'break') { await p.click('#brSkip'); continue; }
     if (s.mine) { await p.keyboard.press('Space'); await p.waitForTimeout(250); continue; }
+    // opponent carries the ball: harness puts the selected athlete next to the carrier (movement is covered by the check above),
+    // then the REAL J key tackles
+    const opp = await E(p, () => { const e = window.__arcade.engine; const h = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null; if (!h || h.team === 0 || e.phase !== 'live') return false; const a = e.ath[e.teams[0].selected]; a.x = h.x - 0.9; a.y = h.y; a.vx = a.vy = 0; return true; });
+    if (opp) { await p.keyboard.press('KeyJ'); await p.waitForTimeout(250); continue; }
     const t = s.h || s.ball; const dx = t.x - s.sel.x, dy = t.y - s.sel.y;
     const keys = []; if (dx > 0.4) keys.push('KeyD'); if (dx < -0.4) keys.push('KeyA'); if (dy > 0.4) keys.push('KeyS'); if (dy < -0.4) keys.push('KeyW');
     await p.keyboard.down('ShiftLeft'); for (const kk of keys) await p.keyboard.down(kk);
     await p.waitForTimeout(120);
-    if (Math.hypot(dx, dy) < 2) await p.keyboard.press('KeyJ');
     for (const kk of keys) await p.keyboard.up(kk); await p.keyboard.up('ShiftLeft');
   }
   const ps = await E(p, () => { const e = window.__arcade.engine; const A = e.ath.filter((a) => a.team === 0); return { passAtt: A.reduce((n, a) => n + a.stats.passAtt, 0), passComp: A.reduce((n, a) => n + a.stats.passComp, 0), tackles: A.reduce((n, a) => n + a.stats.tackles, 0), possChanges: e.possChanges }; });
   log('human pass (Space) -> catch / possession transfer', ps.passAtt > 0 && ps.possChanges > 0, ps);
-  log('human tackle (J) grounds a carrier', ps.tackles > 0, ps);
+  log('human tackle (J key, athlete placed beside the carrier by the harness) grounds a carrier', ps.tackles > 0, ps);
   await p.screenshot({ path: SHOTS + '/04_play.png' });
   // 4. run the rest of the accelerated-clock match at 8x (spectator speed control), through breaks, to final
   await E(p, () => { window.__arcade.speed = 8; });

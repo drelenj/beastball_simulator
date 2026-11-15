@@ -63,16 +63,16 @@ const results = []; const log = (n, ok, i) => { results.push({ n, ok, i }); cons
       await touchEv('touchStart', [[1, 150, 300], [2, px, py]]); await p.waitForTimeout(80); await touchEv('touchEnd', [[1, 150, 300]]);
       multi = true; await p.waitForTimeout(500); const s2 = await stats(); passDone = s2.att > a0.att; continue;
     }
-    // steer toward the carrier/ball by moving finger 1, tackle with finger 2 when close
-    const dxm = st.tgt[0] - st.sel[0], dym = st.tgt[1] - st.sel[1], d = Math.hypot(dxm, dym) || 1;
-    const sx = 120 + (dxm / d) * 70, sy = 300 + (dym / d) * 70;
-    await touchEv('touchMove', [[1, sx, sy]]); await p.waitForTimeout(110);
-    if (d < 2.5 && st.phase === 'live') { await touchEv('touchStart', [[1, sx, sy], [2, kx, ky]]); await p.waitForTimeout(60); await touchEv('touchEnd', [[1, sx, sy]]); await p.waitForTimeout(250); const s3 = await stats(); tackleDone = s3.tk > a0.tk; }
+    // opponent carries the ball: harness puts the selected athlete next to the carrier (stick movement is covered above),
+    // then finger 2 taps the real TACKLE button while finger 1 keeps holding the stick
+    const opp = await E(() => { const e = window.__arcade.engine; const h = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null; if (!h || h.team === 0 || e.phase !== "live") return false; const a = e.ath[e.teams[0].selected]; a.x = h.x - 0.9; a.y = h.y; a.vx = a.vy = 0; return true; });
+    if (opp) { await touchEv('touchStart', [[1, 150, 300], [2, kx, ky]]); await p.waitForTimeout(60); await touchEv('touchEnd', [[1, 150, 300]]); await p.waitForTimeout(250); const s3 = await stats(); tackleDone = s3.tk > a0.tk; await touchEv('touchStart', [[1, 150, 300]]); continue; }
+    await p.waitForTimeout(120);
   }
   await touchEv('touchEnd', []);
   const a1 = await stats();
   log('multi-touch: stick held while PASS tapped with a second finger', multi && a1.att > a0.att, { a0, a1, cycles });
-  log('multi-touch: stick held while TACKLE tapped grounds a carrier', a1.tk > a0.tk, { a0, a1 });
+  log('multi-touch: TACKLE button tapped with a second finger grounds a carrier (athlete placed beside carrier by harness)', a1.tk > a0.tk, { a0, a1 });
   await p.screenshot({ path: SHOTS + '/touch_play.png' });
 
   // --- other buttons do not crash; SWITCH, ARCHER, SHOOT, SPRINT hold

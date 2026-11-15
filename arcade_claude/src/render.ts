@@ -24,6 +24,7 @@ export class Camera {
 export class Renderer {
   cam = new Camera();
   dpr = 1;
+  trail: [number, number, number][] = [];
   logos: Record<string, HTMLImageElement> = {};
   constructor(public ctx: CanvasRenderingContext2D) {}
   P(x: number, y: number, z = 0): [number, number] {
@@ -149,10 +150,31 @@ export class Renderer {
     const b = e.ball;
     items.push({ y: b.holder >= 0 ? e.ath[b.holder].y + 0.05 : b.y, f: () => {
       const [gx, gy] = this.P(b.x, b.y, 0); const [bx, by] = this.P(b.x, b.y, b.z);
-      ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.beginPath(); ctx.ellipse(gx, gy, this.cam.s * 0.16, this.cam.s * 0.07, 0, 0, 7); ctx.fill();
-      const r = Math.max(3, this.cam.s * 0.16);
-      ctx.fillStyle = '#f6e7c8'; ctx.strokeStyle = '#7a4b1c'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(bx, by, r, 0, 7); ctx.fill(); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(bx - r, by); ctx.lineTo(bx + r, by); ctx.stroke();
+      const speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy + b.vz * b.vz);
+      const flying = b.holder < 0 && speed > 7;
+      // motion trail (visual only)
+      if (flying) { this.trail.push([b.x, b.y, b.z]); if (this.trail.length > 9) this.trail.shift(); } else this.trail.length = 0;
+      if (this.trail.length > 1) {
+        for (let i = 1; i < this.trail.length; i++) {
+          const [x0, y0] = this.P(this.trail[i - 1][0], this.trail[i - 1][1], this.trail[i - 1][2]); const [x1, y1] = this.P(this.trail[i][0], this.trail[i][1], this.trail[i][2]);
+          ctx.strokeStyle = `rgba(255,244,214,${(i / this.trail.length) * 0.55})`; ctx.lineWidth = Math.max(1.5, this.cam.s * 0.22 * (i / this.trail.length)); ctx.lineCap = 'round';
+          ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        }
+        ctx.lineCap = 'butt';
+      }
+      ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.beginPath(); ctx.ellipse(gx, gy, this.cam.s * 0.2, this.cam.s * 0.09, 0, 0, 7); ctx.fill();
+      // football aligned with its flight direction on screen, spinning about its long axis
+      let ang = 0;
+      if (flying) { const [px, py] = this.P(b.x - b.vx * 0.03, b.y - b.vy * 0.03, b.z - b.vz * 0.03); ang = Math.atan2(by - py, bx - px); }
+      const r = Math.max(4, this.cam.s * 0.2);
+      ctx.save(); ctx.translate(bx, by); ctx.rotate(ang);
+      const spin = flying ? Math.sin(wallT * 46 + b.x) : 0.35;
+      ctx.fillStyle = '#9a5a26'; ctx.strokeStyle = '#2b1606'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.ellipse(0, 0, r * 1.5, r * 0.88, 0, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.strokeStyle = '#f4ead2'; ctx.lineWidth = Math.max(1, r * 0.2);
+      ctx.beginPath(); ctx.moveTo(-r * 0.5, r * 0.5 * spin); ctx.lineTo(r * 0.5, r * 0.5 * spin); ctx.stroke();   // laces swing around as it spins
+      ctx.beginPath(); ctx.moveTo(-r * 0.95, 0); ctx.lineTo(-r * 0.95, 0.001); ctx.stroke();
+      ctx.restore();
     } });
     items.sort((p, q) => p.y - q.y);
     for (const it of items) it.f();
