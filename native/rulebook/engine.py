@@ -84,3 +84,5 @@ def install(co,cfg):
     E.assert_invariants=invariants
     from .substitutions import install as install_substitutions
     install_substitutions(co,cfg)
+    from .discipline import install as install_discipline
+    install_discipline(co,cfg)
