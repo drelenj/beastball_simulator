@@ -32,3 +32,12 @@ def test_release_restarts_clock_and_tackle_preserves_remaining(p):
  s.players['A0'].x=50;s.players['A0'].y=50
  assert e.restart_release('A0',(24.,0.,1.),'A1')
  e.elapse(100);assert s.game_ms==599900
+
+def test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog(p):
+ from native.run import run_match
+ s,e=p.m.s,p.m.e;s.period=e.rb.period=4;s.game_ms=60000;s.score={'A':2,'B':2}
+ e.rb.score('B');e.rb.score('B');e.award('A',50,50,'fixture')
+ result,_=run_match(1,config=p.config,max_steps=4,port_factory=lambda *args:p)
+ assert sum(r['kind']=='timeout' for r in e.rb.calls)==3
+ assert s.now>=135000 and s.live_ms==0 and s.game_ms==60000
+ assert result['status']=='partial'

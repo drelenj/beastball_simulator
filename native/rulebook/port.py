@@ -40,7 +40,10 @@ class RulebookPort(NativePort):
         e=self.m.e;s=self.m.s
         if s.phase==self.types.Phase.DEAD:
             for team in ('A','B'):
-                if e.rb_timeout(team):self.advance_intermission();return
+                if e.rb_timeout(team):
+                    # Yield a positive dead-time step; the driver then consumes
+                    # the remaining official pause and resets only its watchdog.
+                    e.elapse(1);return
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
         super().step()
