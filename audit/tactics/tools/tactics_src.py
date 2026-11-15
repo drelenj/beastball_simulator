@@ -143,6 +143,10 @@ CATALOG = {
                   'Is PolicyParams.pos_lane.', 'PolicyParams.pos_lane'),
     'pos.edge_zone': P('Penalty for standing near a field edge or inside either Keeper Zone.', 'number', [0, 3],
                        NOW, 'Is PolicyParams.pos_edge_zone.', 'PolicyParams.pos_edge_zone'),
+    'pos.anchor_pull': P('Weight of the athlete\'s own slot anchor against the nine belief-driven terms above. '
+                         '0 means the anchor is ignored.', 'number', [0, 6], COORD,
+                         'There is no anchor in v0/3. The weight is read from the playbook by cognition; it sets how '
+                         'strongly the plan pulls and is the same unsearched value for every style.'),
     # ---------------------------------------------------------------- Keeper Zone handling (offence)
     'zone.entry_mode': P('How attackers use the attacked Keeper Zone.', 'enum',
                          ['avoid', 'rebound_only', 'late_only', 'drive', 'rotation'], COORD,
@@ -349,7 +353,7 @@ def base(**kw):
         'tempo.snap_delay_s': dict(leading=0., otherwise=0.), 'tempo.hold_own_half_until_remaining_s': 30.,
         'off.first_action_max_s': 10., 'off.short_field_trigger_m': 0.,
         'pos.ball_att': .6, 'pos.ball_def': 1.2, 'pos.goal_att': 1., 'pos.goal_def': 1., 'pos.spread': 1.,
-        'pos.opp_att': .6, 'pos.opp_def': .6, 'pos.lane': .8, 'pos.edge_zone': 1.,
+        'pos.opp_att': .6, 'pos.opp_def': .6, 'pos.lane': .8, 'pos.edge_zone': 1., 'pos.anchor_pull': 2.,
         'zone.entry_mode': 'late_only', 'zone.dwell_max_s': 3.0, 'zone.occupancy_target': 1,
         'zone.min_outside_s': 1.0, 'zone.entry_stagger_s': 0., 'block.wedge': False, 'screen.arrow_screen': False,
         'def.bias_press': 0., 'def.bias_pursue': 0., 'def.scheme': 'arc_shell', 'def.pressers_max': 2,

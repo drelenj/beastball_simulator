@@ -4,7 +4,7 @@ Status: **DESIGN COMPLETE**. Not IMPLEMENTED, not TESTED, not ACCEPTED. Generate
 
 ## OWNER BRIEFING
 1. **Accomplished.** Eight ways to play are written down as formations of role slots, the rating bands each slot needs, numeric tendencies, restart and Hunt plans, and a prediction for 19 of the 28 pairings. One exploits the 5 s Keeper Zone limit in attack and one in defence, one is built on deep throws, one on carries, one leans on the Archer.
-2. **What the simulator can do now.** Nothing new. Native v0/3 can express 17 of the 61 tactic parameters, and only as one value for the whole team. It has no slots and ignores ratings, so it cannot play any of these styles as written.
+2. **What the simulator can do now.** Nothing new. Native v0/3 can express 17 of the 62 tactic parameters, and only as one value for the whole team. It has no slots and ignores ratings, so it cannot play any of these styles as written.
 3. **Unimplemented or unproven.** All of it. These are reasoned guesses about play. No value was searched or tuned and no match was run. Predictions are there to be checked, and several rest on engine behaviour nobody has measured (for example whether a wrap can hold a carrier for seconds).
 4. **Blocking.** Two builds must exist before any style can be tested: the attribute step (`ATTRIBUTE_STEP_SPEC.md`, Codex) and the playbook interface (`TACTIC_INTERFACE.md`, Codex and Claude). Five canon questions are open in `QUESTIONS_FOR_OWNER.md`; each has a placeholder, so none blocks the design.
 5. **Recommended action.** Relay the attribute step spec to Codex. Answer Q-TAC-1 to Q-TAC-5 when convenient.
@@ -119,6 +119,7 @@ Where a style has no opinion it uses the neutral value, which is Native v0/3's p
 | Positioning weights | opp def | 0.6 | NOW |
 | Positioning weights | lane | 0.8 | NOW |
 | Positioning weights | edge zone | 1 | NOW |
+| Positioning weights | anchor pull | 2 | COORD |
 
 ## 4. The eight styles
 
@@ -991,7 +992,7 @@ Slot overrides: CLAMP uses holdup drive = into zone.
 Reading it as a whole says something about the reasoning, not about the styles. On paper Long Count has one predicted edge and five predicted deficits, because slowing the game changes how many possessions there are and not what each is worth; an equal-roster round-robin is the least favourable test for it. Nothing here says the eight are evenly matched, and nothing was adjusted to make them so.
 
 ## 6. Parameter catalogue and classification
-61 parameters. 17 are EXPRESSIBLE NOW, 36 NEED COORDINATION, 8 NEED ENGINE WORK.
+62 parameters. 17 are EXPRESSIBLE NOW, 37 NEED COORDINATION, 8 NEED ENGINE WORK.
 
 - **EXPRESSIBLE NOW.** Native v0/3 can run it today with no code change. In practice the parameter is one of the 16 team-wide `PolicyParams` fields (or a behaviour that is already the only one built), with one value for every teammate.
 - **NEEDS COORDINATION.** The engine mechanics, intent kinds and view fields exist, but the athlete does not hold the value: it differs by slot, replaces a constant in cognition, or works only if teammates hold the same plan. It needs the pre-match playbook of `TACTIC_INTERFACE.md` and cognition that reads it. No physics or rules change.
@@ -1026,6 +1027,7 @@ Reading it as a whole says something about the reasoning, not about the styles. 
 | `pos.opp_def` | Out of possession: prefer closeness to the nearest believed opponent. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_opp_def. |
 | `pos.lane` | In possession: prefer an open believed lane from the carrier. | -3 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_lane. |
 | `pos.edge_zone` | Penalty for standing near a field edge or inside either Keeper Zone. | 0 to 3 | EXPRESSIBLE NOW | Is PolicyParams.pos_edge_zone. |
+| `pos.anchor_pull` | Weight of the athlete's own slot anchor against the nine belief-driven terms above. 0 means the anchor is ignored. | 0 to 6 | NEEDS COORDINATION | There is no anchor in v0/3. The weight is read from the playbook by cognition; it sets how strongly the plan pulls and is the same unsearched value for every style. |
 | `zone.entry_mode` | How attackers use the attacked Keeper Zone. | avoid / rebound_only / late_only / drive / rotation | NEEDS COORDINATION | v0/3 has one behaviour (a position penalty for zones). A mode needs the playbook. |
 | `zone.dwell_max_s` | An attacker leaves the zone when his own residence reaches this. Canon limit is 5 s. | 0 to 4.5 s | NEEDS COORDINATION | v0/3 leaves at a fixed 3.0 s. Own residence time is already in the view; the playbook must supply the threshold. |
 | `zone.occupancy_target` | Number of attackers the team tries to keep inside the zone in settled offence. | 0 to 6 | NEEDS COORDINATION | Each athlete can count believed teammates inside, but who goes in next is a shared arrangement held in the playbook. |

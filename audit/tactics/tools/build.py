@@ -224,7 +224,7 @@ HEADLINE = [
                   'restart.taker_slot']),
     ('Hunt', ['hunt.contestant_slot', 'hunt.win_action']),
     ('Positioning weights', ['pos.ball_att', 'pos.ball_def', 'pos.goal_att', 'pos.goal_def', 'pos.spread',
-                             'pos.opp_att', 'pos.opp_def', 'pos.lane', 'pos.edge_zone']),
+                             'pos.opp_att', 'pos.opp_def', 'pos.lane', 'pos.edge_zone', 'pos.anchor_pull']),
 ]
 assert sorted(k for _, ks in HEADLINE for k in ks) == sorted(k for k in S.TEAM_KEYS if k != 'subs.policy')
 NEUTRAL = S.base()
