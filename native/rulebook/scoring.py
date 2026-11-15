@@ -48,3 +48,14 @@ def install(co,cfg):
   else:self.award(defending,s.ends[defending]+s.attack_sign(defending)*40,50,'goal',fresh=True,normalize=False)
   return True
  E.goal=goal
+
+ old_restart=E.restart_release
+ def restart_release(self,pid,velocity,*args,**kw):
+  ok=old_restart(self,pid,velocity,*args,**kw)
+  if ok:
+   s=self.s;p=s.players[pid];d=math.hypot(s.ball.x-s.attack_goal(p.team),s.ball.y-50);key=band(d)
+   s.ball.rb_release_band=key;s.ball.rb_deliberate_team=p.team
+   self.rb_bands[p.team][key+'_attempts']+=1
+   self.rb_attempts.append(dict(player=pid,team=p.team,distance=d,band=key,t_ms=s.now,kind='restart_pass'))
+  return ok
+ E.restart_release=restart_release

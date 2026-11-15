@@ -36,3 +36,25 @@ def test_defensive_hold_count_plus_and_offside_no_award(p):
  s,e=p.m.s,p.m.e;s.owner='A';e.possession.pp='A';s.tackle_count=0
  e.foul('B0','A4','holding');assert s.tackle_count==1 and s.score=={'A':0,'B':0}
  e.offside('defence');assert s.tackle_count==0 and s.score=={'A':0,'B':0}
+
+@pytest.mark.parametrize('kind',['head','neck','trip','tackle','striking','after_whistle','frozen','immune_keeper'])
+def test_rule_layer_major_classification(kind,p):
+ from native import cognition as C
+ s,e=p.m.s,p.m.e;s.now=1000;s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
+ victim='A10' if kind=='immune_keeper' else 'A0'
+ if victim=='A10':s.players[victim].x=3;s.players[victim].y=50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A1',x=50,y=50,z=1.5,scoring=True)
+ reason=kind
+ if kind in ('head','neck','trip','tackle'):
+  s.players['B0'].native_intent=C.ActionIntent('i','d','B0','press',victim,None,None,None,s.now,contact=kind)
+ if kind=='frozen':s.players[victim].freeze_until=s.now+5000;reason='contact'
+ if kind=='immune_keeper':reason='contact'
+ e.foul('B0',victim,reason)
+ assert s.players['B0'].major_count==1 and s.players['B0'].exclusion_ms==120000
+ assert s.restart.team=='A'
+
+def test_unintentional_head_is_minor_and_requires_evaluation(p):
+ s,e=p.m.s,p.m.e;s.now=1000;s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
+ e.foul('B0','A0','head')
+ assert s.players['B0'].major_count==0 and s.players['B0'].minor_count==1
+ assert not s.players['A0'].active and e.rb.evaluated['A0']==s.period

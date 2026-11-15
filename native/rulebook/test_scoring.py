@@ -21,3 +21,12 @@ def test_flat_carry_banded_carry_and_keeper_own():
  p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE
  s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,last_releaser='A10',x=-1,y=50,z=1.5,scoring=True)
  assert e.goal('A') and s.score['B']==2
+
+def test_restart_throw_is_an_attempt_once_at_actual_release():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture');s.restart.taker='A0'
+ for q in s.players.values():
+  if q.role!='archer':q.x=40 if q.team=='A' else 60
+ s.players['A0'].x=50;s.players['A0'].y=50
+ assert e.restart_release('A0',(24,0,1),'A1')
+ assert e.rb_attempts[-1]['kind']=='restart_pass' and e.rb_attempts[-1]['distance']==50
+ assert len(e.rb_attempts)==1
