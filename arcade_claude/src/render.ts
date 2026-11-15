@@ -163,18 +163,17 @@ export class Renderer {
         ctx.lineCap = 'butt';
       }
       ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.beginPath(); ctx.ellipse(gx, gy, this.cam.s * 0.2, this.cam.s * 0.09, 0, 0, 7); ctx.fill();
-      // football aligned with its flight direction on screen, spinning about its long axis
-      let ang = 0;
-      if (flying) { const [px, py] = this.P(b.x - b.vx * 0.03, b.y - b.vy * 0.03, b.z - b.vz * 0.03); ang = Math.atan2(by - py, bx - px); }
+      // round ball; seams rotate with the flight to show spin
       const r = Math.max(4, this.cam.s * 0.2);
-      ctx.save(); ctx.translate(bx, by); ctx.rotate(ang);
-      const spin = flying ? Math.sin(wallT * 46 + b.x) : 0.35;
-      ctx.fillStyle = '#9a5a26'; ctx.strokeStyle = '#2b1606'; ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.ellipse(0, 0, r * 1.5, r * 0.88, 0, 0, 7); ctx.fill(); ctx.stroke();
-      ctx.strokeStyle = '#f4ead2'; ctx.lineWidth = Math.max(1, r * 0.2);
-      ctx.beginPath(); ctx.moveTo(-r * 0.5, r * 0.5 * spin); ctx.lineTo(r * 0.5, r * 0.5 * spin); ctx.stroke();   // laces swing around as it spins
-      ctx.beginPath(); ctx.moveTo(-r * 0.95, 0); ctx.lineTo(-r * 0.95, 0.001); ctx.stroke();
-      ctx.restore();
+      const rot = flying ? wallT * 26 + b.x * 0.7 : 0.6;
+      ctx.save(); ctx.translate(bx, by);
+      ctx.fillStyle = '#f2e6c9'; ctx.strokeStyle = '#6b3d14'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.save(); ctx.beginPath(); ctx.arc(0, 0, r - 0.5, 0, 7); ctx.clip(); ctx.rotate(rot);
+      ctx.strokeStyle = '#6b3d14'; ctx.lineWidth = Math.max(1, r * 0.16);
+      ctx.beginPath(); ctx.moveTo(-r, 0); ctx.lineTo(r, 0); ctx.stroke();                         // seam
+      ctx.beginPath(); ctx.ellipse(0, 0, r * 0.45, r * 1.05, 0, 0, 7); ctx.stroke();               // curved seam
+      ctx.restore(); ctx.restore();
     } });
     items.sort((p, q) => p.y - q.y);
     for (const it of items) it.f();
