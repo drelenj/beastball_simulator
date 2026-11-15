@@ -1,0 +1,28 @@
+................................................. [ 17%]
+........................................................................ [ 43%]
+......................................................F................. [ 69%]
+........................................................................ [ 95%]
+............                                                             [100%]
+=================================== FAILURES ===================================
+__________________ test_major_goal_line_scrimmage_can_release __________________
+
+    def test_major_goal_line_scrimmage_can_release():
+     p=RulebookPort(1);s,e=p.m.s,p.m.e;s.now=1000;s.phase=p.types.Phase.LIVE
+     s.owner='A';e.possession.pp='A';s.players['A0'].x=3;s.players['A0'].y=50
+     from native import cognition as C
+     s.players['B0'].native_intent=C.ActionIntent('head','d','B0','press','A0',None,None,None,s.now,contact='head')
+     assert not e.engage('B0','A0','block',surface='head')
+     assert s.restart.x==0
+     for q in s.players.values():
+      if q.active and q.role!='archer':q.x=0 if q.team=='A' else 10;q.y=80
+     assert e.rb.evaluated['A0']==s.period and not s.players['A0'].active
+>    r=s.restart;r.taker='A1';s.players['A1'].x,s.players['A1'].y=r.taker_spot
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E    AssertionError: assert False
+E     +  where False = restart_release('A0', (20, 0, 1), 'A1')
+E     +    where restart_release = <_beastball_native_d1e04019fe98_40.engine.Engine object at 0x7f3898c41730>.restart_release
+
+native/rulebook/test_execution.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED native/rulebook/test_execution.py::test_major_goal_line_scrimmage_can_release
+1 failed, 276 passed, 23 subtests passed in 212.66s (0:03:32)

@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "seed": 2,
+  "label": "rb-final-seed2-2",
+  "error": "KeyError('A11')",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/rulebook/validate_matches.py\", line 13, in match\n    r,p=run_match(seed,progress=lambda row:print(json.dumps(dict(validation=label,**row)),flush=True))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/rulebook/run.py\", line 12, in run_match\n    r,p=native_run(seed,config or RulebookConfig(),plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 19, in run_match\n    port.advance_intermission();last_live_at=s.now\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/rulebook/port.py\", line 33, in advance_intermission\n    depth,y=self.setup[p.id];p.x=self.m.s.ends[p.team]+self.m.s.attack_sign(p.team)*depth;p.y=y\n            ~~~~~~~~~~^^^^^^\nKeyError: 'A11'\n",
+  "runtime_s": 153.554
+}

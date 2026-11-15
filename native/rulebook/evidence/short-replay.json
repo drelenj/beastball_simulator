@@ -3,37 +3,37 @@
   "parallel": [
     {
       "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-      "live_ms": 3546,
+      "live_ms": 5406,
       "seed": 1,
-      "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+      "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
       "status": "partial",
-      "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+      "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
     },
     {
       "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-      "live_ms": 3546,
+      "live_ms": 5406,
       "seed": 1,
-      "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+      "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
       "status": "partial",
-      "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+      "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
     }
   ],
   "plumbing_absent": {
     "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-    "live_ms": 3546,
+    "live_ms": 5406,
     "seed": 1,
-    "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+    "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
     "status": "partial",
-    "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+    "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
   },
   "scope": "100 physical steps only; not full-match V2",
   "serial": {
     "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-    "live_ms": 3546,
+    "live_ms": 5406,
     "seed": 1,
-    "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+    "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
     "status": "partial",
-    "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+    "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
   },
   "status": "passed"
 }

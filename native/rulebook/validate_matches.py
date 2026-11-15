@@ -30,7 +30,8 @@ def match(job):
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--seeds',type=int,nargs='+',required=True);parser.add_argument('--label',required=True);parser.add_argument('--workers',type=int,default=1);parser.add_argument('--serial-replay',action='store_true')
  a=parser.parse_args();path=EVIDENCE/'FULL_MATCH_BUDGET.json';budget=json.loads(path.read_text())
- seeds=([1] if a.serial_replay else [])+a.seeds
+ replay_seed=a.seeds[0]
+ seeds=([replay_seed] if a.serial_replay else [])+a.seeds
  assert len(budget['attempts'])+len(seeds)<=budget['cap']
  source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();jobs=[];rows=[]
  for n,seed in enumerate(seeds):
@@ -48,7 +49,7 @@ def main():
  print(json.dumps(dict(validation_results=results),sort_keys=True),flush=True)
  if any(r['status']!='passed' for r in results):raise SystemExit(1)
  if a.serial_replay:
-  replay=next(r for r in results[1:] if r['seed']==1)
+  replay=next(r for r in results[1:] if r['seed']==replay_seed)
   assert (results[0]['trace_hash'],results[0]['state_hash'])==(replay['trace_hash'],replay['state_hash'])
-  print(json.dumps(dict(serial_parallel_replay='passed',seed=1)),flush=True)
+  print(json.dumps(dict(serial_parallel_replay='passed',seed=replay_seed)),flush=True)
 if __name__=='__main__':main()

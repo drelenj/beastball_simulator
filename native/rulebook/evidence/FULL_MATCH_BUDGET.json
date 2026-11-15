@@ -194,6 +194,69 @@
         }
       },
       "evidence": "native/rulebook/evidence/full-final-serial-seed1-0.json"
+    },
+    {
+      "id": 5,
+      "profile": "native-rb/1",
+      "seed": 1,
+      "label": "rb-final-seed1-0",
+      "purpose": "RB functional validation",
+      "status": "aborted_engine_fix",
+      "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+      "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap"
+    },
+    {
+      "id": 6,
+      "profile": "native-rb/1",
+      "seed": 1,
+      "label": "rb-final-seed1-1",
+      "purpose": "RB functional validation",
+      "status": "aborted_engine_fix",
+      "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+      "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap"
+    },
+    {
+      "id": 7,
+      "profile": "native-rb/1",
+      "seed": 2,
+      "label": "rb-final-seed2-2",
+      "purpose": "RB functional validation",
+      "status": "failed",
+      "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+      "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+      "error": "KeyError('A11')",
+      "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/rulebook/validate_matches.py\", line 13, in match\n    r,p=run_match(seed,progress=lambda row:print(json.dumps(dict(validation=label,**row)),flush=True))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/rulebook/run.py\", line 12, in run_match\n    r,p=native_run(seed,config or RulebookConfig(),plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 19, in run_match\n    port.advance_intermission();last_live_at=s.now\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/rulebook/port.py\", line 33, in advance_intermission\n    depth,y=self.setup[p.id];p.x=self.m.s.ends[p.team]+self.m.s.attack_sign(p.team)*depth;p.y=y\n            ~~~~~~~~~~^^^^^^\nKeyError: 'A11'\n",
+      "runtime_s": 153.554
+    },
+    {
+      "id": 8,
+      "profile": "native-rb/1",
+      "seed": 3,
+      "label": "rb-final-seed3-3",
+      "purpose": "RB functional validation",
+      "status": "aborted_engine_fix",
+      "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+      "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap"
+    },
+    {
+      "id": 9,
+      "profile": "native-rb/1",
+      "seed": 4,
+      "label": "rb-final-seed4-4",
+      "purpose": "RB functional validation",
+      "status": "aborted_engine_fix",
+      "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+      "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap"
+    },
+    {
+      "id": 10,
+      "profile": "native-rb/1",
+      "seed": 5,
+      "label": "rb-final-seed5-5",
+      "purpose": "RB functional validation",
+      "status": "aborted_engine_fix",
+      "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+      "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap"
     }
   ]
 }

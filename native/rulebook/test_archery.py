@@ -53,3 +53,20 @@ def test_five_actual_freezes_then_cap_and_captured_amber(p):
  assert not e.freeze('B0')
  s.now=q.immune_until+1;e.possession.pp='A';e.native_sync()
  assert e.freeze('B0')
+
+@pytest.mark.parametrize('protection',['frozen','immune','keeper'])
+def test_illegal_arrow_is_minor_even_if_target_has_contact_protection(p,protection):
+ s,e=live(p);target='B10' if protection=='keeper' else 'B0';q=s.players[target]
+ q.x,q.y=40,50
+ if protection=='frozen':q.freeze_until=s.now+5000
+ if protection=='immune':q.immune_until=s.now+10000
+ assert not e.shoot_arrow('A11',target,(1,0,0))
+ assert s.players['A11'].minor_count==1 and s.players['A11'].major_count==0
+ assert e.rb.quotas['A']['arrows']==1
+
+def test_physical_friendly_panel_hit_spends_shooting_team_freeze_quota(p):
+ s,e=live(p);a=e.shoot_arrow('A11','B0',(1,0,0));q=s.players['A0'];q.x,q.y=40,50
+ e.rb.quotas['B']['freezes']=e.freezes['B']=5
+ assert e.freeze(q.id,arrow=a.id)
+ assert e.rb.quotas['A']['freezes']==1 and e.rb.quotas['B']['freezes']==5
+ assert e.freezes['A']==1 and e.freezes['B']==5

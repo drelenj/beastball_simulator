@@ -14,7 +14,7 @@ from .config import RulebookConfig
 class RulebookPort(NativePort):
     def __init__(self,seed=1,config=None,policies=None,plumbing=True):
         super().__init__(seed,config or RulebookConfig(),policies,plumbing)
-        self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values() if p.role!='archer'}
+        self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values()}
         self.last_reset_period=1
         self.m.e.rb_port=self
         for team in ("A","B"):

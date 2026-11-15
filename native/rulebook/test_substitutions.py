@@ -45,3 +45,11 @@ def test_exclusion_cannot_be_bypassed_with_empty_slot_or_role_change(p):
  assert not e.rb_substitute('A1','A14',role='keeper')
  assert e.rb_substitute('A1','A14')
  assert sum(q.active and q.team=='A' and q.role!='archer' for q in s.players.values())==11
+
+def test_former_archer_field_substitution_survives_period_reset():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture')
+ assert e.rb_substitute('A11','A14')
+ assert e.rb_substitute('A0','A11')
+ assert s.players['A11'].role=='field'
+ e.end_period();p.advance_intermission()
+ assert 0<=s.players['A11'].x<=100 and s.players['A11'].active

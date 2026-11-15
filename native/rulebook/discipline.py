@@ -40,6 +40,7 @@ def install(co,cfg):
   intentional=bool(intent and intent.target==victim and getattr(intent,'contact',None) in ('head','neck','trip','tackle'))
   immune=bool(v and (v.frozen(s.now) or s.now<=v.immune_until or v.role=='keeper' and self.possession.keeper_protected(v.team,(v.x,v.y))))
   ismajor=(reason in ('striking','after_whistle','protected_keeper','frozen_contact','immune_contact') or immune or intentional and (intent.contact in ('head','neck') or s.ball.carrier!=victim))
+  if reason=='archery_target':ismajor=False # R-A illegal arrow is explicitly a minor, never contact.
   if reason=='delay_of_game':
    warnings=self.rb.warnings.get(actor,0);self.rb.warnings[actor]=warnings+1
    if not warnings:self.discipline(actor,'warning');return

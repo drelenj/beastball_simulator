@@ -28,13 +28,19 @@ def install(co,cfg):
   self.emit('arrow_release','RB-A',player=pid,target=target,arrow=ar.id,velocity=list(v),origin=list(point));return ar
  E.shoot_arrow=shoot
  def freeze(self,pid,arrow=None,panel=True,direct=True,in_range=True):
-  p=self.s.players[pid];team=self.s.other(p.team)
+  p=self.s.players[pid];projectile=next((a for a in self.s.arrows if a.id==arrow),None)
+  team=projectile.team if projectile else self.s.other(p.team)
   if not panel or p.frozen(self.s.now) or self.s.now<=p.immune_until or self.rb.quotas[team]['freezes']>=5:return False
   if self.zone(p.x,p.y) is not None:return False
   # Native wrapper also enforces Keeper and recovery protections.
-  ok=old_freeze(self,pid,arrow,panel,direct,True)
+  # Retain Native recovery/keeper admission, but its historical quota key
+  # inferred the shooter from the victim. RB uses the actual projectile team.
+  previous=dict(self.freezes);self.freezes[self.s.other(p.team)]=0
+  try:ok=old_freeze(self,pid,arrow,panel,direct,True)
+  finally:self.freezes.clear();self.freezes.update(previous)
   if ok:
    self.rb.quotas[team]['freezes']+=1
+   for t in ('A','B'):self.freezes[t]=self.rb.quotas[t]['freezes']
    p.rb_recover=(p.x,p.y,p.freeze_until)
    self.rb_publish(self.rb.ruling('freeze',player=pid,until=p.freeze_until,immune_until=p.immune_until))
   return ok
