@@ -9,7 +9,7 @@ const ms = Date.now() - t0;
 const by = (type: string, team?: number) => e.events.filter((v) => v.type === type && (team === undefined || v.team === team)).length;
 const out: any = {
   home, away, seed: s.seed, scoring: s.scoring, phase: e.phase, period: e.period, ticks: e.tick, gameSeconds: +e.time.toFixed(1), wallMs: ms,
-  score: [e.teams[0].score, e.teams[1].score], winner: e.winner >= 0 ? e.teams[e.winner].data.franchise : 'draw/incomplete', hash: e.hash(),
+  score: [e.teams[0].score, e.teams[1].score], winner: e.winner >= 0 ? e.teams[e.winner].data.franchise : 'draw/incomplete', hash: e.hash(), checkpoints: e.checkpoints,
   breakdown: e.teams.map((t) => t.breakdown), possessionSeconds: e.teams.map((t) => +t.possTime.toFixed(1)), possessionChanges: e.possChanges,
   perTeam: [0, 1].map((ti) => {
     const A = e.ath.filter((a) => a.team === ti);

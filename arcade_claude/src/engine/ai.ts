@@ -3,6 +3,8 @@
 // range, last-known positions) plus public referee information (phase, possession call,
 // tackle count, clocks, score). No hidden or future state.
 import * as C from './constants';
+// Deterministic across JS engines: avoid Math.hypot / ** (implementation-dependent rounding).
+const hyp = (...v: number[]) => { let s = 0; for (const x of v) s += x * x; return Math.sqrt(s); };
 import type { Engine } from './engine';
 import { Athlete, Intent, NO_INTENT } from './types';
 
@@ -15,7 +17,7 @@ export function perceive(e: Engine, a: Athlete) {
   const range = a.role === 'archer' ? 90 : a.a.view + 20;
   const fov = a.role === 'archer' ? Math.PI * 1.1 : FOV;
   const sees = (x: number, y: number) => {
-    const dx = x - a.x, dy = y - a.y, d = Math.hypot(dx, dy);
+    const dx = x - a.x, dy = y - a.y, d = hyp(dx, dy);
     if (d < 6) return true; // proximity (peripheral/hearing)
     if (d > range) return false;
     // head scan: athletes sweep their gaze around their body facing
@@ -93,7 +95,7 @@ export function aiThink(e: Engine, a: Athlete) {
 
 function opponentsNear(list: Seen[], a: Athlete, x: number, y: number) {
   let m = 99;
-  for (const s of list) if (s.team !== a.team && s.role !== 'archer' && !s.frozen) m = Math.min(m, Math.hypot(s.x - x, s.y - y));
+  for (const s of list) if (s.team !== a.team && s.role !== 'archer' && !s.frozen) m = Math.min(m, hyp(s.x - x, s.y - y));
   return m;
 }
 
@@ -104,7 +106,7 @@ function bestPass(e: Engine, a: Athlete, snap = false): number {
     if (t.team !== a.team || t.role === 'archer' || t.frozen) continue;
     const o = e.ath[t.idx];
     if (!e.canAct(o)) continue;
-    const d = Math.hypot(t.x - a.x, t.y - a.y);
+    const d = hyp(t.x - a.x, t.y - a.y);
     if (d < 4 || d > 38) continue;
     const gain = e.u(a.team, t.x) - e.u(a.team, a.x);
     const open = Math.min(9, opponentsNear(list, a, t.x, t.y));
@@ -114,7 +116,7 @@ function bestPass(e: Engine, a: Athlete, snap = false): number {
       if (s.team === a.team || s.role === 'archer') continue;
       const sx = t.x - a.x, sy = t.y - a.y, L = sx * sx + sy * sy;
       let k = ((s.x - a.x) * sx + (s.y - a.y) * sy) / L; k = Math.max(0, Math.min(1, k));
-      lane = Math.min(lane, Math.hypot(a.x + sx * k - s.x, a.y + sy * k - s.y));
+      lane = Math.min(lane, hyp(a.x + sx * k - s.x, a.y + sy * k - s.y));
     }
     const kz = e.inKZ(t.x, t.y, e.oppGoalX(a.team)) ? -2 : 0;
     const sc = gain * (snap ? 0.03 : 0.16) + open * 0.3 + Math.min(lane, 5) * 0.45 - Math.abs(d - 16) * 0.04 + kz;
@@ -126,7 +128,7 @@ function bestPass(e: Engine, a: Athlete, snap = false): number {
 function carrierThink(e: Engine, a: Athlete) {
   const list = seen(e, a);
   const gx = e.oppGoalX(a.team);
-  const dGoal = Math.hypot(gx - a.x, a.y);
+  const dGoal = hyp(gx - a.x, a.y);
   const pressure = opponentsNear(list, a, a.x, a.y);
   const q = (a.d.ovr - 40) / 60;
   if (a.role === 'keeper') {
@@ -139,7 +141,7 @@ function carrierThink(e: Engine, a: Athlete) {
   const rng = e.rng;
   // keeper position (if seen) affects carry-in choice
   const keeper = list.find((s) => s.team !== a.team && s.role === 'keeper');
-  const keeperOff = !keeper || Math.hypot(keeper.x - gx, keeper.y) > 4;
+  const keeperOff = !keeper || hyp(keeper.x - gx, keeper.y) > 4;
   if (dGoal < 6 && keeperOff && pressure > 2) { setTarget(a, gx + Math.sign(gx) * 2, 0, true); return; } // carry goal attempt
   if ((dGoal < shootRange && angleOk && rng.chance(0.3 + (shootRange - dGoal) * 0.05)) || (kz && a.kzT > 2.5) || (e.playClock < 4 && dGoal < 30)) {
     a.plan.shoot = true; return;
@@ -151,7 +153,7 @@ function carrierThink(e: Engine, a: Athlete) {
   let ax = 0, ay = 0;
   for (const s of list) {
     if (s.team === a.team || s.role === 'archer' || s.frozen) continue;
-    const dx = a.x - s.x, dy = a.y - s.y, d = Math.hypot(dx, dy);
+    const dx = a.x - s.x, dy = a.y - s.y, d = hyp(dx, dy);
     if (d < 10) { ax += dx / d * (10 - d); ay += dy / d * (10 - d); }
   }
   const dir = e.teams[a.team].dir;
@@ -171,24 +173,24 @@ function supportThink(e: Engine, a: Athlete, b: { x: number; y: number }) {
   let ox = 0, oy = 0;
   for (const s of list) {
     if (s.team === a.team || s.role === 'archer') continue;
-    const dx = x0 - s.x, dy = y - s.y, d = Math.hypot(dx, dy);
+    const dx = x0 - s.x, dy = y - s.y, d = hyp(dx, dy);
     if (d < 7 && d > 0.01) { ox += dx / d * (7 - d); oy += dy / d * (7 - d); }
   }
   let tx = x0 + ox * 0.5, ty = y + oy * 0.6;
   // stay out of the opponent Keeper Zone (5 s limit)
   const gx = e.oppGoalX(a.team);
-  const d = Math.hypot(tx - gx, ty);
+  const d = hyp(tx - gx, ty);
   if (d < C.KEEPER_ZONE_R + 1) { tx = gx + (tx - gx) / d * (C.KEEPER_ZONE_R + 1); ty = ty / d * (C.KEEPER_ZONE_R + 1); }
-  setTarget(a, tx, ty, Math.hypot(tx - a.x, ty - a.y) > 8);
+  setTarget(a, tx, ty, hyp(tx - a.x, ty - a.y) > 8);
 }
 
 function defendThink(e: Engine, a: Athlete, b: { x: number; y: number; holder: number }) {
   const list = seen(e, a);
   const carrier = list.find((s) => s.idx === b.holder) ?? { x: b.x, y: b.y, vx: 0, vy: 0, frozen: false, idx: b.holder } as Seen;
   // am I among my team's two closest (as I perceive teammates) to the carrier?
-  const myD = Math.hypot(carrier.x - a.x, carrier.y - a.y);
+  const myD = hyp(carrier.x - a.x, carrier.y - a.y);
   let closer = 0;
-  for (const s of list) if (s.team === a.team && s.role === 'field' && !s.frozen && Math.hypot(carrier.x - s.x, carrier.y - s.y) < myD) closer++;
+  for (const s of list) if (s.team === a.team && s.role === 'field' && !s.frozen && hyp(carrier.x - s.x, carrier.y - s.y) < myD) closer++;
   const chasers = a.d.pos === 'TRK' || a.d.pos === 'HNT' ? 2 : 1;
   const c = e.ath[b.holder];
   const immune = c && (c.role === 'keeper' && e.inKZ(carrier.x, carrier.y, e.oppGoalX(a.team)));
@@ -203,16 +205,16 @@ function defendThink(e: Engine, a: Athlete, b: { x: number; y: number; holder: n
   let mark: Seen | null = null, md = 1e9;
   for (const s of list) {
     if (s.team === a.team || s.role !== 'field' || s.idx === b.holder) continue;
-    const d = Math.hypot(s.x - spot.x, s.y - spot.y);
+    const d = hyp(s.x - spot.x, s.y - spot.y);
     if (d < md && d < 18) { md = d; mark = s; }
   }
   const og = e.ownGoalX(a.team);
   let tx = spot.x, ty = spot.y;
-  if (mark) { const dx = og - mark.x, dy = -mark.y, d = Math.hypot(dx, dy) || 1; tx = mark.x + dx / d * 1.6; ty = mark.y + dy / d * 1.6; }
+  if (mark) { const dx = og - mark.x, dy = -mark.y, d = hyp(dx, dy) || 1; tx = mark.x + dx / d * 1.6; ty = mark.y + dy / d * 1.6; }
   // defenders may stay in their own Keeper Zone only within 5 m of an attacker
-  const dd = Math.hypot(tx - og, ty);
-  if (dd < C.KEEPER_ZONE_R && !(mark && Math.hypot(mark.x - tx, mark.y - ty) < 5)) { tx = og + (tx - og) / (dd || 1) * C.KEEPER_ZONE_R; ty = ty / (dd || 1) * C.KEEPER_ZONE_R; }
-  setTarget(a, tx, ty, Math.hypot(tx - a.x, ty - a.y) > 6);
+  const dd = hyp(tx - og, ty);
+  if (dd < C.KEEPER_ZONE_R && !(mark && hyp(mark.x - tx, mark.y - ty) < 5)) { tx = og + (tx - og) / (dd || 1) * C.KEEPER_ZONE_R; ty = ty / (dd || 1) * C.KEEPER_ZONE_R; }
+  setTarget(a, tx, ty, hyp(tx - a.x, ty - a.y) > 6);
 }
 
 function looseThink(e: Engine, a: Athlete, b: { x: number; y: number; z: number }) {
@@ -224,9 +226,9 @@ function looseThink(e: Engine, a: Athlete, b: { x: number; y: number; z: number 
     const vz = 0; const tt = Math.sqrt(2 * Math.max(0, m.z - 1.2) / C.G) + vz;
     px = m.x + m.vx * tt; py = m.y + m.vy * tt;
   }
-  const myD = Math.hypot(px - a.x, py - a.y);
+  const myD = hyp(px - a.x, py - a.y);
   let closer = 0;
-  for (const s of list) if (s.team === a.team && s.role === 'field' && !s.frozen && Math.hypot(px - s.x, py - s.y) < myD) closer++;
+  for (const s of list) if (s.team === a.team && s.role === 'field' && !s.frozen && hyp(px - s.x, py - s.y) < myD) closer++;
   if (closer < 2 || myD < 6) { setTarget(a, px, py, true); return; }
   const spot = formationSpot(e, a, px, e.poss === a.team);
   setTarget(a, (spot.x * 2 + px) / 3, (spot.y * 2 + py) / 3, false);
@@ -235,17 +237,17 @@ function looseThink(e: Engine, a: Athlete, b: { x: number; y: number; z: number 
 function keeperThink(e: Engine, a: Athlete, b: { x: number; y: number; holder: number }) {
   const og = e.ownGoalX(a.team);
   const dir = e.teams[a.team].dir;
-  const dB = Math.hypot(b.x - og, b.y);
+  const dB = hyp(b.x - og, b.y);
   const list = seen(e, a);
   const holderTeam = b.holder >= 0 ? e.ath[b.holder].team : -1;
   // loose ball in my zone and I am closest (as perceived)? go get it
   if (holderTeam < 0 && dB < C.KEEPER_ZONE_R && e.phase === 'live') {
-    const myD = Math.hypot(b.x - a.x, b.y - a.y);
+    const myD = hyp(b.x - a.x, b.y - a.y);
     if (opponentsNear(list, a, b.x, b.y) > myD * 0.9) { setTarget(a, b.x, b.y, true); return; }
   }
   if (holderTeam >= 0 && holderTeam !== a.team && dB < 9 && e.phase === 'live') {
     const c = list.find((s) => s.idx === b.holder);
-    if (c && !c.frozen) { setTarget(a, c.x, c.y, true); if (Math.hypot(c.x - a.x, c.y - a.y) < 1.45) a.plan.tackle = true; return; }
+    if (c && !c.frozen) { setTarget(a, c.x, c.y, true); if (hyp(c.x - a.x, c.y - a.y) < 1.45) a.plan.tackle = true; return; }
   }
   const r = Math.min(3.2, 0.8 + dB * 0.06);
   const ang = Math.atan2(b.y, (b.x - og) * dir);
@@ -263,7 +265,7 @@ function archerThink(e: Engine, a: Athlete) {
   for (const s of list) {
     if (s.team === a.team || s.role === 'archer' || s.frozen) continue;
     if (e.u(a.team, s.x) >= 50) continue; // own half only
-    const dBall = Math.hypot(s.x - b.x, s.y - b.y);
+    const dBall = hyp(s.x - b.x, s.y - b.y);
     let sc = 0;
     if (s.idx === b.holder) sc = 3 + (50 - e.u(a.team, s.x)) * 0.04;
     else if (holderTeam !== a.team && dBall < 14) sc = 1.4 - dBall * 0.05;
@@ -284,7 +286,7 @@ export function aiSteer(e: Engine, a: Athlete): Intent {
   a.plan.pass = -1; a.plan.shoot = false; a.plan.fire = -1;
   // keep tackle intent while closing (reaction-limited retry)
   if (a.role === 'archer') return it;
-  const dx = a.tx - a.x, dy = a.ty - a.y, d = Math.hypot(dx, dy);
+  const dx = a.tx - a.x, dy = a.ty - a.y, d = hyp(dx, dy);
   if (d > 0.4) { const s = Math.min(1, d / 2.5); it.mx = dx / d * s; it.my = dy / d * s; }
   it.sprint = a.aiSprint;
   return it;

@@ -1,6 +1,8 @@
 // BEASTBALL: ARCADE authoritative engine. Fixed 60 Hz steps, seeded RNG only, no rendering.
 // This is a separate TypeScript arcade implementation of the canon, NOT the Python simulator.
 import * as C from './constants';
+// Deterministic across JS engines: avoid Math.hypot / ** (implementation-dependent rounding).
+const hyp = (...v: number[]) => { let s = 0; for (const x of v) s += x * x; return Math.sqrt(s); };
 import { Rng } from './rng';
 import { Arrow, Athlete, GameEvent, Intent, NO_INTENT, Phase, Settings, TeamData, newStats } from './types';
 import { attrsFromOvr, buildLineup, lookFor } from './data';
@@ -20,7 +22,7 @@ export interface Ball {
   passer: number; isShot: boolean; shotTeam: number; releaseDist: number; inFlight: boolean;
 }
 
-const dist2 = (ax: number, ay: number, bx: number, by: number) => (ax - bx) ** 2 + (ay - by) ** 2;
+const dist2 = (ax: number, ay: number, bx: number, by: number) => (ax - bx) * (ax - bx) + (ay - by) * (ay - by);
 
 export class Engine {
   rng: Rng; s: Settings; tick = 0; time = 0;
@@ -37,6 +39,7 @@ export class Engine {
   breakInfo: { from: number; to: number; len: number; label: string } | null = null;
   flash: { text: string; t: number; team: number } | null = null;
   humanIntent: [Intent | null, Intent | null] = [null, null];
+  checkpoints: string[] = [];
 
   constructor(home: TeamData, away: TeamData, settings: Settings, human: [boolean, boolean] = [false, false]) {
     this.s = settings;
@@ -74,7 +77,7 @@ export class Engine {
   xFromU(team: number, u: number) { return this.ownGoalX(team) + u * this.teams[team].dir; }
   active(a: Athlete) { return !a.dq && a.excludedT <= 0; }
   canAct(a: Athlete) { return this.active(a) && a.frozenT <= 0 && a.groundedT <= 0 && a.recoverT <= 0 && a.role !== 'archer'; }
-  inKZ(x: number, y: number, goalX: number) { return dist2(x, y, goalX, 0) < C.KEEPER_ZONE_R ** 2; }
+  inKZ(x: number, y: number, goalX: number) { return dist2(x, y, goalX, 0) < C.KEEPER_ZONE_R * C.KEEPER_ZONE_R; }
   keeperImmune(a: Athlete) { return a.role === 'keeper' && this.ball.holder === a.idx && this.inKZ(a.x, a.y, this.ownGoalX(a.team)); }
   ev(type: string, team: number, who: number, text: string, extra: Partial<GameEvent> = {}) {
     this.events.push({ t: this.time, period: this.period, clock: this.clock, type, team, who, text, ...extra });
@@ -310,7 +313,7 @@ export class Engine {
     if (t.arrowsLeft <= 0 || t.freezesLeft <= 0 || archer.actT > 0) return;
     if (!this.arrowLegal(archer, target)) return;
     t.arrowsLeft--; archer.stats.arrows++;
-    const d = Math.sqrt(dist2(archer.x, archer.y, target.x, target.y) + (C.PLATFORM_H - 1.2) ** 2);
+    const d = Math.sqrt(dist2(archer.x, archer.y, target.x, target.y) + (C.PLATFORM_H - 1.2) * (C.PLATFORM_H - 1.2));
     const tof = d / C.ARROW_SPEED;
     const sigma = 0.3 + (1 - archer.a.archery) * 0.8 + d * 0.011;
     const ax = target.x + target.vx * tof + this.rng.gauss() * sigma, ay = target.y + target.vy * tof + this.rng.gauss() * sigma, az = 1.2;
@@ -332,6 +335,7 @@ export class Engine {
     if (this.phase === 'final' || this.phase === 'break' || this.phase === 'pregame') return;
     const dt = C.DT;
     this.tick++; this.time += dt;
+    if (this.tick % 3600 === 0) this.checkpoints.push(this.hash());
     if (this.flash) { this.flash.t -= dt; if (this.flash.t <= 0) this.flash = null; }
 
     if (this.phase === 'dead') {
@@ -412,7 +416,7 @@ export class Engine {
       const snapper = this.phase === 'snap' && this.ball.holder === a.idx;
       let tvx = 0, tvy = 0;
       if (!dead && a.groundedT <= 0 && !snapper) {
-        const it = a.intent; const m = Math.hypot(it.mx, it.my);
+        const it = a.intent; const m = hyp(it.mx, it.my);
         if (m > 0.05) {
           let sp = a.a.top * (it.sprint ? 1 : 0.68) * (this.ball.holder === a.idx ? 0.94 : 1);
           if (a.stumbleT > 0) sp *= 0.3;
@@ -420,10 +424,10 @@ export class Engine {
         }
       }
       const acc = (dead ? 8 : a.a.accel) * dt;
-      const dvx = tvx - a.vx, dvy = tvy - a.vy, dv = Math.hypot(dvx, dvy);
+      const dvx = tvx - a.vx, dvy = tvy - a.vy, dv = hyp(dvx, dvy);
       if (dv > acc) { a.vx += dvx / dv * acc; a.vy += dvy / dv * acc; } else { a.vx = tvx; a.vy = tvy; }
       a.x += a.vx * dt; a.y += a.vy * dt;
-      const sp = Math.hypot(a.vx, a.vy);
+      const sp = hyp(a.vx, a.vy);
       if (sp > 0.6) a.facing = Math.atan2(a.vy, a.vx);
       else if (this.ball.holder !== a.idx && a.ballMem.t > -50) a.facing = Math.atan2(a.ballMem.y - a.y, a.ballMem.x - a.x);
       if (this.ball.holder !== a.idx) this.clampField(a, 2.5);
@@ -453,7 +457,7 @@ export class Engine {
       const sx = ar.x - px, sy = ar.y - py, sl = sx * sx + sy * sy;
       let k = sl > 0 ? ((t.x - px) * sx + (t.y - py) * sy) / sl : 0; k = Math.max(0, Math.min(1, k));
       const cx = px + sx * k, cy = py + sy * k;
-      const hit = dist2(cx, cy, t.x, t.y) < 0.42 ** 2 && ar.z < 2.2 + 1.0;
+      const hit = dist2(cx, cy, t.x, t.y) < 0.42 * 0.42 && ar.z < 2.2 + 1.0;
       if (hit || ar.life <= 0 || ar.z <= 0) {
         ar.resolved = true; ar.life = 0.25;
         const archer = this.ath.find((a) => a.team === ar.team && a.role === 'archer')!;
@@ -487,7 +491,7 @@ export class Engine {
       b.z = C.BALL_R;
       if (Math.abs(b.vz) > 1.2) { b.vz = -b.vz * 0.45; b.vx *= 0.75; b.vy *= 0.75; }
       else { b.vz = 0; b.vx *= Math.max(0, 1 - 2.2 * dt); b.vy *= Math.max(0, 1 - 2.2 * dt); b.inFlight = false; }
-      b.isShot = b.isShot && Math.hypot(b.vx, b.vy) > 4;
+      b.isShot = b.isShot && hyp(b.vx, b.vy) > 4;
     }
     if (!live) return;
     // goal plane crossing
@@ -495,7 +499,7 @@ export class Engine {
       if ((px - gx) * (b.x - gx) < 0 || (b.x === gx && px !== gx)) {
         const k = (gx - px) / (b.x - px);
         const cy = py + (b.y - py) * k, cz = pz + (b.z - pz) * k;
-        if (Math.hypot(cy, cz) <= C.GOAL_R - C.BALL_R) { this.goalScored(gx, -1, cy, cz); return; }
+        if (hyp(cy, cz) <= C.GOAL_R - C.BALL_R) { this.goalScored(gx, -1, cy, cz); return; }
         // keeper/ net miss -> out of play behind
       }
     }
@@ -506,7 +510,7 @@ export class Engine {
   catches() {
     const b = this.ball;
     if (b.holder >= 0) return;
-    const sp = Math.hypot(b.vx, b.vy, b.vz);
+    const sp = hyp(b.vx, b.vy, b.vz);
     let best: Athlete | null = null, bestD = 99;
     for (const a of this.ath) {
       if (!this.canAct(a) || a.noCatchT > 0 || a.stumbleT > 0) continue;
@@ -603,7 +607,7 @@ export class Engine {
     // live: clocks
     this.clock -= dt;
     if (this.poss >= 0) this.teams[this.poss].possTime += dt;
-    if (this.huntActive && Math.hypot(b.x, b.y) > C.CENTRE_CIRCLE_R) this.huntActive = false;
+    if (this.huntActive && hyp(b.x, b.y) > C.CENTRE_CIRCLE_R) this.huntActive = false;
     if (this.poss >= 0 && !this.huntActive) {
       this.playClock -= dt;
       if (this.playClock <= 0) {

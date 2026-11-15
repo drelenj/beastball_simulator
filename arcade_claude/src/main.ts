@@ -242,6 +242,7 @@ function hud(e: Engine) {
 }
 
 // ---------------- main loop ----------------
+const q = new URLSearchParams(location.search);
 let last = performance.now();
 function frame(now: number) {
   const dtReal = Math.min(0.1, (now - last) / 1000); last = now;
@@ -260,7 +261,7 @@ function frame(now: number) {
         if (n === 1) pressed.clear();
         if ((e.phase as string) === 'break' || (e.phase as string) === 'final') { app.acc = 0; break; }
       }
-      if ((e.phase as string) === 'break') showBreak(e);
+      if ((e.phase as string) === 'break') { if (q.get('autobreak')) e.resumeFromBreak(); else showBreak(e); }
       if ((e.phase as string) === 'final') showFinal(e);
     }
     R.cam.update(e, canvas.width, canvas.height, dtReal);
@@ -276,7 +277,6 @@ function frame(now: number) {
 requestAnimationFrame(frame);
 
 // URL helpers for testing: ?auto=ava&home=..&away=..&seed=..&speed=..
-const q = new URLSearchParams(location.search);
 if (q.get('auto')) {
   app.mode = q.get('auto') as Mode; app.home = q.get('home') || app.home; app.away = q.get('away') || app.away;
   app.settings = { ...defaultSettings(Number(q.get('seed') || 20261115)), periodLen: Number(q.get('period') || 600) };

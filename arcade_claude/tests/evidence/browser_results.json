@@ -1,0 +1,277 @@
+{
+ "results": [
+  {
+   "name": "launch: main menu visible",
+   "ok": true,
+   "info": {}
+  },
+  {
+   "name": "team select: 26 franchises with logos",
+   "ok": true,
+   "info": {
+    "tilesWithLogo": 26
+   }
+  },
+  {
+   "name": "match starts (Human vs AI)",
+   "ok": true,
+   "info": {
+    "phase": "live",
+    "teams": [
+     "Ala Marauders",
+     "Xenar Ignite"
+    ],
+    "n": 24,
+    "human": [
+     true,
+     false
+    ]
+   }
+  },
+  {
+   "name": "human athlete moves (S) and sprints (Shift+W)",
+   "ok": true,
+   "info": {
+    "pos0": {
+     "i": 3,
+     "x": -10,
+     "y": -6
+    },
+    "jog": {
+     "x": -10,
+     "y": -4.007268518518517,
+     "v": 5.434722222222228
+    },
+    "spr": {
+     "v": 8.164597796483486,
+     "top": 9.633712000000001,
+     "jogMax": 0,
+     "jogTop": 6.55
+    }
+   }
+  },
+  {
+   "name": "human pass (Space) -> catch / possession transfer",
+   "ok": true,
+   "info": {
+    "passAtt": 6,
+    "passComp": 5,
+    "tackles": 1,
+    "possChanges": 1
+   }
+  },
+  {
+   "name": "human tackle (J) grounds a carrier",
+   "ok": true,
+   "info": {
+    "passAtt": 6,
+    "passComp": 5,
+    "tackles": 1,
+    "possChanges": 1
+   }
+  },
+  {
+   "name": "four periods + final result screen (HvA, accelerated clock setting)",
+   "ok": true,
+   "info": {
+    "phase": "final",
+    "period": 6,
+    "score": [
+     2,
+     0
+    ],
+    "periodEnds": 5,
+    "finalVisible": true,
+    "scoreEv": 2,
+    "keeperSaves": [
+     2,
+     0
+    ],
+    "arrows": [
+     37,
+     7
+    ]
+   }
+  },
+  {
+   "name": "scoreboard equals sum of scoring events",
+   "ok": true,
+   "info": {
+    "phase": "final",
+    "period": 6,
+    "score": [
+     2,
+     0
+    ],
+    "periodEnds": 5,
+    "finalVisible": true,
+    "scoreEv": 2,
+    "keeperSaves": [
+     2,
+     0
+    ],
+    "arrows": [
+     37,
+     7
+    ]
+   }
+  },
+  {
+   "name": "rematch: same teams and seed, fresh score",
+   "ok": true,
+   "info": {
+    "phase": "set",
+    "score": [
+     0,
+     0
+    ],
+    "teams": [
+     "Ala Marauders",
+     "Xenar Ignite"
+    ],
+    "seed": 20261115
+   }
+  },
+  {
+   "name": "pause screen (Esc)",
+   "ok": true,
+   "info": {}
+  },
+  {
+   "name": "controls screen",
+   "ok": true,
+   "info": {}
+  },
+  {
+   "name": "quit to menu",
+   "ok": true,
+   "info": {}
+  },
+  {
+   "name": "AI vs AI full match Ala Marauders vs Xenar Ignite (browser, 64x)",
+   "ok": true,
+   "info": {
+    "phase": "final",
+    "period": 4,
+    "score": [
+     14,
+     0
+    ],
+    "hash": "e98a1db1",
+    "checkpoints": [
+     "6f01359c",
+     "a6d2b026",
+     "c8c6c654"
+    ],
+    "ticks": 181227,
+    "teams": [
+     {
+      "franchise": "Ala Marauders",
+      "athletes": 12,
+      "keeper": "KPR",
+      "archer": "ARC",
+      "shots": 51,
+      "saves": 8,
+      "arrows": 191,
+      "arrowHits": 66,
+      "possTime": 1215
+     },
+     {
+      "franchise": "Xenar Ignite",
+      "athletes": 12,
+      "keeper": "KPR",
+      "archer": "ARC",
+      "shots": 8,
+      "saves": 31,
+      "arrows": 208,
+      "arrowHits": 69,
+      "possTime": 1178
+     }
+    ],
+    "humanInput": [
+     null,
+     null
+    ]
+   }
+  },
+  {
+   "name": "playback speed 1x vs 8x: identical state hash at tick 3600",
+   "ok": true,
+   "info": {
+    "at1x": "6f01359c",
+    "at8x": "6f01359c",
+    "at64x": "6f01359c"
+   }
+  },
+  {
+   "name": "full match 32x vs 64x browser playback: identical final score and state hash",
+   "ok": true,
+   "info": {
+    "f32": {
+     "score": [
+      14,
+      0
+     ],
+     "hash": "e98a1db1",
+     "ticks": 181227
+    },
+    "f64": {
+     "score": [
+      14,
+      0
+     ],
+     "hash": "e98a1db1",
+     "ticks": 181227
+    }
+   }
+  },
+  {
+   "name": "no fatal console errors",
+   "ok": true,
+   "info": []
+  }
+ ],
+ "ava": {
+  "phase": "final",
+  "period": 4,
+  "score": [
+   14,
+   0
+  ],
+  "hash": "e98a1db1",
+  "checkpoints": [
+   "6f01359c",
+   "a6d2b026",
+   "c8c6c654"
+  ],
+  "ticks": 181227,
+  "teams": [
+   {
+    "franchise": "Ala Marauders",
+    "athletes": 12,
+    "keeper": "KPR",
+    "archer": "ARC",
+    "shots": 51,
+    "saves": 8,
+    "arrows": 191,
+    "arrowHits": 66,
+    "possTime": 1215
+   },
+   {
+    "franchise": "Xenar Ignite",
+    "athletes": 12,
+    "keeper": "KPR",
+    "archer": "ARC",
+    "shots": 8,
+    "saves": 31,
+    "arrows": 208,
+    "arrowHits": 69,
+    "possTime": 1178
+   }
+  ],
+  "humanInput": [
+   null,
+   null
+  ]
+ }
+}
