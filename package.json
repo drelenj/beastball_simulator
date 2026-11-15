@@ -1,0 +1,1 @@
+{"name":"beastball-simulator","private":true,"scripts":{"postinstall":"npm --prefix arcade install","dev":"npm --prefix arcade run dev","build":"npm --prefix arcade run build","test:arcade":"npm --prefix arcade test"}}

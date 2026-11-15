@@ -1,0 +1,21 @@
+{
+  "name": "ndagii-beastball-arcade",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --import tsx --test tests/engine.test.ts",
+    "test:browser": "node tests/browser.mjs",
+    "match": "node --import tsx scripts/match.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1",
+    "@types/node": "^22.19.0"
+  }
+}
