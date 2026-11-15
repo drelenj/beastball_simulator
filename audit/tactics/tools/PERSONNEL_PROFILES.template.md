@@ -18,12 +18,12 @@ Claude (Fable), 2026-11-15. Status: **DESIGN COMPLETE**. Not IMPLEMENTED, not TE
 ## 2. Assignment rule: assign by rating band from a supplied roster
 Input: any roster table with an id, a role (field, keeper, archer), the ratings on a 0 to 1 scale, height and mass. The rule is the same for every style and every roster.
 
-1. Keeper and Archer slots take the best-scoring athlete of that role.
+1. Keeper and Archer slots take the highest-scoring athlete of that role.
 2. Field slot instances are taken in the style's slot order, which is its priority order.
 3. An athlete is **in band** for a slot if he meets every minimum.
 4. In-band placement is a maximum matching between instances and in-band athletes, so no in-band placement is lost to an earlier choice. Candidates are tried in descending slot score; ties go to roster order.
 5. Slot score is the weighted sum in the "Ranked by" column, with height and mass rescaled onto the 0.60 to 1.00 band.
-6. An instance still empty takes the best-scoring unassigned field athlete and is flagged **under band**, with each shortfall listed.
+6. An instance still empty takes the highest-scoring unassigned field athlete and is flagged **under band**, with each shortfall listed.
 7. Status: **BROKEN** if any FAILURE slot has fewer in-band players than it needs; **FULL** if every instance is in band; otherwise **DEGRADED**.
 8. The rest are the bench. A substitute takes the slot of the athlete he replaces.
 

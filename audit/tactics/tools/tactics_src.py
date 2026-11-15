@@ -740,7 +740,7 @@ T.append(dict(
         slot('MARK', 4, 'field', {'speed': .80, 'agility': .75, 'awareness': .70},
              {'speed': .35, 'agility': .35, 'awareness': .3}, 0,
              'Graceful: receivers get open more often and the carrier has a pass before the tackle arrives.',
-             dict(offence=arc('attacked', (15, 28), (-55, 55), note='visits inside 20 m are short: 3 s at most'),
+             dict(offence=arc('attacked', (21, 28), (-55, 55)),
                   defence=mark('nearest_unmarked_opponent', 'ball_side', (1.5, 3),
                                note='denies the pass by position; never holds a player without the ball'),
                   restart_own=line((-2, -0.8), (-25, 25)),

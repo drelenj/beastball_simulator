@@ -176,7 +176,7 @@ def build_json(staff):
             'input': 'A roster table: id, role (field, keeper, archer), the ratings on a 0 to 1 scale, height_m, '
                      'mass_kg. At least 10 field athletes, 1 keeper, 1 archer.',
             'steps': [
-                'Keeper and Archer slots take the best-scoring athlete of that role. Field athletes never fill '
+                'Keeper and Archer slots take the highest-scoring athlete of that role. Field athletes never fill '
                 'them (canon).',
                 'Field slot instances are taken in the tactic\'s slot order, which is its priority order.',
                 'An athlete is in band for a slot if he meets every minimum in requires.',
@@ -185,7 +185,7 @@ def build_json(staff):
                 'so no in-band placement is lost to an earlier choice.',
                 'Slot score = sum over prefers of weight x rating, with height and mass rescaled to the 0.60 to '
                 '1.00 band over the envelope ranges.',
-                'An instance left empty takes the best-scoring unassigned field athlete and is flagged under '
+                'An instance left empty takes the highest-scoring unassigned field athlete and is flagged under '
                 'band, with each shortfall listed.',
                 'Status: BROKEN if any slot has fewer in-band instances than its fail_below_in_band; FULL if '
                 'every instance is in band; otherwise DEGRADED.',

@@ -67,13 +67,13 @@ def shortfalls(player, requires):
 def assign(tactic, roster):
     """Assign by rating band from a supplied roster.
 
-    1. Keeper and Archer slots take the best-scoring athlete of that role (canon: fixed roles).
+    1. Keeper and Archer slots take the highest-scoring athlete of that role (canon: fixed roles).
     2. Field slot instances are listed in the tactic's slot order (its priority order).
     3. In-band placement: a maximum matching between instances and the field athletes who meet
        every `requires` minimum (augmenting paths, instances in priority order, candidates in
        descending slot score, ties by roster order). No in-band placement is lost to an
        earlier greedy choice.
-    4. Instances still empty take the best-scoring unassigned field athlete, flagged under band.
+    4. Instances still empty take the highest-scoring unassigned field athlete, flagged under band.
     5. Status: BROKEN if any slot has fewer in-band instances than its fail_below_in_band;
        else FULL if every instance is in band; else DEGRADED.
     Deterministic: same roster and tactic give the same assignment.

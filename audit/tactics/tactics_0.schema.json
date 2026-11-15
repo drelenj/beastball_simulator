@@ -1,0 +1,136 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "tactics-0/1",
+ "title": "Beastball TACTICS-0 tactic library",
+ "description": "Machine-readable team tactics (hypotheses). Structure only; value ranges, canon limits and classification completeness are checked by audit/tactics/tools/validate.py.",
+ "type": "object",
+ "required": ["schema_version", "status", "classified_against", "design_envelope", "ratings", "body", "conventions", "classes", "parameter_catalog", "slot_level_parameters", "assignment_rule", "plays", "restart_rules", "tactics", "matchup_hypotheses"],
+ "properties": {
+  "schema_version": {"const": "tactics-0/1"},
+  "status": {"type": "string"},
+  "classified_against": {"type": "string"},
+  "design_envelope": {
+   "type": "object",
+   "required": ["status", "rating_scale", "professional_band", "height_m", "mass_kg", "canon"],
+   "properties": {
+    "rating_scale": {"$ref": "#/$defs/band"},
+    "professional_band": {"$ref": "#/$defs/band"},
+    "height_m": {"$ref": "#/$defs/band"},
+    "mass_kg": {"$ref": "#/$defs/band"},
+    "canon": {"type": "object", "required": ["speed_rating_1.0_mps"], "properties": {"speed_rating_1.0_mps": {"const": 44.704}}, "additionalProperties": false}
+   }
+  },
+  "ratings": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+  "body": {"type": "array", "items": {"type": "string"}},
+  "conventions": {"type": "object", "additionalProperties": {"type": "string"}},
+  "classes": {
+   "type": "object",
+   "required": ["EXPRESSIBLE NOW", "NEEDS COORDINATION", "NEEDS ENGINE WORK"],
+   "additionalProperties": false,
+   "patternProperties": {".*": {"type": "string"}}
+  },
+  "parameter_catalog": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/parameter"}},
+  "slot_level_parameters": {"type": "array", "items": {"type": "string"}},
+  "assignment_rule": {
+   "type": "object",
+   "required": ["name", "class", "input", "steps", "reference_implementation", "deterministic"],
+   "properties": {"class": {"$ref": "#/$defs/class"}, "steps": {"type": "array", "items": {"type": "string"}, "minItems": 1}, "deterministic": {"const": true}}
+  },
+  "plays": {"type": "object", "additionalProperties": {"type": "string"}},
+  "restart_rules": {"type": "array", "items": {"type": "string"}},
+  "tactics": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/tactic"}},
+  "matchup_hypotheses": {
+   "type": "array", "minItems": 28, "maxItems": 28,
+   "items": {
+    "type": "object",
+    "required": ["a", "b", "predicted_edge", "reason"],
+    "additionalProperties": false,
+    "properties": {"a": {"type": "string"}, "b": {"type": "string"}, "predicted_edge": {"type": ["string", "null"]}, "reason": {"type": "string", "minLength": 10}}
+   }
+  }
+ },
+ "$defs": {
+  "band": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+  "class": {"enum": ["EXPRESSIBLE NOW", "NEEDS COORDINATION", "NEEDS ENGINE WORK"]},
+  "parameter": {
+   "type": "object",
+   "required": ["meaning", "type", "range", "class", "reason", "route", "joint", "needs_attribute_step_to_matter", "unit"],
+   "additionalProperties": false,
+   "properties": {
+    "meaning": {"type": "string", "minLength": 5},
+    "type": {"enum": ["number", "integer", "boolean", "enum", "band", "weights", "weights_open", "object", "slot", "slot_or_nearest", "anchor", "bands", "rule"]},
+    "range": {},
+    "unit": {"type": ["string", "null"]},
+    "class": {"$ref": "#/$defs/class"},
+    "route": {"type": ["string", "null"], "description": "For EXPRESSIBLE NOW: the Native v0/3 input that carries it."},
+    "reason": {"type": "string", "minLength": 10, "description": "One line: why it has this class against Native v0/3."},
+    "joint": {"type": "boolean", "description": "True if it only works when several teammates hold the same plan."},
+    "needs_attribute_step_to_matter": {"type": "boolean"}
+   }
+  },
+  "anchor": {
+   "type": "object",
+   "required": ["type"],
+   "oneOf": [
+    {"properties": {"type": {"const": "rule"}, "text": {"type": "string"}}, "required": ["text"], "additionalProperties": false},
+    {"properties": {"type": {"const": "goal_arc"}, "goal": {"enum": ["attacked", "own"]}, "range_m": {"$ref": "#/$defs/band"}, "bearing_deg": {"$ref": "#/$defs/band"}, "spread": {"enum": ["even", "mirror"]}, "note": {"type": ["string", "null"]}}, "required": ["goal", "range_m", "bearing_deg", "spread"], "additionalProperties": false},
+    {"properties": {"type": {"const": "ball_rel"}, "du_m": {"$ref": "#/$defs/band"}, "dv_m": {"$ref": "#/$defs/band"}, "mirror": {"type": "boolean"}, "note": {"type": ["string", "null"]}}, "required": ["du_m", "dv_m", "mirror"], "additionalProperties": false},
+    {"properties": {"type": {"const": "field"}, "u_m": {"$ref": "#/$defs/band"}, "v_m": {"$ref": "#/$defs/band"}, "spread": {"enum": ["even", "mirror"]}, "note": {"type": ["string", "null"]}}, "required": ["u_m", "v_m", "spread"], "additionalProperties": false},
+    {"properties": {"type": {"const": "mark"}, "target": {"enum": ["carrier", "nearest_unmarked_opponent", "receiver_near_goal"]}, "side": {"enum": ["goal_side", "ball_side", "lateral"]}, "gap_m": {"$ref": "#/$defs/band"}, "note": {"type": ["string", "null"]}}, "required": ["target", "side", "gap_m"], "additionalProperties": false},
+    {"properties": {"type": {"const": "line_rel"}, "du_m": {"$ref": "#/$defs/band"}, "dv_m": {"$ref": "#/$defs/band"}, "mirror": {"type": "boolean"}, "note": {"type": ["string", "null"]}}, "required": ["du_m", "dv_m", "mirror"], "additionalProperties": false},
+    {"properties": {"type": {"const": "pair"}, "with_slot": {"type": "string"}, "toward": {"const": "attacked_goal"}, "gap_m": {"$ref": "#/$defs/band"}, "min_range_from_goal_m": {"type": "number", "minimum": 20}, "note": {"type": ["string", "null"]}}, "required": ["with_slot", "gap_m", "min_range_from_goal_m"], "additionalProperties": false},
+    {"properties": {"type": {"const": "zone_cycle"}, "goal": {"const": "attacked"}, "inside_range_m": {"$ref": "#/$defs/band"}, "bearing_deg": {"$ref": "#/$defs/band"}, "outside_range_m": {"$ref": "#/$defs/band"}, "dwell": {"const": "zone.dwell_max_s"}, "note": {"type": ["string", "null"]}}, "required": ["inside_range_m", "bearing_deg", "outside_range_m", "dwell"], "additionalProperties": false}
+   ]
+  },
+  "slot": {
+   "type": "object",
+   "required": ["id", "count", "role", "what", "requires", "prefers", "understaffed", "anchors", "overrides"],
+   "additionalProperties": false,
+   "properties": {
+    "id": {"type": "string", "pattern": "^[A-Z]+$"},
+    "count": {"type": "integer", "minimum": 1, "maximum": 10},
+    "role": {"enum": ["field", "keeper", "archer"]},
+    "what": {"type": "string"},
+    "requires": {"type": "object", "additionalProperties": {"type": "number"}, "description": "Minimum bands: rating name or height_m / mass_kg to minimum value."},
+    "prefers": {"type": "object", "additionalProperties": {"type": "number", "exclusiveMinimum": 0}, "description": "Ranking weights; they sum to 1."},
+    "understaffed": {
+     "type": "object",
+     "required": ["mode", "fail_below_in_band", "effect"],
+     "additionalProperties": false,
+     "properties": {"mode": {"enum": ["graceful", "failure"]}, "fail_below_in_band": {"type": "integer", "minimum": 0}, "effect": {"type": "string", "minLength": 10}}
+    },
+    "anchors": {
+     "type": "object",
+     "required": ["offence", "defence", "restart_own", "restart_opp", "hunt"],
+     "additionalProperties": false,
+     "patternProperties": {".*": {"$ref": "#/$defs/anchor"}}
+    },
+    "overrides": {"type": "object", "description": "Team parameters this slot holds with a different value."}
+   }
+  },
+  "tactic": {
+   "type": "object",
+   "required": ["id", "name", "tags", "idea", "formation", "slots", "team_parameters", "policy_params_projection", "signature", "strengths", "weaknesses", "canon_checks", "matchups", "staffing_arithmetic"],
+   "additionalProperties": false,
+   "properties": {
+    "id": {"type": "string", "pattern": "^[A-Z]+$"},
+    "name": {"type": "string"},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "idea": {"type": "string", "minLength": 40},
+    "formation": {"type": "string"},
+    "slots": {"type": "array", "items": {"$ref": "#/$defs/slot"}, "minItems": 3},
+    "team_parameters": {"type": "object", "description": "One value for every team-level key of parameter_catalog."},
+    "policy_params_projection": {"type": "object", "minProperties": 16, "maxProperties": 16, "additionalProperties": {"type": "number"}, "description": "The 16 Native v0/3 PolicyParams fields: the part of the tactic that is EXPRESSIBLE NOW, team-wide."},
+    "signature": {
+     "type": "object", "minProperties": 1,
+     "additionalProperties": {"type": "object", "required": ["op", "value"], "additionalProperties": false, "properties": {"op": {"enum": [">=", "<=", "between"]}, "value": {}}}
+    },
+    "strengths": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "weaknesses": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "canon_checks": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "matchups": {"type": "object", "required": ["edge_over", "struggles_against", "no_prediction"]},
+    "staffing_arithmetic": {"type": "object"}
+   }
+  }
+ }
+}
