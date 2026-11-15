@@ -43,4 +43,7 @@ def build_core(config):
         setattr(package,part,mod)
     from .rules import install
     install(package,config)
+    if config.profile=="native-rb":
+        from .rulebook.engine import install as install_rb
+        install_rb(package,config)
     return package

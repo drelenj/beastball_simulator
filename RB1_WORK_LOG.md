@@ -21,3 +21,5 @@ Outstanding before RB-1 submission:
 6. Label and record unstated details as PLACEHOLDER; do not reinterpret ratified canon.
 
 RB-1 is IN PROGRESS, not ready for acceptance. The immutable configuration schema exists, but there is no supported RB match entry point yet. The engine is still Native v0/2. No RB-1 functional acceptance claim is made.
+
+Step1 integrated: clocks, official Hunt release, all period/OT breaks, every-period ends exchange, deterministic timeout policy and suspended restart deadlines.19 RB tests pass. Native v0 paths are selected unchanged by default. A driver hook advances planned dead time without the restart watchdog mistaking a ten-minute halftime for a stall.

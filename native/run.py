@@ -10,11 +10,14 @@ from .port import NativePort, digest
 from . import cognition
 
 
-def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None):
-    started=time.perf_counter();port=NativePort(seed,config,policies,plumbing)
+def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None):
+    started=time.perf_counter();port=(port_factory or NativePort)(seed,config,policies,plumbing)
     m,s,e=port.m,port.m.s,port.m.e
     next_dec={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
     while s.phase!=port.types.Phase.FINAL:
+        if getattr(port,"intermission_pending",False):
+            port.advance_intermission();last_live_at=s.now
+            continue
         now=s.now
         if now>=next_sense:port.capture(now);next_sense=now+port.config.sense_ms
         for pid in port.active_ids():
@@ -32,6 +35,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
         if progress and s.live_ms-last_progress>=60000:
             last_progress=s.live_ms;progress(dict(seed=seed,period=s.period,live_ms=s.live_ms,now=s.now,steps=steps,score=dict(s.score)))
         if s.now-now<=0 and s.phase!=port.types.Phase.FINAL:raise RuntimeError('clock stalled')
+        if getattr(port,"intermission_pending",False):last_live_at=s.now
         if s.live_ms>last_live_ms:last_live_ms=s.live_ms;last_live_at=s.now
         elif s.phase!=port.types.Phase.FINAL and s.now-last_live_at>port.config.dead_stall_limit_ms:
             raise RuntimeError('restart stall: '+json.dumps({'now':s.now,'live_ms':s.live_ms,'restart':asdict(s.restart) if s.restart else None,'record':getattr(s.restart,'native_id',None),'players':{p.id:{'x':p.x,'y':p.y,'target':p.target,'role':p.role,'posture':p.posture,'launch':getattr(p,'c4c_launch',None),'intent':getattr(getattr(p,'native_intent',None),'kind',None)} for p in s.players.values() if p.active},'pending':{pid:pend['cmd'].intent.kind for pid,pend in port.pending.items()}},sort_keys=True))
