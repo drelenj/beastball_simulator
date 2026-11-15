@@ -1,0 +1,13 @@
+{
+  "name": "NDAGÏ Beastball: Arcade",
+  "short_name": "Beastball",
+  "description": "Play or watch NBL Beastball in an original 2.5D arcade game.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b131d",
+  "theme_color": "#0b131d",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
