@@ -22,3 +22,10 @@ Full matches used so far are counted here against the cap of 40.
 3. `native/restart_metric.py` (read-only) + `restart_metric` in every run result: awarded / released / timeout / superseded per kind, release and timeout rates, and the eligible subset (a taker could reach the spot in the window and a teammate stood at throwable distance).
 4. 12000-step windows under v0/3: seed 1 timeouts 3 of 121 (eligible 2 of 117), seed 3: 1 of 104, seed 4: 0 of 102, seed 5: 1 of 111. Same window under v0/2 seed 1: 29 of 115.
 5. Also: v0/3 Archer no longer releases during a pass in flight (Q-FAB1-2). `RULE_TO_TEST_MATRIX.json` and `QUESTIONS_FOR_OWNER.md` updated. Full matches used: 1 of 40. Next: full b1+native suite, 10-seed table, replay checks, independent review, manifest.
+
+## Verification state at stop (usage limit reached)
+1. V1 met: 246 tests pass; `git diff a1b1313 -- b1 core_src` empty; native-v0/2 seed 1 replays trace 3840682e... / state 411abb0a... / digest f31b44a1...
+2. V2 met for seed 1: native-v0/3 trace cacf2405... state d688fcbb..., serial = parallel, null M2 = plumbing absent. V3, V4 met by `native/test_v3.py` and the matrix rows. V5 met: 10 of 10 seeds final, no crash/stall/invariant failure (`native/evidence/v0-3/ten-seed-table.json`). V7: `NATIVE_V0_3_MANIFEST.json`.
+3. V6 NOT met: the independent reviewer agent stopped on the usage limit before reporting. See `audit/native/HP-002_NATIVE_V0_3_REVIEW.md` for what remains. Resume there.
+4. Not recorded: first/second tackle split (add restart award reasons to the run result, then rerun the table: 10 matches).
+5. Full matches used: 14 of 40.

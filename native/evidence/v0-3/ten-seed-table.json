@@ -1,0 +1,1087 @@
+{
+  "config_version": "native-v0/3",
+  "rows": [
+    {
+      "arrows": {
+        "body_or_ball_impacts": 79,
+        "freezes": 38,
+        "inert_impacts": 41,
+        "missed": 90,
+        "released": 169
+      },
+      "boundary": 245,
+      "collisions": 1117,
+      "contact_intents": {
+        "brace": 116,
+        "dodge": 94,
+        "run_through": 301,
+        "takedown": 2523,
+        "wrap": 2584
+      },
+      "first_tackles": null,
+      "foul_awards": 11,
+      "foul_reasons": {
+        "archery_target": 18,
+        "illegal_release": 2,
+        "zone_unmarked": 7
+      },
+      "goals": 20,
+      "grips_broken": 16,
+      "groundings": 82,
+      "holds_started": 255,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 27,
+      "offside_calls": 1,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 400,
+          "eligible": 395,
+          "eligible_timeout": 5,
+          "eligible_timeout_rate": 0.0127,
+          "release_rate": 0.9525,
+          "released": 381,
+          "timeout": 6,
+          "timeout_rate": 0.015
+        },
+        "scrim": {
+          "awarded": 135,
+          "eligible": 135,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0074,
+          "release_rate": 0.9037,
+          "released": 122,
+          "timeout": 1,
+          "timeout_rate": 0.0074
+        },
+        "snap40": {
+          "awarded": 20,
+          "eligible": 20,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 20,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 245,
+          "eligible": 240,
+          "eligible_timeout": 4,
+          "eligible_timeout_rate": 0.0167,
+          "release_rate": 0.9755,
+          "released": 239,
+          "timeout": 5,
+          "timeout_rate": 0.0204
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 26,
+          "B": 27
+        },
+        "shootout": null,
+        "winner": "B"
+      },
+      "runtime_s": 89.994,
+      "score": {
+        "A": 26,
+        "B": 27
+      },
+      "second_tackles": null,
+      "seed": 1,
+      "snaps_released": 142,
+      "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012",
+      "status": "final",
+      "strips": 9,
+      "tackle_count_events": 81,
+      "tosses_released": 239,
+      "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2",
+      "turnovers": 419
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 75,
+        "freezes": 43,
+        "inert_impacts": 29,
+        "missed": 85,
+        "released": 160
+      },
+      "boundary": 245,
+      "collisions": 1017,
+      "contact_intents": {
+        "brace": 92,
+        "dodge": 104,
+        "run_through": 249,
+        "takedown": 2312,
+        "wrap": 2332
+      },
+      "first_tackles": null,
+      "foul_awards": 8,
+      "foul_reasons": {
+        "archery_target": 14,
+        "illegal_release": 3,
+        "zone_unmarked": 6
+      },
+      "goals": 16,
+      "grips_broken": 14,
+      "groundings": 75,
+      "holds_started": 252,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 23,
+      "offside_calls": 3,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 384,
+          "eligible": 381,
+          "eligible_timeout": 6,
+          "eligible_timeout_rate": 0.0157,
+          "release_rate": 0.9557,
+          "released": 367,
+          "timeout": 6,
+          "timeout_rate": 0.0156
+        },
+        "scrim": {
+          "awarded": 123,
+          "eligible": 123,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0244,
+          "release_rate": 0.9024,
+          "released": 111,
+          "timeout": 3,
+          "timeout_rate": 0.0244
+        },
+        "snap40": {
+          "awarded": 16,
+          "eligible": 16,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 16,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 245,
+          "eligible": 242,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0124,
+          "release_rate": 0.9796,
+          "released": 240,
+          "timeout": 3,
+          "timeout_rate": 0.0122
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 20,
+          "B": 23
+        },
+        "shootout": null,
+        "winner": "B"
+      },
+      "runtime_s": 84.541,
+      "score": {
+        "A": 20,
+        "B": 23
+      },
+      "second_tackles": null,
+      "seed": 2,
+      "snaps_released": 127,
+      "state_hash": "018f47a9683e7605391c884cf1f91522445fe6e003a1f32d83f3d49595d3473e",
+      "status": "final",
+      "strips": 12,
+      "tackle_count_events": 73,
+      "tosses_released": 240,
+      "trace_hash": "9b8c46687209740cae03fb2d191275bc50fc84a443d4f7ed693bdb7952020d13",
+      "turnovers": 417
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 90,
+        "freezes": 47,
+        "inert_impacts": 43,
+        "missed": 107,
+        "released": 197
+      },
+      "boundary": 214,
+      "collisions": 1212,
+      "contact_intents": {
+        "brace": 108,
+        "dodge": 102,
+        "run_through": 302,
+        "takedown": 2560,
+        "wrap": 2458
+      },
+      "first_tackles": null,
+      "foul_awards": 12,
+      "foul_reasons": {
+        "archery_target": 12,
+        "illegal_release": 2,
+        "zone_unmarked": 9
+      },
+      "goals": 14,
+      "grips_broken": 24,
+      "groundings": 67,
+      "holds_started": 253,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 23,
+      "offside_calls": 1,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 352,
+          "eligible": 350,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0029,
+          "release_rate": 0.9659,
+          "released": 340,
+          "timeout": 2,
+          "timeout_rate": 0.0057
+        },
+        "scrim": {
+          "awarded": 124,
+          "eligible": 124,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0081,
+          "release_rate": 0.9355,
+          "released": 116,
+          "timeout": 1,
+          "timeout_rate": 0.0081
+        },
+        "snap40": {
+          "awarded": 14,
+          "eligible": 14,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 14,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 214,
+          "eligible": 212,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 0.9813,
+          "released": 210,
+          "timeout": 1,
+          "timeout_rate": 0.0047
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 27,
+          "B": 17
+        },
+        "shootout": null,
+        "winner": "A"
+      },
+      "runtime_s": 81.587,
+      "score": {
+        "A": 27,
+        "B": 17
+      },
+      "second_tackles": null,
+      "seed": 3,
+      "snaps_released": 130,
+      "state_hash": "e272ffc67aa0897366ce767c9ee0d27a3a57fb8260e38e4ac6fb3b9b29425f9d",
+      "status": "final",
+      "strips": 13,
+      "tackle_count_events": 66,
+      "tosses_released": 210,
+      "trace_hash": "2b17369883c613f5e63832f62b686ff9334c765e91d6b7710ae794cc735f59cf",
+      "turnovers": 390
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 94,
+        "freezes": 45,
+        "inert_impacts": 47,
+        "missed": 103,
+        "released": 197
+      },
+      "boundary": 256,
+      "collisions": 1277,
+      "contact_intents": {
+        "brace": 109,
+        "dodge": 116,
+        "run_through": 354,
+        "takedown": 2828,
+        "wrap": 2860
+      },
+      "first_tackles": null,
+      "foul_awards": 13,
+      "foul_reasons": {
+        "archery_target": 18,
+        "illegal_release": 3,
+        "zone_unmarked": 11
+      },
+      "goals": 16,
+      "grips_broken": 22,
+      "groundings": 82,
+      "holds_started": 288,
+      "invariants": "passed",
+      "live_s": 2880.998,
+      "major_fouls": 0,
+      "minor_fouls": 32,
+      "offside_calls": 1,
+      "period": 6,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 421,
+          "eligible": 414,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0072,
+          "release_rate": 0.9596,
+          "released": 404,
+          "timeout": 3,
+          "timeout_rate": 0.0071
+        },
+        "scrim": {
+          "awarded": 150,
+          "eligible": 150,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0067,
+          "release_rate": 0.9067,
+          "released": 136,
+          "timeout": 1,
+          "timeout_rate": 0.0067
+        },
+        "snap40": {
+          "awarded": 15,
+          "eligible": 15,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 15,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 256,
+          "eligible": 249,
+          "eligible_timeout": 2,
+          "eligible_timeout_rate": 0.008,
+          "release_rate": 0.9883,
+          "released": 253,
+          "timeout": 2,
+          "timeout_rate": 0.0078
+        }
+      },
+      "result": {
+        "method": "sudden_death",
+        "score": {
+          "A": 25,
+          "B": 23
+        },
+        "shootout": null,
+        "winner": "A"
+      },
+      "runtime_s": 103.532,
+      "score": {
+        "A": 25,
+        "B": 23
+      },
+      "second_tackles": null,
+      "seed": 4,
+      "snaps_released": 151,
+      "state_hash": "7c0261a89e4fafe23802d436faf522965721cdb3f5713f588d719f87ec724d37",
+      "status": "final",
+      "strips": 14,
+      "tackle_count_events": 79,
+      "tosses_released": 253,
+      "trace_hash": "d52e4f55953696e21f3fffb5c0bc401108a9968518e73fda48c1dbd84ff00832",
+      "turnovers": 473
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 86,
+        "freezes": 42,
+        "inert_impacts": 44,
+        "missed": 89,
+        "released": 175
+      },
+      "boundary": 250,
+      "collisions": 1140,
+      "contact_intents": {
+        "brace": 109,
+        "dodge": 110,
+        "run_through": 293,
+        "takedown": 2418,
+        "wrap": 2247
+      },
+      "first_tackles": null,
+      "foul_awards": 11,
+      "foul_reasons": {
+        "archery_target": 11,
+        "illegal_release": 3,
+        "zone_unmarked": 9
+      },
+      "goals": 14,
+      "grips_broken": 21,
+      "groundings": 67,
+      "holds_started": 231,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 23,
+      "offside_calls": 0,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 381,
+          "eligible": 379,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0079,
+          "release_rate": 0.9711,
+          "released": 370,
+          "timeout": 3,
+          "timeout_rate": 0.0079
+        },
+        "scrim": {
+          "awarded": 117,
+          "eligible": 117,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 0.9316,
+          "released": 109,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "snap40": {
+          "awarded": 14,
+          "eligible": 14,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 14,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 250,
+          "eligible": 248,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0121,
+          "release_rate": 0.988,
+          "released": 247,
+          "timeout": 3,
+          "timeout_rate": 0.012
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 25,
+          "B": 14
+        },
+        "shootout": null,
+        "winner": "A"
+      },
+      "runtime_s": 85.331,
+      "score": {
+        "A": 25,
+        "B": 14
+      },
+      "second_tackles": null,
+      "seed": 5,
+      "snaps_released": 123,
+      "state_hash": "ef3ceef9a1bcb442b8f2c1c59d2a6b6d0fef39f07058d29192ac52abdb6c33bb",
+      "status": "final",
+      "strips": 6,
+      "tackle_count_events": 66,
+      "tosses_released": 247,
+      "trace_hash": "5990a25490479d907ea9199cd3c4f587df6e4d2040657f3bb6f3a49520c83bd5",
+      "turnovers": 422
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 79,
+        "freezes": 38,
+        "inert_impacts": 41,
+        "missed": 93,
+        "released": 173
+      },
+      "boundary": 222,
+      "collisions": 1156,
+      "contact_intents": {
+        "brace": 97,
+        "dodge": 111,
+        "run_through": 284,
+        "takedown": 2560,
+        "wrap": 2375
+      },
+      "first_tackles": null,
+      "foul_awards": 14,
+      "foul_reasons": {
+        "archery_target": 18,
+        "illegal_release": 1,
+        "zone_unmarked": 8
+      },
+      "goals": 12,
+      "grips_broken": 26,
+      "groundings": 70,
+      "holds_started": 254,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 27,
+      "offside_calls": 4,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 366,
+          "eligible": 364,
+          "eligible_timeout": 7,
+          "eligible_timeout_rate": 0.0192,
+          "release_rate": 0.9481,
+          "released": 347,
+          "timeout": 7,
+          "timeout_rate": 0.0191
+        },
+        "scrim": {
+          "awarded": 132,
+          "eligible": 132,
+          "eligible_timeout": 4,
+          "eligible_timeout_rate": 0.0303,
+          "release_rate": 0.9091,
+          "released": 120,
+          "timeout": 4,
+          "timeout_rate": 0.0303
+        },
+        "snap40": {
+          "awarded": 12,
+          "eligible": 12,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 12,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 222,
+          "eligible": 220,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0136,
+          "release_rate": 0.9685,
+          "released": 215,
+          "timeout": 3,
+          "timeout_rate": 0.0135
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 17,
+          "B": 23
+        },
+        "shootout": null,
+        "winner": "B"
+      },
+      "runtime_s": 85.658,
+      "score": {
+        "A": 17,
+        "B": 23
+      },
+      "second_tackles": null,
+      "seed": 6,
+      "snaps_released": 132,
+      "state_hash": "c790fdb22e07c54ab067ae52a8c1b8be72983612e4f4393aebdfc446157dac0e",
+      "status": "final",
+      "strips": 19,
+      "tackle_count_events": 68,
+      "tosses_released": 215,
+      "trace_hash": "c83799a76a2d683a208d5f00a94235ee2abd3110b99a4ac9499a2d71245f8ce4",
+      "turnovers": 402
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 93,
+        "freezes": 50,
+        "inert_impacts": 43,
+        "missed": 95,
+        "released": 188
+      },
+      "boundary": 223,
+      "collisions": 1099,
+      "contact_intents": {
+        "brace": 146,
+        "dodge": 124,
+        "run_through": 373,
+        "takedown": 2653,
+        "wrap": 2515
+      },
+      "first_tackles": null,
+      "foul_awards": 12,
+      "foul_reasons": {
+        "archery_target": 10,
+        "illegal_release": 3,
+        "zone_unmarked": 8
+      },
+      "goals": 14,
+      "grips_broken": 25,
+      "groundings": 74,
+      "holds_started": 265,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 21,
+      "offside_calls": 1,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 361,
+          "eligible": 356,
+          "eligible_timeout": 4,
+          "eligible_timeout_rate": 0.0112,
+          "release_rate": 0.9751,
+          "released": 352,
+          "timeout": 4,
+          "timeout_rate": 0.0111
+        },
+        "scrim": {
+          "awarded": 124,
+          "eligible": 124,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0081,
+          "release_rate": 0.9677,
+          "released": 120,
+          "timeout": 1,
+          "timeout_rate": 0.0081
+        },
+        "snap40": {
+          "awarded": 14,
+          "eligible": 14,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 14,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 223,
+          "eligible": 218,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0138,
+          "release_rate": 0.9776,
+          "released": 218,
+          "timeout": 3,
+          "timeout_rate": 0.0135
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 19,
+          "B": 23
+        },
+        "shootout": null,
+        "winner": "B"
+      },
+      "runtime_s": 89.975,
+      "score": {
+        "A": 19,
+        "B": 23
+      },
+      "second_tackles": null,
+      "seed": 7,
+      "snaps_released": 134,
+      "state_hash": "44059f0fc89d68b8fdca6f13ad67c7c3424202115a1f728444dab35da054a091",
+      "status": "final",
+      "strips": 14,
+      "tackle_count_events": 72,
+      "tosses_released": 218,
+      "trace_hash": "9830fe95acf8914f0f569650070b254d38214bc0031ce834e70e7d93f154aaf6",
+      "turnovers": 421
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 83,
+        "freezes": 38,
+        "inert_impacts": 45,
+        "missed": 104,
+        "released": 187
+      },
+      "boundary": 197,
+      "collisions": 1126,
+      "contact_intents": {
+        "brace": 114,
+        "dodge": 126,
+        "run_through": 302,
+        "takedown": 2492,
+        "wrap": 2403
+      },
+      "first_tackles": null,
+      "foul_awards": 12,
+      "foul_reasons": {
+        "archery_target": 14,
+        "illegal_release": 3,
+        "zone_unmarked": 8
+      },
+      "goals": 14,
+      "grips_broken": 27,
+      "groundings": 76,
+      "holds_started": 281,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 25,
+      "offside_calls": 1,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 341,
+          "eligible": 338,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.003,
+          "release_rate": 0.9648,
+          "released": 329,
+          "timeout": 2,
+          "timeout_rate": 0.0059
+        },
+        "scrim": {
+          "awarded": 130,
+          "eligible": 130,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0077,
+          "release_rate": 0.9308,
+          "released": 121,
+          "timeout": 1,
+          "timeout_rate": 0.0077
+        },
+        "snap40": {
+          "awarded": 14,
+          "eligible": 14,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 14,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 197,
+          "eligible": 194,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 0.9848,
+          "released": 194,
+          "timeout": 1,
+          "timeout_rate": 0.0051
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 23,
+          "B": 19
+        },
+        "shootout": null,
+        "winner": "A"
+      },
+      "runtime_s": 88.042,
+      "score": {
+        "A": 23,
+        "B": 19
+      },
+      "second_tackles": null,
+      "seed": 8,
+      "snaps_released": 135,
+      "state_hash": "c31ed301a75327069f89d6198eaca5ab443e4ff80350633b3d6fc374e61f73be",
+      "status": "final",
+      "strips": 9,
+      "tackle_count_events": 75,
+      "tosses_released": 194,
+      "trace_hash": "60ab9c3011fb353d3aee69d3d15ab5f330672cb0e6a2269d0d8129928a1db474",
+      "turnovers": 372
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 92,
+        "freezes": 51,
+        "inert_impacts": 41,
+        "missed": 107,
+        "released": 199
+      },
+      "boundary": 247,
+      "collisions": 1279,
+      "contact_intents": {
+        "brace": 105,
+        "dodge": 137,
+        "run_through": 307,
+        "takedown": 2817,
+        "wrap": 2818
+      },
+      "first_tackles": null,
+      "foul_awards": 12,
+      "foul_reasons": {
+        "archery_target": 12,
+        "illegal_release": 2,
+        "zone_unmarked": 9
+      },
+      "goals": 16,
+      "grips_broken": 25,
+      "groundings": 71,
+      "holds_started": 270,
+      "invariants": "passed",
+      "live_s": 2700.0,
+      "major_fouls": 0,
+      "minor_fouls": 23,
+      "offside_calls": 3,
+      "period": 5,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 393,
+          "eligible": 389,
+          "eligible_timeout": 4,
+          "eligible_timeout_rate": 0.0103,
+          "release_rate": 0.9669,
+          "released": 380,
+          "timeout": 5,
+          "timeout_rate": 0.0127
+        },
+        "scrim": {
+          "awarded": 130,
+          "eligible": 130,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0231,
+          "release_rate": 0.9385,
+          "released": 122,
+          "timeout": 3,
+          "timeout_rate": 0.0231
+        },
+        "snap40": {
+          "awarded": 16,
+          "eligible": 16,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 16,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 247,
+          "eligible": 243,
+          "eligible_timeout": 1,
+          "eligible_timeout_rate": 0.0041,
+          "release_rate": 0.9798,
+          "released": 242,
+          "timeout": 2,
+          "timeout_rate": 0.0081
+        }
+      },
+      "result": {
+        "method": "overtime",
+        "score": {
+          "A": 27,
+          "B": 23
+        },
+        "shootout": null,
+        "winner": "A"
+      },
+      "runtime_s": 100.905,
+      "score": {
+        "A": 27,
+        "B": 23
+      },
+      "second_tackles": null,
+      "seed": 9,
+      "snaps_released": 138,
+      "state_hash": "a5815bd57d38538ad8574527d0755d417ccbaa9ad6bed597d1d69c17875fbe16",
+      "status": "final",
+      "strips": 10,
+      "tackle_count_events": 67,
+      "tosses_released": 242,
+      "trace_hash": "33d443c3041a83e5a55984e359e79578ae91a191111abf477e1f9795cd145d3e",
+      "turnovers": 459
+    },
+    {
+      "arrows": {
+        "body_or_ball_impacts": 79,
+        "freezes": 34,
+        "inert_impacts": 44,
+        "missed": 105,
+        "released": 184
+      },
+      "boundary": 229,
+      "collisions": 1159,
+      "contact_intents": {
+        "brace": 101,
+        "dodge": 123,
+        "run_through": 286,
+        "takedown": 2580,
+        "wrap": 2367
+      },
+      "first_tackles": null,
+      "foul_awards": 9,
+      "foul_reasons": {
+        "archery_target": 14,
+        "zone_unmarked": 6
+      },
+      "goals": 8,
+      "grips_broken": 13,
+      "groundings": 62,
+      "holds_started": 272,
+      "invariants": "passed",
+      "live_s": 2400.0,
+      "major_fouls": 0,
+      "minor_fouls": 20,
+      "offside_calls": 5,
+      "period": 4,
+      "restart_unobserved": 0,
+      "restarts": {
+        "all": {
+          "awarded": 365,
+          "eligible": 364,
+          "eligible_timeout": 7,
+          "eligible_timeout_rate": 0.0192,
+          "release_rate": 0.9534,
+          "released": 348,
+          "timeout": 7,
+          "timeout_rate": 0.0192
+        },
+        "scrim": {
+          "awarded": 128,
+          "eligible": 128,
+          "eligible_timeout": 5,
+          "eligible_timeout_rate": 0.0391,
+          "release_rate": 0.9297,
+          "released": 119,
+          "timeout": 5,
+          "timeout_rate": 0.0391
+        },
+        "snap40": {
+          "awarded": 8,
+          "eligible": 8,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 8,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 229,
+          "eligible": 228,
+          "eligible_timeout": 2,
+          "eligible_timeout_rate": 0.0088,
+          "release_rate": 0.9651,
+          "released": 221,
+          "timeout": 2,
+          "timeout_rate": 0.0087
+        }
+      },
+      "result": {
+        "method": "regulation",
+        "score": {
+          "A": 12,
+          "B": 15
+        },
+        "shootout": null,
+        "winner": "B"
+      },
+      "runtime_s": 85.461,
+      "score": {
+        "A": 12,
+        "B": 15
+      },
+      "second_tackles": null,
+      "seed": 10,
+      "snaps_released": 127,
+      "state_hash": "e8bc75a0b0c74109b0db12ba2129b9d20d90e319f6f2e8753e197ff5e1b9041a",
+      "status": "final",
+      "strips": 13,
+      "tackle_count_events": 62,
+      "tosses_released": 221,
+      "trace_hash": "a7f0246e87a53e98438a641cd9f2467aee53f6b4b48849bbe2d0cc45b92270fc",
+      "turnovers": 419
+    }
+  ],
+  "totals": {
+    "matches": 10,
+    "per_match": {
+      "arrows_missed": 97.8,
+      "arrows_released": 182.9,
+      "first_tackles": 0.0,
+      "foul_awards": 11.4,
+      "freezes": 42.6,
+      "goals": 14.4,
+      "groundings": 72.6,
+      "major_fouls": 0.0,
+      "minor_fouls": 24.4,
+      "offside_calls": 2.0,
+      "second_tackles": 0.0,
+      "snaps_released": 133.9,
+      "strips": 11.9,
+      "tackle_count_events": 70.9,
+      "tosses_released": 227.9,
+      "turnovers": 419.4
+    },
+    "restarts": {
+      "all": {
+        "awarded": 3764,
+        "eligible": 3730,
+        "eligible_timeout": 41,
+        "eligible_timeout_rate": 0.011,
+        "release_rate": 0.9612,
+        "released": 3618,
+        "timeout": 45,
+        "timeout_rate": 0.012
+      },
+      "scrim": {
+        "awarded": 1293,
+        "eligible": 1293,
+        "eligible_timeout": 20,
+        "eligible_timeout_rate": 0.0155,
+        "release_rate": 0.925,
+        "released": 1196,
+        "timeout": 20,
+        "timeout_rate": 0.0155
+      },
+      "snap40": {
+        "awarded": 143,
+        "eligible": 143,
+        "eligible_timeout": 0,
+        "eligible_timeout_rate": 0.0,
+        "release_rate": 1.0,
+        "released": 143,
+        "timeout": 0,
+        "timeout_rate": 0.0
+      },
+      "toss": {
+        "awarded": 2328,
+        "eligible": 2294,
+        "eligible_timeout": 21,
+        "eligible_timeout_rate": 0.0092,
+        "release_rate": 0.979,
+        "released": 2279,
+        "timeout": 25,
+        "timeout_rate": 0.0107
+      }
+    }
+  }
+}

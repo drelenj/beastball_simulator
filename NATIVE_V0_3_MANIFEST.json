@@ -1,0 +1,263 @@
+{
+  "arrows_seed1": {
+    "after_arrow_speed_only": {
+      "commit": "3d26f4f",
+      "freezes": 161,
+      "missed": 244,
+      "released": 503
+    },
+    "after_full_native_v0_3": {
+      "body_or_ball_impacts": 79,
+      "freezes": 38,
+      "inert_impacts": 41,
+      "missed": 90,
+      "released": 169
+    },
+    "before_native_v0_2": {
+      "freezes": 14,
+      "missed": 385,
+      "released": 435
+    }
+  },
+  "base": "codex/native-v0 @ a1b131379845322bbc9970ad667a6d68dec10dd7",
+  "branch": "claude/native-v0-3-handoff-69stxd",
+  "config": {
+    "arrow_speed_cap": null,
+    "arrow_speed_mps": 250.0,
+    "arrow_speed_ratio": 9.25925925925926,
+    "digest": "2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b",
+    "version": "native-v0/3"
+  },
+  "determinism": {
+    "evidence": [
+      "native/evidence/v0-3/soak/seed-001.json",
+      "native/evidence/v0-3/replay/seed-001-serial.json",
+      "native/evidence/v0-3/replay/seed-001-plumbing-absent.json"
+    ],
+    "null_m2_equals_plumbing_absent": true,
+    "seed": 1,
+    "serial_equals_parallel": true,
+    "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012",
+    "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2"
+  },
+  "fixed_seed_hashes": {
+    "1": {
+      "period": 4,
+      "runtime_s": 89.994,
+      "score": {
+        "A": 26,
+        "B": 27
+      },
+      "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012",
+      "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2"
+    },
+    "10": {
+      "period": 4,
+      "runtime_s": 85.461,
+      "score": {
+        "A": 12,
+        "B": 15
+      },
+      "state_hash": "e8bc75a0b0c74109b0db12ba2129b9d20d90e319f6f2e8753e197ff5e1b9041a",
+      "trace_hash": "a7f0246e87a53e98438a641cd9f2467aee53f6b4b48849bbe2d0cc45b92270fc"
+    },
+    "2": {
+      "period": 4,
+      "runtime_s": 84.541,
+      "score": {
+        "A": 20,
+        "B": 23
+      },
+      "state_hash": "018f47a9683e7605391c884cf1f91522445fe6e003a1f32d83f3d49595d3473e",
+      "trace_hash": "9b8c46687209740cae03fb2d191275bc50fc84a443d4f7ed693bdb7952020d13"
+    },
+    "3": {
+      "period": 4,
+      "runtime_s": 81.587,
+      "score": {
+        "A": 27,
+        "B": 17
+      },
+      "state_hash": "e272ffc67aa0897366ce767c9ee0d27a3a57fb8260e38e4ac6fb3b9b29425f9d",
+      "trace_hash": "2b17369883c613f5e63832f62b686ff9334c765e91d6b7710ae794cc735f59cf"
+    },
+    "4": {
+      "period": 6,
+      "runtime_s": 103.532,
+      "score": {
+        "A": 25,
+        "B": 23
+      },
+      "state_hash": "7c0261a89e4fafe23802d436faf522965721cdb3f5713f588d719f87ec724d37",
+      "trace_hash": "d52e4f55953696e21f3fffb5c0bc401108a9968518e73fda48c1dbd84ff00832"
+    },
+    "5": {
+      "period": 4,
+      "runtime_s": 85.331,
+      "score": {
+        "A": 25,
+        "B": 14
+      },
+      "state_hash": "ef3ceef9a1bcb442b8f2c1c59d2a6b6d0fef39f07058d29192ac52abdb6c33bb",
+      "trace_hash": "5990a25490479d907ea9199cd3c4f587df6e4d2040657f3bb6f3a49520c83bd5"
+    },
+    "6": {
+      "period": 4,
+      "runtime_s": 85.658,
+      "score": {
+        "A": 17,
+        "B": 23
+      },
+      "state_hash": "c790fdb22e07c54ab067ae52a8c1b8be72983612e4f4393aebdfc446157dac0e",
+      "trace_hash": "c83799a76a2d683a208d5f00a94235ee2abd3110b99a4ac9499a2d71245f8ce4"
+    },
+    "7": {
+      "period": 4,
+      "runtime_s": 89.975,
+      "score": {
+        "A": 19,
+        "B": 23
+      },
+      "state_hash": "44059f0fc89d68b8fdca6f13ad67c7c3424202115a1f728444dab35da054a091",
+      "trace_hash": "9830fe95acf8914f0f569650070b254d38214bc0031ce834e70e7d93f154aaf6"
+    },
+    "8": {
+      "period": 4,
+      "runtime_s": 88.042,
+      "score": {
+        "A": 23,
+        "B": 19
+      },
+      "state_hash": "c31ed301a75327069f89d6198eaca5ab443e4ff80350633b3d6fc374e61f73be",
+      "trace_hash": "60ab9c3011fb353d3aee69d3d15ab5f330672cb0e6a2269d0d8129928a1db474"
+    },
+    "9": {
+      "period": 5,
+      "runtime_s": 100.905,
+      "score": {
+        "A": 27,
+        "B": 23
+      },
+      "state_hash": "a5815bd57d38538ad8574527d0755d417ccbaa9ad6bed597d1d69c17875fbe16",
+      "trace_hash": "33d443c3041a83e5a55984e359e79578ae91a191111abf477e1f9795cd145d3e"
+    }
+  },
+  "frozen": {
+    "accepted_files_and_core_src_diff_vs_base": "empty (git diff a1b1313 -- b1 core_src)"
+  },
+  "full_matches_used": {
+    "cap": 40,
+    "count": 14,
+    "detail": "1 arrow-only seed 1; 10-seed table; seed-1 serial replay; seed-1 plumbing-absent; seed-1 native-v0/2 replay"
+  },
+  "name": "NATIVE_V0_3_MANIFEST",
+  "native_v0_2": {
+    "config_digest": "f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035",
+    "evidence": "native/evidence/v0-3/replay/seed-001-native-v0-2.json",
+    "replays_native_prism_0": true,
+    "score": {
+      "A": 58,
+      "B": 77
+    },
+    "seed1_state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9",
+    "seed1_trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142"
+  },
+  "open_items": [
+    "V6 independent review not completed: the separate reviewer agent stopped on the account usage limit before reporting; see audit/native/HP-002_NATIVE_V0_3_REVIEW.md",
+    "Q-FAB1-1..5 in QUESTIONS_FOR_OWNER.md",
+    "first/second tackle split not in run results"
+  ],
+  "simulation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
+  "status": "IMPLEMENTED and TESTED; independent review (V6) NOT completed; not ACCEPTED",
+  "ten_seed": {
+    "crash_stall_or_invariant_violation": 0,
+    "not_recorded": "first/second tackle split: run results at c521c49 do not carry restart award reasons; tackle_count_events counts both",
+    "passed": 10,
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "table": "native/evidence/v0-3/ten-seed-table.json",
+    "totals": {
+      "matches": 10,
+      "per_match": {
+        "arrows_missed": 97.8,
+        "arrows_released": 182.9,
+        "first_tackles": 0.0,
+        "foul_awards": 11.4,
+        "freezes": 42.6,
+        "goals": 14.4,
+        "groundings": 72.6,
+        "major_fouls": 0.0,
+        "minor_fouls": 24.4,
+        "offside_calls": 2.0,
+        "second_tackles": 0.0,
+        "snaps_released": 133.9,
+        "strips": 11.9,
+        "tackle_count_events": 70.9,
+        "tosses_released": 227.9,
+        "turnovers": 419.4
+      },
+      "restarts": {
+        "all": {
+          "awarded": 3764,
+          "eligible": 3730,
+          "eligible_timeout": 41,
+          "eligible_timeout_rate": 0.011,
+          "release_rate": 0.9612,
+          "released": 3618,
+          "timeout": 45,
+          "timeout_rate": 0.012
+        },
+        "scrim": {
+          "awarded": 1293,
+          "eligible": 1293,
+          "eligible_timeout": 20,
+          "eligible_timeout_rate": 0.0155,
+          "release_rate": 0.925,
+          "released": 1196,
+          "timeout": 20,
+          "timeout_rate": 0.0155
+        },
+        "snap40": {
+          "awarded": 143,
+          "eligible": 143,
+          "eligible_timeout": 0,
+          "eligible_timeout_rate": 0.0,
+          "release_rate": 1.0,
+          "released": 143,
+          "timeout": 0,
+          "timeout_rate": 0.0
+        },
+        "toss": {
+          "awarded": 2328,
+          "eligible": 2294,
+          "eligible_timeout": 21,
+          "eligible_timeout_rate": 0.0092,
+          "release_rate": 0.979,
+          "released": 2279,
+          "timeout": 25,
+          "timeout_rate": 0.0107
+        }
+      }
+    }
+  },
+  "tests": {
+    "command": "python3 -m pytest -q b1 native",
+    "note": "scipy is needed by legacy imports in b1 tests and is not in native/requirements.txt",
+    "numpy": "2.5.4",
+    "pytest": "9.2.0",
+    "python": "3.13.18",
+    "result": "246 passed, 23 subtests passed (197 existing + 49 in native/test_v3.py)",
+    "run_at_commit": "c521c49 working tree before commit; code identical"
+  },
+  "work_package": "FAB-1"
+}
