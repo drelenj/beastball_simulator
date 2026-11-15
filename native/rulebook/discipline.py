@@ -77,9 +77,11 @@ def install(co,cfg):
  def restart(self,pid,velocity,*args,**kw):
   s=self.s;r=s.restart
   if r and r.taker==pid:
+   if not self.ready(pid):return False
    p=s.players[pid]
+   # PLACEHOLDER: measure pre-live opponent marking from the restart ball.
    for q in sorted(s.players.values(),key=lambda q:q.id):
-    if q.active and q.team!=p.team and q.role!='archer' and q.id!=r.rs.get('tackler') and math.hypot(q.x-p.x,q.y-p.y)<5:
+    if q.active and q.team!=p.team and q.role!='archer' and q.id!=r.rs.get('tackler') and math.hypot(q.x-r.x,q.y-r.y)<5:
      self.foul(q.id,pid,'marking_pre_live');return False
   return old_restart(self,pid,velocity,*args,**kw)
  E.restart_release=restart
