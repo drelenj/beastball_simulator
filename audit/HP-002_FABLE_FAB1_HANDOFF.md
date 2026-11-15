@@ -1,0 +1,42 @@
+# HP-002: Fable work package FAB-1 (handoff to a fresh session)
+Claude, 2026-11-14/15. Authorized by DreLen. Status: DESIGN COMPLETE as a plan. Nothing here is built, tested or accepted.
+
+## 1. Who you are and the rules
+You are Claude (Fable): cognition/PRISM lead and independent reviewer for the Beastball simulator (repo `drelenj/beastball_simulator`, private). DreLen is the owner and the final authority on canon. Codex (a ChatGPT Work chat) is the engine and implementation lead and pushes to `codex/` branches. You push only to `claude/` branches. DreLen relays between chats by copy-paste, so every report must be self-contained text.
+Decision classes: CANON (rules of the sport) goes to DreLen; ENGINEERING is yours to settle with evidence and tests, never escalated; BEHAVIORAL gets a tested default, escalated only for a material gameplay difference. Do not invent canon. Where canon is silent, take the smallest placeholder, label it PLACEHOLDER and list it in `QUESTIONS_FOR_OWNER.md`.
+Reports start with an OWNER BRIEFING in plain English: 1 what was accomplished, 2 what Native can do now, 3 what is unimplemented or unproven, 4 what is blocking, 5 recommended action; then evidence. Use DESIGN COMPLETE / IMPLEMENTED / TESTED / ACCEPTED strictly. Only DreLen accepts.
+Use TaskCreate for the task list. The owner is watching usage: a full 4 x 600 s match takes 3 to 5 minutes of compute, so iterate on short windows and scenarios, and cap total full matches (see section 5).
+
+## 2. Where things stand
+- Native PRISM 0 = `codex/native-v0` @ a1b131379845322bbc9970ad667a6d68dec10dd7, profile `native-v0` version `native-v0/2`, config digest f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035. Seed-1 trace hash 3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142, state hash 411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9. Delivered by Codex; independently reviewed by Claude (R10). Acceptance by DreLen is pending; this package assumes it is accepted for functional purposes.
+- Read first, on branch `claude/hp002-audit`: `audit/native/HP-002_NATIVE_V0_REVIEW_R10.md` (findings F-1..F-5), `audit/HP-002_CANON_RULINGS_2026-11-14.md` (canon S-1..S-13 and D-1..D-9). On `codex/native-v0`: `native/evidence/` (manifest, inventory, rule matrix, questions, `ROADMAP_NATIVE_V1.md`), `native/config.py`, `native/cognition.py`, `native/port.py`, `native/rules.py`, `native/test_rules.py`.
+- Canon summary: four 600 s periods; first overtime 300 s whole period, later overtimes sudden death, any score wins; First Hunt opens every period and overtime; scrimmages after tackles and scores; no kicking; one dribble per possession (resets on a stoppage and when another player touches the ball; second dribble = offence minor, count +1); 5 m marking; 30 s play clock carried through tackles, expiry = turnover; goal semicircle radius 3 m, whole ball must cross inside it; archer platform 5 m high, 5 m back, one per goal; Keeper Zone 20 m; Keeper immunity; flat scoring (goal 2, half goal 1) until the self-play experiment reports; defensive minor at tackle count 0 = half goal in periods 1 to 3, full goal in period 4 and all overtime.
+- Deferred, do not build: breaks, timeouts, Hunt penalties beyond the retake, fatigue and injury, rating development, adaptive learning, M2 message content (plumbing stays null), standard scoring.
+
+## 3. Work package FAB-1: `native-v0/3`
+Branch `claude/native-v0-3`, from `codex/native-v0` @ a1b1313. Do not touch accepted files (`b1/core.py`, `runtime.py`, `g1.py`) or frozen B0 blobs. Native PRISM 0 must stay reproducible under config `native-v0/2` (same hashes). Every change goes in a new config version `native-v0/3` with its own digest and manifest.
+
+**FAB-1a. Arrow speed per canon (finding F-1).** Engine arrows are capped (arrow_limit 30, hard-coded foul above 30) with release speed 29 against a fastest player of 27. Canon: no arrow speed cap; arrow speed 250 m/s, about 5.6 times a 100 mph top speed (44.7 m/s). Make arrow speed a config parameter expressed as a ratio to fastest-player speed, remove the cap, and verify the engine's flight, drag and hit tests still behave at the new speed (no tunnelling: check swept collision). DreLen must confirm the ratio; implement 250 m/s equivalent as the default, report it as an assumption in the briefing, and make it trivially changeable. Report arrows released, misses and freezes per match before and after (seed 1 before: 435 released, 385 missed, 14 freezes). Do not tune for quality.
+
+**FAB-1b. Athlete-owned tackle-to-ground (finding F-2).** Seed 1 had 993 collisions and 6 groundings in 2400 s; the automatic containment and descent were disabled (Q-CONTACT-1) and nothing replaced them, so tackle, scrimmage, offside and second-tackle rules rarely run in play. Add a PRISM-owned decision path: a defender chooses to wrap and bring the carrier down, and a carrier chooses to run through, brace or dodge, through the existing intent pipeline (the contact intent exists as `contact='wrap'`). The engine keeps physics, legality and admission. Do not add any automatic takedown outside an athlete decision. Check how the earlier B0 code and the Sprint-45 branch (`experiment/prism-sprint-45` @ c64d92e) handled it and reuse what has evidence. Success is coverage, not quality: over 10 seeds report groundings, second tackles, snaps, offside calls, minor and major fouls per match.
+
+**FAB-1c. Restart cognition (finding F-3).** Seed 1: 147 of 575 restarts timed out (129 toss, 18 snap); toss-ins about 44% and snaps about 60% of their kinds, with `rejected_geometry` 108 and `rejected_by_engine` 65. Find the cause of each rejection class from the decision records and engine events, then replace the placeholder behaviour for the toss taker, the snapper and the other athletes in a restart with a PRISM-owned decision that picks a legal, reachable target from its beliefs (belief-based, no hidden state, no prescribed tactic). Also change the restart metric so it separates release from timeout (closure alone is not a success measure). Functional bar: for a taker who can reach the spot and has a legal reachable teammate, a toss or snap times out in fewer than 10% of cases over 10 seeds; report the actual rates by kind.
+
+**FAB-1d. Report honestly.** Do not claim quality, balance, tactics or emergence. The seed-1 score (58 to 77) is not evidence of anything.
+
+## 4. Acceptance for FAB-1 (all required)
+- V1. All existing tests pass (197 in `b1` and `native`), all frozen B0 hashes pass, accepted M1 files byte-identical, config `native-v0/2` replays the Native PRISM 0 hashes exactly.
+- V2. `native-v0/3` deterministic: same seed gives same trace and state hash; serial equals parallel; M2 null equals plumbing absent.
+- V3. Information boundary and ownership tests still pass, plus new poison tests for every new decision path (no hidden attributes, no true-state fallback, every command from a `decide()` intent).
+- V4. A conformance test per changed rule or mechanic, and the rule matrix updated with new statuses.
+- V5. 10 full-match seeds (and no more than 40 full matches in total for the whole package) with no crash, stall or invariant violation, reporting per-kind restart release and timeout rates, groundings and other event rates, and arrow outcomes.
+- V6. An independent review pass: a separate agent that did not write the changes reads the diff and the evidence and reports findings (you are the author; do not grade your own work). Record it in `audit/native/HP-002_NATIVE_V0_3_REVIEW.md`.
+- V7. `NATIVE_V0_3_MANIFEST.json`: commit, config digest, tests, hashes for fixed seeds, runtimes, and the 10-seed table.
+
+## 5. Budget and checkpoints
+- Iterate on short windows (60 to 600 s) and forced scenarios; run full matches only for the 10-seed table and final replay checks. Hard cap 40 full matches.
+- Commit and push a checkpoint after each of FAB-1a, 1b, 1c. After each, write a 5-line status into `audit/native/FAB1_STATUS.md` so a later session can resume from the repo alone.
+- If a CANON question blocks you, record it, take the smallest placeholder and continue. Stop and report if usage would be exceeded.
+
+## 6. Out of scope (queued, do not start)
+FAB-2: the hive-mind lab joint policy and tactic search (depends on Codex's `codex/hive-lab-0` interfaces). Rerun of Emergence-1 on the fixed baseline. Engine fidelity (catch, throw chain, hand-fighting, anatomical boundaries) stays with Codex.
