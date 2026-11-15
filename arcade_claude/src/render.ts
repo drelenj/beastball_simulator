@@ -23,11 +23,12 @@ export class Camera {
 
 export class Renderer {
   cam = new Camera();
+  dpr = 1;
   logos: Record<string, HTMLImageElement> = {};
   constructor(public ctx: CanvasRenderingContext2D) {}
   P(x: number, y: number, z = 0): [number, number] {
     const c = this.ctx.canvas;
-    return [c.width / 2 + (x - this.cam.x) * this.cam.s, c.height / 2 + (y - this.cam.y) * this.cam.s * SQ - z * this.cam.s * ZK];
+    return [c.width / this.dpr / 2 + (x - this.cam.x) * this.cam.s, c.height / this.dpr / 2 + (y - this.cam.y) * this.cam.s * SQ - z * this.cam.s * ZK];
   }
   poly(pts: [number, number, number?][], fill?: string, stroke?: string, lw = 1) {
     const ctx = this.ctx; ctx.beginPath();
@@ -47,7 +48,8 @@ export class Renderer {
   }
 
   draw(e: Engine, cols: [TeamColors, TeamColors], wallT: number, selected: number[]) {
-    const ctx = this.ctx, W = ctx.canvas.width, H = ctx.canvas.height, F = C.FIELD_HALF;
+    const ctx = this.ctx, W = ctx.canvas.width / this.dpr, H = ctx.canvas.height / this.dpr, F = C.FIELD_HALF;
+    ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     ctx.fillStyle = '#0d1018'; ctx.fillRect(0, 0, W, H);
     // stadium bowl + crowd
     for (let ring = 0; ring < 7; ring++) {

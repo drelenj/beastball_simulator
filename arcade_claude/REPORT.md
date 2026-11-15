@@ -184,3 +184,17 @@ Screenshots: `tests/evidence/04_play.png` (gameplay, tackle), `07_ava.png` (AI v
 - If a human player never snaps, delay-of-game minors pile up. The browser test showed 38 minors for the human side while the bot sat idle at 8x. This follows the rules, but the result is harsh.
 - The final and break screens can be taller than a 720 px window (now scrollable).
 - Arrows resolve in under 0.3 s, so the tracer is brief; hits read mainly through the 'ARROW HIT' banner, the ice tint and the red helmet light.
+
+---
+
+## Addendum: touch controls and phone hosting
+
+- **Hosting:** `.github/workflows/arcade-pages.yml` builds `arcade_claude/` and publishes `dist/` to GitHub Pages on pushes to `claude/arcade-1` (Pages source set to GitHub Actions). Live at `https://drelenj.github.io/beastball_simulator/`.
+- **Touch controls** (`src/touch.ts`, shown only on touch devices or with `?touch=1`):
+  - left thumb: floating joystick, push to the outer ring to sprint;
+  - right thumb: PASS (also the snap), SHOOT, TACKLE, SWITCH, ARCHER, and a SPRINT hold button;
+  - II button pauses;
+  - Home/Away picker on team select (replaces Shift-click);
+  - retina-sharp canvas (DPR capped at 2), iOS meta tags, pinch and double-tap zoom blocked during play, rotate hint in portrait.
+- Touch drives team 0 only, so Human vs Human is still a keyboard/gamepad mode.
+- **Tests:** `node tests/touch_check.cjs` (emulated iPhone, landscape, DPR 3, real CDP touch events including two simultaneous fingers): 14/14 PASS. Desktop suite re-run after the change: 16/16 PASS. Not tested on a physical iPhone.

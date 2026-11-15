@@ -3,6 +3,7 @@ import { TEAMS, COLORS, teamByName, defaultSettings } from './engine/match';
 import { DT } from './engine/constants';
 import { Intent, NO_INTENT, Settings } from './engine/types';
 import { Renderer, fmtClock } from './render';
+import { touch, consumeTouchEdges, detectTouch, initTouch } from './touch';
 
 const $ = (id: string) => document.getElementById(id)!;
 const canvas = $('c') as HTMLCanvasElement;
@@ -17,11 +18,11 @@ for (const t of TEAMS) {
 type Mode = 'hva' | 'ava' | 'hvh';
 const app = {
   engine: null as Engine | null, mode: 'hva' as Mode, home: 'Ala Marauders', away: 'Xenar Ignite',
-  settings: defaultSettings(), speed: 1, paused: false, acc: 0, wallT: 0, lastEv: 0, flashShown: '',
+  settings: defaultSettings(), pick: 0 as 0 | 1, speed: 1, paused: false, acc: 0, wallT: 0, lastEv: 0, flashShown: '',
 };
 (window as any).__arcade = app;
 
-function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+function resize() { R.dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = Math.round(window.innerWidth * R.dpr); canvas.height = Math.round(window.innerHeight * R.dpr); }
 window.addEventListener('resize', resize); resize();
 
 function show(id: string | null) {
@@ -34,10 +35,13 @@ for (const t of TEAMS) {
   const c = COLORS[t.franchise];
   const d = document.createElement('div'); d.className = 'team'; d.dataset.name = t.franchise; d.title = `${t.franchise} (${t.formation})`;
   d.innerHTML = `<img src="${logoUrl(c.slug, 128)}" alt="${c.abbr}" /><span style="color:${c.primary === '#000000' ? '#fff' : c.primary};text-shadow:0 0 2px #000">${c.abbr}</span>`;
-  d.addEventListener('click', (ev) => { if (ev.shiftKey) app.away = t.franchise; else app.home = t.franchise; refreshSelect(); });
+  d.addEventListener('click', (ev) => { if (ev.shiftKey || app.pick === 1) app.away = t.franchise; else app.home = t.franchise; refreshSelect(); });
   d.addEventListener('contextmenu', (ev) => { ev.preventDefault(); app.away = t.franchise; refreshSelect(); });
   grid.appendChild(d);
 }
+function setPick(p: 0 | 1) { app.pick = p; $('pickH').classList.toggle('on', p === 0); $('pickA').classList.toggle('on', p === 1); }
+$('pickH').onclick = () => setPick(0); $('pickA').onclick = () => setPick(1);
+($('selL0') as HTMLElement).onclick = () => setPick(0); ($('selL1') as HTMLElement).onclick = () => setPick(1);
 function refreshSelect() {
   grid.querySelectorAll('.team').forEach((el) => { const n = (el as HTMLElement).dataset.name; el.classList.toggle('selH', n === app.home); el.classList.toggle('selA', n === app.away); });
   ($('selL0') as HTMLImageElement).src = logoUrl(COLORS[app.home].slug, 256); $('selN0').textContent = app.home;
@@ -64,7 +68,7 @@ function startMatch() {
   app.acc = 0; app.paused = false; app.lastEv = 0; app.speed = 1; setSpeed(1);
   R.cam.mode = 'ball'; R.cam.follow = -1; ($('specCam') as HTMLButtonElement).textContent = 'Cam: Ball';
   for (const t of [0, 1]) { const c = COLORS[[app.home, app.away][t]]; ($(`hl${t}`) as HTMLImageElement).src = logoUrl(c.slug, 128); $(`hn${t}`).textContent = c.abbr; $(`hs${t}`).style.borderBottom = `4px solid ${c.primary}`; }
-  $('hud').classList.add('on'); $('ticker').style.display = 'block'; $('help').style.display = 'block';
+  $('hud').classList.add('on'); $('ticker').style.display = 'block'; $('help').style.display = 'block'; document.body.classList.add('playing');
   $('spec').style.display = app.mode === 'ava' ? 'block' : 'none';
   $('help').innerHTML = app.mode === 'ava' ? 'Spectator · <b>1-4</b> speed · <b>C</b> camera · <b>N</b> next athlete · <b>Esc</b> pause'
     : '<b>WASD</b> move · <b>Shift</b> sprint · <b>Space</b> pass/snap · <b>J</b> tackle · <b>K</b> switch · <b>L</b> shoot · <b>E</b> archer · <b>Esc</b> pause';
@@ -74,13 +78,20 @@ function startMatch() {
 // ---------------- pause / break / final ----------------
 function pause(on: boolean) { if (!app.engine) return; app.paused = on; show(on ? 'scrPause' : null); ($('specPause') as HTMLButtonElement).textContent = on ? 'Resume' : 'Pause'; }
 $('pResume').onclick = () => pause(false);
+const urlQ = new URLSearchParams(location.search);
+touch.enabled = detectTouch(urlQ.get('touch') === '1');
+const setTouchUi = () => document.body.classList.toggle('touch', touch.enabled);
+setTouchUi();
+initTouch({ onPause: () => { if (app.engine && app.engine.phase !== 'final' && app.engine.phase !== 'break') pause(!app.paused); }, onFirstTouch: () => { if (!touch.enabled) { touch.enabled = true; setTouchUi(); } } });
+// a first touch on a hybrid device (e.g. touchscreen laptop) also turns the touch UI on
+window.addEventListener('touchstart', () => { if (!touch.enabled) { touch.enabled = true; setTouchUi(); } }, { passive: true, once: true });
 $('pRestart').onclick = () => startMatch();
 $('pControls').onclick = () => { controlsReturn = 'scrPause'; show('scrControls'); };
 $('pMenu').onclick = toMenu;
 $('fiMenu').onclick = toMenu;
 $('fiRematch').onclick = () => startMatch();
 $('brSkip').onclick = () => { app.engine?.resumeFromBreak(); show(null); };
-function toMenu() { app.engine = null; $('hud').classList.remove('on'); $('ticker').style.display = 'none'; $('help').style.display = 'none'; $('spec').style.display = 'none'; show('scrMenu'); }
+function toMenu() { app.engine = null; document.body.classList.remove('playing'); $('hud').classList.remove('on'); $('ticker').style.display = 'none'; $('help').style.display = 'none'; $('spec').style.display = 'none'; show('scrMenu'); }
 
 function statsTable(e: Engine) {
   const rows: [string, (t: number) => string | number][] = [
@@ -173,8 +184,10 @@ function humanControl(e: Engine, team: 0 | 1, b: Binding, padIdx: number) {
   const hit = (ks: string[]) => ks.some((k) => pressed.has(k));
   const pad = readPad(padIdx);
   if (pad?.pause && e.phase !== 'final') pause(!app.paused);
+  const tc = team === 0 && touch.enabled ? touch : null;
   let mx = (any(b.right) ? 1 : 0) - (any(b.left) ? 1 : 0), my = (any(b.down) ? 1 : 0) - (any(b.up) ? 1 : 0);
   if (pad && (pad.mx || pad.my)) { mx = pad.mx; my = pad.my; }
+  if (tc && (tc.mx || tc.my)) { mx = tc.mx; my = tc.my; }
   // auto selection: carrier when we have the ball; otherwise keep / pick nearest to carrier on possession change
   const holder = e.ball.holder >= 0 ? e.ath[e.ball.holder] : null;
   const fieldMates = e.ath.filter((a) => a.team === team && a.role !== 'archer' && e.active(a));
@@ -186,13 +199,13 @@ function humanControl(e: Engine, team: 0 | 1, b: Binding, padIdx: number) {
     const tgt = holder ?? e.ball; T.selected = nearestTo(tgt.x, tgt.y).idx;
   }
   (T as any)._lastPoss = e.poss;
-  if (hit(b.sw) || pad?.sw) {
+  if (hit(b.sw) || pad?.sw || tc?.sw) {
     const others = fieldMates.filter((a) => a.idx !== T.selected && a.frozenT <= 0 && a.role !== 'keeper').sort((p, q) => Math.hypot(p.x - e.ball.x, p.y - e.ball.y) - Math.hypot(q.x - e.ball.x, q.y - e.ball.y));
     if (others[0] && !(holder && holder.team === team)) T.selected = others[0].idx;
   }
   const me = e.ath[T.selected];
-  const it: Intent = { ...NO_INTENT(), mx, my, sprint: any(b.sprint) || !!pad?.sprint };
-  if ((hit(b.pass) || pad?.pass) && holder === me) {
+  const it: Intent = { ...NO_INTENT(), mx, my, sprint: any(b.sprint) || !!pad?.sprint || !!tc?.sprintBtn || !!tc?.stickSprint };
+  if ((hit(b.pass) || pad?.pass || tc?.pass) && holder === me) {
     // pass to the open teammate closest to the pushed direction (or facing)
     const dir = (mx || my) ? Math.atan2(my, mx) : me.facing;
     let best = -1, bs = -1e9;
@@ -206,9 +219,9 @@ function humanControl(e: Engine, team: 0 | 1, b: Binding, padIdx: number) {
     }
     it.pass = best;
   }
-  if ((hit(b.shoot) || pad?.shoot) && holder === me) it.shoot = true;
-  if (hit(b.tackle) || pad?.tackle) it.tackle = true;
-  if (hit(b.fire) || pad?.fire) {
+  if ((hit(b.shoot) || pad?.shoot || tc?.shoot) && holder === me) it.shoot = true;
+  if (hit(b.tackle) || pad?.tackle || tc?.tackle) it.tackle = true;
+  if (hit(b.fire) || pad?.fire || tc?.fire) {
     const archer = e.ath.find((a) => a.team === team && a.role === 'archer')!;
     const cands = e.ath.filter((o) => e.arrowLegal(archer, o));
     const pick = cands.find((o) => o.idx === e.ball.holder) ?? cands.sort((p, q) => Math.hypot(p.x - e.ball.x, p.y - e.ball.y) - Math.hypot(q.x - e.ball.x, q.y - e.ball.y))[0];
@@ -264,14 +277,14 @@ function frame(now: number) {
       if ((e.phase as string) === 'break') { if (q.get('autobreak')) e.resumeFromBreak(); else showBreak(e); }
       if ((e.phase as string) === 'final') showFinal(e);
     }
-    R.cam.update(e, canvas.width, canvas.height, dtReal);
+    R.cam.update(e, canvas.width / R.dpr, canvas.height / R.dpr, dtReal);
     const sel = e.teams.filter((t) => t.human).map((t) => t.selected);
     R.draw(e, [COLORS[e.teams[0].data.franchise], COLORS[e.teams[1].data.franchise]], app.wallT, sel);
     hud(e);
   } else {
-    ctx.fillStyle = '#0b0e16'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = "#0b0e16"; ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
-  pressed.clear();
+  pressed.clear(); consumeTouchEdges();
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);

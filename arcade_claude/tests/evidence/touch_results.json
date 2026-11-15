@@ -1,0 +1,142 @@
+[
+ {
+  "n": "touch UI detected on phone-like device",
+  "ok": true,
+  "i": {}
+ },
+ {
+  "n": "team select by touch (HOME / AWAY toggle)",
+  "ok": true,
+  "i": {
+   "h": "Ala Marauders",
+   "a": "Xenar Ignite"
+  }
+ },
+ {
+  "n": "touch controls visible in match; canvas is retina-sharp",
+  "ok": true,
+  "i": {
+   "pass": true,
+   "shoot": true,
+   "tackle": true,
+   "sw": true,
+   "fire": true,
+   "sprint": true,
+   "pause": true,
+   "zone": true,
+   "canvasW": 1688,
+   "dpr": 3
+  }
+ },
+ {
+  "n": "joystick drag moves the athlete (right/down, jog speed)",
+  "ok": true,
+  "i": {
+   "s0": [
+    -10,
+    -6
+   ],
+   "mid": [
+    -8.42119179711419,
+    -4.947461198076133
+   ],
+   "v": 4.294531192589193,
+   "stickOn": true
+  }
+ },
+ {
+  "n": "stick pushed to outer ring sprints",
+  "ok": true,
+  "i": {
+   "v": 8.772934698930706,
+   "jogCap": 6.55,
+   "sprintLit": true
+  }
+ },
+ {
+  "n": "releasing the stick stops input and parks the stick",
+  "ok": true,
+  "i": {
+   "mx": 0,
+   "stick": false
+  }
+ },
+ {
+  "n": "multi-touch: stick held while PASS tapped with a second finger",
+  "ok": true,
+  "i": {
+   "a0": {
+    "att": 0,
+    "tk": 0,
+    "poss": 0,
+    "holderTeam": 0
+   },
+   "a1": {
+    "att": 1,
+    "tk": 1,
+    "poss": 1,
+    "holderTeam": -1
+   },
+   "cycles": 718
+  }
+ },
+ {
+  "n": "multi-touch: stick held while TACKLE tapped grounds a carrier",
+  "ok": true,
+  "i": {
+   "a0": {
+    "att": 0,
+    "tk": 0,
+    "poss": 0,
+    "holderTeam": 0
+   },
+   "a1": {
+    "att": 1,
+    "tk": 1,
+    "poss": 1,
+    "holderTeam": -1
+   }
+  }
+ },
+ {
+  "n": "SWITCH / ARCHER / SHOOT buttons respond without error",
+  "ok": true,
+  "i": {
+   "archerArrowsSoFar": 6,
+   "errs": []
+  }
+ },
+ {
+  "n": "II pauses; pause screen reachable by touch",
+  "ok": true,
+  "i": {}
+ },
+ {
+  "n": "resume returns to the match",
+  "ok": true,
+  "i": {}
+ },
+ {
+  "n": "final screen shown; Rematch button works by touch",
+  "ok": true,
+  "i": {}
+ },
+ {
+  "n": "rematch by touch starts a fresh match",
+  "ok": true,
+  "i": {}
+ },
+ {
+  "n": "portrait shows the rotate hint",
+  "ok": true,
+  "i": {
+   "hint": "block",
+   "w": 390
+  }
+ },
+ {
+  "n": "no console or page errors",
+  "ok": true,
+  "i": []
+ }
+]
