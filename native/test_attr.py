@@ -99,6 +99,7 @@ def test_at8_body_readback_and_own_view_only():
     rs={t:load_rows(raw,t) for t in ('A','B')};p=NativePort(2,config(rs),rosters=rs)
     q=p.m.s.players['A:p0'];assert q.a.height==2.8 and q.a.reach==1.4 and q.radius==pytest.approx(.4625)
     assert .72*q.a.height==pytest.approx(2.016) and q.hand_height==pytest.approx(.62*2.8)
+    assert .9*q.a.reach==pytest.approx(1.26) # field catch-reach formula
     p.capture(0);p.m.s.now=300;v,b=p.view(q.id,300)
     assert v.own_mass_kg==250 and v.max_throw_speed==pytest.approx(111.75)
     assert dict(v.own_skills)['strength']==.7 and v.signals.tackle_count==0
@@ -121,6 +122,16 @@ def test_at10_validation_names_row_and_column():
     with pytest.raises(RosterError,match='row 5 column mystery'):load_rows(bad,'A')
     bad=rows();bad[3]['id']=bad[0]['id']
     with pytest.raises(RosterError,match='row 5 column id'):load_rows(bad,'A')
+
+
+def test_header_alias_map_is_explicit_and_validated():
+    aliased=[]
+    for row in rows():
+        row=dict(row);row['Player ID']=row.pop('id');aliased.append(row)
+    loaded=load_rows(aliased,'A',{'id':('Player ID',)})
+    assert loaded.athletes[0].source_id=='p0'
+    with pytest.raises(RosterError,match='unknown canonical column'):
+        load_rows(aliased,'A',{'made_up':('x',)})
 
 
 def test_at11_labels_never_read_and_digest_identical():
@@ -192,7 +203,9 @@ def test_e8_fast_closing_sweep_detects_contact_and_boundary_endpoint():
     # C3 swept kernel may adjudicate in c3_step; it must at least retain the pair
     # as a physical collision rather than tunnel through in a full step.
     p.m.c3_step(100,{a.id:(80,50),b.id:(20,50)})
-    assert a.x<=b.x or p.m.stats['c3_collisions']>0
+    # They approach to a non-crossing separation in one 100 ms step.  The
+    # contact constraint can prevent overlap without registering an impact.
+    assert a.x<=b.x and b.x-a.x<10
     a.x,a.y,a.vx=99,20,44.704;p.m.move_players(100,{a.id:(200,20)})
     assert a.x>100
 
