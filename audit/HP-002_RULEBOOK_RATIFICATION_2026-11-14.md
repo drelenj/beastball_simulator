@@ -6,3 +6,9 @@ Claude, 2026-11-14. DreLen ratified "Beastball Rulebook (Draft 1.0)" in full at 
 - Archer limits (owner-edited): 15 arrows and 5 freezes per team possession, resetting on a turnover; freeze 5 s, immunity 10 s, recovery 3 m over 2 s. Arrow speed 250 m/s, no cap.
 - Scoring scale: carry 5; throw 2 / 3 / 4 at under 10 m / 10 to 20 m / 20 m or more; half goal 1; full-goal award 3; own goal 2. Ratified but PROVISIONAL: flat scoring (goal 2, half goal 1) stays in force until the self-play experiment proposes revised values by the 1/P(success) rule.
 - Regulation equipment (v1.0) as written in the Field and equipment section; Archers may wear a lighter kit.
+
+## Addendum, 14 Nov 2026 22:22 America/Chicago (owner: "go with the recommended answers")
+- Q-FAB1-1 (CANON): arrow speed is a fixed 250 m/s, not a ratio to athlete top speed.
+- Q-FAB1-2 (CANON): a team keeps team control while its pass is in flight. The Archer may not shoot to gain advantage from a pass in flight beyond the normal quota; the native-v0/3 Archer change stands.
+- Q-FAB1-5 (CANON, for Codex, RB-1): a toss timeout on the goal line is spotted at the nearest point 5 m out from the goal line.
+- Archer quota (15 arrows, 5 freezes per team possession) stays an RB-1 item for Codex.
