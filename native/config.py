@@ -129,10 +129,51 @@ class NativeConfigV3(NativeConfig):
         return round(self.arrow_speed_ratio*self.fastest_player_speed,6)
 
 
-VERSIONS = {'native-v0/2':NativeConfig,'native-v0/3':NativeConfigV3}
+def _attr_pocket():
+    values=dict(POCKET)
+    values.update(player_speed=44.704,arrow_speed=250.,ball_limit=134.1)
+    values.pop('arrow_limit',None)
+    values.pop('pass_speed',None)
+    return tuple(sorted(values.items()))
+
+
+@dataclass(frozen=True)
+class AttrConfig(NativeConfigV3):
+    """ATTR-1 mechanics. Roster content is supplied to NativePort separately."""
+    version: str = 'attr-map/1'
+    profile: str = 'native-attr'
+    mapping_version: str = 'attr-map/1'
+    roster_digests: tuple = ()
+    arrow_speed_ratio: float | None = None
+    body_standards: tuple = ()
+    pocket_settings: tuple = field(default_factory=_attr_pocket)
+
+    def __post_init__(self):
+        if self.version!='attr-map/1' or self.profile!='native-attr' or self.mapping_version!='attr-map/1':
+            raise ValueError('ATTR-1 profile mixing rejected')
+        if len(self.roster_digests)!=2 or any(not isinstance(x,str) or len(x)!=64 for x in self.roster_digests):
+            raise ValueError('ATTR-1 requires two canonical roster digests')
+        if self.body_standards!=() or self.pocket_settings!=_attr_pocket():
+            raise ValueError('ATTR-1 derives body standards from rosters and mechanics from attr-map/1')
+        if self.physical_assumptions!=physical_defaults() or self.m2!='null' or self.legacy_layers:
+            raise ValueError('ATTR-1 does not mix physical assumptions or legacy layers')
+        if (self.periods,self.period_seconds,self.overtime_seconds)!=(4,600,300):
+            raise ValueError('full canon duration required')
+
+    @property
+    def fastest_player_speed(self):return 44.704
+
+    @property
+    def arrow_speed(self):return 250.
+
+
+VERSIONS = {'native-v0/2':NativeConfig,'native-v0/3':NativeConfigV3,'attr-map/1':AttrConfig}
 
 def config_for(version='native-v0/2',**overrides):
     return VERSIONS[version](**overrides)
 
 def is_v3(config):
     return isinstance(config,NativeConfigV3)
+
+def is_attr(config):
+    return isinstance(config,AttrConfig)

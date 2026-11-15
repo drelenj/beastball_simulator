@@ -49,6 +49,7 @@ class Signals:
     ball_status: str | None = None
     immune: tuple = ()                   # players visibly frozen / immune (public)
     pass_call: tuple | None = None       # teammate's shouted pass: (passer, target, aim_x, aim_y)
+    tackle_count: int = 0                # public scoreboard fact
 
 
 @dataclass(frozen=True)
@@ -96,6 +97,8 @@ class AthleteView:
     own_held: int = 0                    # SELF-1 touch: opponents' holds on my own body
     own_balance_load: float = 0.         # SELF-1: own balance, 0 settled .. 1 grounded
     own_hold_target: str | None = None   # own action: whom my own hands hold
+    own_mass_kg: float | None = None     # ATTR-1: exact own-body knowledge only
+    own_skills: tuple = ()               # ATTR-1: self only; never teammate/opponent ratings
 
 
 @dataclass(frozen=True)
