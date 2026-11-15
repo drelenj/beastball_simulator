@@ -401,3 +401,197 @@ def test_v3_play_every_hold_and_tackle_traces_to_a_decide_intent(played):
     assert not port.m.stats.get('c3_descents_attempted')             # no automatic descent
     assert result['contact_intents'].keys()<={'wrap','takedown','run_through','brace','dodge'}
     assert not any(i.kind=='kick' for i in port.intents)
+
+
+# ---------------------------------------------------------------- FAB-1c
+from .restart_metric import RestartMetric, travel_ms
+
+
+def restart_view(port,pid,**changes):
+    s=port.m.s;port.capture(s.now);s.now+=300
+    v,b=port.view(pid,s.now)
+    if changes:v=replace(v,**changes)
+    return v,b
+
+
+def toss(port,x=30.,team='A'):
+    e,s=port.m.e,port.m.s;clear_field(port)
+    r=e.award(team,x,0.,'boundary',normalize=False);assert r.kind=='toss'
+    return r
+
+
+def put(port,pid,x,y):
+    q=port.m.s.players[pid];q.x,q.y=x,y;q.vx=q.vy=0.;q.target=(x,y);port.move[pid]=(x,y);return q
+
+
+def test_v3_restart_claim_goes_to_the_believed_nearest_not_the_first_to_decide(port3):
+    r=toss(port3);tx,ty=r.taker_spot
+    put(port3,'A0',80.,60.);put(port3,'A5',32.,6.)                      # A0 decides first, A5 is near
+    for q in (port3.m.s.players['A0'],port3.m.s.players['A5']):q.facing=(-1.,-.2)
+    far,bf=restart_view(port3,'A0');near,bn=port3.view('A5',port3.m.s.now)
+    assert C.decide(far,bf)[0].kind=='restart_position'                 # holds back
+    i,rec=C.decide(near,bn);assert i.kind=='restart_claim' and rec['path']=='restart_claim_believed_nearest'
+    # v0/2 placeholder: the first athlete to decide claims wherever he is
+    assert C.decide(replace(far,cognition='native-v0/2'),bf)[0].kind=='restart_claim'
+    # own distance delays an athlete's own claim even when he sees nobody nearer
+    alone=tuple(t for t in bf.tracks if t.team!='A')
+    early=replace(far,tracks=alone);assert not C3._claim(early,replace(bf,tracks=alone),tx,ty,r.created_at,None)
+    late=replace(early,delivered_ms=r.created_at+int(100*C3.CLAIM_BACKOFF_MS_PER_M))
+    assert C3._claim(late,replace(bf,tracks=tuple(replace(t,captured_ms=late.delivered_ms) for t in alone)),tx,ty,r.created_at,None)
+    # a mandatory snapper is the only claimant
+    v=replace(near,restart=near.restart[:8]+('A0',)+near.restart[9:])
+    assert C.decide(v,bn)[0].kind=='restart_position'
+    assert C.decide(replace(far,restart=v.restart),bf)[0].kind=='restart_claim'
+    assert port3.submit(i)['status']=='accepted' and port3.m.s.restart.taker=='A5'
+
+
+def taker_at_spot(port,r,pid='A5'):
+    q=put(port,pid,*r.taker_spot);r.taker=pid;q.facing=(0.,1.) if r.kind=='toss' else (-float(port.m.s.attack_sign(r.team)),0.);return pid
+
+
+def test_v3_toss_taker_throws_to_a_believed_teammate_at_legal_distance(port3):
+    r=toss(port3);taker_at_spot(port3,r)
+    put(port3,'A1',r.x+1.2,1.3);put(port3,'A2',r.x+3.,12.);put(port3,'A3',r.x-15.,20.);put(port3,'B0',r.x,9.)
+    port3.m.s.now=r.created_at+1400
+    v,b=restart_view(port3,'A5');i,rec=C.decide(v,b)
+    assert i.kind=='restart_pass' and i.target in ('A2','A3') and rec['path']=='restart_taker_throw'
+    targets={o[1] for o in rec['options'] if o[0]=='restart_pass'}
+    assert 'A1' not in targets                                           # too close to throw to (v0/2 geometry cause)
+    aim=next(t for t in b.tracks if t.entity==i.target);assert i.aim==(round(aim.x,3),round(aim.y,3))
+    assert port3.submit(i)['status']=='accepted'                         # geometry admitted
+    # v0/2 picked the nearest teammate and was refused on geometry
+    i2,_=C.decide(replace(v,cognition='native-v0/2',restart=v.restart[:-1]+(True,)),b)
+    assert i2.target=='A1'
+    fresh=live(NativePort(1,NativeConfigV3()));r2=toss(fresh);taker_at_spot(fresh,r2);put(fresh,'A1',r2.x+.6,.7)
+    assert fresh.submit(replace(i2,decided_ms=fresh.m.s.now,record_id=r2.native_id,aim=(r2.x+.6,.7)))=={'status':'rejected','reason':'geometry'}
+    # the throw just refused is not chosen again while another target exists
+    refused=replace(b,own_feedback=(('x','rejected_geometry:restart_pass',v.delivered_ms),))
+    j,_=C.decide(v,refused);assert j.kind=='restart_pass' and j.target!=i.target
+
+
+def test_v3_toss_taker_waits_for_legal_release_then_uses_space_placeholder(port3):
+    r=toss(port3);taker_at_spot(port3,r);put(port3,'A2',r.x+3.,12.)
+    v,b=restart_view(port3,'A5')                                          # before the 1.5 s minimum
+    assert C.decide(v,b)[0].kind=='restart_wait'
+    put(port3,'B0',r.x+.5,2.);port3.m.s.now=r.created_at+2000              # believed opponent inside 3 m
+    v,b=restart_view(port3,'A5');i,rec=C.decide(v,b)
+    assert i.kind=='restart_wait' and rec['path']=='restart_taker_waits_for_legal_release'
+    put(port3,'B0',r.x+20.,40.);v,b=restart_view(port3,'A5')
+    assert C.decide(v,b)[0].kind=='restart_pass'
+    # away from the spot the taker first goes to it
+    put(port3,'A5',r.x+10.,10.);v,b=restart_view(port3,'A5');i,_=C.decide(v,b)
+    assert i.kind=='restart_position' and i.aim==tuple(r.taker_spot)
+    # nobody believed available: wait, and only at the last call throw to legal space (PLACEHOLDER)
+    taker_at_spot(port3,r);put(port3,'A2',r.x+60.,80.);v,b=restart_view(port3,'A5')
+    none=tuple(t for t in b.tracks if t.team!='A');v,b=replace(v,tracks=none),replace(b,tracks=none)
+    assert C.decide(v,b)[0].kind=='restart_wait'
+    last=replace(v,restart=v.restart[:10]+(v.delivered_ms-C3.TOSS_WINDOW_MS+1000,)+v.restart[11:])
+    i,rec=C.decide(last,b);assert i.kind=='restart_pass' and i.target is None and rec['path']=='restart_taker_space_placeholder'
+    assert 1.<=i.aim[0]<=99. and 1.<=i.aim[1]<=99.
+
+
+def test_v3_snap_taker_waits_for_the_set_signal(port3):
+    e,s=port3.m.e,port3.m.s;clear_field(port3);r=e.award('A',50.,50.,'turnover',fresh=True,normalize=False)
+    assert r.kind=='scrim';taker_at_spot(port3,r);put(port3,'A2',r.x-8.,56.);put(port3,'B0',r.x+6.,50.)
+    v,b=restart_view(port3,'A5');assert v.restart[-1] is False
+    assert C.decide(v,b)[0].kind=='restart_wait'
+    ready=replace(v,restart=v.restart[:-1]+(True,));i,_=C.decide(ready,b)
+    assert i.kind=='restart_pass' and i.target=='A2'
+    # near the deadline with own team believed onside he snaps anyway (a defender still offside is the defence's risk)
+    late=replace(v,restart=v.restart[:10]+(v.delivered_ms-C3.SNAP_WINDOW_MS+1000,False))
+    assert C.decide(late,b)[0].kind=='restart_pass'
+    off=tuple(replace(t,x=r.x+4.) if t.entity=='A2' else t for t in b.tracks)
+    assert C.decide(replace(late,tracks=off),replace(b,tracks=off))[0].kind=='restart_wait'
+
+
+def test_v3_restart_standing_is_legal_and_available(port3):
+    r=toss(port3);taker_at_spot(port3,r)
+    put(port3,'B0',r.x+1.,2.);put(port3,'A2',r.x+1.5,1.5);put(port3,'A3',r.x+40.,50.)
+    v,b=restart_view(port3,'B0');i,rec=C.decide(v,b)                      # opponent leaves the 3 m clearance
+    assert i.kind=='restart_position' and math.hypot(i.aim[0]-r.x,i.aim[1]-r.y)>=C3.TOSS_CLEARANCE_M+1.5
+    assert rec['path']=='restart_toss_clearance'
+    v,b=port3.view('A2',port3.m.s.now);i,rec=C.decide(v,b)                # too-close teammate makes himself throwable
+    assert rec['path']=='restart_support' and C3.PASS_MIN_M<=math.hypot(i.aim[0]-r.x,i.aim[1]-r.y)<=C3.PASS_MAX_M
+    # goal-line scrimmage: defenders can stand on the legal side (regression: clamp left them 0.1 m offside)
+    e,s=port3.m.e,port3.m.s;clear_field(port3);r=e.award('A',99.5,30.,'turnover',fresh=True,normalize=False)
+    put(port3,'B0',90.,30.);v,b=restart_view(port3,'B0');i,_=C.decide(v,b)
+    assert i.aim[0]>=r.x-.05
+    put(port3,'B0',*i.aim);put(port3,'A5',*r.taker_spot)
+    sg=s.attack_sign('A');assert not sg*(s.players['B0'].x-r.x)<-.05
+    # the tackler retires five metres to the defending side
+    r.rs['tackler']='B1';put(port3,'B1',r.x-1.,31.);v,b=restart_view(port3,'B1');i,rec=C.decide(v,b)
+    assert rec['path']=='restart_tackler_retires'
+
+
+def test_v3_restart_decisions_ignore_hidden_state_and_archers_do_not_take_part(port3):
+    r=toss(port3);taker_at_spot(port3,r);put(port3,'A2',r.x+3.,12.);put(port3,'B0',r.x+20.,40.)
+    port3.m.s.now=r.created_at+1600;port3.capture(port3.m.s.now);port3.m.s.now+=300;s=port3.m.s
+    views={pid:port3.view(pid,s.now) for pid in ('A5','A2','B0','A0')}
+    before={pid:C.decide(v,b) for pid,(v,b) in views.items()}
+    for p in s.players.values():p.x=p.y=-500.;p.posture='hidden-sentinel'
+    s.restart.taker='B9';s.restart.x=1.;s.restart.snap_deadline=0;port3.m.e.restart_results.clear()
+    assert {pid:C.decide(v,b) for pid,(v,b) in views.items()}==before
+    for pid,(v,b) in views.items():
+        assert C.decide(*C.view_from_json(json.loads(json.dumps(C.view_to_json(v,b)))))==before[pid]
+    assert all(i.record_id==r.native_id for i,_ in before.values())
+    va,ba=views['A0'];arch=replace(va,role='archer');assert C.decide(arch,ba)[0].kind not in ('restart_claim','restart_pass','restart_position')
+
+
+def test_v3_toss_end_to_end_releases_through_decide_and_engine(port3):
+    r=toss(port3);s=port3.m.s
+    for i,pid in enumerate(['A0','A1','A2','A3','A5']):put(port3,pid,20.+6*i,10.+7*i)
+    for i,pid in enumerate(['B0','B1','B2']):put(port3,pid,40.+5*i,30.+5*i)
+    rid=r.native_id;drive(port3,70)
+    assert port3.m.e.restart_results[rid]=='released'
+    claims=[x for x in port3.intents if x.kind=='restart_claim'];throws=[x for x in port3.intents if x.kind=='restart_pass']
+    assert claims and throws and all(x.record_id==rid for x in claims+throws[:1])
+    rel=next(x for x in port3.m.e.log if x['event']=='restart_release');assert rel['data']['taker']==throws[0].athlete
+    m=port3.restart_metric.summary(port3.m.e.restart_results)['toss']
+    assert (m['awarded'],m['released'],m['timeout'],m['eligible'],m['eligible_timeout'])==(1,1,0,1,0)
+
+
+def test_restart_metric_separates_release_from_timeout_and_is_read_only():
+    assert travel_ms(0.,23.76,10.,13.5)==0. and travel_ms(100.,23.76,10.,13.5)>travel_ms(30.,23.76,10.,13.5)>1000
+    m=RestartMetric()
+    row=lambda kind,reach=True,target=True:dict(kind=kind,reason='r',team='A',created_ms=0,best_travel_ms=1,taker_reachable=reach,target_available=target,claimed_ms=1)
+    m.rows={'1/1':row('toss'),'1/2':row('toss'),'1/3':row('toss',reach=False),'1/4':row('scrim'),'1/5':row('scrim',target=False),'1/6':row('snap40')}
+    res={'1/1':'released','1/2':'toss_timeout','1/3':'toss_timeout','1/4':'released','1/5':'snap_timeout','1/6':'superseded:offence_minor','1/7':'released'}
+    out=m.summary(res)
+    assert (out['toss']['awarded'],out['toss']['released'],out['toss']['timeout'])==(3,1,2)
+    assert out['toss']['release_rate']==pytest.approx(1/3) and out['toss']['timeout_rate']==pytest.approx(2/3)
+    assert (out['toss']['eligible'],out['toss']['eligible_timeout'],out['toss']['not_reachable'])==(2,1,1)
+    assert out['toss']['eligible_timeout_rate']==.5 and out['scrim']['eligible_timeout_rate']==0. and out['scrim']['no_target']==1
+    assert out['snap40']['superseded']==1 and out['snap40']['release_rate']==0.
+    assert out['all']['awarded']==6 and out['all']['released']+out['all']['timeout']+out['all']['superseded']==6 and out['unobserved']==1
+    # closure alone is not success: all six are closed, two of them released
+    assert sum(v!='pending' for k,v in res.items() if k in m.rows)==6 and out['all']['released']==2
+    src=Path(__file__).with_name('restart_metric.py').read_text()
+    assert 'import random' not in src and '.rng' not in src and '.emit(' not in src and 'native_sync' not in src
+
+
+def test_v3_archer_does_not_choose_a_release_the_rules_layer_calls_a_foul(port3,port2):
+    for port,expect in ((port3,False),(port2,True)):
+        scene(port);v,b=port.view('B11',port.m.s.now)
+        t=next(x for x in b.tracks if x.entity=='A0')
+        for status,legal in (('carried',True),('pass_in_flight',expect),('loose',False)):
+            sig=replace(v.signals,passive_team='A',ball_status=status,phase='live')
+            assert C.archer_target_legal(t,replace(v,signals=sig,hunt_cleared=True),v.delivered_ms) is legal
+
+
+# ------------------------------------------------- V1 / V2 short-window guards
+PRISTINE_1500=('1b566e96a97928301efd49c1e7c90080376c071464febf24290cb953eb141776','4bacfbe842b567c6fefaa2829682aae42da99fb5829f7e6a2ebf215f42399a0a')
+
+def test_v2_short_window_replays_pristine_a1b1313_hashes():
+    """1500 steps of seed 1 under native-v0/2 hash exactly as on codex/native-v0 @ a1b1313."""
+    from .run import run_match
+    r,_=run_match(1,max_steps=1500);assert (r['trace_hash'],r['state_hash'])==PRISTINE_1500
+    assert r['config_digest']==V2_DIGEST and 'tackle' not in r['decisions_by_kind']
+
+
+def test_v3_short_window_is_deterministic_and_null_m2_equals_plumbing_absent(played):
+    from .run import run_match
+    first,_=played;again,_=run_match(1,NativeConfigV3(),max_steps=3000);absent,_=run_match(1,NativeConfigV3(),plumbing=False,max_steps=3000)
+    for other in (again,absent):
+        assert (other['trace_hash'],other['state_hash'],other['score'])==(first['trace_hash'],first['state_hash'],first['score'])
+    assert first['config_digest']==NativeConfigV3().digest and first['config']['version']=='native-v0/3'
+    assert first['restart_metric']['all']['awarded']==first['restart_awarded']-first['restart_metric']['unobserved']

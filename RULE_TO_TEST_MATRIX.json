@@ -115,7 +115,7 @@
       "rule": "Platform arrow ballistic reach tested",
       "status": "IMPLEMENTED+tested",
       "test": "native/test_rules.py::test_archer_illegal_release_spends_ammo_abort_does_not_and_platform_ballistic",
-      "reason": ""
+      "reason": "native-v0/3: superseded by ARROW6/ARROW7 (250 m/s, no cap)"
     },
     {
       "id": "SCORE1",
@@ -535,7 +535,7 @@
       "rule": "Contact Scrimmage alignment, offside avoidance, snap and toss-taker decisions",
       "status": "PLACEHOLDER",
       "test": "native/test_rules.py::test_first_tackle_snapper_tackler_reset10_second_turnover",
-      "reason": "Q-BEHAVIOR-1, pure procedural intents; full-run stall checks required"
+      "reason": "Q-BEHAVIOR-1, pure procedural intents; full-run stall checks required. native-v0/3 (FAB-1c): replaced by RST1-RST3 (PRIMITIVE belief-based decisions); unchanged PLACEHOLDER under native-v0/2"
     },
     {
       "id": "PH3",
@@ -739,6 +739,98 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/test_rules.py::test_returning_bench_claim_has_current_public_period_not_old_visual_frame",
       "reason": ""
+    },
+    {
+      "id": "CFG3",
+      "rule": "native-v0/2 stays default and reproducible: config digest frozen, 1500-step seed-1 trace/state hash equals codex/native-v0 @ a1b1313",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v2_config_digest_is_frozen_and_default; native/test_v3.py::test_v2_short_window_replays_pristine_a1b1313_hashes",
+      "reason": "FAB-1 V1; full-match replay recorded in NATIVE_V0_3_MANIFEST.json"
+    },
+    {
+      "id": "ARROW6",
+      "rule": "native-v0/3 arrow release speed = arrow_speed_ratio x fastest-player speed (250 m/s default); no speed cap and no arrow_speed foul",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_arrow_speed_is_a_ratio_of_fastest_player_and_has_no_cap; native/test_v3.py::test_v3_no_speed_foul_at_250_and_v2_cap_retained; native/test_v3.py::test_v3_effective_readback_and_archer_release_speed",
+      "reason": "FAB-1a; Q-FAB1-1 (250 m/s figure vs 5.6 ratio)"
+    },
+    {
+      "id": "ARROW7",
+      "rule": "Arrow flight at 250 m/s: swept body/ball collision does not tunnel, respects radius/height/order, is step-length independent; drag and gravity apply; end-to-end freeze",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_arrow_swept_collision_does_not_tunnel; native/test_v3.py::test_v3_arrow_swept_collision_respects_radius_height_and_order; native/test_v3.py::test_v3_arrow_hit_is_independent_of_step_length; native/test_v3.py::test_v3_arrow_strikes_loose_ball_and_drag_and_gravity_apply; native/test_v3.py::test_v3_archer_motor_releases_at_config_speed_and_freezes_static_target",
+      "reason": "FAB-1a; engine flight code unchanged"
+    },
+    {
+      "id": "ARROW8",
+      "rule": "native-v0/3 Archer does not choose a release while a pass is in flight (rules layer as built has no team control then)",
+      "status": "PLACEHOLDER",
+      "test": "native/test_v3.py::test_v3_archer_does_not_choose_a_release_the_rules_layer_calls_a_foul",
+      "reason": "Q-FAB1-2: canon on team control during a pass decides whether the rules layer or the Archer predicate changes"
+    },
+    {
+      "id": "C3",
+      "rule": "native-v0/3: a hold on the carrier starts only from the defender's own wrap/takedown intent; takedown drives him down, wrap holds him up; no intent, no hold",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_takedown_intent_grounds_carrier_through_engine_physics; native/test_v3.py::test_v3_no_contact_intent_means_no_hold_and_no_takedown; native/test_v3.py::test_v3_wrap_intent_holds_without_driving_down; native/test_v3.py::test_v3_engine_contact_controllers_read_only_athlete_intents",
+      "reason": "FAB-1b; engine physics/legality/adjudication unchanged"
+    },
+    {
+      "id": "C4",
+      "rule": "native-v0/3: carrier response to contact (run_through / brace / dodge) is his own intent; escape effort exists only under run_through; no automatic descent",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_escape_effort_is_the_carriers_own_run_through_intent; native/test_v3.py::test_v3_carrier_decision_dodge_run_through_and_brace; native/test_v3.py::test_v3_engine_contact_controllers_read_only_athlete_intents",
+      "reason": "FAB-1b; decision constants PRIMITIVE, unsearched"
+    },
+    {
+      "id": "C5",
+      "rule": "native-v0/3 contact decisions use view and belief only (own-body touch/balance are SELF-1); hidden-state poison cannot change them; module is pure",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_poison_hidden_state_cannot_change_new_decisions; native/test_v3.py::test_v3_poison_hidden_attributes_before_capture_leave_views_identical; native/test_v3.py::test_v3_cognition_module_is_pure; native/test_v3.py::test_v3_own_contact_view_fields_are_own_body_only; native/test_v3.py::test_v3_defender_never_tackles_a_carrier_he_does_not_believe_in",
+      "reason": "FAB-1 V3"
+    },
+    {
+      "id": "T8",
+      "rule": "native-v0/3: grounded tackles occur in ordinary play and every hold and tackle traces to a decide() intent",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_play_every_hold_and_tackle_traces_to_a_decide_intent; native/test_v3.py::test_v3_defender_decision_commits_to_takedown_inside_believed_gap; native/test_v3.py::test_v3_defender_far_from_carrier_only_presses",
+      "reason": "FAB-1b coverage; per-match rates in NATIVE_V0_3_MANIFEST.json; no quality claim"
+    },
+    {
+      "id": "RST1",
+      "rule": "native-v0/3 restart claim: the believed-nearest eligible teammate claims, own distance delays a claim; mandatory snapper only",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_restart_claim_goes_to_the_believed_nearest_not_the_first_to_decide",
+      "reason": "FAB-1c; replaces PH2 claim placeholder; PRIMITIVE"
+    },
+    {
+      "id": "RST2",
+      "rule": "native-v0/3 restart taker: goes to the spot, waits for a legal release (toss wait and clearance, snap set signal), throws to a believed teammate at a legal throwable distance; space throw only at the last call",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_toss_taker_throws_to_a_believed_teammate_at_legal_distance; native/test_v3.py::test_v3_toss_taker_waits_for_legal_release_then_uses_space_placeholder; native/test_v3.py::test_v3_snap_taker_waits_for_the_set_signal; native/test_v3.py::test_v3_toss_end_to_end_releases_through_decide_and_engine",
+      "reason": "FAB-1c; last-call space throw remains PLACEHOLDER"
+    },
+    {
+      "id": "RST3",
+      "rule": "native-v0/3 restart standing: opponents leave the toss clearance, both sides stand onside (including goal-line scrimmages), tackler retires, two nearest teammates make themselves throwable",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_restart_standing_is_legal_and_available; native/test_v3.py::test_v3_restart_decisions_ignore_hidden_state_and_archers_do_not_take_part",
+      "reason": "FAB-1c; PRIMITIVE availability, not a formation"
+    },
+    {
+      "id": "RST4",
+      "rule": "Restart metric reports release and timeout separately by kind, with the eligible subset (taker could reach, legal target stood); read-only",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_restart_metric_separates_release_from_timeout_and_is_read_only",
+      "reason": "FAB-1c / finding F-5"
+    },
+    {
+      "id": "DET3",
+      "rule": "native-v0/3 deterministic on a short window; NULL M2 equals plumbing absent",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/test_v3.py::test_v3_short_window_is_deterministic_and_null_m2_equals_plumbing_absent",
+      "reason": "FAB-1 V2; full-match replay, serial=parallel and plumbing-absent in NATIVE_V0_3_MANIFEST.json"
     }
-  ]
+  ],
+  "native_v0_3": "Rows CFG3..DET3 added by FAB-1 (Claude) on 2026-11-15; earlier rows describe native-v0/2 and are unchanged except the notes on G5 and PH2"
 }
