@@ -2,6 +2,8 @@
 
 A static browser game built alongside the existing Python simulator. Human vs AI and AI vs AI use the same authoritative 60 Hz engine. Original PRISM, Pocket and solver files are unchanged.
 
+Play the hosted version at **https://drelenj.github.io/beastball_simulator/**. On iPhone, open it in Safari, rotate to landscape for the largest pitch, and optionally use Share → Add to Home Screen.
+
 ## Run
 
 Node.js 22.18+ recommended (Node.js 24 used for validation).
@@ -27,7 +29,7 @@ npm run test:browser            # requires the Vite server on :5173
 
 Browser tests use `/usr/bin/chromium` when present, otherwise a Playwright browser. Set `CHROMIUM_PATH` or run `npx playwright install chromium`. Use `BASE_URL` for another server. Python import utilities additionally require `openpyxl` and Pillow, but neither is required to play.
 
-`npm run build` emits `arcade/dist/`; deploy that directory on any static host. No production hosting was provisioned.
+`npm run build` emits `arcade/dist/` for root hosting. `npm run build:pages` emits the repository path build published from the `gh-pages` branch.
 
 ## Play
 
@@ -43,8 +45,10 @@ Browser tests use `/usr/bin/chromium` when present, otherwise a Playwright brows
 | Escape | Pause / resume |
 | V | Ball-following / wide camera |
 | R | Open restart confirmation |
+| Touch stick | Move the controlled athlete |
+| Touch action buttons | Pass, release, tackle, switch, Archer and hold sprint |
 
-Home teammates remain autonomous. Control follows a home catch immediately. In spectator mode both sides are autonomous; use 1×, 2×, 4× or 8× playback. Optional gamepad bindings are implemented (left stick, A pass, B tackle, X switch, Y release, RB Archer, RT sprint, Start pause); physical gamepad hardware was not available for validation. Keyboard is the verified input path. No touch joystick or local two-human mode.
+Home teammates remain autonomous. Control follows a home catch immediately. On touch devices, use the virtual stick at lower left and action buttons at lower right; holding Sprint works while another finger steers. Safe-area padding supports notched iPhones in portrait and landscape. In spectator mode both sides are autonomous; use 1×, 2×, 4× or 8× playback. Optional gamepad bindings are implemented (left stick, A pass, B tackle, X switch, Y release, RB Archer, RT sprint, Start pause); physical gamepad hardware was not available for validation. Local two-human mode is not included.
 
 ## Rules profile and deliberate simplifications
 
@@ -83,4 +87,4 @@ Matches export actual events and per-athlete/per-team points, carry/release goal
 
 ## Known limitations
 
-Scores and contact frequency are high and need play balancing. Archer hit rates can be low and asymmetric, especially in Quick mode; both sides still fire and resolve the same projectile rules. Visible on-pitch numbers are temporary bibs. Players may bunch during loose-ball contests. Very small screens have a readable selection screen but desktop keyboard is required to play. Stadium graphics and athletes are original procedural art; this is an arcade adaptation, not a complete canon rules/physics port. Evidence and the acceptance report distinguish tested behavior from optional unverified input support.
+Scores and contact frequency are high and need play balancing. Archer hit rates can be low and asymmetric, especially in Quick mode; both sides still fire and resolve the same projectile rules. Visible on-pitch numbers are temporary bibs. Players may bunch during loose-ball contests. Stadium graphics and athletes are original procedural art; this is an arcade adaptation, not a complete canon rules/physics port. Evidence and the acceptance report distinguish tested behavior from optional unverified input support.

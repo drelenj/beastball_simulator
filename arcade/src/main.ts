@@ -7,7 +7,7 @@ import logoManifest from './logos.json';
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const escape = (s: string) => s.replace(/[&<>"']/g, x => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[x]!));
 const logoIds = new Set(logoManifest.assets.filter(a => !a.status.startsWith('unmapped')).map(a => a.teamId));
-const logo = (t: Team, cls = '') => logoIds.has(t.id) ? `<img class="team-logo ${cls}" src="/logos/${t.id}.webp" alt="${escape(t.name)} official logo"/>` : `<span class="team-monogram ${cls}" style="--team:${t.color}" title="Official logo not yet verified">${escape(t.name.split(' ').map(w => w[0]).slice(0, 2).join(''))}</span>`;
+const logo = (t: Team, cls = '') => logoIds.has(t.id) ? `<img class="team-logo ${cls}" src="${import.meta.env.BASE_URL}logos/${t.id}.webp" alt="${escape(t.name)} official logo"/>` : `<span class="team-monogram ${cls}" style="--team:${t.color}" title="Official logo not yet verified">${escape(t.name.split(' ').map(w => w[0]).slice(0, 2).join(''))}</span>`;
 let home = teams.find(t => t.name === 'Ala Marauders')!, away = teams.find(t => t.name === 'Xenar Ignite')!;
 let mode: 'human' | 'spectator' = 'human', seed = 202627, clockRate = 6;
 let game = new Engine({ home, away, mode: 'spectator', seed, clockRate: 6 });
@@ -17,22 +17,81 @@ const stepper = new FixedStepper();
 let overlay = '', eventIndex = 0, sound = false, audioContext: AudioContext | null = null;
 let renderer: Renderer;
 const keys = new Set<string>(); let edges = blankInput();
-const controls = `<div class="control-grid"><span><kbd>W A S D</kbd> / <kbd>↑ ↓ ← →</kbd> Move</span><span><kbd>Shift</kbd> Sprint</span><span><kbd>Space</kbd> Pass / catch automatically</span><span><kbd>J</kbd> Tackle carrier</span><span><kbd>K</kbd> Switch defender</span><span><kbd>L</kbd> Release at goal</span><span><kbd>E</kbd> Fire Archer</span><span><kbd>Esc</kbd> Pause / resume</span><span><kbd>V</kbd> Wide / ball camera</span><span><kbd>R</kbd> Reload match confirmation</span></div>`;
+const touch = { x: 0, y: 0, sprint: false };
+const controls = `<div class="control-grid"><span><kbd>W A S D</kbd> / <kbd>STICK</kbd> Move</span><span><kbd>Shift</kbd> / <kbd>SPRINT</kbd> Sprint</span><span><kbd>Space</kbd> / <kbd>PASS</kbd> Pass / catch automatically</span><span><kbd>J</kbd> / <kbd>TACKLE</kbd> Tackle carrier</span><span><kbd>K</kbd> / <kbd>SWITCH</kbd> Switch defender</span><span><kbd>L</kbd> / <kbd>RELEASE</kbd> Release at goal</span><span><kbd>E</kbd> / <kbd>ARCHER</kbd> Fire Archer</span><span><kbd>Esc</kbd> Pause / resume</span><span><kbd>V</kbd> Wide / ball camera</span><span><kbd>R</kbd> Reload match confirmation</span></div>`;
+const touchControls = `<div class="touch-controls" aria-label="Touch game controls"><div class="touch-stick" data-touch-stick role="group" aria-label="Movement joystick"><span class="touch-stick-knob"></span><small>MOVE</small></div><div class="touch-actions"><button type="button" data-touch-action="pass" aria-label="Pass">PASS</button><button type="button" class="touch-primary" data-touch-action="shoot" aria-label="Release at goal">RELEASE</button><button type="button" data-touch-action="tackle" aria-label="Tackle">TACKLE</button><button type="button" data-touch-action="switch" aria-label="Switch athlete">SWITCH</button><button type="button" data-touch-action="fire" aria-label="Fire Archer">ARCHER</button><button type="button" class="touch-sprint" data-touch-action="sprint" aria-label="Hold to sprint">SPRINT<small>HOLD</small></button></div></div>`;
 const brand = `<a class="brand" href="#" data-action="menu" aria-label="Beastball main menu"><span class="brand-symbol">N<span>↗</span></span><span>NDAGÏ<span>BEASTBALL / ARCADE</span></span></a>`;
 function shell(content: string, className: string) {
   app.innerHTML = `<div class="shell ${className}"><canvas id="pitch" aria-label="Live 2.5D Beastball pitch"></canvas>${content}</div>`;
   renderer = new Renderer(document.querySelector<HTMLCanvasElement>('#pitch')!);
   stepper.reset(); last = performance.now();
 }
+function resetInputs() {
+  keys.clear(); edges = blankInput(); touch.x = 0; touch.y = 0; touch.sprint = false;
+  document.querySelector<HTMLElement>('.touch-stick-knob')?.style.removeProperty('transform');
+  document.querySelectorAll('.touch-active').forEach(el => el.classList.remove('touch-active'));
+}
+function installTouchControls() {
+  const stick = document.querySelector<HTMLElement>('[data-touch-stick]');
+  if (!stick) return;
+  const knob = stick.querySelector<HTMLElement>('.touch-stick-knob')!;
+  let pointer: number | null = null;
+  const moveStick = (ev: PointerEvent) => {
+    if (ev.pointerId !== pointer) return;
+    const rect = stick.getBoundingClientRect(), radius = rect.width * .32;
+    let dx = ev.clientX - (rect.left + rect.width / 2), dy = ev.clientY - (rect.top + rect.height / 2);
+    const distance = Math.hypot(dx, dy);
+    if (distance > radius) { dx *= radius / distance; dy *= radius / distance; }
+    touch.x = Math.abs(dx / radius) < .08 ? 0 : dx / radius;
+    touch.y = Math.abs(dy / radius) < .08 ? 0 : dy / radius;
+    knob.style.transform = `translate(${dx}px, ${dy}px)`;
+  };
+  const releaseStick = (ev: PointerEvent) => {
+    if (ev.pointerId !== pointer) return;
+    pointer = null; touch.x = 0; touch.y = 0; knob.style.transform = 'translate(0, 0)';
+    stick.classList.remove('touch-active');
+  };
+  stick.addEventListener('pointerdown', ev => {
+    ev.preventDefault(); pointer = ev.pointerId; stick.setPointerCapture(ev.pointerId);
+    stick.classList.add('touch-active'); moveStick(ev);
+  });
+  stick.addEventListener('pointermove', moveStick);
+  stick.addEventListener('pointerup', releaseStick);
+  stick.addEventListener('pointercancel', releaseStick);
+  stick.addEventListener('lostpointercapture', releaseStick);
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-touch-action]')) {
+    const action = button.dataset.touchAction!;
+    const release = (ev: PointerEvent) => {
+      if (button.hasPointerCapture(ev.pointerId)) button.releasePointerCapture(ev.pointerId);
+      button.classList.remove('touch-active');
+      if (action === 'sprint') touch.sprint = false;
+    };
+    button.addEventListener('pointerdown', ev => {
+      ev.preventDefault(); button.setPointerCapture(ev.pointerId); button.classList.add('touch-active');
+      if (action === 'sprint') touch.sprint = true;
+      else if (action === 'pass') edges.pass = true;
+      else if (action === 'shoot') edges.shoot = true;
+      else if (action === 'tackle') edges.tackle = true;
+      else if (action === 'switch') edges.switch = true;
+      else if (action === 'fire') edges.fire = true;
+    });
+    button.addEventListener('pointerup', release);
+    button.addEventListener('pointercancel', release);
+    button.addEventListener('lostpointercapture', () => {
+      button.classList.remove('touch-active');
+      if (action === 'sprint') touch.sprint = false;
+    });
+  }
+}
 function menu() {
-  screen = 'menu'; paused = false; overlay = ''; keys.clear();
+  screen = 'menu'; paused = false; overlay = ''; resetInputs();
   game = new Engine({ home, away, mode: 'spectator', seed, clockRate: 6 });
   shell(`<div class="menu-shade"></div><header class="topbar">${brand}<div class="status-light"><i></i> NBL 2026–27 · OPENING NIGHT</div><button class="icon-button" data-action="sound" aria-label="Toggle sound">${sound ? 'SOUND ON' : 'SOUND OFF'}</button></header>
     <main class="hero"><div class="eyebrow"><span>THE HUNT STARTS HERE</span><b>VOL. 01 / NBL</b></div><h1>INSTINCT.<br/>IMPACT.<br/><em>BEASTBALL.</em></h1><p>Twelve athletes. One hundred meters.<br/>Carry, release, and let your Archer change the game.</p><div class="hero-actions"><button class="button primary" data-action="play">PLAY THE HUNT <span>↗</span></button><button class="button secondary" data-action="watch">WATCH AI VS AI <span>▶</span></button></div><button class="text-button" data-action="controls">LEARN THE CONTROLS <span>→</span></button><div class="hero-facts"><span><b>26</b> NBL FRANCHISES</span><span><b>712</b> CANONICAL ATHLETES</span><span><b>2.5D</b> ARCADE ACTION</span></div></main>
     <aside class="live-card"><span class="eyebrow"><i class="live-dot"></i> LIVE ENGINE PREVIEW</span><div>${logo(home)}<span>VS</span>${logo(away)}</div><h3>${escape(home.name)}<br/><span>${escape(away.name)}</span></h3><p>Autonomous teams. Every outcome on the pitch.</p></aside><footer class="menu-footer"><span>ORIGINAL SPORT. ARCADE INSTINCT.</span><span>LOCAL PLAY · NO ACCOUNT REQUIRED</span><button data-action="about">RULES & PROVENANCE ↗</button></footer><div id="modal"></div>`, 'menu-screen');
 }
 function select() {
-  screen = 'select'; paused = false; overlay = ''; keys.clear();
+  screen = 'select'; paused = false; overlay = ''; resetInputs();
   shell(`<div class="selection-backdrop"></div><header class="topbar">${brand}<div class="breadcrumb">01 / CONFIGURE THE HUNT</div><button class="text-button" data-action="menu">← MAIN MENU</button></header><main class="selection-layout"><section class="selection-main"><div class="section-heading"><div><div class="eyebrow">OFFICIAL NBL / 2026–27</div><h1>CHOOSE YOUR <em>INSTINCT.</em></h1></div><span class="pill">26 TEAMS</span></div><div class="matchup-slots"><button data-action="slot-home" class="matchup-slot ${slot === 'home' ? 'active' : ''}">${logo(home)}<span><small>HOME · ${mode === 'human' ? 'YOU' : 'AI'}</small><strong>${escape(home.name)}</strong><small>${home.formation} · ${Math.round(home.players.filter(p => home.starters.includes(p['Player ID'])).reduce((a, p) => a + p['Opening-day OVR'], 0) / 12)} OVR</small></span><b>↗</b></button><span class="vs">VS</span><button data-action="slot-away" class="matchup-slot ${slot === 'away' ? 'active' : ''}">${logo(away)}<span><small>AWAY · AI</small><strong>${escape(away.name)}</strong><small>${away.formation} · ${Math.round(away.players.filter(p => away.starters.includes(p['Player ID'])).reduce((a, p) => a + p['Opening-day OVR'], 0) / 12)} OVR</small></span><b>↗</b></button></div><div class="team-filter"><span>SELECT ${slot.toUpperCase()} FRANCHISE</span><input id="team-search" type="search" placeholder="Search 26 franchises…" aria-label="Search franchises"/></div><div class="team-grid">${teams.map((t, i) => `<button class="team-card ${home.id === t.id ? 'home-selected' : ''} ${away.id === t.id ? 'away-selected' : ''}" data-team="${t.id}" style="--team:${t.color}" aria-label="Select ${escape(t.name)}">${logo(t)}<span class="team-index">${String(i + 1).padStart(2, '0')}</span><strong>${escape(t.name)}</strong><small>${t.formation} <span>${t.players.length} ATHLETES</span></small>${home.id === t.id ? '<b class="chosen">HOME</b>' : away.id === t.id ? '<b class="chosen">AWAY</b>' : ''}</button>`).join('')}</div><p class="data-note">All 712 Players worksheet · Opening-day OVR · Verified projected starters. Monograms indicate logos awaiting verification.</p></section><aside class="selection-sidebar"><div class="eyebrow">MATCH SETUP</div><label>CONFIGURATION<select id="mode"><option value="human" ${mode === 'human' ? 'selected' : ''}>Human vs AI</option><option value="spectator" ${mode === 'spectator' ? 'selected' : ''}>AI vs AI · Spectator</option></select></label><label>MATCH CLOCK<select id="clock"><option value="6" ${clockRate === 6 ? 'selected' : ''}>Arcade · ~7 minutes (6× clock)</option><option value="20" ${clockRate === 20 ? 'selected' : ''}>Quick hunt · ~2 minutes (20× clock)</option><option value="1" ${clockRate === 1 ? 'selected' : ''}>Regulation · 4 × 10 minutes</option></select></label><label>REPLAY SEED<input id="seed" type="number" min="1" max="4294967295" value="${seed}"/></label><div class="lineup-heading"><span>${slot === 'home' ? 'HOME' : 'AWAY'} STARTING XII</span><small>OVR</small></div><div class="lineup">${(slot === 'home' ? home : away).players.filter(p => (slot === 'home' ? home : away).starters.includes(p['Player ID'])).map(p => `<div><span class="position ${p.Position === 'ARC' || p.Position === 'KPR' ? 'special' : ''}">${p.Position}</span><span title="${escape(p['Player ID'])}">${escape(p.Player)}</span><b>${p['Opening-day OVR']}</b></div>`).join('')}</div><p class="data-note">10 field athletes + Keeper + Archer.<br/>On-pitch numbers are temporary bibs; the source does not supply jersey numbers.</p><button class="button primary start" data-action="start">START MATCH <span>↗</span></button></aside></main><div id="modal"></div>`, 'select-screen');
   document.querySelector('#team-search')!.addEventListener('input', ev => {
     const query = (ev.target as HTMLInputElement).value.toLocaleLowerCase();
@@ -43,9 +102,10 @@ function select() {
   document.querySelector('#seed')!.addEventListener('change', ev => { seed = Math.max(1, Number((ev.target as HTMLInputElement).value) >>> 0); });
 }
 function start() {
-  game = new Engine({ home, away, mode, seed, clockRate }); screen = 'match'; paused = false; playback = 1; overlay = ''; eventIndex = 0; keys.clear(); edges = blankInput();
-  shell(`<div class="match-interface"><header class="match-top"><div class="compact-brand">N<span>↗</span><small>BEASTBALL<br/>ARCADE</small></div><div class="scoreboard"><div class="score-team home">${logo(home)}<span>${escape(home.name)}<small>HOME ${mode === 'human' ? '/ YOU' : '/ AI'}</small></span><strong id="score-home">0</strong></div><div class="clock-block"><span id="period">Q1</span><b id="clock-value">10:00</b><small id="phase-value">FIRST HUNT</small></div><div class="score-team away"><strong id="score-away">0</strong><span>${escape(away.name)}<small>AWAY / AI</small></span>${logo(away)}</div></div><button class="icon-button pause-button" data-action="pause" aria-label="Pause match">Ⅱ</button></header><div class="match-meta"><span><i class="live-dot"></i> ${mode === 'spectator' ? 'AI VS AI / SPECTATOR' : 'HUMAN VS AI / YOU CONTROL HOME'}</span><div class="possession"><span id="possession-team">FIRST HUNT</span><strong id="possession-clock">45</strong><small>POSSESSION</small></div><span>SEED ${seed} <b>·</b> ${clockRate === 1 ? 'REGULATION' : `${clockRate}× MATCH CLOCK`}</span></div><div id="event-banner" aria-live="polite"></div><div class="match-bottom"><div id="athlete-panel"></div><div class="match-tools"><button data-action="camera" title="V to toggle camera">◎ BALL CAM</button><button data-action="stats">▤ STATS</button><button data-action="controls">? CONTROLS</button><button data-action="sound">${sound ? '♪ SOUND ON' : '♪ SOUND OFF'}</button>${mode === 'spectator' ? `<label class="speed-label">PLAYBACK <select id="playback" aria-label="Playback speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></label>` : ''}</div></div><div class="control-strip">${mode === 'human' ? '<span><kbd>WASD</kbd> MOVE</span><span><kbd>SHIFT</kbd> SPRINT</span><span><kbd>SPACE</kbd> PASS</span><span><kbd>J</kbd> TACKLE</span><span><kbd>K</kbd> SWITCH</span><span><kbd>L</kbd> RELEASE</span><span><kbd>E</kbd> ARCHER</span>' : '<span>AUTONOMOUS PLAY · BOTH TEAMS SHARE ONE ENGINE</span><span>FIXED STEP 60 HZ · SPEED DOES NOT CHANGE THE RULES</span>'}</div></div><div id="state-overlay"></div><div id="modal"></div>`, 'match-screen');
+  game = new Engine({ home, away, mode, seed, clockRate }); screen = 'match'; paused = false; playback = 1; overlay = ''; eventIndex = 0; resetInputs();
+  shell(`<div class="match-interface"><header class="match-top"><div class="compact-brand">N<span>↗</span><small>BEASTBALL<br/>ARCADE</small></div><div class="scoreboard"><div class="score-team home">${logo(home)}<span>${escape(home.name)}<small>HOME ${mode === 'human' ? '/ YOU' : '/ AI'}</small></span><strong id="score-home">0</strong></div><div class="clock-block"><span id="period">Q1</span><b id="clock-value">10:00</b><small id="phase-value">FIRST HUNT</small></div><div class="score-team away"><strong id="score-away">0</strong><span>${escape(away.name)}<small>AWAY / AI</small></span>${logo(away)}</div></div><button class="icon-button pause-button" data-action="pause" aria-label="Pause match">Ⅱ</button></header><div class="match-meta"><span><i class="live-dot"></i> ${mode === 'spectator' ? 'AI VS AI / SPECTATOR' : 'HUMAN VS AI / YOU CONTROL HOME'}</span><div class="possession"><span id="possession-team">FIRST HUNT</span><strong id="possession-clock">45</strong><small>POSSESSION</small></div><span>SEED ${seed} <b>·</b> ${clockRate === 1 ? 'REGULATION' : `${clockRate}× MATCH CLOCK`}</span></div><div id="event-banner" aria-live="polite"></div><div class="match-bottom"><div id="athlete-panel"></div><div class="match-tools"><button data-action="camera" title="V to toggle camera">◎ BALL CAM</button><button data-action="stats">▤ STATS</button><button data-action="controls">? CONTROLS</button><button data-action="sound">${sound ? '♪ SOUND ON' : '♪ SOUND OFF'}</button>${mode === 'spectator' ? `<label class="speed-label">PLAYBACK <select id="playback" aria-label="Playback speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></label>` : ''}</div></div><div class="control-strip">${mode === 'human' ? '<span><kbd>WASD</kbd> MOVE</span><span><kbd>SHIFT</kbd> SPRINT</span><span><kbd>SPACE</kbd> PASS</span><span><kbd>J</kbd> TACKLE</span><span><kbd>K</kbd> SWITCH</span><span><kbd>L</kbd> RELEASE</span><span><kbd>E</kbd> ARCHER</span>' : '<span>AUTONOMOUS PLAY · BOTH TEAMS SHARE ONE ENGINE</span><span>FIXED STEP 60 HZ · SPEED DOES NOT CHANGE THE RULES</span>'}</div>${mode === 'human' ? touchControls : ''}</div><div id="state-overlay"></div><div id="modal"></div>`, 'match-screen');
   document.querySelector('#playback')?.addEventListener('change', ev => { playback = Number((ev.target as HTMLSelectElement).value); });
+  installTouchControls();
   updateHUD();
 }
 const formatClock = (n: number) => `${Math.floor(Math.max(0, Math.ceil(n)) / 60)}:${String(Math.max(0, Math.ceil(n)) % 60).padStart(2, '0')}`;
@@ -85,6 +145,7 @@ function statTable() {
 }
 function modal(title: string, content: string) {
   if (screen === 'match' && game.phase !== 'final') paused = true;
+  resetInputs();
   document.querySelector('#modal')!.innerHTML = `<div class="modal-shade"><section class="modal-card" role="dialog" aria-modal="true" aria-label="${escape(title)}"><button class="close" data-action="close" aria-label="Close dialog">×</button><div class="eyebrow">NDAGÏ / BEASTBALL ARCADE</div><h2>${title}</h2>${content}<button class="button secondary" data-action="close">BACK TO THE HUNT →</button></section></div>`;
   updateHUD(); document.querySelector<HTMLButtonElement>('.close')?.focus();
 }
@@ -116,12 +177,12 @@ document.addEventListener('click', ev => {
   if (action === 'slot-home') { slot = 'home'; select(); }
   if (action === 'slot-away') { slot = 'away'; select(); }
   if (action === 'start' || action === 'restart') start();
-  if (action === 'pause') { paused = !paused; keys.clear(); edges = blankInput(); updateHUD(); }
+  if (action === 'pause') { paused = !paused; resetInputs(); updateHUD(); }
   if (action === 'camera') { renderer.wide = !renderer.wide; el.textContent = renderer.wide ? '◎ WIDE CAM' : '◎ BALL CAM'; }
-  if (action === 'controls') modal('PLAY BY INSTINCT.', `${controls}<p>Carry through the illuminated semicircle for 5 points. Release with L for 3. Aim movement with WASD; Space chooses an open teammate. Catches happen automatically on contact. J only tackles an opposing carrier. E directs your Archer at an eligible opposing carrier; move your defenders to open the arrow lane.</p><p>When your team catches the ball, control immediately follows the carrier. K selects a nearby defender. Teammates keep supporting you autonomously. A connected gamepad supports left stick, A pass, B tackle, X switch, Y release, RB Archer, RT sprint, Start pause.</p><p class="data-note">Spectator playback changes how many fixed steps run per rendered frame. Seed and clock settings determine the replay. Human vs human is not included.</p>`);
+  if (action === 'controls') modal('PLAY BY INSTINCT.', `${controls}<p>On a phone, drag the left stick to move and hold Sprint while steering. The right buttons pass, release, tackle, switch defenders, and fire the Archer. Touch buttons use the same contextual actions and game engine as keyboard controls.</p><p>Carry through the illuminated semicircle for 5 points. Release for 3. Pass chooses an open teammate; catches happen automatically on contact. Tackle only affects an opposing carrier. Move defenders to open your Archer's lane.</p><p>When your team catches the ball, control immediately follows the carrier. Teammates keep supporting you autonomously. A connected gamepad supports left stick, A pass, B tackle, X switch, Y release, RB Archer, RT sprint, Start pause.</p><p class="data-note">Spectator playback changes how many fixed steps run per rendered frame. Seed and clock settings determine the replay. Human vs human is not included.</p>`);
   if (action === 'about') about();
   if (action === 'stats') showStats();
-  if (action === 'close') { document.querySelector('#modal')!.innerHTML = ''; if (screen === 'match' && game.phase !== 'final') paused = false; keys.clear(); edges = blankInput(); updateHUD(); }
+  if (action === 'close') { document.querySelector('#modal')!.innerHTML = ''; if (screen === 'match' && game.phase !== 'final') paused = false; resetInputs(); updateHUD(); }
   if (action === 'sound') { sound = !sound; el.textContent = sound ? '♪ SOUND ON' : '♪ SOUND OFF'; if (sound) tone('goal'); }
   if (action === 'export') {
     const url = URL.createObjectURL(new Blob([JSON.stringify(game.result(), null, 2)], { type: 'application/json' }));
@@ -136,7 +197,7 @@ document.addEventListener('keydown', ev => {
   if (screen !== 'match') return;
   if (k === 'Escape') {
     if (document.querySelector('#modal')!.innerHTML) { document.querySelector<HTMLElement>('[data-action="close"]')!.click(); return; }
-    paused = !paused; keys.clear(); edges = blankInput(); updateHUD(); return;
+    paused = !paused; resetInputs(); updateHUD(); return;
   }
   if (k === 'KeyV') renderer.wide = !renderer.wide;
   if (k === 'KeyR') { paused = true; modal('START A FRESH HUNT?', '<p>Restart this match from the same seed and selected teams.</p><button class="button primary" data-action="restart">RESTART MATCH ↻</button>'); }
@@ -147,13 +208,17 @@ document.addEventListener('keydown', ev => {
   if (k === 'KeyE') edges.fire = true;
 });
 document.addEventListener('keyup', ev => keys.delete(ev.code));
-window.addEventListener('blur', () => { keys.clear(); edges = blankInput(); if (screen === 'match' && game.phase !== 'final') { paused = true; updateHUD(); } });
+window.addEventListener('blur', () => { resetInputs(); if (screen === 'match' && game.phase !== 'final') { paused = true; updateHUD(); } });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && screen === 'match' && game.phase !== 'final') { resetInputs(); paused = true; updateHUD(); }
+});
 let gamepadPrevious: boolean[] = [], gamepadPauseHeld = false;
 function input(): Input {
   const i = { ...edges };
-  i.x = Number(keys.has('KeyD') || keys.has('ArrowRight')) - Number(keys.has('KeyA') || keys.has('ArrowLeft'));
-  i.y = Number(keys.has('KeyS') || keys.has('ArrowDown')) - Number(keys.has('KeyW') || keys.has('ArrowUp'));
-  i.sprint = keys.has('ShiftLeft') || keys.has('ShiftRight');
+  const keyboardX = Number(keys.has('KeyD') || keys.has('ArrowRight')) - Number(keys.has('KeyA') || keys.has('ArrowLeft'));
+  const keyboardY = Number(keys.has('KeyS') || keys.has('ArrowDown')) - Number(keys.has('KeyW') || keys.has('ArrowUp'));
+  i.x = keyboardX || touch.x; i.y = keyboardY || touch.y;
+  i.sprint = keys.has('ShiftLeft') || keys.has('ShiftRight') || touch.sprint;
   const pad = navigator.getGamepads?.()[0];
   if (pad) {
     if (Math.abs(pad.axes[0]) > .18) i.x = pad.axes[0]; if (Math.abs(pad.axes[1]) > .18) i.y = pad.axes[1];
@@ -166,7 +231,7 @@ function input(): Input {
 function frame(now: number) {
   const elapsed = Math.min(.1, (now - last) / 1000); last = now;
   const startPressed = navigator.getGamepads?.()[0]?.buttons[9]?.pressed ?? false;
-  if (screen === 'match' && startPressed && !gamepadPauseHeld) { paused = !paused; updateHUD(); }
+  if (screen === 'match' && startPressed && !gamepadPauseHeld) { paused = !paused; resetInputs(); updateHUD(); }
   gamepadPauseHeld = startPressed;
   if (screen !== 'select' && !paused && game.phase !== 'final') {
     const speed = screen === 'match' ? playback : 1;
