@@ -30,3 +30,9 @@ def test_restart_throw_is_an_attempt_once_at_actual_release():
  assert e.restart_release('A0',(24,0,1),'A1')
  assert e.rb_attempts[-1]['kind']=='restart_pass' and e.rb_attempts[-1]['distance']==50
  assert len(e.rb_attempts)==1
+
+def test_keeper_opponent_goal_is_no_goal_ruling():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
+ s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=101,y=50,z=1.5,scoring=True,last_releaser='A10',last_touch='A')
+ assert not e.goal('B') and s.score=={'A':0,'B':0}
+ assert not any(c['kind']=='goal' for c in e.rb.calls)

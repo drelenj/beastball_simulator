@@ -35,13 +35,14 @@ class Authorities:
 
     def timeout(self,team,dead,possessor,remaining_ms,score):
         if self.period>5 or self.timeouts[team]<=0 or not(dead or team==possessor):return None
-        other='B' if team=='A' else 'A';trigger=None
+        other='B' if team=='A' else 'A';triggers=[]
         if dead and len(self.scores)>=2 and self.scores[-2:]==[other,other]:
             start=len(self.scores)-2
             while start>0 and self.scores[start-1]==other:start-=1
-            trigger=('two_scores',start)
-        if dead and self.period>=4 and remaining_ms<=60000 and score[team]<=score[other]:trigger=('late',self.period)
-        if trigger is None or (team,trigger) in self.timeout_triggers:return None
+            triggers.append(('two_scores',start))
+        if dead and self.period>=4 and remaining_ms<=60000 and score[team]<=score[other]:triggers.append(('late',self.period))
+        trigger=next((t for t in triggers if (team,t) not in self.timeout_triggers),None)
+        if trigger is None:return None
         self.timeout_triggers.add((team,trigger));self.timeouts[team]-=1
         return self.ruling('timeout',team=team,duration_ms=self.config.timeout_ms,trigger=trigger)
 

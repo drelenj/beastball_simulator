@@ -101,6 +101,7 @@ def install(co,cfg):
    self.native_seen=len(self.log)
    if ev.kind in ('goal','no_goal'):
     if ev.actual:old_goal(self,data['defending'])
+    elif s.ball.x < -s.ball.radius or s.ball.x > 100+s.ball.radius or s.ball.y < -s.ball.radius or s.ball.y > 100+s.ball.radius:old_boundary(self,s.ball.x,s.ball.y)
     else:self.award(s.owner or s.other(data['defending']),s.ball.x,s.ball.y,'review_corrected_no_goal',normalize=False)
    elif ev.kind=='boundary':
     if ev.actual:old_boundary(self,data['x'],data['y'],data.get('carrier'))

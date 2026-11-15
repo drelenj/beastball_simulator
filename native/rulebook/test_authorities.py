@@ -69,3 +69,9 @@ def test_head_evaluation_next_period_and_injury_no_randomness(law):
     p=player();law.injury(p,head=True);assert not law.can_enter(p,0)
     law.enter_period(2);assert law.can_enter(p,0)
     law.injury(p);assert not law.can_enter(p,0)
+
+def test_each_simultaneous_timeout_trigger_can_be_consumed_once(law):
+ law.enter_period(4);law.score('B');law.score('B')
+ assert law.timeout('A',True,'A',60000,{'A':0,'B':2})
+ assert law.timeout('A',True,'A',60000,{'A':0,'B':2})
+ assert law.timeouts['A']==0

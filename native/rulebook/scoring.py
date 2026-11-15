@@ -28,9 +28,14 @@ def install(co,cfg):
   s,b=self.s,self.s.ball;y=b.y if y is None else y;z=b.z if z is None else z
   plane=s.ends[defending];cross=(b.x-plane)*(1 if plane==100 else -1)-b.radius
   margin=min(cross,cfg.goal_radius-math.hypot(y-50,z)-b.radius)
-  valid=margin>=-1e-7 and s.phase in (P.LIVE,P.OPENING,P.FLIGHT) and b.scoring
+  scoring=s.other(defending);holder=s.players.get(b.carrier);releaser=s.players.get(b.last_releaser)
+  own=bool(holder and holder.team==defending or getattr(b,'rb_deliberate_team',None)==defending or releaser and releaser.team==defending)
+  keeper_invalid=not own and (holder and holder.role=='keeper' or releaser and releaser.role=='keeper' or getattr(b,'native_keeper_touch',None)==scoring)
+  valid=not keeper_invalid and margin>=-1e-7 and s.phase in (P.LIVE,P.OPENING,P.FLIGHT) and b.scoring
   self.rb_publish(self.rb.ruling('goal' if valid else 'no_goal',defending=defending,margin_m=margin,recorded_disagreement_m=0.))
-  if not valid:return False
+  if not valid:
+   if keeper_invalid and margin>=0:self.boundary(b.x,y)
+   return False
   scoring=s.other(defending);holder=s.players.get(b.carrier);releaser=s.players.get(b.last_releaser)
   own=bool(holder and holder.team==defending or getattr(b,'rb_deliberate_team',None)==defending or releaser and releaser.team==defending)
   if not own and (holder and holder.role=='keeper' or releaser and releaser.role=='keeper' or getattr(b,'native_keeper_touch',None)==scoring):
