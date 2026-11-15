@@ -36,8 +36,9 @@ def test_major_goal_line_scrimmage_can_release():
  assert s.restart.x==0
  for q in s.players.values():
   if q.active and q.role!='archer':q.x=0 if q.team=='A' else 10;q.y=80
- r=s.restart;r.taker='A0';s.players['A0'].x,s.players['A0'].y=r.taker_spot
- assert e.restart_release('A0',(20,0,1),'A1')
+ assert e.rb.evaluated['A0']==s.period and not s.players['A0'].active
+ r=s.restart;r.taker='A1';s.players['A1'].x,s.players['A1'].y=r.taker_spot
+ assert e.restart_release('A1',(20,0,1),'A2')
  assert s.phase==p.types.Phase.LIVE
 
 def test_physical_kernel_contact_on_protected_keeper_emits_major():

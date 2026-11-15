@@ -25,7 +25,11 @@ def install(co,cfg):
   q.active=True;q.role=target_role;q.slot=p.slot if p else q.slot
   q.x,q.y=(p.x,p.y) if p else (s.ends[q.team]+s.attack_sign(q.team)*30,50.)
   q.z=q.vx=q.vy=q.vz=0.;q.posture='upright';q.target=(q.x,q.y);q.c4c_plan=q.c4c_launch=None
-  if p:self.rb_slots.pop(p.id,None)
+  if p:
+   self.rb_slots.pop(p.id,None)
+   if s.restart:
+    if s.restart.taker==p.id:s.restart.taker=None
+    if s.restart.rs.get('snapper')==p.id:s.restart.rs['snapper']=None
   self.rb_publish(self.rb.ruling('substitution',outgoing=outgoing,incoming=incoming,role=target_role,injury_exempt=bool(p and (p.id in self.rb.injuries or self.rb.evaluated.get(p.id)==s.period))))
   port=getattr(self,'rb_port',None)
   if port:
@@ -56,7 +60,11 @@ def install(co,cfg):
   p=s.players[pid];self.rb.injury(p,head);p.injured=True
   self.rb_slots[pid]=dict(team=p.team,role=p.role,until=s.live_ms,injury=True)
   owner=self.possession.pp or s.owner or p.team;play=s.possession_ms
-  self.award(owner,s.ball.x,s.ball.y,'injury',normalize=False);s.possession_ms=play
+  if s.phase!=P.DEAD:self.award(owner,s.ball.x,s.ball.y,'injury',normalize=False)
+  elif s.restart:
+   if s.restart.taker==pid:s.restart.taker=None
+   if s.restart.rs.get('snapper')==pid:s.restart.rs['snapper']=None
+  s.possession_ms=play
   self.rb_publish(self.rb.ruling('head_evaluation' if head else 'injury',player=pid))
   self.rb_fill_slots();return True
  E.rb_force_injury=injury

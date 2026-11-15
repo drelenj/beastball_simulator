@@ -28,18 +28,27 @@ def match(job):
   (EVIDENCE/f'full-{label}-failure.json').write_text(json.dumps(result,indent=2)+'\n');return result
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--seeds',type=int,nargs='+',required=True);parser.add_argument('--label',required=True);parser.add_argument('--workers',type=int,default=1)
+ parser=argparse.ArgumentParser();parser.add_argument('--seeds',type=int,nargs='+',required=True);parser.add_argument('--label',required=True);parser.add_argument('--workers',type=int,default=1);parser.add_argument('--serial-replay',action='store_true')
  a=parser.parse_args();path=EVIDENCE/'FULL_MATCH_BUDGET.json';budget=json.loads(path.read_text())
- assert len(budget['attempts'])+len(a.seeds)<=budget['cap']
+ seeds=([1] if a.serial_replay else [])+a.seeds
+ assert len(budget['attempts'])+len(seeds)<=budget['cap']
  source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();jobs=[];rows=[]
- for n,seed in enumerate(a.seeds):
+ for n,seed in enumerate(seeds):
   label=f'{a.label}-seed{seed}-{n}';jobs.append((seed,label));row=dict(id=len(budget['attempts'])+1,profile='native-rb/1',seed=seed,label=label,purpose='RB functional validation',status='reserved',commit=source);budget['attempts'].append(row);rows.append(row)
  path.write_text(json.dumps(budget,indent=2)+'\n')
  if a.workers==1:results=[match(job) for job in jobs]
  else:
-  with ProcessPoolExecutor(a.workers) as pool:results=list(pool.map(match,jobs))
+  with ProcessPoolExecutor(a.workers) as pool:
+   if a.serial_replay:
+    futures=[pool.submit(match,job) for job in jobs[1:]]
+    results=[match(jobs[0])]+[f.result() for f in futures]
+   else:results=list(pool.map(match,jobs))
  for row,result in zip(rows,results):row.update(result)
  path.write_text(json.dumps(budget,indent=2)+'\n')
  print(json.dumps(dict(validation_results=results),sort_keys=True),flush=True)
  if any(r['status']!='passed' for r in results):raise SystemExit(1)
+ if a.serial_replay:
+  replay=next(r for r in results[1:] if r['seed']==1)
+  assert (results[0]['trace_hash'],results[0]['state_hash'])==(replay['trace_hash'],replay['state_hash'])
+  print(json.dumps(dict(serial_parallel_replay='passed',seed=1)),flush=True)
 if __name__=='__main__':main()
