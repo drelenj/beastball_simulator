@@ -1,0 +1,9 @@
+{
+  "B0_blobs": 427,
+  "byte_identical_to_native_v02": {
+    "b1/core.py": true,
+    "b1/runtime.py": true,
+    "b1/g1.py": true,
+    "native/cognition.py": true
+  }
+}

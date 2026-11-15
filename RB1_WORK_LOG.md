@@ -1,3 +1,5 @@
+Historical checkpoint log; current status and evidence are in RB1_REPORT.md. Earlier counts and outstanding lists below describe their respective checkpoint only.
+
 OWNER BRIEFING — RB-1 IN PROGRESS
 1. Created codex/rulebook-1 from the requested baseline; added isolated immutable RB configuration and engine-authority resource ledgers.
 2. Native v0/2 remains unchanged. RB-1 is not yet wired into the match loop.
@@ -38,3 +40,5 @@ Step7 blocked report: implementation freeze a3b583a. The ratified-clearance/unch
 Terminal audit:60 RB cases pass. New score and pause/injury entry points are guarded after completion; the RB authority score ledger cannot be appended by a rejected post-final score call. Full acceptance remains blocked by restart clearance; no full RB match was launched.
 
 Restart-admission audit:61 RB cases pass. Check existing snap readiness before marking admission; measure from the restart ball rather than a moving taker. Ready/not-ready fixtures distinguish the paths. A new bounded seed1 reproduction still reaches5,375 live ms/137,075 physical ms and the watchdog. Operational marking witness (ball-centred radius with designated-tackler exception) is explicitly PLACEHOLDER, not additional ratified canon; owner/reviewer should confirm that witness before requesting cognition work. No decision code changed.
+
+Final delivery evidence supersedes earlier checkpoint counts: 258 passed,23 subtests,155.29s;61 RB cases. Source freeze cd22294b16ff30af9363edfffe27ed56d4800384.43 matrix rows, reference validation passes. BLOCKED remains explicit; marking witness is PLACEHOLDER pending review.

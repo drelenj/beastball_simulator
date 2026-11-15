@@ -1,0 +1,76 @@
+..........................FFFF.....                                      [100%]
+=================================== FAILURES ===================================
+___________________ test_real_release_band_and_goal[9.999-2] ___________________
+
+distance = 9.999, points = 2
+
+    @pytest.mark.parametrize('distance,points',[(9.999,2),(10,3),(19.999,3),(20,4)])
+    def test_real_release_band_and_goal(distance,points):
+     p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
+     s.owner='A';s.players['A0'].x=100-distance;s.players['A0'].y=50
+     s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=100-distance,y=50,z=1.5,scoring=True)
+     assert e.release('A0',(25,0,1),'shot');s.ball.x=101;s.ball.y=50;s.ball.z=1.5
+     assert e.goal('B');assert s.score['A']==points
+>    assert e.rb_attempts[-1]['distance']==pytest.approx(distance)
+E    assert 9.23845 == 9.999 ± 1.0e-05
+E      
+E      comparison failed
+E      Obtained: 9.23845
+E      Expected: 9.999 ± 1.0e-05
+
+native/rulebook/test_scoring.py:13: AssertionError
+____________________ test_real_release_band_and_goal[10-3] _____________________
+
+distance = 10, points = 3
+
+    @pytest.mark.parametrize('distance,points',[(9.999,2),(10,3),(19.999,3),(20,4)])
+    def test_real_release_band_and_goal(distance,points):
+     p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
+     s.owner='A';s.players['A0'].x=100-distance;s.players['A0'].y=50
+     s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=100-distance,y=50,z=1.5,scoring=True)
+     assert e.release('A0',(25,0,1),'shot');s.ball.x=101;s.ball.y=50;s.ball.z=1.5
+>    assert e.goal('B');assert s.score['A']==points
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E    assert 2 == 3
+
+native/rulebook/test_scoring.py:12: AssertionError
+__________________ test_real_release_band_and_goal[19.999-3] ___________________
+
+distance = 19.999, points = 3
+
+    @pytest.mark.parametrize('distance,points',[(9.999,2),(10,3),(19.999,3),(20,4)])
+    def test_real_release_band_and_goal(distance,points):
+     p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
+     s.owner='A';s.players['A0'].x=100-distance;s.players['A0'].y=50
+     s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=100-distance,y=50,z=1.5,scoring=True)
+     assert e.release('A0',(25,0,1),'shot');s.ball.x=101;s.ball.y=50;s.ball.z=1.5
+     assert e.goal('B');assert s.score['A']==points
+>    assert e.rb_attempts[-1]['distance']==pytest.approx(distance)
+E    assert 19.23845 == 19.999 ± 2.0e-05
+E      
+E      comparison failed
+E      Obtained: 19.23845
+E      Expected: 19.999 ± 2.0e-05
+
+native/rulebook/test_scoring.py:13: AssertionError
+____________________ test_real_release_band_and_goal[20-4] _____________________
+
+distance = 20, points = 4
+
+    @pytest.mark.parametrize('distance,points',[(9.999,2),(10,3),(19.999,3),(20,4)])
+    def test_real_release_band_and_goal(distance,points):
+     p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
+     s.owner='A';s.players['A0'].x=100-distance;s.players['A0'].y=50
+     s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=100-distance,y=50,z=1.5,scoring=True)
+     assert e.release('A0',(25,0,1),'shot');s.ball.x=101;s.ball.y=50;s.ball.z=1.5
+>    assert e.goal('B');assert s.score['A']==points
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E    assert 3 == 4
+
+native/rulebook/test_scoring.py:12: AssertionError
+=========================== short test summary info ============================
+FAILED native/rulebook/test_scoring.py::test_real_release_band_and_goal[9.999-2]
+FAILED native/rulebook/test_scoring.py::test_real_release_band_and_goal[10-3]
+FAILED native/rulebook/test_scoring.py::test_real_release_band_and_goal[19.999-3]
+FAILED native/rulebook/test_scoring.py::test_real_release_band_and_goal[20-4]
+4 failed, 31 passed in 3.14s

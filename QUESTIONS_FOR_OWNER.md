@@ -1,7 +1,9 @@
+Scope notice: original sections describe historical Native v0/2. The Rulebook1.0 section below applies only to native-rb/1 and records its current blocker and limits.
+
 OWNER BRIEFING
 1. Native build uses the following smallest working PLACEHOLDERs where implementation or canon detail is incomplete.
 2. These are explicit defaults, not accepted canon or evidence of good play.
-3. No question here currently blocks engineering. Acceptance and baseline designation remain the owner's decision.
+3. Historical Native v0/2 questions did not block that baseline. The RB section records the current integration blocker. Acceptance remains the owner's decision.
 
 | ID | Question / replaceable default | Class and current handling |
 |---|---|---|
@@ -23,3 +25,26 @@ OWNER BRIEFING
 Explicit DEFERRED: breaks, timeouts, Hunt penalties beyond false-start retake, standard scoring, fatigue, injury, rating development, adaptive learning, M2 plan/message content. No implementation of those deferred features is authorized by this baseline.
 
 PH3 implementation limit (ENGINEERING, not a canon escalation): the current defender-marking exemption checks offensive field players. Keeper-as-marker coverage is not established by the conformance test. Native v1 must cover every offensive-player role permitted by the rule. This residence model remains PLACEHOLDER; the five-second attacker rule and field-player marking case are tested.
+
+## Rulebook 1.0 / native-rb/1 scope (supersedes old defaults only for RB)
+
+Breaks, timeout policy,>5cm review, shorthanded discipline, quotas and forced-injury/substitution mechanics are ratified for RB. They are not deferred in RB. Native v0/2 remains the historical profile above.
+
+| ID | Class | Handling |
+|---|---|---|
+| RB-BLOCK-1 | Marking witness/scope blocker | Ratified distance is5m. PLACEHOLDER witness: opponent proximity to the restart ball, excluding the designated tackler. Ready checks now precede marking admission. Under this witness, unchanged Native v0/2 restart intents cause repeated fouls and a seed1 stall at5.375 live seconds. Review this operational witness first; if correct, a narrow restart-legality cognition patch is needed from Claude or an explicit scope extension. Athlete decision changes are outside RB-1. No rule was relaxed or athlete externally repositioned. |
+| RB-PH-1 | ENGINEERING placeholder | Period resets reuse initial legal scatter; no new formation. Added field-roster admission is procedural setup. Twelve non-Archer field-roster slots; the Archer is outside that limit;22 gameday players retained. |
+| RB-PH-2 | Team setup placeholder | Reserve Keepers default to A13/B13. Eligible replacements use canonical ID order with named-reserve priority; fallback chooses an available field player. No ratings used. |
+| RB-PH-3 | Equipment placeholder explicitly permitted | Torso/thigh cylinder-height band approximates strike panels. Outer/inner thigh cannot be distinguished. Lighter Archer kit is metadata only; no gameplay effect. |
+| RB-PH-4 | Missing procedure detail | Fifth-minor DQ uses a60s replacement window; second-major DQ120s. These follow the respective foul-kind exclusion window. |
+| RB-PH-5 | Missing procedure detail | A special defensive count+1 offence reuses the existing count1-to-turnover transition on overflow. No new tackle-count domain is invented. |
+| RB-PH-6 | Missing review detail | A lost review with no timeout remaining consumes its challenge but does not create a negative timeout balance or future-half debt. |
+| RB-PH-7 | Review workflow incomplete | Reviews are available for the current, unpaused dead-ball episode. Challenge windows at period/final completion or during planned breaks are not implemented/tested. No autonomous challenge policy is invented. This is not full R-O workflow acceptance. |
+| RB-PH-8 | Missing restart detail | Correcting a false goal while the recorded ball was still in bounds resumes by scrimmage for the recorded possessing team at the spot; a recorded out-of-bounds ball uses the corrected boundary restart. |
+| RB-PH-9 | ENGINEERING ordering | Eligible simultaneous timeout triggers are consumed once each, team order A then B. No extra timeout is granted. |
+| RB-PH-10 | Forced injury scope | No injury probability or recovery model is added. Ordinary forced injuries remain unavailable; head-evaluation players can return from the next period. |
+
+Engine contact-breach classification is tested with forced rule inputs. Natural contact detection in every frozen/dead-ball physical path and goal-line-major restart liveness still require integration evidence. V3 and V5 are not claimed complete.
+
+RB-PH-11: inherited procedural illegal_release/otherwise unclassified legacy rule inputs currently default to minor adjudication. This is a labelled compatibility placeholder, not a newly ratified offence.
+RB-PH-12: later sudden-death periods retain the inherited300s maximum period duration; any score ends them immediately. Their duration beyond the first overtime was not restated numerically in RB-1.

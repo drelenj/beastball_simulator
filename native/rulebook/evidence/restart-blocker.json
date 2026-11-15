@@ -1,0 +1,40 @@
+{
+  "bands": {
+    "A": {},
+    "B": {
+      "20plus_attempts": 2
+    }
+  },
+  "blocked": true,
+  "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+  "error": "restart stall: {\"live_ms\": 5375, \"now\": 137075, \"pending\": {}, \"players\": {\"A10\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"keeper\", \"target\": [17.584091993226522, 60.25917982168303], \"x\": 17.584091993226522, \"y\": 60.25917982168303}, \"A11\": {\"intent\": \"archer_hold\", \"launch\": null, \"posture\": \"upright\", \"role\": \"archer\", \"target\": [39.033785825753995, 88.33023857793727], \"x\": -5.0, \"y\": 50.0}, \"A6\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [57.410999342038124, 49.41352165905502], \"x\": 57.35492722686726, \"y\": 49.44795252057653}, \"A7\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [16.115893746656738, 70.07126521495944], \"x\": 16.115893746656738, \"y\": 70.07126521495944}, \"A8\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [52.50946932048019, 49.44432657800734], \"x\": 52.50946932048019, \"y\": 49.44432657800734}, \"A9\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [35.10920158740136, 76.24945445081885], \"x\": 35.10920158740136, \"y\": 76.24945445081885}, \"B10\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"keeper\", \"target\": [83.13822413140625, 10.510045534581295], \"x\": 83.13822413140625, \"y\": 10.510045534581295}, \"B11\": {\"intent\": \"archer_hold\", \"launch\": null, \"posture\": \"upright\", \"role\": \"archer\", \"target\": [68.53323201403227, 48.09974522382428], \"x\": 105.0, \"y\": 50.0}, \"B5\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [58.18357379009733, 47.32912992394852], \"x\": 58.18357379009733, \"y\": 47.32912992394852}, \"B6\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [78.79130579715859, 41.40610026241641], \"x\": 78.79130579715859, \"y\": 41.40610026241641}, \"B7\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [90.92627123701243, 45.13175253485632], \"x\": 90.92627123701243, \"y\": 45.13175253485632}, \"B8\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [58.340540782197465, 18.906129979102005], \"x\": 58.340540782197465, \"y\": 18.906129979102005}, \"B9\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [58.232117609445034, 47.104344360618946], \"x\": 58.232117609445034, \"y\": 47.104344360618946}}, \"record\": \"1/55\", \"restart\": {\"clearance\": 0.0, \"created_at\": 136475, \"kind\": \"scrim\", \"note\": \"\", \"ready_at\": 136975, \"reason\": \"minor_count_plus\", \"remaining\": 3000, \"taker\": \"A6\", \"taker_spot\": [57.93350243640488, 49.09268069145669], \"team\": \"A\", \"x\": 57.93350243640488, \"y\": 49.09268069145669}}",
+  "event_table": {
+    "DQs": 0,
+    "breaks": 0,
+    "exclusions": 13,
+    "injuries": 0,
+    "majors": 0,
+    "minors": 55,
+    "quota_resets": 27,
+    "reviews": 0,
+    "substitutions": 2,
+    "timeouts": 0
+  },
+  "events": {
+    "arrow_forfeited": 1,
+    "discipline": 55,
+    "hunt_release": 1,
+    "quota_reset": 27,
+    "substitution": 2
+  },
+  "fouls": {
+    "archery_target": 1,
+    "illegal_release": 1,
+    "marking_pre_live": 53
+  },
+  "full_match_attempt": false,
+  "live_ms": 5375,
+  "max_steps": 4000,
+  "physical_ms": 137075,
+  "seed": 1
+}

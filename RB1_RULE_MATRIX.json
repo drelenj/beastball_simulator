@@ -1,0 +1,309 @@
+{
+  "schema": "rb1-rule-matrix/1",
+  "authority": "DreLen ratified Rulebook and addendum2026-11-14",
+  "profile": "native-rb/1",
+  "status": "PARTIAL; full validation blocked",
+  "rows": [
+    {
+      "id": "RT1",
+      "rule": "Regulation/OT breaks, end exchange and Hunt clock activation",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_clocks.py::test_real_break_clock_ends_and_hunt",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RT2",
+      "rule": "Timeout freezes both clocks and shifts restart deadlines",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_clocks.py::test_timeout_freezes_both_clocks_and_restart_deadline",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RT3",
+      "rule": "Snap release starts clock; tackle retains remaining clock",
+      "status": "IMPLEMENTED; coverage incomplete",
+      "test": "native/rulebook/test_clocks.py::test_release_restarts_clock_and_tackle_preserves_remaining",
+      "note": "RB snap clock tested; tackle carry path retained from Native v0/2, RB-specific tackle scenario not forced."
+    },
+    {
+      "id": "RT4",
+      "rule": "Ratified deterministic timeout policy, budgets and no sudden-death timeout",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_authorities.py::test_timeout_triggers_and_resources",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RT5",
+      "rule": "Each simultaneous timeout trigger used once",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_authorities.py::test_each_simultaneous_timeout_trigger_can_be_consumed_once",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RT6",
+      "rule": "Whole first OT and every any-score sudden-death ending in real RB match",
+      "status": "UNPROVEN",
+      "test": null,
+      "note": "Inherited score kernel and forced break transitions exist; no full RB overtime proof."
+    },
+    {
+      "id": "RS1",
+      "rule": "Provisional release bands and exact10m/20m boundaries",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_real_release_band_and_goal",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RS2",
+      "rule": "Flat default, carry5 in banded, own goal2 including Keeper",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_flat_carry_banded_carry_and_keeper_own",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RS3",
+      "rule": "Full award3 in P4/OT and half1 before P4",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_authorities.py::test_bands_and_carry_own_awards",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RS4",
+      "rule": "Restart throws recorded once at actual release",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_restart_throw_is_an_attempt_once_at_actual_release",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RS5",
+      "rule": "Keeper cannot score at opposing goal; official no-goal ruling",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_keeper_opponent_goal_is_no_goal_ruling",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RS6",
+      "rule": "Bounced throws use release-distance bands",
+      "status": "IMPLEMENTED; coverage incomplete",
+      "test": null,
+      "note": "Common throw release path records bands; RB-specific bounced-goal scenario not yet forced."
+    },
+    {
+      "id": "RD1",
+      "rule": "Major shorthanded120s, score-independent; second-major DQ delayed cover",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_discipline.py::test_real_exclusion_shorthanded_until_dead_after_window",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD2",
+      "rule": "Fourth-minor60s/fifth DQ; injury replacement exception",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_discipline.py::test_minor_ladder_and_injury_exclusion_exemption",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD3",
+      "rule": "Delay warning then minor; kick minor; major goal-line award",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_discipline.py::test_delay_warning_kick_and_major_goal_line",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD4",
+      "rule": "Defensive holding count+1; procedural offside no half-goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_discipline.py::test_defensive_hold_count_plus_and_offside_no_award",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD5",
+      "rule": "Intentional head/neck/trip/off-ball tackle; striking/whistle/frozen/Keeper breach major",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_discipline.py::test_rule_layer_major_classification",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD6",
+      "rule": "Unintentional head minor plus mandatory evaluation",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_discipline.py::test_unintentional_head_is_minor_and_requires_evaluation",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD7",
+      "rule": "Pre-live5m marking sanction and attacker-zone20m restart",
+      "status": "PLACEHOLDER witness; admission tested",
+      "test": "native/rulebook/test_boundary.py::test_premarking_minor_and_zone_line",
+      "note": "Ratified 5m distance; ball-centred opponent proximity with tackler exception is a placeholder witness. Readiness checked first."
+    },
+    {
+      "id": "RD8",
+      "rule": "Exclusion cannot be bypassed by setup/empty-slot/role-change admission",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_substitutions.py::test_exclusion_cannot_be_bypassed_with_empty_slot_or_role_change",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RD9",
+      "rule": "Frozen/dead-ball natural contact detection and major goal-line restart liveness",
+      "status": "UNPROVEN",
+      "test": null,
+      "note": "Forced adjudication inputs tested; all physical paths not established."
+    },
+    {
+      "id": "RA1",
+      "rule": "Ratio250m/s, own-half legality,15 arrows, illegal release spends, swept collision",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_speed_quota_own_half_illegal_spends_and_no_tunnelling",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RA2",
+      "rule": "Panel filtering, freeze/recovery and turnover quota reset",
+      "status": "PARTIAL",
+      "test": "native/rulebook/test_archery.py::test_freeze_cap_panel_recovery_and_turnover",
+      "note": "Freeze/readiness and turnover are forced; execution of continued/entering-zone commands during recovery is not fully validated."
+    },
+    {
+      "id": "RA3",
+      "rule": "Captured red/amber observation cannot read poisoned live truth",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_status_view_is_captured_not_live_truth",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RA4",
+      "rule": "Five freezes/quota limits at authority layer",
+      "status": "IMPLEMENTED; coverage incomplete",
+      "test": "native/rulebook/test_authorities.py::test_quota_and_illegal_arrow",
+      "note": "Arrow quota ledger tested; complete5-freeze RB integration sequence remains unproven."
+    },
+    {
+      "id": "RO1",
+      "rule": "Seven authority crew and stored-evidence review ledger",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_authorities.py::test_review_tolerance_and_stored_evidence_only",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RO2",
+      "rule": "Strict>5cm, corrected restart, won/lost challenge resources",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RO3",
+      "rule": "Eligible boundary scope and Keeper binary reversal restores exclusion",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_boundary_review_scope_and_keeper_binary",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RO4",
+      "rule": "Wrong goal outside semicircle corrects to boundary toss",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_reversed_wrong_goal_outside_semicircle_is_toss_to_other_team",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RO5",
+      "rule": "No-goal review can restore Keeper own goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_review_no_goal_reversed_to_keeper_own_goal",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RO6",
+      "rule": "Period-final/break review windows and autonomous challenge timing",
+      "status": "PLACEHOLDER / UNPROVEN",
+      "test": null,
+      "note": "Only current unpaused dead episode supported; no autonomous policy specified."
+    },
+    {
+      "id": "RE1",
+      "rule": "Strike panel anatomical outer-thigh witness",
+      "status": "PLACEHOLDER",
+      "test": "native/rulebook/test_archery.py::test_freeze_cap_panel_recovery_and_turnover",
+      "note": "Torso/thigh cylinder-height band; no inner/outer distinction."
+    },
+    {
+      "id": "RE2",
+      "rule": "Red/amber indicators and lighter kit metadata with no gameplay effect",
+      "status": "IMPLEMENTED; coverage incomplete",
+      "test": "native/rulebook/test_archery.py::test_status_view_is_captured_not_live_truth",
+      "note": "Red capture tested; amber branch and lighter-kit metadata not separately forced."
+    },
+    {
+      "id": "RI1",
+      "rule": "Dead-only unlimited return substitutions; Archer outside field limit",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_substitutions.py::test_field_limit_archer_exempt_dead_only_and_returns",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RI2",
+      "rule": "Forced injury stops clocks, immediate replacement, no timeout charge",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_substitutions.py::test_injury_stops_clocks_and_immediate_cover",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RI3",
+      "rule": "Head evaluation period exclusion and named reserve Keeper",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_substitutions.py::test_head_evaluation_and_named_keeper",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RI4",
+      "rule": "No reserve: field-player Keeper fallback",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_substitutions.py::test_keeper_fallback_without_reserve",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "RI5",
+      "rule": "No random injury model; forced head return next period",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_authorities.py::test_head_evaluation_next_period_and_injury_no_randomness",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "BOUND1",
+      "rule": "Extended view/belief JSON replay and hidden-state poison",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_boundary.py::test_extended_view_replay_and_poison",
+      "note": "Forced scenario only; no full RB match proof."
+    },
+    {
+      "id": "DET1",
+      "rule": "RB deterministic short replay",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_boundary.py::test_short_integrated_replay",
+      "note": "100 steps, not full-match V2."
+    },
+    {
+      "id": "BLOCK1",
+      "rule": "Unchanged restart intent remains inside5m admission",
+      "status": "BLOCKED",
+      "test": "native/rulebook/test_boundary.py::test_restart_intent_inside_placeholder_ball_clearance",
+      "note": "Conflicting intent under placeholder marking witness, plus bounded seed1 watchdog reproduction after readiness-order correction."
+    },
+    {
+      "id": "RT7",
+      "rule": "Consecutive legal timeouts do not cause a false restart watchdog failure",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_clocks.py::test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog",
+      "note": "135 seconds of planned dead time; clocks unchanged."
+    },
+    {
+      "id": "RD10",
+      "rule": "No marking sanction before existing snap readiness passes",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_boundary.py::test_not_ready_restart_does_not_sanction_marking",
+      "note": "Ready and not-ready admission paths are distinguished."
+    }
+  ]
+}

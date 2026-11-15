@@ -740,5 +740,11 @@
       "test": "native/test_rules.py::test_returning_bench_claim_has_current_public_period_not_old_visual_frame",
       "reason": ""
     }
-  ]
+  ],
+  "profile_scope": "Existing rows apply to historical native-v0/2, not RB-1",
+  "rulebook_1": {
+    "profile": "native-rb/1",
+    "matrix": "RB1_RULE_MATRIX.json",
+    "status": "BLOCKED"
+  }
 }
