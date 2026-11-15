@@ -257,6 +257,622 @@
       "status": "aborted_engine_fix",
       "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
       "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap"
+    },
+    {
+      "id": 11,
+      "profile": "native-rb/1",
+      "seed": 2,
+      "label": "rb-verified-seed2-0",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "ea8c54b667afcbcb34f4fd111b5e9b5a94094b8b90ca098aa6fc43253989c066",
+      "state_hash": "25b26381e3b71e42eebdebb851b823487eb789493ef1010bb7d64cc92033ecdf",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 708.105,
+      "live_ms": 2400000,
+      "score": {
+        "A": 91,
+        "B": 87
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 94,
+        "majors": 8,
+        "exclusions": 43,
+        "DQs": 17,
+        "quota_resets": 591,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 43
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 7,
+            "goals": 3,
+            "success_rate": 0.42857142857142855
+          },
+          "10_to20": {
+            "attempts": 20,
+            "goals": 1,
+            "success_rate": 0.05
+          },
+          "20plus": {
+            "attempts": 526,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 22,
+            "goals": 7,
+            "success_rate": 0.3181818181818182
+          },
+          "20plus": {
+            "attempts": 483,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed2-0.json"
+    },
+    {
+      "id": 12,
+      "profile": "native-rb/1",
+      "seed": 2,
+      "label": "rb-verified-seed2-1",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "ea8c54b667afcbcb34f4fd111b5e9b5a94094b8b90ca098aa6fc43253989c066",
+      "state_hash": "25b26381e3b71e42eebdebb851b823487eb789493ef1010bb7d64cc92033ecdf",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 667.87,
+      "live_ms": 2400000,
+      "score": {
+        "A": 91,
+        "B": 87
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 94,
+        "majors": 8,
+        "exclusions": 43,
+        "DQs": 17,
+        "quota_resets": 591,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 43
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 7,
+            "goals": 3,
+            "success_rate": 0.42857142857142855
+          },
+          "10_to20": {
+            "attempts": 20,
+            "goals": 1,
+            "success_rate": 0.05
+          },
+          "20plus": {
+            "attempts": 526,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 22,
+            "goals": 7,
+            "success_rate": 0.3181818181818182
+          },
+          "20plus": {
+            "attempts": 483,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed2-1.json"
+    },
+    {
+      "id": 13,
+      "profile": "native-rb/1",
+      "seed": 6,
+      "label": "rb-verified-seed6-2",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "c120c6534113afcfde64ebb841ddd487703e89cd1a730c5a435ed9aebd7ea16d",
+      "state_hash": "a47e37ee03c3861222c65027ccf4df5795d6eec8f3eebb0beeaa9af0e52e12ab",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 649.188,
+      "live_ms": 2400000,
+      "score": {
+        "A": 74,
+        "B": 83
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 127,
+        "majors": 5,
+        "exclusions": 51,
+        "DQs": 23,
+        "quota_resets": 551,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 49
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 3,
+            "goals": 2,
+            "success_rate": 0.6666666666666666
+          },
+          "10_to20": {
+            "attempts": 20,
+            "goals": 1,
+            "success_rate": 0.05
+          },
+          "20plus": {
+            "attempts": 504,
+            "goals": 1,
+            "success_rate": 0.001984126984126984
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 3,
+            "goals": 3,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 5,
+            "goals": 1,
+            "success_rate": 0.2
+          },
+          "10_to20": {
+            "attempts": 24,
+            "goals": 6,
+            "success_rate": 0.25
+          },
+          "20plus": {
+            "attempts": 505,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 3,
+            "goals": 3,
+            "success_rate": 1.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed6-2.json"
+    },
+    {
+      "id": 14,
+      "profile": "native-rb/1",
+      "seed": 7,
+      "label": "rb-verified-seed7-3",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "43d0c8130f0c512ec6c0a8a45544341aaee9b97d17534c4e8a42639d6f2e84ae",
+      "state_hash": "86f7dce94346d42f2e9ead25b43aeab5fc16911da8549a56da91e692e8166b35",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 675.809,
+      "live_ms": 2400000,
+      "score": {
+        "A": 54,
+        "B": 94
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 121,
+        "majors": 20,
+        "exclusions": 66,
+        "DQs": 25,
+        "quota_resets": 505,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 62
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          },
+          "10_to20": {
+            "attempts": 18,
+            "goals": 2,
+            "success_rate": 0.1111111111111111
+          },
+          "20plus": {
+            "attempts": 417,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 1,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 15,
+            "goals": 5,
+            "success_rate": 0.3333333333333333
+          },
+          "20plus": {
+            "attempts": 544,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed7-3.json"
+    },
+    {
+      "id": 15,
+      "profile": "native-rb/1",
+      "seed": 8,
+      "label": "rb-verified-seed8-4",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "3e980753d30da5ddeaa6de6b222840e84b8bfb269653078de899db41ece1699a",
+      "state_hash": "4fb86c9ab01c3e53c3139392fff60d54054199a6073d8118650fb6e4cf7f3d81",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 375.462,
+      "live_ms": 2400000,
+      "score": {
+        "A": 118,
+        "B": 74
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 146,
+        "majors": 10,
+        "exclusions": 63,
+        "DQs": 27,
+        "quota_resets": 574,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 58
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          },
+          "10_to20": {
+            "attempts": 21,
+            "goals": 4,
+            "success_rate": 0.19047619047619047
+          },
+          "20plus": {
+            "attempts": 532,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          },
+          "10_to20": {
+            "attempts": 18,
+            "goals": 1,
+            "success_rate": 0.05555555555555555
+          },
+          "20plus": {
+            "attempts": 523,
+            "goals": 1,
+            "success_rate": 0.0019120458891013384
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed8-4.json"
+    },
+    {
+      "id": 16,
+      "profile": "native-rb/1",
+      "seed": 9,
+      "label": "rb-verified-seed9-5",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "cff04fecc1c0e4f487623b7145ce5cae9f190ca147dfddde16d1c1e27831c919",
+      "state_hash": "88e3f1b56434b1d327bed76eb70344a8405c19c4bfeb7982df1bca4c25b46882",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 378.23,
+      "live_ms": 2400000,
+      "score": {
+        "A": 109,
+        "B": 82
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 137,
+        "majors": 7,
+        "exclusions": 58,
+        "DQs": 25,
+        "quota_resets": 567,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 54
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 2,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 14,
+            "goals": 4,
+            "success_rate": 0.2857142857142857
+          },
+          "20plus": {
+            "attempts": 550,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 9,
+            "goals": 1,
+            "success_rate": 0.1111111111111111
+          },
+          "20plus": {
+            "attempts": 465,
+            "goals": 1,
+            "success_rate": 0.002150537634408602
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed9-5.json"
+    },
+    {
+      "id": 17,
+      "profile": "native-rb/1",
+      "seed": 10,
+      "label": "rb-verified-seed10-6",
+      "purpose": "RB functional validation",
+      "status": "passed",
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "trace_hash": "8833a71252a4e44710c48c1b2fd0b29bbdd02054be4a72a01c0d30c315332a07",
+      "state_hash": "383de354d3be0a7c9c61e634e0181272b6b18ebc8caa5029a3578681fc63bfb5",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "runtime_s": 358.146,
+      "live_ms": 2400000,
+      "score": {
+        "A": 60,
+        "B": 110
+      },
+      "restart_completion_ratio": 1.0,
+      "events": {
+        "breaks": 3,
+        "timeouts": 8,
+        "minors": 136,
+        "majors": 11,
+        "exclusions": 62,
+        "DQs": 26,
+        "quota_resets": 564,
+        "reviews": 0,
+        "injuries": 0,
+        "substitutions": 57
+      },
+      "bands": {
+        "A": {
+          "under10": {
+            "attempts": 4,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 20,
+            "goals": 2,
+            "success_rate": 0.1
+          },
+          "20plus": {
+            "attempts": 505,
+            "goals": 2,
+            "success_rate": 0.0039603960396039604
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "under10": {
+            "attempts": 2,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "10_to20": {
+            "attempts": 23,
+            "goals": 6,
+            "success_rate": 0.2608695652173913
+          },
+          "20plus": {
+            "attempts": 563,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed10-6.json"
     }
   ]
 }

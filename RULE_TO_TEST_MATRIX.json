@@ -746,5 +746,7 @@
     "profile": "native-rb/1",
     "matrix": "RB1_RULE_MATRIX.json",
     "status": "BLOCKED"
-  }
+  },
+  "rb1_matrix": "RB1_RULE_MATRIX.json",
+  "rb1_status": "IMPLEMENTED and TESTED functional validation on881d212; explicit placeholders; not ACCEPTED"
 }

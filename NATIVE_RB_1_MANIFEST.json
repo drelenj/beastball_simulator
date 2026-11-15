@@ -1,69 +1,67 @@
 {
   "acceptance": {
-    "V1": "TESTED: legacy replay and preservation pass",
-    "V2": "PARTIAL:100-step serial/parallel/null replay only; full RB replay blocked",
-    "V3": "PARTIAL: forced conformance and explicit coverage gaps; see matrix",
-    "V4": "TESTED: captured indicators, extended JSON replay and hidden-state poison",
-    "V5": "BLOCKED: first bounded integration seed stalls before full matches",
-    "V6": "Blocked report and manifest provided; no acceptance claim"
+    "V1": "TESTED:427 B0 blobs, accepted files/cognition identical, two exact Native v0/2 full replays retained",
+    "V2": "TESTED: full seed2 serial/parallel trace and state hashes equal",
+    "V3": "TESTED functional forced scenarios; explicit permitted/inherited placeholders recorded in matrix and questions",
+    "V4": "TESTED information boundary and intent ownership; no cognition or accepted-file edits",
+    "V5": "TESTED six unique full seeds2,6,7,8,9,10 plus serial seed2 repeat; no crash/stall/invariant violation on final source",
+    "V6": "Owner briefing, report, manifest, seeds, failure evidence and matrix delivered; no acceptance claim"
   },
   "accepted": false,
   "banded_config_digest": "9411f3771f349f8053eee3faba4e4e6c43455210cfafcc8d7a9af86a52b82127",
-  "blocker": {
+  "bounded_restart_progress": {
+    "advanced_past_former_blocker": true,
     "bands": {
-      "A": {},
+      "A": {
+        "10_to20_attempts": 1,
+        "10_to20_goals": 1,
+        "20plus_attempts": 35
+      },
       "B": {
-        "20plus_attempts": 2
+        "10_to20_attempts": 2,
+        "10_to20_goals": 1,
+        "20plus_attempts": 32,
+        "under10_attempts": 3,
+        "under10_goals": 2
       }
     },
-    "blocked": true,
+    "blocked": false,
     "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-    "error": "restart stall: {\"live_ms\": 5375, \"now\": 137075, \"pending\": {}, \"players\": {\"A10\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"keeper\", \"target\": [17.584091993226522, 60.25917982168303], \"x\": 17.584091993226522, \"y\": 60.25917982168303}, \"A11\": {\"intent\": \"archer_hold\", \"launch\": null, \"posture\": \"upright\", \"role\": \"archer\", \"target\": [39.033785825753995, 88.33023857793727], \"x\": -5.0, \"y\": 50.0}, \"A6\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [57.410999342038124, 49.41352165905502], \"x\": 57.35492722686726, \"y\": 49.44795252057653}, \"A7\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [16.115893746656738, 70.07126521495944], \"x\": 16.115893746656738, \"y\": 70.07126521495944}, \"A8\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [52.50946932048019, 49.44432657800734], \"x\": 52.50946932048019, \"y\": 49.44432657800734}, \"A9\": {\"intent\": \"restart_claim\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [35.10920158740136, 76.24945445081885], \"x\": 35.10920158740136, \"y\": 76.24945445081885}, \"B10\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"keeper\", \"target\": [83.13822413140625, 10.510045534581295], \"x\": 83.13822413140625, \"y\": 10.510045534581295}, \"B11\": {\"intent\": \"archer_hold\", \"launch\": null, \"posture\": \"upright\", \"role\": \"archer\", \"target\": [68.53323201403227, 48.09974522382428], \"x\": 105.0, \"y\": 50.0}, \"B5\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [58.18357379009733, 47.32912992394852], \"x\": 58.18357379009733, \"y\": 47.32912992394852}, \"B6\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [78.79130579715859, 41.40610026241641], \"x\": 78.79130579715859, \"y\": 41.40610026241641}, \"B7\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [90.92627123701243, 45.13175253485632], \"x\": 90.92627123701243, \"y\": 45.13175253485632}, \"B8\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [58.340540782197465, 18.906129979102005], \"x\": 58.340540782197465, \"y\": 18.906129979102005}, \"B9\": {\"intent\": \"restart_position\", \"launch\": null, \"posture\": \"upright\", \"role\": \"field\", \"target\": [58.232117609445034, 47.104344360618946], \"x\": 58.232117609445034, \"y\": 47.104344360618946}}, \"record\": \"1/55\", \"restart\": {\"clearance\": 0.0, \"created_at\": 136475, \"kind\": \"scrim\", \"note\": \"\", \"ready_at\": 136975, \"reason\": \"minor_count_plus\", \"remaining\": 3000, \"taker\": \"A6\", \"taker_spot\": [57.93350243640488, 49.09268069145669], \"team\": \"A\", \"x\": 57.93350243640488, \"y\": 49.09268069145669}}",
     "event_table": {
-      "DQs": 0,
+      "DQs": 2,
       "breaks": 0,
-      "exclusions": 13,
+      "exclusions": 4,
       "injuries": 0,
       "majors": 0,
-      "minors": 55,
-      "quota_resets": 27,
+      "minors": 11,
+      "quota_resets": 43,
       "reviews": 0,
-      "substitutions": 2,
-      "timeouts": 0
+      "substitutions": 5,
+      "timeouts": 3
     },
     "events": {
-      "arrow_forfeited": 1,
-      "discipline": 55,
+      "arrow_forfeited": 10,
+      "boundary": 18,
+      "discipline": 11,
+      "goal": 8,
       "hunt_release": 1,
-      "quota_reset": 27,
-      "substitution": 2
+      "pause_end": 3,
+      "quota_reset": 43,
+      "substitution": 5,
+      "timeout": 3
     },
     "fouls": {
-      "archery_target": 1,
-      "illegal_release": 1,
-      "marking_pre_live": 53
+      "archery_target": 10,
+      "illegal_release": 1
     },
     "full_match_attempt": false,
-    "live_ms": 5375,
+    "live_ms": 146329,
     "max_steps": 4000,
-    "physical_ms": 137075,
-    "seed": 1
+    "physical_ms": 526440,
+    "seed": 1,
+    "status": "partial"
   },
   "branch": "codex/rulebook-1",
-  "checkpoint_commits": {
-    "1": "8da72c1",
-    "2": "e7de7b6",
-    "3": "4086634",
-    "4": "b8d22a8",
-    "5_fixture_correction": "d4a2318",
-    "5_initial": "85f0e90",
-    "6": "9bdfbcd",
-    "admission_audit": "0efe481",
-    "planned_pause_audit": "a3b583a",
-    "restart_admission_audit": "cd22294",
-    "review_followup": "48e578f",
-    "terminal_audit": "b857752"
-  },
   "config": {
     "arrow_speed_ratio": 5.592841163310962,
     "arrows": 15,
@@ -732,10 +730,6 @@
   },
   "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
   "default_scoring": "flat",
-  "environment": {
-    "python": "3.12.14"
-  },
-  "full_RB_matches_started": 0,
   "full_match_budget": {
     "attempts": [
       {
@@ -755,13 +749,1485 @@
         "state_hash": "411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9",
         "status": "passed",
         "trace_hash": "3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 25,
+              "goals": 8,
+              "success_rate": 0.32
+            },
+            "20plus": {
+              "attempts": 545,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "under10": {
+              "attempts": 3,
+              "goals": 1,
+              "success_rate": 0.3333333333333333
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 26,
+              "goals": 6,
+              "success_rate": 0.23076923076923078
+            },
+            "20plus": {
+              "attempts": 461,
+              "goals": 1,
+              "success_rate": 0.0021691973969631237
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "under10": {
+              "attempts": 6,
+              "goals": 3,
+              "success_rate": 0.5
+            }
+          }
+        },
+        "commit": "6bd1ee99694225a2c7ccc65cc83432b1342b2e77",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 23,
+          "breaks": 3,
+          "exclusions": 47,
+          "injuries": 0,
+          "majors": 1,
+          "minors": 122,
+          "quota_resets": 599,
+          "reviews": 0,
+          "substitutions": 44,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-serial-seed1-0.json",
+        "id": 3,
+        "label": "serial-seed1-0",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 246.763,
+        "score": {
+          "A": 93,
+          "B": 75
+        },
+        "seed": 1,
+        "state_hash": "9757052b1ea00bed5fae23f838e745d15dfe8205c2a986b0c150b4508d0e53b2",
+        "status": "passed",
+        "trace_hash": "7d8e7992a0b4a4c8fca23fe65d64355faa9bfed70d6da54717fb787c331631d7"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 20,
+              "goals": 6,
+              "success_rate": 0.3
+            },
+            "20plus": {
+              "attempts": 631,
+              "goals": 1,
+              "success_rate": 0.001584786053882726
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 1,
+              "goals": 1,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 4,
+              "goals": 2,
+              "success_rate": 0.5
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 23,
+              "goals": 7,
+              "success_rate": 0.30434782608695654
+            },
+            "20plus": {
+              "attempts": 527,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 1,
+              "goals": 1,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 10,
+              "goals": 5,
+              "success_rate": 0.5
+            }
+          }
+        },
+        "commit": "11bcc525d0b055cd89a60624f5747e96be39ebe7",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 29,
+          "breaks": 4,
+          "exclusions": 67,
+          "injuries": 0,
+          "majors": 15,
+          "minors": 133,
+          "quota_resets": 658,
+          "reviews": 0,
+          "substitutions": 59,
+          "timeouts": 10
+        },
+        "evidence": "native/rulebook/evidence/full-final-serial-seed1-0.json",
+        "id": 4,
+        "label": "final-serial-seed1-0",
+        "live_ms": 2700000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 248.541,
+        "score": {
+          "A": 100,
+          "B": 99
+        },
+        "seed": 1,
+        "state_hash": "ac5e2c4e14ef2dd70ee79682519bb6ed59eeb99c0765f61098d27bd58757f0a6",
+        "status": "passed",
+        "trace_hash": "397bd388fa0609975b4efa70d6582260eb6567d824a6174d279e6effa200da72"
+      },
+      {
+        "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+        "id": 5,
+        "label": "rb-final-seed1-0",
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+        "seed": 1,
+        "status": "aborted_engine_fix"
+      },
+      {
+        "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+        "id": 6,
+        "label": "rb-final-seed1-1",
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+        "seed": 1,
+        "status": "aborted_engine_fix"
+      },
+      {
+        "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+        "error": "KeyError('A11')",
+        "id": 7,
+        "label": "rb-final-seed2-2",
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+        "runtime_s": 153.554,
+        "seed": 2,
+        "status": "failed",
+        "traceback": "Traceback (most recent call last):\n  File \"/workspace/beastball_simulator/native/rulebook/validate_matches.py\", line 13, in match\n    r,p=run_match(seed,progress=lambda row:print(json.dumps(dict(validation=label,**row)),flush=True))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/rulebook/run.py\", line 12, in run_match\n    r,p=native_run(seed,config or RulebookConfig(),plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/run.py\", line 19, in run_match\n    port.advance_intermission();last_live_at=s.now\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/beastball_simulator/native/rulebook/port.py\", line 33, in advance_intermission\n    depth,y=self.setup[p.id];p.x=self.m.s.ends[p.team]+self.m.s.attack_sign(p.team)*depth;p.y=y\n            ~~~~~~~~~~^^^^^^\nKeyError: 'A11'\n"
+      },
+      {
+        "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+        "id": 8,
+        "label": "rb-final-seed3-3",
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+        "seed": 3,
+        "status": "aborted_engine_fix"
+      },
+      {
+        "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+        "id": 9,
+        "label": "rb-final-seed4-4",
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+        "seed": 4,
+        "status": "aborted_engine_fix"
+      },
+      {
+        "commit": "bb21eec8d3040e101f45f425e5f8e7ec387bc6ba",
+        "id": 10,
+        "label": "rb-final-seed5-5",
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "reason": "Illegal arrow must be minor even with contact-protected target; reserved attempts retained conservatively in cap",
+        "seed": 5,
+        "status": "aborted_engine_fix"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 20,
+              "goals": 1,
+              "success_rate": 0.05
+            },
+            "20plus": {
+              "attempts": 526,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 7,
+              "goals": 3,
+              "success_rate": 0.42857142857142855
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 22,
+              "goals": 7,
+              "success_rate": 0.3181818181818182
+            },
+            "20plus": {
+              "attempts": 483,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 17,
+          "breaks": 3,
+          "exclusions": 43,
+          "injuries": 0,
+          "majors": 8,
+          "minors": 94,
+          "quota_resets": 591,
+          "reviews": 0,
+          "substitutions": 43,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed2-0.json",
+        "id": 11,
+        "label": "rb-verified-seed2-0",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 708.105,
+        "score": {
+          "A": 91,
+          "B": 87
+        },
+        "seed": 2,
+        "state_hash": "25b26381e3b71e42eebdebb851b823487eb789493ef1010bb7d64cc92033ecdf",
+        "status": "passed",
+        "trace_hash": "ea8c54b667afcbcb34f4fd111b5e9b5a94094b8b90ca098aa6fc43253989c066"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 20,
+              "goals": 1,
+              "success_rate": 0.05
+            },
+            "20plus": {
+              "attempts": 526,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 7,
+              "goals": 3,
+              "success_rate": 0.42857142857142855
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 22,
+              "goals": 7,
+              "success_rate": 0.3181818181818182
+            },
+            "20plus": {
+              "attempts": 483,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 17,
+          "breaks": 3,
+          "exclusions": 43,
+          "injuries": 0,
+          "majors": 8,
+          "minors": 94,
+          "quota_resets": 591,
+          "reviews": 0,
+          "substitutions": 43,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed2-1.json",
+        "id": 12,
+        "label": "rb-verified-seed2-1",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 667.87,
+        "score": {
+          "A": 91,
+          "B": 87
+        },
+        "seed": 2,
+        "state_hash": "25b26381e3b71e42eebdebb851b823487eb789493ef1010bb7d64cc92033ecdf",
+        "status": "passed",
+        "trace_hash": "ea8c54b667afcbcb34f4fd111b5e9b5a94094b8b90ca098aa6fc43253989c066"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 20,
+              "goals": 1,
+              "success_rate": 0.05
+            },
+            "20plus": {
+              "attempts": 504,
+              "goals": 1,
+              "success_rate": 0.001984126984126984
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 3,
+              "goals": 3,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 3,
+              "goals": 2,
+              "success_rate": 0.6666666666666666
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 24,
+              "goals": 6,
+              "success_rate": 0.25
+            },
+            "20plus": {
+              "attempts": 505,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 3,
+              "goals": 3,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 5,
+              "goals": 1,
+              "success_rate": 0.2
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 23,
+          "breaks": 3,
+          "exclusions": 51,
+          "injuries": 0,
+          "majors": 5,
+          "minors": 127,
+          "quota_resets": 551,
+          "reviews": 0,
+          "substitutions": 49,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed6-2.json",
+        "id": 13,
+        "label": "rb-verified-seed6-2",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 649.188,
+        "score": {
+          "A": 74,
+          "B": 83
+        },
+        "seed": 6,
+        "state_hash": "a47e37ee03c3861222c65027ccf4df5795d6eec8f3eebb0beeaa9af0e52e12ab",
+        "status": "passed",
+        "trace_hash": "c120c6534113afcfde64ebb841ddd487703e89cd1a730c5a435ed9aebd7ea16d"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 18,
+              "goals": 2,
+              "success_rate": 0.1111111111111111
+            },
+            "20plus": {
+              "attempts": 417,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 1,
+              "goals": 1,
+              "success_rate": 1.0
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 15,
+              "goals": 5,
+              "success_rate": 0.3333333333333333
+            },
+            "20plus": {
+              "attempts": 544,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 1,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 25,
+          "breaks": 3,
+          "exclusions": 66,
+          "injuries": 0,
+          "majors": 20,
+          "minors": 121,
+          "quota_resets": 505,
+          "reviews": 0,
+          "substitutions": 62,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed7-3.json",
+        "id": 14,
+        "label": "rb-verified-seed7-3",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 675.809,
+        "score": {
+          "A": 54,
+          "B": 94
+        },
+        "seed": 7,
+        "state_hash": "86f7dce94346d42f2e9ead25b43aeab5fc16911da8549a56da91e692e8166b35",
+        "status": "passed",
+        "trace_hash": "43d0c8130f0c512ec6c0a8a45544341aaee9b97d17534c4e8a42639d6f2e84ae"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 21,
+              "goals": 4,
+              "success_rate": 0.19047619047619047
+            },
+            "20plus": {
+              "attempts": 532,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 1,
+              "goals": 1,
+              "success_rate": 1.0
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 18,
+              "goals": 1,
+              "success_rate": 0.05555555555555555
+            },
+            "20plus": {
+              "attempts": 523,
+              "goals": 1,
+              "success_rate": 0.0019120458891013384
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 2,
+              "goals": 2,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 1,
+              "goals": 1,
+              "success_rate": 1.0
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 27,
+          "breaks": 3,
+          "exclusions": 63,
+          "injuries": 0,
+          "majors": 10,
+          "minors": 146,
+          "quota_resets": 574,
+          "reviews": 0,
+          "substitutions": 58,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed8-4.json",
+        "id": 15,
+        "label": "rb-verified-seed8-4",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 375.462,
+        "score": {
+          "A": 118,
+          "B": 74
+        },
+        "seed": 8,
+        "state_hash": "4fb86c9ab01c3e53c3139392fff60d54054199a6073d8118650fb6e4cf7f3d81",
+        "status": "passed",
+        "trace_hash": "3e980753d30da5ddeaa6de6b222840e84b8bfb269653078de899db41ece1699a"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 14,
+              "goals": 4,
+              "success_rate": 0.2857142857142857
+            },
+            "20plus": {
+              "attempts": 550,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "under10": {
+              "attempts": 2,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 9,
+              "goals": 1,
+              "success_rate": 0.1111111111111111
+            },
+            "20plus": {
+              "attempts": 465,
+              "goals": 1,
+              "success_rate": 0.002150537634408602
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "under10": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 25,
+          "breaks": 3,
+          "exclusions": 58,
+          "injuries": 0,
+          "majors": 7,
+          "minors": 137,
+          "quota_resets": 567,
+          "reviews": 0,
+          "substitutions": 54,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed9-5.json",
+        "id": 16,
+        "label": "rb-verified-seed9-5",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 378.23,
+        "score": {
+          "A": 109,
+          "B": 82
+        },
+        "seed": 9,
+        "state_hash": "88e3f1b56434b1d327bed76eb70344a8405c19c4bfeb7982df1bca4c25b46882",
+        "status": "passed",
+        "trace_hash": "cff04fecc1c0e4f487623b7145ce5cae9f190ca147dfddde16d1c1e27831c919"
+      },
+      {
+        "bands": {
+          "A": {
+            "10_to20": {
+              "attempts": 20,
+              "goals": 2,
+              "success_rate": 0.1
+            },
+            "20plus": {
+              "attempts": 505,
+              "goals": 2,
+              "success_rate": 0.0039603960396039604
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 1,
+              "goals": 1,
+              "success_rate": 1.0
+            },
+            "under10": {
+              "attempts": 4,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          },
+          "B": {
+            "10_to20": {
+              "attempts": 23,
+              "goals": 6,
+              "success_rate": 0.2608695652173913
+            },
+            "20plus": {
+              "attempts": 563,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "carry": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "own": {
+              "attempts": 0,
+              "goals": 0,
+              "success_rate": 0.0
+            },
+            "under10": {
+              "attempts": 2,
+              "goals": 0,
+              "success_rate": 0.0
+            }
+          }
+        },
+        "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+        "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+        "events": {
+          "DQs": 26,
+          "breaks": 3,
+          "exclusions": 62,
+          "injuries": 0,
+          "majors": 11,
+          "minors": 136,
+          "quota_resets": 564,
+          "reviews": 0,
+          "substitutions": 57,
+          "timeouts": 8
+        },
+        "evidence": "native/rulebook/evidence/full-rb-verified-seed10-6.json",
+        "id": 17,
+        "label": "rb-verified-seed10-6",
+        "live_ms": 2400000,
+        "profile": "native-rb/1",
+        "purpose": "RB functional validation",
+        "restart_completion_ratio": 1.0,
+        "runtime_s": 358.146,
+        "score": {
+          "A": 60,
+          "B": 110
+        },
+        "seed": 10,
+        "state_hash": "383de354d3be0a7c9c61e634e0181272b6b18ebc8caa5029a3578681fc63bfb5",
+        "status": "passed",
+        "trace_hash": "8833a71252a4e44710c48c1b2fd0b29bbdd02054be4a72a01c0d30c315332a07"
       }
     ],
     "cap": 20
   },
-  "implementation_commit": "cd22294b16ff30af9363edfffe27ed56d4800384",
+  "full_matches_final_source": [
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 20,
+            "goals": 1,
+            "success_rate": 0.05
+          },
+          "20plus": {
+            "attempts": 526,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 7,
+            "goals": 3,
+            "success_rate": 0.42857142857142855
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 22,
+            "goals": 7,
+            "success_rate": 0.3181818181818182
+          },
+          "20plus": {
+            "attempts": 483,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 17,
+        "breaks": 3,
+        "exclusions": 43,
+        "injuries": 0,
+        "majors": 8,
+        "minors": 94,
+        "quota_resets": 591,
+        "reviews": 0,
+        "substitutions": 43,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed2-0.json",
+      "id": 11,
+      "label": "rb-verified-seed2-0",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 708.105,
+      "score": {
+        "A": 91,
+        "B": 87
+      },
+      "seed": 2,
+      "state_hash": "25b26381e3b71e42eebdebb851b823487eb789493ef1010bb7d64cc92033ecdf",
+      "status": "passed",
+      "trace_hash": "ea8c54b667afcbcb34f4fd111b5e9b5a94094b8b90ca098aa6fc43253989c066"
+    },
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 20,
+            "goals": 1,
+            "success_rate": 0.05
+          },
+          "20plus": {
+            "attempts": 526,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 7,
+            "goals": 3,
+            "success_rate": 0.42857142857142855
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 22,
+            "goals": 7,
+            "success_rate": 0.3181818181818182
+          },
+          "20plus": {
+            "attempts": 483,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 17,
+        "breaks": 3,
+        "exclusions": 43,
+        "injuries": 0,
+        "majors": 8,
+        "minors": 94,
+        "quota_resets": 591,
+        "reviews": 0,
+        "substitutions": 43,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed2-1.json",
+      "id": 12,
+      "label": "rb-verified-seed2-1",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 667.87,
+      "score": {
+        "A": 91,
+        "B": 87
+      },
+      "seed": 2,
+      "state_hash": "25b26381e3b71e42eebdebb851b823487eb789493ef1010bb7d64cc92033ecdf",
+      "status": "passed",
+      "trace_hash": "ea8c54b667afcbcb34f4fd111b5e9b5a94094b8b90ca098aa6fc43253989c066"
+    },
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 20,
+            "goals": 1,
+            "success_rate": 0.05
+          },
+          "20plus": {
+            "attempts": 504,
+            "goals": 1,
+            "success_rate": 0.001984126984126984
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 3,
+            "goals": 3,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 3,
+            "goals": 2,
+            "success_rate": 0.6666666666666666
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 24,
+            "goals": 6,
+            "success_rate": 0.25
+          },
+          "20plus": {
+            "attempts": 505,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 3,
+            "goals": 3,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 5,
+            "goals": 1,
+            "success_rate": 0.2
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 23,
+        "breaks": 3,
+        "exclusions": 51,
+        "injuries": 0,
+        "majors": 5,
+        "minors": 127,
+        "quota_resets": 551,
+        "reviews": 0,
+        "substitutions": 49,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed6-2.json",
+      "id": 13,
+      "label": "rb-verified-seed6-2",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 649.188,
+      "score": {
+        "A": 74,
+        "B": 83
+      },
+      "seed": 6,
+      "state_hash": "a47e37ee03c3861222c65027ccf4df5795d6eec8f3eebb0beeaa9af0e52e12ab",
+      "status": "passed",
+      "trace_hash": "c120c6534113afcfde64ebb841ddd487703e89cd1a730c5a435ed9aebd7ea16d"
+    },
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 18,
+            "goals": 2,
+            "success_rate": 0.1111111111111111
+          },
+          "20plus": {
+            "attempts": 417,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 15,
+            "goals": 5,
+            "success_rate": 0.3333333333333333
+          },
+          "20plus": {
+            "attempts": 544,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 1,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 25,
+        "breaks": 3,
+        "exclusions": 66,
+        "injuries": 0,
+        "majors": 20,
+        "minors": 121,
+        "quota_resets": 505,
+        "reviews": 0,
+        "substitutions": 62,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed7-3.json",
+      "id": 14,
+      "label": "rb-verified-seed7-3",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 675.809,
+      "score": {
+        "A": 54,
+        "B": 94
+      },
+      "seed": 7,
+      "state_hash": "86f7dce94346d42f2e9ead25b43aeab5fc16911da8549a56da91e692e8166b35",
+      "status": "passed",
+      "trace_hash": "43d0c8130f0c512ec6c0a8a45544341aaee9b97d17534c4e8a42639d6f2e84ae"
+    },
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 21,
+            "goals": 4,
+            "success_rate": 0.19047619047619047
+          },
+          "20plus": {
+            "attempts": 532,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 18,
+            "goals": 1,
+            "success_rate": 0.05555555555555555
+          },
+          "20plus": {
+            "attempts": 523,
+            "goals": 1,
+            "success_rate": 0.0019120458891013384
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 2,
+            "goals": 2,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 27,
+        "breaks": 3,
+        "exclusions": 63,
+        "injuries": 0,
+        "majors": 10,
+        "minors": 146,
+        "quota_resets": 574,
+        "reviews": 0,
+        "substitutions": 58,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed8-4.json",
+      "id": 15,
+      "label": "rb-verified-seed8-4",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 375.462,
+      "score": {
+        "A": 118,
+        "B": 74
+      },
+      "seed": 8,
+      "state_hash": "4fb86c9ab01c3e53c3139392fff60d54054199a6073d8118650fb6e4cf7f3d81",
+      "status": "passed",
+      "trace_hash": "3e980753d30da5ddeaa6de6b222840e84b8bfb269653078de899db41ece1699a"
+    },
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 14,
+            "goals": 4,
+            "success_rate": 0.2857142857142857
+          },
+          "20plus": {
+            "attempts": 550,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "under10": {
+            "attempts": 2,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 9,
+            "goals": 1,
+            "success_rate": 0.1111111111111111
+          },
+          "20plus": {
+            "attempts": 465,
+            "goals": 1,
+            "success_rate": 0.002150537634408602
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "under10": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 25,
+        "breaks": 3,
+        "exclusions": 58,
+        "injuries": 0,
+        "majors": 7,
+        "minors": 137,
+        "quota_resets": 567,
+        "reviews": 0,
+        "substitutions": 54,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed9-5.json",
+      "id": 16,
+      "label": "rb-verified-seed9-5",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 378.23,
+      "score": {
+        "A": 109,
+        "B": 82
+      },
+      "seed": 9,
+      "state_hash": "88e3f1b56434b1d327bed76eb70344a8405c19c4bfeb7982df1bca4c25b46882",
+      "status": "passed",
+      "trace_hash": "cff04fecc1c0e4f487623b7145ce5cae9f190ca147dfddde16d1c1e27831c919"
+    },
+    {
+      "bands": {
+        "A": {
+          "10_to20": {
+            "attempts": 20,
+            "goals": 2,
+            "success_rate": 0.1
+          },
+          "20plus": {
+            "attempts": 505,
+            "goals": 2,
+            "success_rate": 0.0039603960396039604
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 1,
+            "goals": 1,
+            "success_rate": 1.0
+          },
+          "under10": {
+            "attempts": 4,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        },
+        "B": {
+          "10_to20": {
+            "attempts": 23,
+            "goals": 6,
+            "success_rate": 0.2608695652173913
+          },
+          "20plus": {
+            "attempts": 563,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "carry": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "own": {
+            "attempts": 0,
+            "goals": 0,
+            "success_rate": 0.0
+          },
+          "under10": {
+            "attempts": 2,
+            "goals": 0,
+            "success_rate": 0.0
+          }
+        }
+      },
+      "commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
+      "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
+      "events": {
+        "DQs": 26,
+        "breaks": 3,
+        "exclusions": 62,
+        "injuries": 0,
+        "majors": 11,
+        "minors": 136,
+        "quota_resets": 564,
+        "reviews": 0,
+        "substitutions": 57,
+        "timeouts": 8
+      },
+      "evidence": "native/rulebook/evidence/full-rb-verified-seed10-6.json",
+      "id": 17,
+      "label": "rb-verified-seed10-6",
+      "live_ms": 2400000,
+      "profile": "native-rb/1",
+      "purpose": "RB functional validation",
+      "restart_completion_ratio": 1.0,
+      "runtime_s": 358.146,
+      "score": {
+        "A": 60,
+        "B": 110
+      },
+      "seed": 10,
+      "state_hash": "383de354d3be0a7c9c61e634e0181272b6b18ebc8caa5029a3578681fc63bfb5",
+      "status": "passed",
+      "trace_hash": "8833a71252a4e44710c48c1b2fd0b29bbdd02054be4a72a01c0d30c315332a07"
+    }
+  ],
+  "implementation_commit": "881d212e372b312d5e0fec73653cfc6a7f6876b1",
   "legacy_config_digest": "f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035",
-  "legacy_final_replay_runtime_s": 149.826,
   "legacy_replays": [
     {
       "id": 1,
@@ -783,35 +2249,43 @@
     }
   ],
   "limits": [
-    "Review timing at period/final completion and during planned breaks is not implemented/tested.",
-    "Natural frozen/dead-ball contact detection and major goal-line restart liveness require further evidence.",
-    "Panel witness is a cylinder height-band placeholder.",
-    "Team nominations and unspecified restart/window details are recorded in QUESTIONS_FOR_OWNER.md.",
-    "No FAB-1 rebase was attempted or awaited.",
-    "No quality, balance or emergence claim.",
-    "Recovery readiness is tested; complete in-zone motor cancellation/admission behavior remains partial.",
-    "Ratified5m marking is enforced using a PLACEHOLDER ball-centred opponent proximity witness with designated-tackler exception; review witness before cognition changes."
+    "Strike panels use cylinder-height witness; outer/inner thigh anatomy is not modeled.",
+    "Forced injury/head evaluation mechanics only; no random injury/recovery model.",
+    "No autonomous review/challenge policy or new athlete decisions; default matches can have zero reviews/injuries.",
+    "Existing Native physical/body-boundary and procedural nomination placeholders remain explicitly scoped in QUESTIONS_FOR_OWNER.md.",
+    "Bands are release counters (all deliberate throws including passes/restart throws), with carry/own separate.",
+    "No FAB-1, message content, plan content, rating development, injury probabilities or fatigue model was authored."
   ],
   "preservation": {
     "B0_blobs": 427,
-    "accepted_files_byte_identical": true,
-    "cognition_sha256": "4b36869b2e87c4aaf8c49c6a3b8134fb3919fae114338ef50b0b08f0d5e2a87e",
-    "cognition_unchanged": true,
-    "details": {
-      "B0_blobs": 427,
-      "byte_identical_to_native_v02": {
-        "b1/core.py": true,
-        "b1/g1.py": true,
-        "b1/runtime.py": true,
-        "native/cognition.py": true
-      }
+    "byte_identical_to_native_v02": {
+      "b1/core.py": true,
+      "b1/g1.py": true,
+      "b1/runtime.py": true,
+      "native/cognition.py": true
     }
   },
+  "primary_seeds": [
+    2,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
   "questions_file": "QUESTIONS_FOR_OWNER.md",
-  "questions_text": "Scope notice: original sections describe historical Native v0/2. The Rulebook1.0 section below applies only to native-rb/1 and records its current blocker and limits.\n\nOWNER BRIEFING\n1. Native build uses the following smallest working PLACEHOLDERs where implementation or canon detail is incomplete.\n2. These are explicit defaults, not accepted canon or evidence of good play.\n3. Historical Native v0/2 questions did not block that baseline. The RB section records the current integration blocker. Acceptance remains the owner's decision.\n\n| ID | Question / replaceable default | Class and current handling |\n|---|---|---|\n| Q-HUNT-1 | Centre-circle radius and setup distances are not specified numerically in the build prompt. | CANON detail; PLACEHOLDER keep restarts_v1's 5 m radius, contestants approach physically from legal initial scatter. No assigned formation or role-ranked contestant. |\n| Q-HUNT-2 | Exact clock activation within the First Hunt is not specified in the authoritative prompt. | CANON detail; PLACEHOLDER clock runs in the opening phase, including approaches; false start retakes and no Archer until whole ball exits circle. |\n| Q-ZONE-1 | Unmarked defenders cannot remain indefinitely, but the permitted grace interval is not stated. | CANON detail; PLACEHOLDER 5 s unmarked residence, inherited duration; marked defenders exempt, Keepers exempt. |\n| Q-FLIGHT-1 | Maximum shot finishing-flight duration is not stated. | CANON detail; PLACEHOLDER 10 s safety tail, normally ends on ground/control/out/goal. Only shots get an exception. |\n| Q-BOUNDARY-1 | Exact anatomical witnesses for every touching body part need more motor integration. | ENGINEERING; PLACEHOLDER ground body-cylinder envelope with airborne exemption. Native v1 replaces it with support/anatomical witnesses. Goal whole-ball test is separate. |\n| Q-COVER-1 | If simultaneous exclusions temporarily leave fewer than 12 eligible among 22, does \"available\" include excluded athletes? | CANON edge case; PLACEHOLDER excluded athletes are unavailable until their exclusion expires, so fewer than 12 currently eligible causes a forfeit. No unavailable athlete is fielded to hide this case. |\n| Q-SIMULT-1 | Simultaneous offsetting minor fouls outside the three specified exact ties have no explicit procedure. | CANON detail; PLACEHOLDER retain B0 neutral offset: record each sanction and restart with existing possession/count, no automatic major classification. |\n| Q-HELD-1 | Unresolved physical joint-ball control has no resolution duration in the prompt. | CANON detail; PLACEHOLDER retain B0 one-second held-ball reset/alternating scrimmage; Hunt joint control retakes without a penalty. |\n| Q-SENSOR-1 | Native sensor cadence/noise constants are not canon. | ENGINEERING; PLACEHOLDER immutable delayed/noisy cone/occlusion observations with independent per-athlete RNG, no true fallback. Claude replaces/takes ownership. |\n| Q-THROW-1 | Full THROW_SPLIT mechanics and arbitrary-speed error calibration are not yet ported. | ENGINEERING; PLACEHOLDER explicit intent speed/height, drag-aware arc, 60-degree moving-release bound, uniform accuracy error. Do not claim full throwing_v1 equivalence. |\n| Q-HAND-1 | Full voluntary off-ball hand-fight repertoire is not yet ported. | BEHAVIORAL/ENGINEERING; PLACEHOLDER retained incidental contact physics, intent-gated carrier wraps, no automatic random gripping. Native v1 adds PRISM-owned off-ball actions. |\n| Q-CONTACT-1 | B0 automatic containment/descent choices used true-state tactical triggers. | ENGINEERING; disabled in Native. Motor may retain already admitted Keeper commitments; new semantic choices come from decide(). |\n| Q-CATCH-1 | CATCH_V2 shared energy kernel is ported; automatic jump/hand-contest overlay is not installed. | ENGINEERING; PLACEHOLDER B0 simultaneous secure-contact handling plus shared threshold kernel. No second Keeper decider. |\n| Q-BEHAVIOR-1 | Minimal Hunt claims, restart claims/alignment/wait/snap, dribble and cover policies need replacement. | BEHAVIORAL; PLACEHOLDER procedural decisions in the same view/belief/intent pipeline, canonical admission, no quality claim. Claude owns their later cognition replacements. |\n\nExplicit DEFERRED: breaks, timeouts, Hunt penalties beyond false-start retake, standard scoring, fatigue, injury, rating development, adaptive learning, M2 plan/message content. No implementation of those deferred features is authorized by this baseline.\n\nPH3 implementation limit (ENGINEERING, not a canon escalation): the current defender-marking exemption checks offensive field players. Keeper-as-marker coverage is not established by the conformance test. Native v1 must cover every offensive-player role permitted by the rule. This residence model remains PLACEHOLDER; the five-second attacker rule and field-player marking case are tested.\n\n## Rulebook 1.0 / native-rb/1 scope (supersedes old defaults only for RB)\n\nBreaks, timeout policy,>5cm review, shorthanded discipline, quotas and forced-injury/substitution mechanics are ratified for RB. They are not deferred in RB. Native v0/2 remains the historical profile above.\n\n| ID | Class | Handling |\n|---|---|---|\n| RB-BLOCK-1 | Marking witness/scope blocker | Ratified distance is5m. PLACEHOLDER witness: opponent proximity to the restart ball, excluding the designated tackler. Ready checks now precede marking admission. Under this witness, unchanged Native v0/2 restart intents cause repeated fouls and a seed1 stall at5.375 live seconds. Review this operational witness first; if correct, a narrow restart-legality cognition patch is needed from Claude or an explicit scope extension. Athlete decision changes are outside RB-1. No rule was relaxed or athlete externally repositioned. |\n| RB-PH-1 | ENGINEERING placeholder | Period resets reuse initial legal scatter; no new formation. Added field-roster admission is procedural setup. Twelve non-Archer field-roster slots; the Archer is outside that limit;22 gameday players retained. |\n| RB-PH-2 | Team setup placeholder | Reserve Keepers default to A13/B13. Eligible replacements use canonical ID order with named-reserve priority; fallback chooses an available field player. No ratings used. |\n| RB-PH-3 | Equipment placeholder explicitly permitted | Torso/thigh cylinder-height band approximates strike panels. Outer/inner thigh cannot be distinguished. Lighter Archer kit is metadata only; no gameplay effect. |\n| RB-PH-4 | Missing procedure detail | Fifth-minor DQ uses a60s replacement window; second-major DQ120s. These follow the respective foul-kind exclusion window. |\n| RB-PH-5 | Missing procedure detail | A special defensive count+1 offence reuses the existing count1-to-turnover transition on overflow. No new tackle-count domain is invented. |\n| RB-PH-6 | Missing review detail | A lost review with no timeout remaining consumes its challenge but does not create a negative timeout balance or future-half debt. |\n| RB-PH-7 | Review workflow incomplete | Reviews are available for the current, unpaused dead-ball episode. Challenge windows at period/final completion or during planned breaks are not implemented/tested. No autonomous challenge policy is invented. This is not full R-O workflow acceptance. |\n| RB-PH-8 | Missing restart detail | Correcting a false goal while the recorded ball was still in bounds resumes by scrimmage for the recorded possessing team at the spot; a recorded out-of-bounds ball uses the corrected boundary restart. |\n| RB-PH-9 | ENGINEERING ordering | Eligible simultaneous timeout triggers are consumed once each, team order A then B. No extra timeout is granted. |\n| RB-PH-10 | Forced injury scope | No injury probability or recovery model is added. Ordinary forced injuries remain unavailable; head-evaluation players can return from the next period. |\n\nEngine contact-breach classification is tested with forced rule inputs. Natural contact detection in every frozen/dead-ball physical path and goal-line-major restart liveness still require integration evidence. V3 and V5 are not claimed complete.\n\nRB-PH-11: inherited procedural illegal_release/otherwise unclassified legacy rule inputs currently default to minor adjudication. This is a labelled compatibility placeholder, not a newly ratified offence.\nRB-PH-12: later sudden-death periods retain the inherited300s maximum period duration; any score ends them immediately. Their duration beyond the first overtime was not restated numerically in RB-1.\n",
+  "questions_text": "Scope notice: original sections describe historical Native v0/2. The Rulebook1.0 section below applies only to native-rb/1 and records its current blocker and limits.\n\nOWNER BRIEFING\n1. Native build uses the following smallest working PLACEHOLDERs where implementation or canon detail is incomplete.\n2. These are explicit defaults, not accepted canon or evidence of good play.\n3. Historical Native v0/2 questions did not block that baseline. The RB section records resolved canon updates and remaining placeholders. Acceptance remains the owner's decision.\n\n| ID | Question / replaceable default | Class and current handling |\n|---|---|---|\n| Q-HUNT-1 | Centre-circle radius and setup distances are not specified numerically in the build prompt. | CANON detail; PLACEHOLDER keep restarts_v1's 5 m radius, contestants approach physically from legal initial scatter. No assigned formation or role-ranked contestant. |\n| Q-HUNT-2 | Exact clock activation within the First Hunt is not specified in the authoritative prompt. | CANON detail; PLACEHOLDER clock runs in the opening phase, including approaches; false start retakes and no Archer until whole ball exits circle. |\n| Q-ZONE-1 | Unmarked defenders cannot remain indefinitely, but the permitted grace interval is not stated. | CANON detail; PLACEHOLDER 5 s unmarked residence, inherited duration; marked defenders exempt, Keepers exempt. |\n| Q-FLIGHT-1 | Maximum shot finishing-flight duration is not stated. | CANON detail; PLACEHOLDER 10 s safety tail, normally ends on ground/control/out/goal. Only shots get an exception. |\n| Q-BOUNDARY-1 | Exact anatomical witnesses for every touching body part need more motor integration. | ENGINEERING; PLACEHOLDER ground body-cylinder envelope with airborne exemption. Native v1 replaces it with support/anatomical witnesses. Goal whole-ball test is separate. |\n| Q-COVER-1 | If simultaneous exclusions temporarily leave fewer than 12 eligible among 22, does \"available\" include excluded athletes? | CANON edge case; PLACEHOLDER excluded athletes are unavailable until their exclusion expires, so fewer than 12 currently eligible causes a forfeit. No unavailable athlete is fielded to hide this case. |\n| Q-SIMULT-1 | Simultaneous offsetting minor fouls outside the three specified exact ties have no explicit procedure. | CANON detail; PLACEHOLDER retain B0 neutral offset: record each sanction and restart with existing possession/count, no automatic major classification. |\n| Q-HELD-1 | Unresolved physical joint-ball control has no resolution duration in the prompt. | CANON detail; PLACEHOLDER retain B0 one-second held-ball reset/alternating scrimmage; Hunt joint control retakes without a penalty. |\n| Q-SENSOR-1 | Native sensor cadence/noise constants are not canon. | ENGINEERING; PLACEHOLDER immutable delayed/noisy cone/occlusion observations with independent per-athlete RNG, no true fallback. Claude replaces/takes ownership. |\n| Q-THROW-1 | Full THROW_SPLIT mechanics and arbitrary-speed error calibration are not yet ported. | ENGINEERING; PLACEHOLDER explicit intent speed/height, drag-aware arc, 60-degree moving-release bound, uniform accuracy error. Do not claim full throwing_v1 equivalence. |\n| Q-HAND-1 | Full voluntary off-ball hand-fight repertoire is not yet ported. | BEHAVIORAL/ENGINEERING; PLACEHOLDER retained incidental contact physics, intent-gated carrier wraps, no automatic random gripping. Native v1 adds PRISM-owned off-ball actions. |\n| Q-CONTACT-1 | B0 automatic containment/descent choices used true-state tactical triggers. | ENGINEERING; disabled in Native. Motor may retain already admitted Keeper commitments; new semantic choices come from decide(). |\n| Q-CATCH-1 | CATCH_V2 shared energy kernel is ported; automatic jump/hand-contest overlay is not installed. | ENGINEERING; PLACEHOLDER B0 simultaneous secure-contact handling plus shared threshold kernel. No second Keeper decider. |\n| Q-BEHAVIOR-1 | Minimal Hunt claims, restart claims/alignment/wait/snap, dribble and cover policies need replacement. | BEHAVIORAL; PLACEHOLDER procedural decisions in the same view/belief/intent pipeline, canonical admission, no quality claim. Claude owns their later cognition replacements. |\n\nExplicit DEFERRED: breaks, timeouts, Hunt penalties beyond false-start retake, standard scoring, fatigue, injury, rating development, adaptive learning, M2 plan/message content. No implementation of those deferred features is authorized by this baseline.\n\nPH3 implementation limit (ENGINEERING, not a canon escalation): the current defender-marking exemption checks offensive field players. Keeper-as-marker coverage is not established by the conformance test. Native v1 must cover every offensive-player role permitted by the rule. This residence model remains PLACEHOLDER; the five-second attacker rule and field-player marking case are tested.\n\n## Rulebook 1.0 / native-rb/1 scope (supersedes old defaults only for RB)\n\nBreaks, timeout policy,>5cm review, shorthanded discipline, quotas and forced-injury/substitution mechanics are ratified for RB. They are not deferred in RB. Native v0/2 remains the historical profile above.\n\n| ID | Class | Handling |\n|---|---|---|\n| RB-PH-1 | ENGINEERING placeholder | Period resets reuse initial legal scatter; no new formation. Added field-roster admission is procedural setup. Twelve non-Archer field-roster slots; the Archer is outside that limit;22 gameday players retained. |\n| RB-PH-2 | Team setup placeholder | Reserve Keepers default to A13/B13. Eligible replacements use canonical ID order with named-reserve priority; fallback chooses an available field player. No ratings used. |\n| RB-PH-3 | Equipment placeholder explicitly permitted | Torso/thigh cylinder-height band approximates strike panels. Outer/inner thigh cannot be distinguished. Lighter Archer kit is metadata only; no gameplay effect. |\n| RB-PH-4 | Missing procedure detail | Fifth-minor DQ uses a60s replacement window; second-major DQ120s. These follow the respective foul-kind exclusion window. |\n| RB-PH-5 | Missing procedure detail | A special defensive count+1 offence reuses the existing count1-to-turnover transition on overflow. No new tackle-count domain is invented. |\n| RB-PH-6 | Missing review detail | A lost review with no timeout remaining consumes its challenge but does not create a negative timeout balance or future-half debt. |\n| RB-PH-8 | Missing restart detail | Correcting a false goal while the recorded ball was still in bounds resumes by scrimmage for the recorded possessing team at the spot; a recorded out-of-bounds ball uses the corrected boundary restart. |\n| RB-PH-9 | ENGINEERING ordering | Eligible simultaneous timeout triggers are consumed once each, team order A then B. No extra timeout is granted. |\n| RB-PH-10 | Forced injury scope | No injury probability or recovery model is added. Ordinary forced injuries remain unavailable; head-evaluation players can return from the next period. |\n\n\nRB-PH-11: inherited procedural illegal_release/otherwise unclassified legacy rule inputs currently default to minor adjudication. This is a labelled compatibility placeholder, not a newly ratified offence.\nRB-PH-12: later sudden-death periods retain the inherited300s maximum period duration; any score ends them immediately. Their duration beyond the first overtime was not restated numerically in RB-1.\n\n2026-11-15 owner update: RB-BLOCK-1 RESOLVED. Pre-live5m marking foul and its witness are REVOKED and removed with no replacement. Keeper-zone defender marking remains5m. Snap-readiness ordering remains. Repeated dead-ball foul retakes receive a procedural correction/warning without repeated stopped-clock discipline.\n\nRB-PH-7 RESOLVED: recorded-evidence review now operates during period breaks and after final rulings; reversal restores prior state, and a lost halftime review charges the old half. No autonomous challenge policy is defined or invented.\n\nNo current canon question blocks RB integration. Remaining RB-PH defaults above are explicit implementation placeholders, not ratified additions.\n\nRB-PH-13: band attempts retain the existing Native release-ledger convention: each deliberate shot/pass/bounce/restart release is counted once; carry and own-goal events have separate bands. Intent kind is retained so shot-only subsets can be extracted. The report labels these as release counters, not a quality metric.\n",
   "requested_base": "a1b131379845322bbc9970ad667a6d68dec10dd7",
   "rule_matrix": {
     "authority": "DreLen ratified Rulebook and addendum2026-11-14",
+    "canon_updates": [
+      {
+        "authority": "DreLen",
+        "date": "2026-11-15",
+        "revoked": "Pre-live5m marking foul, witness, sanction and tests",
+        "unchanged": "Keeper-zone defender marking_distance=5"
+      }
+    ],
     "profile": "native-rb/1",
     "rows": [
       {
@@ -830,10 +2304,10 @@
       },
       {
         "id": "RT3",
-        "note": "RB snap clock tested; tackle carry path retained from Native v0/2, RB-specific tackle scenario not forced.",
-        "rule": "Snap release starts clock; tackle retains remaining clock",
-        "status": "IMPLEMENTED; coverage incomplete",
-        "test": "native/rulebook/test_clocks.py::test_release_restarts_clock_and_tackle_preserves_remaining"
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Tackle retains play clock; snap window runs only above10s",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_clocks.py::test_real_tackle_keeps_play_clock_and_snap_window_runs_only_above_ten"
       },
       {
         "id": "RT4",
@@ -851,10 +2325,10 @@
       },
       {
         "id": "RT6",
-        "note": "Inherited score kernel and forced break transitions exist; no full RB overtime proof.",
-        "rule": "Whole first OT and every any-score sudden-death ending in real RB match",
-        "status": "UNPROVEN",
-        "test": null
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Whole300s first OT; full/half/award scores end sudden death",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death"
       },
       {
         "id": "RS1",
@@ -893,10 +2367,10 @@
       },
       {
         "id": "RS6",
-        "note": "Common throw release path records bands; RB-specific bounced-goal scenario not yet forced.",
-        "rule": "Bounced throws use release-distance bands",
-        "status": "IMPLEMENTED; coverage incomplete",
-        "test": null
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Bounced shot uses original release-distance band",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_scoring.py::test_bounced_shot_keeps_original_release_band"
       },
       {
         "id": "RD1",
@@ -942,10 +2416,10 @@
       },
       {
         "id": "RD7",
-        "note": "Ratified 5m distance; ball-centred opponent proximity with tackler exception is a placeholder witness. Readiness checked first.",
-        "rule": "Pre-live5m marking sanction and attacker-zone20m restart",
-        "status": "PLACEHOLDER witness; admission tested",
-        "test": "native/rulebook/test_boundary.py::test_premarking_minor_and_zone_line"
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Attacker-zone expiry restart at20m line; Keeper-zone marking remains5m",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_boundary.py::test_zone_residence_restart_line"
       },
       {
         "id": "RD8",
@@ -956,10 +2430,10 @@
       },
       {
         "id": "RD9",
-        "note": "Forced adjudication inputs tested; all physical paths not established.",
-        "rule": "Frozen/dead-ball natural contact detection and major goal-line restart liveness",
-        "status": "UNPROVEN",
-        "test": null
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Physical-kernel Keeper contact and major goal-line restart release",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_execution.py::test_physical_kernel_contact_on_protected_keeper_emits_major"
       },
       {
         "id": "RA1",
@@ -970,10 +2444,10 @@
       },
       {
         "id": "RA2",
-        "note": "Freeze/readiness and turnover are forced; execution of continued/entering-zone commands during recovery is not fully validated.",
-        "rule": "Panel filtering, freeze/recovery and turnover quota reset",
-        "status": "PARTIAL",
-        "test": "native/rulebook/test_archery.py::test_freeze_cap_panel_recovery_and_turnover"
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Recovery admission at intent and execution, including queued release/movement",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_execution.py::test_recovery_execution_blocks_queued_release_and_forward_zone_entry"
       },
       {
         "id": "RA3",
@@ -984,10 +2458,10 @@
       },
       {
         "id": "RA4",
-        "note": "Arrow quota ledger tested; complete5-freeze RB integration sequence remains unproven.",
-        "rule": "Five freezes/quota limits at authority layer",
-        "status": "IMPLEMENTED; coverage incomplete",
-        "test": "native/rulebook/test_authorities.py::test_quota_and_illegal_arrow"
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Five actual freezes then cap; turnover reset and amber phase",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber"
       },
       {
         "id": "RO1",
@@ -1026,10 +2500,10 @@
       },
       {
         "id": "RO6",
-        "note": "Only current unpaused dead episode supported; no autonomous policy specified.",
-        "rule": "Period-final/break review windows and autonomous challenge timing",
-        "status": "PLACEHOLDER / UNPROVEN",
-        "test": null
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Review during breaks and after final; restore corrected result",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final"
       },
       {
         "id": "RE1",
@@ -1040,10 +2514,10 @@
       },
       {
         "id": "RE2",
-        "note": "Red capture tested; amber branch and lighter-kit metadata not separately forced.",
-        "rule": "Red/amber indicators and lighter kit metadata with no gameplay effect",
-        "status": "IMPLEMENTED; coverage incomplete",
-        "test": "native/rulebook/test_archery.py::test_status_view_is_captured_not_live_truth"
+        "note": "Forced real-engine scenario; final-source full match validation reported separately.",
+        "rule": "Captured amber indicator and no gameplay effect from lighter kit metadata",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber"
       },
       {
         "id": "RI1",
@@ -1095,13 +2569,6 @@
         "test": "native/rulebook/test_boundary.py::test_short_integrated_replay"
       },
       {
-        "id": "BLOCK1",
-        "note": "Conflicting intent under placeholder marking witness, plus bounded seed1 watchdog reproduction after readiness-order correction.",
-        "rule": "Unchanged restart intent remains inside5m admission",
-        "status": "BLOCKED",
-        "test": "native/rulebook/test_boundary.py::test_restart_intent_inside_placeholder_ball_clearance"
-      },
-      {
         "id": "RT7",
         "note": "135 seconds of planned dead time; clocks unchanged.",
         "rule": "Consecutive legal timeouts do not cause a false restart watchdog failure",
@@ -1109,70 +2576,104 @@
         "test": "native/rulebook/test_clocks.py::test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog"
       },
       {
-        "id": "RD10",
-        "note": "Ready and not-ready admission paths are distinguished.",
-        "rule": "No marking sanction before existing snap readiness passes",
+        "id": "RD11",
+        "note": "Watchdog retained; no replacement for revoked marking foul.",
+        "rule": "Repeated dead-ball foul resolves without repeated exclusions/retakes",
         "status": "IMPLEMENTED+tested",
-        "test": "native/rulebook/test_boundary.py::test_not_ready_restart_does_not_sanction_marking"
+        "test": "native/rulebook/test_boundary.py::test_repeated_dead_ball_foul_corrects_offender_without_retake_loop"
+      },
+      {
+        "id": "RD12",
+        "note": "Adds frozen bodies omitted from B0 eligible moving-pair kernel.",
+        "rule": "Actual swept entry into frozen body is a major",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_execution.py::test_actual_swept_body_contact_with_frozen_player_is_major"
+      },
+      {
+        "id": "RO7",
+        "note": "New-half challenges/timeouts remain intact.",
+        "rule": "Lost halftime review consumes old-half resources only",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_review.py::test_lost_review_in_halftime_costs_old_half_resources_only"
+      },
+      {
+        "id": "RD13",
+        "note": "Readiness and legal alignment, no external tactical positioning in match.",
+        "rule": "Major goal-line scrimmage can snap",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_execution.py::test_major_goal_line_scrimmage_can_release"
+      },
+      {
+        "id": "RA5",
+        "note": "Contact-major classification does not override explicit arrow-minor rule.",
+        "rule": "Illegal arrow is minor even at frozen, immune or Keeper target",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_archery.py::test_illegal_arrow_is_minor_even_if_target_has_contact_protection"
+      },
+      {
+        "id": "RA6",
+        "note": "Native historical victim-derived quota cannot veto correct RB quota.",
+        "rule": "Panel-hit freeze quota belongs to actual projectile team",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_archery.py::test_physical_friendly_panel_hit_spends_shooting_team_freeze_quota"
+      },
+      {
+        "id": "RI6",
+        "note": "Regression for failed full seed2 KeyError(A11).",
+        "rule": "Former Archer can substitute into field role and survive period reset",
+        "status": "IMPLEMENTED+tested",
+        "test": "native/rulebook/test_substitutions.py::test_former_archer_field_substitution_survives_period_reset"
       }
     ],
     "schema": "rb1-rule-matrix/1",
-    "status": "PARTIAL; full validation blocked"
+    "status": "IMPLEMENTED+tested functional conformance, with explicit placeholders; not owner acceptance"
   },
-  "schema": "native-rb-1-manifest/1",
+  "schema": "native-rb-1-manifest/2",
+  "serial_parallel_seed": 2,
   "short_replay": {
     "full_matches": 0,
     "parallel": [
       {
         "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-        "live_ms": 3546,
+        "live_ms": 5406,
         "seed": 1,
-        "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+        "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
         "status": "partial",
-        "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+        "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
       },
       {
         "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-        "live_ms": 3546,
+        "live_ms": 5406,
         "seed": 1,
-        "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+        "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
         "status": "partial",
-        "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+        "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
       }
     ],
     "plumbing_absent": {
       "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-      "live_ms": 3546,
+      "live_ms": 5406,
       "seed": 1,
-      "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+      "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
       "status": "partial",
-      "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+      "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
     },
     "scope": "100 physical steps only; not full-match V2",
     "serial": {
       "config_digest": "d1e04019fe9851d718c0ac116c109dd2e201f51202bfbb36367330dc63239e16",
-      "live_ms": 3546,
+      "live_ms": 5406,
       "seed": 1,
-      "state_hash": "9e6fa136ee61a867df62f83f122fbcc873dfc1dffbf3b14e867b87b250466860",
+      "state_hash": "e673dc6c9f0fe917b57cead22312ef80a47ce989c537b421fd806d04bce55398",
       "status": "partial",
-      "trace_hash": "4a7e053671a5c824e7713aaed85698c4861348263c059521208aaa50bf421685"
+      "trace_hash": "1c0e134d3d55e4a1c940e22927f7b5a16530fcfb21632f8aa27b7327aeb7a660"
     },
     "status": "passed"
   },
-  "status": "BLOCKED: not acceptance-ready",
-  "steps_status": {
-    "1": "IMPLEMENTED; forced clocks/pauses tested",
-    "2": "IMPLEMENTED; forced roster/injury scenarios tested",
-    "3": "IMPLEMENTED; forced adjudication tested, natural paths incomplete",
-    "4": "PARTIAL; quota/sweep/status scenarios tested, coverage gaps recorded",
-    "5": "IMPLEMENTED; forced scoring/attempt scenarios tested",
-    "6": "PARTIAL; forced reversals tested, review windows incomplete",
-    "7": "BLOCKED report and manifest; not acceptance-ready"
-  },
+  "status": "IMPLEMENTED and TESTED; submitted for independent review, not ACCEPTED",
   "tests": {
-    "RB_cases": 61,
+    "RB_cases": 85,
     "command": ".venv/bin/python -m pytest -q b1 native",
-    "elapsed_s": 155.29,
+    "elapsed_s": 651.4,
     "legacy_cases": 197,
     "log": "native/rulebook/evidence/final-suite.txt",
     "nodes": [
@@ -1302,6 +2803,11 @@
       "native/rulebook/test_archery.py::test_speed_quota_own_half_illegal_spends_and_no_tunnelling",
       "native/rulebook/test_archery.py::test_freeze_cap_panel_recovery_and_turnover",
       "native/rulebook/test_archery.py::test_status_view_is_captured_not_live_truth",
+      "native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber",
+      "native/rulebook/test_archery.py::test_illegal_arrow_is_minor_even_if_target_has_contact_protection[frozen]",
+      "native/rulebook/test_archery.py::test_illegal_arrow_is_minor_even_if_target_has_contact_protection[immune]",
+      "native/rulebook/test_archery.py::test_illegal_arrow_is_minor_even_if_target_has_contact_protection[keeper]",
+      "native/rulebook/test_archery.py::test_physical_friendly_panel_hit_spends_shooting_team_freeze_quota",
       "native/rulebook/test_authorities.py::test_legacy_digest_unchanged",
       "native/rulebook/test_authorities.py::test_bands_and_carry_own_awards",
       "native/rulebook/test_authorities.py::test_breaks[2-120000]",
@@ -1316,11 +2822,11 @@
       "native/rulebook/test_authorities.py::test_head_evaluation_next_period_and_injury_no_randomness",
       "native/rulebook/test_authorities.py::test_each_simultaneous_timeout_trigger_can_be_consumed_once",
       "native/rulebook/test_boundary.py::test_extended_view_replay_and_poison",
-      "native/rulebook/test_boundary.py::test_premarking_minor_and_zone_line",
+      "native/rulebook/test_boundary.py::test_zone_residence_restart_line",
       "native/rulebook/test_boundary.py::test_short_integrated_replay",
-      "native/rulebook/test_boundary.py::test_restart_intent_inside_placeholder_ball_clearance",
       "native/rulebook/test_boundary.py::test_final_rb_score_and_injury_hooks_cannot_mutate_completed_match",
-      "native/rulebook/test_boundary.py::test_not_ready_restart_does_not_sanction_marking",
+      "native/rulebook/test_boundary.py::test_not_ready_restart_cannot_release",
+      "native/rulebook/test_boundary.py::test_repeated_dead_ball_foul_corrects_offender_without_retake_loop",
       "native/rulebook/test_clocks.py::test_real_break_clock_ends_and_hunt[1-120]",
       "native/rulebook/test_clocks.py::test_real_break_clock_ends_and_hunt[2-600]",
       "native/rulebook/test_clocks.py::test_real_break_clock_ends_and_hunt[3-120]",
@@ -1329,6 +2835,10 @@
       "native/rulebook/test_clocks.py::test_timeout_freezes_both_clocks_and_restart_deadline",
       "native/rulebook/test_clocks.py::test_release_restarts_clock_and_tackle_preserves_remaining",
       "native/rulebook/test_clocks.py::test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog",
+      "native/rulebook/test_clocks.py::test_real_tackle_keeps_play_clock_and_snap_window_runs_only_above_ten",
+      "native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death[2-release]",
+      "native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death[1-half_goal]",
+      "native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death[3-full_goal_award]",
       "native/rulebook/test_discipline.py::test_real_exclusion_shorthanded_until_dead_after_window",
       "native/rulebook/test_discipline.py::test_minor_ladder_and_injury_exclusion_exemption",
       "native/rulebook/test_discipline.py::test_delay_warning_kick_and_major_goal_line",
@@ -1342,12 +2852,25 @@
       "native/rulebook/test_discipline.py::test_rule_layer_major_classification[frozen]",
       "native/rulebook/test_discipline.py::test_rule_layer_major_classification[immune_keeper]",
       "native/rulebook/test_discipline.py::test_unintentional_head_is_minor_and_requires_evaluation",
+      "native/rulebook/test_execution.py::test_contact_admission_routes_breach_to_major[frozen]",
+      "native/rulebook/test_execution.py::test_contact_admission_routes_breach_to_major[keeper]",
+      "native/rulebook/test_execution.py::test_contact_admission_routes_breach_to_major[dead]",
+      "native/rulebook/test_execution.py::test_recovery_execution_blocks_queued_release_and_forward_zone_entry",
+      "native/rulebook/test_execution.py::test_major_goal_line_scrimmage_can_release",
+      "native/rulebook/test_execution.py::test_physical_kernel_contact_on_protected_keeper_emits_major",
+      "native/rulebook/test_execution.py::test_actual_swept_body_contact_with_frozen_player_is_major",
       "native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart[0.049-False]",
       "native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart[0.05-False]",
       "native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart[0.051-True]",
       "native/rulebook/test_review.py::test_boundary_review_scope_and_keeper_binary",
       "native/rulebook/test_review.py::test_reversed_wrong_goal_outside_semicircle_is_toss_to_other_team",
       "native/rulebook/test_review.py::test_review_no_goal_reversed_to_keeper_own_goal",
+      "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final[1]",
+      "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final[2]",
+      "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final[4]",
+      "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final[6]",
+      "native/rulebook/test_review.py::test_lost_review_in_halftime_costs_old_half_resources_only",
+      "native/rulebook/test_review.py::test_final_correct_goal_can_be_reviewed_and_stands",
       "native/rulebook/test_scoring.py::test_real_release_band_and_goal[9.999-2]",
       "native/rulebook/test_scoring.py::test_real_release_band_and_goal[10-3]",
       "native/rulebook/test_scoring.py::test_real_release_band_and_goal[19.999-3]",
@@ -1355,11 +2878,13 @@
       "native/rulebook/test_scoring.py::test_flat_carry_banded_carry_and_keeper_own",
       "native/rulebook/test_scoring.py::test_restart_throw_is_an_attempt_once_at_actual_release",
       "native/rulebook/test_scoring.py::test_keeper_opponent_goal_is_no_goal_ruling",
+      "native/rulebook/test_scoring.py::test_bounced_shot_keeps_original_release_band",
       "native/rulebook/test_substitutions.py::test_field_limit_archer_exempt_dead_only_and_returns",
       "native/rulebook/test_substitutions.py::test_injury_stops_clocks_and_immediate_cover",
       "native/rulebook/test_substitutions.py::test_head_evaluation_and_named_keeper",
       "native/rulebook/test_substitutions.py::test_keeper_fallback_without_reserve",
       "native/rulebook/test_substitutions.py::test_exclusion_cannot_be_bypassed_with_empty_slot_or_role_change",
+      "native/rulebook/test_substitutions.py::test_former_archer_field_substitution_survives_period_reset",
       "native/test_rules.py::test_structure_configuration_and_effective_readback",
       "native/test_rules.py::test_hunt_each_period_any_field_claim_and_false_start_retake",
       "native/test_rules.py::test_first_overtime_is_whole_300s_and_later_is_sudden_death",
@@ -1435,7 +2960,7 @@
       "native/test_rules.py::test_goal_restart_is_conceding_own40_and_requires_all_behind_own40",
       "native/test_rules.py::test_returning_bench_claim_has_current_public_period_not_old_visual_frame"
     ],
-    "passed": 258,
+    "passed": 282,
     "subtests_passed": 23
   }
 }

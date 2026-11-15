@@ -1,16 +1,17 @@
-# RB-1: blocked integration checkpoint
+# RB-1 integration
 
-Base:a1b131379845322bbc9970ad667a6d68dec10dd7, Native v0/2. No FAB-1 dependency was awaited. Cognition and accepted files are unchanged. Rules/engine changes live here; Native substrate/run contain only explicit profile/driver hooks.
+Engine/rules source freeze:881d212 on codex/rulebook-1, based on Native v0/2 a1b1313. Accepted files, frozen B0 and cognition are unchanged. Rules live here; the earlier Native substrate/driver profile hooks remain isolated.
 
-Config:RulebookConfig(), version native-rb/1, flat default; RulebookConfig(scoring='banded') enables the provisional configured bands. No environment flags.
+The owner revoked the pre-live5m marking foul on2026-11-15. It has been removed without replacement. Keeper-zone defender marking remains5m. Existing readiness ordering and dead-progress watchdog remain. Repeated dead-ball fouls receive procedural correction/warning without repeat retakes/exclusions.
 
-Run conformance:`.venv/bin/python -m pytest -q b1 native`.
-Bounded blocker reproduction:`.venv/bin/python -m native.rulebook.reproduce_blocker`.
-Bounded serial/parallel/null replay:`.venv/bin/python -m native.rulebook.check_replay`.
-CLI example for short windows:`.venv/bin/python -m native.rulebook.run --seed 1 --max-steps 1000 --out /tmp/rb-window.json`.
+Config:RulebookConfig(), native-rb/1, flat default. RulebookConfig(scoring='banded') enables provisional configured bands; no environment flags.
 
-Do not start full RB batches while RB-BLOCK-1 persists. All full attempts must be reserved in evidence/FULL_MATCH_BUDGET.json before execution, including failed full attempts. Current use:2/20, both successful Native v0/2 preservation replays;0 full RB attempts. Tests with bounded steps or forced scenario clocks are not full matches.
+Commands:
+- `.venv/bin/python -m pytest -q b1 native`
+- `.venv/bin/python -m native.rulebook.reproduce_blocker` verifies progress past the historical blocker in4000 steps, not a full match.
+- `.venv/bin/python -m native.rulebook.check_replay` checks100-step serial/parallel/M2-absent replay.
+- `.venv/bin/python -m native.rulebook.run --seed 2 --max-steps 1000 --out /tmp/rb-window.json`
 
-The placeholder ball-centred witness for ratified5m pre-live marking and unchanged restart intents conflict. Existing snap readiness is now checked before marking admission. Minimal regression:test_boundary.py::test_restart_intent_inside_placeholder_ball_clearance. The full bounded reproduction trips the existing120s dead-progress watchdog. No artificial release/winner, weakened foul rule or external repositioning hides it.
+All full-match attempts must be reserved in evidence/FULL_MATCH_BUDGET.json before execution. The budget includes failed/stopped attempts and conservatively counts every batch reservation. Final validation is seeds2,6,7,8,9,10 plus a serial/parallel seed2 replay. Do not start more batches after the required evidence is complete. See RB1_REPORT.md and NATIVE_RB_1_MANIFEST.json for final results and exact seed history; historical failed logs are retained.
 
-Forced rules/scenarios and short replay are evidence of those cases only. This is not a completed RB baseline. See RB1_REPORT.md, RB1_RULE_MATRIX.json and NATIVE_RB_1_MANIFEST.json.
+Strike panels remain an explicitly permitted cylinder-height placeholder; no inner/outer-thigh anatomy is claimed. Injury source is a forced hook only. No autonomous review policy, message content or plan content is authored.

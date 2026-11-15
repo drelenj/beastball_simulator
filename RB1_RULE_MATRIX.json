@@ -2,7 +2,7 @@
   "schema": "rb1-rule-matrix/1",
   "authority": "DreLen ratified Rulebook and addendum2026-11-14",
   "profile": "native-rb/1",
-  "status": "PARTIAL; full validation blocked",
+  "status": "IMPLEMENTED+tested functional conformance, with explicit placeholders; not owner acceptance",
   "rows": [
     {
       "id": "RT1",
@@ -20,10 +20,10 @@
     },
     {
       "id": "RT3",
-      "rule": "Snap release starts clock; tackle retains remaining clock",
-      "status": "IMPLEMENTED; coverage incomplete",
-      "test": "native/rulebook/test_clocks.py::test_release_restarts_clock_and_tackle_preserves_remaining",
-      "note": "RB snap clock tested; tackle carry path retained from Native v0/2, RB-specific tackle scenario not forced."
+      "rule": "Tackle retains play clock; snap window runs only above10s",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_clocks.py::test_real_tackle_keeps_play_clock_and_snap_window_runs_only_above_ten",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RT4",
@@ -41,10 +41,10 @@
     },
     {
       "id": "RT6",
-      "rule": "Whole first OT and every any-score sudden-death ending in real RB match",
-      "status": "UNPROVEN",
-      "test": null,
-      "note": "Inherited score kernel and forced break transitions exist; no full RB overtime proof."
+      "rule": "Whole300s first OT; full/half/award scores end sudden death",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RS1",
@@ -83,10 +83,10 @@
     },
     {
       "id": "RS6",
-      "rule": "Bounced throws use release-distance bands",
-      "status": "IMPLEMENTED; coverage incomplete",
-      "test": null,
-      "note": "Common throw release path records bands; RB-specific bounced-goal scenario not yet forced."
+      "rule": "Bounced shot uses original release-distance band",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_bounced_shot_keeps_original_release_band",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RD1",
@@ -132,10 +132,10 @@
     },
     {
       "id": "RD7",
-      "rule": "Pre-live5m marking sanction and attacker-zone20m restart",
-      "status": "PLACEHOLDER witness; admission tested",
-      "test": "native/rulebook/test_boundary.py::test_premarking_minor_and_zone_line",
-      "note": "Ratified 5m distance; ball-centred opponent proximity with tackler exception is a placeholder witness. Readiness checked first."
+      "rule": "Attacker-zone expiry restart at20m line; Keeper-zone marking remains5m",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_boundary.py::test_zone_residence_restart_line",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RD8",
@@ -146,10 +146,10 @@
     },
     {
       "id": "RD9",
-      "rule": "Frozen/dead-ball natural contact detection and major goal-line restart liveness",
-      "status": "UNPROVEN",
-      "test": null,
-      "note": "Forced adjudication inputs tested; all physical paths not established."
+      "rule": "Physical-kernel Keeper contact and major goal-line restart release",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_execution.py::test_physical_kernel_contact_on_protected_keeper_emits_major",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RA1",
@@ -160,10 +160,10 @@
     },
     {
       "id": "RA2",
-      "rule": "Panel filtering, freeze/recovery and turnover quota reset",
-      "status": "PARTIAL",
-      "test": "native/rulebook/test_archery.py::test_freeze_cap_panel_recovery_and_turnover",
-      "note": "Freeze/readiness and turnover are forced; execution of continued/entering-zone commands during recovery is not fully validated."
+      "rule": "Recovery admission at intent and execution, including queued release/movement",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_execution.py::test_recovery_execution_blocks_queued_release_and_forward_zone_entry",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RA3",
@@ -174,10 +174,10 @@
     },
     {
       "id": "RA4",
-      "rule": "Five freezes/quota limits at authority layer",
-      "status": "IMPLEMENTED; coverage incomplete",
-      "test": "native/rulebook/test_authorities.py::test_quota_and_illegal_arrow",
-      "note": "Arrow quota ledger tested; complete5-freeze RB integration sequence remains unproven."
+      "rule": "Five actual freezes then cap; turnover reset and amber phase",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RO1",
@@ -216,10 +216,10 @@
     },
     {
       "id": "RO6",
-      "rule": "Period-final/break review windows and autonomous challenge timing",
-      "status": "PLACEHOLDER / UNPROVEN",
-      "test": null,
-      "note": "Only current unpaused dead episode supported; no autonomous policy specified."
+      "rule": "Review during breaks and after final; restore corrected result",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RE1",
@@ -230,10 +230,10 @@
     },
     {
       "id": "RE2",
-      "rule": "Red/amber indicators and lighter kit metadata with no gameplay effect",
-      "status": "IMPLEMENTED; coverage incomplete",
-      "test": "native/rulebook/test_archery.py::test_status_view_is_captured_not_live_truth",
-      "note": "Red capture tested; amber branch and lighter-kit metadata not separately forced."
+      "rule": "Captured amber indicator and no gameplay effect from lighter kit metadata",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber",
+      "note": "Forced real-engine scenario; final-source full match validation reported separately."
     },
     {
       "id": "RI1",
@@ -285,13 +285,6 @@
       "note": "100 steps, not full-match V2."
     },
     {
-      "id": "BLOCK1",
-      "rule": "Unchanged restart intent remains inside5m admission",
-      "status": "BLOCKED",
-      "test": "native/rulebook/test_boundary.py::test_restart_intent_inside_placeholder_ball_clearance",
-      "note": "Conflicting intent under placeholder marking witness, plus bounded seed1 watchdog reproduction after readiness-order correction."
-    },
-    {
       "id": "RT7",
       "rule": "Consecutive legal timeouts do not cause a false restart watchdog failure",
       "status": "IMPLEMENTED+tested",
@@ -299,11 +292,61 @@
       "note": "135 seconds of planned dead time; clocks unchanged."
     },
     {
-      "id": "RD10",
-      "rule": "No marking sanction before existing snap readiness passes",
+      "id": "RD11",
+      "rule": "Repeated dead-ball foul resolves without repeated exclusions/retakes",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_boundary.py::test_not_ready_restart_does_not_sanction_marking",
-      "note": "Ready and not-ready admission paths are distinguished."
+      "test": "native/rulebook/test_boundary.py::test_repeated_dead_ball_foul_corrects_offender_without_retake_loop",
+      "note": "Watchdog retained; no replacement for revoked marking foul."
+    },
+    {
+      "id": "RD12",
+      "rule": "Actual swept entry into frozen body is a major",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_execution.py::test_actual_swept_body_contact_with_frozen_player_is_major",
+      "note": "Adds frozen bodies omitted from B0 eligible moving-pair kernel."
+    },
+    {
+      "id": "RO7",
+      "rule": "Lost halftime review consumes old-half resources only",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_lost_review_in_halftime_costs_old_half_resources_only",
+      "note": "New-half challenges/timeouts remain intact."
+    },
+    {
+      "id": "RD13",
+      "rule": "Major goal-line scrimmage can snap",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_execution.py::test_major_goal_line_scrimmage_can_release",
+      "note": "Readiness and legal alignment, no external tactical positioning in match."
+    },
+    {
+      "id": "RA5",
+      "rule": "Illegal arrow is minor even at frozen, immune or Keeper target",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_illegal_arrow_is_minor_even_if_target_has_contact_protection",
+      "note": "Contact-major classification does not override explicit arrow-minor rule."
+    },
+    {
+      "id": "RA6",
+      "rule": "Panel-hit freeze quota belongs to actual projectile team",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_physical_friendly_panel_hit_spends_shooting_team_freeze_quota",
+      "note": "Native historical victim-derived quota cannot veto correct RB quota."
+    },
+    {
+      "id": "RI6",
+      "rule": "Former Archer can substitute into field role and survive period reset",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_substitutions.py::test_former_archer_field_substitution_survives_period_reset",
+      "note": "Regression for failed full seed2 KeyError(A11)."
+    }
+  ],
+  "canon_updates": [
+    {
+      "date": "2026-11-15",
+      "authority": "DreLen",
+      "revoked": "Pre-live5m marking foul, witness, sanction and tests",
+      "unchanged": "Keeper-zone defender marking_distance=5"
     }
   ]
 }
