@@ -1,0 +1,68 @@
+{
+ "version": "morph-1.0/anc-1.0",
+ "seed": 20261116,
+ "players": 712,
+ "profiles": 65,
+ "profile_weight_total": 100.0,
+ "class_counts": {
+  "Pureblood": 468,
+  "Tri": 33,
+  "Dual": 206,
+  "Quad": 5
+ },
+ "tribe_membership_counts": {
+  "Ly’Kun": 391,
+  "Dryqona": 205,
+  "Yubu": 136,
+  "Shynän": 113,
+  "Psolari": 55,
+  "Vygari": 52,
+  "Fefmial": 47
+ },
+ "height_in": {
+  "min": 72.1,
+  "max": 135.7,
+  "mean": 94.01
+ },
+ "mass_kg": {
+  "min": 91.7,
+  "max": 753.3
+ },
+ "reach_m_max": 4.32,
+ "locked": {
+  "Miles Starlight": "Ly’Kun",
+  "Kamasi Sinella": "Ly’Kun/Dryqona/Shynän/Yubu",
+  "Dante Sinella": "Shynän/Yubu",
+  "Damon Sinella": "Shynän/Yubu"
+ },
+ "errors": [],
+ "sheets_updated": {
+  "All 712 Players": 712,
+  "01 Ala Apex": 27,
+  "02 Ala Marauders": 27,
+  "03 Ashkara Ignivars": 27,
+  "04 Bibi Nupi Barbarians": 27,
+  "05 Bryjeer Flame Devils": 27,
+  "06 Dōmyu Dominators": 29,
+  "07 Garahviq Immortals": 27,
+  "08 Garvian Guardians": 27,
+  "09 Güunlekia Serpents": 27,
+  "10 G’Yanka Vanagu": 27,
+  "11 Hina’sola Hunters": 28,
+  "12 Isu’Kari Sirenwings": 29,
+  "13 Kalundu Shockwave": 27,
+  "14 Kasuf Bloodravens": 27,
+  "15 Khemara Sunscourge": 27,
+  "16 Lykessia Wolverines": 27,
+  "17 Mbuya Ïmu Moonhawks": 27,
+  "18 Ndomiri Sentinels": 27,
+  "19 Ndumba Specters": 27,
+  "20 Nuk’yl Chiefs": 29,
+  "21 Priya Arpaqu": 30,
+  "22 Ursiria 65ers": 27,
+  "23 Wibatu Rangers": 27,
+  "24 Xenar Ignite": 27,
+  "25 Yukïma Cowhands": 27,
+  "26 Zafiren Tidewings": 27
+ }
+}
