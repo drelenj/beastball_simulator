@@ -61,7 +61,7 @@ def main():
     aud = wb.create_sheet("Physical Audit")
     aud.append(["Generator version", PHYS_VERSION]); aud.append(["Master seed", a.seed])
     aud.append(["Spec", "Beastball_Physical_Attribute_Generation_v1.0.md (LOCKED). mu = 78 + height shift + physique shift + ancestry shift; discrete truncated normal, SD 7, integers 65-100."])
-    aud.append(["Infeasible ancestries", "Where an ancestry cannot supply the locked secondary-slot count from supported attributes, available supported secondaries are applied, the shortfall stays neutral (0) and is flagged in 'Secondary slot shortfall'. Flagged for canon review."])
+    aud.append(["Infeasible ancestries", "Where an ancestry cannot supply the locked secondary-slot count from supported attributes, available supported secondaries are applied, the shortfall stays neutral (0) and is flagged in 'Secondary slot shortfall'. OWNER RULING Nov 16 2026 (Option A): neutral shortfall accepted as canon for these combinations (Ly’Kun/Shynän, Ly’Kun/Fefmial, Shynän/Fefmial, Dryqona/Yubu/Vygari)."])
     aud.append(["Note", "Owner lock: Kamasi Sinella +14 on every attribute mu (exceptional for his size, added to the size baseline with tribal bonus on top) and a rating floor of 85. Ratings are natural capability only. OVR is independent. Skill attributes are not covered by this spec."])
     aud.append([])
     hdr = ["Player ID", "Player", "Franchise", "Ancestry", "Height (in)", "Physique", "Shortfall", "Owner elite shift"]
