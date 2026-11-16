@@ -52,4 +52,4 @@ RB-PH-7 RESOLVED: recorded-evidence review now operates during period breaks and
 
 No current canon question blocks RB integration. Remaining RB-PH defaults above are explicit implementation placeholders, not ratified additions.
 
-RB-PH-13: band attempts retain the existing Native release-ledger convention: each deliberate shot/pass/bounce/restart release is counted once; carry and own-goal events have separate bands. Intent kind is retained so shot-only subsets can be extracted. The report labels these as release counters, not a quality metric.
+RB-PH-13 RESOLVED by RB-2 engineering correction: release-distance attempt counters are shot-only. Carry attempts are counted independently, own goals are reported separately, and the complete pass/bounce/restart release ledger remains available without being described as shot attempts.

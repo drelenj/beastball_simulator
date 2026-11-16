@@ -17,8 +17,7 @@ class RulebookConfig(NativeConfig):
     arrows: int = 15
     pocket_settings: tuple = RB_POCKET
     body_standards: tuple = RB_BODY
-    fastest_player_speed: float = 44.7
-    arrow_speed_ratio: float = 250./44.7
+    arrow_speed: float = 250.
     breaks_ms: tuple = (120000,600000,120000,180000)
     sudden_break_ms: int = 60000
     timeout_ms: int = 45000
@@ -29,6 +28,3 @@ class RulebookConfig(NativeConfig):
         if self.scoring not in ('flat','banded'):raise ValueError('scoring mode')
         if self.m2!='null' or self.legacy_layers:raise ValueError('RB retains null M2 and no legacy layers')
         if (self.periods,self.period_seconds,self.overtime_seconds)!=(4,600,300):raise ValueError('canon duration')
-
-    @property
-    def arrow_speed(self):return self.fastest_player_speed*self.arrow_speed_ratio

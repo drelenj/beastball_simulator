@@ -32,6 +32,8 @@ def test_freeze_cap_panel_recovery_and_turnover(p):
  q.x+=6;assert e.rb_recovery_ready(q)
  e.rb.quotas['A']['arrows']=15
  e.possession.pp='A';e.possession.tc='A';e.native_sync()
+ assert e.rb.quotas['A']['arrows']==15 and e.rb.quotas['B']['arrows']==0
+ e.possession.pp='B';e.possession.tc='B';e.native_sync()
  assert e.rb.quotas['A']['arrows']==0
 
 def test_status_view_is_captured_not_live_truth(p):
@@ -51,7 +53,9 @@ def test_five_actual_freezes_then_cap_and_captured_amber(p):
  p.capture(s.now);s.now+=300
  v,b=p.view('B0',s.now);assert ('B0','amber') in v.status_indicators
  assert not e.freeze('B0')
- s.now=q.immune_until+1;e.possession.pp='A';e.native_sync()
+ s.now=q.immune_until+1;e.possession.pp=e.possession.tc='A';e.native_sync()
+ assert e.rb.quotas['A']['freezes']==5
+ e.possession.pp=e.possession.tc='B';e.native_sync()
  assert e.freeze('B0')
 
 @pytest.mark.parametrize('protection',['frozen','immune','keeper'])

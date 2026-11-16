@@ -49,8 +49,11 @@ class Authorities:
     def turnover(self,team):
         if team!=self.possession:
             self.possession=team
-            for q in self.quotas.values():q.update(arrows=0,freezes=0)
-            return self.ruling('quota_reset',team=team)
+            # The other team's Archer becomes eligible against this new
+            # possession. The team gaining the ball keeps its dormant quota.
+            archer_team='B' if team=='A' else 'A'
+            self.quotas[archer_team].update(arrows=0,freezes=0)
+            return self.ruling('quota_reset',team=team,archer_team=archer_team)
 
     def arrow(self,team,legal):
         q=self.quotas[team]
@@ -93,7 +96,7 @@ class Authorities:
 
     def points(self,carry=False,distance=0.,own=False,award=False):
         if own:return self.config.own_goal_points
-        if award:return 1 if self.period<=3 else self.config.full_award_points
+        if award:return 1 if self.period<=3 else 2 if self.config.scoring=='flat' else self.config.full_award_points
         if self.config.scoring=='flat':return 2
         if carry:return self.config.carry_points
         return next(points for edge,points in self.config.release_bands if edge is None or distance<edge)

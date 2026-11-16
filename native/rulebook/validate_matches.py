@@ -22,7 +22,7 @@ def match(job):
   r['validation']=dict(status='passed',label=label,all_commands_have_intents=True,no_kicks=True,
    events=dict(breaks=counts['break'],timeouts=counts['timeout'],minors=sum(x['kind_of_foul']=='minor' for x in d),majors=sum(x['kind_of_foul']=='major' for x in d),exclusions=sum(x['duration_ms']>0 for x in d),DQs=sum(x['dq'] for x in d),quota_resets=counts['quota_reset'],reviews=counts['review'],injuries=counts['injury']+counts['head_evaluation'],substitutions=counts['substitution']))
   path=EVIDENCE/f'full-{label}.json';path.write_text(json.dumps(r,indent=2,sort_keys=True)+'\n')
-  return dict(status='passed',seed=seed,label=label,trace_hash=r['trace_hash'],state_hash=r['state_hash'],config_digest=r['config_digest'],runtime_s=round(time.perf_counter()-start,3),live_ms=r['live_ms'],score=r['score'],restart_completion_ratio=r['restart_completion_ratio'],events=r['validation']['events'],bands=r['rulebook']['bands'],evidence=str(path.relative_to(EVIDENCE.parent.parent.parent)))
+  return dict(status='passed',seed=seed,label=label,trace_hash=r['trace_hash'],state_hash=r['state_hash'],config_digest=r['config_digest'],runtime_s=round(time.perf_counter()-start,3),live_ms=r['live_ms'],score=r['score'],restart_completion_ratio=r['restart_completion_ratio'],events=r['validation']['events'],shot_bands=r['rulebook']['shot_bands'],carry_attempts=r['rulebook']['carry_attempts'],evidence=str(path.relative_to(EVIDENCE.parent.parent.parent)))
  except Exception as error:
   result=dict(status='failed',seed=seed,label=label,error=repr(error),traceback=traceback.format_exc(),runtime_s=round(time.perf_counter()-start,3))
   (EVIDENCE/f'full-{label}-failure.json').write_text(json.dumps(result,indent=2)+'\n');return result

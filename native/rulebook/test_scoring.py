@@ -23,13 +23,17 @@ def test_flat_carry_banded_carry_and_keeper_own():
  assert e.goal('A') and s.score['B']==2
 
 def test_restart_throw_is_an_attempt_once_at_actual_release():
- p=RulebookPort(1);s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture');s.restart.taker='A0'
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.ball.rb_deliberate_team='B';e.award('A',50,50,'fixture')
+ assert s.ball.rb_deliberate_team is None
+ s.restart.taker='A0'
  for q in s.players.values():
   if q.role!='archer':q.x=40 if q.team=='A' else 60
  s.players['A0'].x=50;s.players['A0'].y=50
  assert e.restart_release('A0',(24,0,1),'A1')
  assert e.rb_attempts[-1]['kind']=='restart_pass' and e.rb_attempts[-1]['distance']==50
+ assert not e.rb_attempts[-1]['shot_attempt']
  assert len(e.rb_attempts)==1
+ assert sum(v for k,v in e.rb_bands['A'].items() if k.endswith('_attempts'))==0
 
 def test_keeper_opponent_goal_is_no_goal_ruling():
  p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
@@ -47,3 +51,38 @@ def test_bounced_shot_keeps_original_release_band():
  s.ball.x,s.ball.y,s.ball.z=101,50,1.5
  assert e.goal('B') and s.score['A']==4
  assert e.rb_bands['A']['20plus_attempts']==e.rb_bands['A']['20plus_goals']==1
+
+def test_interception_carry_is_not_stale_own_goal():
+ p=RulebookPort(1,RulebookConfig(scoring='banded'));s,e=p.m.s,p.m.e
+ s.phase=p.types.Phase.LIVE;s.owner='B';e.possession.pp='B'
+ passer=s.players['B0'];interceptor=s.players['A0'];passer.x=passer.y=50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=passer.id,x=50,y=50,z=passer.hand_height,scoring=True)
+ assert e.release(passer.id,(-5,0,1),'pass','B1')
+ s.ball.rb_deliberate_team='B' # regression witness for the removed stale flag
+ interceptor.x,interceptor.y=s.ball.x,s.ball.y
+ assert e.acquire(interceptor.id)
+ assert s.ball.rb_deliberate_team is None
+ interceptor.x,interceptor.y=101,50;e.follow_carrier()
+ assert e.goal('B') and s.score['A']==5
+ assert e.rb_bands['A']['carry_attempts']==e.rb_bands['A']['carry_goals']==1
+ assert e.rb_bands['A']['own_goals']==0
+
+def test_defender_deflection_of_shot_is_ordinary_shooter_goal():
+ p=RulebookPort(1,RulebookConfig(scoring='banded'));s,e=p.m.s,p.m.e
+ s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
+ shooter=s.players['A0'];defender=s.players['B0'];shooter.x,shooter.y=75,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=shooter.id,x=75,y=50,z=shooter.hand_height,scoring=True)
+ assert e.release(shooter.id,(25,0,1),'shot')
+ defender.x,defender.y=s.ball.x,s.ball.y;e.touch(defender.id,True)
+ assert s.ball.last_releaser is None # a deflection is not a new release
+ s.ball.x,s.ball.y,s.ball.z=101,50,1.5
+ assert e.goal('B') and s.score['A']==4
+ assert e.rb_bands['A']['20plus_goals']==1 and e.rb_bands['A']['own_goals']==0
+
+def test_goal_publishes_one_official_ruling_and_shot_counter_excludes_passes():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
+ s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=101,y=50,z=1.5,scoring=True,last_releaser='A0')
+ before=len([r for r in e.rb.calls if r['kind'] in ('goal','no_goal')])
+ assert e.goal('B')
+ after=len([r for r in e.rb.calls if r['kind'] in ('goal','no_goal')])
+ assert after-before==1

@@ -54,7 +54,7 @@ def install(co,cfg):
    if x in (0.,100.):
     r.x=s.ball.x=x;r.taker_spot=(max(.6,min(99.4,x)),y);r.rs['goal_line']=True
    self.rb_publish(self.rb.ruling('major',actor=actor,victim=victim,spot=[x,y]))
-  elif a.team==off or reason in ('kicking','delay_of_game') or reason in ('hold','holding','hooking','noncarrier_grip') and v and s.ball.carrier!=v.id:
+  elif a.team==off or reason in ('kicking','delay_of_game'):
    if count>=1:self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
    else:self.award(off,x,y,'minor_count_plus',normalize=False);s.tackle_count=1
   else:

@@ -67,3 +67,10 @@ def test_final_correct_goal_can_be_reviewed_and_stands():
  assert e.goal('B');assert s.phase==p.types.Phase.FINAL
  assert not e.rb_review('B',max(e.rb_evidence))
  assert s.result['winner']=='A' and e.rb.challenges['B']==0
+
+def test_natural_review_evidence_always_calls_actual_state():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
+ s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,x=101,y=50,z=1.5,scoring=True,last_releaser='A0')
+ assert e.goal('B')
+ evidence=e.rb_evidence[max(e.rb_evidence)]
+ assert evidence.called==evidence.actual==True

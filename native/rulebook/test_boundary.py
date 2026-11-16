@@ -45,3 +45,11 @@ def test_repeated_dead_ball_foul_corrects_offender_without_retake_loop():
  r=s.restart;r.taker='A1';s.players['A1'].x,s.players['A1'].y=r.taker_spot
  assert e.restart_release('A1',(20,0,1),'A2')
  assert s.phase==p.types.Phase.LIVE
+
+def test_goal_line_toss_timeout_restarts_five_metres_out():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e
+ e.award('A',0,50,'boundary',fresh=True,normalize=False)
+ assert s.restart.kind=='toss' and s.restart.x==0
+ s.now=s.restart.created_at+5500;e.resolve_timers()
+ assert s.restart.kind=='scrim' and s.restart.team=='B'
+ assert s.restart.x==5 and s.ball.x==5

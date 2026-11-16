@@ -8,8 +8,8 @@ Config:RulebookConfig(), native-rb/1, flat default. RulebookConfig(scoring='band
 
 Commands:
 - `.venv/bin/python -m pytest -q b1 native`
-- `.venv/bin/python -m native.rulebook.reproduce_blocker` verifies progress past the historical blocker in4000 steps, not a full match.
-- `.venv/bin/python -m native.rulebook.check_replay` checks100-step serial/parallel/M2-absent replay.
+- `.venv/bin/python -m native.rulebook.reproduce_blocker` verifies progress past the historical blocker in4000 steps, not a full match. It writes to the operating-system temporary directory unless `--out` is supplied.
+- `.venv/bin/python -m native.rulebook.check_replay` checks100-step serial/parallel/M2-absent replay. It writes to the operating-system temporary directory unless `--out` is supplied.
 - `.venv/bin/python -m native.rulebook.run --seed 2 --max-steps 1000 --out /tmp/rb-window.json`
 
 All full-match attempts must be reserved in evidence/FULL_MATCH_BUDGET.json before execution. The budget includes failed/stopped attempts and conservatively counts every batch reservation. Final validation is seeds2,6,7,8,9,10 plus a serial/parallel seed2 replay. Do not start more batches after the required evidence is complete. See RB1_REPORT.md and NATIVE_RB_1_MANIFEST.json for final results and exact seed history; historical failed logs are retained.

@@ -22,6 +22,10 @@ def test_bands_and_carry_own_awards(law):
     assert law.points(award=True)==1
     law.enter_period(4);assert law.points(award=True)==3
 
+def test_flat_period_four_full_goal_award_is_two():
+    law=Authorities(RulebookConfig(scoring='flat'));law.enter_period(4)
+    assert law.points(award=True)==2
+
 @pytest.mark.parametrize('period,duration',[(2,120000),(3,600000),(4,120000),(5,180000),(6,60000)])
 def test_breaks(period,duration,law):
     r=law.enter_period(period);assert r['duration_ms']==duration and r['exchange_ends']
@@ -53,8 +57,14 @@ def test_quota_and_illegal_arrow(law):
     for i in range(15):assert law.arrow('B',False)['minor']
     assert law.arrow('B',True)['kind']=='arrow_denied'
     assert law.turnover('A') is None
-    law.turnover('B');assert law.quotas['B']['arrows']==0
+    law.turnover('B')
+    assert law.quotas['A']['arrows']==0 and law.quotas['B']['arrows']==15
     assert law.config.arrow_speed==pytest.approx(250.)
+
+def test_arrow_speed_is_stored_as_fixed_value_not_ratio(law):
+    record=law.config.record()
+    assert record['arrow_speed']==250.
+    assert 'arrow_speed_ratio' not in record and 'fastest_player_speed' not in record
 
 def test_review_tolerance_and_stored_evidence_only(law):
     assert len(CREW)==7

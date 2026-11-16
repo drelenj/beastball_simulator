@@ -23,7 +23,7 @@
       "rule": "Tackle retains play clock; snap window runs only above10s",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_clocks.py::test_real_tackle_keeps_play_clock_and_snap_window_runs_only_above_ten",
-      "note": "Forced real-engine scenario; final-source full match validation reported separately."
+      "note": "Forced scenario only; no final-source full match reached overtime."
     },
     {
       "id": "RT4",
@@ -44,7 +44,7 @@
       "rule": "Whole300s first OT; full/half/award scores end sudden death",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death",
-      "note": "Forced real-engine scenario; final-source full match validation reported separately."
+      "note": "Forced scenario only; no final-source full match reached overtime."
     },
     {
       "id": "RS1",
@@ -62,9 +62,9 @@
     },
     {
       "id": "RS3",
-      "rule": "Full award3 in P4/OT and half1 before P4",
+      "rule": "P4/OT defensive-minor award is2 flat or3 banded; half award1 before P4",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_authorities.py::test_bands_and_carry_own_awards",
+      "test": "native/rulebook/test_authorities.py::test_flat_period_four_full_goal_award_is_two and test_bands_and_carry_own_awards",
       "note": "Forced scenario only; no full RB match proof."
     },
     {
@@ -86,7 +86,7 @@
       "rule": "Bounced shot uses original release-distance band",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_scoring.py::test_bounced_shot_keeps_original_release_band",
-      "note": "Forced real-engine scenario; final-source full match validation reported separately."
+      "note": "Forced scenario only; no final-source full match reached overtime."
     },
     {
       "id": "RD1",
@@ -111,9 +111,9 @@
     },
     {
       "id": "RD4",
-      "rule": "Defensive holding count+1; procedural offside no half-goal",
+      "rule": "Defender non-carrier hold is defence minor; procedural offside has no half-goal",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_discipline.py::test_defensive_hold_count_plus_and_offside_no_award",
+      "test": "native/rulebook/test_discipline.py::test_defender_noncarrier_hold_is_defence_minor_and_offside_no_award",
       "note": "Forced scenario only; no full RB match proof."
     },
     {
@@ -153,7 +153,7 @@
     },
     {
       "id": "RA1",
-      "rule": "Ratio250m/s, own-half legality,15 arrows, illegal release spends, swept collision",
+      "rule": "Fixed250m/s, own-half legality,15 arrows, illegal release spends, swept collision",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_archery.py::test_speed_quota_own_half_illegal_spends_and_no_tunnelling",
       "note": "Forced scenario only; no full RB match proof."
@@ -163,7 +163,7 @@
       "rule": "Recovery admission at intent and execution, including queued release/movement",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_execution.py::test_recovery_execution_blocks_queued_release_and_forward_zone_entry",
-      "note": "Forced real-engine scenario; final-source full match validation reported separately."
+      "note": "Forced scenario only; no final-source full match reached overtime."
     },
     {
       "id": "RA3",
@@ -177,13 +177,13 @@
       "rule": "Five actual freezes then cap; turnover reset and amber phase",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber",
-      "note": "Forced real-engine scenario; final-source full match validation reported separately."
+      "note": "Forced scenario only; no final-source full match reached overtime."
     },
     {
       "id": "RO1",
       "rule": "Seven authority crew and stored-evidence review ledger",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_authorities.py::test_review_tolerance_and_stored_evidence_only",
+      "test": "native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart (engine rb_review)",
       "note": "Forced scenario only; no full RB match proof."
     },
     {
@@ -219,7 +219,7 @@
       "rule": "Review during breaks and after final; restore corrected result",
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_review.py::test_review_reverses_wrong_goal_during_break_or_after_final",
-      "note": "Forced real-engine scenario; final-source full match validation reported separately."
+      "note": "Forced scenario only; no final-source full match reached overtime."
     },
     {
       "id": "RE1",
@@ -339,6 +339,69 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_substitutions.py::test_former_archer_field_substitution_survives_period_reset",
       "note": "Regression for failed full seed2 KeyError(A11)."
+    },
+    {
+      "id": "RT8",
+      "rule": "Goal-line toss timeout restarts by scrimmage5m into the field",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_boundary.py::test_goal_line_toss_timeout_restarts_five_metres_out",
+      "note": "Forced scenario only."
+    },
+    {
+      "id": "RS7",
+      "rule": "Intercepted pass carried into goal is a carry, not a stale own goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_interception_carry_is_not_stale_own_goal",
+      "note": "Owner ruling F1; forced scenario only."
+    },
+    {
+      "id": "RS8",
+      "rule": "Defender deflection of a shot into own goal is an ordinary shooter-team goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_defender_deflection_of_shot_is_ordinary_shooter_goal",
+      "note": "Owner ruling F2; forced scenario only."
+    },
+    {
+      "id": "RS9",
+      "rule": "Release-distance attempts are shot-only; carries have an independent counter",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_restart_throw_is_an_attempt_once_at_actual_release and test_interception_carry_is_not_stale_own_goal",
+      "note": "Report output is shot_bands, carry_attempts, own_goals and release_ledger."
+    },
+    {
+      "id": "RS10",
+      "rule": "Each natural goal/no-goal event publishes one official ruling",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_goal_publishes_one_official_ruling_and_shot_counter_excludes_passes",
+      "note": "Forced scenario only."
+    },
+    {
+      "id": "RA7",
+      "rule": "Arrow speed is stored directly as250m/s, not derived from player speed",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_authorities.py::test_arrow_speed_is_stored_as_fixed_value_not_ratio",
+      "note": "Forced scenario only."
+    },
+    {
+      "id": "RA8",
+      "rule": "On turnover only the Archer newly eligible against possession resets quota",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_archery.py::test_freeze_cap_panel_recovery_and_turnover",
+      "note": "The other team's dormant quota is retained."
+    },
+    {
+      "id": "RO8",
+      "rule": "Natural review evidence records called equal to actual",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_review.py::test_natural_review_evidence_always_calls_actual_state",
+      "note": "Only forced-call test hooks inject disagreement."
+    },
+    {
+      "id": "DET2",
+      "rule": "Bounded check tools default to temporary output paths",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_check_paths.py::test_check_tools_default_to_temp_not_committed_evidence",
+      "note": "Committed evidence is not overwritten by default."
     }
   ],
   "canon_updates": [
@@ -347,6 +410,11 @@
       "authority": "DreLen",
       "revoked": "Pre-live5m marking foul, witness, sanction and tests",
       "unchanged": "Keeper-zone defender marking_distance=5"
+    },
+    {
+      "date": "2026-11-16",
+      "authority": "DreLen",
+      "rulings": "Deflected shot into defender goal is ordinary shooter-team goal; defender non-carrier hold is defence minor"
     }
   ]
 }

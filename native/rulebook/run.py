@@ -12,9 +12,11 @@ def run_match(seed=1,config=None,max_steps=None,progress=None,plumbing=True):
  r,p=native_run(seed,config or RulebookConfig(),plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort)
  e=p.m.e
  state=asdict(e.rb);state['timeout_triggers']=sorted(e.rb.timeout_triggers);state['injuries']=sorted(e.rb.injuries)
- bands={t:{b:{'attempts':e.rb_bands[t][b+'_attempts'],'goals':e.rb_bands[t][b+'_goals'],'success_rate':e.rb_bands[t][b+'_goals']/max(1,e.rb_bands[t][b+'_attempts'])} for b in ('under10','10_to20','20plus','carry','own')} for t in ('A','B')}
+ shot_bands={t:{b:{'attempts':e.rb_bands[t][b+'_attempts'],'goals':e.rb_bands[t][b+'_goals'],'success_rate':e.rb_bands[t][b+'_goals']/max(1,e.rb_bands[t][b+'_attempts'])} for b in ('under10','10_to20','20plus')} for t in ('A','B')}
+ carries={t:{'attempts':e.rb_bands[t]['carry_attempts'],'goals':e.rb_bands[t]['carry_goals']} for t in ('A','B')}
+ own_goals={t:e.rb_bands[t]['own_goals'] for t in ('A','B')}
  counts=dict(Counter(x['kind'] for x in e.rb.calls))
- r['rulebook']=dict(authorities=state,events=counts,bands=bands,attempts=e.rb_attempts,remaining_slots=e.rb_slots,equipment='PLACEHOLDER cylinder torso/thigh panels; lighter Archer kit has no gameplay effect')
+ r['rulebook']=dict(authorities=state,events=counts,shot_bands=shot_bands,carry_attempts=carries,own_goals=own_goals,release_ledger=e.rb_attempts,remaining_slots=e.rb_slots,equipment='PLACEHOLDER cylinder torso/thigh panels; lighter Archer kit has no gameplay effect')
  r['trace_hash']=digest([r['trace_hash'],e.rb.calls,e.rb_attempts])
  r['state_hash']=digest([r['state_hash'],state,e.rb_slots,e.rb_pause,[(q.id,getattr(q,'rb_recover',None)) for q in p.m.s.players.values()]])
  return r,p

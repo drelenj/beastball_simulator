@@ -26,7 +26,7 @@ Full validation seeds (source881d212):
 
 All restart records close by release or an explicit timeout/retake/end-of-play status; completion ratio is not release ratio. Wall runtimes include concurrent match/suite CPU load, not a standalone benchmark. Full artifacts retain the status breakdown and release ratios.
 
-Band release counters, teams combined; A/G=attempts/goals with success rate. Per-team values are in each full match JSON. Passes/bounces/restart throws are counted once alongside shots; carry/own are separate. No shot-only or quality interpretation is implied.
+Historical RB-1 release-ledger counters, teams combined; A/G=ledger entries/goals with the historical ratio. These retained artifacts include passes and restart throws and must not be read as RB-2 shot attempts. RB-2 supersedes this table with `shot_bands`, independent `carry_attempts`, `own_goals`, and the full `release_ledger`.
 
 | Seed | <10m A/G | 10–20m A/G | >=20m A/G | Carry A/G | Own A/G |
 |---|---:|---:|---:|---:|---:|
@@ -103,24 +103,24 @@ Conformance matrix (exact collected references):
 | RT6 Whole300s first OT; full/half/award scores end sudden death | IMPLEMENTED+tested | native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death |
 | RS1 Provisional release bands and exact10m/20m boundaries | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_real_release_band_and_goal |
 | RS2 Flat default, carry5 in banded, own goal2 including Keeper | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_flat_carry_banded_carry_and_keeper_own |
-| RS3 Full award3 in P4/OT and half1 before P4 | IMPLEMENTED+tested | native/rulebook/test_authorities.py::test_bands_and_carry_own_awards |
+| RS3 Flat P4/OT award2; banded award3; half1 before P4 | IMPLEMENTED+tested | native/rulebook/test_authorities.py::test_flat_period_four_full_goal_award_is_two and test_bands_and_carry_own_awards |
 | RS4 Restart throws recorded once at actual release | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_restart_throw_is_an_attempt_once_at_actual_release |
 | RS5 Keeper cannot score at opposing goal; official no-goal ruling | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_keeper_opponent_goal_is_no_goal_ruling |
 | RS6 Bounced shot uses original release-distance band | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_bounced_shot_keeps_original_release_band |
 | RD1 Major shorthanded120s, score-independent; second-major DQ delayed cover | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_real_exclusion_shorthanded_until_dead_after_window |
 | RD2 Fourth-minor60s/fifth DQ; injury replacement exception | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_minor_ladder_and_injury_exclusion_exemption |
 | RD3 Delay warning then minor; kick minor; major goal-line award | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_delay_warning_kick_and_major_goal_line |
-| RD4 Defensive holding count+1; procedural offside no half-goal | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_defensive_hold_count_plus_and_offside_no_award |
+| RD4 Defender non-carrier hold is defence minor; procedural offside no half-goal | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_defender_noncarrier_hold_is_defence_minor_and_offside_no_award |
 | RD5 Intentional head/neck/trip/off-ball tackle; striking/whistle/frozen/Keeper breach major | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_rule_layer_major_classification |
 | RD6 Unintentional head minor plus mandatory evaluation | IMPLEMENTED+tested | native/rulebook/test_discipline.py::test_unintentional_head_is_minor_and_requires_evaluation |
 | RD7 Attacker-zone expiry restart at20m line; Keeper-zone marking remains5m | IMPLEMENTED+tested | native/rulebook/test_boundary.py::test_zone_residence_restart_line |
 | RD8 Exclusion cannot be bypassed by setup/empty-slot/role-change admission | IMPLEMENTED+tested | native/rulebook/test_substitutions.py::test_exclusion_cannot_be_bypassed_with_empty_slot_or_role_change |
 | RD9 Physical-kernel Keeper contact and major goal-line restart release | IMPLEMENTED+tested | native/rulebook/test_execution.py::test_physical_kernel_contact_on_protected_keeper_emits_major |
-| RA1 Ratio250m/s, own-half legality,15 arrows, illegal release spends, swept collision | IMPLEMENTED+tested | native/rulebook/test_archery.py::test_speed_quota_own_half_illegal_spends_and_no_tunnelling |
+| RA1 Fixed250m/s, own-half legality,15 arrows, illegal release spends, swept collision | IMPLEMENTED+tested | native/rulebook/test_archery.py::test_speed_quota_own_half_illegal_spends_and_no_tunnelling |
 | RA2 Recovery admission at intent and execution, including queued release/movement | IMPLEMENTED+tested | native/rulebook/test_execution.py::test_recovery_execution_blocks_queued_release_and_forward_zone_entry |
 | RA3 Captured red/amber observation cannot read poisoned live truth | IMPLEMENTED+tested | native/rulebook/test_archery.py::test_status_view_is_captured_not_live_truth |
 | RA4 Five actual freezes then cap; turnover reset and amber phase | IMPLEMENTED+tested | native/rulebook/test_archery.py::test_five_actual_freezes_then_cap_and_captured_amber |
-| RO1 Seven authority crew and stored-evidence review ledger | IMPLEMENTED+tested | native/rulebook/test_authorities.py::test_review_tolerance_and_stored_evidence_only |
+| RO1 Seven authority crew and engine `rb_review` stored-evidence path | IMPLEMENTED+tested | native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart |
 | RO2 Strict>5cm, corrected restart, won/lost challenge resources | IMPLEMENTED+tested | native/rulebook/test_review.py::test_wrong_goal_threshold_and_corrected_restart |
 | RO3 Eligible boundary scope and Keeper binary reversal restores exclusion | IMPLEMENTED+tested | native/rulebook/test_review.py::test_boundary_review_scope_and_keeper_binary |
 | RO4 Wrong goal outside semicircle corrects to boundary toss | IMPLEMENTED+tested | native/rulebook/test_review.py::test_reversed_wrong_goal_outside_semicircle_is_toss_to_other_team |

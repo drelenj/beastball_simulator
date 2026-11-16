@@ -32,10 +32,12 @@ def test_delay_warning_kick_and_major_goal_line(p):
  s.players['A3'].x=3;s.players['A3'].y=50
  e.foul('B0','A3','after_whistle');assert s.players['B0'].major_count==1 and s.restart.x==0
 
-def test_defensive_hold_count_plus_and_offside_no_award(p):
+def test_defender_noncarrier_hold_is_defence_minor_and_offside_no_award(p):
  s,e=p.m.s,p.m.e;s.owner='A';e.possession.pp='A';s.tackle_count=0
- e.foul('B0','A4','holding');assert s.tackle_count==1 and s.score=={'A':0,'B':0}
- e.offside('defence');assert s.tackle_count==0 and s.score=={'A':0,'B':0}
+ e.foul('B0','A4','holding');assert s.tackle_count==0 and s.score=={'A':1,'B':0}
+ s.tackle_count=1
+ e.foul('B1','A5','holding');assert s.tackle_count==0 and s.score=={'A':1,'B':0}
+ before=dict(s.score);e.offside('defence');assert s.tackle_count==0 and s.score==before
 
 @pytest.mark.parametrize('kind',['head','neck','trip','tackle','striking','after_whistle','frozen','immune_keeper'])
 def test_rule_layer_major_classification(kind,p):
