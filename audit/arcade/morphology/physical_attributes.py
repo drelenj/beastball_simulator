@@ -136,12 +136,12 @@ def sample_rating(rng, mu):
         if u < acc: return k
     return HI
 
-def generate_physical(height_in, physique, tribes, rng):
+def generate_physical(height_in, physique, tribes, rng, elite_shift=0, elite_floor=0):
     hs = height_shift(height_in); ps = PHYSIQUE_SHIFT[physique]
     ash, lab, short = ancestry_profile(tribes, rng)
     out = {}
     for i, a in enumerate(ATTRS):
-        mu = REF + hs[i] + ps[i] + ash[a]
-        out[a] = dict(mu=mu, height_shift=hs[i], physique_shift=ps[i], ancestry_shift=ash[a], affinity=lab[a], rating=sample_rating(rng, mu))
+        mu = REF + hs[i] + ps[i] + ash[a] + elite_shift  # elite_shift: owner lock, applied to the size baseline before tribal bonus
+        out[a] = dict(mu=mu, elite_shift=elite_shift, height_shift=hs[i], physique_shift=ps[i], ancestry_shift=ash[a], affinity=lab[a], rating=max(sample_rating(rng, mu), elite_floor))
     out['_shortfall'] = short
     return out

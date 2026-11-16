@@ -11,6 +11,8 @@ from openpyxl.utils import get_column_letter
 import physical_attributes as PA
 
 PHYS_VERSION = "phys-1.0"
+# Owner lock (Nov 16 2026): exceptional in every physical category for his size (the league's "Miami LeBron"), applied to the size baseline before tribal bonus.
+ELITE = {"Kamasi Sinella": (14, 85)}  # (mu shift, rating floor)
 MASTER_SEED = 20261116
 RATING_COLS = [f"{a} (rating)" for a in PA.ATTRS]
 EXTRA = ["Primary attributes", "Secondary attributes", "Secondary slot shortfall", "Physical seed", "Physical version"]
@@ -24,11 +26,15 @@ def main():
     ws = wb["All 712 Players"]
     head = [c.value for c in ws[1]]; ix = {h: i for i, h in enumerate(head)}
     rows = [[c.value for c in r] for r in ws.iter_rows(min_row=2)]
+    elite_by_id = {}
+    for nm, sh_ in ELITE.items():
+        m = [r for r in rows if r[ix["Player"]] == nm]; assert len(m) == 1, nm
+        elite_by_id[m[0][ix["Player ID"]]] = sh_  # tuple
     gen = {}
     for r in rows:
         pid = r[ix["Player ID"]]
         tribes = r[ix["Ancestry"]].split("/")
-        g = PA.generate_physical(r[ix["Height (in)"]], r[ix["Physique"]], tribes, prng(a.seed, pid))
+        g = PA.generate_physical(r[ix["Height (in)"]], r[ix["Physique"]], tribes, prng(a.seed, pid), *elite_by_id.get(pid, (0, 0)))
         g["_tribes"] = tribes; g["_h"] = r[ix["Height (in)"]]; g["_phys"] = r[ix["Physique"]]
         gen[pid] = g
     def labs(g, L): return ", ".join(x for x in PA.ATTRS if g[x]["affinity"] == L)
@@ -56,14 +62,14 @@ def main():
     aud.append(["Generator version", PHYS_VERSION]); aud.append(["Master seed", a.seed])
     aud.append(["Spec", "Beastball_Physical_Attribute_Generation_v1.0.md (LOCKED). mu = 78 + height shift + physique shift + ancestry shift; discrete truncated normal, SD 7, integers 65-100."])
     aud.append(["Infeasible ancestries", "Where an ancestry cannot supply the locked secondary-slot count from supported attributes, available supported secondaries are applied, the shortfall stays neutral (0) and is flagged in 'Secondary slot shortfall'. Flagged for canon review."])
-    aud.append(["Note", "Ratings are natural capability only. OVR is independent. Skill attributes are not covered by this spec."])
+    aud.append(["Note", "Owner lock: Kamasi Sinella +14 on every attribute mu (exceptional for his size, added to the size baseline with tribal bonus on top) and a rating floor of 85. Ratings are natural capability only. OVR is independent. Skill attributes are not covered by this spec."])
     aud.append([])
-    hdr = ["Player ID", "Player", "Franchise", "Ancestry", "Height (in)", "Physique", "Shortfall"]
+    hdr = ["Player ID", "Player", "Franchise", "Ancestry", "Height (in)", "Physique", "Shortfall", "Owner elite shift"]
     for x in PA.ATTRS: hdr += [f"{x} mu", f"{x} H", f"{x} Ph", f"{x} An", f"{x} aff", f"{x} rating"]
     aud.append(hdr)
     for r in rows:
         pid = r[ix["Player ID"]]; g = gen[pid]
-        line = [pid, r[ix["Player"]], r[ix["Franchise"]], "/".join(g["_tribes"]), g["_h"], g["_phys"], g["_shortfall"] or ""]
+        line = [pid, r[ix["Player"]], r[ix["Franchise"]], "/".join(g["_tribes"]), g["_h"], g["_phys"], g["_shortfall"] or "", ("+%d, floor %d" % elite_by_id[pid]) if pid in elite_by_id else ""]
         for x in PA.ATTRS:
             d = g[x]; line += [round(d["mu"], 2), round(d["height_shift"], 2), d["physique_shift"], d["ancestry_shift"], d["affinity"], d["rating"]]
         aud.append(line)
@@ -75,7 +81,7 @@ def main():
         for x in PA.ATTRS:
             r_ = g[x]["rating"]
             if not (isinstance(r_, int) and PA.LO <= r_ <= PA.HI): errs.append((pid, x, "rating out of range"))
-            if abs(g[x]["mu"] - (78 + g[x]["height_shift"] + g[x]["physique_shift"] + g[x]["ancestry_shift"])) > 1e-9: errs.append((pid, x, "mu mismatch"))
+            if abs(g[x]["mu"] - (78 + g[x]["height_shift"] + g[x]["physique_shift"] + g[x]["ancestry_shift"] + g[x]["elite_shift"])) > 1e-9: errs.append((pid, x, "mu mismatch"))
         n = len(g["_tribes"]); ps, _, ss, _, _ = PA.BONUS[n]
         np_ = sum(g[x]["affinity"] == "P" for x in PA.ATTRS); ns = sum(g[x]["affinity"] == "S" for x in PA.ATTRS)
         if np_ != ps: errs.append((pid, "primary count", np_))
