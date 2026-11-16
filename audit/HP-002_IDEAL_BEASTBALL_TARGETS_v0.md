@@ -1,5 +1,6 @@
 # HP-002: Ideal Beastball as measurable targets (v0, DESIGN COMPLETE as a draft only)
 Claude, 16 Nov 2026. Purpose: tear down from the ideal. Each target is a number a run can fail. Nothing here is implemented, tested or accepted, and no number marked PROPOSED is canon until the owner sets it.
+Scoring basis (owner, 16 Nov 2026): the banded scale is the working canon for now and ALL tests and measurements run on banded scoring: carry 5; throws 2/3/4 by release distance; half goal 1; full-goal award 3; own goal 2. Flat scoring is not used for targets.
 Class tags: CANON = owner decides. ENG = engineering resolves with evidence. BEH = behavioral default, tested.
 Source: OWNER = stated by DreLen. PROPOSED = my placeholder range for the owner to set or strike.
 
@@ -8,7 +9,7 @@ Source: OWNER = stated by DreLen. PROPOSED = my placeholder range for the owner 
 | --- | --- | --- | --- | --- |
 | T1 | About 100 possessions per team per match | OWNER | CANON | Not measured |
 | T2 | About half of possessions end in a scoring attempt | OWNER | CANON | Not measured; Native seed 1 has 435 arrows but few shots |
-| T3 | Average team score 80-85 | OWNER (earlier scoring values) | CANON | See open question Q1 |
+| T3 | Average team score 80-85 under banded scoring | OWNER | CANON | Not measured; see Q1 |
 | T4 | Most points come from play, not penalty awards (PROPOSED: at least 85%) | PROPOSED | CANON | About 22% (penalty awards about 78%, RB-1 seed 6) |
 | T5 | Restart timeouts rare (PROPOSED: under 5% of restarts) | PROPOSED | BEH | 25.6% (Native v0, seed 1) |
 
@@ -46,7 +47,7 @@ Source: OWNER = stated by DreLen. PROPOSED = my placeholder range for the owner 
 - T1 and T2 need short, decisive possessions: restart timeouts (T5), the 30 s clock and tackle-count turnover all feed possession count. Measure possessions before tuning anything else.
 
 ## Open owner questions
-- Q1 (CANON): T3 conflicts with flat scoring. 100 possessions x about 50% attempts = about 50 attempts; flat scoring (goal 2) needs about 41 goals for 82 points, an 80%+ conversion rate. Either the scoring values rise (banded carry 5), the score target drops, or the attempt share rises. Which do you want?
+- Q1 (CANON, narrowed): the flat-scoring conflict is gone now that banded is the basis. About 50 attempts per team and 80-85 points needs about 1.6-1.7 points per attempt, which banded values (2/3/4 throws, 5 carry) can reach if conversion and long-throw share are healthy. Open: confirm 80-85 is the intended target under banded, and note it will be measured by points per attempt split by band (carry, throw distance, half goal, award).
 - Q2 (CANON): set or strike each PROPOSED number (T4, T5, T6, T10, T11, T18).
 
 ## Slice 0 (proposed first test)
