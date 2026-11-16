@@ -1,0 +1,50 @@
+{
+  "schema": "rb2-change-manifest/1",
+  "status": "IMPLEMENTED_AND_TESTED_NOT_ACCEPTED",
+  "branch": "codex/rulebook-2",
+  "base_commit": "ebce209",
+  "implementation_commit": "1e180bd",
+  "profiles": {
+    "flat_config_digest": "3b00233cf337951415fe5ccfe1e8cf54c9eed2a7743c3ea6d129c748f4fb685c",
+    "banded_config_digest": "1339a6ede686a0bae08fa5e2f961089b9fcbed464f53f5974fcafe5d78599fab",
+    "arrow_speed_mps": 250.0
+  },
+  "tests": {
+    "complete_command": ".venv/bin/python -m pytest -q b1 native",
+    "complete_result": "290 passed, 23 subtests passed",
+    "rulebook_command": ".venv/bin/python -m pytest -q native/rulebook",
+    "rulebook_result": "93 passed",
+    "frozen_b0_files_verified": 427,
+    "accepted_files_byte_identical": [
+      "b1/core.py",
+      "b1/runtime.py",
+      "b1/g1.py",
+      "native/cognition.py"
+    ]
+  },
+  "bounded_replay": {
+    "full_matches": 0,
+    "serial_parallel_m2_absent_equal": true,
+    "trace_hash": "3538d716077650608109acbe1ad6f0e244e9d4e165ce76535e4a2c6492d76175",
+    "state_hash": "f3012eae049083fb7d101c9546ecbc028f8dfb9d221da51c470bf207c63278e2",
+    "live_ms": 5406
+  },
+  "bounded_blocker": {
+    "full_matches": 0,
+    "blocked": false,
+    "live_ms": 151963,
+    "advanced_past_live_ms": 5375
+  },
+  "full_match_evidence": "No RB-2 full match was run; retained RB-1 artifacts were not modified",
+  "check_default_outputs": [
+    "/tmp/beastball-rb-short-replay.json",
+    "/tmp/beastball-rb-restart-blocker.json"
+  ],
+  "roster_handoff": {
+    "source_commit": "d85e790",
+    "source_path": "audit/arcade/morphology/NBL_2026-27_Opening_Night_Rosters_CANON_OVR_morphology_physical.xlsx",
+    "players": 712,
+    "read_only": true,
+    "loaded_by_rb2": false
+  }
+}
