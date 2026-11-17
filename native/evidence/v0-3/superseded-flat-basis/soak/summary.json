@@ -1,0 +1,25 @@
+{
+  "config_version": "native-v0/3",
+  "failed": [],
+  "full_regulation": 10,
+  "implementation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
+  "matches": 10,
+  "passed": 10,
+  "restart_awarded": 3764,
+  "restart_closed": 3764,
+  "restart_completion_ratio": 1.0,
+  "restart_released": 3618,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "wall_s": 348.275
+}

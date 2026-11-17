@@ -29,3 +29,11 @@ Full matches used so far are counted here against the cap of 40.
 3. V6 NOT met: the independent reviewer agent stopped on the usage limit before reporting. See `audit/native/HP-002_NATIVE_V0_3_REVIEW.md` for what remains. Resume there.
 4. Not recorded: first/second tackle split (add restart award reasons to the run result, then rerun the table: 10 matches).
 5. Full matches used: 14 of 40.
+
+## Banded scoring basis (owner, 16 Nov 2026): IMPLEMENTED, TESTED (not ACCEPTED)
+1. native-v0/3 defaults to banded (`NativeConfigV3.scoring='banded'`; flat is refused for v0/3). Values: carry 5; throw 2/3/4 under 10 m / 10 to 20 m / 20 m+; half goal 1; full-goal award 3; own goal 2 (not implemented, see below). native-v0/2 stays flat because its frozen PRISM 0 hashes depend on it; it is not used for any measurement.
+2. Points reported by band and per attempt; shot attempts counted at release (not on goal); carry attempts in their own counter. `native/run.py` `scoring_summary`. Ledger checked to equal the match score.
+3. Banded 10-seed soak (commit 8613280 code): 10 of 10 final, 0 failures, 581 points total. Shot attempts 221: under 10 m 1.24 points/attempt (34 attempts), 10 to 20 m 1.17 (182), 20 m+ 3.20 (5). Carries: 575 attempts, 0 goals, 0 points.
+4. Flat-basis soak moved to `native/evidence/v0-3/superseded-flat-basis/`, not cited.
+5. Tests: 58 in native/test_v3.py; full suite 255 passed. Full matches used: 24 of 40.
+6. Open: own goal not in Native (RB-1 owns F1/F2); carry-attempt definition is a PLACEHOLDER; V6 review still not done.

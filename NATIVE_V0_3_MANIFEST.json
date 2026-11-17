@@ -147,8 +147,8 @@
   },
   "full_matches_used": {
     "cap": 40,
-    "count": 14,
-    "detail": "1 arrow-only seed 1; 10-seed table; seed-1 serial replay; seed-1 plumbing-absent; seed-1 native-v0/2 replay"
+    "count": 24,
+    "detail": "14 earlier (flat-basis evidence, superseded); 10 banded soak"
   },
   "name": "NATIVE_V0_3_MANIFEST",
   "native_v0_2": {
@@ -164,15 +164,110 @@
   },
   "open_items": [
     "V6 independent review not completed: the separate reviewer agent stopped on the account usage limit before reporting; see audit/native/HP-002_NATIVE_V0_3_REVIEW.md",
-    "Q-FAB1-1..5 in QUESTIONS_FOR_OWNER.md",
-    "first/second tackle split not in run results"
+    "Carry attempts are a PLACEHOLDER definition (control episode within 20 m of goal, counted once); 0 carry goals in 575 attempts",
+    "Own goal (2) not implemented in Native",
+    "Scoring values provisional until the self-play experiment",
+    "V6 independent review not completed"
   ],
+  "scoring": {
+    "basis": "banded (owner, 16 Nov 2026)",
+    "flat_basis_evidence": "superseded: native/evidence/v0-3/superseded-flat-basis (not cited)",
+    "not_implemented_in_native": "own goal (value 2): no own-goal scoring path exists in the Native engine; the RB-1 branch carries the own-goal rules (F1, F2)",
+    "provisional": "Values provisional until the self-play experiment reports.",
+    "values": {
+      "carry": 5,
+      "full_goal_award": 3,
+      "half_goal": 1,
+      "own_goal": 2,
+      "throw_10_to_20m": 3,
+      "throw_20m_plus": 4,
+      "throw_under_10m": 2
+    }
+  },
   "simulation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
   "status": "IMPLEMENTED and TESTED; independent review (V6) NOT completed; not ACCEPTED",
   "ten_seed": {
+    "banded_totals": {
+      "carries": {
+        "attempts": 575,
+        "goals": 0,
+        "points": 0,
+        "points_per_attempt": 0.0
+      },
+      "points_total_by_source": {
+        "carries": 0,
+        "full_goal_awards": 66,
+        "half_goals": 88,
+        "non_shot_releases": 156,
+        "shot_releases": 271,
+        "total": 581
+      },
+      "shots_by_band": {
+        "10_to_20m": {
+          "points": 213,
+          "points_per_attempt": 1.1703,
+          "shot_attempts": 182,
+          "shot_goals": 71
+        },
+        "20m_plus": {
+          "points": 16,
+          "points_per_attempt": 3.2,
+          "shot_attempts": 5,
+          "shot_goals": 4
+        },
+        "under_10m": {
+          "points": 42,
+          "points_per_attempt": 1.2353,
+          "shot_attempts": 34,
+          "shot_goals": 21
+        }
+      }
+    },
     "crash_stall_or_invariant_violation": 0,
     "not_recorded": "first/second tackle split: run results at c521c49 do not carry restart award reasons; tackle_count_events counts both",
     "passed": 10,
+    "restarts": {
+      "all": {
+        "awarded": 3646,
+        "eligible": 3614,
+        "eligible_timeout": 40,
+        "eligible_timeout_rate": 0.0111,
+        "release_rate": 0.9616,
+        "released": 3506,
+        "timeout": 44,
+        "timeout_rate": 0.0121
+      },
+      "scrim": {
+        "awarded": 1254,
+        "eligible": 1254,
+        "eligible_timeout": 19,
+        "eligible_timeout_rate": 0.0152,
+        "release_rate": 0.9266,
+        "released": 1162,
+        "timeout": 19,
+        "timeout_rate": 0.0152
+      },
+      "snap40": {
+        "awarded": 139,
+        "eligible": 139,
+        "eligible_timeout": 0,
+        "eligible_timeout_rate": 0.0,
+        "release_rate": 1.0,
+        "released": 139,
+        "timeout": 0,
+        "timeout_rate": 0.0
+      },
+      "toss": {
+        "awarded": 2253,
+        "eligible": 2221,
+        "eligible_timeout": 21,
+        "eligible_timeout_rate": 0.0095,
+        "release_rate": 0.9787,
+        "released": 2205,
+        "timeout": 25,
+        "timeout_rate": 0.0111
+      }
+    },
     "seeds": [
       1,
       2,
@@ -185,6 +280,7 @@
       9,
       10
     ],
+    "soak_commit_note": "soak rerun on banded basis after commit 8613280 (code change: scoring)",
     "table": "native/evidence/v0-3/ten-seed-table.json",
     "totals": {
       "matches": 10,

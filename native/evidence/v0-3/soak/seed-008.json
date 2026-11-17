@@ -631,12 +631,13 @@
     "profile": "native-v0",
     "ratings": 0.7,
     "restart_cognition": "belief-v1",
+    "scoring": "banded",
     "sense_ms": 200,
     "throw_model": "THROW_SPLIT-primitive",
     "version": "native-v0/3",
     "zone_radius": 20.0
   },
-  "config_digest": "2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b",
+  "config_digest": "791cea683d5c9790165004caa96ed23ed60a41e14172a2c28a9b7a7b95bf0e35",
   "contact_intents": {
     "brace": 114,
     "dodge": 126,
@@ -887,7 +888,7 @@
     "illegal_release": 3,
     "zone_unmarked": 8
   },
-  "implementation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
+  "implementation_commit": "8613280d145cfd56e11fa4f6249ab31dfaaa34fe",
   "invariants": "passed",
   "live_ms": 2400000,
   "outcomes_by_status": {
@@ -1892,8 +1893,8 @@
   "result": {
     "method": "regulation",
     "score": {
-      "A": 23,
-      "B": 19
+      "A": 33,
+      "B": 25
     },
     "shootout": null,
     "winner": "A"
@@ -1932,14 +1933,52 @@
     "R-19": 12,
     "R-20": 352
   },
-  "runtime_s": 88.042,
+  "runtime_s": 99.847,
   "score": {
-    "A": 23,
-    "B": 19
+    "A": 33,
+    "B": 25
+  },
+  "scoring": {
+    "basis": "banded",
+    "carries": {
+      "attempts": 56,
+      "goals": 0,
+      "points": 0,
+      "points_per_attempt": 0.0
+    },
+    "per_attempt": {},
+    "points": {
+      "carries": 0,
+      "full_goal_awards": 6,
+      "half_goals": 10,
+      "non_shot_releases": 20,
+      "shot_releases": 22,
+      "total": 58
+    },
+    "shots": {
+      "10_to_20m": {
+        "attempts": 18,
+        "goals": 6,
+        "points": 18,
+        "points_per_attempt": 1.0
+      },
+      "20m_plus": {
+        "attempts": 1,
+        "goals": 0,
+        "points": 0,
+        "points_per_attempt": 0.0
+      },
+      "under_10m": {
+        "attempts": 2,
+        "goals": 2,
+        "points": 4,
+        "points_per_attempt": 2.0
+      }
+    }
   },
   "seed": 8,
   "soak_status": "passed",
-  "state_hash": "c31ed301a75327069f89d6198eaca5ab443e4ff80350633b3d6fc374e61f73be",
+  "state_hash": "540fbf575016e1f67e139d97def5ecf646f45fceaf2f5b0058eea12aea4b9b38",
   "status": "final",
   "steps": 39274,
   "team_stats": {
@@ -1960,5 +1999,5 @@
       "turnovers": 187
     }
   },
-  "trace_hash": "60ab9c3011fb353d3aee69d3d15ab5f330672cb0e6a2269d0d8129928a1db474"
+  "trace_hash": "eaf19212d5ee03f3c8f655262330623fed2a9034a7d2d87289cbc4d49076ad9d"
 }

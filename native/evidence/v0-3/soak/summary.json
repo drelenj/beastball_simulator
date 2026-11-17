@@ -2,13 +2,13 @@
   "config_version": "native-v0/3",
   "failed": [],
   "full_regulation": 10,
-  "implementation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
+  "implementation_commit": "8613280d145cfd56e11fa4f6249ab31dfaaa34fe",
   "matches": 10,
   "passed": 10,
-  "restart_awarded": 3764,
-  "restart_closed": 3764,
+  "restart_awarded": 3646,
+  "restart_closed": 3646,
   "restart_completion_ratio": 1.0,
-  "restart_released": 3618,
+  "restart_released": 3506,
   "seeds": [
     1,
     2,
@@ -21,5 +21,5 @@
     9,
     10
   ],
-  "wall_s": 348.275
+  "wall_s": 412.845
 }

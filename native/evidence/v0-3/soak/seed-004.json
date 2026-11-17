@@ -631,47 +631,48 @@
     "profile": "native-v0",
     "ratings": 0.7,
     "restart_cognition": "belief-v1",
+    "scoring": "banded",
     "sense_ms": 200,
     "throw_model": "THROW_SPLIT-primitive",
     "version": "native-v0/3",
     "zone_radius": 20.0
   },
-  "config_digest": "2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b",
+  "config_digest": "791cea683d5c9790165004caa96ed23ed60a41e14172a2c28a9b7a7b95bf0e35",
   "contact_intents": {
-    "brace": 109,
-    "dodge": 116,
-    "run_through": 354,
-    "takedown": 2828,
-    "wrap": 2860
+    "brace": 92,
+    "dodge": 101,
+    "run_through": 291,
+    "takedown": 2333,
+    "wrap": 2434
   },
   "decisions_by_kind": {
-    "abort_draw": 341,
-    "archer_hold": 16632,
-    "carry": 1153,
-    "continue_current": 296,
-    "draw_release": 557,
-    "dribble": 17,
-    "hunt_claim": 140,
-    "keeper_control": 11122,
-    "mark": 13502,
-    "pass": 683,
-    "position": 33228,
-    "press": 2860,
-    "pursue": 13174,
-    "receive": 1942,
-    "release_arrow": 215,
-    "restart_claim": 734,
-    "restart_pass": 626,
-    "restart_position": 73301,
-    "restart_wait": 1076,
-    "retain": 85,
-    "scan": 22842,
-    "shoot": 21,
-    "substitute_claim": 5,
-    "support": 18710,
-    "tackle": 2828
+    "abort_draw": 287,
+    "archer_hold": 14007,
+    "carry": 971,
+    "continue_current": 241,
+    "draw_release": 464,
+    "dribble": 16,
+    "hunt_claim": 100,
+    "keeper_control": 9270,
+    "mark": 11331,
+    "pass": 553,
+    "position": 27822,
+    "press": 2434,
+    "pursue": 11047,
+    "receive": 1581,
+    "release_arrow": 177,
+    "restart_claim": 624,
+    "restart_pass": 526,
+    "restart_position": 62556,
+    "restart_wait": 916,
+    "retain": 79,
+    "scan": 18608,
+    "shoot": 20,
+    "substitute_claim": 2,
+    "support": 15825,
+    "tackle": 2333
   },
-  "decisions_total": 216090,
+  "decisions_total": 181790,
   "effective": {
     "catch_model": "CATCH_V2-energy-placeholder",
     "goal_radius": 3.0,
@@ -827,20 +828,20 @@
     },
     "zone_radius": 20.0
   },
-  "end_ms": 4628811,
+  "end_ms": 3890660,
   "engine_events": {
-    "arrow_geometry_impact": 94,
-    "arrow_miss": 103,
-    "arrow_release": 197,
-    "boundary": 256,
-    "c3_collision": 1277,
+    "arrow_geometry_impact": 77,
+    "arrow_miss": 86,
+    "arrow_release": 163,
+    "boundary": 214,
+    "c3_collision": 1047,
     "c3_containment": 1,
-    "c3_down": 85,
-    "c3_grip_broken": 22,
-    "c3_grounding": 82,
-    "c3_hold_end": 288,
-    "c3_hold_start": 288,
-    "c3_upright": 84,
+    "c3_down": 71,
+    "c3_grip_broken": 17,
+    "c3_grounding": 68,
+    "c3_hold_end": 232,
+    "c3_hold_start": 232,
+    "c3_upright": 70,
     "c3b_rules": 1,
     "c3c_rules": 1,
     "c4_rules": 1,
@@ -849,59 +850,59 @@
     "c4c2_rules": 1,
     "c4c_rules": 1,
     "contact_rejected": 21,
-    "control": 866,
-    "discipline": 32,
+    "control": 710,
+    "discipline": 24,
     "ends_exchanged": 1,
-    "engagement": 1663,
-    "foul": 32,
-    "foul_award": 13,
-    "frame_contact": 4,
-    "freeze": 45,
-    "goal": 16,
+    "engagement": 1363,
+    "foul": 24,
+    "foul_award": 11,
+    "frame_contact": 3,
+    "freeze": 35,
+    "goal": 15,
     "grounded": 3,
     "held_ball": 1,
-    "hunt_claim": 14,
-    "hunt_cleared": 6,
+    "hunt_claim": 10,
+    "hunt_cleared": 4,
     "hunt_retake": 1,
-    "hunt_start": 7,
-    "inert_impact": 47,
+    "hunt_start": 5,
+    "inert_impact": 40,
     "joint_control": 2,
-    "keeper_contact": 24,
+    "keeper_contact": 22,
     "keeper_landed": 6,
     "lineup_check": 1,
     "match_complete": 1,
-    "period_end": 5,
-    "possession": 180,
-    "release": 744,
-    "restart_awarded": 421,
-    "restart_claim": 407,
-    "restart_closed": 421,
-    "restart_ready": 407,
-    "restart_release": 404,
+    "period_end": 4,
+    "possession": 150,
+    "release": 608,
+    "restart_awarded": 354,
+    "restart_claim": 343,
+    "restart_closed": 354,
+    "restart_ready": 343,
+    "restart_release": 340,
     "scrimmage_penalty": 1,
     "simultaneous_contact": 2,
-    "strip": 14,
-    "substitute": 5,
-    "tackle_count": 79,
-    "touch": 42
+    "strip": 11,
+    "substitute": 2,
+    "tackle_count": 65,
+    "touch": 31
   },
   "foul_reasons": {
-    "archery_target": 18,
-    "illegal_release": 3,
-    "zone_unmarked": 11
+    "archery_target": 14,
+    "illegal_release": 1,
+    "zone_unmarked": 9
   },
-  "implementation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
+  "implementation_commit": "8613280d145cfd56e11fa4f6249ab31dfaaa34fe",
   "invariants": "passed",
-  "live_ms": 2880998,
+  "live_ms": 2400000,
   "outcomes_by_status": {
-    "arrow_released": 197,
-    "interrupted": 6,
-    "rejected_by_engine": 21,
+    "arrow_released": 163,
+    "interrupted": 4,
+    "rejected_by_engine": 15,
     "rejected_geometry": 3,
     "rejected_taker_or_record": 2,
-    "released": 1113
+    "released": 921
   },
-  "period": 6,
+  "period": 4,
   "policy_params": {
     "A": {
       "archer_eager": 0.0,
@@ -957,22 +958,12 @@
         "goals": 0,
         "success_rate": 0.0
       },
-      "102": {
-        "attempts": 1,
-        "goals": 0,
-        "success_rate": 0.0
-      },
       "103": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
       "104": {
-        "attempts": 1,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "105": {
         "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
@@ -983,9 +974,9 @@
         "success_rate": 0.0
       },
       "12": {
-        "attempts": 3,
-        "goals": 2,
-        "success_rate": 0.6666666666666666
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
       },
       "13": {
         "attempts": 1,
@@ -1003,37 +994,37 @@
         "success_rate": 0.0
       },
       "16": {
-        "attempts": 4,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
       "18": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
       "19": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
       "20": {
-        "attempts": 7,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
       "21": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
       "22": {
-        "attempts": 9,
+        "attempts": 7,
         "goals": 0,
         "success_rate": 0.0
       },
       "23": {
-        "attempts": 8,
+        "attempts": 7,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1053,12 +1044,12 @@
         "success_rate": 0.0
       },
       "27": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
       "28": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1068,17 +1059,17 @@
         "success_rate": 0.0
       },
       "30": {
-        "attempts": 7,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
       "31": {
-        "attempts": 6,
+        "attempts": 3,
         "goals": 1,
-        "success_rate": 0.16666666666666666
+        "success_rate": 0.3333333333333333
       },
       "32": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1088,7 +1079,7 @@
         "success_rate": 0.0
       },
       "34": {
-        "attempts": 10,
+        "attempts": 8,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1108,12 +1099,12 @@
         "success_rate": 0.0
       },
       "38": {
-        "attempts": 7,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
       "39": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1123,12 +1114,12 @@
         "success_rate": 0.0
       },
       "40": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
       "41": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1143,17 +1134,17 @@
         "success_rate": 0.0
       },
       "44": {
-        "attempts": 6,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "45": {
         "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
+      "45": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
       "46": {
-        "attempts": 11,
+        "attempts": 8,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1163,9 +1154,9 @@
         "success_rate": 0.0
       },
       "48": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 1,
-        "success_rate": 0.3333333333333333
+        "success_rate": 0.5
       },
       "49": {
         "attempts": 2,
@@ -1173,22 +1164,22 @@
         "success_rate": 0.0
       },
       "50": {
-        "attempts": 3,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
       "51": {
-        "attempts": 6,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
       "52": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
       "53": {
-        "attempts": 7,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1208,12 +1199,12 @@
         "success_rate": 0.0
       },
       "57": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
       "58": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1228,7 +1219,7 @@
         "success_rate": 0.0
       },
       "61": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1248,12 +1239,12 @@
         "success_rate": 0.0
       },
       "65": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
       "66": {
-        "attempts": 4,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1263,12 +1254,12 @@
         "success_rate": 0.0
       },
       "68": {
-        "attempts": 4,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
       "69": {
-        "attempts": 4,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1278,7 +1269,7 @@
         "success_rate": 0.0
       },
       "71": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1287,18 +1278,13 @@
         "goals": 0,
         "success_rate": 0.0
       },
-      "73": {
+      "74": {
         "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
-      "74": {
-        "attempts": 2,
-        "goals": 0,
-        "success_rate": 0.0
-      },
       "75": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1323,22 +1309,22 @@
         "success_rate": 0.0
       },
       "80": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
       "81": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
       "82": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
       "83": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1368,7 +1354,7 @@
         "success_rate": 0.0
       },
       "89": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1388,7 +1374,7 @@
         "success_rate": 0.0
       },
       "93": {
-        "attempts": 6,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1413,11 +1399,6 @@
         "success_rate": 0.0
       },
       "98": {
-        "attempts": 2,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "99": {
         "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
@@ -1450,9 +1431,9 @@
         "success_rate": 0.0
       },
       "13": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 2,
-        "success_rate": 0.4
+        "success_rate": 0.5
       },
       "14": {
         "attempts": 3,
@@ -1475,7 +1456,7 @@
         "success_rate": 0.0
       },
       "18": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1490,7 +1471,7 @@
         "success_rate": 0.0
       },
       "21": {
-        "attempts": 6,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1520,7 +1501,7 @@
         "success_rate": 0.0
       },
       "27": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1529,13 +1510,8 @@
         "goals": 0,
         "success_rate": 0.0
       },
-      "29": {
-        "attempts": 1,
-        "goals": 0,
-        "success_rate": 0.0
-      },
       "30": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1565,7 +1541,7 @@
         "success_rate": 0.0
       },
       "36": {
-        "attempts": 2,
+        "attempts": 1,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1575,7 +1551,7 @@
         "success_rate": 0.0
       },
       "38": {
-        "attempts": 8,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1590,19 +1566,19 @@
         "success_rate": 0.0
       },
       "41": {
-        "attempts": 5,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
       "42": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 1,
-        "success_rate": 0.3333333333333333
+        "success_rate": 0.5
       },
       "43": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 1,
-        "success_rate": 0.3333333333333333
+        "success_rate": 0.5
       },
       "44": {
         "attempts": 2,
@@ -1610,12 +1586,12 @@
         "success_rate": 0.0
       },
       "45": {
-        "attempts": 6,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
       "46": {
-        "attempts": 4,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1625,57 +1601,57 @@
         "success_rate": 0.0
       },
       "48": {
-        "attempts": 4,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "49": {
-        "attempts": 6,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "50": {
-        "attempts": 5,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "51": {
-        "attempts": 3,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "52": {
-        "attempts": 7,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "53": {
-        "attempts": 4,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "54": {
-        "attempts": 6,
-        "goals": 0,
-        "success_rate": 0.0
-      },
-      "55": {
         "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
-      "56": {
+      "49": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "50": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "51": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "52": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "53": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "54": {
         "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
+      "55": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "56": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
       "57": {
-        "attempts": 7,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
       "58": {
-        "attempts": 5,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1685,12 +1661,12 @@
         "success_rate": 0.0
       },
       "60": {
-        "attempts": 8,
+        "attempts": 4,
         "goals": 0,
         "success_rate": 0.0
       },
       "61": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1700,12 +1676,12 @@
         "success_rate": 0.2
       },
       "63": {
-        "attempts": 3,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
       "64": {
-        "attempts": 6,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1715,7 +1691,7 @@
         "success_rate": 0.0
       },
       "66": {
-        "attempts": 8,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1740,7 +1716,7 @@
         "success_rate": 1.0
       },
       "70": {
-        "attempts": 4,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1750,7 +1726,7 @@
         "success_rate": 0.0
       },
       "72": {
-        "attempts": 8,
+        "attempts": 7,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1770,7 +1746,7 @@
         "success_rate": 0.0
       },
       "76": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1800,17 +1776,17 @@
         "success_rate": 0.0
       },
       "82": {
-        "attempts": 5,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
       "83": {
-        "attempts": 6,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
       "84": {
-        "attempts": 7,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1820,7 +1796,7 @@
         "success_rate": 0.0
       },
       "86": {
-        "attempts": 8,
+        "attempts": 5,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1835,7 +1811,7 @@
         "success_rate": 0.0
       },
       "89": {
-        "attempts": 7,
+        "attempts": 3,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1845,7 +1821,7 @@
         "success_rate": 0.0
       },
       "91": {
-        "attempts": 4,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1865,7 +1841,7 @@
         "success_rate": 0.0
       },
       "95": {
-        "attempts": 8,
+        "attempts": 6,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1875,7 +1851,7 @@
         "success_rate": 0.0
       },
       "97": {
-        "attempts": 4,
+        "attempts": 2,
         "goals": 0,
         "success_rate": 0.0
       },
@@ -1886,43 +1862,43 @@
       }
     }
   },
-  "restart_awarded": 421,
-  "restart_closed": 421,
+  "restart_awarded": 354,
+  "restart_closed": 354,
   "restart_completion_ratio": 1.0,
   "restart_metric": {
     "all": {
-      "awarded": 421,
-      "eligible": 414,
-      "eligible_released": 397,
+      "awarded": 354,
+      "eligible": 348,
+      "eligible_released": 334,
       "eligible_timeout": 3,
-      "eligible_timeout_rate": 0.007246376811594203,
+      "eligible_timeout_rate": 0.008620689655172414,
       "ended_by_period": 0,
       "no_target": 0,
-      "not_reachable": 7,
+      "not_reachable": 6,
       "pending": 0,
       "play_clock_expiry": 0,
-      "release_rate": 0.9596199524940617,
-      "released": 404,
-      "superseded": 14,
+      "release_rate": 0.96045197740113,
+      "released": 340,
+      "superseded": 11,
       "timeout": 3,
-      "timeout_rate": 0.007125890736342043
+      "timeout_rate": 0.00847457627118644
     },
     "scrim": {
-      "awarded": 150,
-      "eligible": 150,
-      "eligible_released": 136,
+      "awarded": 125,
+      "eligible": 125,
+      "eligible_released": 114,
       "eligible_timeout": 1,
-      "eligible_timeout_rate": 0.006666666666666667,
+      "eligible_timeout_rate": 0.008,
       "ended_by_period": 0,
       "no_target": 0,
       "not_reachable": 0,
       "pending": 0,
       "play_clock_expiry": 0,
-      "release_rate": 0.9066666666666666,
-      "released": 136,
-      "superseded": 13,
+      "release_rate": 0.912,
+      "released": 114,
+      "superseded": 10,
       "timeout": 1,
-      "timeout_rate": 0.006666666666666667
+      "timeout_rate": 0.008
     },
     "snap40": {
       "awarded": 15,
@@ -1942,105 +1918,143 @@
       "timeout_rate": 0.0
     },
     "toss": {
-      "awarded": 256,
-      "eligible": 249,
-      "eligible_released": 246,
+      "awarded": 214,
+      "eligible": 208,
+      "eligible_released": 205,
       "eligible_timeout": 2,
-      "eligible_timeout_rate": 0.008032128514056224,
+      "eligible_timeout_rate": 0.009615384615384616,
       "ended_by_period": 0,
       "no_target": 0,
-      "not_reachable": 7,
+      "not_reachable": 6,
       "pending": 0,
       "play_clock_expiry": 0,
-      "release_rate": 0.98828125,
-      "released": 253,
+      "release_rate": 0.985981308411215,
+      "released": 211,
       "superseded": 1,
       "timeout": 2,
-      "timeout_rate": 0.0078125
+      "timeout_rate": 0.009345794392523364
     },
     "unobserved": 0
   },
-  "restart_release_ratio": 0.9596199524940617,
-  "restart_released": 404,
+  "restart_release_ratio": 0.96045197740113,
+  "restart_released": 340,
   "restart_statuses": {
-    "released": 404,
+    "released": 340,
     "snap_timeout": 1,
-    "superseded:defence_minor": 11,
-    "superseded:offence_minor": 3,
+    "superseded:defence_minor": 9,
+    "superseded:offence_minor": 2,
     "toss_timeout": 2
   },
   "result": {
-    "method": "sudden_death",
+    "method": "regulation",
     "score": {
-      "A": 25,
-      "B": 23
+      "A": 30,
+      "B": 32
     },
     "shootout": null,
-    "winner": "A"
+    "winner": "B"
   },
   "rules": {
     "ledger_by_row": {
-      "R-02": 866,
-      "R-03": 762,
+      "R-02": 710,
+      "R-03": 628,
       "R-04": 2,
-      "R-06": 688,
-      "R-07": 21,
-      "R-08": 96,
-      "R-09": 49,
-      "R-10": 165,
+      "R-06": 561,
+      "R-07": 20,
+      "R-08": 81,
+      "R-09": 38,
+      "R-10": 137,
       "R-11": 2,
       "R-12": 3,
       "R-13": 2,
-      "R-14": 499,
-      "R-18": 670,
+      "R-14": 422,
+      "R-18": 561,
       "R-19": 7,
-      "R-20": 431
+      "R-20": 365
     }
   },
   "rules_ledger": {
-    "R-02": 866,
-    "R-03": 762,
+    "R-02": 710,
+    "R-03": 628,
     "R-04": 2,
-    "R-06": 688,
-    "R-07": 21,
-    "R-08": 96,
-    "R-09": 49,
-    "R-10": 165,
+    "R-06": 561,
+    "R-07": 20,
+    "R-08": 81,
+    "R-09": 38,
+    "R-10": 137,
     "R-11": 2,
     "R-12": 3,
     "R-13": 2,
-    "R-14": 499,
-    "R-18": 670,
+    "R-14": 422,
+    "R-18": 561,
     "R-19": 7,
-    "R-20": 431
+    "R-20": 365
   },
-  "runtime_s": 103.532,
+  "runtime_s": 101.511,
   "score": {
-    "A": 25,
-    "B": 23
+    "A": 30,
+    "B": 32
+  },
+  "scoring": {
+    "basis": "banded",
+    "carries": {
+      "attempts": 40,
+      "goals": 0,
+      "points": 0,
+      "points_per_attempt": 0.0
+    },
+    "per_attempt": {},
+    "points": {
+      "carries": 0,
+      "full_goal_awards": 3,
+      "half_goals": 10,
+      "non_shot_releases": 19,
+      "shot_releases": 30,
+      "total": 62
+    },
+    "shots": {
+      "10_to_20m": {
+        "attempts": 17,
+        "goals": 8,
+        "points": 24,
+        "points_per_attempt": 1.4118
+      },
+      "20m_plus": {
+        "attempts": 1,
+        "goals": 1,
+        "points": 4,
+        "points_per_attempt": 4.0
+      },
+      "under_10m": {
+        "attempts": 2,
+        "goals": 1,
+        "points": 2,
+        "points_per_attempt": 1.0
+      }
+    }
   },
   "seed": 4,
   "soak_status": "passed",
-  "state_hash": "7c0261a89e4fafe23802d436faf522965721cdb3f5713f588d719f87ec724d37",
+  "state_hash": "951712127ef0834ce33a953b25abffed796939807c7e090e44622cca965231eb",
   "status": "final",
-  "steps": 47900,
+  "steps": 40072,
   "team_stats": {
     "A": {
-      "distance_progressed": 1737.1951697045317,
-      "goals": 9,
+      "distance_progressed": 1442.0618699219353,
+      "goals": 7,
       "half_goal_awards": 7,
-      "minor_fouls": 14,
-      "shots": 9,
-      "turnovers": 236
+      "minor_fouls": 10,
+      "shots": 8,
+      "turnovers": 200
     },
     "B": {
-      "distance_progressed": 1910.4891695768085,
-      "goals": 10,
+      "distance_progressed": 1571.985891151601,
+      "goals": 9,
       "half_goal_awards": 3,
-      "minor_fouls": 18,
+      "minor_fouls": 14,
       "shots": 12,
-      "turnovers": 237
+      "turnovers": 199
     }
   },
-  "trace_hash": "d52e4f55953696e21f3fffb5c0bc401108a9968518e73fda48c1dbd84ff00832"
+  "trace_hash": "1fee272574da3057acf4182ad0d0d1c74cf449dadadf2bf32c06730543400a38"
 }

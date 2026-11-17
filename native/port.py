@@ -439,7 +439,20 @@ class NativePort:
         if carrier and body_out(carrier) and s.phase in (P.LIVE,P.OPENING):
             e.boundary(carrier.x,carrier.y,carrier.id)
         self.restart_metric.observe(self)
+        self.observe_carry_attempts()
         self.assert_invariants()
+
+    def observe_carry_attempts(self):
+        """Read-only (FAB-1 banded scoring): a carry attempt is one control episode in which the carrier
+        is live and within 20 m of the goal he attacks. Counted once per episode, separate from shots."""
+        if not self.v3:return
+        s=self.m.s;e=self.m.e;P=self.types.Phase
+        if s.ball.carrier is None or s.phase!=P.LIVE:return
+        c=s.players[s.ball.carrier];key=(c.id,s.ball.control_time)
+        seen=self.__dict__.setdefault('_carry_seen',set())
+        if key in seen:return
+        if math.hypot(c.x-s.attack_goal(c.team),c.y-50.)<20.:
+            seen.add(key);e.scoring_ledger['attempts.carry']+=1
 
     def assert_invariants(self):
         s=self.m.s

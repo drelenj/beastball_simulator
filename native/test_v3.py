@@ -595,3 +595,49 @@ def test_v3_short_window_is_deterministic_and_null_m2_equals_plumbing_absent(pla
         assert (other['trace_hash'],other['state_hash'],other['score'])==(first['trace_hash'],first['state_hash'],first['score'])
     assert first['config_digest']==NativeConfigV3().digest and first['config']['version']=='native-v0/3'
     assert first['restart_metric']['all']['awarded']==first['restart_awarded']-first['restart_metric']['unobserved']
+
+
+# ---------------------------------------------------------------- banded scoring (owner basis, 16 Nov 2026)
+from .config import BANDED, throw_band
+from .run import scoring_summary
+
+
+def test_v3_scoring_basis_is_banded_and_flat_is_refused():
+    c=NativeConfigV3();assert c.scoring=='banded'
+    with pytest.raises(ValueError):NativeConfigV3(scoring='flat')
+    assert BANDED=={'carry':5,'throw_under_10m':2,'throw_10_to_20m':3,'throw_20m_plus':4,'half_goal':1,'full_goal_award':3,'own_goal':2}
+    assert c.digest!=NativeConfig().digest and NativeConfig().digest==V2_DIGEST   # v0/2 unchanged
+
+
+@pytest.mark.parametrize('distance,band,points',[(0.,'under_10m',2),(9.99,'under_10m',2),(10.,'10_to_20m',3),
+                                                  (19.99,'10_to_20m',3),(20.,'20m_plus',4),(45.,'20m_plus',4)])
+def test_v3_throw_bands_by_release_distance(distance,band,points):
+    assert throw_band(distance)==band and BANDED['throw_'+band]==points
+
+
+def test_v3_full_goal_award_is_3_in_period_4_and_half_goal_1_in_period_3(port3):
+    e,s=port3.m.e,port3.m.s;P=port3.types.Phase
+    s.phase=P.LIVE;s.owner='A';s.tackle_count=0;s.period=4;s.score={'A':0,'B':0}
+    s.players['A0'].posture='upright'
+    e.foul('B0',reason='hold')
+    assert s.score['A']==3 and e.scoring_ledger['points.full_goal_award']==3
+    s.phase=P.LIVE;s.owner='A';s.tackle_count=0;s.period=3;s.score={'A':0,'B':0}
+    e.foul('B1',reason='hold');assert s.score['A']==1 and e.scoring_ledger['points.half_goal']==1
+
+
+@pytest.fixture(scope='module')
+def banded_window():
+    from .run import run_match
+    return run_match(1,NativeConfigV3(),max_steps=6000)
+
+
+def test_v3_banded_ledger_sums_to_match_score_and_reports_per_attempt(banded_window):
+    result,port=banded_window
+    sc=result['scoring']
+    assert sc['basis']=='banded'
+    assert sum(result['score'].values())==sc['points']['total']
+    for band,row in sc['shots'].items():
+        assert row['goals']<=row['attempts'] and row['points']==row['goals']*BANDED['throw_'+band]
+        assert row['points_per_attempt']==(round(row['points']/row['attempts'],4) if row['attempts'] else None)
+    assert sc['carries']['attempts']>0 and sc['carries']['goals']*BANDED['carry']==sc['carries']['points']
+    assert sum(r['attempts'] for r in sc['shots'].values())==sum(v for k,v in port.m.e.scoring_ledger.items() if k.startswith('attempts.shot.'))

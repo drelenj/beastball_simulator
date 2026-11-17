@@ -631,12 +631,13 @@
     "profile": "native-v0",
     "ratings": 0.7,
     "restart_cognition": "belief-v1",
+    "scoring": "banded",
     "sense_ms": 200,
     "throw_model": "THROW_SPLIT-primitive",
     "version": "native-v0/3",
     "zone_radius": 20.0
   },
-  "config_digest": "2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b",
+  "config_digest": "791cea683d5c9790165004caa96ed23ed60a41e14172a2c28a9b7a7b95bf0e35",
   "contact_intents": {
     "brace": 92,
     "dodge": 104,
@@ -886,7 +887,7 @@
     "illegal_release": 3,
     "zone_unmarked": 6
   },
-  "implementation_commit": "c521c4933e7a3a86bdfeb0040f4acce94f7fa140",
+  "implementation_commit": "8613280d145cfd56e11fa4f6249ab31dfaaa34fe",
   "invariants": "passed",
   "live_ms": 2400000,
   "outcomes_by_status": {
@@ -1888,11 +1889,11 @@
   "result": {
     "method": "regulation",
     "score": {
-      "A": 20,
-      "B": 23
+      "A": 33,
+      "B": 32
     },
     "shootout": null,
-    "winner": "B"
+    "winner": "A"
   },
   "rules": {
     "ledger_by_row": {
@@ -1926,14 +1927,52 @@
     "R-19": 4,
     "R-20": 392
   },
-  "runtime_s": 84.541,
+  "runtime_s": 104.311,
   "score": {
-    "A": 20,
-    "B": 23
+    "A": 33,
+    "B": 32
+  },
+  "scoring": {
+    "basis": "banded",
+    "carries": {
+      "attempts": 54,
+      "goals": 0,
+      "points": 0,
+      "points_per_attempt": 0.0
+    },
+    "per_attempt": {},
+    "points": {
+      "carries": 0,
+      "full_goal_awards": 9,
+      "half_goals": 5,
+      "non_shot_releases": 25,
+      "shot_releases": 26,
+      "total": 65
+    },
+    "shots": {
+      "10_to_20m": {
+        "attempts": 18,
+        "goals": 6,
+        "points": 18,
+        "points_per_attempt": 1.0
+      },
+      "20m_plus": {
+        "attempts": 1,
+        "goals": 1,
+        "points": 4,
+        "points_per_attempt": 4.0
+      },
+      "under_10m": {
+        "attempts": 5,
+        "goals": 2,
+        "points": 4,
+        "points_per_attempt": 0.8
+      }
+    }
   },
   "seed": 2,
   "soak_status": "passed",
-  "state_hash": "018f47a9683e7605391c884cf1f91522445fe6e003a1f32d83f3d49595d3473e",
+  "state_hash": "a953a7ef12bea2cf498dc9b4500ef0ddd8273a7ecee399ce585ac9ed57806e78",
   "status": "final",
   "steps": 40749,
   "team_stats": {
@@ -1954,5 +1993,5 @@
       "turnovers": 209
     }
   },
-  "trace_hash": "9b8c46687209740cae03fb2d191275bc50fc84a443d4f7ed693bdb7952020d13"
+  "trace_hash": "36184dc4b02d76a12fc855c915f403dcce2732e3bde3ea78c3aa6bb8985cdce3"
 }

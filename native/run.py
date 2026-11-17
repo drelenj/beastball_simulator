@@ -10,6 +10,24 @@ from .port import NativePort, digest
 from . import cognition
 
 
+def scoring_summary(e,config):
+    """Banded scoring (owner basis): points by band and points per attempt. Shots only for bands;
+    carries counted in their own attempt counter."""
+    from .config import BANDED
+    L=e.scoring_ledger;out={'basis':getattr(config,'scoring','flat'),'points':{},'per_attempt':{}}
+    for band in ('under_10m','10_to_20m','20m_plus'):
+        goals=L['scores.shot.'+band];att=L['attempts.shot.'+band];pts=goals*BANDED['throw_'+band]
+        out.setdefault('shots',{})[band]=dict(attempts=att,goals=goals,points=pts,points_per_attempt=round(pts/att,4) if att else None)
+    shot_pts=sum(v['points'] for v in out['shots'].values())
+    carry_pts=L['points.carry'];carry_goals=L['goals.carry']
+    out['carries']=dict(attempts=L['attempts.carry'],goals=carry_goals,points=carry_pts,
+                        points_per_attempt=round(carry_pts/L['attempts.carry'],4) if L['attempts.carry'] else None)
+    out['points']=dict(shot_releases=shot_pts,carries=carry_pts,non_shot_releases=L['points.non_shot_release'],
+                       half_goals=L['points.half_goal'],full_goal_awards=L['points.full_goal_award'])
+    out['points']['total']=sum(out['points'].values())
+    return out
+
+
 def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None):
     started=time.perf_counter();port=NativePort(seed,config,policies,plumbing)
     m,s,e=port.m,port.m.s,port.m.e
@@ -60,7 +78,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 decisions_total=len(port.intents),decisions_by_kind=dict(port.decisions),
                 restart_awarded=total,restart_released=released,restart_closed=total-pending,
                 restart_completion_ratio=(total-pending)/total if total else 1.,restart_release_ratio=released/total if total else 1.,
-                restart_statuses=dict(Counter(e.restart_results.values())),invariants='passed',
+                restart_statuses=dict(Counter(e.restart_results.values())),invariants='passed',scoring=scoring_summary(e,port.config),
                 restart_metric=port.restart_metric.summary(e.restart_results),contact_intents=dict(Counter(i.contact for i in port.intents if i.contact)),
                 foul_reasons=dict(Counter(row['data'].get('reason') for row in e.log if row['event']=='foul')),
                 engine_events=dict(Counter(row['event'] for row in e.log)),team_stats={t:dict(c) for t,c in e.native_stats.items()},

@@ -5,10 +5,12 @@ PLACEHOLDER choices are supplied by cognition, never by this rules module.
 import math
 from collections import Counter
 from b1.possession import PossessionTracker, RulesConfig
+from .config import BANDED, throw_band
 
 
 def install(CO, cfg):
     E, M, T = CO.engine.Engine, CO.match.Match, CO.types
+    scoring_basis = getattr(cfg,'scoring','flat')
     P, B = T.Phase, T.BallMode
     original_init, original_elapse = E.__init__, E.elapse
     original_acquire, original_touch, original_release = E.acquire, E.touch, E.release
@@ -33,6 +35,7 @@ def install(CO, cfg):
         self._syncing = False
         self.hunt_cleared = False
         self.play_ms = cfg.play_clock_ms
+        self.scoring_ledger = Counter()   # v0/3 banded measurement: shots counted at release, carries separately
     E.__init__ = init
 
     def sync(self):
@@ -198,6 +201,7 @@ def install(CO, cfg):
                 team=self.s.players[pid].team
                 distance=math.hypot(self.s.ball.x-self.s.attack_goal(team),self.s.ball.y-50)
                 self.release_attempts[team][int(distance)]+=1
+                if kind=='shot' and getattr(cfg,'scoring','flat')=='banded':self.scoring_ledger['attempts.shot.'+throw_band(distance)]+=1
         self.native_sync();return result
     E.release=release
     E.strike=lambda *a,**k: (_ for _ in ()).throw(AssertionError('kick/strike disabled'))
@@ -267,7 +271,10 @@ def install(CO, cfg):
             if count>=1:return self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
             r=self.award(off,x,y,'offence_minor',normalize=False);s.tackle_count=1;return r
         if count==0:
-            self.add_score(off,1 if s.period<=3 else 2,'half_goal' if s.period<=3 else 'full_goal_award')
+            if scoring_basis=='banded':
+                pts=1 if s.period<=3 else 3;self.scoring_ledger['points.'+('half_goal' if s.period<=3 else 'full_goal_award')]+=pts
+                self.add_score(off,pts,'half_goal' if s.period<=3 else 'full_goal_award')
+            else:self.add_score(off,1 if s.period<=3 else 2,'half_goal' if s.period<=3 else 'full_goal_award')
             if s.phase==P.FINAL:return
         r=self.award(off,x,y,'defence_minor',normalize=False);s.tackle_count=max(0,count-1)
         if count==0:s.possession_ms=cfg.play_clock_ms
@@ -295,7 +302,18 @@ def install(CO, cfg):
         distance=None if carry or origin is None else math.hypot(origin[0]-s.attack_goal(scoring),origin[1]-50)
         if carry:self.native_stats[scoring]['carries']+=1
         elif distance is not None:self.release_successes[scoring][int(distance)]+=1
-        self.add_score(scoring,2,'carry' if carry else 'release',defending=defending,release_distance=distance)
+        if scoring_basis=='banded':
+            if carry:points,kind_key=BANDED['carry'],'carry'
+            elif distance is None:points,kind_key=2,'release'      # not a shot: flat fallback never reached in v0/3
+            else:
+                band=throw_band(distance);points,kind_key=BANDED['throw_'+band],'throw_'+band
+                if b.native_release_kind=='shot':self.scoring_ledger['scores.shot.'+band]+=1
+                else:self.scoring_ledger['points.non_shot_release']+=points
+            self.scoring_ledger['points.'+kind_key]+=points if kind_key!='release' else 0
+            self.scoring_ledger['goals.'+kind_key]+=1
+            self.add_score(scoring,points,kind_key,defending=defending,release_distance=distance)
+        else:
+            self.add_score(scoring,2,'carry' if carry else 'release',defending=defending,release_distance=distance)
         if s.phase==P.FINAL:return True
         if s.game_ms<=0:self.end_period()
         else:self.award(defending,s.ends[defending]+s.attack_sign(defending)*40,50,'goal',fresh=True,normalize=False)

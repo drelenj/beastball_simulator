@@ -32,7 +32,8 @@ def row(r):
                 turnovers=sum(s.get('turnovers', 0) for s in stats.values()), boundary=ev.get('boundary', 0),
                 arrows=dict(released=ev.get('arrow_release', 0), missed=ev.get('arrow_miss', 0), freezes=ev.get('freeze', 0),
                             inert_impacts=ev.get('inert_impact', 0), body_or_ball_impacts=ev.get('arrow_geometry_impact', 0)),
-                contact_intents=r.get('contact_intents', {}), collisions=ev.get('c3_collision', 0))
+                contact_intents=r.get('contact_intents', {}), collisions=ev.get('c3_collision', 0),
+                scoring=r['scoring'])
 
 
 def totals(rows):
@@ -46,7 +47,15 @@ def totals(rows):
                       eligible_timeout_rate=round(elt/el, 4) if el else None)
     n = len(rows)
     per = lambda f: None if any(f(r) is None for r in rows) else round(s(f)/n, 2)   # None = not recorded
-    return dict(matches=n, restarts=out,
+    sc = [r['scoring'] for r in rows]
+    bands = {}
+    for b in ('under_10m', '10_to_20m', '20m_plus'):
+        att = sum(x['shots'][b]['attempts'] for x in sc); pts = sum(x['shots'][b]['points'] for x in sc); g = sum(x['shots'][b]['goals'] for x in sc)
+        bands[b] = dict(shot_attempts=att, shot_goals=g, points=pts, points_per_attempt=round(pts/att, 4) if att else None)
+    carry_att = sum(x['carries']['attempts'] for x in sc); carry_pts = sum(x['carries']['points'] for x in sc)
+    banded = dict(shots_by_band=bands, carries=dict(attempts=carry_att, goals=sum(x['carries']['goals'] for x in sc), points=carry_pts, points_per_attempt=round(carry_pts/carry_att, 4) if carry_att else None),
+                  points_total_by_source={k: sum(x['points'][k] for x in sc) for k in ('shot_releases', 'carries', 'non_shot_releases', 'half_goals', 'full_goal_awards', 'total')})
+    return dict(matches=n, scoring_basis='banded', banded=banded, restarts=out,
                 per_match=dict(groundings=per(lambda r: r['groundings']), tackle_count_events=per(lambda r: r['tackle_count_events']),
                                first_tackles=per(lambda r: r['first_tackles']), second_tackles=per(lambda r: r['second_tackles']),
                                snaps_released=per(lambda r: r['snaps_released']), tosses_released=per(lambda r: r['tosses_released']),

@@ -81,26 +81,64 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 26,
-          "B": 27
+          "A": 37,
+          "B": 39
         },
         "shootout": null,
         "winner": "B"
       },
-      "runtime_s": 89.994,
+      "runtime_s": 106.69,
       "score": {
-        "A": 26,
-        "B": 27
+        "A": 37,
+        "B": 39
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 71,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 6,
+          "half_goals": 9,
+          "non_shot_releases": 18,
+          "shot_releases": 43,
+          "total": 76
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 21,
+            "goals": 11,
+            "points": 33,
+            "points_per_attempt": 1.5714
+          },
+          "20m_plus": {
+            "attempts": 1,
+            "goals": 1,
+            "points": 4,
+            "points_per_attempt": 4.0
+          },
+          "under_10m": {
+            "attempts": 5,
+            "goals": 3,
+            "points": 6,
+            "points_per_attempt": 1.2
+          }
+        }
       },
       "second_tackles": null,
       "seed": 1,
       "snaps_released": 142,
-      "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012",
+      "state_hash": "dff1f9ae4ebb8825894355493e83594bcefa1cd798dd6bba10df0c4f31e6da9c",
       "status": "final",
       "strips": 9,
       "tackle_count_events": 81,
       "tosses_released": 239,
-      "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2",
+      "trace_hash": "b8b7bdb1b65bb5876402b5243ff922b41145bada951c8a45bfbdafa7e32b208b",
       "turnovers": 419
     },
     {
@@ -183,26 +221,64 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 20,
-          "B": 23
+          "A": 33,
+          "B": 32
         },
         "shootout": null,
-        "winner": "B"
+        "winner": "A"
       },
-      "runtime_s": 84.541,
+      "runtime_s": 104.311,
       "score": {
-        "A": 20,
-        "B": 23
+        "A": 33,
+        "B": 32
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 54,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 9,
+          "half_goals": 5,
+          "non_shot_releases": 25,
+          "shot_releases": 26,
+          "total": 65
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 18,
+            "goals": 6,
+            "points": 18,
+            "points_per_attempt": 1.0
+          },
+          "20m_plus": {
+            "attempts": 1,
+            "goals": 1,
+            "points": 4,
+            "points_per_attempt": 4.0
+          },
+          "under_10m": {
+            "attempts": 5,
+            "goals": 2,
+            "points": 4,
+            "points_per_attempt": 0.8
+          }
+        }
       },
       "second_tackles": null,
       "seed": 2,
       "snaps_released": 127,
-      "state_hash": "018f47a9683e7605391c884cf1f91522445fe6e003a1f32d83f3d49595d3473e",
+      "state_hash": "a953a7ef12bea2cf498dc9b4500ef0ddd8273a7ecee399ce585ac9ed57806e78",
       "status": "final",
       "strips": 12,
       "tackle_count_events": 73,
       "tosses_released": 240,
-      "trace_hash": "9b8c46687209740cae03fb2d191275bc50fc84a443d4f7ed693bdb7952020d13",
+      "trace_hash": "36184dc4b02d76a12fc855c915f403dcce2732e3bde3ea78c3aa6bb8985cdce3",
       "turnovers": 417
     },
     {
@@ -285,83 +361,121 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 27,
-          "B": 17
+          "A": 38,
+          "B": 22
         },
         "shootout": null,
         "winner": "A"
       },
-      "runtime_s": 81.587,
+      "runtime_s": 105.048,
       "score": {
-        "A": 27,
-        "B": 17
+        "A": 38,
+        "B": 22
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 51,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 12,
+          "half_goals": 8,
+          "non_shot_releases": 7,
+          "shot_releases": 33,
+          "total": 60
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 15,
+            "goals": 9,
+            "points": 27,
+            "points_per_attempt": 1.8
+          },
+          "20m_plus": {
+            "attempts": 0,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": null
+          },
+          "under_10m": {
+            "attempts": 3,
+            "goals": 3,
+            "points": 6,
+            "points_per_attempt": 2.0
+          }
+        }
       },
       "second_tackles": null,
       "seed": 3,
       "snaps_released": 130,
-      "state_hash": "e272ffc67aa0897366ce767c9ee0d27a3a57fb8260e38e4ac6fb3b9b29425f9d",
+      "state_hash": "20739eb2df62a2967f81e7a452116b4ca9adbb42e3a22a16975a267ef40ceb0b",
       "status": "final",
       "strips": 13,
       "tackle_count_events": 66,
       "tosses_released": 210,
-      "trace_hash": "2b17369883c613f5e63832f62b686ff9334c765e91d6b7710ae794cc735f59cf",
+      "trace_hash": "cbaab39aa7d028bbdd5e7de8988a036f8d6cb7dc07b678711b648071197c8e08",
       "turnovers": 390
     },
     {
       "arrows": {
-        "body_or_ball_impacts": 94,
-        "freezes": 45,
-        "inert_impacts": 47,
-        "missed": 103,
-        "released": 197
+        "body_or_ball_impacts": 77,
+        "freezes": 35,
+        "inert_impacts": 40,
+        "missed": 86,
+        "released": 163
       },
-      "boundary": 256,
-      "collisions": 1277,
+      "boundary": 214,
+      "collisions": 1047,
       "contact_intents": {
-        "brace": 109,
-        "dodge": 116,
-        "run_through": 354,
-        "takedown": 2828,
-        "wrap": 2860
+        "brace": 92,
+        "dodge": 101,
+        "run_through": 291,
+        "takedown": 2333,
+        "wrap": 2434
       },
       "first_tackles": null,
-      "foul_awards": 13,
+      "foul_awards": 11,
       "foul_reasons": {
-        "archery_target": 18,
-        "illegal_release": 3,
-        "zone_unmarked": 11
+        "archery_target": 14,
+        "illegal_release": 1,
+        "zone_unmarked": 9
       },
-      "goals": 16,
-      "grips_broken": 22,
-      "groundings": 82,
-      "holds_started": 288,
+      "goals": 15,
+      "grips_broken": 17,
+      "groundings": 68,
+      "holds_started": 232,
       "invariants": "passed",
-      "live_s": 2880.998,
+      "live_s": 2400.0,
       "major_fouls": 0,
-      "minor_fouls": 32,
+      "minor_fouls": 24,
       "offside_calls": 1,
-      "period": 6,
+      "period": 4,
       "restart_unobserved": 0,
       "restarts": {
         "all": {
-          "awarded": 421,
-          "eligible": 414,
+          "awarded": 354,
+          "eligible": 348,
           "eligible_timeout": 3,
-          "eligible_timeout_rate": 0.0072,
-          "release_rate": 0.9596,
-          "released": 404,
+          "eligible_timeout_rate": 0.0086,
+          "release_rate": 0.9605,
+          "released": 340,
           "timeout": 3,
-          "timeout_rate": 0.0071
+          "timeout_rate": 0.0085
         },
         "scrim": {
-          "awarded": 150,
-          "eligible": 150,
+          "awarded": 125,
+          "eligible": 125,
           "eligible_timeout": 1,
-          "eligible_timeout_rate": 0.0067,
-          "release_rate": 0.9067,
-          "released": 136,
+          "eligible_timeout_rate": 0.008,
+          "release_rate": 0.912,
+          "released": 114,
           "timeout": 1,
-          "timeout_rate": 0.0067
+          "timeout_rate": 0.008
         },
         "snap40": {
           "awarded": 15,
@@ -374,40 +488,78 @@
           "timeout_rate": 0.0
         },
         "toss": {
-          "awarded": 256,
-          "eligible": 249,
+          "awarded": 214,
+          "eligible": 208,
           "eligible_timeout": 2,
-          "eligible_timeout_rate": 0.008,
-          "release_rate": 0.9883,
-          "released": 253,
+          "eligible_timeout_rate": 0.0096,
+          "release_rate": 0.986,
+          "released": 211,
           "timeout": 2,
-          "timeout_rate": 0.0078
+          "timeout_rate": 0.0093
         }
       },
       "result": {
-        "method": "sudden_death",
+        "method": "regulation",
         "score": {
-          "A": 25,
-          "B": 23
+          "A": 30,
+          "B": 32
         },
         "shootout": null,
-        "winner": "A"
+        "winner": "B"
       },
-      "runtime_s": 103.532,
+      "runtime_s": 101.511,
       "score": {
-        "A": 25,
-        "B": 23
+        "A": 30,
+        "B": 32
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 40,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 3,
+          "half_goals": 10,
+          "non_shot_releases": 19,
+          "shot_releases": 30,
+          "total": 62
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 17,
+            "goals": 8,
+            "points": 24,
+            "points_per_attempt": 1.4118
+          },
+          "20m_plus": {
+            "attempts": 1,
+            "goals": 1,
+            "points": 4,
+            "points_per_attempt": 4.0
+          },
+          "under_10m": {
+            "attempts": 2,
+            "goals": 1,
+            "points": 2,
+            "points_per_attempt": 1.0
+          }
+        }
       },
       "second_tackles": null,
       "seed": 4,
-      "snaps_released": 151,
-      "state_hash": "7c0261a89e4fafe23802d436faf522965721cdb3f5713f588d719f87ec724d37",
+      "snaps_released": 129,
+      "state_hash": "951712127ef0834ce33a953b25abffed796939807c7e090e44622cca965231eb",
       "status": "final",
-      "strips": 14,
-      "tackle_count_events": 79,
-      "tosses_released": 253,
-      "trace_hash": "d52e4f55953696e21f3fffb5c0bc401108a9968518e73fda48c1dbd84ff00832",
-      "turnovers": 473
+      "strips": 11,
+      "tackle_count_events": 65,
+      "tosses_released": 211,
+      "trace_hash": "1fee272574da3057acf4182ad0d0d1c74cf449dadadf2bf32c06730543400a38",
+      "turnovers": 399
     },
     {
       "arrows": {
@@ -489,26 +641,64 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 25,
-          "B": 14
+          "A": 35,
+          "B": 18
         },
         "shootout": null,
         "winner": "A"
       },
-      "runtime_s": 85.331,
+      "runtime_s": 100.828,
       "score": {
-        "A": 25,
-        "B": 14
+        "A": 35,
+        "B": 18
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 61,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 0,
+          "half_goals": 11,
+          "non_shot_releases": 18,
+          "shot_releases": 24,
+          "total": 53
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 19,
+            "goals": 6,
+            "points": 18,
+            "points_per_attempt": 0.9474
+          },
+          "20m_plus": {
+            "attempts": 0,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": null
+          },
+          "under_10m": {
+            "attempts": 5,
+            "goals": 3,
+            "points": 6,
+            "points_per_attempt": 1.2
+          }
+        }
       },
       "second_tackles": null,
       "seed": 5,
       "snaps_released": 123,
-      "state_hash": "ef3ceef9a1bcb442b8f2c1c59d2a6b6d0fef39f07058d29192ac52abdb6c33bb",
+      "state_hash": "09a7ff6fee4fd7430f8b25d317706ddff2793c4d5dce9c1e8e44255f188f7e07",
       "status": "final",
       "strips": 6,
       "tackle_count_events": 66,
       "tosses_released": 247,
-      "trace_hash": "5990a25490479d907ea9199cd3c4f587df6e4d2040657f3bb6f3a49520c83bd5",
+      "trace_hash": "3cb40561179654d7f629702986a34599d9c40286e0470f045deb4886cef73792",
       "turnovers": 422
     },
     {
@@ -591,26 +781,64 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 17,
-          "B": 23
+          "A": 23,
+          "B": 32
         },
         "shootout": null,
         "winner": "B"
       },
-      "runtime_s": 85.658,
+      "runtime_s": 102.351,
       "score": {
-        "A": 17,
-        "B": 23
+        "A": 23,
+        "B": 32
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 71,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 6,
+          "half_goals": 12,
+          "non_shot_releases": 11,
+          "shot_releases": 26,
+          "total": 55
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 17,
+            "goals": 8,
+            "points": 24,
+            "points_per_attempt": 1.4118
+          },
+          "20m_plus": {
+            "attempts": 0,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": null
+          },
+          "under_10m": {
+            "attempts": 1,
+            "goals": 1,
+            "points": 2,
+            "points_per_attempt": 2.0
+          }
+        }
       },
       "second_tackles": null,
       "seed": 6,
       "snaps_released": 132,
-      "state_hash": "c790fdb22e07c54ab067ae52a8c1b8be72983612e4f4393aebdfc446157dac0e",
+      "state_hash": "f3d22ab57731ced475b3efdace15dc7d7ecac43c050f5657c8bbe4833dbf3e47",
       "status": "final",
       "strips": 19,
       "tackle_count_events": 68,
       "tosses_released": 215,
-      "trace_hash": "c83799a76a2d683a208d5f00a94235ee2abd3110b99a4ac9499a2d71245f8ce4",
+      "trace_hash": "4846c7892dca7b0c764982e4aefd8c6366b46528ea6f392a9b7c185851bb5269",
       "turnovers": 402
     },
     {
@@ -693,26 +921,64 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 19,
-          "B": 23
+          "A": 27,
+          "B": 32
         },
         "shootout": null,
         "winner": "B"
       },
-      "runtime_s": 89.975,
+      "runtime_s": 102.8,
       "score": {
-        "A": 19,
-        "B": 23
+        "A": 27,
+        "B": 32
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 69,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 6,
+          "half_goals": 10,
+          "non_shot_releases": 16,
+          "shot_releases": 27,
+          "total": 59
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 19,
+            "goals": 7,
+            "points": 21,
+            "points_per_attempt": 1.1053
+          },
+          "20m_plus": {
+            "attempts": 0,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": null
+          },
+          "under_10m": {
+            "attempts": 7,
+            "goals": 3,
+            "points": 6,
+            "points_per_attempt": 0.8571
+          }
+        }
       },
       "second_tackles": null,
       "seed": 7,
       "snaps_released": 134,
-      "state_hash": "44059f0fc89d68b8fdca6f13ad67c7c3424202115a1f728444dab35da054a091",
+      "state_hash": "e2e99b3f084d9e782f55ec7ac584211e298a2c0869737e6a9998df07ecc5b34f",
       "status": "final",
       "strips": 14,
       "tackle_count_events": 72,
       "tosses_released": 218,
-      "trace_hash": "9830fe95acf8914f0f569650070b254d38214bc0031ce834e70e7d93f154aaf6",
+      "trace_hash": "0cff65abde4eadcc5eeb7dae42ccbe7a7b0a4029296921c824a46e26e317c3d3",
       "turnovers": 421
     },
     {
@@ -795,129 +1061,205 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 23,
-          "B": 19
+          "A": 33,
+          "B": 25
         },
         "shootout": null,
         "winner": "A"
       },
-      "runtime_s": 88.042,
+      "runtime_s": 99.847,
       "score": {
-        "A": 23,
-        "B": 19
+        "A": 33,
+        "B": 25
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 56,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 6,
+          "half_goals": 10,
+          "non_shot_releases": 20,
+          "shot_releases": 22,
+          "total": 58
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 18,
+            "goals": 6,
+            "points": 18,
+            "points_per_attempt": 1.0
+          },
+          "20m_plus": {
+            "attempts": 1,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": 0.0
+          },
+          "under_10m": {
+            "attempts": 2,
+            "goals": 2,
+            "points": 4,
+            "points_per_attempt": 2.0
+          }
+        }
       },
       "second_tackles": null,
       "seed": 8,
       "snaps_released": 135,
-      "state_hash": "c31ed301a75327069f89d6198eaca5ab443e4ff80350633b3d6fc374e61f73be",
+      "state_hash": "540fbf575016e1f67e139d97def5ecf646f45fceaf2f5b0058eea12aea4b9b38",
       "status": "final",
       "strips": 9,
       "tackle_count_events": 75,
       "tosses_released": 194,
-      "trace_hash": "60ab9c3011fb353d3aee69d3d15ab5f330672cb0e6a2269d0d8129928a1db474",
+      "trace_hash": "eaf19212d5ee03f3c8f655262330623fed2a9034a7d2d87289cbc4d49076ad9d",
       "turnovers": 372
     },
     {
       "arrows": {
-        "body_or_ball_impacts": 92,
-        "freezes": 51,
-        "inert_impacts": 41,
-        "missed": 107,
-        "released": 199
+        "body_or_ball_impacts": 84,
+        "freezes": 44,
+        "inert_impacts": 40,
+        "missed": 94,
+        "released": 178
       },
-      "boundary": 247,
-      "collisions": 1279,
+      "boundary": 214,
+      "collisions": 1137,
       "contact_intents": {
-        "brace": 105,
-        "dodge": 137,
-        "run_through": 307,
-        "takedown": 2817,
-        "wrap": 2818
+        "brace": 97,
+        "dodge": 126,
+        "run_through": 281,
+        "takedown": 2539,
+        "wrap": 2458
       },
       "first_tackles": null,
-      "foul_awards": 12,
+      "foul_awards": 10,
       "foul_reasons": {
-        "archery_target": 12,
+        "archery_target": 10,
         "illegal_release": 2,
-        "zone_unmarked": 9
+        "zone_unmarked": 7
       },
-      "goals": 16,
-      "grips_broken": 25,
-      "groundings": 71,
-      "holds_started": 270,
+      "goals": 12,
+      "grips_broken": 24,
+      "groundings": 65,
+      "holds_started": 250,
       "invariants": "passed",
-      "live_s": 2700.0,
+      "live_s": 2400.0,
       "major_fouls": 0,
-      "minor_fouls": 23,
-      "offside_calls": 3,
-      "period": 5,
+      "minor_fouls": 19,
+      "offside_calls": 2,
+      "period": 4,
       "restart_unobserved": 0,
       "restarts": {
         "all": {
-          "awarded": 393,
-          "eligible": 389,
-          "eligible_timeout": 4,
-          "eligible_timeout_rate": 0.0103,
-          "release_rate": 0.9669,
-          "released": 380,
-          "timeout": 5,
-          "timeout_rate": 0.0127
+          "awarded": 342,
+          "eligible": 339,
+          "eligible_timeout": 3,
+          "eligible_timeout_rate": 0.0088,
+          "release_rate": 0.9708,
+          "released": 332,
+          "timeout": 4,
+          "timeout_rate": 0.0117
         },
         "scrim": {
-          "awarded": 130,
-          "eligible": 130,
-          "eligible_timeout": 3,
-          "eligible_timeout_rate": 0.0231,
-          "release_rate": 0.9385,
-          "released": 122,
-          "timeout": 3,
-          "timeout_rate": 0.0231
+          "awarded": 116,
+          "eligible": 116,
+          "eligible_timeout": 2,
+          "eligible_timeout_rate": 0.0172,
+          "release_rate": 0.9483,
+          "released": 110,
+          "timeout": 2,
+          "timeout_rate": 0.0172
         },
         "snap40": {
-          "awarded": 16,
-          "eligible": 16,
+          "awarded": 12,
+          "eligible": 12,
           "eligible_timeout": 0,
           "eligible_timeout_rate": 0.0,
           "release_rate": 1.0,
-          "released": 16,
+          "released": 12,
           "timeout": 0,
           "timeout_rate": 0.0
         },
         "toss": {
-          "awarded": 247,
-          "eligible": 243,
+          "awarded": 214,
+          "eligible": 211,
           "eligible_timeout": 1,
-          "eligible_timeout_rate": 0.0041,
-          "release_rate": 0.9798,
-          "released": 242,
+          "eligible_timeout_rate": 0.0047,
+          "release_rate": 0.9813,
+          "released": 210,
           "timeout": 2,
-          "timeout_rate": 0.0081
+          "timeout_rate": 0.0093
         }
       },
       "result": {
-        "method": "overtime",
+        "method": "regulation",
         "score": {
-          "A": 27,
-          "B": 23
+          "A": 29,
+          "B": 25
         },
         "shootout": null,
         "winner": "A"
       },
-      "runtime_s": 100.905,
+      "runtime_s": 101.396,
       "score": {
-        "A": 27,
-        "B": 23
+        "A": 29,
+        "B": 25
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 51,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 12,
+          "half_goals": 6,
+          "non_shot_releases": 18,
+          "shot_releases": 18,
+          "total": 54
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 20,
+            "goals": 4,
+            "points": 12,
+            "points_per_attempt": 0.6
+          },
+          "20m_plus": {
+            "attempts": 0,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": null
+          },
+          "under_10m": {
+            "attempts": 3,
+            "goals": 3,
+            "points": 6,
+            "points_per_attempt": 2.0
+          }
+        }
       },
       "second_tackles": null,
       "seed": 9,
-      "snaps_released": 138,
-      "state_hash": "a5815bd57d38538ad8574527d0755d417ccbaa9ad6bed597d1d69c17875fbe16",
+      "snaps_released": 122,
+      "state_hash": "ecf1347e731ab5ca1d328b610a0fa42df8777d0cb5d9002236af742d038ebf5a",
       "status": "final",
-      "strips": 10,
-      "tackle_count_events": 67,
-      "tosses_released": 242,
-      "trace_hash": "33d443c3041a83e5a55984e359e79578ae91a191111abf477e1f9795cd145d3e",
-      "turnovers": 459
+      "strips": 9,
+      "tackle_count_events": 63,
+      "tosses_released": 210,
+      "trace_hash": "bebfd558c5679a8bea9bd82df64867f67905dc77d5f1df734dda654a44129bce",
+      "turnovers": 401
     },
     {
       "arrows": {
@@ -998,90 +1340,165 @@
       "result": {
         "method": "regulation",
         "score": {
-          "A": 12,
-          "B": 15
+          "A": 18,
+          "B": 21
         },
         "shootout": null,
         "winner": "B"
       },
-      "runtime_s": 85.461,
+      "runtime_s": 103.898,
       "score": {
-        "A": 12,
-        "B": 15
+        "A": 18,
+        "B": 21
+      },
+      "scoring": {
+        "basis": "banded",
+        "carries": {
+          "attempts": 51,
+          "goals": 0,
+          "points": 0,
+          "points_per_attempt": 0.0
+        },
+        "per_attempt": {},
+        "points": {
+          "carries": 0,
+          "full_goal_awards": 6,
+          "half_goals": 7,
+          "non_shot_releases": 4,
+          "shot_releases": 22,
+          "total": 39
+        },
+        "shots": {
+          "10_to_20m": {
+            "attempts": 18,
+            "goals": 6,
+            "points": 18,
+            "points_per_attempt": 1.0
+          },
+          "20m_plus": {
+            "attempts": 1,
+            "goals": 1,
+            "points": 4,
+            "points_per_attempt": 4.0
+          },
+          "under_10m": {
+            "attempts": 1,
+            "goals": 0,
+            "points": 0,
+            "points_per_attempt": 0.0
+          }
+        }
       },
       "second_tackles": null,
       "seed": 10,
       "snaps_released": 127,
-      "state_hash": "e8bc75a0b0c74109b0db12ba2129b9d20d90e319f6f2e8753e197ff5e1b9041a",
+      "state_hash": "97153e9c911811cd1d3ba7f42b716771b3361c158d5c97cc353bf367ac051ee0",
       "status": "final",
       "strips": 13,
       "tackle_count_events": 62,
       "tosses_released": 221,
-      "trace_hash": "a7f0246e87a53e98438a641cd9f2467aee53f6b4b48849bbe2d0cc45b92270fc",
+      "trace_hash": "534ce8f5cad434750ca920acc9a8d5d1274d3184a57eff83be2104782c98c710",
       "turnovers": 419
     }
   ],
   "totals": {
+    "banded": {
+      "carries": {
+        "attempts": 575,
+        "goals": 0,
+        "points": 0,
+        "points_per_attempt": 0.0
+      },
+      "points_total_by_source": {
+        "carries": 0,
+        "full_goal_awards": 66,
+        "half_goals": 88,
+        "non_shot_releases": 156,
+        "shot_releases": 271,
+        "total": 581
+      },
+      "shots_by_band": {
+        "10_to_20m": {
+          "points": 213,
+          "points_per_attempt": 1.1703,
+          "shot_attempts": 182,
+          "shot_goals": 71
+        },
+        "20m_plus": {
+          "points": 16,
+          "points_per_attempt": 3.2,
+          "shot_attempts": 5,
+          "shot_goals": 4
+        },
+        "under_10m": {
+          "points": 42,
+          "points_per_attempt": 1.2353,
+          "shot_attempts": 34,
+          "shot_goals": 21
+        }
+      }
+    },
     "matches": 10,
     "per_match": {
-      "arrows_missed": 97.8,
-      "arrows_released": 182.9,
+      "arrows_missed": 94.8,
+      "arrows_released": 177.4,
       "first_tackles": null,
-      "foul_awards": 11.4,
-      "freezes": 42.6,
-      "goals": 14.4,
-      "groundings": 72.6,
+      "foul_awards": 11.0,
+      "freezes": 40.9,
+      "goals": 13.9,
+      "groundings": 70.6,
       "major_fouls": 0.0,
-      "minor_fouls": 24.4,
-      "offside_calls": 2.0,
+      "minor_fouls": 23.2,
+      "offside_calls": 1.9,
       "second_tackles": null,
-      "snaps_released": 133.9,
-      "strips": 11.9,
-      "tackle_count_events": 70.9,
-      "tosses_released": 227.9,
-      "turnovers": 419.4
+      "snaps_released": 130.1,
+      "strips": 11.5,
+      "tackle_count_events": 69.1,
+      "tosses_released": 220.5,
+      "turnovers": 406.2
     },
     "restarts": {
       "all": {
-        "awarded": 3764,
-        "eligible": 3730,
-        "eligible_timeout": 41,
-        "eligible_timeout_rate": 0.011,
-        "release_rate": 0.9612,
-        "released": 3618,
-        "timeout": 45,
-        "timeout_rate": 0.012
+        "awarded": 3646,
+        "eligible": 3614,
+        "eligible_timeout": 40,
+        "eligible_timeout_rate": 0.0111,
+        "release_rate": 0.9616,
+        "released": 3506,
+        "timeout": 44,
+        "timeout_rate": 0.0121
       },
       "scrim": {
-        "awarded": 1293,
-        "eligible": 1293,
-        "eligible_timeout": 20,
-        "eligible_timeout_rate": 0.0155,
-        "release_rate": 0.925,
-        "released": 1196,
-        "timeout": 20,
-        "timeout_rate": 0.0155
+        "awarded": 1254,
+        "eligible": 1254,
+        "eligible_timeout": 19,
+        "eligible_timeout_rate": 0.0152,
+        "release_rate": 0.9266,
+        "released": 1162,
+        "timeout": 19,
+        "timeout_rate": 0.0152
       },
       "snap40": {
-        "awarded": 143,
-        "eligible": 143,
+        "awarded": 139,
+        "eligible": 139,
         "eligible_timeout": 0,
         "eligible_timeout_rate": 0.0,
         "release_rate": 1.0,
-        "released": 143,
+        "released": 139,
         "timeout": 0,
         "timeout_rate": 0.0
       },
       "toss": {
-        "awarded": 2328,
-        "eligible": 2294,
+        "awarded": 2253,
+        "eligible": 2221,
         "eligible_timeout": 21,
-        "eligible_timeout_rate": 0.0092,
-        "release_rate": 0.979,
-        "released": 2279,
+        "eligible_timeout_rate": 0.0095,
+        "release_rate": 0.9787,
+        "released": 2205,
         "timeout": 25,
-        "timeout_rate": 0.0107
+        "timeout_rate": 0.0111
       }
-    }
+    },
+    "scoring_basis": "banded"
   }
 }

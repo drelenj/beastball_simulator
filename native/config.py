@@ -99,6 +99,9 @@ class NativeConfigV3(NativeConfig):
     # FAB-1b. Wrap, takedown, run-through, brace and dodge are athlete intents;
     # the engine's hold-mode and escape-effort placeholder controllers are not used.
     athlete_contact: str = 'intent-owned-v1'
+    # Scoring basis (owner, 16 Nov 2026): banded is the working canon in all v0/3 measurement.
+    # Values are PROVISIONAL until the self-play experiment reports.
+    scoring: str = 'banded'
     # FAB-1c. Belief-based restart claim / target / position decisions.
     restart_cognition: str = 'belief-v1'
     body_standards: tuple = ()                # derived in __post_init__
@@ -117,6 +120,7 @@ class NativeConfigV3(NativeConfig):
             raise ValueError('Native does not mix profiles or enable legacy deciders')
         if self.periods!=4 or self.period_seconds!=600 or self.overtime_seconds!=300:
             raise ValueError('full canon duration required; scenarios set state clocks explicitly')
+        if self.scoring!='banded':raise ValueError('native-v0/3 measures banded scoring only')
         if self.athlete_contact!='intent-owned-v1' or self.restart_cognition!='belief-v1':
             raise ValueError('native-v0/3 mechanics are versioned together')
 
@@ -136,3 +140,12 @@ def config_for(version='native-v0/2',**overrides):
 
 def is_v3(config):
     return isinstance(config,NativeConfigV3)
+
+
+# Banded scale (audit/HP-002_RULEBOOK_RATIFICATION_2026-11-14.md; PROVISIONAL)
+BANDED = dict(carry=5, throw_under_10m=2, throw_10_to_20m=3, throw_20m_plus=4,
+              half_goal=1, full_goal_award=3, own_goal=2)
+
+def throw_band(distance):
+    """Shot release distance (m) to the attacked goal -> band name."""
+    return 'under_10m' if distance < 10 else '10_to_20m' if distance < 20 else '20m_plus'
