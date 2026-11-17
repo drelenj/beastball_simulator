@@ -1,0 +1,93 @@
+{
+  "block": "real",
+  "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+  "end_ms": 6725179,
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 127,
+    "frozen_contact": 21,
+    "illegal_release": 5,
+    "immune_contact": 3,
+    "zone_unmarked": 24
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 69,
+        "legal": 41,
+        "legal_rate": 0.37272727272727274
+      },
+      "B": {
+        "illegal": 58,
+        "legal": 70,
+        "legal_rate": 0.546875
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 35,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 46,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 19,
+      "B": 16
+    },
+    "groundings": 161,
+    "points": {
+      "A": {
+        "penalty_awards": 75,
+        "play": 18
+      },
+      "B": {
+        "penalty_awards": 114,
+        "play": 7
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 338,
+        "ending_in_attempt": 18,
+        "share_ending_in_attempt": 0.05325443786982249,
+        "with_attempt": 25
+      },
+      "B": {
+        "count": 340,
+        "ending_in_attempt": 7,
+        "share_ending_in_attempt": 0.020588235294117647,
+        "with_attempt": 29
+      }
+    },
+    "restart_timeouts": 64
+  },
+  "name": "real-seed08",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 646,
+    "snap_timeout": 8,
+    "superseded:defence_minor": 3,
+    "superseded:minor_count_plus": 5,
+    "toss_timeout": 56
+  },
+  "runtime_s": 116.33,
+  "score": {
+    "A": 93,
+    "B": 121
+  },
+  "seed": 8,
+  "state_hash": "009cfc0a91fcaae307b6684454ca93e59b59f0edbc5a8bd576e1690db13e0cf9",
+  "status": "final",
+  "steps": 57627,
+  "trace_hash": "452b1d24e6fb769eb05e5d04bf9ffd6928b545cf99c3a5218c5ee0942d61d58b"
+}

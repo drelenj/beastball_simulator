@@ -1,0 +1,94 @@
+{
+  "block": "real",
+  "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+  "end_ms": 6494683,
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 110,
+    "frozen_contact": 27,
+    "illegal_release": 3,
+    "immune_contact": 2,
+    "zone_unmarked": 22
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 48,
+        "legal": 54,
+        "legal_rate": 0.5294117647058824
+      },
+      "B": {
+        "illegal": 62,
+        "legal": 40,
+        "legal_rate": 0.39215686274509803
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 45,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 19,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 17,
+      "B": 17
+    },
+    "groundings": 183,
+    "points": {
+      "A": {
+        "penalty_awards": 87,
+        "play": 4
+      },
+      "B": {
+        "penalty_awards": 74,
+        "play": 5
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 328,
+        "ending_in_attempt": 12,
+        "share_ending_in_attempt": 0.036585365853658534,
+        "with_attempt": 23
+      },
+      "B": {
+        "count": 330,
+        "ending_in_attempt": 10,
+        "share_ending_in_attempt": 0.030303030303030304,
+        "with_attempt": 14
+      }
+    },
+    "restart_timeouts": 45
+  },
+  "name": "real-seed09",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 636,
+    "snap_timeout": 9,
+    "superseded:defence_minor": 6,
+    "superseded:major": 2,
+    "superseded:minor_count_plus": 5,
+    "toss_timeout": 36
+  },
+  "runtime_s": 113.49,
+  "score": {
+    "A": 91,
+    "B": 79
+  },
+  "seed": 9,
+  "state_hash": "c0047cacac1f2f58f11151f13cc858a08bd9d97763e382b0dbf968804e15e2a0",
+  "status": "final",
+  "steps": 55645,
+  "trace_hash": "0a5a68baeb2adb043aacf12a0dba64ecfe2b02a729a7d7ca9db231a4888878c8"
+}

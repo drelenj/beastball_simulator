@@ -1,0 +1,90 @@
+{
+  "block": "control",
+  "config_digest": "7ce617cfb5d6d884450a5972a13c4ccabd32c5da3c981b34a71b268731d83379",
+  "end_ms": 23038789,
+  "error": null,
+  "foul_reasons": {},
+  "live_ms": 18772989,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 0,
+        "legal": 0,
+        "legal_rate": null
+      },
+      "B": {
+        "illegal": 0,
+        "legal": 0,
+        "legal_rate": null
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 0,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 0,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "groundings": 0,
+    "points": {
+      "A": {
+        "penalty_awards": 0,
+        "play": 0
+      },
+      "B": {
+        "penalty_awards": 0,
+        "play": 0
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 0,
+        "ending_in_attempt": 0,
+        "share_ending_in_attempt": null,
+        "with_attempt": 0
+      },
+      "B": {
+        "count": 0,
+        "ending_in_attempt": 0,
+        "share_ending_in_attempt": null,
+        "with_attempt": 0
+      }
+    },
+    "restart_timeouts": 0
+  },
+  "name": "control-seed04",
+  "non_finishing": {
+    "last_restart_active": null,
+    "last_restart_event": null,
+    "live_ms": 18772989,
+    "pending_restart_count": 0,
+    "pending_restart_ids": [],
+    "phase": "Phase.OPENING",
+    "simulated_ms": 23038789,
+    "steps": 200000
+  },
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {},
+  "runtime_s": 422.94,
+  "score": {
+    "A": 0,
+    "B": 0
+  },
+  "seed": 4,
+  "state_hash": "f33884dd5372c753ed856b0467a29a01c5c94eccbd09f966ec76bd823803074e",
+  "status": "partial",
+  "steps": 200000,
+  "trace_hash": "84ed5e8e085a6a79b5d1da2beacd3c4cd1c6e428a7f0f455f58652dbd7fdc4bf"
+}

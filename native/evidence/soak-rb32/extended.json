@@ -1,0 +1,697 @@
+{
+  "control": {
+    "1": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "2": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "3": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "4": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "5": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "6": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "7": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "8": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "9": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "10": {
+      "arrows_per_archer": {},
+      "carry_events_observed": 0,
+      "dqs": {},
+      "foul_award_points": {},
+      "fouls": {},
+      "goal_points_split": {},
+      "legal_releases_by_shooter_role": {},
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    }
+  },
+  "real": {
+    "1": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 3,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 3,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 3,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 43,
+      "dqs": {
+        "major|field|teamA": 2,
+        "major|field|teamB": 3,
+        "major|keeper|teamB": 1,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 14,
+        "minor|field|teamB": 11,
+        "minor|keeper|teamA": 1
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 13,
+        "full_goal_award|3pt|teamB": 29,
+        "half_goal|1pt|teamA": 48,
+        "half_goal|1pt|teamB": 44
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 57,
+        "archery_target|field|teamB": 53,
+        "archery_target|keeper|teamA": 5,
+        "frozen_contact|field|teamA": 14,
+        "frozen_contact|field|teamB": 10,
+        "frozen_contact|keeper|teamB": 2,
+        "illegal_release|field|teamA": 2,
+        "illegal_release|field|teamB": 1,
+        "immune_contact|field|teamB": 1,
+        "zone_unmarked|field|teamA": 19,
+        "zone_unmarked|field|teamB": 9
+      },
+      "goal_points_split": {
+        "A|restart_linked": 5,
+        "B|live": 6,
+        "B|restart_linked": 6
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 10,
+        "field": 75,
+        "keeper": 4
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "2": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 10,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 8,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 2,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 48,
+      "dqs": {
+        "major|field|teamA": 3,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 4,
+        "minor|field|teamB": 14
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 17,
+        "half_goal|1pt|teamA": 48,
+        "half_goal|1pt|teamB": 27
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 14,
+        "archery_target|field|teamB": 54,
+        "frozen_contact|field|teamA": 10,
+        "frozen_contact|field|teamB": 3,
+        "illegal_release|field|teamB": 2,
+        "immune_contact|field|teamA": 1,
+        "zone_unmarked|field|teamA": 7,
+        "zone_unmarked|field|teamB": 15
+      },
+      "goal_points_split": {
+        "B|live": 11
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 21,
+        "field": 30
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "3": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 2,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 4,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 7,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 0,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 49,
+      "dqs": {
+        "major|field|teamA": 4,
+        "major|field|teamB": 1,
+        "major|keeper|teamA": 1,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 7,
+        "minor|field|teamB": 12
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 9,
+        "full_goal_award|3pt|teamB": 5,
+        "half_goal|1pt|teamA": 58,
+        "half_goal|1pt|teamB": 40
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 22,
+        "archery_target|field|teamB": 46,
+        "frozen_contact|field|teamA": 18,
+        "frozen_contact|field|teamB": 6,
+        "frozen_contact|keeper|teamA": 2,
+        "illegal_release|field|teamA": 2,
+        "illegal_release|field|teamB": 1,
+        "immune_contact|field|teamA": 2,
+        "zone_unmarked|field|teamA": 17,
+        "zone_unmarked|field|teamB": 16
+      },
+      "goal_points_split": {
+        "A|live": 11,
+        "A|restart_linked": 3,
+        "B|live": 2,
+        "B|restart_linked": 6
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 13,
+        "field": 73
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "7": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 0,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 2,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 0,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 63,
+      "dqs": {
+        "major|field|teamA": 3,
+        "major|field|teamB": 3,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 12,
+        "minor|field|teamB": 12
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 11,
+        "full_goal_award|3pt|teamB": 18,
+        "half_goal|1pt|teamA": 51,
+        "half_goal|1pt|teamB": 35
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 59,
+        "archery_target|field|teamB": 55,
+        "frozen_contact|field|teamA": 14,
+        "frozen_contact|field|teamB": 11,
+        "frozen_contact|keeper|teamA": 1,
+        "illegal_release|field|teamA": 1,
+        "illegal_release|field|teamB": 4,
+        "zone_unmarked|field|teamB": 4
+      },
+      "goal_points_split": {
+        "A|live": 10,
+        "A|restart_linked": 3,
+        "B|live": 5
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 3,
+        "field": 84
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "8": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 5,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 0,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 8,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 81,
+      "dqs": {
+        "major|field|teamA": 2,
+        "major|field|teamB": 4,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 14,
+        "minor|field|teamB": 10,
+        "minor|keeper|teamA": 1
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 10,
+        "full_goal_award|3pt|teamB": 18,
+        "half_goal|1pt|teamA": 45,
+        "half_goal|1pt|teamB": 60
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 54,
+        "archery_target|field|teamB": 48,
+        "archery_target|keeper|teamA": 5,
+        "frozen_contact|field|teamA": 7,
+        "frozen_contact|field|teamB": 13,
+        "frozen_contact|keeper|teamA": 1,
+        "illegal_release|field|teamA": 2,
+        "illegal_release|field|teamB": 3,
+        "immune_contact|field|teamA": 3,
+        "zone_unmarked|field|teamA": 18,
+        "zone_unmarked|field|teamB": 6
+      },
+      "goal_points_split": {
+        "A|live": 14,
+        "A|restart_linked": 4,
+        "B|live": 5,
+        "B|restart_linked": 2
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 14,
+        "field": 95,
+        "keeper": 2
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "9": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 5,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 5,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 64,
+      "dqs": {
+        "major|field|teamA": 6,
+        "major|field|teamB": 3,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 9,
+        "minor|field|teamB": 12
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 11,
+        "full_goal_award|3pt|teamB": 11,
+        "half_goal|1pt|teamA": 54,
+        "half_goal|1pt|teamB": 41
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 38,
+        "archery_target|field|teamB": 52,
+        "frozen_contact|field|teamA": 14,
+        "frozen_contact|field|teamB": 11,
+        "frozen_contact|keeper|teamA": 1,
+        "frozen_contact|keeper|teamB": 1,
+        "illegal_release|field|teamA": 1,
+        "illegal_release|field|teamB": 2,
+        "immune_contact|field|teamA": 2,
+        "zone_unmarked|field|teamA": 12,
+        "zone_unmarked|field|teamB": 10
+      },
+      "goal_points_split": {
+        "A|live": 4,
+        "B|restart_linked": 5
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 12,
+        "field": 82
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    },
+    "10": {
+      "arrows_per_archer": {
+        "A:DRAFT26-09": {
+          "illegal_target": 5,
+          "legal": 3,
+          "role": "archer",
+          "team": "A"
+        },
+        "A:NBL25-D32": {
+          "illegal_target": 5,
+          "legal": 6,
+          "role": "archer",
+          "team": "A"
+        },
+        "B:NBL24-01-12": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        },
+        "B:UFA26-BB-04": {
+          "illegal_target": 5,
+          "legal": 1,
+          "role": "archer",
+          "team": "B"
+        }
+      },
+      "carry_events_observed": 54,
+      "dqs": {
+        "major|field|teamA": 9,
+        "minor|archer|teamA": 2,
+        "minor|archer|teamB": 2,
+        "minor|field|teamA": 9,
+        "minor|field|teamB": 11,
+        "minor|keeper|teamA": 1
+      },
+      "foul_award_points": {
+        "full_goal_award|3pt|teamA": 3,
+        "full_goal_award|3pt|teamB": 6,
+        "half_goal|1pt|teamA": 56,
+        "half_goal|1pt|teamB": 44
+      },
+      "fouls": {
+        "archery_target|archer|teamA": 10,
+        "archery_target|archer|teamB": 10,
+        "archery_target|field|teamA": 39,
+        "archery_target|field|teamB": 40,
+        "archery_target|keeper|teamA": 5,
+        "frozen_contact|field|teamA": 18,
+        "frozen_contact|keeper|teamA": 1,
+        "illegal_release|field|teamA": 1,
+        "illegal_release|field|teamB": 3,
+        "immune_contact|field|teamA": 4,
+        "zone_unmarked|field|teamA": 5,
+        "zone_unmarked|field|teamB": 15
+      },
+      "goal_points_split": {
+        "A|restart_linked": 3,
+        "B|live": 2,
+        "B|restart_linked": 7
+      },
+      "legal_releases_by_shooter_role": {
+        "archer": 11,
+        "field": 49,
+        "keeper": 12
+      },
+      "missing_fields": [
+        "carry outcome (tackled/grounded/turnover/stopped short) not recorded",
+        "foul_award -> originating foul/rule link not recorded",
+        "DQ -> rule link not recorded (discipline call has kind_of_foul only)",
+        "arrow miss not recorded as a distinct outcome",
+        "illegal-target forfeits not attributed to a player in arrow_forfeited calls (taken from foul records)"
+      ],
+      "unmapped_player_ids": {}
+    }
+  }
+}

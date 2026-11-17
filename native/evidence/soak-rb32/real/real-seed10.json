@@ -1,0 +1,93 @@
+{
+  "block": "real",
+  "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+  "end_ms": 8588299,
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 104,
+    "frozen_contact": 19,
+    "illegal_release": 4,
+    "immune_contact": 4,
+    "zone_unmarked": 20
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 54,
+        "legal": 64,
+        "legal_rate": 0.5423728813559322
+      },
+      "B": {
+        "illegal": 50,
+        "legal": 8,
+        "legal_rate": 0.13793103448275862
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 26,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 28,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 21,
+      "B": 13
+    },
+    "groundings": 135,
+    "points": {
+      "A": {
+        "penalty_awards": 65,
+        "play": 3
+      },
+      "B": {
+        "penalty_awards": 62,
+        "play": 9
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 403,
+        "ending_in_attempt": 9,
+        "share_ending_in_attempt": 0.022332506203473945,
+        "with_attempt": 15
+      },
+      "B": {
+        "count": 405,
+        "ending_in_attempt": 7,
+        "share_ending_in_attempt": 0.01728395061728395,
+        "with_attempt": 22
+      }
+    },
+    "restart_timeouts": 284
+  },
+  "name": "real-seed10",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 638,
+    "snap_timeout": 165,
+    "superseded:defence_minor": 6,
+    "superseded:minor_count_plus": 5,
+    "toss_timeout": 119
+  },
+  "runtime_s": 132.59,
+  "score": {
+    "A": 68,
+    "B": 71
+  },
+  "seed": 10,
+  "state_hash": "e548fd45a499d5c7a6f851d354a84a3dca10aedf430e32b949dbdf30a3e2d062",
+  "status": "final",
+  "steps": 76778,
+  "trace_hash": "813c58a4f3fa08f2acdf100497dd38fb74e63e70db7312e918814aba8afd80dc"
+}

@@ -1,0 +1,92 @@
+{
+  "block": "real",
+  "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+  "end_ms": 6596835,
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 134,
+    "frozen_contact": 26,
+    "illegal_release": 5,
+    "zone_unmarked": 4
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 69,
+        "legal": 43,
+        "legal_rate": 0.38392857142857145
+      },
+      "B": {
+        "illegal": 65,
+        "legal": 44,
+        "legal_rate": 0.4036697247706422
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 31,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 32,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 17,
+      "B": 17
+    },
+    "groundings": 182,
+    "points": {
+      "A": {
+        "penalty_awards": 84,
+        "play": 13
+      },
+      "B": {
+        "penalty_awards": 89,
+        "play": 5
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 314,
+        "ending_in_attempt": 16,
+        "share_ending_in_attempt": 0.050955414012738856,
+        "with_attempt": 21
+      },
+      "B": {
+        "count": 317,
+        "ending_in_attempt": 15,
+        "share_ending_in_attempt": 0.0473186119873817,
+        "with_attempt": 24
+      }
+    },
+    "restart_timeouts": 63
+  },
+  "name": "real-seed07",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 626,
+    "snap_timeout": 14,
+    "superseded:defence_minor": 5,
+    "superseded:minor_count_plus": 8,
+    "toss_timeout": 49
+  },
+  "runtime_s": 122.78,
+  "score": {
+    "A": 97,
+    "B": 94
+  },
+  "seed": 7,
+  "state_hash": "eb42ac9b99dc9e0e4c80b305663ddf37ae8da6eb48d8ff033204bc7da3b28bd1",
+  "status": "final",
+  "steps": 55712,
+  "trace_hash": "c97496189fe8979715cc03f25e6c33ffdd1c22a6c161732ef5d5b6b35e1dcd72"
+}
