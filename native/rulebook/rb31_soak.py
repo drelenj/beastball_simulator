@@ -75,7 +75,8 @@ def job(spec):
             if result:carry.append((p.m.s.now,holder.team))
             return result
         p.m.e.rb_carry_attempt=count_attempt
-        r,_=run_match(seed,cfg,rosters=rosters,port_factory=lambda *a,**k:p)
+        r,_=run_match(seed,cfg,rosters=rosters,port_factory=lambda *a,**k:p,
+                      progress=lambda row:print(json.dumps(dict(block=block,progress=True,**row),sort_keys=True),flush=True))
         # Rulebook report wrapper is not used because the port is instrumented.
         assert r['status']=='final' and r['restart_completion_ratio']==1.
         metrics=measure(p,carry)
@@ -90,7 +91,9 @@ def job(spec):
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--block',choices=('control','real'),required=True);ap.add_argument('--seeds',type=int,nargs='+',required=True);ap.add_argument('--out',required=True);ap.add_argument('--workers',type=int,default=2)
     args=ap.parse_args();out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
-    with ProcessPoolExecutor(args.workers) as pool:
+    # Each build creates isolated physical-engine classes; retire the process
+    # after a match so those classes and their state do not accumulate.
+    with ProcessPoolExecutor(args.workers,max_tasks_per_child=1) as pool:
         futures=[pool.submit(job,(args.block,seed,str(out))) for seed in args.seeds]
         for future in as_completed(futures):print(json.dumps(future.result(),sort_keys=True),flush=True)
 
