@@ -17,7 +17,10 @@ RATINGS = (
     'contact_resistance','ball_handling','catching','awareness','throw_power',
     'throw_accuracy','jump','keeper_skill','archery_accuracy',
 )
-OPTIONAL_RATINGS = ('durability','injury','kick_power','kick_accuracy')
+INERT_RATINGS = ('touch','vision','clarity','reaction','anticipation','focus','instinct','judgment','motor_control',
+                 'playmaking','finishing','marking','zone_reads','goalkeeping','in_air_ball_pursuit',
+                 'live_ball_pursuit','carrier_duel','defender_duel')
+OPTIONAL_RATINGS = ('durability','injury','acceleration',*INERT_RATINGS)
 REQUIRED = ('id','role',*RATINGS,'height_m','mass_kg')
 IGNORED_LABELS = ('name','position','archetype','overall')
 
@@ -29,7 +32,7 @@ DEFAULT_ALIASES = {
     'id':('id','athlete_id','player_id'),
     'role':('role',),
     # Known player_gen_v1/export metadata, accepted but never consumed.
-    '_ignored':('team','seed','notes','top_speed_mph','acceleration'),
+    '_ignored':('team','seed','notes','top_speed_mph'),
 }
 
 
@@ -45,8 +48,8 @@ def speed_mps(rating):
     return 44.704*rating
 
 
-def acceleration(speed,agility):
-    return 12.5*(.5*speed+.5*agility)
+def acceleration(rating,agility=None):
+    return 12.5*rating
 
 
 def braking(agility):
@@ -79,12 +82,13 @@ class AthleteAttributes:
     source_id: str
     role: str
     values: tuple
+    defaults: tuple = ()
 
     def get(self,name):
         return dict(self.values)[name]
 
     def record(self):
-        return {'id':self.source_id,'role':self.role,**dict(self.values)}
+        return {'id':self.source_id,'role':self.role,**dict(self.values),'defaults':self.defaults}
 
 
 @dataclass(frozen=True)
@@ -148,6 +152,10 @@ def load_rows(rows,team,alias_map=None):
             if not 0<=value<=1:
                 raise RosterError(f"row {row_number} column {column}: rating {value} outside 0..1")
             values[column]=value
+        defaults=[]
+        for column in INERT_RATINGS:
+            if column not in values:values[column]=.70;defaults.append(column)
+        if 'acceleration' not in values:values['acceleration']=.70;defaults.append('acceleration')
         height=_number(row['height_m'],row_number,'height_m')
         mass=_number(row['mass_kg'],row_number,'mass_kg')
         if not 1.4<=height<=3.6576:
@@ -156,7 +164,7 @@ def load_rows(rows,team,alias_map=None):
         reach=_number(row.get('reach_m',.46*height),row_number,'reach_m')
         if reach<=0:raise RosterError(f"row {row_number} column reach_m: must be positive")
         values.update(height_m=height,mass_kg=mass,reach_m=reach)
-        canonical.append(AthleteAttributes(source_id,role,tuple(sorted(values.items()))))
+        canonical.append(AthleteAttributes(source_id,role,tuple(sorted(values.items())),tuple(sorted(defaults))))
     ids={}
     for index,a in enumerate(canonical,start=2):
         if a.source_id in ids:
@@ -172,7 +180,7 @@ def load_rows(rows,team,alias_map=None):
         vals=dict(a.values)
         warnings['ratings_below_0.60']+=sum(vals[k]<.6 for k in RATINGS)
         warnings['ratings_above_1.00']+=sum(vals[k]>1 for k in RATINGS)
-        warnings['body_outside_design_envelope']+=int(not(2.40<=vals['height_m']<=2.95 and 155<=vals['mass_kg']<=285))
+        # Legal body limits are the engine height range and positive mass above.
     record={'team':team,'athletes':[a.record() for a in canonical]}
     digest=hashlib.sha256(json.dumps(record,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     return TeamRoster(team,tuple(canonical),digest,tuple(sorted(warnings.items())))
@@ -200,7 +208,7 @@ def mapped_values(athlete):
     return dict(
         height=r['height_m'],mass=r['mass_kg'],reach=r['reach_m'],
         maximum_speed=speed_mps(r['speed']),
-        acceleration=acceleration(r['speed'],r['agility']),
+        acceleration=acceleration(r['acceleration']),
         braking=braking(r['agility']),turning=turning(r['agility']),
         jump_height=1.3*r['jump'],strength=r['strength'],agility=r['agility'],
         endurance=r['stamina'],balance=r['balance'],contact_resistance=r['contact_resistance'],

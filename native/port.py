@@ -11,7 +11,7 @@ from b1.communication import DeliveryModel, TeamTransport, receive_messages
 from b1.emergence_intents import BallCourseBelief, AthleteBody, plan_keeper_motor
 from . import cognition as C
 from .config import NativeConfig, is_v3, is_attr
-from .roster import engine_order, mapped_values, max_throw_speed, throw_error_base_deg, sensor_noise_scale
+from .roster import INERT_RATINGS, engine_order, mapped_values, max_throw_speed, throw_error_base_deg, sensor_noise_scale
 from .perception import visibility
 from .substrate import build_core
 from .restart_metric import RestartMetric
@@ -46,9 +46,17 @@ class NativePort:
         self.types,self.geom=co.types,co.geometry
         make_roster=co.match.make_roster
         self.attr=is_attr(cfg)
+        self.behavior_digest=cfg.digest
         if self.attr:
             if not rosters or set(rosters)!=set(('A','B')):raise ValueError('ATTR-1 requires A and B rosters')
             if tuple(rosters[t].digest for t in ('A','B'))!=cfg.roster_digests:raise ValueError('roster digest/config mismatch')
+            if cfg.version=='native-rb/3':
+                # Full config/roster digest is retained in the result. Gameplay hashes
+                # use only consumed ratings, so changing stored inert fields has no effect.
+                active={t:[(a.source_id,a.role,tuple((k,v) for k,v in a.values if k not in INERT_RATINGS))
+                           for a in rosters[t].athletes] for t in ('A','B')}
+                config_record=cfg.record();config_record['roster_digests']=('behavior-only','behavior-only')
+                self.behavior_digest=digest((config_record,active))
             def attr_validate(a):
                 assert 1.4<=a.height<=3.6576 and 0<=a.maximum_speed<=44.704 and a.mass>0
                 assert a.acceleration>=0 and a.braking>=0
@@ -112,7 +120,7 @@ class NativePort:
         self.policies={team:(policies or {}).get(team,DEFAULT) for team in ('A','B')}
         self.command_log=[];self.release_log=[];self.keeper_intents={}
         self.calls={};self.observation_count=0;self.next_sense=0
-        self.trace=hashlib.sha256();self.trace.update(cfg.digest.encode());self.trace.update(digest({t:p.as_dict() for t,p in self.policies.items()}).encode())
+        self.trace=hashlib.sha256();self.trace.update(self.behavior_digest.encode());self.trace.update(digest({t:p.as_dict() for t,p in self.policies.items()}).encode())
         self.hook_calls=Counter()
         m.carrier_decision=self.ball_motor;m.arrow_decisions=self.archer_motor;m.c4c_keepers=self.keeper_motor
         m.update_archers=self.platform_motor;m.auto_substitutions=lambda:None
@@ -124,9 +132,14 @@ class NativePort:
         m.native_wrap_authorized=lambda p,q:bool(getattr(p,'native_intent',None) and p.native_intent.contact=='wrap' and p.native_intent.target==q.id)
         if self.v3:
             # FAB-1b: hold mode and escape effort are athlete intents, never engine controllers.
-            contact=lambda p:getattr(getattr(p,'native_intent',None),'contact',None)
-            m.native_wrap_authorized=lambda p,q:bool(contact(p) in ('wrap','takedown') and p.native_intent.target==q.id)
-            m.c3_contain=lambda d,car:contact(d)!='takedown'
+            def contact(p,target=None):
+                i=getattr(p,'native_intent',None)
+                if i is None:return None
+                if cfg.version=='native-rb/3' and (m.s.now-i.decided_ms>=cfg.decision_ms or i.period!=m.s.period or
+                        (i.contact in ('wrap','takedown') and (i.target!=target or m.s.ball.carrier!=target))):return None
+                return i.contact
+            m.native_wrap_authorized=lambda p,q:bool(contact(p,q.id) in ('wrap','takedown') and p.native_intent.target==q.id)
+            m.c3_contain=lambda d,car:contact(d,car.id)!='takedown'
             m.c3_escape_effort=lambda car,windup:1. if windup is None and car.id not in m.c3_descent and contact(car)=='run_through' and car.native_intent.kind=='carry' else 0.
         for pol in m.pol.values():pol.t=replace(pol.t,pace=(1/.9 if self.attr else 1.))
         # Pure policies cannot call back into retired controllers.
@@ -238,7 +251,7 @@ class NativePort:
                            pending_kind=pend['cmd'].intent.kind if pend else None,pending_target=pend['cmd'].intent.target if pend else None,
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
-                           posture=p.posture,judgment=.7,policy=self.policies[p.team],body=body(p),restart=f.restart,
+                           posture=p.posture,policy=self.policies[p.team],body=body(p),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
@@ -252,7 +265,7 @@ class NativePort:
     def own_contact(self,p):
         """SELF-1 own-body knowledge only: holds on me, my balance, whom I hold."""
         holds=self.m.c3_holds
-        return dict(cognition='native-v0/3' if self.attr else self.config.version,
+        return dict(cognition=self.config.version if self.config.version=='native-rb/3' else 'native-v0/3' if self.attr else self.config.version,
                     own_held=sum(1 for (a,t),h in holds.items() if t==p.id and h['g']>0),
                     own_balance_load=round(min(1.,self.m.c3_bal(p)),4),
                     own_hold_target=next((t for (a,t),h in sorted(holds.items()) if a==p.id),None))

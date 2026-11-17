@@ -17,6 +17,9 @@ def install(co,cfg):
   if p and (p.team!=q.team or not p.active and outgoing not in self.rb_slots):return False
   if p and p.exclusion_ms>0 and p.id not in self.rb.injuries and self.rb.evaluated.get(p.id)!=s.period:return False
   target_role=role or (p.role if p else 'field')
+  if cfg.version=='native-rb/3' and target_role in ('keeper','archer') and q.role!=target_role:
+   designated=getattr(self,'rb_designated',{}).get(q.team,{}).get(target_role,())
+   if len(designated)!=2 or any(self.rb_can_enter(s.players[pid]) for pid in designated):return False
   count=sum(x.active and x.team==q.team and x.role!='archer' for x in s.players.values())
   removed=bool(p and p.active and p.role!='archer')
   if target_role!='archer' and count-removed>=cfg.field_roster_limit:return False
@@ -45,9 +48,22 @@ def install(co,cfg):
    if s.live_ms<slot['until'] and not slot.get('injury'):continue
    role=slot['role'];team=slot['team']
    candidates=[q for q in s.players.values() if q.team==team and not q.active and self.rb_can_enter(q)]
+   if cfg.version=='native-rb/3' and role in ('keeper','archer'):
+    candidates=[q for q in candidates if q.role==role]
    # PLACEHOLDER team selection: named reserve Keeper, else canonical ID; no ratings.
    candidates.sort(key=lambda q:(0 if role=='keeper' and q.id==self.rb_reserves[team] else 1,q.id))
    if candidates:self.rb_substitute(pid,candidates[0].id,role)
+   elif cfg.version=='native-rb/3' and role in ('keeper','archer'):
+    designated=getattr(self,'rb_designated',{}).get(team,{}).get(role,())
+    if len(designated)==2 and all(not self.rb_can_enter(s.players[pid]) for pid in designated):
+     field=next((q for q in sorted(s.players.values(),key=lambda q:q.id) if q.team==team and not q.active and q.role=='field' and self.rb_can_enter(q)),None)
+     if field:self.rb_substitute(pid,field.id,role);continue
+     candidate=next((q for q in sorted(s.players.values(),key=lambda q:q.id) if q.active and q.team==team and q.role=='field'),None)
+     if candidate:
+      candidate.role=role;self.rb_slots.pop(pid,None)
+      self.rb_publish(self.rb.ruling('specialist_fallback',player=candidate.id,role=role))
+      port=getattr(self,'rb_port',None)
+      if port:port.platform_motor(0)
    elif role=='keeper':
     candidate=next((q for q in sorted(s.players.values(),key=lambda q:q.id) if q.active and q.team==team and q.role=='field'),None)
     if candidate:

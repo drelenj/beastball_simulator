@@ -29,3 +29,20 @@ class RulebookConfig(NativeConfig):
         if self.scoring!='banded':raise ValueError('native-rb/2 measurements require banded scoring')
         if self.m2!='null' or self.legacy_layers:raise ValueError('RB retains null M2 and no legacy layers')
         if (self.periods,self.period_seconds,self.overtime_seconds)!=(4,600,300):raise ValueError('canon duration')
+
+
+_RB3_POCKET=tuple(sorted((k,v) for k,v in dict(RB_POCKET,player_speed=44.704,ball_limit=134.1).items() if k!='pass_speed'))
+
+@dataclass(frozen=True)
+class RulebookConfigV3(RulebookConfig):
+    version: str = 'native-rb/3'
+    mapping_version: str = 'attr-map/2'
+    roster_digests: tuple = ()
+    body_standards: tuple = ()
+    pocket_settings: tuple = _RB3_POCKET
+
+    def __post_init__(self):
+        if self.version!='native-rb/3' or self.profile!='native-rb' or self.scoring!='banded':raise ValueError('RB/3 profile mixing')
+        if len(self.roster_digests)!=2 or any(not isinstance(x,str) or len(x)!=64 for x in self.roster_digests):raise ValueError('RB/3 requires A and B roster digests')
+        if self.mapping_version!='attr-map/2' or self.body_standards!=() or self.pocket_settings!=_RB3_POCKET:raise ValueError('RB/3 mapping/mechanics mismatch')
+        if self.m2!='null' or self.legacy_layers or (self.periods,self.period_seconds,self.overtime_seconds)!=(4,600,300):raise ValueError('RB/3 canon profile mismatch')

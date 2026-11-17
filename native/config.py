@@ -173,7 +173,7 @@ def config_for(version='native-v0/2',**overrides):
     return VERSIONS[version](**overrides)
 
 def is_v3(config):
-    return isinstance(config,NativeConfigV3)
+    return isinstance(config,NativeConfigV3) or config.version=='native-rb/3'
 
 def is_attr(config):
-    return isinstance(config,AttrConfig)
+    return isinstance(config,AttrConfig) or config.version=='native-rb/3'

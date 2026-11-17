@@ -1,0 +1,158 @@
+"""RB/3 integration witnesses; short windows only."""
+from dataclasses import replace
+import io
+import subprocess
+from concurrent.futures import ProcessPoolExecutor
+
+import pytest
+from native import cognition as C
+from native.roster import INERT_RATINGS, load_rows, mapped_values, RosterError
+from native.test_attr import rows
+from .config import RulebookConfigV3
+from .port import RulebookPort
+from .run import run_match
+
+
+def fixture(change=None):
+    raw=rows()
+    if change:raw[0].update(change)
+    rosters={team:load_rows(raw,team) for team in ('A','B')}
+    cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A','B')))
+    return cfg,rosters
+
+
+def test_acceleration_is_independent_and_large_body_is_legal():
+    cfg,rs=fixture({'speed':.6,'agility':.9,'acceleration':.8,'height_m':3.447,'mass_kg':753.3})
+    p=RulebookPort(1,cfg,rosters=rs)
+    q=p.m.s.players['A:p0']
+    assert q.a.maximum_speed==pytest.approx(26.8224)
+    assert q.a.acceleration==pytest.approx(10.)
+    assert q.a.braking==pytest.approx(16.875*.9)
+    assert q.a.turning==pytest.approx(16.25*.9)
+    assert q.a.height==3.447 and q.a.mass==753.3
+    assert dict(rs['A'].warning_counts)['body_outside_design_envelope']==0
+    assert mapped_values(rs['A'].athletes[0])['acceleration']==10.
+
+
+@pytest.mark.parametrize('role',["keeper","archer"])
+def test_specialist_field_cover_only_after_both_designated_ineligible(role):
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e,s=p.m.e,p.m.s
+    starter,backup=e.rb_designated['A'][role]
+    assert e.rb_force_injury(starter)
+    assert s.players[backup].active and s.players[backup].role==role
+    field=next(q for q in s.players.values() if q.team=='A' and not q.active and q.role=='field')
+    assert not e.rb_substitute(starter,field.id,role)
+    assert e.rb_force_injury(backup)
+    assert any(q.team=='A' and q.active and q.role==role and q.id not in (starter,backup) for q in s.players.values())
+    assert s.phase!=p.types.Phase.FINAL
+
+
+def test_contact_intent_expires_on_carrier_change_and_decision_interval():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,m=p.m.s,p.m
+    d=s.players['A:p0'];carrier=s.players['B:p0'];s.phase=p.types.Phase.LIVE
+    s.ball.carrier=carrier.id;s.ball.mode=p.types.BallMode.CONTROLLED
+    intent=C.ActionIntent('contact','decision',d.id,'tackle',carrier.id,(carrier.x,carrier.y),None,None,s.now,contact='takedown',period=s.period)
+    d.native_intent=intent
+    assert m.native_wrap_authorized(d,carrier) and not m.c3_contain(d,carrier)
+    s.ball.carrier='B:p1'
+    assert not m.native_wrap_authorized(d,carrier) and m.c3_contain(d,carrier)
+    s.ball.carrier=carrier.id;s.now+=cfg.decision_ms
+    assert not m.native_wrap_authorized(d,carrier) and m.c3_contain(d,carrier)
+
+
+def _window(value):
+    name,rating=value;cfg,rs=fixture({name:rating})
+    result,_=run_match(3,cfg,max_steps=30,rosters=rs)
+    return result['trace_hash'],result['state_hash'],result['config_digest']
+
+
+def test_rb3_short_replay_serial_and_parallel():
+    first=_window(('touch',.7))
+    assert _window(('touch',.7))==first
+    with ProcessPoolExecutor(2) as pool:
+        assert list(pool.map(_window,[('touch',.7),('touch',.7)]))==[first,first]
+
+
+@pytest.mark.parametrize('name',INERT_RATINGS)
+def test_inert_rating_changes_digest_but_not_play_or_view(name):
+    low,middle,high=(_window((name,value)) for value in (.4,.7,1.))
+    assert low[:2]==middle[:2]==high[:2]
+    assert len({low[2],middle[2],high[2]})==3
+    cfg,rs=fixture({name:1.});p=RulebookPort(3,cfg,rosters=rs)
+    p.capture(0);p.m.s.now=300
+    v,_=p.view('A:p0',300)
+    assert name not in vars(v) and name not in dict(v.own_skills)
+    assert all(name not in vars(track) for track in v.tracks)
+    assert name in dict(rs['A'].athletes[0].values)
+    assert name not in rs['A'].athletes[0].defaults
+    assert name in rs['A'].athletes[1].defaults
+
+
+def test_throw_power_changes_selected_speed_and_rb_scoring_is_banded():
+    from native.cognition_v3 import _intent
+    speeds=[]
+    for power in (.6,1.):
+        cfg,rs=fixture({'throw_power':power});p=RulebookPort(1,cfg,rosters=rs)
+        p.capture(0);p.m.s.now=300
+        v,b=p.view('A:p0',300);speeds.append(_intent(v,b,'pass')[0].speed)
+    assert speeds[0]<speeds[1]
+    assert cfg.scoring=='banded'
+
+
+def test_archer_pass_in_flight_predicate_restored_only_for_rb3():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs)
+    p.capture(0);p.m.s.now=300
+    archer=p.m.e.rb_designated['A']['archer'][0]
+    v,_=p.view(archer,300)
+    signals=replace(v.signals,passive_team='B',ball_status='pass_in_flight')
+    v=replace(v,signals=signals,hunt_cleared=True)
+    target=C.Track('B:p0','B','field',50.,50.,0.,0.,0)
+    assert C.archer_target_legal(target,v,300)
+    assert not C.archer_target_legal(target,replace(v,cognition='native-v0/3'),300)
+
+
+def test_rb3_keeps_rb21_own_flight_and_failed_carry_measurement():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
+    s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
+    a=s.players['A:p0'];b=s.players['B:p0'];a.x,a.y=25.,50.
+    s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=a.id,x=25.,y=50.,z=a.hand_height,scoring=True)
+    assert e.release(a.id,(-25.,0.,1.),'pass','A:p1')
+    b.x,b.y=s.ball.x,s.ball.y;e.touch(b.id,True)
+    assert s.ball.rb_release_team=='A'
+    s.ball.x,s.ball.y,s.ball.z=-1.,50.,1.5
+    assert e.goal('A') and s.score['B']==2 and e.rb_bands['B']['own_goals']==1
+    s.phase=p.types.Phase.LIVE;s.owner='A';a.x,a.y=80.01,50.
+    s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=a.id,x=a.x,y=a.y,z=a.hand_height,scoring=True)
+    e.follow_carrier()
+    assert e.rb_bands['A']['carry_attempts']==1 and e.rb_bands['A']['carry_goals']==0
+
+
+def test_nbl_adapter_selects_independent_franchises_and_garvian_giant():
+    openpyxl=pytest.importorskip('openpyxl')
+    from native.nbl_roster import load_nbl_workbook
+    path='audit/arcade/morphology/NBL_2026-27_Opening_Night_Rosters_CANON_OVR_morphology_physical.xlsx'
+    blob=subprocess.check_output(['git','show','d85e790:'+path])
+    rs=load_nbl_workbook(io.BytesIO(blob),('Garvian Guardians','Ala Apex'))
+    for team in ('A','B'):
+        assert len(rs[team].athletes)==22
+        assert [sum(a.role==role for a in rs[team].athletes) for role in ('field','keeper','archer')]==[18,2,2]
+    giant=next(a for a in rs['A'].athletes if a.get('mass_kg')>750)
+    assert giant.source_id=='NBL25-D32' and giant.get('mass_kg')==753.3
+    assert giant.get('contact_resistance')==giant.get('balance')
+    cfg=RulebookConfigV3(roster_digests=(rs['A'].digest,rs['B'].digest))
+    p=RulebookPort(1,cfg,rosters=rs)
+    q=p.m.s.players['A:'+giant.source_id]
+    assert q.a.mass==753.3 and q.a.maximum_speed==pytest.approx(44.704*giant.get('speed'))
+    p.m.e.award('A',50,50,'fixture')
+    starter=p.m.e.rb_designated['A']['archer'][0]
+    assert p.m.e.rb_substitute(starter,q.id,role='archer')
+    assert q.active
+    for _ in range(30):p.step()
+    p.assert_invariants()
+
+
+def test_nbl_one_franchise_lacks_the_required_second_keeper():
+    pytest.importorskip('openpyxl')
+    from native.nbl_roster import load_canon_nbl
+    with pytest.raises(RosterError,match='Güunlekia Serpents: fewer than 2 KPR'):
+        load_canon_nbl(('Güunlekia Serpents','Ala Apex'))

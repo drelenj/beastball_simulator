@@ -11,7 +11,8 @@ from . import cognition
 
 
 def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None,rosters=None):
-    started=time.perf_counter();port=(port_factory or NativePort)(seed,config,policies,plumbing,rosters=rosters)
+    started=time.perf_counter();factory=port_factory or NativePort
+    port=factory(seed,config,policies,plumbing,rosters=rosters) if rosters is not None else factory(seed,config,policies,plumbing)
     m,s,e=port.m,port.m.s,port.m.e
     next_dec={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
     while s.phase!=port.types.Phase.FINAL:
@@ -45,7 +46,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
             if status=='pending':e.restart_results[rid]='match_end'
     port.trace.update(digest([asdict(o) for o in port.outcomes]).encode())
     port.trace.update(digest(e.log).encode())
-    state=dict(config_digest=port.config.digest,public_rules=asdict(e.possession.public()),restart_results=dict(e.restart_results),now=s.now,period=s.period,phase=s.phase.value,game_ms=s.game_ms,play_ms=s.possession_ms,
+    state=dict(config_digest=port.behavior_digest,public_rules=asdict(e.possession.public()),restart_results=dict(e.restart_results),now=s.now,period=s.period,phase=s.phase.value,game_ms=s.game_ms,play_ms=s.possession_ms,
                score=dict(s.score),ball=asdict(s.ball),players={p.id:asdict(p) for p in s.players.values()})
     # Dynamic instance attrs (motor commitments) have separate execution records;
     # canonical dataclass state excludes Python object addresses.

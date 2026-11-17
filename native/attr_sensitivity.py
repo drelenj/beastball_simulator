@@ -32,8 +32,8 @@ def _rows(changed,value):
 def _metric(name,p,rating):
     a=p.a
     # Higher is always the favourable/expected direction in this report.
-    if name=='speed':return min(a.maximum_speed,.5*a.acceleration*4)
-    if name=='agility':return a.acceleration+a.braking+a.turning
+    if name=='speed':return a.maximum_speed
+    if name=='agility':return a.braking+a.turning
     if name=='strength':return 1000*(.5+a.strength)
     if name=='balance':return -1/(.5+a.balance)
     if name=='stamina':return 1. # fatigue is disabled in ATTR-1

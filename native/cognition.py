@@ -74,7 +74,6 @@ class AthleteView:
     arrows_loaded: int | None = None
     last_release_ms: int | None = None
     posture: str = 'upright'
-    judgment: float = 0.7                # SELF-1: own abilities known exactly
     policy: PolicyParams = PolicyParams()
     body: E.AthleteBody | None = None
     restart: tuple | None = None
@@ -228,7 +227,8 @@ def archer_target_legal(t, view, now):
     # Canon: opposing fields on offence with team control, outside either zone.
     # native-v0/3 PLACEHOLDER (Q-FAB1-2): the rules layer as built has no team control while a
     # pass is in flight, so a release then is an archery_target foul; the v0/3 Archer does not
-    # choose it. v0/2 keeps its original predicate.
+    # choose it. RB/3 restores the original predicate because its Rulebook
+    # possession layer retains qualifying team control during flight.
     statuses = ('carried',) if view.cognition=='native-v0/3' else ('carried','pass_in_flight')
     return (view.hunt_cleared and t.role=='field' and
             t.team==view.signals.passive_team and view.signals.ball_status in statuses and
@@ -408,7 +408,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             if closer <= 1 and banned != 'press' and not keeper_protected(c, view):
                 # Base A (M1) defender decision: pursuit or the continuous lane option
                 for k, t, a, v in _m1_options(view, fresh, carrier, 'defender',
-                                              enable_lane_option=True, defender_judgment=view.judgment):
+                                              enable_lane_option=True, defender_judgment=.7):
                     if k == 'move':
                         options.append(('press', t, (round(_clamp(a[0], 1, 99), 3), round(_clamp(a[1], 1, 99), 3)),
                                         round(v - 7., 6)))
@@ -492,7 +492,7 @@ def view_from_json(d):
 
 def decide(view, belief):
     """All Native semantic commands. The view names its own decision set."""
-    if view.cognition == 'native-v0/3':
+    if view.cognition in ('native-v0/3','native-rb/3'):
         from . import cognition_v3
         return cognition_v3.decide(view, belief)
     return decide_v2(view, belief)
@@ -504,7 +504,7 @@ def decide_v2(view, belief):
     def choice(kind,aim=None,target=None,aux=None,contact=None):
         did=view.observation_id+'/decision'
         intent=ActionIntent(did+'/intent',did,view.athlete,kind,target,aim,None,None,
-                            view.delivered_ms,speed=min(27.,view.max_throw_speed),height=1.6,
+                            view.delivered_ms,speed=(min(80.,.5*view.max_throw_speed) if view.cognition=='native-rb/3' else min(27.,view.max_throw_speed)),height=1.6,
                             auxiliary=aux,contact=contact,record_id=view.restart[0] if view.restart else None,period=view.signals.period)
         return intent,{'decision_id':did,'observation_id':view.observation_id,
                        'belief_revision':belief.revision,'selected':[kind,target,aim,0.],
@@ -574,7 +574,7 @@ def decide_v2(view, belief):
     intent,record=_base_decide(view,belief)
     # PLACEHOLDER: expose release speed and height as athlete-owned inputs.
     # The semantic pass already leads the believed receiver in the B1 policy.
-    intent=replace(intent,speed=min(27.,view.max_throw_speed),height=1.6,
+    intent=replace(intent,speed=(min(80.,.5*view.max_throw_speed) if view.cognition=='native-rb/3' else min(27.,view.max_throw_speed)),height=1.6,
                    contact='wrap' if intent.kind=='press' else None,period=view.signals.period)
     if intent.kind=='pass' and intent.aim and not in_own_zone(view.team,view.x,view.y,view) and in_own_zone(view.team,*intent.aim,view):
         return choice('retain')

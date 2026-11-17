@@ -39,7 +39,7 @@ def _clamp(v, lo, hi):
 def _intent(view, belief, kind, aim=None, target=None, contact=None, options=None, why=None):
     did = view.observation_id + '/decision'
     intent = C.ActionIntent(did + '/intent', did, view.athlete, kind, target, aim, None, None,
-                            view.delivered_ms, speed=min(27., view.max_throw_speed), height=1.6,
+                            view.delivered_ms, speed=(min(80.,.5*view.max_throw_speed) if view.cognition=='native-rb/3' else min(27., view.max_throw_speed)), height=1.6,
                             contact=contact, record_id=view.restart[0] if view.restart else None,
                             period=view.signals.period)
     record = {'decision_id': did, 'owner': view.athlete, 'role': view.role,

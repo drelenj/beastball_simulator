@@ -81,7 +81,7 @@ def test_at5_monotone_and_at6_independence():
         before=mapped_values(base);after=mapped_values(changed)
         diff={k for k in before if before[k]!=after[k]}
         expected={
-          'speed':{'maximum_speed','acceleration'},'agility':{'agility','acceleration','braking','turning'},
+          'speed':{'maximum_speed'},'agility':{'agility','braking','turning'},
           'strength':{'strength'},'balance':{'balance'},'stamina':{'endurance'},'tackling':{'tackling'},
           'blocking':{'blocking'},'contact_resistance':{'contact_resistance'},
           'ball_handling':{'ball_handling'},'catching':{'catching'},'awareness':{'awareness'},
@@ -131,8 +131,8 @@ def test_at11_labels_never_read_and_digest_identical():
     assert load_rows(changed,'A').digest==plain.digest
 
 
-def test_real_generator_export_is_confirmed_not_silently_reinterpreted():
-    with pytest.raises(RosterError,match='column id: missing required column'):
+def test_real_generator_export_with_obsolete_kick_rating_is_rejected():
+    with pytest.raises(RosterError,match='column kick_power: unknown column'):
         load_csv('Ala_Lady_Reds_generated.csv','A')
 
 

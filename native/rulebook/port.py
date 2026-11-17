@@ -12,13 +12,20 @@ class RulebookView(C.AthleteView):
 from .config import RulebookConfig
 
 class RulebookPort(NativePort):
-    def __init__(self,seed=1,config=None,policies=None,plumbing=True):
-        super().__init__(seed,config or RulebookConfig(),policies,plumbing)
+    def __init__(self,seed=1,config=None,policies=None,plumbing=True,rosters=None):
+        super().__init__(seed,config or RulebookConfig(),policies,plumbing,rosters=rosters)
         self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values()}
         self.last_reset_period=1
         self.m.e.rb_port=self
+        if self.attr:
+            self.m.e.rb_designated={team:{role:tuple(q.id for q in self.m.s.players.values() if q.team==team and q.role==role)
+                                         for role in ('keeper','archer')} for team in ('A','B')}
         for team in ("A","B"):
-            assert self.m.e.rb_substitute(None,team+"12",setup=True)
+            bench=next(p for p in self.m.s.players.values() if p.team==team and not p.active and p.role=='field')
+            assert self.m.e.rb_substitute(None,bench.id,setup=True)
+            if self.attr:
+                reserve=next(p for p in self.m.s.players.values() if p.team==team and not p.active and p.role=='keeper')
+                self.m.e.rb_reserves[team]=reserve.id
         self.platform_motor(0)
 
     @property
