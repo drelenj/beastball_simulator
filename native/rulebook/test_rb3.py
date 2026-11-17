@@ -92,6 +92,16 @@ def test_restart_watchdog_resets_on_passive_possession_change():
     assert len(p._restart_watch)==1 and p._restart_watch[0]['team']=='B'
 
 
+def test_restart_watchdog_reads_transient_direct_possession_from_ledger():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
+    for n in range(2):
+        e.award('A',40.+n*.2,20.,'fixture',normalize=False);p._watch_restart_progress()
+    e.possession.ledger.append(dict(t_ms=e.s.now,row='R-03',event='direct_possession',team='A',player='A:p0'))
+    e.possession.dp_team=None
+    e.award('A',40.4,20.,'fixture',normalize=False);p._watch_restart_progress()
+    assert len(p._restart_watch)==1
+
+
 def test_second_same_team_restart_chain_foul_is_corrected_without_retake():
     cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
     s.phase=p.types.Phase.LIVE;s.owner='B';e.possession.pp='B';s.ball.carrier=None

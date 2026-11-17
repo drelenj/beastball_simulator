@@ -20,6 +20,7 @@ class RulebookPort(NativePort):
         self._restart_watch=[]
         self._restart_watch_id=None
         self._restart_watch_pp=None
+        self._restart_watch_ledger=0
         self.m.e.rb_port=self
         if self.attr:
             self.m.e.rb_designated={team:{role:tuple(q.id for q in self.m.s.players.values() if q.team==team and q.role==role)
@@ -68,8 +69,19 @@ class RulebookPort(NativePort):
         dead-ball awards do not disguise a restart cycle as progress.
         """
         s,e=self.m.s,self.m.e
+        ledger=e.possession_history+e.possession.ledger
+        new_rows=ledger[self._restart_watch_ledger:]
+        self._restart_watch_ledger=len(ledger)
+        # The possession ledger is authoritative. Direct possession may be
+        # established and lapse again inside one physical step, so sampling
+        # only the end-state would falsely call completed play a recurrence.
+        if any(row['event']=='direct_possession' for row in new_rows):
+            self._restart_watch.clear()
         direct=e.possession.dp_team
         passive=e.possession.pp or s.owner
+        if any(row['event']=='passive_possession' and self._restart_watch_pp is not None
+               and row.get('team')!=self._restart_watch_pp for row in new_rows):
+            self._restart_watch.clear()
         if self._restart_watch_pp is not None and passive!=self._restart_watch_pp:
             self._restart_watch.clear()
         if direct is not None and s.ball.carrier is not None and s.phase==self.types.Phase.LIVE:
