@@ -87,6 +87,14 @@ def measure(p,carry_events,foul_events,arrow_attempts):
             adjacent=not any(row['t_ms']>prior['t_ms'] and row['t_ms']<=goal['t_ms'] and row['team']!=team for row in passive)
         goal_sources[team]['within_one_possession_of_restart' if adjacent else 'live_play_after_possession_change']+=1
         goal_sources[team]['points_within_one_possession_of_restart' if adjacent else 'points_live_play_after_possession_change']+=goal['data']['points']
+    shot_bands={}
+    edges=(('under10',p.config.release_bands[0][1]),('10_to20',p.config.release_bands[1][1]),('20plus',p.config.release_bands[2][1]))
+    for team in ('A','B'):
+        shot_bands[team]={}
+        for band,value in edges:
+            attempts=e.rb_bands[team][band+'_attempts'];goals=e.rb_bands[team][band+'_goals'];points=goals*value
+            shot_bands[team][band]=dict(attempts=attempts,goals=goals,points=points,
+                                        points_per_attempt=points/attempts if attempts else 0.)
 
     # Carry attempts begin on first controlled entry inside the 20 m scoring
     # zone. Classify the first terminating witness after that entry.
@@ -113,7 +121,11 @@ def measure(p,carry_events,foul_events,arrow_attempts):
         foul_rows.append(item)
         if row['dq']:dq_rows.append(item)
     return dict(possessions={t:dict(count=possessions[t],with_attempt=attempted[t],ending_in_attempt=terminal[t],share_ending_in_attempt=terminal[t]/possessions[t] if possessions[t] else None) for t in ('A','B')},
-        points=scores,goals_by_source={t:dict(goal_sources[t]) for t in ('A','B')},
+        points=scores,shot_bands=shot_bands,
+        points_by_source={t:dict(live_play_after_possession_change=goal_sources[t]['points_live_play_after_possession_change'],
+                                 within_one_possession_of_restart=goal_sources[t]['points_within_one_possession_of_restart'],
+                                 penalty_awards=scores[t]['penalty_awards']) for t in ('A','B')},
+        goals_by_source={t:dict(goal_sources[t]) for t in ('A','B')},
         carry_attempts={t:dict(attempts=e.rb_bands[t]['carry_attempts'],goals=e.rb_bands[t]['carry_goals'],outcomes=dict(carry_outcomes[t])) for t in ('A','B')},
         groundings=sum(r['event']=='c3_grounding' for r in e.log),
         restart_timeouts=sum(v.endswith('_timeout') for v in e.restart_results.values()),
@@ -163,6 +175,7 @@ def job(spec):
         assert r['status']=='final' and r['restart_completion_ratio']==1.
         metrics=measure(p,carry,fouls,arrows)
         assert all(sum(metrics['points'][t].values())==r['score'][t] for t in ('A','B'))
+        assert all(sum(metrics['points_by_source'][t].values())==r['score'][t] for t in ('A','B'))
         out=dict(block=block,seed=seed,status='passed',score=r['score'],live_ms=r['live_ms'],config_digest=cfg.digest,trace_hash=r['trace_hash'],state_hash=r['state_hash'],metrics=metrics,runtime_s=round(time.monotonic()-started,2),restart_completion_ratio=r['restart_completion_ratio'])
     except Exception as exc:
         out=dict(block=block,seed=seed,status='failed',error=repr(exc),traceback=traceback.format_exc(),runtime_s=round(time.monotonic()-started,2))
