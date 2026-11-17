@@ -46,10 +46,30 @@ def test_repeated_dead_ball_foul_corrects_offender_without_retake_loop():
  assert e.restart_release('A1',(20,0,1),'A2')
  assert s.phase==p.types.Phase.LIVE
 
-def test_goal_line_toss_timeout_restarts_five_metres_out():
+def toss_timeout(team,x,y):
  p=RulebookPort(1);s,e=p.m.s,p.m.e
- e.award('A',0,50,'boundary',fresh=True,normalize=False)
- assert s.restart.kind=='toss' and s.restart.x==0
+ e.award(team,x,y,'boundary',fresh=True,normalize=False)
+ assert s.restart.kind=='toss'
  s.now=s.restart.created_at+5500;e.resolve_timers()
- assert s.restart.kind=='scrim' and s.restart.team=='B'
- assert s.restart.x==5 and s.ball.x==5
+ return p,s
+
+def test_goal_line_toss_timeout_restarts_at_own_40():
+ # Owner ruling 17 Nov 2026: end-line toss on B's own end (x=100, B attacks x=0): B restarts at its own 40, not 5 m out.
+ p,s=toss_timeout('A',100,50)
+ assert s.restart.kind=='scrim' and s.restart.team=='B' and s.restart.reason=='turnover'
+ assert s.ends['B']+s.attack_sign('B')*40==60 and s.restart.x==60 and s.ball.x==60 and s.restart.y==70
+ assert not any(r['data'].get('reason')=='goal_line_toss_timeout' for r in p.m.e.log if r['event']=='restart_awarded')
+
+def test_goal_line_toss_timeout_on_attacked_end_line_stays_at_spot():
+ # Same rule, end line B attacks (x=0): the spot is closer to B's attack goal than its own 40, so it stays (0.5 m in).
+ p,s=toss_timeout('A',0,50)
+ assert s.restart.kind=='scrim' and s.restart.team=='B' and s.restart.reason=='turnover'
+ assert (s.restart.x,s.restart.y)==(.5,70) and s.ball.x==.5
+
+def test_side_toss_timeout_beyond_own_40_stays_at_spot():
+ p,s=toss_timeout('A',20,0)      # B attacks x=0; spot x=20 is already past B's own 40 (x=60)
+ assert s.restart.kind=='scrim' and s.restart.team=='B' and (s.restart.x,s.restart.y)==(20,.5)
+
+def test_side_toss_timeout_short_of_own_40_moves_to_40():
+ p,s=toss_timeout('A',80,100)    # spot x=80 is short of B's own 40 (x=60)
+ assert s.restart.kind=='scrim' and s.restart.team=='B' and (s.restart.x,s.restart.y)==(60,99.5)

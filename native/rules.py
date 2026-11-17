@@ -392,12 +392,10 @@ def install(CO, cfg):
                 self.native_sync();return
             if r.kind=='toss' and s.now>=r.created_at+5500:
                 self.close_restart('toss_timeout')
-                if hasattr(self,'rb') and r.x in (0.,100.):
-                    # RB-2 ratified goal-line toss-timeout placement: a
-                    # scrimmage five metres into the field, not the 40 m
-                    # turnover normalization used for ordinary turnovers.
-                    self.award(s.other(r.team),5. if r.x==0. else 95.,r.y,'goal_line_toss_timeout',fresh=True,normalize=False)
-                else:self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True,normalize=False)
+                # Owner ruling 17 Nov 2026 (PROVISIONAL, supersedes RB-2 goal-line placement):
+                # every toss timeout (end line and side boundary) is a turnover scrimmage at the
+                # other team's own 40 or the spot, whichever is closer to the goal it attacks.
+                self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True,normalize=False)
             elif s.now>=r.snap_deadline:
                 self.close_restart('snap_timeout');self.offside('offence')
         elif s.phase==P.FLIGHT:
