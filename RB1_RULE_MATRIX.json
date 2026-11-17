@@ -1,7 +1,7 @@
 {
-  "schema": "rb1-rule-matrix/1",
-  "authority": "DreLen ratified Rulebook and addendum2026-11-14",
-  "profile": "native-rb/1",
+  "schema": "rb2-rule-matrix/2",
+  "authority": "DreLen ratified Rulebook, addenda, and banded measurement basis through2026-11-16",
+  "profile": "native-rb/2-banded",
   "status": "IMPLEMENTED+tested functional conformance, with explicit placeholders; not owner acceptance",
   "rows": [
     {
@@ -55,16 +55,16 @@
     },
     {
       "id": "RS2",
-      "rule": "Flat default, carry5 in banded, own goal2 including Keeper",
+      "rule": "Banded working canon: carry5 and own goal2 including Keeper",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_scoring.py::test_flat_carry_banded_carry_and_keeper_own",
+      "test": "native/rulebook/test_scoring.py::test_banded_carry_five_and_keeper_own_two",
       "note": "Forced scenario only; no full RB match proof."
     },
     {
       "id": "RS3",
-      "rule": "P4/OT defensive-minor award is2 flat or3 banded; half award1 before P4",
+      "rule": "Defensive-minor award is1 before P4 and3 in P4/OT",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_authorities.py::test_flat_period_four_full_goal_award_is_two and test_bands_and_carry_own_awards",
+      "test": "native/rulebook/test_authorities.py::test_bands_and_carry_own_awards",
       "note": "Forced scenario only; no full RB match proof."
     },
     {
@@ -363,10 +363,10 @@
     },
     {
       "id": "RS9",
-      "rule": "Release-distance attempts are shot-only; carries have an independent counter",
+      "rule": "Release-distance attempts/goals/points are shot-only; carries have an independent counter",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_scoring.py::test_restart_throw_is_an_attempt_once_at_actual_release and test_interception_carry_is_not_stale_own_goal",
-      "note": "Report output is shot_bands, carry_attempts, own_goals and release_ledger."
+      "test": "native/rulebook/test_scoring.py::test_scoring_report_has_points_and_points_per_attempt_by_shot_band_and_carry and test_non_shot_throw_can_score_but_does_not_enter_shot_band_measurement",
+      "note": "shot_bands includes points and points_per_attempt; carry_attempts, own_goals and release_ledger are separate."
     },
     {
       "id": "RS10",
@@ -402,6 +402,13 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_check_paths.py::test_check_tools_default_to_temp_not_committed_evidence",
       "note": "Committed evidence is not overwritten by default."
+    },
+    {
+      "id": "RS11",
+      "rule": "All current Rulebook runners and measurement harnesses use only the provisional banded basis",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_default_runner_records_complete_banded_scoring_basis",
+      "note": "Flat scoring remains only in explicitly labelled historical artifacts and is not measurement evidence."
     }
   ],
   "canon_updates": [

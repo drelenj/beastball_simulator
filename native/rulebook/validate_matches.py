@@ -11,6 +11,7 @@ def match(job):
  seed,label=job;start=time.perf_counter()
  try:
   r,p=run_match(seed,progress=lambda row:print(json.dumps(dict(validation=label,**row)),flush=True))
+  assert p.config.scoring=='banded' and r['rulebook']['scoring_basis']['mode']=='banded'
   p.assert_invariants();e=p.m.e
   assert r['status']=='final' and r['live_ms']>=2400000
   ids={i.intent_id for i in p.intents}
@@ -35,7 +36,7 @@ def main():
  assert len(budget['attempts'])+len(seeds)<=budget['cap']
  source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();jobs=[];rows=[]
  for n,seed in enumerate(seeds):
-  label=f'{a.label}-seed{seed}-{n}';jobs.append((seed,label));row=dict(id=len(budget['attempts'])+1,profile='native-rb/1',seed=seed,label=label,purpose='RB functional validation',status='reserved',commit=source);budget['attempts'].append(row);rows.append(row)
+  label=f'{a.label}-seed{seed}-{n}';jobs.append((seed,label));row=dict(id=len(budget['attempts'])+1,profile='native-rb/2-banded',seed=seed,label=label,purpose='RB banded functional validation',status='reserved',commit=source);budget['attempts'].append(row);rows.append(row)
  path.write_text(json.dumps(budget,indent=2)+'\n')
  if a.workers==1:results=[match(job) for job in jobs]
  else:

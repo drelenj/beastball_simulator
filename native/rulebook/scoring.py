@@ -1,4 +1,4 @@
-"""Provisional configurable bands; default flat. Shot bands exclude passes."""
+"""Working-canon provisional banded scoring. Shot bands exclude passes."""
 import math
 from collections import Counter
 
@@ -53,7 +53,8 @@ def install(co,cfg):
   origin=getattr(b,'native_release_point',(b.x,b.y));distance=math.hypot(origin[0]-s.attack_goal(scoring),origin[1]-50)
   key='own' if own else 'carry' if carry else getattr(b,'rb_release_band',band(distance))
   if carry:self.rb_bands[scoring]['carry_attempts']+=1
-  self.rb_bands[scoring][key+'_goals']+=1
+  if own or carry or getattr(b,'rb_release_band',None) is not None:
+   self.rb_bands[scoring][key+'_goals']+=1
   if carry:self.native_stats[scoring]['carries']+=1
   elif not own:self.release_successes[scoring][int(distance)]+=1
   self.add_score(scoring,self.rb.points(carry,distance,own),'own' if own else 'carry' if carry else 'release',release_distance=None if carry else distance,band=key)

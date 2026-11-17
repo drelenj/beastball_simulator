@@ -96,7 +96,6 @@ class Authorities:
 
     def points(self,carry=False,distance=0.,own=False,award=False):
         if own:return self.config.own_goal_points
-        if award:return 1 if self.period<=3 else 2 if self.config.scoring=='flat' else self.config.full_award_points
-        if self.config.scoring=='flat':return 2
+        if award:return 1 if self.period<=3 else self.config.full_award_points
         if carry:return self.config.carry_points
         return next(points for edge,points in self.config.release_bands if edge is None or distance<edge)

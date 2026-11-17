@@ -1,4 +1,3 @@
-from dataclasses import replace
 from types import SimpleNamespace
 import pytest
 from .config import RulebookConfig
@@ -13,18 +12,17 @@ def player():return SimpleNamespace(id='A0',team='A',role='field',minor_count=0,
 def test_legacy_digest_unchanged():
     assert NativeConfig().digest=='f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035'
     assert RulebookConfig().digest!=NativeConfig().digest
+    assert RulebookConfig().version=='native-rb/2' and RulebookConfig().scoring=='banded'
+    pocket=dict(RulebookConfig().pocket_settings)
+    assert {k:pocket[k] for k in ('inner_zone_radius','inner_points','release_points','outside_points','carry_value')}=={
+        'inner_zone_radius':10.,'inner_points':2,'release_points':3,'outside_points':4,'carry_value':5,
+    }
 
 def test_bands_and_carry_own_awards(law):
-    assert law.points(carry=True)==2
-    law.config=replace(law.config,scoring='banded')
     assert [law.points(distance=d) for d in (0,9.999,10,19.999,20,100)]==[2,2,3,3,4,4]
     assert law.points(carry=True)==5 and law.points(own=True)==2
     assert law.points(award=True)==1
     law.enter_period(4);assert law.points(award=True)==3
-
-def test_flat_period_four_full_goal_award_is_two():
-    law=Authorities(RulebookConfig(scoring='flat'));law.enter_period(4)
-    assert law.points(award=True)==2
 
 @pytest.mark.parametrize('period,duration',[(2,120000),(3,600000),(4,120000),(5,180000),(6,60000)])
 def test_breaks(period,duration,law):

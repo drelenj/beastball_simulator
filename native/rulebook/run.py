@@ -8,22 +8,35 @@ from native.port import digest
 from .port import RulebookPort
 from .config import RulebookConfig
 
-def run_match(seed=1,config=None,max_steps=None,progress=None,plumbing=True):
- r,p=native_run(seed,config or RulebookConfig(),plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort)
+def scoring_report(e,cfg):
+ band_points={'under10':cfg.release_bands[0][1],'10_to20':cfg.release_bands[1][1],'20plus':cfg.release_bands[2][1]}
+ shot_bands={}
+ carries={}
+ own_goals={}
+ for team in ('A','B'):
+  shot_bands[team]={}
+  for band,value in band_points.items():
+   attempts=e.rb_bands[team][band+'_attempts'];goals=e.rb_bands[team][band+'_goals'];points=goals*value
+   shot_bands[team][band]=dict(attempts=attempts,goals=goals,points=points,success_rate=goals/attempts if attempts else 0.,points_per_attempt=points/attempts if attempts else 0.)
+  attempts=e.rb_bands[team]['carry_attempts'];goals=e.rb_bands[team]['carry_goals'];points=goals*cfg.carry_points
+  carries[team]=dict(attempts=attempts,goals=goals,points=points,success_rate=goals/attempts if attempts else 0.,points_per_attempt=points/attempts if attempts else 0.)
+  goals=e.rb_bands[team]['own_goals'];own_goals[team]=dict(goals=goals,points=goals*cfg.own_goal_points)
+ return shot_bands,carries,own_goals
+
+def run_match(seed=1,config=None,max_steps=None,progress=None,plumbing=True,policies=None):
+ r,p=native_run(seed,config or RulebookConfig(),policies=policies,plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort)
  e=p.m.e
  state=asdict(e.rb);state['timeout_triggers']=sorted(e.rb.timeout_triggers);state['injuries']=sorted(e.rb.injuries)
- shot_bands={t:{b:{'attempts':e.rb_bands[t][b+'_attempts'],'goals':e.rb_bands[t][b+'_goals'],'success_rate':e.rb_bands[t][b+'_goals']/max(1,e.rb_bands[t][b+'_attempts'])} for b in ('under10','10_to20','20plus')} for t in ('A','B')}
- carries={t:{'attempts':e.rb_bands[t]['carry_attempts'],'goals':e.rb_bands[t]['carry_goals']} for t in ('A','B')}
- own_goals={t:e.rb_bands[t]['own_goals'] for t in ('A','B')}
+ shot_bands,carries,own_goals=scoring_report(e,p.config)
  counts=dict(Counter(x['kind'] for x in e.rb.calls))
- r['rulebook']=dict(authorities=state,events=counts,shot_bands=shot_bands,carry_attempts=carries,own_goals=own_goals,release_ledger=e.rb_attempts,remaining_slots=e.rb_slots,equipment='PLACEHOLDER cylinder torso/thigh panels; lighter Archer kit has no gameplay effect')
+ basis=dict(mode='banded',carry=p.config.carry_points,throws={'under10':p.config.release_bands[0][1],'10_to20':p.config.release_bands[1][1],'20plus':p.config.release_bands[2][1]},half_goal=1,full_goal_award=p.config.full_award_points,own_goal=p.config.own_goal_points,provisional=True)
+ r['rulebook']=dict(scoring_basis=basis,authorities=state,events=counts,shot_bands=shot_bands,carry_attempts=carries,own_goals=own_goals,release_ledger=e.rb_attempts,remaining_slots=e.rb_slots,equipment='PLACEHOLDER cylinder torso/thigh panels; lighter Archer kit has no gameplay effect')
  r['trace_hash']=digest([r['trace_hash'],e.rb.calls,e.rb_attempts])
  r['state_hash']=digest([r['state_hash'],state,e.rb_slots,e.rb_pause,[(q.id,getattr(q,'rb_recover',None)) for q in p.m.s.players.values()]])
  return r,p
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--seed',type=int,default=1);ap.add_argument('--banded',action='store_true');ap.add_argument('--max-steps',type=int);ap.add_argument('--out',required=True)
- a=ap.parse_args();cfg=RulebookConfig(scoring='banded' if a.banded else 'flat')
- r,_=run_match(a.seed,cfg,a.max_steps,progress=lambda x:print(json.dumps(x),flush=True))
+ ap=argparse.ArgumentParser();ap.add_argument('--seed',type=int,default=1);ap.add_argument('--max-steps',type=int);ap.add_argument('--out',required=True)
+ a=ap.parse_args();r,_=run_match(a.seed,RulebookConfig(),a.max_steps,progress=lambda x:print(json.dumps(x),flush=True))
  Path(a.out).parent.mkdir(parents=True,exist_ok=True);Path(a.out).write_text(json.dumps(r,indent=2,sort_keys=True)+'\n');print(json.dumps({k:r[k] for k in ('status','trace_hash','state_hash','live_ms')},sort_keys=True))
 if __name__=='__main__':main()

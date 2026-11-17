@@ -4,7 +4,7 @@ Engine/rules source freeze:881d212 on codex/rulebook-1, based on Native v0/2 a1b
 
 The owner revoked the pre-live5m marking foul on2026-11-15. It has been removed without replacement. Keeper-zone defender marking remains5m. Existing readiness ordering and dead-progress watchdog remain. Repeated dead-ball fouls receive procedural correction/warning without repeat retakes/exclusions.
 
-Config:RulebookConfig(), native-rb/1, flat default. RulebookConfig(scoring='banded') enables provisional configured bands; no environment flags.
+Config: `RulebookConfig()`, `native-rb/2`, always uses the provisional banded measurement basis: carry5; throws2/3/4; half goal1; full-goal award3; own goal2. Flat scoring is historical only and is not accepted by this configuration or used for measurement.
 
 Commands:
 - `.venv/bin/python -m pytest -q b1 native`

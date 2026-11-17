@@ -17,6 +17,11 @@ from .params import PolicyParams, DEFAULT
 
 FULL_PERIOD_S = 600
 
+def measurement_config():
+    """Current owner-directed measurement basis; legacy Native is replay-only."""
+    from ..rulebook.config import RulebookConfig
+    return RulebookConfig()
+
 
 def job(seed, period_s, label_a, params_a, label_b, params_b):
     return {'id': f'{seed}:{period_s}:{label_a}>{label_b}', 'seed': int(seed), 'period_s': int(period_s),
@@ -41,14 +46,13 @@ def held_out_jobs(training_seeds, held_out_seeds, label_a, params_a, label_b, pa
 def play(j):
     if j['period_s'] != FULL_PERIOD_S:
         raise ValueError('Native harness requires full canon duration')
-    from ..config import NativeConfig
-    config = NativeConfig()
+    config = measurement_config()
     t = time.perf_counter()
     row = {k: j[k] for k in ('id', 'seed', 'period_s', 'label_A', 'label_B', 'params_A', 'params_B')}
     row['proxy'] = j['period_s'] != FULL_PERIOD_S
     row.update(config=config.record(), config_digest=config.digest)
     try:
-        from ..run import run_match
+        from ..rulebook.run import run_match
         try:
             from .metrics import MetricsCollector
             mc = MetricsCollector()
@@ -56,6 +60,7 @@ def play(j):
             mc = None
         pol = {'A': PolicyParams.from_dict(j['params_A']), 'B': PolicyParams.from_dict(j['params_B'])}
         r, port = run_match(j['seed'], config=config, policies=pol)
+        assert r['rulebook']['scoring_basis']['mode']=='banded'
         sc = r['score']
         res = getattr(port.m.s, 'result', None) or {}
         row.update(status=r['status'], score=sc, method=res.get('method'),

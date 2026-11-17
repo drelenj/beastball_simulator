@@ -5,6 +5,8 @@ OWNER BRIEFING
 4. Blocking: none observed in final validation. The former seed2 period-reset failure is fixed; failed/stopped attempts remain logged. Budget17/20 including conservative reservations; no further batch is needed or planned.
 5. Recommended: Claude independently reviews the source/evidence, then DreLen decides acceptance. Do not infer gameplay quality from this functional validation.
 
+HISTORICAL EVIDENCE NOTICE (owner ruling16 Nov2026): this RB-1 report used the retired flat default and is not valid measurement evidence for the working-canon scoring basis. It is retained for provenance only. Current measurement uses `native-rb/2` banded scoring exclusively; see `RB2_REPORT.md`.
+
 Branch:codex/rulebook-1. Engine/rules source:881d212e372b312d5e0fec73653cfc6a7f6876b1. Native v0/2 base:a1b131379845322bbc9970ad667a6d68dec10dd7. Report/evidence commit follows this source freeze.
 
 Owner canon update:2026-11-15 pre-live marking foul/witness/sanction/tests are removed, without a replacement. marking_distance=5 remains for Keeper-zone defender residence. See the committed owner record; no new sport rule was invented.
@@ -102,8 +104,8 @@ Conformance matrix (exact collected references):
 | RT5 Each simultaneous timeout trigger used once | IMPLEMENTED+tested | native/rulebook/test_authorities.py::test_each_simultaneous_timeout_trigger_can_be_consumed_once |
 | RT6 Whole300s first OT; full/half/award scores end sudden death | IMPLEMENTED+tested | native/rulebook/test_clocks.py::test_whole_first_overtime_then_any_score_sudden_death |
 | RS1 Provisional release bands and exact10m/20m boundaries | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_real_release_band_and_goal |
-| RS2 Flat default, carry5 in banded, own goal2 including Keeper | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_flat_carry_banded_carry_and_keeper_own |
-| RS3 Flat P4/OT award2; banded award3; half1 before P4 | IMPLEMENTED+tested | native/rulebook/test_authorities.py::test_flat_period_four_full_goal_award_is_two and test_bands_and_carry_own_awards |
+| RS2 Banded working canon: carry5 and own goal2 including Keeper | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_banded_carry_five_and_keeper_own_two |
+| RS3 Full-goal award3 in P4/OT; half1 before P4 | IMPLEMENTED+tested | native/rulebook/test_authorities.py::test_bands_and_carry_own_awards |
 | RS4 Restart throws recorded once at actual release | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_restart_throw_is_an_attempt_once_at_actual_release |
 | RS5 Keeper cannot score at opposing goal; official no-goal ruling | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_keeper_opponent_goal_is_no_goal_ruling |
 | RS6 Bounced shot uses original release-distance band | IMPLEMENTED+tested | native/rulebook/test_scoring.py::test_bounced_shot_keeps_original_release_band |

@@ -1,11 +1,11 @@
-from dataclasses import replace
 import pytest
 from .port import RulebookPort
 from .config import RulebookConfig
+from .run import scoring_report
 
 @pytest.mark.parametrize('distance,points',[(9.999,2),(10,3),(19.999,3),(20,4)])
 def test_real_release_band_and_goal(distance,points):
- p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
  s.owner='A';s.players['A0'].x=100-distance;s.players['A0'].y=50
  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=100-distance,y=50,z=1.5,scoring=True)
  e.follow_carrier();s.players['A0'].x+=(100-distance)-s.ball.x
@@ -13,12 +13,11 @@ def test_real_release_band_and_goal(distance,points):
  assert e.goal('B');assert s.score['A']==points
  assert e.rb_attempts[-1]['distance']==pytest.approx(distance)
 
-def test_flat_carry_banded_carry_and_keeper_own():
- for mode,points in [('flat',2),('banded',5)]:
-  p=RulebookPort(1,replace(RulebookConfig(),scoring=mode));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
-  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=101,y=50,z=1.5,scoring=True)
-  assert e.goal('B') and s.score['A']==points
- p=RulebookPort(1,replace(RulebookConfig(),scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE
+def test_banded_carry_five_and_keeper_own_two():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=101,y=50,z=1.5,scoring=True)
+ assert e.goal('B') and s.score['A']==5
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE
  s.ball=p.types.Ball(mode=p.types.BallMode.SHOT,last_releaser='A10',x=-1,y=50,z=1.5,scoring=True)
  assert e.goal('A') and s.score['B']==2
 
@@ -42,7 +41,7 @@ def test_keeper_opponent_goal_is_no_goal_ruling():
  assert not any(c['kind']=='goal' for c in e.rb.calls)
 
 def test_bounced_shot_keeps_original_release_band():
- p=RulebookPort(1,RulebookConfig(scoring='banded'));s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE
  s.owner='A';s.players['A0'].x,s.players['A0'].y=75,50
  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=75,y=50,z=1.5,scoring=True)
  assert e.release('A0',(25,0,-30),'shot')
@@ -53,7 +52,7 @@ def test_bounced_shot_keeps_original_release_band():
  assert e.rb_bands['A']['20plus_attempts']==e.rb_bands['A']['20plus_goals']==1
 
 def test_interception_carry_is_not_stale_own_goal():
- p=RulebookPort(1,RulebookConfig(scoring='banded'));s,e=p.m.s,p.m.e
+ p=RulebookPort(1);s,e=p.m.s,p.m.e
  s.phase=p.types.Phase.LIVE;s.owner='B';e.possession.pp='B'
  passer=s.players['B0'];interceptor=s.players['A0'];passer.x=passer.y=50
  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=passer.id,x=50,y=50,z=passer.hand_height,scoring=True)
@@ -68,7 +67,7 @@ def test_interception_carry_is_not_stale_own_goal():
  assert e.rb_bands['A']['own_goals']==0
 
 def test_defender_deflection_of_shot_is_ordinary_shooter_goal():
- p=RulebookPort(1,RulebookConfig(scoring='banded'));s,e=p.m.s,p.m.e
+ p=RulebookPort(1);s,e=p.m.s,p.m.e
  s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
  shooter=s.players['A0'];defender=s.players['B0'];shooter.x,shooter.y=75,50
  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=shooter.id,x=75,y=50,z=shooter.hand_height,scoring=True)
@@ -86,3 +85,32 @@ def test_goal_publishes_one_official_ruling_and_shot_counter_excludes_passes():
  assert e.goal('B')
  after=len([r for r in e.rb.calls if r['kind'] in ('goal','no_goal')])
  assert after-before==1
+
+def test_scoring_report_has_points_and_points_per_attempt_by_shot_band_and_carry():
+ p=RulebookPort(1);e=p.m.e
+ e.rb_bands['A'].update(under10_attempts=4,under10_goals=2,carry_attempts=3,carry_goals=1,own_goals=1)
+ bands,carries,own=scoring_report(e,p.config)
+ assert bands['A']['under10']=={'attempts':4,'goals':2,'points':4,'success_rate':.5,'points_per_attempt':1.}
+ assert carries['A']['attempts']==3 and carries['A']['points']==5
+ assert carries['A']['points_per_attempt']==pytest.approx(5/3)
+ assert own['A']=={'goals':1,'points':2}
+
+def test_non_shot_throw_can_score_but_does_not_enter_shot_band_measurement():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
+ q=s.players['A0'];q.x,q.y=75,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=q.id,x=75,y=50,z=q.hand_height,scoring=True)
+ assert e.release(q.id,(25,0,1),'pass','A1')
+ s.ball.x,s.ball.y,s.ball.z=101,50,1.5
+ assert e.goal('B') and s.score['A']==4
+ assert e.rb_bands['A']['20plus_attempts']==e.rb_bands['A']['20plus_goals']==0
+
+def test_default_runner_records_complete_banded_scoring_basis():
+ from .run import run_match
+ result,port=run_match(1,max_steps=1)
+ assert port.config.version=='native-rb/2' and port.config.scoring=='banded'
+ assert result['rulebook']['scoring_basis']=={
+  'mode':'banded','carry':5,'throws':{'under10':2,'10_to20':3,'20plus':4},
+  'half_goal':1,'full_goal_award':3,'own_goal':2,'provisional':True,
+ }
+ from native.emergence.harness import measurement_config
+ assert measurement_config().version=='native-rb/2' and measurement_config().scoring=='banded'
