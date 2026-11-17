@@ -98,9 +98,11 @@ def test_rb31_collector_accepts_structured_carry_events():
     from .rb31_soak import measure
     cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
     e.rb_bands['A']['carry_attempts']=1
-    result=measure(p,[dict(t_ms=0,team='A',player='A:p0',x=80.,y=50.)],[],[])
+    arrows=[dict(t_ms=0,player='A:p20',team='A',legal=True,arrow=1,outcome='arrow_release')]
+    result=measure(p,[dict(t_ms=0,team='A',player='A:p0',x=80.,y=50.)],[],arrows)
     assert result['carry_attempts']['A']['attempts']==1
     assert result['carry_attempts']['A']['outcomes']=={'other_or_match_end':1}
+    assert result['arrows_by_archer']['A:p20']=={'released_no_impact':1}
 
 
 @pytest.mark.parametrize('name',INERT_RATINGS)

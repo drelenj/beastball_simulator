@@ -70,9 +70,9 @@ def measure(p,carry_events,foul_events,arrow_attempts):
         if not attempt['legal']:
             counts[attempt['outcome']]+=1;continue
         outcomes=arrow_log.get(attempt['arrow'],())
-        terminal=next((x for x in ('freeze','ball_impact','inert_impact','stopped') if x in outcomes),
-                      'geometry_impact' if 'geometry_impact' in outcomes else 'released_no_impact')
-        counts[terminal]+=1
+        arrow_outcome=next((x for x in ('freeze','ball_impact','inert_impact','stopped') if x in outcomes),
+                           'geometry_impact' if 'geometry_impact' in outcomes else 'released_no_impact')
+        counts[arrow_outcome]+=1
     arrows={pid:dict(sorted(counts.items())) for pid,counts in sorted(archer_outcomes.items())}
 
     # Goal source: a goal is restart-adjacent only when the scoring team owns
