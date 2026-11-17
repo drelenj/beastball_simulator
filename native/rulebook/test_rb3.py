@@ -127,11 +127,36 @@ def test_rb3_keeps_rb21_own_flight_and_failed_carry_measurement():
     assert e.rb_bands['A']['carry_attempts']==1 and e.rb_bands['A']['carry_goals']==0
 
 
+def test_rb3_f2_deflection_and_f5_defender_hold():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
+    s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
+    a=s.players['A:p0'];b=s.players['B:p0'];a.x,a.y=75.,50.
+    s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=a.id,x=75.,y=50.,z=a.hand_height,scoring=True)
+    assert e.release(a.id,(25.,0.,1.),'shot');b.x,b.y=s.ball.x,s.ball.y;e.touch(b.id,True)
+    s.ball.x,s.ball.y,s.ball.z=101.,50.,1.5
+    assert e.goal('B') and s.score['A']==4 and e.rb_bands['A']['own_goals']==0
+    s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A';s.tackle_count=0
+    e.foul('B:p1','A:p1','holding')
+    assert s.score['A']==5 and s.tackle_count==0
+
+
+@pytest.mark.parametrize('distance,points',[(9.999,2),(10.,3),(19.999,3),(20.,4)])
+def test_rb3_banded_shot_goals(distance,points):
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
+    s.phase=p.types.Phase.LIVE;s.owner='A';e.rb_hunt_running=True
+    a=s.players['A:p0'];a.x,a.y=100-distance,50.
+    s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=a.id,x=a.x,y=50.,z=a.hand_height,scoring=True)
+    e.follow_carrier();a.x+=(100-distance)-s.ball.x
+    assert e.release(a.id,(25.,0.,1.),'shot')
+    s.ball.x,s.ball.y,s.ball.z=101.,50.,1.5
+    assert e.goal('B') and s.score['A']==points
+
+
 def test_nbl_adapter_selects_independent_franchises_and_garvian_giant():
     openpyxl=pytest.importorskip('openpyxl')
     from native.nbl_roster import load_nbl_workbook
     path='audit/arcade/morphology/NBL_2026-27_Opening_Night_Rosters_CANON_OVR_morphology_physical.xlsx'
-    blob=subprocess.check_output(['git','show','d85e790:'+path])
+    blob=subprocess.check_output(['git','show','81f92e3:'+path])
     rs=load_nbl_workbook(io.BytesIO(blob),('Garvian Guardians','Ala Apex'))
     for team in ('A','B'):
         assert len(rs[team].athletes)==22
@@ -151,8 +176,30 @@ def test_nbl_adapter_selects_independent_franchises_and_garvian_giant():
     p.assert_invariants()
 
 
-def test_nbl_one_franchise_lacks_the_required_second_keeper():
+def test_nbl_serpents_have_two_keepers():
     pytest.importorskip('openpyxl')
     from native.nbl_roster import load_canon_nbl
-    with pytest.raises(RosterError,match='Güunlekia Serpents: fewer than 2 KPR'):
-        load_canon_nbl(('Güunlekia Serpents','Ala Apex'))
+    rs=load_canon_nbl(('Güunlekia Serpents','Ala Apex'))
+    assert sum(a.role=='keeper' for a in rs['A'].athletes)==2
+
+
+def test_updated_workbook_all_teams_and_named_canon_bodies():
+    openpyxl=pytest.importorskip('openpyxl')
+    from native.nbl_roster import load_canon_nbl
+    path='audit/arcade/morphology/NBL_2026-27_Opening_Night_Rosters_CANON_OVR_morphology_physical.xlsx'
+    blob=subprocess.check_output(['git','show','81f92e3:'+path])
+    sheet=openpyxl.load_workbook(io.BytesIO(blob),read_only=True,data_only=True)['All 712 Players']
+    data=iter(sheet.values);headers={name:i for i,name in enumerate(next(data))};lines=list(data)
+    teams=sorted({line[headers['Franchise']] for line in lines});assert len(teams)==26
+    for team in teams:
+        roster=load_canon_nbl((team,team))['A']
+        assert [sum(a.role==r for a in roster.athletes) for r in ('keeper','archer','field')]==[2,2,18]
+    archers=[row for row in lines if row[headers['Position']]=='ARC']
+    highest=max(archers,key=lambda row:row[headers['Opening-day OVR']])
+    assert (highest[headers['Player ID']],highest[headers['Opening-day OVR']])==('NBL24-11-12',99)
+    rs=load_canon_nbl(('Ala Marauders','Kasuf Bloodravens'))
+    kamasi=next(a for a in rs['A'].athletes if a.source_id=='NBL24-02-04')
+    assert kamasi.get('mass_kg')==461.8 and kamasi.get('reach_m')==3.833
+    cfg=RulebookConfigV3(roster_digests=(rs['A'].digest,rs['B'].digest))
+    p=RulebookPort(1,cfg,rosters=rs);q=p.m.s.players['A:NBL24-02-04']
+    assert q.a.mass==461.8 and q.a.reach==3.833

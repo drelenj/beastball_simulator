@@ -48,7 +48,7 @@ def load_nbl_workbook(source, franchises):
     return out
 
 
-def load_canon_nbl(franchises,ref='d85e790'):
+def load_canon_nbl(franchises,ref='81f92e3'):
     """Read the owner workbook from a local Git object without copying it into this branch."""
     import io
     import subprocess

@@ -60,7 +60,7 @@ RB-PH-13 measurement definition completed by RB-2.1: one carry attempt is the fi
 
 ## Native-RB/3 roster exception, 2026-11-17
 
-Q-RB3-1 (CANON): the owner workbook at `d85e790` has only one KPR for Güunlekia Serpents. The requested adapter selects two KPR per team, and A-4 permits a field player to take over only after both designated Keepers have become ineligible. No second designated KPR can be selected from this franchise. Should the owner amend the roster, designate a field player as the backup at setup, or allow a loaned Keeper? The adapter rejects this franchise pending the ruling; the other 25 franchises can be selected independently.
+Q-RB3-1 RESOLVED by owner workbook `81f92e3`: Zuberi Ibe is listed as a KPR for Güunlekia Serpents, which now has two eligible designated Keepers. All 26 franchises satisfy the 2 KPR, 2 ARC, 18 field selection shape.
 
 Q-FAB1-2 is resolved for native-rb/3: RB-2.1 retains team control during qualifying flight; the Archer's pass-in-flight predicate is restored for this profile. Historical native-v0/3 behavior remains versioned separately.
 
