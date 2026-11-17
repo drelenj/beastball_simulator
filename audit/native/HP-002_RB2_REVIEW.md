@@ -14,3 +14,11 @@ F1 PASS (stale own goal from interception covered and reproduced by test). F2 PA
 
 ## Verdict
 Conformance PASS WITH FINDINGS. Banded basis PASS. Honesty of report: PASS WITH FINDINGS (R2-3). Recommend a small RB-2.1 (R2-1, R2-2) before any banded full-match soak, since both distort the scoring counters that soak will report.
+
+## Addendum: RB-2.1 re-review (codex/rulebook-2 @ b4cd38d), 16 Nov 2026
+Verified by running: full suite 294 passed (23 subtests); four probes.
+- R2-1 CLOSED: A's pass deflected by B into A's goal = own goal, B credited 2, own_goals recorded. F2 intact: A's shot deflected into B's goal = ordinary 20+ band goal for A (4); mirror case for B also correct.
+- R2-2 CLOSED: carry attempt = first time per secure control a field carrier's body centre is inside the attacked 20 m zone; two updates inside = 1 attempt; leave and re-enter during the same control = still 1; a scored carry not seen inside records at the goal. Counter is now independent of goals (bounded run: 3 and 8 attempts, 0 goals).
+- R2-3 CLOSED: report, scoring basis, matrix and owner-questions ledger state the definition.
+Note (ENGINEERING, not a defect): the attempt definition is Codex's operational proxy (entering the 20 m zone with control), not canon. A fumble recovery inside the zone starts a new control and can count again. Report points per attempt with that definition in view.
+Not verified: B0 blob count, replay hashes, any full match (none run). Status: IMPLEMENTED and TESTED; not ACCEPTED.
