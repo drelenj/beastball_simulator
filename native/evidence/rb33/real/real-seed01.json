@@ -1,0 +1,93 @@
+{
+  "block": "real",
+  "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+  "end_ms": 11761520,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 54,
+    "frozen_contact": 44,
+    "zone_unmarked": 36
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 30,
+        "legal": 226,
+        "legal_rate": 0.8828125
+      },
+      "B": {
+        "illegal": 24,
+        "legal": 80,
+        "legal_rate": 0.7692307692307693
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 10,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 14,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 21,
+      "B": 9
+    },
+    "groundings": 83,
+    "points": {
+      "A": {
+        "penalty_awards": 28,
+        "play": 4
+      },
+      "B": {
+        "penalty_awards": 34,
+        "play": 4
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 567,
+        "ending_in_attempt": 4,
+        "share_ending_in_attempt": 0.007054673721340388,
+        "with_attempt": 9
+      },
+      "B": {
+        "count": 568,
+        "ending_in_attempt": 6,
+        "share_ending_in_attempt": 0.01056338028169014,
+        "with_attempt": 14
+      }
+    },
+    "restart_timeouts": 595
+  },
+  "name": "real-seed01",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 747,
+    "snap_timeout": 334,
+    "superseded:defence_minor": 9,
+    "superseded:major": 4,
+    "superseded:minor_count_plus": 14,
+    "toss_timeout": 261
+  },
+  "runtime_s": 200.11,
+  "score": {
+    "A": 32,
+    "B": 38
+  },
+  "seed": 1,
+  "state_hash": "67fd047634506aa1f0cbaec3f01bcc15cd3f3b2055643b24c68842c7734e89e9",
+  "status": "final",
+  "steps": 108835,
+  "trace_hash": "89540ab367a8a5eecc4138fcc8c4d8dc533151f6dc8a3f4de721652087cf5109"
+}

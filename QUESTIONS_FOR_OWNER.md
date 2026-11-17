@@ -87,3 +87,11 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-ATTR-4 | PLACEHOLDER uniform throw error | Requested angular SD is converted to a uniform half-width of `sqrt(3) * SD`; this preserves the specified standard deviation. |
 | Q-ATTR-5 | Existing generator compatibility | Current generated CSVs lack required `id`; some express ratings as 0–100 and one uses `role` for lineup status. ATTR rejects them explicitly. A generator/export adapter must emit canonical `id`, fixed role and 0–1 ratings; it may retain labels because the loader ignores them. |
 | Q-ATTR-6 | Inert ratings | Stamina is inert while fatigue is off. Keeper skill and Archer accuracy are stored but inert in the active Native path: shared catching uses catching, and athlete-owned Archer execution is exact ballistic release. Sensitivity evidence reports them as INERT. |
+
+## RB-3.3 provisional (claude/rb-3-3-archer-flip, 17 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB33-1 | After the first overtime period (decided by a second coin flip), who starts later overtime periods? | CANON; PLACEHOLDER: the starting team alternates each later overtime period. |
+| Q-RB33-2 | Most remaining illegal arrows (14 of 19 in a 600 s seed-1 window) are released while the target team's pass is in flight; the rules layer gives no team control then, so each is an archery_target minor and, at tackle count 0, a foul award. Every DQ'd Archer reaches 5 minors this way. | CANON (same as Q-FAB1-2): does a team keep team control while its pass is in flight? Archer cognition left unchanged as instructed. |
+| Q-RB33-3 | Q-HELD-1 for period starts is resolved by the coin-flip snap40. Q-HELD-1 for unresolved joint control in open play is unchanged. | Resolved for period starts only. |
+| Q-RB33-4 | Restart timeouts rise sharply once a team has about 20 DQs (seed 1: 13, 22, 184, 376 per period). | ENGINEERING/BEHAVIORAL follow-up; cause not isolated. Matches still finish. |
