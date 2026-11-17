@@ -22,8 +22,8 @@ def test_banded_carry_five_and_keeper_own_two():
  assert e.goal('A') and s.score['B']==2
 
 def test_restart_throw_is_an_attempt_once_at_actual_release():
- p=RulebookPort(1);s,e=p.m.s,p.m.e;s.ball.rb_deliberate_team='B';e.award('A',50,50,'fixture')
- assert s.ball.rb_deliberate_team is None
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.ball.rb_release_team='B';e.award('A',50,50,'fixture')
+ assert s.ball.rb_release_team is None
  s.restart.taker='A0'
  for q in s.players.values():
   if q.role!='archer':q.x=40 if q.team=='A' else 60
@@ -57,10 +57,10 @@ def test_interception_carry_is_not_stale_own_goal():
  passer=s.players['B0'];interceptor=s.players['A0'];passer.x=passer.y=50
  s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=passer.id,x=50,y=50,z=passer.hand_height,scoring=True)
  assert e.release(passer.id,(-5,0,1),'pass','B1')
- s.ball.rb_deliberate_team='B' # regression witness for the removed stale flag
+ assert s.ball.rb_release_team=='B'
  interceptor.x,interceptor.y=s.ball.x,s.ball.y
  assert e.acquire(interceptor.id)
- assert s.ball.rb_deliberate_team is None
+ assert s.ball.rb_release_team is None
  interceptor.x,interceptor.y=101,50;e.follow_carrier()
  assert e.goal('B') and s.score['A']==5
  assert e.rb_bands['A']['carry_attempts']==e.rb_bands['A']['carry_goals']==1
@@ -74,9 +74,23 @@ def test_defender_deflection_of_shot_is_ordinary_shooter_goal():
  assert e.release(shooter.id,(25,0,1),'shot')
  defender.x,defender.y=s.ball.x,s.ball.y;e.touch(defender.id,True)
  assert s.ball.last_releaser is None # a deflection is not a new release
+ assert s.ball.rb_release_team=='A'
  s.ball.x,s.ball.y,s.ball.z=101,50,1.5
  assert e.goal('B') and s.score['A']==4
  assert e.rb_bands['A']['20plus_goals']==1 and e.rb_bands['A']['own_goals']==0
+
+def test_own_team_pass_flight_redirected_by_opponent_into_own_goal_is_own_goal_two():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e
+ s.phase=p.types.Phase.LIVE;s.owner='A';e.possession.pp='A'
+ passer=s.players['A0'];redirector=s.players['B0'];passer.x,passer.y=25,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=passer.id,x=25,y=50,z=passer.hand_height,scoring=True)
+ assert e.release(passer.id,(-25,0,1),'pass','A1')
+ redirector.x,redirector.y=s.ball.x,s.ball.y;e.touch(redirector.id,True)
+ assert s.ball.last_releaser is None and s.ball.rb_release_team=='A'
+ s.ball.x,s.ball.y,s.ball.z=-1,50,1.5
+ assert e.goal('A') and s.score=={'A':0,'B':2}
+ assert e.rb_bands['B']['own_goals']==1
+ assert sum(e.rb_bands['B'][b+'_goals'] for b in ('under10','10_to20','20plus'))==0
 
 def test_goal_publishes_one_official_ruling_and_shot_counter_excludes_passes():
  p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
@@ -94,6 +108,19 @@ def test_scoring_report_has_points_and_points_per_attempt_by_shot_band_and_carry
  assert carries['A']['attempts']==3 and carries['A']['points']==5
  assert carries['A']['points_per_attempt']==pytest.approx(5/3)
  assert own['A']=={'goals':1,'points':2}
+
+def test_failed_carry_attempt_counts_once_on_first_entry_inside_twenty_metres():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'
+ q=s.players['A0'];q.x,q.y=80,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=q.id,x=q.x,y=q.y,z=q.hand_height,scoring=True)
+ e.follow_carrier();assert e.rb_bands['A']['carry_attempts']==0 #20m arc is outside
+ q.x=80.01;e.follow_carrier();e.follow_carrier()
+ assert e.rb_bands['A']['carry_attempts']==1 and e.rb_bands['A']['carry_goals']==0
+ assert e.acquire(q.id);e.follow_carrier() # idempotent acquire is not new control
+ assert e.rb_bands['A']['carry_attempts']==1
+ e.award('B',q.x,q.y,'turnover',fresh=True,normalize=False)
+ carries=scoring_report(e,p.config)[1]['A']
+ assert carries['attempts']==1 and carries['goals']==0 and carries['points_per_attempt']==0
 
 def test_non_shot_throw_can_score_but_does_not_enter_shot_band_measurement():
  p=RulebookPort(1);s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;s.owner='A'

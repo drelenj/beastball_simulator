@@ -54,4 +54,6 @@ No current canon question blocks RB integration. Remaining RB-PH defaults above 
 
 RB-PH-13 RESOLVED by RB-2 engineering correction: release-distance attempt counters are shot-only. Carry attempts are counted independently, own goals are reported separately, and the complete pass/bounce/restart release ledger remains available without being described as shot attempts.
 
+RB-PH-13 measurement definition completed by RB-2.1: one carry attempt is the first controlled entry of a field carrier's body centre strictly inside the20m Keeper/scoring zone around the attacked goal, once per secure control. The arc is outside; a scored carry not previously observed inside is counted at the goal event. This is an ENGINEERING measurement definition, not a new gameplay rule.
+
 2026-11-16 SCORING BASIS owner ruling: banded scoring is the working canon and the only basis permitted for current measurements. `native-rb/2` uses carry5; throw bands2/3/4; half goal1; full-goal award3; own goal2. Values remain provisional until the self-play experiment reports. Historical flat artifacts are retained only as history and are not measurement evidence.

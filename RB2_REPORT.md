@@ -1,6 +1,6 @@
 # OWNER BRIEFING
 
-1. Accomplished: RB-2 corrections F1–F14 are IMPLEMENTED and TESTED on `codex/rulebook-2`. The two 16 Nov owner rulings are encoded: a defender's shot deflection is an ordinary shooter-team goal, and a defender's non-carrier hold is a defence minor.
+1. Accomplished: RB-2 corrections F1–F14 and RB-2.1 corrections R2-1–R2-3 are IMPLEMENTED and TESTED on `codex/rulebook-2`. Own-flight provenance now survives an opponent's redirect without changing the F2 shot-deflection ruling, and failed carry attempts are measurable.
 2. Native now defaults every Rulebook runner and validation path to the working-canon banded basis: carry5; throws2/3/4; half goal1; full-goal award3; own goal2. Flat scoring is rejected for current measurement. Reports provide shot-only attempts, goals, points and points per attempt by band, plus independent carry counters.
 3. Unimplemented or unproven: no RB-2 full match was run. RT3, RT6, RS6, RA2, RA4 and RO6 remain forced-scenario evidence only; no final-source RB-1 full match reached overtime. Natural review calls do not demonstrate reversal because natural evidence always records `called == actual`; only forced-call hooks exercise wrong-call reversal. Anatomical strike panels and inherited placeholders remain unchanged.
 4. Blocking: none. Existing RB-1 match evidence shows a rules-outcome concentration that must be stated plainly: penalty awards are about78% of all points and about two thirds of arrows are illegal. RB-2 corrects classification/reporting but does not claim that those distributions are improved.
@@ -14,11 +14,11 @@ Validation: `292 passed, 23 subtests passed` in the complete `b1 native` suite; 
 
 | Finding | Result | Evidence |
 |---|---|---|
-| F1/F2 own goal and deflection | Own goal uses current defending holder or deliberate releaser; stale release state clears on acquire/award; defender shot deflection remains shooter-team goal | `test_interception_carry_is_not_stale_own_goal`; `test_defender_deflection_of_shot_is_ordinary_shooter_goal` |
+| F1/F2/R2-1 own goal and deflection | A release-only team marker survives touches and clears on acquire/award. Its flight entering its releasing team's goal is an own goal worth2, even after an opponent redirect. A shot entering the defending team's goal after a defender deflection remains an ordinary shooter-team goal. | `test_interception_carry_is_not_stale_own_goal`; `test_own_team_pass_flight_redirected_by_opponent_into_own_goal_is_own_goal_two`; `test_defender_deflection_of_shot_is_ordinary_shooter_goal` |
 | F3 full-goal award | Period4/OT award is3 under the required banded basis | `test_bands_and_carry_own_awards` |
 | F4 goal-line toss timeout | Turnover scrimmage is spotted5m into field | `test_goal_line_toss_timeout_restarts_five_metres_out` |
 | F5 defender hold | Defence minor: count-1, or award at0 | `test_defender_noncarrier_hold_is_defence_minor_and_offside_no_award` |
-| F6 counters | `shot_bands` excludes passes/restarts; `carry_attempts`, `own_goals`, and `release_ledger` are separate | scoring tests and bounded report output |
+| F6/R2-2 counters | `shot_bands` excludes passes/restarts; `carry_attempts`, `own_goals`, and `release_ledger` are separate. A carry attempt is first controlled field-carrier entry strictly inside the attacked20m zone, once per control; a carry that scores without a prior observed entry records its attempt at the goal. | scoring tests, including `test_failed_carry_attempt_counts_once_on_first_entry_inside_twenty_metres`, and bounded report output |
 | F7 evidence wording | Six named matrix rows say forced scenario only; no final-source full match reached overtime | `RB1_RULE_MATRIX.json` |
 | F8 distribution disclosure | About78% of points were penalty awards; 532/818 recorded arrows (65.0%) were illegal in the six unique RB-1 validation seeds | retained RB-1 evidence, read only |
 | F9 ruling publication | One authority goal/no-goal ruling per natural goal event | `test_goal_publishes_one_official_ruling_and_shot_counter_excludes_passes` |
@@ -31,7 +31,7 @@ Validation: `292 passed, 23 subtests passed` in the complete `b1 native` suite; 
 ## Configuration and reporting
 
 - Active configuration: `native-rb/2`, banded only, digest `383e127fa59b439efb51cce2fbc42351beb9e01e8f94bf28d5af70274b07c1f5`.
-- Output tables: `shot_bands` includes attempts, goals, points, success rate and points per attempt; `carry_attempts` reports the same measures independently; `own_goals` and `release_ledger` remain separate.
+- Output tables: `shot_bands` includes attempts, goals, points, success rate and points per attempt; `carry_attempts` reports the same measures independently, including unsuccessful zone entries; `own_goals` and `release_ledger` remain separate.
 - Existing `native/rulebook/evidence/` files were not rewritten. Old RB-1 `bands` data include passes and restarts and are historical release-ledger evidence, not RB-2 shot-attempt counters.
 
 ## Roster handoff

@@ -363,10 +363,10 @@
     },
     {
       "id": "RS9",
-      "rule": "Release-distance attempts/goals/points are shot-only; carries have an independent counter",
+      "rule": "Release-distance attempts/goals/points are shot-only; carries have an independent attempt counter on first controlled entry strictly inside the attacked20m zone, once per control",
       "status": "IMPLEMENTED+tested",
-      "test": "native/rulebook/test_scoring.py::test_scoring_report_has_points_and_points_per_attempt_by_shot_band_and_carry and test_non_shot_throw_can_score_but_does_not_enter_shot_band_measurement",
-      "note": "shot_bands includes points and points_per_attempt; carry_attempts, own_goals and release_ledger are separate."
+      "test": "native/rulebook/test_scoring.py::test_scoring_report_has_points_and_points_per_attempt_by_shot_band_and_carry and test_non_shot_throw_can_score_but_does_not_enter_shot_band_measurement and test_failed_carry_attempt_counts_once_on_first_entry_inside_twenty_metres",
+      "note": "The20m arc is outside. A scored carry not observed entering earlier records its attempt at goal; failed entries remain attempts. shot_bands, own_goals and release_ledger are separate."
     },
     {
       "id": "RS10",
@@ -409,6 +409,20 @@
       "status": "IMPLEMENTED+tested",
       "test": "native/rulebook/test_scoring.py::test_default_runner_records_complete_banded_scoring_basis",
       "note": "Flat scoring remains only in explicitly labelled historical artifacts and is not measurement evidence."
+    },
+    {
+      "id": "RS12",
+      "rule": "A team's deliberate flight redirected by an opponent into that team's own goal scores the flat own-goal value",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_own_team_pass_flight_redirected_by_opponent_into_own_goal_is_own_goal_two",
+      "note": "Release-only team provenance survives touches and clears on secure acquire or award; forced scenario only."
+    },
+    {
+      "id": "RS13",
+      "rule": "A carry attempt can fail and is not synonymous with a carry goal",
+      "status": "IMPLEMENTED+tested",
+      "test": "native/rulebook/test_scoring.py::test_failed_carry_attempt_counts_once_on_first_entry_inside_twenty_metres",
+      "note": "Forced scenario enters the attacked zone, does not score, and verifies one attempt and zero goals."
     }
   ],
   "canon_updates": [
@@ -422,6 +436,11 @@
       "date": "2026-11-16",
       "authority": "DreLen",
       "rulings": "Deflected shot into defender goal is ordinary shooter-team goal; defender non-carrier hold is defence minor"
+    },
+    {
+      "date": "2026-11-17",
+      "authority": "DreLen",
+      "rulings": "Own-team flight redirected by an opponent into its own goal retains the flat own-goal value"
     }
   ]
 }
