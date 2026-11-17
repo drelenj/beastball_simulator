@@ -69,10 +69,12 @@ class RulebookPort(NativePort):
         """
         s,e=self.m.s,self.m.e
         direct=e.possession.dp_team
-        if direct is not None and s.ball.carrier is not None and (
-                s.phase==self.types.Phase.LIVE or self._restart_watch_pp not in (None,direct)):
+        passive=e.possession.pp or s.owner
+        if self._restart_watch_pp is not None and passive!=self._restart_watch_pp:
             self._restart_watch.clear()
-        self._restart_watch_pp=direct
+        if direct is not None and s.ball.carrier is not None and s.phase==self.types.Phase.LIVE:
+            self._restart_watch.clear()
+        self._restart_watch_pp=passive
         r=s.restart
         if r is None or r.native_id==self._restart_watch_id:return
         self._restart_watch_id=r.native_id
@@ -80,7 +82,7 @@ class RulebookPort(NativePort):
               if row['kind']==r.kind and abs(row['x']-r.x)<=1. and abs(row['y']-r.y)<=1.]
         row=dict(id=r.native_id,kind=r.kind,team=r.team,x=r.x,y=r.y,
                  reason=r.reason,now=s.now,live_ms=s.live_ms,direct=direct,
-                 passive=e.possession.pp)
+                 passive=passive)
         self._restart_watch.append(row)
         if len(same)>=2:
             state=dict(now=s.now,live_ms=s.live_ms,period=s.period,

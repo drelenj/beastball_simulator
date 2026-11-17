@@ -16,10 +16,31 @@ def install(co,cfg):
    if self.s.ball.carrier==pid:self.s.ball.carrier=None;self.s.ball.mode=T.BallMode.LOOSE
   self.rb_publish(row)
  E.discipline=discipline
+ def correct_restart_foul(self,a,reason):
+  """Procedural separation; it does not choose an athlete tactic."""
+  s=self.s;r=s.restart
+  if r and a.role!='archer':
+   if r.kind=='snap40':a.x=s.ends[a.team]+s.attack_sign(a.team)*39
+   else:a.x=max(.6,min(99.4,r.x-s.attack_sign(r.team)*(1 if a.team==r.team else -1)))
+   a.y=max(.6,min(99.4,r.y));a.vx=a.vy=0.;a.target=(a.x,a.y)
+  elif a.role!='archer':
+   dx,dy=a.x-s.ball.x,a.y-s.ball.y;distance=math.hypot(dx,dy)
+   if distance<.1:dx,dy=-s.attack_sign(a.team),0.;distance=1.
+   a.x=max(.6,min(99.4,s.ball.x+5*dx/distance));a.y=max(.6,min(99.4,s.ball.y+5*dy/distance))
+   a.vx=a.vy=0.;a.target=(a.x,a.y)
+  self.rb_publish(self.rb.ruling('warning',player=a.id,reason='repeated_restart_chain_foul',offence=reason))
  def foul(self,actor,victim=None,reason='hold',major=False,danger=False,**kw):
   s=self.s
   if s.phase==P.FINAL:return
   a=s.players[actor]
+  chain=getattr(self,'rb_restart_chain_fouls',set())
+  if s.ball.carrier is not None:
+   chain=set();self.rb_restart_chain_active=False
+  in_chain=s.phase==P.DEAD or getattr(self,'rb_restart_chain_active',False) and s.ball.carrier is None
+  if in_chain and a.team in chain:
+   correct_restart_foul(self,a,reason);return
+  if in_chain:
+   chain.add(a.team);self.rb_restart_chain_fouls=chain
   if s.phase==P.DEAD:
    episode=(s.period,s.live_ms)
    if getattr(self,'rb_dead_foul_episode',None)!=episode:
@@ -28,12 +49,7 @@ def install(co,cfg):
    if key in self.rb_dead_fouls:
     # Procedural correction, not an athlete tactical assignment. Retakes at
     # one stopped-clock instant cannot manufacture repeated exclusions.
-    r=s.restart
-    if r and a.role!='archer':
-     if r.kind=='snap40':a.x=s.ends[a.team]+s.attack_sign(a.team)*39
-     else:a.x=max(.6,min(99.4,r.x-s.attack_sign(r.team)*(1 if a.team==r.team else -1)))
-     a.vx=a.vy=0.;a.target=(a.x,a.y)
-    self.rb_publish(self.rb.ruling('warning',player=actor,reason='repeated_dead_ball_foul',offence=reason))
+    correct_restart_foul(self,a,reason)
     return
    self.rb_dead_fouls.add(key)
   v=s.players.get(victim);intent=getattr(a,'native_intent',None)
@@ -66,6 +82,13 @@ def install(co,cfg):
   if v and reason in ('head','neck','head_contact','neck_contact'):
    self.rb_force_injury(v.id,head=True)
  E.foul=foul
+ old_acquire=E.acquire
+ def acquire(self,pid,*args,**kw):
+  result=old_acquire(self,pid,*args,**kw)
+  if result:
+   self.rb_restart_chain_active=False;self.rb_restart_chain_fouls=set()
+  return result
+ E.acquire=acquire
  def contact(self,a,t,kind='tackle',surface='torso',reach=True):
   if self.s.phase==P.DEAD:return False,'after_whistle'
   if surface in ('head','neck'):return False,surface
@@ -119,10 +142,15 @@ def install(co,cfg):
  def restart(self,pid,velocity,*args,**kw):
   # Retain the engine ordering fix. No pre-live marking admission exists.
   if self.s.restart and self.s.restart.taker==pid and not self.ready(pid):return False
-  return old_restart(self,pid,velocity,*args,**kw)
+  result=old_restart(self,pid,velocity,*args,**kw)
+  if result:self.rb_restart_chain_active=True
+  return result
  E.restart_release=restart
  old_award=E.award
  def award(self,team,x,y,reason,*args,**kw):
+  previous=self.possession.pp or self.s.owner
+  if previous is not None and team!=previous:
+   self.rb_restart_chain_active=False;self.rb_restart_chain_fouls=set()
   if reason=='zone_residence':x=self.s.ends[team]+self.s.attack_sign(team)*cfg.zone_radius
   return old_award(self,team,x,y,reason,*args,**kw)
  E.award=award

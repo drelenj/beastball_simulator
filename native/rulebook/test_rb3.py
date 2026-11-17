@@ -84,6 +84,27 @@ def test_repeated_restart_watchdog_fails_on_third_same_spot_with_state():
         p._watch_restart_progress()
 
 
+def test_restart_watchdog_resets_on_passive_possession_change():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
+    for team in ('A','A','B'):
+        e.possession.pp=team;e.s.owner=team
+        e.award(team,40.,20.,'fixture',normalize=False);p._watch_restart_progress()
+    assert len(p._restart_watch)==1 and p._restart_watch[0]['team']=='B'
+
+
+def test_second_same_team_restart_chain_foul_is_corrected_without_retake():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
+    s.phase=p.types.Phase.LIVE;s.owner='B';e.possession.pp='B';s.ball.carrier=None
+    e.rb_restart_chain_active=True;e.rb_restart_chain_fouls=set()
+    e.foul('A:p0','B:p0','holding');serial=e.restart_serial
+    first=s.players['A:p0'].minor_count
+    s.phase=p.types.Phase.LIVE;s.restart=None;s.ball.carrier=None
+    e.foul('A:p1','B:p0','zone_unmarked')
+    assert e.restart_serial==serial and s.players['A:p0'].minor_count==first==1
+    assert s.players['A:p1'].minor_count==0
+    assert e.rb.calls[-1]['kind']=='warning' and e.rb.calls[-1]['reason']=='repeated_restart_chain_foul'
+
+
 def test_rb31_control_roster_uses_owner_specified_average_body():
     from .rb31_soak import uniform_rosters
     rosters=uniform_rosters()
