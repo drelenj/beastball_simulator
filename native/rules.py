@@ -392,12 +392,10 @@ def install(CO, cfg):
                 self.native_sync();return
             if r.kind=='toss' and s.now>=r.created_at+5500:
                 self.close_restart('toss_timeout')
-                if hasattr(self,'rb') and r.x in (0.,100.):
-                    # RB-2 ratified goal-line toss-timeout placement: a
-                    # scrimmage five metres into the field, not the 40 m
-                    # turnover normalization used for ordinary turnovers.
-                    self.award(s.other(r.team),5. if r.x==0. else 95.,r.y,'goal_line_toss_timeout',fresh=True,normalize=False)
-                else:self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True,normalize=False)
+                # Canon 2026-11-17: every toss timeout is an ordinary
+                # turnover. award() applies the receiving team's own-40
+                # normalization while retaining the boundary spot's y.
+                self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True)
             elif s.now>=r.snap_deadline:
                 self.close_restart('snap_timeout');self.offside('offence')
         elif s.phase==P.FLIGHT:

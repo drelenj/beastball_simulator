@@ -46,10 +46,25 @@ def test_repeated_dead_ball_foul_corrects_offender_without_retake_loop():
  assert e.restart_release('A1',(20,0,1),'A2')
  assert s.phase==p.types.Phase.LIVE
 
-def test_goal_line_toss_timeout_restarts_five_metres_out():
- p=RulebookPort(1);s,e=p.m.s,p.m.e
- e.award('A',0,50,'boundary',fresh=True,normalize=False)
- assert s.restart.kind=='toss' and s.restart.x==0
+def _expire_toss(p,team,x,y):
+ s,e=p.m.s,p.m.e
+ e.award(team,x,y,'boundary',fresh=True,normalize=False)
+ assert s.restart.kind=='toss'
  s.now=s.restart.created_at+5500;e.resolve_timers()
- assert s.restart.kind=='scrim' and s.restart.team=='B'
- assert s.restart.x==5 and s.ball.x==5
+ return s.restart
+
+def test_goal_line_toss_timeout_restarts_at_receiving_own_forty():
+ p=RulebookPort(1);s,e=p.m.s,p.m.e
+ r=_expire_toss(p,'A',100,70)
+ assert r.kind=='scrim' and r.team=='B'
+ assert r.x==60 and r.y==70 and s.ball.x==60 and s.ball.y==70
+ assert r.reason=='turnover'
+
+def test_side_toss_timeout_normalizes_short_spot_but_keeps_advanced_spot():
+ p=RulebookPort(1)
+ # B receives and attacks toward x=0: its own 40 is x=60.
+ r=_expire_toss(p,'A',75,0)
+ assert (r.team,r.x,r.y)==('B',60,0.5)
+ p=RulebookPort(1)
+ r=_expire_toss(p,'A',25,100)
+ assert (r.team,r.x,r.y)==('B',25,99.5)

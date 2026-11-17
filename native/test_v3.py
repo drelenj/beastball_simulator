@@ -487,7 +487,22 @@ def test_v3_toss_taker_waits_for_legal_release_then_uses_space_placeholder(port3
     assert C.decide(v,b)[0].kind=='restart_wait'
     last=replace(v,restart=v.restart[:10]+(v.delivered_ms-C3.TOSS_WINDOW_MS+1000,)+v.restart[11:])
     i,rec=C.decide(last,b);assert i.kind=='restart_pass' and i.target is None and rec['path']=='restart_taker_space_placeholder'
-    assert 1.<=i.aim[0]<=99. and 1.<=i.aim[1]<=99.
+    assert 3.<=i.aim[0]<=97. and 3.<=i.aim[1]<=97.
+    assert i.speed==min(last.max_throw_speed,max(8.,2.*math.hypot(i.aim[0]-r.x,i.aim[1]-r.y)))
+
+
+def test_v3_goal_line_restart_fallback_and_support_are_lateral_and_in_field(port3):
+    e,s=port3.m.e,port3.m.s;clear_field(port3)
+    r=e.award('A',5.,50.,'fixture',fresh=True,normalize=False);taker_at_spot(port3,r)
+    s.now=r.snap_deadline-1000
+    v,b=restart_view(port3,'A5');none=tuple(t for t in b.tracks if t.team!='A')
+    v,b=replace(v,tracks=none,restart=v.restart[:-1]+(True,)),replace(b,tracks=none)
+    i,rec=C.decide(v,b)
+    assert i.kind=='restart_pass' and rec['path']=='restart_taker_space_placeholder'
+    assert 3.<=i.aim[0]<=97. and 3.<=i.aim[1]<=97. and abs(i.aim[1]-r.y)>=6.
+    put(port3,'A2',r.x+.2,r.y);v,b=restart_view(port3,'A2');i,rec=C.decide(v,b)
+    assert rec['path']=='restart_support' and abs(i.aim[1]-r.y)>=6.
+    assert 3.<=i.aim[0]<=97. and 3.<=i.aim[1]<=97.
 
 
 def test_v3_snap_taker_waits_for_the_set_signal(port3):

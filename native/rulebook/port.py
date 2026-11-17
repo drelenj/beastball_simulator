@@ -1,6 +1,7 @@
 """RB engine driver; reuses Native's unchanged athlete decision implementation."""
 from native.port import NativePort,body
-from dataclasses import dataclass,fields
+from dataclasses import asdict,dataclass,fields
+import json
 from native import cognition as C
 from .authorities import CREW
 
@@ -16,6 +17,9 @@ class RulebookPort(NativePort):
         super().__init__(seed,config or RulebookConfig(),policies,plumbing,rosters=rosters)
         self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values()}
         self.last_reset_period=1
+        self._restart_watch=[]
+        self._restart_watch_id=None
+        self._restart_watch_pp=None
         self.m.e.rb_port=self
         if self.attr:
             self.m.e.rb_designated={team:{role:tuple(q.id for q in self.m.s.players.values() if q.team==team and q.role==role)
@@ -54,6 +58,35 @@ class RulebookPort(NativePort):
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
         super().step()
+        self._watch_restart_progress()
+
+    def _watch_restart_progress(self):
+        """Fail boundedly on a repeating restart instead of consuming a soak worker.
+
+        Secure direct control is completed live play. A direct-possession change
+        or completed live play starts a new watchdog episode; bare release and
+        dead-ball awards do not disguise a restart cycle as progress.
+        """
+        s,e=self.m.s,self.m.e
+        direct=e.possession.dp_team
+        if direct is not None and s.ball.carrier is not None and (
+                s.phase==self.types.Phase.LIVE or self._restart_watch_pp not in (None,direct)):
+            self._restart_watch.clear()
+        self._restart_watch_pp=direct
+        r=s.restart
+        if r is None or r.native_id==self._restart_watch_id:return
+        self._restart_watch_id=r.native_id
+        same=[row for row in self._restart_watch
+              if row['kind']==r.kind and abs(row['x']-r.x)<=1. and abs(row['y']-r.y)<=1.]
+        row=dict(id=r.native_id,kind=r.kind,team=r.team,x=r.x,y=r.y,
+                 reason=r.reason,now=s.now,live_ms=s.live_ms,direct=direct,
+                 passive=e.possession.pp)
+        self._restart_watch.append(row)
+        if len(same)>=2:
+            state=dict(now=s.now,live_ms=s.live_ms,period=s.period,
+                       score=dict(s.score),ball=asdict(s.ball),restart=asdict(r),
+                       episode=self._restart_watch[-12:])
+            raise RuntimeError('stuck restart invariant: '+json.dumps(state,sort_keys=True,default=str))
 
     def fill_cover(self):
         self.m.e.rb_fill_slots()

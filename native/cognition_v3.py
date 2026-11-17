@@ -182,10 +182,23 @@ def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
             return _intent(view, belief, 'restart_wait', why='restart_taker_no_believed_target')
         ux, uy = _spot_side(x, y)
         if kind != 'toss':
-            ux, uy = -view.attack_sign, 0.
-        # PLACEHOLDER: no believed legal teammate before the deadline: throw to legal space.
-        aim = (round(_clamp(x + ux * 8., 1., 99.), 3), round(_clamp(y + uy * 8., 1., 99.), 3))
-        return _intent(view, belief, 'restart_pass', aim, None, why='restart_taker_space_placeholder')
+            behind_room = x - 3. if view.attack_sign > 0 else 97. - x
+            # With less than six metres of legal space behind the ball line,
+            # use an in-field lateral throw rather than pointing at the end line.
+            if behind_room < 6.:
+                ux, uy = (-view.attack_sign * min(.8, max(.1, behind_room)),
+                          1. if y <= 50. else -1.)
+            else:
+                ux, uy = -view.attack_sign, 0.
+        # PLACEHOLDER: no believed legal teammate before the deadline. The
+        # athlete owns a replaceable space throw, at least 3 m from every line.
+        distance = 8.
+        aim = (round(_clamp(x + ux * distance, 3., 97.), 3),
+               round(_clamp(y + uy * distance, 3., 97.), 3))
+        intent, record = _intent(view, belief, 'restart_pass', aim, None,
+                                 why='restart_taker_space_placeholder')
+        aim_distance = hypot(aim[0] - x, aim[1] - y)
+        return replace(intent, speed=min(view.max_throw_speed, max(8., 2. * aim_distance))), record
     chosen = max(options, key=lambda o: (o[3], o[1]))
     return _intent(view, belief, chosen[0], chosen[2], chosen[1],
                    options=[('restart_wait', None, None, 0.)] + options, why='restart_taker_throw')
@@ -234,14 +247,24 @@ def _stand(view, belief, kind, team, x, y, tx, ty, taker, tackler):
         own = hypot(view.x - x, view.y - y)
         rank = sum(1 for d, _ in mates if d < own)
         if rank < 2 and not SUPPORT_NEAR_M <= hypot(px - x, py - y) <= SUPPORT_FAR_M:
+            lateral = False
             if kind == 'toss':
                 ux, uy = _spot_side(x, y)
             else:
-                ux, uy = -sg, 0.                          # behind the ball line / inside own 40
+                behind_room = x - 3. if sg > 0 else 97. - x
+                if behind_room < 6.:
+                    lateral = True
+                else:
+                    ux, uy = -sg, 0.                      # behind the ball line / inside own 40
             lat = 6. if rank == 0 else -6.
-            px, py = x + ux * 8. - uy * lat, y + uy * 8. + ux * lat
-            if not 3. <= py <= 97.: py = y + uy * 8. - ux * lat
-            if not 3. <= px <= 97.: px = x + ux * 8. + uy * lat
+            if lateral:
+                # Under six metres behind the line, retain a small onside
+                # offset and put the receiving lane across the field.
+                px, py = x - sg * min(.8, max(.1, behind_room)), y + (8. if rank == 0 else -8.)
+            else:
+                px, py = x + ux * 8. - uy * lat, y + uy * 8. + ux * lat
+                if not 3. <= py <= 97.: py = y + uy * 8. - ux * lat
+                if not 3. <= px <= 97.: px = x + ux * 8. + uy * lat
             why = 'restart_support'
     if taker and hypot(px - tx, py - ty) < 2.:
         py = ty + (2. if view.athlete < taker else -2.)       # physical room for the taker

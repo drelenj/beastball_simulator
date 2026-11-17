@@ -73,6 +73,27 @@ def test_rb3_short_replay_serial_and_parallel():
         assert list(pool.map(_window,[('touch',.7),('touch',.7)]))==[first,first]
 
 
+def test_repeated_restart_watchdog_fails_on_third_same_spot_with_state():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
+    e.possession.dp_team=None
+    for n in range(2):
+        e.award('A',40.2+n*.3,20.2+n*.2,'fixture',normalize=False)
+        p._watch_restart_progress()
+    e.award('A',40.7,20.5,'fixture',normalize=False)
+    with pytest.raises(RuntimeError,match='stuck restart invariant.*episode'):
+        p._watch_restart_progress()
+
+
+def test_rb31_control_roster_uses_owner_specified_average_body():
+    from .rb31_soak import uniform_rosters
+    rosters=uniform_rosters()
+    cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A','B')))
+    p=RulebookPort(1,cfg,rosters=rosters);q=p.m.s.players['A:0']
+    assert q.a.height==2.39 and q.a.mass==226. and q.a.reach==3.05
+    assert q.a.maximum_speed==pytest.approx(31.2928)
+    assert all(value==.7 for key,value in rosters['A'].athletes[0].values if key not in ('height_m','mass_kg','reach_m'))
+
+
 @pytest.mark.parametrize('name',INERT_RATINGS)
 def test_inert_rating_changes_digest_but_not_play_or_view(name):
     low,middle,high=(_window((name,value)) for value in (.4,.7,1.))
