@@ -39,7 +39,7 @@ def measure(p,carry_events,foul_events,arrow_attempts):
             if player:timeline.append((row['t_ms'],1,'control',player.team))
     for row in e.rb_attempts:
         timeline.append((row['t_ms'],2,'attempt' if row['shot_attempt'] else 'pass',row['team']))
-    timeline.extend((t,3,'attempt',team) for t,team in carry_events)
+    timeline.extend((row['t_ms'],3,'attempt',row['team']) for row in carry_events)
     possessions=Counter();attempted=Counter();terminal=Counter();current=None;had=False;last=None
     for _,_,kind,team in sorted(timeline,key=lambda x:(x[0],x[1])):
         if kind=='possession':

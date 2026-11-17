@@ -94,6 +94,15 @@ def test_rb31_control_roster_uses_owner_specified_average_body():
     assert all(value==.7 for key,value in rosters['A'].athletes[0].values if key not in ('height_m','mass_kg','reach_m'))
 
 
+def test_rb31_collector_accepts_structured_carry_events():
+    from .rb31_soak import measure
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
+    e.rb_bands['A']['carry_attempts']=1
+    result=measure(p,[dict(t_ms=0,team='A',player='A:p0',x=80.,y=50.)],[],[])
+    assert result['carry_attempts']['A']['attempts']==1
+    assert result['carry_attempts']['A']['outcomes']=={'other_or_match_end':1}
+
+
 @pytest.mark.parametrize('name',INERT_RATINGS)
 def test_inert_rating_changes_digest_but_not_play_or_view(name):
     low,middle,high=(_window((name,value)) for value in (.4,.7,1.))
