@@ -1,19 +1,27 @@
 {
-  "schema": "rb2-change-manifest/1",
+  "schema": "rb2-change-manifest/2",
   "status": "IMPLEMENTED_AND_TESTED_NOT_ACCEPTED",
   "branch": "codex/rulebook-2",
   "base_commit": "ebce209",
-  "implementation_commit": "1e180bd",
+  "implementation_commit": "faf0f4e",
   "profiles": {
-    "flat_config_digest": "3b00233cf337951415fe5ccfe1e8cf54c9eed2a7743c3ea6d129c748f4fb685c",
-    "banded_config_digest": "1339a6ede686a0bae08fa5e2f961089b9fcbed464f53f5974fcafe5d78599fab",
+    "active_version": "native-rb/2",
+    "scoring": "banded",
+    "config_digest": "383e127fa59b439efb51cce2fbc42351beb9e01e8f94bf28d5af70274b07c1f5",
+    "carry_points": 5,
+    "throw_points": {"under10": 2, "10_to20": 3, "20plus": 4},
+    "half_goal_points": 1,
+    "full_goal_award_points": 3,
+    "own_goal_points": 2,
+    "values_provisional": true,
+    "flat_measurement_enabled": false,
     "arrow_speed_mps": 250.0
   },
   "tests": {
     "complete_command": ".venv/bin/python -m pytest -q b1 native",
-    "complete_result": "290 passed, 23 subtests passed",
+    "complete_result": "292 passed, 23 subtests passed",
     "rulebook_command": ".venv/bin/python -m pytest -q native/rulebook",
-    "rulebook_result": "93 passed",
+    "rulebook_result": "95 passed",
     "frozen_b0_files_verified": 427,
     "accepted_files_byte_identical": [
       "b1/core.py",
@@ -25,8 +33,8 @@
   "bounded_replay": {
     "full_matches": 0,
     "serial_parallel_m2_absent_equal": true,
-    "trace_hash": "3538d716077650608109acbe1ad6f0e244e9d4e165ce76535e4a2c6492d76175",
-    "state_hash": "f3012eae049083fb7d101c9546ecbc028f8dfb9d221da51c470bf207c63278e2",
+    "trace_hash": "936c588ffec65c3a77362d67b31a12ea4b5e086536dd53df1d59eee075027d93",
+    "state_hash": "9381cfee32ce7ef5ef9d9ba854a29175be62f9eb62bba404ceb0867e2a456239",
     "live_ms": 5406
   },
   "bounded_blocker": {
@@ -35,7 +43,23 @@
     "live_ms": 151963,
     "advanced_past_live_ms": 5375
   },
-  "full_match_evidence": "No RB-2 full match was run; retained RB-1 artifacts were not modified",
+  "measurement_defaults": [
+    "native.rulebook.run",
+    "native.rulebook.validate_matches",
+    "native.soak",
+    "native.emergence.harness"
+  ],
+  "report_fields": [
+    "shot_bands.attempts",
+    "shot_bands.goals",
+    "shot_bands.points",
+    "shot_bands.success_rate",
+    "shot_bands.points_per_attempt",
+    "carry_attempts",
+    "own_goals",
+    "release_ledger"
+  ],
+  "full_match_evidence": "No native-rb/2 banded full match was run; retained flat RB-1 artifacts are historical only and were not modified",
   "check_default_outputs": [
     "/tmp/beastball-rb-short-replay.json",
     "/tmp/beastball-rb-restart-blocker.json"
