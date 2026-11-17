@@ -1,0 +1,360 @@
+{
+  "status": "partial_diagnostic_soak",
+  "source_ref": "81f92e3",
+  "interrupted_seeds": [
+    3,
+    7
+  ],
+  "unstarted_seeds": [
+    8,
+    9,
+    10
+  ],
+  "results": [
+    {
+      "block": "real",
+      "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+      "live_ms": 2400000,
+      "metrics": {
+        "arrows": {
+          "A": {
+            "illegal": 69,
+            "legal": 48,
+            "legal_rate": 0.41025641025641024
+          },
+          "B": {
+            "illegal": 54,
+            "legal": 60,
+            "legal_rate": 0.5263157894736842
+          }
+        },
+        "carry_attempts": {
+          "A": {
+            "attempts": 22,
+            "goals": 0
+          },
+          "B": {
+            "attempts": 20,
+            "goals": 0
+          }
+        },
+        "dqs": {
+          "A": 18,
+          "B": 14
+        },
+        "groundings": 151,
+        "points": {
+          "A": {
+            "penalty_awards": 77,
+            "play": 5
+          },
+          "B": {
+            "penalty_awards": 98,
+            "play": 16
+          }
+        },
+        "possessions": {
+          "A": {
+            "count": 345,
+            "ending_in_attempt": 6,
+            "share_ending_in_attempt": 0.017391304347826087,
+            "with_attempt": 17
+          },
+          "B": {
+            "count": 344,
+            "ending_in_attempt": 12,
+            "share_ending_in_attempt": 0.03488372093023256,
+            "with_attempt": 21
+          }
+        },
+        "restart_timeouts": 67
+      },
+      "restart_completion_ratio": 1,
+      "runtime_s": 294.79,
+      "score": {
+        "A": 82,
+        "B": 114
+      },
+      "seed": 1,
+      "state_hash": "61f39bc5290e021b27e4dab3c370fbf2801673983e44b649f66aca5d46e91f23",
+      "status": "passed",
+      "trace_hash": "184548550d60a07ee66c95b563e16d823cdeb7bafd0371b9fcd4db0ceb34bd38"
+    },
+    {
+      "block": "real",
+      "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+      "live_ms": 2400000,
+      "metrics": {
+        "arrows": {
+          "A": {
+            "illegal": 64,
+            "legal": 74,
+            "legal_rate": 0.5362318840579711
+          },
+          "B": {
+            "illegal": 61,
+            "legal": 42,
+            "legal_rate": 0.4077669902912621
+          }
+        },
+        "carry_attempts": {
+          "A": {
+            "attempts": 24,
+            "goals": 0
+          },
+          "B": {
+            "attempts": 40,
+            "goals": 0
+          }
+        },
+        "dqs": {
+          "A": 17,
+          "B": 18
+        },
+        "groundings": 165,
+        "points": {
+          "A": {
+            "penalty_awards": 86,
+            "play": 23
+          },
+          "B": {
+            "penalty_awards": 76,
+            "play": 17
+          }
+        },
+        "possessions": {
+          "A": {
+            "count": 384,
+            "ending_in_attempt": 13,
+            "share_ending_in_attempt": 0.033854166666666664,
+            "with_attempt": 18
+          },
+          "B": {
+            "count": 384,
+            "ending_in_attempt": 17,
+            "share_ending_in_attempt": 0.044270833333333336,
+            "with_attempt": 34
+          }
+        },
+        "restart_timeouts": 73
+      },
+      "restart_completion_ratio": 1,
+      "runtime_s": 297.93,
+      "score": {
+        "A": 109,
+        "B": 93
+      },
+      "seed": 2,
+      "state_hash": "020572a80f0e9ea3338df85c0e971c0f4f88830155429d972c7e4d80ba58570b",
+      "status": "passed",
+      "trace_hash": "7c972e1a60da728969db626507510449dda8ebbfeb6f2b532efe79985329d64b"
+    },
+    {
+      "block": "real",
+      "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+      "live_ms": 2400000,
+      "metrics": {
+        "arrows": {
+          "A": {
+            "illegal": 53,
+            "legal": 66,
+            "legal_rate": 0.5546218487394958
+          },
+          "B": {
+            "illegal": 64,
+            "legal": 29,
+            "legal_rate": 0.3118279569892473
+          }
+        },
+        "carry_attempts": {
+          "A": {
+            "attempts": 23,
+            "goals": 0
+          },
+          "B": {
+            "attempts": 30,
+            "goals": 0
+          }
+        },
+        "dqs": {
+          "A": 15,
+          "B": 14
+        },
+        "groundings": 194,
+        "points": {
+          "A": {
+            "penalty_awards": 97,
+            "play": 11
+          },
+          "B": {
+            "penalty_awards": 58,
+            "play": 10
+          }
+        },
+        "possessions": {
+          "A": {
+            "count": 338,
+            "ending_in_attempt": 8,
+            "share_ending_in_attempt": 0.023668639053254437,
+            "with_attempt": 18
+          },
+          "B": {
+            "count": 341,
+            "ending_in_attempt": 10,
+            "share_ending_in_attempt": 0.02932551319648094,
+            "with_attempt": 23
+          }
+        },
+        "restart_timeouts": 53
+      },
+      "restart_completion_ratio": 1,
+      "runtime_s": 281.92,
+      "score": {
+        "A": 108,
+        "B": 68
+      },
+      "seed": 4,
+      "state_hash": "adb10328f9232fb1ceb05e5e3f6ece0095b358e63d0a8b827f3cee7989184dd8",
+      "status": "passed",
+      "trace_hash": "8be30c76b5454bf93f84de640b203f1d1f8b519756b5c9a26cf0451b8bb1f692"
+    },
+    {
+      "block": "real",
+      "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+      "live_ms": 2400000,
+      "metrics": {
+        "arrows": {
+          "A": {
+            "illegal": 61,
+            "legal": 30,
+            "legal_rate": 0.32967032967032966
+          },
+          "B": {
+            "illegal": 64,
+            "legal": 37,
+            "legal_rate": 0.36633663366336633
+          }
+        },
+        "carry_attempts": {
+          "A": {
+            "attempts": 21,
+            "goals": 0
+          },
+          "B": {
+            "attempts": 25,
+            "goals": 0
+          }
+        },
+        "dqs": {
+          "A": 14,
+          "B": 21
+        },
+        "groundings": 134,
+        "points": {
+          "A": {
+            "penalty_awards": 110,
+            "play": 8
+          },
+          "B": {
+            "penalty_awards": 74,
+            "play": 11
+          }
+        },
+        "possessions": {
+          "A": {
+            "count": 387,
+            "ending_in_attempt": 8,
+            "share_ending_in_attempt": 0.020671834625323,
+            "with_attempt": 16
+          },
+          "B": {
+            "count": 386,
+            "ending_in_attempt": 11,
+            "share_ending_in_attempt": 0.02849740932642487,
+            "with_attempt": 18
+          }
+        },
+        "restart_timeouts": 131
+      },
+      "restart_completion_ratio": 1,
+      "runtime_s": 285.84,
+      "score": {
+        "A": 118,
+        "B": 85
+      },
+      "seed": 5,
+      "state_hash": "e1f3675d354f17cdbce25e2faee4a4aa0082fb4dc9a1b0c42bdc7905514f127f",
+      "status": "passed",
+      "trace_hash": "d659eea23496a2591ab2f086ffe846597891aa3f27ed4f99627f4066e810acb2"
+    },
+    {
+      "block": "real",
+      "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+      "live_ms": 2400000,
+      "metrics": {
+        "arrows": {
+          "A": {
+            "illegal": 38,
+            "legal": 33,
+            "legal_rate": 0.4647887323943662
+          },
+          "B": {
+            "illegal": 59,
+            "legal": 61,
+            "legal_rate": 0.5083333333333333
+          }
+        },
+        "carry_attempts": {
+          "A": {
+            "attempts": 10,
+            "goals": 0
+          },
+          "B": {
+            "attempts": 38,
+            "goals": 0
+          }
+        },
+        "dqs": {
+          "A": 14,
+          "B": 21
+        },
+        "groundings": 159,
+        "points": {
+          "A": {
+            "penalty_awards": 93,
+            "play": 4
+          },
+          "B": {
+            "penalty_awards": 59,
+            "play": 12
+          }
+        },
+        "possessions": {
+          "A": {
+            "count": 347,
+            "ending_in_attempt": 4,
+            "share_ending_in_attempt": 0.011527377521613832,
+            "with_attempt": 9
+          },
+          "B": {
+            "count": 345,
+            "ending_in_attempt": 19,
+            "share_ending_in_attempt": 0.05507246376811594,
+            "with_attempt": 28
+          }
+        },
+        "restart_timeouts": 113
+      },
+      "restart_completion_ratio": 1,
+      "runtime_s": 261.81,
+      "score": {
+        "A": 97,
+        "B": 71
+      },
+      "seed": 6,
+      "state_hash": "1286a609a7b6cea45f2db02b623e7ad24c2af6d4125e47894a73739129020125",
+      "status": "passed",
+      "trace_hash": "b8b6b80ec6a6dec7822f25e3fad45a82e10a162d95d88d5ee5ccfc4298365e6d"
+    }
+  ]
+}
