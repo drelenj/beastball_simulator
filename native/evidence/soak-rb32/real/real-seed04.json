@@ -1,0 +1,94 @@
+{
+  "block": "real",
+  "config_digest": "a8605d5677cebdc95a5516cc49bd8a5d522aac90b52803f48ab0093393d8c921",
+  "end_ms": 6888637,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 132,
+    "frozen_contact": 20,
+    "illegal_release": 2,
+    "zone_unmarked": 34
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 70,
+        "legal": 45,
+        "legal_rate": 0.391304347826087
+      },
+      "B": {
+        "illegal": 62,
+        "legal": 51,
+        "legal_rate": 0.45132743362831856
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 22,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 33,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 20,
+      "B": 14
+    },
+    "groundings": 155,
+    "points": {
+      "A": {
+        "penalty_awards": 97,
+        "play": 6
+      },
+      "B": {
+        "penalty_awards": 127,
+        "play": 20
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 350,
+        "ending_in_attempt": 13,
+        "share_ending_in_attempt": 0.037142857142857144,
+        "with_attempt": 20
+      },
+      "B": {
+        "count": 350,
+        "ending_in_attempt": 18,
+        "share_ending_in_attempt": 0.05142857142857143,
+        "with_attempt": 29
+      }
+    },
+    "restart_timeouts": 66
+  },
+  "name": "real-seed04",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 669,
+    "snap_timeout": 13,
+    "superseded:defence_minor": 9,
+    "superseded:major": 1,
+    "superseded:minor_count_plus": 6,
+    "toss_timeout": 53
+  },
+  "runtime_s": 112.63,
+  "score": {
+    "A": 103,
+    "B": 147
+  },
+  "seed": 4,
+  "state_hash": "d00b4960916e8b1ea3d03bf65eae4cb5e919de7b39a59c8e83676e43edc70bbb",
+  "status": "final",
+  "steps": 59520,
+  "trace_hash": "c169ef4f7861e8322ec3195043007ba5e3a1dfcc0028a1c0813fb9bfbebbb3fc"
+}
