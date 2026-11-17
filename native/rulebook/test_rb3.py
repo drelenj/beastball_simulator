@@ -105,6 +105,15 @@ def test_second_same_team_restart_chain_foul_is_corrected_without_retake():
     assert e.rb.calls[-1]['kind']=='warning' and e.rb.calls[-1]['reason']=='repeated_restart_chain_foul'
 
 
+def test_restart_foul_chain_resets_only_after_direct_control():
+    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
+    e.rb_restart_chain_active=True;e.rb_restart_chain_fouls={'A'}
+    s.ball.carrier='B:p0';e.possession.dp_team=None;e.native_sync()
+    assert e.rb_restart_chain_fouls=={'A'}
+    e.possession.dp_team='B';e.native_sync()
+    assert not e.rb_restart_chain_active and e.rb_restart_chain_fouls==set()
+
+
 def test_rb31_control_roster_uses_owner_specified_average_body():
     from .rb31_soak import uniform_rosters
     rosters=uniform_rosters()

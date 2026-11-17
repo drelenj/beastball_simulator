@@ -34,7 +34,7 @@ def install(co,cfg):
   if s.phase==P.FINAL:return
   a=s.players[actor]
   chain=getattr(self,'rb_restart_chain_fouls',set())
-  if s.ball.carrier is not None:
+  if s.ball.carrier is not None and self.possession.dp_team is not None:
    chain=set();self.rb_restart_chain_active=False
   in_chain=s.phase==P.DEAD or getattr(self,'rb_restart_chain_active',False) and s.ball.carrier is None
   if in_chain and a.team in chain:
@@ -82,13 +82,13 @@ def install(co,cfg):
   if v and reason in ('head','neck','head_contact','neck_contact'):
    self.rb_force_injury(v.id,head=True)
  E.foul=foul
- old_acquire=E.acquire
- def acquire(self,pid,*args,**kw):
-  result=old_acquire(self,pid,*args,**kw)
-  if result:
+ old_sync=E.native_sync
+ def sync(self):
+  result=old_sync(self)
+  if self.possession.dp_team is not None and self.s.ball.carrier is not None:
    self.rb_restart_chain_active=False;self.rb_restart_chain_fouls=set()
   return result
- E.acquire=acquire
+ E.native_sync=sync
  def contact(self,a,t,kind='tackle',surface='torso',reach=True):
   if self.s.phase==P.DEAD:return False,'after_whistle'
   if surface in ('head','neck'):return False,surface
