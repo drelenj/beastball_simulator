@@ -94,6 +94,10 @@ def install(co,cfg):
     install_scoring(co,cfg)
     from .review import install as install_review
     install_review(co,cfg)
+    from .period_start import install as install_period_start
+    install_period_start(co,cfg)
+    from .report_fields import install as install_report_fields
+    install_report_fields(co,cfg)
     from functools import wraps
     def terminal(fn):
         @wraps(fn)

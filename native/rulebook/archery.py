@@ -16,7 +16,7 @@ def install(co,cfg):
  def shoot(self,pid,target,velocity,origin=None):
   s=self.s;p=s.players[pid];t=s.players.get(target);quota=self.rb.quotas[p.team]
   if quota['arrows']>=cfg.arrows:return False
-  legal=(p.role=='archer' and p.eligible(s.now) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.role=='field' and t.team!=p.team and t.eligible(s.now) and s.now>t.immune_until and self.zone(t.x,t.y) is None and abs(t.x-s.ends[p.team])<=50 and self.possession.pp==t.team and self.possession.tc==t.team)
+  legal=(p.role=='archer' and p.eligible(s.now) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.role=='field' and t.team!=p.team and t.eligible(s.now) and s.now>t.immune_until and self.zone(t.x,t.y) is None and self.possession.pp==t.team and self.possession.tc==t.team)
   row=self.rb.arrow(p.team,legal);self.rb_publish(row);self.native_sync()
   s.quivers[p.team].last_release=s.now
   if not legal:self.foul(pid,target if t else None,'archery_target');return False
@@ -100,6 +100,7 @@ def install(co,cfg):
     f,target,panel=min(hits);ar.x,ar.y,ar.z=tuple(a+(b-a)*f for a,b in zip(old,(ar.x,ar.y,ar.z)))
     events.append(T.Event('impact',target=target,data={'arrow':ar.id,'panel':panel,'kind':'ball' if target=='ball' else 'player'},at=int(f*ms)))
     self.e.emit('arrow_geometry_impact','RB-A:swept_relative',arrow=ar.id,target=target,panel=panel)
-   elif ar.z<=0 or not(-30<=ar.x<=130 and -40<=ar.y<=140):ar.live=False
+   elif ar.z<=0 or not(-30<=ar.x<=130 and -40<=ar.y<=140):
+    ar.live=False;self.e.emit('arrow_miss','RB-3.3-report',arrow=ar.id,position=[ar.x,ar.y,max(0,ar.z)]) # log only
   return events
  M.advance_arrows=arrows

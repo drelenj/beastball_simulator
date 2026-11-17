@@ -100,7 +100,7 @@ def install(CO, cfg):
         s.ball=T.Ball(mode=B.DEAD,x=float(x),y=float(y),z=.1075,last_touch=team)
         if reason in ('possession_expiry','second_tackle','turnover','offence_minor_turnover'):
             own=s.ends[team];sg=s.attack_sign(team);x=max(x,own+40) if sg>0 else min(x,own-40)
-        kind='snap40' if reason=='goal' else 'toss' if reason=='boundary' else 'scrim'
+        kind='snap40' if reason in ('goal','period_start') else 'toss' if reason=='boundary' else 'scrim'
         if kind=='snap40':x=s.ends[team]+s.attack_sign(team)*40;y=50.
         if kind=='toss':
             x,y=max(0.,min(100.,x)),max(0.,min(100.,y))

@@ -10,9 +10,11 @@ def install(co,cfg):
  E.rb_can_enter=can_enter
  def substitute(self,outgoing,incoming,role=None,setup=False):
   s=self.s;p=s.players.get(outgoing);q=s.players.get(incoming)
-  dead=s.phase==P.DEAD or setup and s.phase==P.OPENING and not self.rb_hunt_running
+  # RB-3.3: the match now opens with the period-start scrimmage, not the Hunt.
+  opening=(s.phase==P.OPENING and not self.rb_hunt_running) or getattr(self,'rb_period_start_open',False)
+  dead=s.phase==P.DEAD or setup and opening
   if not dead or not q or q.active or not self.rb_can_enter(q):return False
-  if p is None and not(setup and s.phase==P.OPENING and not self.rb_hunt_running and s.period==1 and s.live_ms==0 and not self.rb.exclusions):return False
+  if p is None and not(setup and opening and s.period==1 and s.live_ms==0 and not self.rb.exclusions):return False
   if p and role is not None and role!=p.role:return False
   if p and (p.team!=q.team or not p.active and outgoing not in self.rb_slots):return False
   if p and p.exclusion_ms>0 and p.id not in self.rb.injuries and self.rb.evaluated.get(p.id)!=s.period:return False
