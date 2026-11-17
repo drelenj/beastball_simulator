@@ -26,31 +26,37 @@ def uniform_rosters():
 def measure(p,carry_events):
     e=p.m.e;ledger=e.possession_history+e.possession.ledger
     # A possession begins on a change of passive team, including an award;
-    # a period's first passive team begins another possession. A completed
-    # possession counts as having an attempt if any shot or zone-entry carry
-    # attempt occurred during it. We do not infer intent from a pass.
+    # a period's first passive team begins another possession. An attempt is
+    # terminal when it is the final observed offensive ball action; a later
+    # control or pass replaces it.
     timeline=[]
     for row in ledger:
         if row['event']=='passive_possession' or row['event']=='restart_awarded' and row.get('pp_changed'):
             timeline.append((row['t_ms'],0,'possession',row['team']))
+    for row in e.log:
+        if row['event']=='control':
+            player=e.s.players.get(row['data']['player'])
+            if player:timeline.append((row['t_ms'],1,'control',player.team))
     for row in e.rb_attempts:
-        if row['shot_attempt']:timeline.append((row['t_ms'],1,'attempt',row['team']))
-    timeline.extend((t,1,'attempt',team) for t,team in carry_events)
-    possessions=Counter();attempted=Counter();current=None;had=False
+        timeline.append((row['t_ms'],2,'attempt' if row['shot_attempt'] else 'pass',row['team']))
+    timeline.extend((t,3,'attempt',team) for t,team in carry_events)
+    possessions=Counter();attempted=Counter();terminal=Counter();current=None;had=False;last=None
     for _,_,kind,team in sorted(timeline,key=lambda x:(x[0],x[1])):
         if kind=='possession':
             if current is not None:
-                possessions[current]+=1;attempted[current]+=int(had)
-            current=team;had=False
-        elif team==current:had=True
-    if current is not None:possessions[current]+=1;attempted[current]+=int(had)
+                possessions[current]+=1;attempted[current]+=int(had);terminal[current]+=int(last=='attempt')
+            current=team;had=False;last=None
+        elif team==current:
+            last=kind
+            if kind=='attempt':had=True
+    if current is not None:possessions[current]+=1;attempted[current]+=int(had);terminal[current]+=int(last=='attempt')
     calls=e.rb.calls;discipline=[r for r in calls if r['kind']=='discipline']
     scores={t:{'play':0,'penalty_awards':0} for t in ('A','B')}
     for row in e.log:
         if row['event'] in ('goal','foul_award'):
             d=row['data'];scores[d['team']]['play' if row['event']=='goal' else 'penalty_awards']+=d['points']
     arrows={t:Counter(r['kind'] for r in calls if r.get('team')==t and r['kind'] in ('arrow_release','arrow_forfeited')) for t in ('A','B')}
-    return dict(possessions={t:dict(count=possessions[t],with_attempt=attempted[t],share_with_attempt=attempted[t]/possessions[t] if possessions[t] else None) for t in ('A','B')},
+    return dict(possessions={t:dict(count=possessions[t],with_attempt=attempted[t],ending_in_attempt=terminal[t],share_ending_in_attempt=terminal[t]/possessions[t] if possessions[t] else None) for t in ('A','B')},
         points=scores,carry_attempts={t:dict(attempts=e.rb_bands[t]['carry_attempts'],goals=e.rb_bands[t]['carry_goals']) for t in ('A','B')},
         groundings=sum(r['event']=='c3_grounding' for r in e.log),
         restart_timeouts=sum(v.endswith('_timeout') for v in e.restart_results.values()),
