@@ -1,0 +1,17 @@
+{
+  "profile": "native-rb/3",
+  "status": "IMPLEMENTED_AND_TESTED_NOT_ACCEPTED",
+  "rows": [
+    {"id":"A4-K", "rule":"Field Keeper cover only after designated starter and backup are both ineligible; no specialist forfeit", "test":"native/rulebook/test_rb3.py::test_specialist_field_cover_only_after_both_designated_ineligible[keeper]", "status":"IMPLEMENTED+tested"},
+    {"id":"A4-A", "rule":"Field Archer cover only after designated starter and backup are both ineligible; no specialist forfeit", "test":"native/rulebook/test_rb3.py::test_specialist_field_cover_only_after_both_designated_ineligible[archer]", "status":"IMPLEMENTED+tested"},
+    {"id":"ATTR2-ACC", "rule":"Acceleration rating directly sets 12.5 times acceleration; braking and turning derive from agility", "test":"native/rulebook/test_rb3.py::test_acceleration_is_independent_and_large_body_is_legal", "status":"IMPLEMENTED+tested"},
+    {"id":"ATTR2-BODY", "rule":"Engine height 1.4 to 3.6576 m and positive mass; large Garvian body admitted", "test":"native/rulebook/test_rb3.py::test_nbl_adapter_selects_independent_franchises_and_garvian_giant", "status":"IMPLEMENTED+tested"},
+    {"id":"ATTR2-THROW", "rule":"Throw-power rating changes chosen release speed and the engine enforces the thrower maximum", "test":"native/rulebook/test_rb3.py::test_throw_power_changes_selected_speed_and_rb_scoring_is_banded and native/test_attr.py::test_engine_and_ingress_use_thrower_maximum", "status":"IMPLEMENTED+tested"},
+    {"id":"R4", "rule":"Contact/takedown intent expires on carrier target change or after one decision interval", "test":"native/rulebook/test_rb3.py::test_contact_intent_expires_on_carrier_change_and_decision_interval", "status":"IMPLEMENTED+tested"},
+    {"id":"FAB1-Q2", "rule":"RB/3 Archer targeting allows qualifying opponent pass-in-flight", "test":"native/rulebook/test_rb3.py::test_archer_pass_in_flight_predicate_restored_only_for_rb3", "status":"IMPLEMENTED+tested"},
+    {"id":"RB21", "rule":"RB/3 retains own-flight value and records failed carry attempts", "test":"native/rulebook/test_rb3.py::test_rb3_keeps_rb21_own_flight_and_failed_carry_measurement", "status":"IMPLEMENTED+tested"},
+    {"id":"INERT", "rule":"All 18 newly stored ratings change config digest but not trace/state hashes and are absent from AthleteView", "test":"native/rulebook/test_rb3.py::test_inert_rating_changes_digest_but_not_play_or_view", "status":"IMPLEMENTED+tested"},
+    {"id":"NBL", "rule":"Choose 18 field, 2 KPR, 2 ARC by highest opening OVR; independent franchise rosters", "test":"native/rulebook/test_rb3.py::test_nbl_adapter_selects_independent_franchises_and_garvian_giant", "status":"IMPLEMENTED+tested for Garvian Guardians and Ala Apex", "exception":"Güunlekia Serpents has one KPR in owner workbook d85e790; owner direction requested"},
+    {"id":"LEGACY", "rule":"Native-v0/2 and native-rb/2 replay hashes unchanged", "test":"native/test_v3.py::test_v2_short_window_replays_pristine_a1b1313_hashes and native.rulebook.check_replay", "status":"IMPLEMENTED+tested"}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "native-v0-3-source-head-manifest/1",
+  "source_branch": "claude/native-v0-3-handoff-69stxd",
+  "source_head": "8613280d145cfd56e11fa4f6249ab31dfaaa34fe",
+  "integration_branch": "codex/native-rb-3",
+  "ported_commits": ["3d26f4f", "93d6f5c", "c521c49"],
+  "config_version": "native-v0/3",
+  "config_digest": "2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b",
+  "integrated_short_replay": {
+    "seed": 1,
+    "steps": 100,
+    "live_ms": 7244,
+    "trace_hash": "a31726d09e0a6b59dfbafc60de35b158432e80a2046c5518d1c93d2622a2bfc0",
+    "state_hash": "e2acc6139a018ea603d696241ee5784d1d02f102dee2320a5fad6e5384758220"
+  },
+  "source_head_full_seed1": {
+    "source": "8613280:NATIVE_V0_3_MANIFEST.json",
+    "trace_hash": "cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2",
+    "state_hash": "d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012",
+    "integrated_full_replay_verified": true,
+    "integrated_runtime_s": 125.994
+  },
+  "focused_v3_tests": "49 passed",
+  "acceptance": "IMPLEMENTED_AND_TESTED_NOT_ACCEPTED"
+}

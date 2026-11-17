@@ -1,0 +1,25 @@
+{
+  "schema": "native-rb-3-integration/1",
+  "status": "IMPLEMENTED_AND_TESTED_NOT_ACCEPTED",
+  "branch": "codex/native-rb-3",
+  "base": "b4cd38d",
+  "implementation_commit": "72a171d",
+  "source_commits": {
+    "native_v0_3": "8613280",
+    "ported_v0_3_code": ["3d26f4f", "93d6f5c", "c521c49"],
+    "attribute_mapping": "6e5608f",
+    "nbl_workbook": "d85e790"
+  },
+  "profiles": {
+    "native_v0_2": {"digest":"f31b44a1eb787f14c9d606be74fa40658c6b7b9772ee1e882b075b856edc3035", "seed1_trace":"3840682e22692e597bc1419aa298337201e86db2d35f7208c5c9e50e9a99a142", "seed1_state":"411abb0a4bab0b812bc5e2e010f03d22f726ff32fdcebcb7df6c3a5beac8aec9"},
+    "native_v0_3": {"digest":"2e90666654a575ce158fea7781fc5bb2aade49ec1996d4d98ee447c317bf626b", "seed1_trace":"cacf24053a2fdfdcfecf64c376690651029c8094dd6488b864069b3c3baa74d2", "seed1_state":"d688fcbb46b20830bc2ecbda35486bbee5720b8b7cf911f3403f12a9f13d0012"},
+    "native_rb_2": {"digest":"383e127fa59b439efb51cce2fbc42351beb9e01e8f94bf28d5af70274b07c1f5", "bounded_trace":"936c588ffec65c3a77362d67b31a12ea4b5e086536dd53df1d59eee075027d93", "bounded_state":"9381cfee32ce7ef5ef9d9ba854a29175be62f9eb62bba404ceb0867e2a456239"},
+    "native_rb_3_garvian_ala": {"digest":"4721bcc8ffbec470fa5061afde853312ad8b559c1664378fbdbc9341553c9ce2", "roster_A":"e95d361d060dbb4585672764835101924679da40b80c5c03530542d168d0d5cc", "roster_B":"949227f47a9647eff92b3c287dac2a5f60b57fd1e7d35315dd8cbaf25c9c0d42", "scoring":"banded", "mapping_version":"attr-map/2"}
+  },
+  "bounded_smoke": {"seed":1, "steps":400, "live_ms":13013, "status":"partial", "invariants":"passed", "trace_hash":"f23d92d3d567ae7034103bd3fbc9f61e095f4157690bb89a309246740c85dd00", "state_hash":"6aa1b0deda0c7c4fdc9725b292bb6f3f2370d94a8b8f23abc35092bf381e3cd6", "restart_completion_ratio":0.8333333333333334, "pending_restart_at_cutoff":1, "runtime_s":1.307},
+  "tests": {"full_suite_command":"PYTHONPATH=<site-packages containing openpyxl> .venv/bin/python -m pytest -q b1 native", "full_suite_result":"387 passed, 23 subtests passed; one external plugin deprecation warning", "focused_rb3_result":"28 passed after final scoring and parallel-replay additions", "frozen_b0_files":427, "accepted_files_byte_identical":true},
+  "body_readback": "RB3_NBL_BODY_READBACK.md",
+  "inert_proof": "18 ratings x 3 values in 30-step windows: trace and state hashes identical; full config digests distinct; views contain none of the 18 fields",
+  "franchise_exception": "Güunlekia Serpents has only one KPR in d85e790; second specialist cannot be selected without owner direction",
+  "full_rb3_match_evidence": "not run; bounded smoke only"
+}

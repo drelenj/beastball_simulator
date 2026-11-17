@@ -57,6 +57,14 @@ RB-PH-13 RESOLVED by RB-2 engineering correction: release-distance attempt count
 RB-PH-13 measurement definition completed by RB-2.1: one carry attempt is the first controlled entry of a field carrier's body centre strictly inside the20m Keeper/scoring zone around the attacked goal, once per secure control. The arc is outside; a scored carry not previously observed inside is counted at the goal event. This is an ENGINEERING measurement definition, not a new gameplay rule.
 
 2026-11-16 SCORING BASIS owner ruling: banded scoring is the working canon and the only basis permitted for current measurements. `native-rb/2` uses carry5; throw bands2/3/4; half goal1; full-goal award3; own goal2. Values remain provisional until the self-play experiment reports. Historical flat artifacts are retained only as history and are not measurement evidence.
+
+## Native-RB/3 roster exception, 2026-11-17
+
+Q-RB3-1 (CANON): the owner workbook at `d85e790` has only one KPR for Güunlekia Serpents. The requested adapter selects two KPR per team, and A-4 permits a field player to take over only after both designated Keepers have become ineligible. No second designated KPR can be selected from this franchise. Should the owner amend the roster, designate a field player as the backup at setup, or allow a loaned Keeper? The adapter rejects this franchise pending the ruling; the other 25 franchises can be selected independently.
+
+Q-FAB1-2 is resolved for native-rb/3: RB-2.1 retains team control during qualifying flight; the Archer's pass-in-flight predicate is restored for this profile. Historical native-v0/3 behavior remains versioned separately.
+
+RB3-ATTR PLACEHOLDERS: eight technical ratings (tackling, blocking, ball_handling, catching, awareness, throw_accuracy, keeper_skill, archery_accuracy) use Opening-day OVR / 100; contact_resistance uses Balance / 100. These values are flagged placeholders until a shared derived-ratings specification replaces them. Touch and the other 17 newly carried ratings remain INERT, default to 0.70 when absent, and are never put into an athlete view.
 ## native-v0/3 (FAB-1, Claude, 2026-11-15)
 These apply to config `native-v0/3` only. None blocks engineering; each has the smallest working default in place.
 
