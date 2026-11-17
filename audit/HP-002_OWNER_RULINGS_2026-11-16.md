@@ -10,3 +10,6 @@ Status: CANON (owner). Nothing here is implemented, tested or accepted.
 - Deceleration (owner, 16 Nov 2026 20:25): covered by Agility; no separate Deceleration rating. Braking and turning stay derived from Agility; revisit only if duel tests show they must decouple.
 - PRISM, judgment and Touch ratings (owner, same time): add to the roster and attribute schema now, INERT (carried, validated and recorded, but read by no cognition, motor or engine path) until separately activated.
 - R3-3 (CANON, owner, 16 Nov 2026 22:02): Güunlekia Serpents (one KPR, three ARC): the lowest-rated Archer becomes the backup Keeper. Applied: Zuberi Ibe (NBL24-09-16) ARC -> KPR in the roster workbook; the three Archers tied at Opening-day OVR 81, broken by Pre-camp OVR (Ibe 81, Sunblade 83, Swiftarrow 88). Ratings, size and ancestry unchanged.
+
+## 17 Nov 2026 - Kamasi Sinella final canonical profile (owner-supplied)
+Locked: Ala Marauders Hunter, OVR 98, ancestry Ly'Kun/Shynän/Dryqona (Tri-blood), height 9'8.1", 1,018 lb, wingspan 10'7.7", standing reach 12'6.9", physique Rangy. Physical ratings: Speed 94, Strength 96, Jumping 93, Acceleration 91, Agility 94, Balance 93, Throw Power 95, Stamina 97, Durability 96. Supersedes the earlier +14 mu / floor 85 generated values. Applied by audit/arcade/morphology/apply_profile_locks.py.

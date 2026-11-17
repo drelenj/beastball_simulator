@@ -25,7 +25,7 @@ def tribe(s):
 # Locks (owner): ancestry only. Matched by exact name; IDs verified at run time.
 LOCKS = {
     "Miles Starlight": ("Ly’Kun",),
-    "Kamasi Sinella": ("Ly’Kun", "Dryqona", "Shynän", "Yubu"),
+    "Kamasi Sinella": ("Ly’Kun", "Shynän", "Dryqona"),  # 17 Nov 2026 final profile; full values applied by apply_profile_locks.py
     "Dante Sinella": ("Shynän", "Yubu"),
     "Damon Sinella": ("Shynän", "Yubu"),
 }
