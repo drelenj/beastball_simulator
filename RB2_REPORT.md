@@ -8,7 +8,7 @@
 
 RB-2 was DESIGN COMPLETE in the change request. It is now IMPLEMENTED and TESTED. It is not ACCEPTED until DreLen accepts it. No gameplay-quality, balance or emergence claim is made.
 
-Validation: `292 passed, 23 subtests passed` in the complete `b1 native` suite; `95 passed` in the focused Rulebook suite. All 427 frozen B0 blobs verify, and `b1/core.py`, `b1/runtime.py`, `b1/g1.py`, and `native/cognition.py` are byte-identical to the RB-1 base. The banded 100-step replay matched serial, two parallel workers and M2-absent execution with trace `936c588ffec65c3a77362d67b31a12ea4b5e086536dd53df1d59eee075027d93` and state `9381cfee32ce7ef5ef9d9ba854a29175be62f9eb62bba404ceb0867e2a456239`. The bounded blocker run passed 5,375 live ms and reached 151,963 live ms without a restart stall.
+Validation: `294 passed, 23 subtests passed` in the complete `b1 native` suite; `97 passed` in the focused Rulebook suite. All 427 frozen B0 blobs verify, and `b1/core.py`, `b1/runtime.py`, `b1/g1.py`, and `native/cognition.py` are byte-identical to the RB-1 base. The banded 100-step replay matched serial, two parallel workers and M2-absent execution with trace `936c588ffec65c3a77362d67b31a12ea4b5e086536dd53df1d59eee075027d93` and state `9381cfee32ce7ef5ef9d9ba854a29175be62f9eb62bba404ceb0867e2a456239`. The bounded blocker run passed 5,375 live ms and reached 151,963 live ms without a restart stall; it naturally recorded 3 failed A carry attempts and 8 failed B carry attempts. RB-2.1 implementation commit: `c1f477d`.
 
 ## Corrections
 

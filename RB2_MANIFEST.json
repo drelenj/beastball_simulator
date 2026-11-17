@@ -1,9 +1,10 @@
 {
-  "schema": "rb2-change-manifest/2",
+  "schema": "rb2.1-change-manifest/3",
   "status": "IMPLEMENTED_AND_TESTED_NOT_ACCEPTED",
   "branch": "codex/rulebook-2",
   "base_commit": "ebce209",
-  "implementation_commit": "faf0f4e",
+  "prior_rb2_commit": "cff4b92",
+  "implementation_commit": "c1f477d",
   "profiles": {
     "active_version": "native-rb/2",
     "scoring": "banded",
@@ -19,9 +20,9 @@
   },
   "tests": {
     "complete_command": ".venv/bin/python -m pytest -q b1 native",
-    "complete_result": "292 passed, 23 subtests passed",
+    "complete_result": "294 passed, 23 subtests passed",
     "rulebook_command": ".venv/bin/python -m pytest -q native/rulebook",
-    "rulebook_result": "95 passed",
+    "rulebook_result": "97 passed",
     "frozen_b0_files_verified": 427,
     "accepted_files_byte_identical": [
       "b1/core.py",
@@ -41,7 +42,11 @@
     "full_matches": 0,
     "blocked": false,
     "live_ms": 151963,
-    "advanced_past_live_ms": 5375
+    "advanced_past_live_ms": 5375,
+    "carry_attempts": {
+      "A": {"attempts": 3, "goals": 0},
+      "B": {"attempts": 8, "goals": 0}
+    }
   },
   "measurement_defaults": [
     "native.rulebook.run",
@@ -59,6 +64,7 @@
     "own_goals",
     "release_ledger"
   ],
+  "carry_attempt_definition": "First field-carrier body-centre entry strictly inside the attacked 20m Keeper/scoring zone, once per secure control; the arc is outside and a scored carry not observed earlier is counted at goal",
   "full_match_evidence": "No native-rb/2 banded full match was run; retained flat RB-1 artifacts are historical only and were not modified",
   "check_default_outputs": [
     "/tmp/beastball-rb-short-replay.json",
