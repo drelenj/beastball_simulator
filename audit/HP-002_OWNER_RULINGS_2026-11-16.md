@@ -16,3 +16,6 @@ Locked: Ala Marauders Hunter, OVR 98, ancestry Ly'Kun/Shynän/Dryqona (Tri-blood
 
 ## 17 Nov 2026 - Dante Sinella (Bloodravens) and OVR sync
 Owner: Dante Sinella was last season's league MVP and Archer of the Year for the title-winning Bloodravens, so he is the highest-rated Archer in the league. Applied: OVR 95 -> 99 and physical ratings raised (Spd 80, Str 95, Jmp 99, Acc 95, Agi 87, Bal 93, Thr 86, Sta 100, Dur 91; +12 mu shift, floor 80, same per-athlete RNG). Size, ancestry, physique unchanged. Also: All 712 Players Opening-day OVR synced to the team sheets (canonical) for all players that differed.
+
+## 17 Nov 2026 - Toss timeout placement (CANON; supersedes the RB-2 goal-line toss-timeout rule)
+Owner: when a toss times out, the other team is awarded the ball at its own 40 or the spot of the ball, whichever is closer to the attack goal. This applies to every toss timeout (end line and side boundary) and replaces the RB-2 special case that placed the scrimmage 5 m into the field after an end-line toss timeout. It is the same normalization the engine already uses for ordinary turnovers (x = max(spot, own end + 40) in the attack direction; y = spot y). Reason: the 5 m placement was the trigger of the RB-3.1 restart loop.
