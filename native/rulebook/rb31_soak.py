@@ -190,7 +190,9 @@ def main():
     # after a match so those classes and their state do not accumulate.
     with ProcessPoolExecutor(args.workers,max_tasks_per_child=1) as pool:
         futures=[pool.submit(job,(args.block,seed,str(out))) for seed in args.seeds]
-        for future in as_completed(futures):print(json.dumps(future.result(),sort_keys=True),flush=True)
+        for future in as_completed(futures):
+            result=future.result()
+            print(json.dumps({k:result.get(k) for k in ('block','seed','status','score','trace_hash','state_hash','runtime_s','error') if k in result},sort_keys=True),flush=True)
 
 
 if __name__=='__main__':main()
