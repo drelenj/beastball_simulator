@@ -12,6 +12,10 @@ LOCKS = {
         player="Kamasi Sinella", ancestry="Ly’Kun/Shynän/Dryqona", cls="Tri", height_src="Dryqona", physique="Rangy",
         height_in=116.09, mass_lb=1018.0, span_in=127.7, reach_in=150.9, ovr=98,
         ratings=dict(Speed=94, Strength=96, Jumping=93, Acceleration=91, Agility=94, Balance=93, **{"Throw Power": 95}, Stamina=97, Durability=96)),
+    "NBL24-11-12": dict(  # Dante Sinella, Kasuf Bloodravens: league MVP + Archer of the Year, title winner (owner, 17 Nov 2026). Morphology unchanged.
+        player="Dante Sinella", ancestry="Yubu/Shynän", cls="Dual", height_src="Yubu", physique="Powerful",
+        height_in=81.07, mass_lb=388.5, span_in=84.31, reach_in=102.96, ovr=99, keep_locked_label=True,
+        ratings=dict(Speed=80, Strength=95, Jumping=99, Acceleration=95, Agility=87, Balance=93, **{"Throw Power": 86}, Stamina=100, Durability=91)),
 }
 
 def cells(pid, L):
@@ -20,7 +24,8 @@ def cells(pid, L):
          "Mass (lb)": round(L["mass_lb"], 1), "Mass (kg)": round(L["mass_lb"] * LB_KG, 1),
          "Arm span (in)": round(L["span_in"], 2), "Arm span (m)": round(L["span_in"] * IN_M, 3), "Arm-span ratio": round(L["span_in"] / h, 4),
          "Standing reach (in)": round(L["reach_in"], 2), "Standing reach (m)": round(L["reach_in"] * IN_M, 3),
-         "Morphology locked": "YES (owner profile)", "Opening-day OVR": L["ovr"]}
+         "Opening-day OVR": L["ovr"]}
+    if not L.get("keep_locked_label"): d["Morphology locked"] = "YES (owner profile)"
     for a, v in L["ratings"].items(): d[f"{a} (rating)"] = v
     g = PA.generate_physical(h, L["physique"], L["ancestry"].split("/"), random.Random(f"20261116|phys-1.0|{pid}|attr"), 0, 0)
     d["Primary attributes"] = ", ".join(x for x in PA.ATTRS if g[x]["affinity"] == "P")

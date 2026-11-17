@@ -13,3 +13,6 @@ Status: CANON (owner). Nothing here is implemented, tested or accepted.
 
 ## 17 Nov 2026 - Kamasi Sinella final canonical profile (owner-supplied)
 Locked: Ala Marauders Hunter, OVR 98, ancestry Ly'Kun/Shynän/Dryqona (Tri-blood), height 9'8.1", 1,018 lb, wingspan 10'7.7", standing reach 12'6.9", physique Rangy. Physical ratings: Speed 94, Strength 96, Jumping 93, Acceleration 91, Agility 94, Balance 93, Throw Power 95, Stamina 97, Durability 96. Supersedes the earlier +14 mu / floor 85 generated values. Applied by audit/arcade/morphology/apply_profile_locks.py.
+
+## 17 Nov 2026 - Dante Sinella (Bloodravens) and OVR sync
+Owner: Dante Sinella was last season's league MVP and Archer of the Year for the title-winning Bloodravens, so he is the highest-rated Archer in the league. Applied: OVR 95 -> 99 and physical ratings raised (Spd 80, Str 95, Jmp 99, Acc 95, Agi 87, Bal 93, Thr 86, Sta 100, Dur 91; +12 mu shift, floor 80, same per-athlete RNG). Size, ancestry, physique unchanged. Also: All 712 Players Opening-day OVR synced to the team sheets (canonical) for all players that differed.
