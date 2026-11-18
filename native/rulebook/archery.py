@@ -12,6 +12,10 @@ def install(co,cfg):
    self.rb_publish(self.rb.turnover(team))
    if v3:
     epoch=self.__dict__.setdefault('rb_quota_epoch',{'A':0,'B':0});epoch[self.s.other(team)]+=1
+    # RB-3.5 ruling 2: an arrow in flight when possession changes is inert and stays spent.
+    for ar in self.s.arrows:
+     if ar.live:
+      ar.live=False;self.emit('arrow_inert','RB-3.5',arrow=ar.id,player=ar.shooter,target=ar.target,reason='possession_change',refunded=False)
   if v3 and self.s.phase in (P.DEAD,P.FINAL):
    # RB-3.4 ruling 2: an arrow still in flight when the ball goes dead is inert and is not
    # charged to the Archer's quota (refunded only within the same possession quota).
@@ -30,10 +34,11 @@ def install(co,cfg):
   if quota['arrows']>=cfg.arrows:return False
   if v3:
    self.native_sync()
-   if s.phase==P.DEAD:
+   if s.phase in (P.DEAD,P.FLIGHT):
     # RB-3.4 ruling 2: released while the ball is dead: inert, no foul, not charged.
+    # RB-3.5 ruling 2: the same for a release while a shot is in the air after the clock expired.
     s.quivers[p.team].last_release=s.now
-    self.emit('arrow_inert','RB-3.4',player=pid,target=target,reason='dead_ball_release',refunded=True);return False
+    self.emit('arrow_inert','RB-3.4',player=pid,target=target,reason='dead_ball_release' if s.phase==P.DEAD else 'finishing_flight_release',refunded=True);return False
    # RB-3.4 rulings 1 and 3: judged at release; passive possession only (no team-control test).
    checks=dict(archer=p.role=='archer',archer_eligible=p.eligible(s.now),phase=s.phase==P.LIVE,hunt_not_cleared=self.hunt_cleared,
                stale_target=t is not None and t.role=='field' and t.team!=p.team,

@@ -96,6 +96,8 @@ def install(co,cfg):
     install_review(co,cfg)
     from .period_start import install as install_period_start
     install_period_start(co,cfg)
+    from .zone_residence import install as install_zone_residence
+    install_zone_residence(co,cfg)
     from .report_fields import install as install_report_fields
     install_report_fields(co,cfg)
     from functools import wraps

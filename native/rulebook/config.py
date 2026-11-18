@@ -43,9 +43,13 @@ class RulebookConfigV3(RulebookConfig):
     # RB-3.4 (owner ruling 17 Nov 2026, PROVISIONAL): contact with a player who has just thawed is
     # immune_contact for this long after the thaw; frozen players are obstacles (no contact foul).
     thaw_contact_buffer_ms: int = 1000
+    # RB-3.5: zone residence by zone (defender: own zone; attacker: attacked zone)
+    zone_residence_ms: int = 5000
+    zone_marked_distance_m: float = 5.0
 
     def __post_init__(self):
         if self.thaw_contact_buffer_ms<0:raise ValueError('thaw_contact_buffer_ms must be >= 0')
+        if self.zone_residence_ms<=0 or self.zone_marked_distance_m<0:raise ValueError('zone residence parameters out of range')
         if self.version!='native-rb/3' or self.profile!='native-rb' or self.scoring!='banded':raise ValueError('RB/3 profile mixing')
         if len(self.roster_digests)!=2 or any(not isinstance(x,str) or len(x)!=64 for x in self.roster_digests):raise ValueError('RB/3 requires A and B roster digests')
         if self.mapping_version!='attr-map/2' or self.body_standards!=() or self.pocket_settings!=_RB3_POCKET:raise ValueError('RB/3 mapping/mechanics mismatch')
