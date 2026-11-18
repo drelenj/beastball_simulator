@@ -104,3 +104,10 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB34-3 | Frozen players are obstacles in the rules and in athlete path planning, but the physical contact kernel still leaves frozen bodies out of collisions, so a body can pass through one. | ENGINEERING (Codex): add frozen bodies to the collision kernel as immovable obstacles. |
 | Q-RB34-4 | zone_unmarked fouls rose to 47-93 per match (RB-3.3: 18-48) and now produce most foul-award points (83-98% of points come from foul awards). Every one is by a field defender; about 10.5 eligible field defenders were available on average; DQ shortage applied to 8-36 per match. The cause is not isolated (not freezes of the actor; not the new detour). | ENGINEERING/BEHAVIORAL follow-up. |
 | Q-RB34-5 | The Archer quota count shows one Archer per team taking most arrows: the quota is per team possession (15) and resets on every turnover, so a single Archer can release 250+ arrows a match. | CANON check: is 15 per team possession the intended limit? |
+
+## RB-3.5 provisional (claude/rb-3-5-zone-diagnosis, 18 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB35-1 | An arrow already in flight when the clock expires with a shot in the air (finishing flight) is not covered by the ruling. | CANON; PLACEHOLDER: it flies on; it cannot freeze (the engine does not freeze outside live play), it stays spent until the ball goes dead, then it is refunded under the dead-ball rule. |
+| Q-RB35-2 | The diagnosis field "left and re-entered the zone in the previous 5 s" is always false at a call, because leaving resets the 5 s timer. The time since the last exit is logged instead. | Measurement note. |
+| Q-RB35-3 | Removing the engine's 10-70 m freeze range also removes its 10 m minimum. | CANON check: is there a minimum distance? None applied. |

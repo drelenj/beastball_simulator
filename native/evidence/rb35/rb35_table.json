@@ -1,0 +1,957 @@
+{
+  "matches": [
+    {
+      "defender_live_time": {
+        "A": {
+          "defender_ms": 13456102,
+          "in_own_zone_ms": 773526,
+          "in_own_zone_unmarked_ms": 714508,
+          "share_in_own_zone": 0.0575,
+          "share_in_own_zone_unmarked": 0.0531
+        },
+        "B": {
+          "defender_ms": 12204982,
+          "in_own_zone_ms": 1123670,
+          "in_own_zone_unmarked_ms": 919317,
+          "share_in_own_zone": 0.0921,
+          "share_in_own_zone_unmarked": 0.0753
+        }
+      },
+      "foul_reasons": {
+        "archery_target": 14,
+        "freeze_recovery": 1,
+        "zone_unmarked": 50
+      },
+      "name": "real-seed01",
+      "runtime_s": 206.12,
+      "score": {
+        "A": 34,
+        "B": 45
+      },
+      "state_hash": "953e61fc6789e4db5eb02ca802ef70286e3e375f8352b279892644f089616114",
+      "status": "final",
+      "trace_hash": "ac771a680ead5dcf234ff9c2291974c2ccffc88c4b6760ecde7a33ba7991c7e7",
+      "zone_residence": 4,
+      "zone_residence_diagnosis": {
+        "ball_distance_to_zone_centre_m": {
+          "max": 22.0,
+          "median": 21.64,
+          "min": 16.24,
+          "n": 4,
+          "q1": 20.13,
+          "q3": 21.64
+        },
+        "ball_status": {
+          "carried": 3,
+          "pass_in_flight": 1
+        },
+        "distance_to_ball_m": {
+          "max": 21.39,
+          "median": 2.64,
+          "min": 1.4,
+          "n": 4,
+          "q1": 1.62,
+          "q3": 2.64
+        },
+        "distance_to_carrier_m": {
+          "max": 2.69,
+          "median": 2.3,
+          "min": 0.0,
+          "n": 3,
+          "q1": 0.0,
+          "q3": 2.69
+        },
+        "distance_to_nearest_off_ball_offence_m": {
+          "max": 5.27,
+          "median": 4.96,
+          "min": 2.99,
+          "n": 4,
+          "q1": 3.53,
+          "q3": 4.96
+        },
+        "fouler_distance_to_zone_centre_m": {
+          "max": 19.69,
+          "median": 19.49,
+          "min": 17.85,
+          "n": 4,
+          "q1": 19.08,
+          "q3": 19.49
+        },
+        "fouler_roles": {
+          "field": 4
+        },
+        "fouler_y": {
+          "max": 68.78,
+          "median": 61.39,
+          "min": 33.01,
+          "n": 4,
+          "q1": 48.02,
+          "q3": 61.39
+        },
+        "fouls": 4,
+        "frozen_or_immune_prev_10s_share": 0.0,
+        "last_exit_within_10s_share": 0.5,
+        "live_s_in_zone": {
+          "max": 5.1,
+          "median": 5.09,
+          "min": 5.01,
+          "n": 4,
+          "q1": 5.07,
+          "q3": 5.09
+        },
+        "nearest_off_ball_offence_band_share": {
+          "<=10m": 1.0
+        },
+        "nearest_off_ball_offence_distance_to_zone_centre_m": {
+          "max": 23.47,
+          "median": 22.55,
+          "min": 20.18,
+          "n": 4,
+          "q1": 22.37,
+          "q3": 22.55
+        },
+        "no_carrier_share": 0.25,
+        "offence_within_10m": {
+          "max": 6,
+          "median": 3,
+          "min": 1,
+          "n": 4,
+          "q1": 3,
+          "q3": 3
+        },
+        "offence_within_20m": {
+          "max": 9,
+          "median": 8,
+          "min": 4,
+          "n": 4,
+          "q1": 6,
+          "q3": 8
+        },
+        "reentered_within_5s_share": 0.0,
+        "teammates_in_same_zone": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 4,
+          "q1": 0,
+          "q3": 0
+        }
+      },
+      "zone_unmarked": 50,
+      "zone_unmarked_diagnosis": {
+        "ball_distance_to_zone_centre_m": {
+          "max": 105.19,
+          "median": 49.61,
+          "min": 16.77,
+          "n": 50,
+          "q1": 35.81,
+          "q3": 64.16
+        },
+        "ball_status": {
+          "carried": 29,
+          "pass_in_flight": 21
+        },
+        "distance_to_ball_m": {
+          "max": 91.79,
+          "median": 42.74,
+          "min": 5.53,
+          "n": 50,
+          "q1": 24.91,
+          "q3": 56.8
+        },
+        "distance_to_carrier_m": {
+          "max": 92.96,
+          "median": 42.91,
+          "min": 5.89,
+          "n": 35,
+          "q1": 23.61,
+          "q3": 57.14
+        },
+        "distance_to_nearest_off_ball_offence_m": {
+          "max": 54.36,
+          "median": 28.1,
+          "min": 5.84,
+          "n": 50,
+          "q1": 14.38,
+          "q3": 39.47
+        },
+        "fouler_distance_to_zone_centre_m": {
+          "max": 19.95,
+          "median": 17.4,
+          "min": 6.25,
+          "n": 50,
+          "q1": 11.1,
+          "q3": 18.03
+        },
+        "fouler_roles": {
+          "field": 50
+        },
+        "fouler_y": {
+          "max": 67.76,
+          "median": 51.82,
+          "min": 33.92,
+          "n": 50,
+          "q1": 40.03,
+          "q3": 60.46
+        },
+        "fouls": 50,
+        "frozen_or_immune_prev_10s_share": 0.0,
+        "last_exit_within_10s_share": 0.4,
+        "live_s_in_zone": {
+          "max": 14.38,
+          "median": 5.07,
+          "min": 5.0,
+          "n": 50,
+          "q1": 5.04,
+          "q3": 6.61
+        },
+        "nearest_off_ball_offence_band_share": {
+          "10-20m": 0.28,
+          "<=10m": 0.1,
+          ">20m": 0.62
+        },
+        "nearest_off_ball_offence_distance_to_zone_centre_m": {
+          "max": 65.23,
+          "median": 36.08,
+          "min": 19.68,
+          "n": 50,
+          "q1": 26.87,
+          "q3": 47.22
+        },
+        "no_carrier_share": 0.3,
+        "offence_within_10m": {
+          "max": 5,
+          "median": 0,
+          "min": 0,
+          "n": 50,
+          "q1": 0,
+          "q3": 0
+        },
+        "offence_within_20m": {
+          "max": 11,
+          "median": 0,
+          "min": 0,
+          "n": 50,
+          "q1": 0,
+          "q3": 2
+        },
+        "reentered_within_5s_share": 0.0,
+        "teammates_in_same_zone": {
+          "max": 5,
+          "median": 1,
+          "min": 1,
+          "n": 50,
+          "q1": 1,
+          "q3": 2
+        }
+      }
+    },
+    {
+      "defender_live_time": {
+        "A": {
+          "defender_ms": 12704122,
+          "in_own_zone_ms": 1080213,
+          "in_own_zone_unmarked_ms": 951239,
+          "share_in_own_zone": 0.085,
+          "share_in_own_zone_unmarked": 0.0749
+        },
+        "B": {
+          "defender_ms": 12935416,
+          "in_own_zone_ms": 969775,
+          "in_own_zone_unmarked_ms": 865076,
+          "share_in_own_zone": 0.075,
+          "share_in_own_zone_unmarked": 0.0669
+        }
+      },
+      "foul_reasons": {
+        "archery_target": 4,
+        "zone_unmarked": 58
+      },
+      "name": "real-seed03",
+      "runtime_s": 216.01,
+      "score": {
+        "A": 40,
+        "B": 45
+      },
+      "state_hash": "fc3932ff517a9b50d5c4d4fee9a0f53bf980578d83abc5f61eec9dacc71dca52",
+      "status": "final",
+      "trace_hash": "121ae54ca54bbf3a7661ddff7eed978c35419aab75785d106a7b0ae0c0052390",
+      "zone_residence": 3,
+      "zone_residence_diagnosis": {
+        "ball_distance_to_zone_centre_m": {
+          "max": 21.91,
+          "median": 21.05,
+          "min": 20.07,
+          "n": 3,
+          "q1": 20.07,
+          "q3": 21.91
+        },
+        "ball_status": {
+          "carried": 3
+        },
+        "distance_to_ball_m": {
+          "max": 5.35,
+          "median": 5.24,
+          "min": 2.87,
+          "n": 3,
+          "q1": 2.87,
+          "q3": 5.35
+        },
+        "distance_to_carrier_m": {
+          "max": 5.67,
+          "median": 4.59,
+          "min": 4.32,
+          "n": 3,
+          "q1": 4.32,
+          "q3": 5.67
+        },
+        "distance_to_nearest_off_ball_offence_m": {
+          "max": 3.79,
+          "median": 3.29,
+          "min": 2.47,
+          "n": 3,
+          "q1": 2.47,
+          "q3": 3.79
+        },
+        "fouler_distance_to_zone_centre_m": {
+          "max": 19.7,
+          "median": 19.35,
+          "min": 16.63,
+          "n": 3,
+          "q1": 16.63,
+          "q3": 19.7
+        },
+        "fouler_roles": {
+          "field": 3
+        },
+        "fouler_y": {
+          "max": 51.87,
+          "median": 40.44,
+          "min": 38.12,
+          "n": 3,
+          "q1": 38.12,
+          "q3": 51.87
+        },
+        "fouls": 3,
+        "frozen_or_immune_prev_10s_share": 0.0,
+        "last_exit_within_10s_share": 0.0,
+        "live_s_in_zone": {
+          "max": 5.1,
+          "median": 5.1,
+          "min": 5.0,
+          "n": 3,
+          "q1": 5.0,
+          "q3": 5.1
+        },
+        "nearest_off_ball_offence_band_share": {
+          "<=10m": 1.0
+        },
+        "nearest_off_ball_offence_distance_to_zone_centre_m": {
+          "max": 22.17,
+          "median": 21.39,
+          "min": 19.86,
+          "n": 3,
+          "q1": 19.86,
+          "q3": 22.17
+        },
+        "no_carrier_share": 0.0,
+        "offence_within_10m": {
+          "max": 7,
+          "median": 3,
+          "min": 3,
+          "n": 3,
+          "q1": 3,
+          "q3": 7
+        },
+        "offence_within_20m": {
+          "max": 8,
+          "median": 4,
+          "min": 4,
+          "n": 3,
+          "q1": 4,
+          "q3": 8
+        },
+        "reentered_within_5s_share": 0.0,
+        "teammates_in_same_zone": {
+          "max": 1,
+          "median": 0,
+          "min": 0,
+          "n": 3,
+          "q1": 0,
+          "q3": 1
+        }
+      },
+      "zone_unmarked": 58,
+      "zone_unmarked_diagnosis": {
+        "ball_distance_to_zone_centre_m": {
+          "max": 99.28,
+          "median": 57.31,
+          "min": 9.12,
+          "n": 58,
+          "q1": 33.97,
+          "q3": 77.98
+        },
+        "ball_status": {
+          "carried": 28,
+          "pass_in_flight": 30
+        },
+        "distance_to_ball_m": {
+          "max": 93.74,
+          "median": 46.45,
+          "min": 1.28,
+          "n": 58,
+          "q1": 27.07,
+          "q3": 70.28
+        },
+        "distance_to_carrier_m": {
+          "max": 85.67,
+          "median": 57.07,
+          "min": 6.9,
+          "n": 39,
+          "q1": 29.85,
+          "q3": 68.57
+        },
+        "distance_to_nearest_off_ball_offence_m": {
+          "max": 67.66,
+          "median": 19.0,
+          "min": 5.1,
+          "n": 58,
+          "q1": 12.43,
+          "q3": 38.48
+        },
+        "fouler_distance_to_zone_centre_m": {
+          "max": 19.99,
+          "median": 15.0,
+          "min": 3.07,
+          "n": 58,
+          "q1": 12.16,
+          "q3": 18.4
+        },
+        "fouler_roles": {
+          "field": 58
+        },
+        "fouler_y": {
+          "max": 66.92,
+          "median": 57.69,
+          "min": 30.32,
+          "n": 58,
+          "q1": 46.0,
+          "q3": 60.82
+        },
+        "fouls": 58,
+        "frozen_or_immune_prev_10s_share": 0.0,
+        "last_exit_within_10s_share": 0.345,
+        "live_s_in_zone": {
+          "max": 15.23,
+          "median": 5.07,
+          "min": 5.0,
+          "n": 58,
+          "q1": 5.03,
+          "q3": 8.8
+        },
+        "nearest_off_ball_offence_band_share": {
+          "10-20m": 0.293,
+          "<=10m": 0.207,
+          ">20m": 0.5
+        },
+        "nearest_off_ball_offence_distance_to_zone_centre_m": {
+          "max": 66.85,
+          "median": 29.36,
+          "min": 14.81,
+          "n": 58,
+          "q1": 21.54,
+          "q3": 52.1
+        },
+        "no_carrier_share": 0.328,
+        "offence_within_10m": {
+          "max": 4,
+          "median": 0,
+          "min": 0,
+          "n": 58,
+          "q1": 0,
+          "q3": 0
+        },
+        "offence_within_20m": {
+          "max": 11,
+          "median": 0,
+          "min": 0,
+          "n": 58,
+          "q1": 0,
+          "q3": 2
+        },
+        "reentered_within_5s_share": 0.0,
+        "teammates_in_same_zone": {
+          "max": 7,
+          "median": 1,
+          "min": 1,
+          "n": 58,
+          "q1": 1,
+          "q3": 2
+        }
+      }
+    },
+    {
+      "defender_live_time": {
+        "A": {
+          "defender_ms": 12250163,
+          "in_own_zone_ms": 357804,
+          "in_own_zone_unmarked_ms": 319483,
+          "share_in_own_zone": 0.0292,
+          "share_in_own_zone_unmarked": 0.0261
+        },
+        "B": {
+          "defender_ms": 13540470,
+          "in_own_zone_ms": 891322,
+          "in_own_zone_unmarked_ms": 748561,
+          "share_in_own_zone": 0.0658,
+          "share_in_own_zone_unmarked": 0.0553
+        }
+      },
+      "foul_reasons": {
+        "archery_target": 4,
+        "zone_unmarked": 42
+      },
+      "name": "control-seed01",
+      "runtime_s": 213.53,
+      "score": {
+        "A": 21,
+        "B": 19
+      },
+      "state_hash": "28a352ede72db1a339800bfee662e44a8705cc580759a0eedb20e0d0b51bd83b",
+      "status": "final",
+      "trace_hash": "7b3b81fc81979b93aa92f0c6fbff67d523cfe29c115e9b6fc9b1568e72d04463",
+      "zone_residence": 3,
+      "zone_residence_diagnosis": {
+        "ball_distance_to_zone_centre_m": {
+          "max": 51.31,
+          "median": 23.75,
+          "min": 18.29,
+          "n": 3,
+          "q1": 18.29,
+          "q3": 51.31
+        },
+        "ball_status": {
+          "carried": 1,
+          "loose_ground": 1,
+          "pass_in_flight": 1
+        },
+        "distance_to_ball_m": {
+          "max": 48.91,
+          "median": 7.28,
+          "min": 1.42,
+          "n": 3,
+          "q1": 1.42,
+          "q3": 48.91
+        },
+        "distance_to_carrier_m": {
+          "max": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 1,
+          "q1": 0.0,
+          "q3": 0.0
+        },
+        "distance_to_nearest_off_ball_offence_m": {
+          "max": 6.56,
+          "median": 2.54,
+          "min": 2.44,
+          "n": 3,
+          "q1": 2.44,
+          "q3": 6.56
+        },
+        "fouler_distance_to_zone_centre_m": {
+          "max": 19.7,
+          "median": 19.55,
+          "min": 18.45,
+          "n": 3,
+          "q1": 18.45,
+          "q3": 19.7
+        },
+        "fouler_roles": {
+          "field": 3
+        },
+        "fouler_y": {
+          "max": 67.17,
+          "median": 43.27,
+          "min": 41.2,
+          "n": 3,
+          "q1": 41.2,
+          "q3": 67.17
+        },
+        "fouls": 3,
+        "frozen_or_immune_prev_10s_share": 0.0,
+        "last_exit_within_10s_share": 0.0,
+        "live_s_in_zone": {
+          "max": 6.83,
+          "median": 5.08,
+          "min": 5.04,
+          "n": 3,
+          "q1": 5.04,
+          "q3": 6.83
+        },
+        "nearest_off_ball_offence_band_share": {
+          "<=10m": 1.0
+        },
+        "nearest_off_ball_offence_distance_to_zone_centre_m": {
+          "max": 24.11,
+          "median": 20.89,
+          "min": 20.68,
+          "n": 3,
+          "q1": 20.68,
+          "q3": 24.11
+        },
+        "no_carrier_share": 0.667,
+        "offence_within_10m": {
+          "max": 2,
+          "median": 2,
+          "min": 2,
+          "n": 3,
+          "q1": 2,
+          "q3": 2
+        },
+        "offence_within_20m": {
+          "max": 7,
+          "median": 5,
+          "min": 3,
+          "n": 3,
+          "q1": 3,
+          "q3": 7
+        },
+        "reentered_within_5s_share": 0.0,
+        "teammates_in_same_zone": {
+          "max": 1,
+          "median": 0,
+          "min": 0,
+          "n": 3,
+          "q1": 0,
+          "q3": 1
+        }
+      },
+      "zone_unmarked": 42,
+      "zone_unmarked_diagnosis": {
+        "ball_distance_to_zone_centre_m": {
+          "max": 94.03,
+          "median": 55.27,
+          "min": 26.3,
+          "n": 42,
+          "q1": 44.96,
+          "q3": 70.78
+        },
+        "ball_status": {
+          "carried": 16,
+          "loose_ground": 1,
+          "pass_in_flight": 25
+        },
+        "distance_to_ball_m": {
+          "max": 82.4,
+          "median": 44.89,
+          "min": 13.66,
+          "n": 42,
+          "q1": 37.99,
+          "q3": 60.96
+        },
+        "distance_to_carrier_m": {
+          "max": 71.06,
+          "median": 50.47,
+          "min": 15.07,
+          "n": 28,
+          "q1": 40.57,
+          "q3": 61.05
+        },
+        "distance_to_nearest_off_ball_offence_m": {
+          "max": 53.23,
+          "median": 22.63,
+          "min": 6.06,
+          "n": 42,
+          "q1": 14.87,
+          "q3": 29.77
+        },
+        "fouler_distance_to_zone_centre_m": {
+          "max": 19.87,
+          "median": 16.86,
+          "min": 4.38,
+          "n": 42,
+          "q1": 14.18,
+          "q3": 19.63
+        },
+        "fouler_roles": {
+          "field": 42
+        },
+        "fouler_y": {
+          "max": 67.51,
+          "median": 49.95,
+          "min": 33.54,
+          "n": 42,
+          "q1": 43.52,
+          "q3": 60.18
+        },
+        "fouls": 42,
+        "frozen_or_immune_prev_10s_share": 0.0,
+        "last_exit_within_10s_share": 0.286,
+        "live_s_in_zone": {
+          "max": 30.1,
+          "median": 7.89,
+          "min": 5.01,
+          "n": 42,
+          "q1": 5.06,
+          "q3": 13.37
+        },
+        "nearest_off_ball_offence_band_share": {
+          "10-20m": 0.238,
+          "<=10m": 0.167,
+          ">20m": 0.595
+        },
+        "nearest_off_ball_offence_distance_to_zone_centre_m": {
+          "max": 66.57,
+          "median": 32.68,
+          "min": 19.3,
+          "n": 42,
+          "q1": 24.38,
+          "q3": 42.35
+        },
+        "no_carrier_share": 0.333,
+        "offence_within_10m": {
+          "max": 1,
+          "median": 0,
+          "min": 0,
+          "n": 42,
+          "q1": 0,
+          "q3": 0
+        },
+        "offence_within_20m": {
+          "max": 8,
+          "median": 0,
+          "min": 0,
+          "n": 42,
+          "q1": 0,
+          "q3": 2
+        },
+        "reentered_within_5s_share": 0.0,
+        "teammates_in_same_zone": {
+          "max": 3,
+          "median": 1,
+          "min": 1,
+          "n": 42,
+          "q1": 1,
+          "q3": 2
+        }
+      }
+    }
+  ],
+  "overall": {
+    "zone_residence": {
+      "ball_distance_to_zone_centre_m": {
+        "max": 51.31,
+        "median": 21.05,
+        "min": 16.24,
+        "n": 10,
+        "q1": 20.07,
+        "q3": 22.0
+      },
+      "ball_status": {
+        "carried": 7,
+        "loose_ground": 1,
+        "pass_in_flight": 2
+      },
+      "distance_to_ball_m": {
+        "max": 48.91,
+        "median": 2.87,
+        "min": 1.4,
+        "n": 10,
+        "q1": 1.62,
+        "q3": 7.28
+      },
+      "distance_to_carrier_m": {
+        "max": 5.67,
+        "median": 2.69,
+        "min": 0.0,
+        "n": 7,
+        "q1": 2.3,
+        "q3": 4.32
+      },
+      "distance_to_nearest_off_ball_offence_m": {
+        "max": 6.56,
+        "median": 3.29,
+        "min": 2.44,
+        "n": 10,
+        "q1": 2.54,
+        "q3": 4.96
+      },
+      "fouler_distance_to_zone_centre_m": {
+        "max": 19.7,
+        "median": 19.35,
+        "min": 16.63,
+        "n": 10,
+        "q1": 18.45,
+        "q3": 19.69
+      },
+      "fouler_roles": {
+        "field": 10
+      },
+      "fouler_y": {
+        "max": 68.78,
+        "median": 43.27,
+        "min": 33.01,
+        "n": 10,
+        "q1": 40.44,
+        "q3": 61.39
+      },
+      "fouls": 10,
+      "frozen_or_immune_prev_10s_share": 0.0,
+      "last_exit_within_10s_share": 0.2,
+      "live_s_in_zone": {
+        "max": 6.83,
+        "median": 5.08,
+        "min": 5.0,
+        "n": 10,
+        "q1": 5.04,
+        "q3": 5.1
+      },
+      "nearest_off_ball_offence_band_share": {
+        "<=10m": 1.0
+      },
+      "nearest_off_ball_offence_distance_to_zone_centre_m": {
+        "max": 24.11,
+        "median": 21.39,
+        "min": 19.86,
+        "n": 10,
+        "q1": 20.68,
+        "q3": 22.55
+      },
+      "no_carrier_share": 0.3,
+      "offence_within_10m": {
+        "max": 7,
+        "median": 3,
+        "min": 1,
+        "n": 10,
+        "q1": 2,
+        "q3": 3
+      },
+      "offence_within_20m": {
+        "max": 9,
+        "median": 5,
+        "min": 3,
+        "n": 10,
+        "q1": 4,
+        "q3": 8
+      },
+      "reentered_within_5s_share": 0.0,
+      "teammates_in_same_zone": {
+        "max": 1,
+        "median": 0,
+        "min": 0,
+        "n": 10,
+        "q1": 0,
+        "q3": 0
+      }
+    },
+    "zone_unmarked": {
+      "ball_distance_to_zone_centre_m": {
+        "max": 105.19,
+        "median": 54.0,
+        "min": 9.12,
+        "n": 150,
+        "q1": 37.53,
+        "q3": 74.53
+      },
+      "ball_status": {
+        "carried": 73,
+        "loose_ground": 1,
+        "pass_in_flight": 76
+      },
+      "distance_to_ball_m": {
+        "max": 93.74,
+        "median": 45.32,
+        "min": 1.28,
+        "n": 150,
+        "q1": 29.87,
+        "q3": 64.59
+      },
+      "distance_to_carrier_m": {
+        "max": 92.96,
+        "median": 47.83,
+        "min": 5.89,
+        "n": 102,
+        "q1": 29.85,
+        "q3": 63.61
+      },
+      "distance_to_nearest_off_ball_offence_m": {
+        "max": 67.66,
+        "median": 22.73,
+        "min": 5.1,
+        "n": 150,
+        "q1": 13.49,
+        "q3": 37.59
+      },
+      "fouler_distance_to_zone_centre_m": {
+        "max": 19.99,
+        "median": 16.86,
+        "min": 3.07,
+        "n": 150,
+        "q1": 12.31,
+        "q3": 18.8
+      },
+      "fouler_roles": {
+        "field": 150
+      },
+      "fouler_y": {
+        "max": 67.76,
+        "median": 52.27,
+        "min": 30.32,
+        "n": 150,
+        "q1": 44.44,
+        "q3": 60.46
+      },
+      "fouls": 150,
+      "frozen_or_immune_prev_10s_share": 0.0,
+      "last_exit_within_10s_share": 0.347,
+      "live_s_in_zone": {
+        "max": 30.1,
+        "median": 5.08,
+        "min": 5.0,
+        "n": 150,
+        "q1": 5.04,
+        "q3": 10.05
+      },
+      "nearest_off_ball_offence_band_share": {
+        "10-20m": 0.273,
+        "<=10m": 0.16,
+        ">20m": 0.567
+      },
+      "nearest_off_ball_offence_distance_to_zone_centre_m": {
+        "max": 66.85,
+        "median": 33.21,
+        "min": 14.81,
+        "n": 150,
+        "q1": 23.3,
+        "q3": 46.95
+      },
+      "no_carrier_share": 0.32,
+      "offence_within_10m": {
+        "max": 5,
+        "median": 0,
+        "min": 0,
+        "n": 150,
+        "q1": 0,
+        "q3": 0
+      },
+      "offence_within_20m": {
+        "max": 11,
+        "median": 0,
+        "min": 0,
+        "n": 150,
+        "q1": 0,
+        "q3": 2
+      },
+      "reentered_within_5s_share": 0.0,
+      "teammates_in_same_zone": {
+        "max": 7,
+        "median": 1,
+        "min": 1,
+        "n": 150,
+        "q1": 1,
+        "q3": 2
+      }
+    }
+  }
+}
