@@ -56,3 +56,6 @@ Open: strike-panel band (engine placeholder 20-80% of body height) and the zone 
 2. Offense (team in possession): residence applies in the zone he is ATTACKING, the opposing team's Keeper Zone: 5 s of live time (existing zone_residence award to the other team).
 3. "Marked" distance for a defender: an opposing field player within 2 m (was 5 m, a placeholder). The 5 s limit is kept. A field player in the other zone, or a defender in the zone his own team attacks, is not covered by these rules.
 Owner's intent: tighter marking should allow more carries. Expected side effect to watch: the 2 m distance makes it harder to count as marked, so zone_unmarked fouls may rise until defenders either mark closely or leave their zone.
+
+## 18 Nov 2026 - Edge cases (settles Q-RB34-1 and Q-RB34-2)
+An arrow is INERT (no foul, no freeze) when (a) it is released while a shot is still in the air after the clock has expired, and (b) possession changes while the arrow is in flight. Defaults, not stated by the owner: (a) is a dead-ball case, so the arrow is refunded to the quota; (b) is a late-inert arrow released live, so it stays spent.
