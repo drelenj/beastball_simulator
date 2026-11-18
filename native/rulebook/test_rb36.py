@@ -49,7 +49,7 @@ def test_rb3_view_carries_the_instruction_and_rb2_does_not():
     assert v.defender_baseline==(True,5.0,35.0)
     blob=json.loads(json.dumps(C.view_to_json(v,b)));v2,b2=p.view_from_json(blob);assert v2.defender_baseline==(True,5.0,35.0)
     q=RulebookPort(1);q.capture(q.m.s.now);q.m.s.now+=300;w,_=q.view('A0',q.m.s.now)
-    assert w.defender_baseline is None and w.own_zone_exit_ms_ago is None
+    assert w.defender_baseline is None and w.own_zone_exit_ms_ago is None and w.own_recovery_from_x is None
 
 
 def test_neither_condition_moves_to_the_nearer_one():
@@ -85,9 +85,13 @@ def test_two_defenders_do_not_mark_the_same_attacker_when_another_is_free():
 def test_freeze_recovery_feedback_retreats_and_the_port_accepts_it():
     p=rb3();s,e,a,t=live(p);q=next(x for x in s.players.values() if x.team=='A' and x.role=='field' and x.active)
     q.x,q.y=8.,40.;q.rb_recover=(8.,40.,s.now-5000)                  # thawed, recovery not done, in own zone
-    v,b=defender_view(p,q.id);b=replace(b,own_feedback=(('x','rejected_freeze_recovery:position',v.delivered_ms),))
+    v,b=defender_view(p,q.id);assert v.own_recovery_from_x==8.0
     i,r=R.defender_baseline(v,b,scan(v),{})
-    assert r['rb36']=='freeze_recovery_retreat' and i.kind=='position' and i.aim[0]<q.x
+    assert r['rb36']=='freeze_recovery_retreat' and i.kind=='position' and i.aim==(round(8.-3.6,3),40.)
+    behind=replace(v,x=4.,y=40.);k,r2=R.defender_baseline(behind,b,replace(scan(v),kind='position',aim=(25.,40.)),{})
+    assert r2['rb36']=='freeze_recovery_exit_behind_line' and k.aim[0]<=8.-3.3+1e-6 and ((k.aim[0])**2+(k.aim[1]-50.)**2)**.5>20.
+    fb=replace(b,own_feedback=(('x','rejected_freeze_recovery:position',v.delivered_ms),))
+    j,_=R.defender_baseline(replace(v,own_recovery_from_x=None),fb,scan(v),{});assert j.aim[0]<v.x   # feedback-only fallback
     i=replace(i,decided_ms=s.now,period=s.period);assert p.submit(i)['status']=='accepted'
     fwd=replace(i,aim=(q.x+5.,q.y));assert p.submit(fwd)=={'status':'rejected','reason':'freeze_recovery'}
 

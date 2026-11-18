@@ -1,0 +1,1 @@
+Superseded: first RB-3.6 pass (commit cc9590d: recovery retreat from feedback only). Remaining fouls were defenders oscillating on the non-latched freeze-recovery line; fixed in the next commit. Not cited.
