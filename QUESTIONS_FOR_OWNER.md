@@ -111,3 +111,10 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB35-1 | An arrow already in flight when the clock expires with a shot in the air (finishing flight) is not covered by the ruling. | CANON; PLACEHOLDER: it flies on; it cannot freeze (the engine does not freeze outside live play), it stays spent until the ball goes dead, then it is refunded under the dead-ball rule. |
 | Q-RB35-2 | The diagnosis field "left and re-entered the zone in the previous 5 s" is always false at a call, because leaving resets the 5 s timer. The time since the last exit is logged instead. | Measurement note. |
 | Q-RB35-3 | Removing the engine's 10-70 m freeze range also removes its 10 m minimum. | CANON check: is there a minimum distance? None applied. |
+
+## RB-3.6 provisional (claude/rb-3-6-defender-zone, 18 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB36-1 | Freeze recovery (a frozen player in a Keeper Zone may not act until 2 s after thaw and 3 m back toward his own end from the freeze spot) is checked against his current position every time and never completes. A recovered player who later steps forward past that line inside any zone is blocked again, for the rest of the match. Should recovery, once met, be complete? | CANON / ENGINEERING (rules layer, Codex). Unchanged here (no rule change this round); cognition keeps behind the line while in a zone. |
+| Q-RB36-2 | A player frozen within 3 m of his own end line can never retreat 3 m, so he can never act inside that zone again and is called for zone_unmarked repeatedly (32 of the 39 remaining calls). | CANON: what does recovery require next to the end line? |
+| Q-RB36-3 | The defender baseline holds 77-80% of defender live time (per-defender median 77-80%; leash 35 m: 86%; leash 15 m: 67%). The rest is time in transit to a new mark or behind the ball after a turnover. | BEHAVIORAL note; constants are PRIMITIVE. |

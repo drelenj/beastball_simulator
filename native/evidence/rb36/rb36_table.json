@@ -1,0 +1,430 @@
+[
+  {
+    "carry_attempts": {
+      "A": {
+        "attempts": 14,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 9,
+        "goals": 0
+      }
+    },
+    "carry_outcomes": {
+      "grounded": 7,
+      "stopped_short": 14,
+      "turnover": 2
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "defender_time": {
+      "A": {
+        "share_baseline_satisfied": 0.7888,
+        "share_in_own_zone": 0.0444,
+        "share_in_own_zone_unmarked": 0.0321
+      },
+      "B": {
+        "share_baseline_satisfied": 0.7993,
+        "share_in_own_zone": 0.0428,
+        "share_in_own_zone_unmarked": 0.0309
+      }
+    },
+    "dqs_per_team": {
+      "A": 1,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 13,
+      "zone_unmarked": 12
+    },
+    "groundings": 217,
+    "name": "real-seed01",
+    "per_defender_baseline_share": {
+      "max": 0.8343,
+      "median": 0.8003,
+      "min": 0.5314,
+      "n": 24,
+      "q1": 0.7856,
+      "q3": 0.8073
+    },
+    "points_from_foul_awards": 18,
+    "points_from_play": 7,
+    "possessions": {
+      "A": 295,
+      "B": 295
+    },
+    "restart_timeouts": 67,
+    "runtime_s": 230.94,
+    "score": {
+      "A": 15,
+      "B": 10
+    },
+    "share_points_from_fouls": 0.72,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0237,
+      "B": 0.0203
+    },
+    "state_hash": "316c9b3024071d1cb5034daa6ce3c920646f6d3823002ddb264c254d14f0bab6",
+    "status": "final",
+    "tackles": 208,
+    "trace_hash": "9c327aa6a24dcd6a5ca31c1c53d57af40ef2d6e056990ef80460805118fab779",
+    "zone_residence": 0,
+    "zone_unmarked": 12
+  },
+  {
+    "carry_attempts": {
+      "A": {
+        "attempts": 11,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 5,
+        "goals": 0
+      }
+    },
+    "carry_outcomes": {
+      "grounded": 1,
+      "stopped_short": 14,
+      "turnover": 1
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "defender_time": {
+      "A": {
+        "share_baseline_satisfied": 0.7748,
+        "share_in_own_zone": 0.0299,
+        "share_in_own_zone_unmarked": 0.0175
+      },
+      "B": {
+        "share_baseline_satisfied": 0.7654,
+        "share_in_own_zone": 0.0506,
+        "share_in_own_zone_unmarked": 0.0317
+      }
+    },
+    "dqs_per_team": {
+      "A": 0,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 12,
+      "immune_contact": 1,
+      "zone_unmarked": 9
+    },
+    "groundings": 189,
+    "name": "real-seed03",
+    "per_defender_baseline_share": {
+      "max": 0.8073,
+      "median": 0.7781,
+      "min": 0.3941,
+      "n": 25,
+      "q1": 0.7597,
+      "q3": 0.7878
+    },
+    "points_from_foul_awards": 10,
+    "points_from_play": 3,
+    "possessions": {
+      "A": 303,
+      "B": 303
+    },
+    "restart_timeouts": 50,
+    "runtime_s": 221.92,
+    "score": {
+      "A": 6,
+      "B": 7
+    },
+    "share_points_from_fouls": 0.769,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0231,
+      "B": 0.0231
+    },
+    "state_hash": "c744dadc9ec0c22cce05ed5741f89a1dc0ec58c1a6211b32812084881aec097c",
+    "status": "final",
+    "tackles": 183,
+    "trace_hash": "6d0cdde97a53eddf026819725affc1149ecc7558e8803698c3aed74c5f3f7281",
+    "zone_residence": 2,
+    "zone_unmarked": 9
+  },
+  {
+    "carry_attempts": {
+      "A": {
+        "attempts": 13,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 11,
+        "goals": 0
+      }
+    },
+    "carry_outcomes": {
+      "grounded": 5,
+      "stopped_short": 17,
+      "turnover": 2
+    },
+    "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+    "defender_time": {
+      "A": {
+        "share_baseline_satisfied": 0.7624,
+        "share_in_own_zone": 0.0351,
+        "share_in_own_zone_unmarked": 0.0234
+      },
+      "B": {
+        "share_baseline_satisfied": 0.7664,
+        "share_in_own_zone": 0.0593,
+        "share_in_own_zone_unmarked": 0.0378
+      }
+    },
+    "dqs_per_team": {
+      "A": 1,
+      "B": 2
+    },
+    "foul_reasons": {
+      "archery_target": 12,
+      "immune_contact": 1,
+      "zone_unmarked": 18
+    },
+    "groundings": 235,
+    "name": "control-seed01",
+    "per_defender_baseline_share": {
+      "max": 0.8021,
+      "median": 0.7665,
+      "min": 0.5388,
+      "n": 24,
+      "q1": 0.751,
+      "q3": 0.7767
+    },
+    "points_from_foul_awards": 33,
+    "points_from_play": 14,
+    "possessions": {
+      "A": 308,
+      "B": 308
+    },
+    "restart_timeouts": 86,
+    "runtime_s": 238.52,
+    "score": {
+      "A": 36,
+      "B": 11
+    },
+    "share_points_from_fouls": 0.702,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0195,
+      "B": 0.0227
+    },
+    "state_hash": "200a05b942315d2759a4cfab019d91391874bf26fcb5585050a61a0d372b8e11",
+    "status": "final",
+    "tackles": 228,
+    "trace_hash": "219181735cd885164f49aef4fd3c62d0b232ac6b54f4f6bc22b472223f4e7780",
+    "zone_residence": 3,
+    "zone_unmarked": 18
+  },
+  {
+    "carry_attempts": {
+      "A": {
+        "attempts": 8,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 10,
+        "goals": 0
+      }
+    },
+    "carry_outcomes": {
+      "grounded": 1,
+      "stopped_short": 16,
+      "turnover": 1
+    },
+    "config_digest": "2774fb830b41a42eafe6569b52b767923c554ae3c102e031a00b77398a8af402",
+    "defender_time": {
+      "A": {
+        "share_baseline_satisfied": 0.6843,
+        "share_in_own_zone": 0.0575,
+        "share_in_own_zone_unmarked": 0.0531
+      },
+      "B": {
+        "share_baseline_satisfied": 0.698,
+        "share_in_own_zone": 0.0921,
+        "share_in_own_zone_unmarked": 0.0753
+      }
+    },
+    "dqs_per_team": {
+      "A": 5,
+      "B": 5
+    },
+    "foul_reasons": {
+      "archery_target": 14,
+      "freeze_recovery": 1,
+      "zone_unmarked": 50
+    },
+    "groundings": 177,
+    "name": "real-seed01-fixoff",
+    "per_defender_baseline_share": {
+      "max": 0.85,
+      "median": 0.6974,
+      "min": 0.3409,
+      "n": 30,
+      "q1": 0.6627,
+      "q3": 0.7199
+    },
+    "points_from_foul_awards": 74,
+    "points_from_play": 5,
+    "possessions": {
+      "A": 307,
+      "B": 307
+    },
+    "restart_timeouts": 68,
+    "runtime_s": 213.63,
+    "score": {
+      "A": 34,
+      "B": 45
+    },
+    "share_points_from_fouls": 0.937,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0163,
+      "B": 0.0163
+    },
+    "state_hash": "aeefb80a5fd0213a7c850a54fb74a7dee5439e6fd5b2c4605d426d4de67d7058",
+    "status": "final",
+    "tackles": 169,
+    "trace_hash": "3d9ea4ea8bd8f1965e1567edbea7115714f24a1a46ad3f379f1e3a8aeaeae92c",
+    "zone_residence": 4,
+    "zone_unmarked": 50
+  },
+  {
+    "carry_attempts": {
+      "A": {
+        "attempts": 10,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 7,
+        "goals": 0
+      }
+    },
+    "carry_outcomes": {
+      "grounded": 4,
+      "stopped_short": 11,
+      "turnover": 2
+    },
+    "config_digest": "1a8c8950721e46e9ccbf2696f2273ded9dfd04d613ff87e5c95b40755e715a2c",
+    "defender_time": {
+      "A": {
+        "share_baseline_satisfied": 0.6691,
+        "share_in_own_zone": 0.0547,
+        "share_in_own_zone_unmarked": 0.0404
+      },
+      "B": {
+        "share_baseline_satisfied": 0.6644,
+        "share_in_own_zone": 0.0364,
+        "share_in_own_zone_unmarked": 0.0289
+      }
+    },
+    "dqs_per_team": {
+      "A": 2,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 9,
+      "zone_unmarked": 20
+    },
+    "groundings": 220,
+    "name": "real-seed01-leash15",
+    "per_defender_baseline_share": {
+      "max": 0.7909,
+      "median": 0.6778,
+      "min": 0.487,
+      "n": 24,
+      "q1": 0.6554,
+      "q3": 0.6942
+    },
+    "points_from_foul_awards": 20,
+    "points_from_play": 2,
+    "possessions": {
+      "A": 322,
+      "B": 323
+    },
+    "restart_timeouts": 63,
+    "runtime_s": 227.63,
+    "score": {
+      "A": 9,
+      "B": 13
+    },
+    "share_points_from_fouls": 0.909,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0155,
+      "B": 0.0155
+    },
+    "state_hash": "22b5eea72eaa0448f1e1824fabc73a69d784113ae1e20cdbe8768fccb42c1321",
+    "status": "final",
+    "tackles": 213,
+    "trace_hash": "e2f5c29da532aebc54659e0e01eb335bf8cae23a4f93435337a961fe132fa691",
+    "zone_residence": 2,
+    "zone_unmarked": 20
+  },
+  {
+    "carry_attempts": {
+      "A": {
+        "attempts": 6,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 3,
+        "goals": 0
+      }
+    },
+    "carry_outcomes": {
+      "grounded": 1,
+      "stopped_short": 8
+    },
+    "config_digest": "a82708ede297d9c7c13ee179824abc2d7d678058fb958792d47938228418a282",
+    "defender_time": {
+      "A": {
+        "share_baseline_satisfied": 0.8515,
+        "share_in_own_zone": 0.0477,
+        "share_in_own_zone_unmarked": 0.0366
+      },
+      "B": {
+        "share_baseline_satisfied": 0.8584,
+        "share_in_own_zone": 0.0459,
+        "share_in_own_zone_unmarked": 0.0331
+      }
+    },
+    "dqs_per_team": {
+      "A": 4,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 11,
+      "zone_unmarked": 24
+    },
+    "groundings": 218,
+    "name": "real-seed01-leash35",
+    "per_defender_baseline_share": {
+      "max": 0.9025,
+      "median": 0.8587,
+      "min": 0.7067,
+      "n": 26,
+      "q1": 0.8425,
+      "q3": 0.8723
+    },
+    "points_from_foul_awards": 19,
+    "points_from_play": 2,
+    "possessions": {
+      "A": 303,
+      "B": 303
+    },
+    "restart_timeouts": 67,
+    "runtime_s": 226.21,
+    "score": {
+      "A": 6,
+      "B": 15
+    },
+    "share_points_from_fouls": 0.905,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0165,
+      "B": 0.0033
+    },
+    "state_hash": "342dcfb2df00d0bda90082a12324c264f6278d3af18013e8c1cf794af07912c2",
+    "status": "final",
+    "tackles": 210,
+    "trace_hash": "e102bdc29f01043a5f9b38e468593604b02b208cf1cb6558d64a30d444564202",
+    "zone_residence": 3,
+    "zone_unmarked": 24
+  }
+]
