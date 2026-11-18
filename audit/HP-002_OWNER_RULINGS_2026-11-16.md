@@ -69,3 +69,6 @@ Interpretation (owner to confirm): the two distances are alternatives (either ex
 
 ## 18 Nov 2026 (correction) - Marking distances are BEHAVIORAL baseline, not a rule change
 Owner: the 5 m / 25 m marking distances are default defender behavior, not a rule. The rule is unchanged from RB-3.5 (5 s in the zone he defends with no opposing field player within 5 m = zone_unmarked). Baseline behavior for defenders: at every moment, either be within 5 m of an opposing offensive player (marking) or within 25 m of the ball carrier, doing whichever is easier to reach. These distances are the baseline; tactics added later may change the ranges. Owner is set on the 5 m defender distance and open to alternatives for the carrier distance. Supersedes the "marked if carrier within 25 m" reading recorded earlier today; zone_carrier_distance_m is NOT a rule parameter.
+
+## 18 Nov 2026 (refinement) - Defender leash is measured to the BALL
+Owner: use the ball (not the ball carrier) as the anchor for the 25 m defender leash, so loose balls and passes in flight need no separate handling. Baseline defender behavior: be within 5 m of an opposing field player or within 25 m of the ball, whichever is easier. Constant: defender_ball_leash_m = 25 (replaces defender_carrier_leash_m).
