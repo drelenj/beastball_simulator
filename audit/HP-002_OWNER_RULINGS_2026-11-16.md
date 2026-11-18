@@ -50,3 +50,9 @@ Open: strike-panel band (engine placeholder 20-80% of body height) and the zone 
 1. No range limit on freezing: a legal target can be frozen at any distance. (Checked: native/rulebook/archery.py and native/rules.py pass in_range=True, so the RB path has no range limit; the 70 m limit existed only in the older Pocket/PRISM line. Add a test.)
 2. The limit is 15 arrows per team possession (resets on every turnover); 5 freezes per possession as built.
 3. The strike height band is kept: a hit freezes only if it lands between 20% and 80% of the target's body height, approximately from just below the knee to the upper chest. (Human proportions: knee about 28%, shoulders about 82%, chin about 87%; a literal "knee to neck" band would be about 28-85%. Owner kept 20-80%.) A hit between 12% and 20% or above 80% (to the top of the body) is off panel: inert, no foul, still counts against the quota.
+
+## 17 Nov 2026 (night) - Keeper Zone residence and marking (CANON; settles Q-RB34-4 inputs)
+1. Defender (team not in possession): the foul applies in the zone he is DEFENDING, his own Keeper Zone. A defender unmarked in his own zone for 5 s of live time is fouled (zone_unmarked).
+2. Offense (team in possession): residence applies in the zone he is ATTACKING, the opposing team's Keeper Zone: 5 s of live time (existing zone_residence award to the other team).
+3. "Marked" distance for a defender: an opposing field player within 2 m (was 5 m, a placeholder). The 5 s limit is kept. A field player in the other zone, or a defender in the zone his own team attacks, is not covered by these rules.
+Owner's intent: tighter marking should allow more carries. Expected side effect to watch: the 2 m distance makes it harder to count as marked, so zone_unmarked fouls may rise until defenders either mark closely or leave their zone.
