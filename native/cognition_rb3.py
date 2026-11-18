@@ -12,6 +12,7 @@ Constants are PRIMITIVE and unsearched.
 """
 from dataclasses import replace
 from math import hypot
+from . import cognition as C
 
 CLEARANCE_M = 1.6      # path passing closer than this to a frozen body is re-routed
 SIDESTEP_M = 2.2       # waypoint offset beside the frozen body
@@ -47,7 +48,114 @@ def detour(x, y, aim, obstacles):
     return (round(wx, 3), round(wy, 3)), o.entity
 
 
+# ---------------------------------------------------------------- RB-3.6 defender baseline
+# BEHAVIORAL baseline (owner, 18 Nov 2026), PROVISIONAL. The two distances arrive in the view as a
+# public team instruction (view.defender_baseline = (enabled, mark_distance_m, ball_leash_m)), from
+# RulebookConfigV3, so a later tactics layer can override them. Everything else is belief-based.
+RECOVERY_STEP_M = 3.5        # PRIMITIVE: retreat toward own end to clear a freeze-recovery obligation
+MARK_STANDOFF = .7           # PRIMITIVE: aim at this fraction of the marking distance, goal side
+LEASH_STANDOFF = .9          # PRIMITIVE: aim at this fraction of the leash, on my side of the ball
+REENTRY_BLOCK_MS = 3000      # does not re-enter his own zone within 3 s unless a condition holds there
+LOCOMOTION = ('position', 'mark', 'support', 'scan', 'search', 'pursue')
+
+
+def _clamp(v, lo=.6, hi=99.4):
+    return lo if v < lo else hi if v > hi else v
+
+
+def _fresh(view, belief, age=2000):
+    return [t for t in belief.tracks if 0 <= view.delivered_ms - t.captured_ms <= age]
+
+
+def _ball(view, belief):
+    b = next((t for t in _fresh(view, belief) if t.entity == C.BALL), None)
+    if b is not None:
+        return (b.x, b.y)
+    if view.holds_ball:
+        return (view.x, view.y)
+    return belief.last_ball[:2] if belief.last_ball else None
+
+
+def _satisfies(xy, opps, ball, mark, leash):
+    return (any(hypot(o.x - xy[0], o.y - xy[1]) <= mark for o in opps)
+            or (ball is not None and hypot(ball[0] - xy[0], ball[1] - xy[1]) <= leash))
+
+
+def _toward(ax, ay, bx, by, r):
+    """Point at distance r from (ax, ay) in the direction of (bx, by)."""
+    dx, dy = bx - ax, by - ay
+    d = hypot(dx, dy) or 1.
+    return (round(_clamp(ax + dx / d * r), 3), round(_clamp(ay + dy / d * r), 3))
+
+
+def _targets(view, belief, opps, mates, ball, mark, leash):
+    """Cheapest way to satisfy a condition: (cost_m, kind, aim, who)."""
+    out = []
+    taken = {o.entity for o in opps if any(hypot(m.x - o.x, m.y - o.y) <= mark for m in mates)}
+    free = [o for o in opps if o.entity not in taken] or opps          # (d) avoid doubling up
+    goal = (view.own_goal_x, 50.)
+    for o in free:
+        d = hypot(o.x - view.x, o.y - view.y)
+        out.append((round(max(0., d - mark), 6), 'mark', _toward(o.x, o.y, *goal, MARK_STANDOFF * mark), o.entity))
+    if ball is not None:
+        d = hypot(ball[0] - view.x, ball[1] - view.y)
+        out.append((round(max(0., d - leash), 6), 'position', _toward(ball[0], ball[1], view.x, view.y, LEASH_STANDOFF * leash), C.BALL))
+    return sorted(out, key=lambda o: (o[0], o[1], o[3]))
+
+
+def defender_baseline(view, belief, intent, record):
+    conf = getattr(view, 'defender_baseline', None)
+    if not conf or not conf[0] or view.role != 'field' or view.holds_ball or view.bench_role:
+        return intent, record
+    if view.restart is not None or view.signals.phase != 'live' or view.pending_command_id is not None:
+        return intent, record
+    _, mark, leash = conf
+    latest = belief.own_feedback[-1][1] if belief.own_feedback else ''
+    if latest.startswith('rejected_freeze_recovery'):
+        # Own-action feedback: the officials refused my action until I complete freeze recovery
+        # (retreat toward my own end). Every role recovers before anything else.
+        aim = (round(_clamp(view.x - view.attack_sign * RECOVERY_STEP_M), 3), round(view.y, 3))
+        return (replace(intent, kind='position', aim=aim, target=None, contact=None),
+                dict(record, rb36='freeze_recovery_retreat'))
+    sig = view.signals
+    if sig.passive_team is None or sig.passive_team == view.team:
+        return intent, record                     # attackers: existing 3 s zone exit applies (< 4 s)
+    if view.zone_elapsed_ms >= 3000 and intent.kind == 'position':
+        return intent, record                     # rule-compliance exit from the zone already chosen
+    if intent.kind in ('press', 'tackle', 'receive'):
+        return intent, record                     # engaging the ball: already inside the leash
+    fresh = _fresh(view, belief)
+    opps = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
+    mates = [t for t in fresh if t.team == view.team and t.role == 'field']
+    ball = _ball(view, belief)
+    here = (view.x, view.y)
+    now_ok = _satisfies(here, opps, ball, mark, leash)
+    aim_ok = intent.aim is not None and _satisfies(intent.aim, opps, ball, mark, leash)
+    new = None
+    if not now_ok or (intent.kind in LOCOMOTION and not aim_ok):
+        options = _targets(view, belief, opps, mates, ball, mark, leash)
+        if options:
+            cost, kind, aim, who = options[0]
+            new = replace(intent, kind=kind, aim=aim, target=None if who == C.BALL else who, contact=None)
+            record = dict(record, rb36=dict(rule='satisfy_nearer_condition', cost_m=cost, kind=kind, anchor=who,
+                                            marking_now=any(hypot(o.x - view.x, o.y - view.y) <= mark for o in opps),
+                                            ball_leash_now=ball is not None and hypot(ball[0] - view.x, ball[1] - view.y) <= leash))
+    out = new or intent
+    exit_ago = getattr(view, 'own_zone_exit_ms_ago', None)
+    if (out.aim is not None and exit_ago is not None and exit_ago < REENTRY_BLOCK_MS
+            and not C.in_own_zone(view.team, view.x, view.y, view) and C.in_own_zone(view.team, out.aim[0], out.aim[1], view)
+            and not _satisfies(out.aim, opps, ball, mark, leash)):
+        gx = view.own_goal_x
+        dx, dy = out.aim[0] - gx, out.aim[1] - 50.
+        d = hypot(dx, dy) or 1.
+        r = view.zone_radius + 1.
+        out = replace(out, aim=(round(_clamp(gx + dx / d * r), 3), round(_clamp(50. + dy / d * r), 3)))
+        record = dict(record, rb36_reentry_block=True)
+    return out, record
+
+
 def adjust(view, belief, intent, record):
+    intent, record = defender_baseline(view, belief, intent, record)
     frozen = frozen_tracks(view, belief)
     if not frozen:
         return intent, record

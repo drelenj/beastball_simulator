@@ -18,7 +18,7 @@ from collections import Counter
 def state(e):
     st = getattr(e, 'rb35', None)
     if st is None:
-        st = e.rb35 = dict(entry={}, exit={}, time={t: Counter() for t in ('A', 'B')})
+        st = e.rb35 = dict(entry={}, exit={}, own_exit={}, in_own={}, time={t: Counter() for t in ('A', 'B')}, player={})
     return st
 
 
@@ -48,6 +48,11 @@ def account(port, dt):
         if not p.active or p.team != team or p.role != 'field':
             continue
         t['defender_ms'] += dt
+        cfg = port.config; pc = state(e)['player'].setdefault(p.id, Counter()); pc['defender_ms'] += dt
+        marking = opponents_near(s, p, cfg.defender_mark_distance_m)
+        leash = math.hypot(s.ball.x - p.x, s.ball.y - p.y) <= cfg.defender_ball_leash_m
+        if marking or leash:
+            t['baseline_satisfied_ms'] += dt; pc['baseline_satisfied_ms'] += dt
         if e.zone(p.x, p.y) == s.own_zone(team):
             t['in_own_zone_ms'] += dt
             if not opponents_near(s, p, 5.):
@@ -93,6 +98,10 @@ def residence(port, before_live):
     account(port, s.live_ms - before_live)
     for p in s.players.values():
         zn = e.zone(p.x, p.y)
+        own = zn is not None and zn == s.own_zone(p.team)       # own-zone memory for the athlete's view
+        if st['in_own'].get(p.id) and not own:
+            st['own_exit'][p.id] = s.live_ms
+        st['in_own'][p.id] = own
         inside = zn is not None and zn == covered_zone(s, p.team, pp)
         if inside and p.id not in st['entry']:
             st['entry'][p.id] = s.live_ms
@@ -128,7 +137,10 @@ def install(co, cfg):
             total = c['defender_ms']
             row[team] = dict(defender_ms=total, in_own_zone_ms=c['in_own_zone_ms'], in_own_zone_unmarked_ms=c['in_own_zone_unmarked_ms'],
                              share_in_own_zone=round(c['in_own_zone_ms'] / total, 4) if total else None,
-                             share_in_own_zone_unmarked=round(c['in_own_zone_unmarked_ms'] / total, 4) if total else None)
+                             share_in_own_zone_unmarked=round(c['in_own_zone_unmarked_ms'] / total, 4) if total else None,
+                             baseline_satisfied_ms=c['baseline_satisfied_ms'],
+                             share_baseline_satisfied=round(c['baseline_satisfied_ms'] / total, 4) if total else None)
+        row['players'] = {pid: round(c['baseline_satisfied_ms'] / c['defender_ms'], 4) for pid, c in sorted(state(self)['player'].items()) if c['defender_ms']}
         self.emit('zone_time_summary', 'RB-3.5-report', cumulative=True, period=self.s.period, teams=row)
         return old_end(self)
     E.end_period = end_period

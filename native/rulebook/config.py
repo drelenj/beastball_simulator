@@ -46,9 +46,16 @@ class RulebookConfigV3(RulebookConfig):
     # RB-3.5: zone residence by zone (defender: own zone; attacker: attacked zone)
     zone_residence_ms: int = 5000
     zone_marked_distance_m: float = 5.0
+    # RB-3.6 BEHAVIORAL baseline (owner, 18 Nov 2026; cognition, PROVISIONAL): a defender is always
+    # within defender_mark_distance_m of an opposing field player or within defender_ball_leash_m of
+    # the ball. Delivered to athletes as public team instructions; a tactics layer may override them.
+    defender_baseline: bool = True
+    defender_mark_distance_m: float = 5.0
+    defender_ball_leash_m: float = 25.0
 
     def __post_init__(self):
         if self.thaw_contact_buffer_ms<0:raise ValueError('thaw_contact_buffer_ms must be >= 0')
+        if self.defender_mark_distance_m<=0 or self.defender_ball_leash_m<=0:raise ValueError('defender baseline distances must be positive')
         if self.zone_residence_ms<=0 or self.zone_marked_distance_m<0:raise ValueError('zone residence parameters out of range')
         if self.version!='native-rb/3' or self.profile!='native-rb' or self.scoring!='banded':raise ValueError('RB/3 profile mixing')
         if len(self.roster_digests)!=2 or any(not isinstance(x,str) or len(x)!=64 for x in self.roster_digests):raise ValueError('RB/3 requires A and B roster digests')
