@@ -1,0 +1,32 @@
+# RB-3.4 provisional evidence (claude/rb-3-4-release-legality)
+
+Harness: `tools/soak_driver2.py` (unchanged r2 driver: native/run.py::run_match via the rb31_soak path, profile native-rb/3, banded scoring, real rosters from roster ref 81f92e3; control = uniform athletes, all ratings 0.70, 2.39 m, 226 kg, reach 3.05 m). Table: `tools/rb34_report.py` over the stored result and raw log files.
+
+| Match | Finished | Score A-B | Play / foul-award points (share fouls) | DQs A/B | DQ offences | Fouls by reason | Arrows legal / inert dead-ball (release+flight) / inert late / illegal | Restart timeouts (P1-P4) | Possessions A/B | Possessions ending in attempt A/B | Runtime s |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| real-seed01 | yes | 43-110 | 3 / 150 (98%) | 8/4 | {'archery_target': 2, 'zone_unmarked': 10} | {'archery_target': 10, 'zone_unmarked': 82} | 523 / 33+30 / 147 / 10 | 73 (11, 22, 16, 24) | 330/329 | 0.6%/1.8% | 174.23 |
+| real-seed03 | yes | 64-27 | 9 / 82 (90%) | 1/6 | {'archery_target': 1, 'zone_unmarked': 6} | {'archery_target': 8, 'zone_unmarked': 57} | 557 / 37+29 / 161 / 8 | 57 (11, 8, 20, 18) | 315/316 | 1.3%/2.5% | 167.3 |
+| real-seed10 | yes | 41-82 | 8 / 115 (94%) | 10/3 | {'archery_target': 1, 'zone_unmarked': 12} | {'archery_target': 12, 'zone_unmarked': 93} | 536 / 28+23 / 122 / 12 | 70 (22, 18, 11, 19) | 336/334 | 1.2%/1.8% | 170.7 |
+| control-seed01 | yes | 56-86 | 16 / 126 (89%) | 6/4 | {'archery_target': 2, 'zone_unmarked': 8} | {'archery_target': 12, 'zone_unmarked': 85} | 554 / 40+47 / 109 / 12 | 93 (15, 23, 28, 27) | 350/349 | 1.4%/1.4% | 182.8 |
+| control-seed02 | yes | 30-35 | 11 / 54 (83%) | 4/2 | {'archery_target': 2, 'zone_unmarked': 4} | {'archery_target': 10, 'zone_unmarked': 47} | 543 / 46+27 / 155 / 10 | 58 (13, 7, 19, 19) | 293/294 | 0.7%/1.7% | 170.7 |
+| control-seed03 | yes | 56-68 | 16 / 108 (87%) | 6/0 | {'archery_target': 1, 'zone_unmarked': 5} | {'archery_target': 9, 'zone_unmarked': 78} | 551 / 39+39 / 135 / 9 | 72 (14, 16, 23, 19) | 304/304 | 1.3%/1.0% | 178.36 |
+
+## RB-3.3 comparison (same seeds)
+
+| Match | RB-3.3 score | archery_target | frozen_contact | zone_unmarked | DQs A/B | share from fouls | restart timeouts | RB-3.4 archery_target | RB-3.4 zone_unmarked |
+|---|---|---|---|---|---|---|---|---|---|
+| real-seed01 | 32-38 | 54 | 44 | 36 | 21/9 | 89% | 595 | 10 | 82 |
+| real-seed03 | 27-32 | 48 | 55 | 27 | 21/11 | 86% | 292 | 8 | 57 |
+| real-seed10 | 27-60 | 55 | 42 | 18 | 21/8 | 69% | 117 | 12 | 93 |
+| control-seed01 | 52-37 | 57 | 46 | 48 | 13/21 | 96% | 220 | 12 | 85 |
+| control-seed02 | 45-78 | 77 | 46 | 42 | 21/16 | 94% | 135 | 10 | 47 |
+| control-seed03 | 41-39 | 67 | 42 | 43 | 14/21 | 92% | 231 | 9 | 78 |
+
+## Per-match detail
+
+- **real-seed01**: coin flip B; quota spent per Archer {'A:DRAFT26-09': 270, 'A:NBL25-D32': 10, 'B:NBL24-01-12': 182, 'B:UFA26-BB-04': 41}; late-arrow reasons {'freeze_quota': 1, 'frozen': 1, 'immune': 2, 'off_panel': 65, 'other': 1, 'teammate': 76, 'zone': 1}; archery_target failed predicates {'in_zone': 3, 'possession': 7}; zone_unmarked diagnosis {'actor_roles': {'field': 82}, 'count': 82, 'mean_eligible_field_defenders': 10.48, 'short_after_dqs': 24}; timeouts per period {'1': 11, '2': 22, '3': 16, '4': 24}; trace dbdd4e73e9fd77ee012cb3065de6346573219ac42539a1c618754a2529d8fc08, state 1101bdd9d8d44ec36e73fac4373355831e7af77f652009e15106d31ddf86adff.
+- **real-seed03**: coin flip A; quota spent per Archer {'A:DRAFT26-09': 280, 'B:NBL24-01-12': 256}; late-arrow reasons {'frozen': 4, 'immune': 3, 'not_live': 1, 'off_panel': 79, 'other': 4, 'teammate': 67, 'zone': 3}; archery_target failed predicates {'in_zone': 2, 'possession': 6}; zone_unmarked diagnosis {'actor_roles': {'field': 57}, 'count': 57, 'mean_eligible_field_defenders': 10.75, 'short_after_dqs': 8}; timeouts per period {'1': 11, '2': 8, '3': 20, '4': 18}; trace 508cc0eac4f895cd4f9cd81210a777ad90a8d5592c492994865d77adaf3948a1, state bc89d58f6f0f98a3c03ce9ef064570c1af4461e04853fe59401e9156fe2fe83b.
+- **real-seed10**: coin flip A; quota spent per Archer {'A:DRAFT26-09': 47, 'A:NBL25-D32': 228, 'B:NBL24-01-12': 250}; late-arrow reasons {'frozen': 2, 'immune': 2, 'off_panel': 58, 'other': 2, 'teammate': 57, 'zone': 1}; archery_target failed predicates {'in_zone': 5, 'possession': 7}; zone_unmarked diagnosis {'actor_roles': {'field': 93}, 'count': 93, 'mean_eligible_field_defenders': 10.4, 'short_after_dqs': 36}; timeouts per period {'1': 22, '2': 18, '3': 11, '4': 19}; trace 3d5551e023f7396f885768aaa4b6633c210153b66c296221af5048a0dfb06c29, state 462d78022c6caf224ecaf9f5e4e238f53e4e581b3481bb9c29f306ce3e55f1de.
+- **control-seed01**: coin flip B; quota spent per Archer {'A:20': 169, 'A:21': 89, 'B:20': 261}; late-arrow reasons {'frozen': 1, 'immune': 1, 'off_panel': 48, 'other': 5, 'teammate': 54}; archery_target failed predicates {'in_zone': 3, 'possession': 9}; zone_unmarked diagnosis {'actor_roles': {'field': 85}, 'count': 85, 'mean_eligible_field_defenders': 10.53, 'short_after_dqs': 28}; timeouts per period {'1': 15, '2': 23, '3': 28, '4': 27}; trace 2e8d27a474c87207c40e9b93fe519162ba1ffc4ca11caa3cbc889558286e829d, state 79fb3df4e6dc41ad7562e0903f00375bcde06c7eb62f8b3eb448988d43642029.
+- **control-seed02**: coin flip A; quota spent per Archer {'A:20': 246, 'A:21': 7, 'B:20': 252, 'B:21': 21}; late-arrow reasons {'frozen': 1, 'immune': 7, 'not_live': 1, 'off_panel': 71, 'other': 4, 'teammate': 70, 'zone': 1}; archery_target failed predicates {'possession': 10}; zone_unmarked diagnosis {'actor_roles': {'field': 47}, 'count': 47, 'mean_eligible_field_defenders': 10.7, 'short_after_dqs': 12}; timeouts per period {'1': 13, '2': 7, '3': 19, '4': 19}; trace 06f5c77e88f7e822101a9dfca0e46f4e1f8aa10cbfd2e4996228889581ee30b7, state 4a2bb1a542ee63204f744c4660773bfa968011d6371b0401f8e7fc48dddd5a52.
+- **control-seed03**: coin flip A; quota spent per Archer {'A:20': 283, 'B:20': 238}; late-arrow reasons {'frozen': 2, 'immune': 3, 'off_panel': 61, 'other': 3, 'teammate': 61, 'zone': 5}; archery_target failed predicates {'in_zone': 1, 'in_zone,possession': 1, 'possession': 7}; zone_unmarked diagnosis {'actor_roles': {'field': 78}, 'count': 78, 'mean_eligible_field_defenders': 10.69, 'short_after_dqs': 16}; timeouts per period {'1': 14, '2': 16, '3': 23, '4': 19}; trace d00f195b7fb21978c00834545f5bc34348eb66316e387502be291f6bdaa5d107, state 55c3339bc494a781d1346bb4e22b71242fb05982d01c9dce2cf1556ef9799dac.

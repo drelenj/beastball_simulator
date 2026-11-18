@@ -95,3 +95,12 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB33-2 | Most remaining illegal arrows (14 of 19 in a 600 s seed-1 window) are released while the target team's pass is in flight; the rules layer gives no team control then, so each is an archery_target minor and, at tackle count 0, a foul award. Every DQ'd Archer reaches 5 minors this way. | CANON (same as Q-FAB1-2): does a team keep team control while its pass is in flight? Archer cognition left unchanged as instructed. |
 | Q-RB33-3 | Q-HELD-1 for period starts is resolved by the coin-flip snap40. Q-HELD-1 for unresolved joint control in open play is unchanged. | Resolved for period starts only. |
 | Q-RB33-4 | Restart timeouts rise sharply once a team has about 20 DQs (seed 1: 13, 22, 184, 376 per period). | ENGINEERING/BEHAVIORAL follow-up; cause not isolated. Matches still finish. |
+
+## RB-3.4 provisional (claude/rb-3-4-release-legality, 18 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB34-1 | An arrow released in the finishing-flight phase (shot in the air after the clock expires) is neither "ball live" in the engine's LIVE sense nor dead. | CANON; PLACEHOLDER: treated as not live, so it is an archery_target foul as before. |
+| Q-RB34-2 | An arrow legal at release whose target's team loses passive possession before it arrives: the ruling lists zone, frozen and immune for a late inert arrow, not possession change. | CANON; PLACEHOLDER: unchanged engine behaviour, the freeze still applies. |
+| Q-RB34-3 | Frozen players are obstacles in the rules and in athlete path planning, but the physical contact kernel still leaves frozen bodies out of collisions, so a body can pass through one. | ENGINEERING (Codex): add frozen bodies to the collision kernel as immovable obstacles. |
+| Q-RB34-4 | zone_unmarked fouls rose to 47-93 per match (RB-3.3: 18-48) and now produce most foul-award points (83-98% of points come from foul awards). Every one is by a field defender; about 10.5 eligible field defenders were available on average; DQ shortage applied to 8-36 per match. The cause is not isolated (not freezes of the actor; not the new detour). | ENGINEERING/BEHAVIORAL follow-up. |
+| Q-RB34-5 | The Archer quota count shows one Archer per team taking most arrows: the quota is per team possession (15) and resets on every turnover, so a single Archer can release 250+ arrows a match. | CANON check: is 15 per team possession the intended limit? |
