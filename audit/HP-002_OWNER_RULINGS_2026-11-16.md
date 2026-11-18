@@ -41,3 +41,7 @@ Open: an arrow RELEASED while the ball is already dead or loose (about 70% of il
 1. An arrow that is inert because the ball is dead (released after the whistle, or still in flight when the ball goes dead) is not a foul and does NOT count against the Archer's quota: the Archer keeps his count as if he had not released it. No grace window is needed.
 2. A loose ball is still in passive possession of the offense. Archers may therefore spend arrows and freezes on opposing offensive players pursuing the ball until possession changes. Team control is not required, only passive possession (this settles Q-FAB1-2: a pass in flight or a loose ball does not stop Archer targeting).
 Assumption: an arrow released while live at a target that is legal at release but in a zone, frozen or immune on arrival is late and inert, no foul, and IS spent (it was released live).
+
+## 17 Nov 2026 - Arrow quota (CANON confirmation)
+15 arrows per team possession is the intended limit (resets on each possession change, as built). The 250+ arrows per Archer per match seen in RB-3.4 follow from about 330 possessions per team per match, not from the quota. No code change.
+Open: strike-panel band (engine placeholder 20-80% of body height) and the zone rules for defenders (engine placeholder: a defending field player 5 s live in a Keeper Zone with no opposing field player within 5 m is a zone_unmarked foul).
