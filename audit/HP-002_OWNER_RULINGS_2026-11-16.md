@@ -45,3 +45,8 @@ Assumption: an arrow released while live at a target that is legal at release bu
 ## 17 Nov 2026 - Arrow quota (CANON confirmation)
 15 arrows per team possession is the intended limit (resets on each possession change, as built). The 250+ arrows per Archer per match seen in RB-3.4 follow from about 330 possessions per team per match, not from the quota. No code change.
 Open: strike-panel band (engine placeholder 20-80% of body height) and the zone rules for defenders (engine placeholder: a defending field player 5 s live in a Keeper Zone with no opposing field player within 5 m is a zone_unmarked foul).
+
+## 17 Nov 2026 (night) - Freeze range, arrow limit, strike band (CANON)
+1. No range limit on freezing: a legal target can be frozen at any distance. (Checked: native/rulebook/archery.py and native/rules.py pass in_range=True, so the RB path has no range limit; the 70 m limit existed only in the older Pocket/PRISM line. Add a test.)
+2. The limit is 15 arrows per team possession (resets on every turnover); 5 freezes per possession as built.
+3. The strike height band is kept: a hit freezes only if it lands between 20% and 80% of the target's body height, approximately from just below the knee to the upper chest. (Human proportions: knee about 28%, shoulders about 82%, chin about 87%; a literal "knee to neck" band would be about 28-85%. Owner kept 20-80%.) A hit between 12% and 20% or above 80% (to the top of the body) is off panel: inert, no foul, still counts against the quota.
