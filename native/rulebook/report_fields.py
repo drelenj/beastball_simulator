@@ -58,6 +58,14 @@ def install(co, cfg):
     E.rb_carry_attempt = carry
 
     def foul(self, actor, victim=None, reason='hold', *a, **kw):
+        if reason == 'zone_unmarked' and cfg.version == 'native-rb/3':
+            s = self.s; p = s.players[actor]
+            mates = [q for q in s.players.values() if q.team == p.team and q.active and q.role != 'archer']
+            eligible = [q for q in mates if q.eligible(s.now) and q.role == 'field']
+            dqs = sum(1 for q in s.players.values() if q.team == p.team and q.disqualified)
+            old_emit(self, 'zone_unmarked_diagnosis', 'RB-3.4-report', actor=actor, actor_role=p.role, team=p.team,
+                     eligible_field_defenders=len(eligible), active_non_archers=len(mates),
+                     team_dqs=dqs, short_after_dqs=len(mates) < cfg.field_roster_limit)
         previous = self.rb_foul_context
         self.rb_foul_context = dict(reason=reason, actor=actor, victim=victim, t_ms=self.s.now)
         try:
@@ -89,7 +97,15 @@ def install(co, cfg):
             outcome = 'hit' if ar is not None and target == ar.target else 'hit_other'
         else:
             outcome = 'inert'
+        why = None
+        if outcome == 'inert':
+            q = self.s.players.get(target)
+            quota = getattr(self, 'rb', None) and ar is not None and self.rb.quotas[ar.team]['freezes'] >= 5
+            why = ('not_live' if self.s.phase.value != 'live' else 'off_panel' if not panel else 'frozen' if q and q.frozen(self.s.now)
+                   else 'immune' if q and self.s.now <= q.immune_until else 'zone' if q and self.zone(q.x, q.y) is not None
+                   else 'freeze_quota' if quota else 'teammate' if q and ar is not None and q.team == ar.team else 'other')
         old_emit(self, 'arrow_outcome', 'RB-3.3-report', arrow=arrow_id, shooter=getattr(ar, 'shooter', None),
-                 intended=getattr(ar, 'target', None), struck=target, outcome=outcome)
+                 intended=getattr(ar, 'target', None), struck=target, outcome=outcome,
+                 **({'late_reason': why} if cfg.version == 'native-rb/3' else {}))
         return result
     E.arrow_impact = impact

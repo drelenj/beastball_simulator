@@ -229,7 +229,10 @@ def archer_target_legal(t, view, now):
     # pass is in flight, so a release then is an archery_target foul; the v0/3 Archer does not
     # choose it. RB/3 restores the original predicate because its Rulebook
     # possession layer retains qualifying team control during flight.
-    statuses = ('carried',) if view.cognition=='native-v0/3' else ('carried','pass_in_flight')
+    # RB/3 (RB-3.4 ruling 3): passive possession only; a loose ball is still the offence's.
+    statuses = (('carried',) if view.cognition=='native-v0/3' else
+                ('carried','pass_in_flight','loose') if view.cognition=='native-rb/3' else
+                ('carried','pass_in_flight'))
     return (view.hunt_cleared and t.role=='field' and
             t.team==view.signals.passive_team and view.signals.ball_status in statuses and
             t.entity not in view.signals.immune and
@@ -492,7 +495,10 @@ def view_from_json(d):
 
 def decide(view, belief):
     """All Native semantic commands. The view names its own decision set."""
-    if view.cognition in ('native-v0/3','native-rb/3'):
+    if view.cognition == 'native-rb/3':
+        from . import cognition_v3, cognition_rb3
+        return cognition_rb3.adjust(view, belief, *cognition_v3.decide(view, belief))
+    if view.cognition == 'native-v0/3':
         from . import cognition_v3
         return cognition_v3.decide(view, belief)
     return decide_v2(view, belief)

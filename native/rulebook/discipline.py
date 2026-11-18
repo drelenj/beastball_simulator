@@ -38,7 +38,8 @@ def install(co,cfg):
    self.rb_dead_fouls.add(key)
   v=s.players.get(victim);intent=getattr(a,'native_intent',None)
   intentional=bool(intent and intent.target==victim and getattr(intent,'contact',None) in ('head','neck','trip','tackle'))
-  immune=bool(v and (v.frozen(s.now) or s.now<=v.immune_until or v.role=='keeper' and self.possession.keeper_protected(v.team,(v.x,v.y))))
+  if v3:immune=bool(v and (thaw_buffer(self,v) or v.role=='keeper' and self.possession.keeper_protected(v.team,(v.x,v.y))))
+  else:immune=bool(v and (v.frozen(s.now) or s.now<=v.immune_until or v.role=='keeper' and self.possession.keeper_protected(v.team,(v.x,v.y))))
   ismajor=(reason in ('striking','after_whistle','protected_keeper','frozen_contact','immune_contact') or immune or intentional and (intent.contact in ('head','neck') or s.ball.carrier!=victim))
   if reason=='archery_target':ismajor=False # R-A illegal arrow is explicitly a minor, never contact.
   if reason=='delay_of_game':
@@ -66,10 +67,21 @@ def install(co,cfg):
   if v and reason in ('head','neck','head_contact','neck_contact'):
    self.rb_force_injury(v.id,head=True)
  E.foul=foul
+ v3=cfg.version=='native-rb/3'
+ def thaw_buffer(self,t):
+  return t.freeze_until>0 and 0<=self.s.now-t.freeze_until<cfg.thaw_contact_buffer_ms
+ E.rb_thaw_buffer=thaw_buffer
  def contact(self,a,t,kind='tackle',surface='torso',reach=True):
   if self.s.phase==P.DEAD:return False,'after_whistle'
   if surface in ('head','neck'):return False,surface
   if hasattr(self,'rb_recovery_blocked') and self.rb_recovery_blocked(a):return False,'freeze_recovery'
+  if v3:
+   # RB-3.4 ruling 4: a frozen player is an obstacle; contact with him is not a foul. For the
+   # thaw buffer after he thaws, contact is the existing immune_contact (major) foul; after
+   # that no contact protection remains (arrow immunity is unchanged).
+   if t.frozen(self.s.now):return kind not in ('tackle','grip','pull','hold','wrap'),'frozen_obstacle'
+   if thaw_buffer(self,t):return False,'immune_contact'
+   return old_contact(self,a,t,kind,surface,reach)
   if t.frozen(self.s.now):return False,'frozen_contact'
   if self.s.now<=t.immune_until:return False,'immune_contact'
   return old_contact(self,a,t,kind,surface,reach)
@@ -79,6 +91,7 @@ def install(co,cfg):
  M=co.match.Match;old_contacts=M.player_contacts
  def contacts(self,ms,old_positions=None):
   events=old_contacts(self,ms,old_positions)
+  if v3:return events # RB-3.4: frozen players are obstacles; no frozen_contact foul
   if self.s.phase!=P.LIVE or not old_positions:return events
   for q in self.s.players.values():
    if not q.active or not q.frozen(self.s.now):continue
