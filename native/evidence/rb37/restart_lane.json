@@ -1,0 +1,336 @@
+{
+ "control/scrim/intercept_point_from_spot": {
+  "median": 2.33,
+  "n": 271,
+  "q1": 2.18,
+  "q3": 2.58
+ },
+ "control/scrim/intercepted/distance": {
+  "median": 8.47,
+  "n": 271,
+  "q1": 6.49,
+  "q3": 10.32
+ },
+ "control/scrim/intercepted/lane": {
+  "median": 2.07,
+  "n": 271,
+  "q1": 1.61,
+  "q3": 2.19
+ },
+ "control/scrim/intercepted/opp_within_5m_of_spot": {
+  "median": 4,
+  "n": 271,
+  "q1": 2,
+  "q3": 6
+ },
+ "control/scrim/ok/distance": {
+  "median": 9.19,
+  "n": 578,
+  "q1": 6.63,
+  "q3": 10.27
+ },
+ "control/scrim/ok/lane": {
+  "median": 2.24,
+  "n": 578,
+  "q1": 2.11,
+  "q3": 2.42
+ },
+ "control/scrim/ok/opp_within_5m_of_spot": {
+  "median": 2,
+  "n": 578,
+  "q1": 1,
+  "q3": 4
+ },
+ "control/scrim/out_or_dead/distance": {
+  "median": 8.94,
+  "n": 52,
+  "q1": 7.75,
+  "q3": 9.81
+ },
+ "control/scrim/out_or_dead/lane": {
+  "median": 2.27,
+  "n": 52,
+  "q1": 2.14,
+  "q3": 2.49
+ },
+ "control/scrim/out_or_dead/opp_within_5m_of_spot": {
+  "median": 2,
+  "n": 52,
+  "q1": 1,
+  "q3": 4
+ },
+ "control/snap40/ok/distance": {
+  "median": 11.55,
+  "n": 28,
+  "q1": 7.8,
+  "q3": 13.28
+ },
+ "control/snap40/ok/lane": {
+  "median": 21.48,
+  "n": 28,
+  "q1": 21.05,
+  "q3": 28.28
+ },
+ "control/snap40/ok/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 28,
+  "q1": 0,
+  "q3": 0
+ },
+ "control/snap40/out_or_dead/distance": {
+  "median": 16.12,
+  "n": 1,
+  "q1": 16.12,
+  "q3": 16.12
+ },
+ "control/snap40/out_or_dead/lane": {
+  "median": 28.28,
+  "n": 1,
+  "q1": 28.28,
+  "q3": 28.28
+ },
+ "control/snap40/out_or_dead/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 1,
+  "q1": 0,
+  "q3": 0
+ },
+ "control/toss/intercept_point_from_spot": {
+  "median": 8.76,
+  "n": 98,
+  "q1": 5.19,
+  "q3": 25.57
+ },
+ "control/toss/intercepted/distance": {
+  "median": 10.96,
+  "n": 98,
+  "q1": 9.55,
+  "q3": 14.98
+ },
+ "control/toss/intercepted/lane": {
+  "median": 1.81,
+  "n": 98,
+  "q1": 1.08,
+  "q3": 4.05
+ },
+ "control/toss/intercepted/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 98,
+  "q1": 0,
+  "q3": 0
+ },
+ "control/toss/ok/distance": {
+  "median": 9.82,
+  "n": 350,
+  "q1": 9.24,
+  "q3": 11.66
+ },
+ "control/toss/ok/lane": {
+  "median": 5.89,
+  "n": 350,
+  "q1": 3.91,
+  "q3": 16.92
+ },
+ "control/toss/ok/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 350,
+  "q1": 0,
+  "q3": 0
+ },
+ "control/toss/out_or_dead/distance": {
+  "median": 10.11,
+  "n": 33,
+  "q1": 9.5,
+  "q3": 11.23
+ },
+ "control/toss/out_or_dead/lane": {
+  "median": 5.5,
+  "n": 33,
+  "q1": 2.71,
+  "q3": 27.03
+ },
+ "control/toss/out_or_dead/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 33,
+  "q1": 0,
+  "q3": 0
+ },
+ "interceptor_origin": {
+  "interceptor came from elsewhere": 1402,
+  "interceptor was in the lane (<2 m) at release": 582
+ },
+ "real/scrim/intercept_point_from_spot": {
+  "median": 2.3,
+  "n": 1209,
+  "q1": 2.16,
+  "q3": 2.48
+ },
+ "real/scrim/intercepted/distance": {
+  "median": 8.84,
+  "n": 1209,
+  "q1": 6.46,
+  "q3": 10.45
+ },
+ "real/scrim/intercepted/lane": {
+  "median": 2.12,
+  "n": 1209,
+  "q1": 1.89,
+  "q3": 2.25
+ },
+ "real/scrim/intercepted/opp_within_5m_of_spot": {
+  "median": 4,
+  "n": 1209,
+  "q1": 2,
+  "q3": 6
+ },
+ "real/scrim/ok/distance": {
+  "median": 9.29,
+  "n": 1327,
+  "q1": 6.81,
+  "q3": 10.35
+ },
+ "real/scrim/ok/lane": {
+  "median": 2.26,
+  "n": 1327,
+  "q1": 2.1,
+  "q3": 2.47
+ },
+ "real/scrim/ok/opp_within_5m_of_spot": {
+  "median": 2,
+  "n": 1327,
+  "q1": 1,
+  "q3": 4
+ },
+ "real/scrim/out_or_dead/distance": {
+  "median": 9.39,
+  "n": 88,
+  "q1": 7.18,
+  "q3": 10.15
+ },
+ "real/scrim/out_or_dead/lane": {
+  "median": 2.3,
+  "n": 88,
+  "q1": 2.16,
+  "q3": 2.56
+ },
+ "real/scrim/out_or_dead/opp_within_5m_of_spot": {
+  "median": 2,
+  "n": 88,
+  "q1": 1,
+  "q3": 4
+ },
+ "real/scrim/unresolved/distance": {
+  "median": 10.93,
+  "n": 1,
+  "q1": 10.93,
+  "q3": 10.93
+ },
+ "real/scrim/unresolved/lane": {
+  "median": 2.13,
+  "n": 1,
+  "q1": 2.13,
+  "q3": 2.13
+ },
+ "real/scrim/unresolved/opp_within_5m_of_spot": {
+  "median": 1,
+  "n": 1,
+  "q1": 1,
+  "q3": 1
+ },
+ "real/snap40/ok/distance": {
+  "median": 12.64,
+  "n": 131,
+  "q1": 9.23,
+  "q3": 16.12
+ },
+ "real/snap40/ok/lane": {
+  "median": 21.43,
+  "n": 131,
+  "q1": 21.08,
+  "q3": 28.28
+ },
+ "real/snap40/ok/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 131,
+  "q1": 0,
+  "q3": 0
+ },
+ "real/snap40/out_or_dead/distance": {
+  "median": 10.0,
+  "n": 7,
+  "q1": 5.6,
+  "q3": 16.12
+ },
+ "real/snap40/out_or_dead/lane": {
+  "median": 21.2,
+  "n": 7,
+  "q1": 20.84,
+  "q3": 28.28
+ },
+ "real/snap40/out_or_dead/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 7,
+  "q1": 0,
+  "q3": 0
+ },
+ "real/toss/intercept_point_from_spot": {
+  "median": 5.73,
+  "n": 406,
+  "q1": 5.1,
+  "q3": 11.57
+ },
+ "real/toss/intercepted/distance": {
+  "median": 10.51,
+  "n": 406,
+  "q1": 9.27,
+  "q3": 16.31
+ },
+ "real/toss/intercepted/lane": {
+  "median": 1.79,
+  "n": 406,
+  "q1": 0.99,
+  "q3": 2.69
+ },
+ "real/toss/intercepted/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 406,
+  "q1": 0,
+  "q3": 1
+ },
+ "real/toss/ok/distance": {
+  "median": 9.63,
+  "n": 1460,
+  "q1": 9.07,
+  "q3": 11.06
+ },
+ "real/toss/ok/lane": {
+  "median": 6.02,
+  "n": 1460,
+  "q1": 3.7,
+  "q3": 16.9
+ },
+ "real/toss/ok/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 1460,
+  "q1": 0,
+  "q3": 0
+ },
+ "real/toss/out_or_dead/distance": {
+  "median": 9.93,
+  "n": 105,
+  "q1": 9.35,
+  "q3": 10.33
+ },
+ "real/toss/out_or_dead/lane": {
+  "median": 9.04,
+  "n": 105,
+  "q1": 3.87,
+  "q3": 23.41
+ },
+ "real/toss/out_or_dead/opp_within_5m_of_spot": {
+  "median": 0,
+  "n": 105,
+  "q1": 0,
+  "q3": 0
+ }
+}
