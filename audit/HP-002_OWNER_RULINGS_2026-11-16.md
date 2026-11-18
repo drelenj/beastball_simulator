@@ -59,3 +59,6 @@ Owner's intent: tighter marking should allow more carries. Expected side effect 
 
 ## 18 Nov 2026 - Edge cases (settles Q-RB34-1 and Q-RB34-2)
 An arrow is INERT (no foul, no freeze) when (a) it is released while a shot is still in the air after the clock has expired, and (b) possession changes while the arrow is in flight. Defaults, not stated by the owner: (a) is a dead-ball case, so the arrow is refunded to the quota; (b) is a late-inert arrow released live, so it stays spent.
+
+## 18 Nov 2026 - Marked distance stays 5 m (reverses the 17 Nov 2 m change)
+Owner: keep the "marked" distance at 5 m (unchanged placeholder); the zone rules by zone defended/attacked and the 5 s limit stand. Before changing any behaviour, track at each zone foul where the ball and ball carrier are and where the nearest off-ball offensive player is, using a small soak.
