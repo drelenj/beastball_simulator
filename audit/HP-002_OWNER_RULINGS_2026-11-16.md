@@ -62,3 +62,7 @@ An arrow is INERT (no foul, no freeze) when (a) it is released while a shot is s
 
 ## 18 Nov 2026 - Marked distance stays 5 m (reverses the 17 Nov 2 m change)
 Owner: keep the "marked" distance at 5 m (unchanged placeholder); the zone rules by zone defended/attacked and the 5 s limit stand. Before changing any behaviour, track at each zone foul where the ball and ball carrier are and where the nearest off-ball offensive player is, using a small soak.
+
+## 18 Nov 2026 - Keeper Zone occupancy and marking distances (CANON)
+Design intent (owner): the Keeper Zone is explosive, critical territory, which is why occupancy is limited. Marking distances: a defender in the zone he defends counts as marked (and is not called after 5 s) when an opposing offensive player is within 5 m of him OR the ball carrier is within 25 m of him. Starting values, tunable.
+Interpretation (owner to confirm): the two distances are alternatives (either exempts him); "minimum" means the closest-approach distance that counts as marking. Data check on RB-3.5: of 150 zone_unmarked fouls, only 20 had a carrier within 25 m of the fouler, so the carrier distance alone would remove about 13% of the fouls; positioning has to do the rest.
