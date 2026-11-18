@@ -52,9 +52,6 @@ def detour(x, y, aim, obstacles):
 # BEHAVIORAL baseline (owner, 18 Nov 2026), PROVISIONAL. The two distances arrive in the view as a
 # public team instruction (view.defender_baseline = (enabled, mark_distance_m, ball_leash_m)), from
 # RulebookConfigV3, so a later tactics layer can override them. Everything else is belief-based.
-RECOVERY_STEP_M = 3.3        # PRIMITIVE: exits and aims in a zone stay this far behind the freeze spot (rule: 3 m)
-RECOVERY_TRIGGER_M = 3.1     # PRIMITIVE: retreat when less than this far behind it (hysteresis)
-RECOVERY_AIM_M = 3.6         # PRIMITIVE: retreat target behind it (clear of the motor's arrival tolerance)
 MARK_STANDOFF = .7           # PRIMITIVE: aim at this fraction of the marking distance, goal side
 LEASH_STANDOFF = .9          # PRIMITIVE: aim at this fraction of the leash, on my side of the ball
 REENTRY_BLOCK_MS = 3000      # does not re-enter his own zone within 3 s unless a condition holds there
@@ -105,28 +102,6 @@ def _targets(view, belief, opps, mates, ball, mark, leash):
     return sorted(out, key=lambda o: (o[0], o[1], o[3]))
 
 
-def _exit_behind(view, line):
-    """Nearest point just outside the zone I stand in, not forward of the recovery line."""
-    sg = view.attack_sign
-    r = view.zone_radius + 1.
-    best = None
-    for gx in (0., 100.):
-        if hypot(view.x - gx, view.y - 50.) >= view.zone_radius:
-            continue
-        for k in range(0, 181, 5):                       # candidate points on the arc
-            from math import cos, sin, radians
-            a = radians(k)
-            for side in (1., -1.):
-                x = gx + (cos(a) if gx == 0. else -cos(a)) * r
-                y = 50. + side * sin(a) * r
-                if not (.6 <= x <= 99.4 and .6 <= y <= 99.4) or sg * (x - line) > 0:
-                    continue
-                d = hypot(x - view.x, y - view.y)
-                if best is None or d < best[0]:
-                    best = (d, (round(x, 3), round(y, 3)))
-    return best[1] if best else None
-
-
 def defender_baseline(view, belief, intent, record):
     conf = getattr(view, 'defender_baseline', None)
     if not conf or not conf[0] or view.role != 'field' or view.holds_ball or view.bench_role:
@@ -134,31 +109,6 @@ def defender_baseline(view, belief, intent, record):
     if view.restart is not None or view.signals.phase != 'live' or view.pending_command_id is not None:
         return intent, record
     _, mark, leash = conf
-    recovery_x = getattr(view, 'own_recovery_from_x', None)
-    in_zone = any(hypot(view.x - gx, view.y - 50.) < view.zone_radius for gx in (0., 100.))
-    latest = belief.own_feedback[-1][1] if belief.own_feedback else ''
-    sg = view.attack_sign
-    if recovery_x is not None and in_zone:
-        # Own body and public rule: once frozen, while I am in a zone I may act only while I stand
-        # at least 3 m behind (toward my own end) the spot where I was frozen. The rule is checked
-        # against my position every time, so I keep behind that line while in a zone and leave the
-        # zone by an exit point behind it.
-        line = recovery_x - sg * RECOVERY_STEP_M
-        if sg * (view.x - (recovery_x - sg * RECOVERY_TRIGGER_M)) > 0:
-            aim = (round(_clamp(recovery_x - sg * RECOVERY_AIM_M), 3), round(view.y, 3))
-            return (replace(intent, kind='position', aim=aim, target=None, contact=None),
-                    dict(record, rb36='freeze_recovery_retreat'))
-        if intent.aim is not None and sg * (intent.aim[0] - line) > 0:
-            exit_ = _exit_behind(view, line)
-            if exit_ is not None:
-                return (replace(intent, kind='position', aim=exit_, target=None, contact=None),
-                        dict(record, rb36='freeze_recovery_exit_behind_line'))
-            aim = (round(_clamp(line), 3), round(intent.aim[1], 3))
-            return replace(intent, aim=aim), dict(record, rb36='freeze_recovery_hold_line')
-    elif recovery_x is None and latest.startswith('rejected_freeze_recovery'):
-        aim = (round(_clamp(view.x - sg * RECOVERY_STEP_M), 3), round(view.y, 3))
-        return (replace(intent, kind='position', aim=aim, target=None, contact=None),
-                dict(record, rb36='freeze_recovery_retreat'))
     sig = view.signals
     if sig.passive_team is None or sig.passive_team == view.team:
         return intent, record                     # attackers: existing 3 s zone exit applies (< 4 s)

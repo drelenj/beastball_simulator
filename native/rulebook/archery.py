@@ -76,7 +76,7 @@ def install(co,cfg):
   if ok:
    self.rb.quotas[team]['freezes']+=1
    for t in ('A','B'):self.freezes[t]=self.rb.quotas[t]['freezes']
-   p.rb_recover=(p.x,p.y,p.freeze_until)
+   if not v3:p.rb_recover=(p.x,p.y,p.freeze_until) # native-rb/3: no freeze-recovery state (RB-3.8)
    self.rb_publish(self.rb.ruling('freeze',player=pid,until=p.freeze_until,immune_until=p.immune_until))
   return ok
  E.freeze=freeze
@@ -88,6 +88,11 @@ def install(co,cfg):
  # a freeze. Recovery locomotion is permitted; ball/contact acts are not.
  def blocked(self,p):return self.zone(p.x,p.y) is not None and not self.rb_recovery_ready(p)
  E.rb_recovery_blocked=blocked
+ if v3:
+  # RB-3.8 owner ruling (CANON, 18 Nov 2026): no freeze-recovery condition. A thawed player may act
+  # and move anywhere at once; only the thaw contact buffer and arrow immunity remain.
+  E.rb_recovery_ready=lambda self,p:True
+  E.rb_recovery_blocked=lambda self,p:False
  from functools import wraps
  def gate(fn):
   @wraps(fn)
@@ -96,7 +101,7 @@ def install(co,cfg):
    return fn(self,pid,*a,**kw)
   return call
  for name in ('acquire','touch','release','restart_release'):
-  setattr(E,name,gate(getattr(E,name)))
+  if not v3:setattr(E,name,gate(getattr(E,name)))
  old_move=M.move_players
  def move(self,ms,targets):
   allowed=dict(targets)
@@ -110,7 +115,7 @@ def install(co,cfg):
     # Cancel prohibited propulsion; do not choose a new destination.
     allowed[p.id]=(p.x,p.y);p.target=(p.x,p.y);p.vx=p.vy=0.
   return old_move(self,ms,allowed)
- M.move_players=move
+ if not v3:M.move_players=move # native-rb/3: no recovery propulsion cancel (RB-3.8)
  def arrows(self,ms):
   s=self.s;events=[];dt=ms/1000;g=self.assume['gravity'];previous=getattr(self,'rb_previous_positions',{})
   for ar in s.arrows:
