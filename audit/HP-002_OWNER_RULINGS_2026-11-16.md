@@ -36,3 +36,8 @@ Open: arrows released within about 0.5 s AFTER the ball went dead or loose (abou
 2. A frozen player is an obstacle: contact with him is not a foul (no advantage from touching him). Proposed in place of the frozen_contact major foul: a 1-second contact buffer once the player is unfrozen, alongside his freeze immunity.
 Interpretation (owner to confirm): contact with a frozen player is not a foul (collision only); for 1 s after he thaws, contact with him is the existing immune_contact foul; after that, no contact protection beyond the arrow immunity.
 Open: an arrow RELEASED while the ball is already dead or loose (about 70% of illegal arrows in RB-3.3). Default being tested: released within 500 ms of the ball going dead/loose = inert and spent, no foul; later = the existing archery_target foul.
+
+## 17 Nov 2026 (late evening) - Dead-ball arrows are not spent; loose ball keeps offensive possession (CANON; replaces the 500 ms grace default)
+1. An arrow that is inert because the ball is dead (released after the whistle, or still in flight when the ball goes dead) is not a foul and does NOT count against the Archer's quota: the Archer keeps his count as if he had not released it. No grace window is needed.
+2. A loose ball is still in passive possession of the offense. Archers may therefore spend arrows and freezes on opposing offensive players pursuing the ball until possession changes. Team control is not required, only passive possession (this settles Q-FAB1-2: a pass in flight or a loose ball does not stop Archer targeting).
+Assumption: an arrow released while live at a target that is legal at release but in a zone, frozen or immune on arrival is late and inert, no foul, and IS spent (it was released live).
