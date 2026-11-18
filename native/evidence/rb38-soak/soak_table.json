@@ -1,0 +1,1051 @@
+[
+  {
+    "arrows": {
+      "A": {
+        "illegal": 6,
+        "legal": 273,
+        "legal_rate": 0.978494623655914
+      },
+      "B": {
+        "illegal": 6,
+        "legal": 267,
+        "legal_rate": 0.978021978021978
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 53,
+      "B": 76
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "end_ms": 5956388,
+    "foul_reasons": {
+      "archery_target": 12
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.978494623655914,
+      "B": 0.978021978021978
+    },
+    "live_ms": 2400000,
+    "name": "real-seed01",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 1,
+      "B": 5
+    },
+    "points_from_play": {
+      "A": 14,
+      "B": 22
+    },
+    "possessions": {
+      "A": 357,
+      "B": 358
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 5.04,
+      "B": 8.1
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed01.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 41,
+    "result_file": "native/evidence/rb38-soak/real/real-seed01.json",
+    "runtime_s": 194.16,
+    "score": {
+      "A": 15,
+      "B": 27
+    },
+    "share_points_from_fouls": 0.1429,
+    "shot_attempts": {
+      "A": 13,
+      "B": 28
+    },
+    "state_hash": "e272f807ecbde2e7d2b46d2bd97d433a9084f183ee0b12b1b3fb9b94d0a9a341",
+    "status": "final",
+    "steps": 51229,
+    "trace_hash": "2579828021cf33701a0d433038a0e9e8858d5ddc06c98223f3ff1e13a53c04c9",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 10,
+        "legal": 272,
+        "legal_rate": 0.9645390070921985
+      },
+      "B": {
+        "illegal": 4,
+        "legal": 278,
+        "legal_rate": 0.9858156028368794
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 47,
+      "B": 53
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 2,
+      "B": 0
+    },
+    "end_ms": 5799883,
+    "foul_reasons": {
+      "archery_target": 14,
+      "zone_unmarked": 1
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9645390070921985,
+      "B": 0.9858156028368794
+    },
+    "live_ms": 2400000,
+    "name": "real-seed02",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 5,
+      "B": 0
+    },
+    "points_from_play": {
+      "A": 5,
+      "B": 24
+    },
+    "possessions": {
+      "A": 308,
+      "B": 309
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 7.14,
+      "B": 6.15
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed02.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 37,
+    "result_file": "native/evidence/rb38-soak/real/real-seed02.json",
+    "runtime_s": 188.41,
+    "score": {
+      "A": 10,
+      "B": 24
+    },
+    "share_points_from_fouls": 0.1471,
+    "shot_attempts": {
+      "A": 21,
+      "B": 16
+    },
+    "state_hash": "0b025963b7afa535ed77fcc80c9a7dece568800f282c07b25491ce97a0b827c6",
+    "status": "final",
+    "steps": 49275,
+    "trace_hash": "a99202ce79fe67875c8382e99a3a95263d1d843261c7ae990e39843204503214",
+    "zone_unmarked": 1,
+    "zone_unmarked_calls": [
+      {
+        "fouler": "B:NBL24-01-10",
+        "period": 4,
+        "t_live_ms": 2139459,
+        "team": "B"
+      }
+    ]
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 4,
+        "legal": 296,
+        "legal_rate": 0.9866666666666667
+      },
+      "B": {
+        "illegal": 9,
+        "legal": 249,
+        "legal_rate": 0.9651162790697675
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 70,
+      "B": 62
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 0,
+      "B": 1
+    },
+    "end_ms": 5983810,
+    "foul_reasons": {
+      "archery_target": 13,
+      "zone_unmarked": 1
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9866666666666667,
+      "B": 0.9651162790697675
+    },
+    "live_ms": 2400000,
+    "name": "real-seed03",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 6,
+      "B": 7
+    },
+    "points_from_play": {
+      "A": 12,
+      "B": 21
+    },
+    "possessions": {
+      "A": 339,
+      "B": 339
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 6.78,
+      "B": 7.08
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed03.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 42,
+    "result_file": "native/evidence/rb38-soak/real/real-seed03.json",
+    "runtime_s": 192.89,
+    "score": {
+      "A": 18,
+      "B": 28
+    },
+    "share_points_from_fouls": 0.2826,
+    "shot_attempts": {
+      "A": 26,
+      "B": 21
+    },
+    "state_hash": "d4255da16d0e5b64d7f30d59758f5e728500357a7e69ae1d1d6ff171a3660fe5",
+    "status": "final",
+    "steps": 51211,
+    "trace_hash": "c0fe0826456c2456d7e771049d9dd22bb2226533a1712aa0eac4f93ab39c8e53",
+    "zone_unmarked": 1,
+    "zone_unmarked_calls": [
+      {
+        "fouler": "A:NBL24-07-10",
+        "period": 3,
+        "t_live_ms": 1719539,
+        "team": "A"
+      }
+    ]
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 9,
+        "legal": 257,
+        "legal_rate": 0.9661654135338346
+      },
+      "B": {
+        "illegal": 9,
+        "legal": 266,
+        "legal_rate": 0.9672727272727273
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 40,
+      "B": 54
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "end_ms": 5956224,
+    "foul_reasons": {
+      "archery_target": 18
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9661654135338346,
+      "B": 0.9672727272727273
+    },
+    "live_ms": 2400000,
+    "name": "real-seed04",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 1,
+      "B": 3
+    },
+    "points_from_play": {
+      "A": 6,
+      "B": 14
+    },
+    "possessions": {
+      "A": 338,
+      "B": 339
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 3.85,
+      "B": 4.13
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed04.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 38,
+    "result_file": "native/evidence/rb38-soak/real/real-seed04.json",
+    "runtime_s": 191.8,
+    "score": {
+      "A": 7,
+      "B": 17
+    },
+    "share_points_from_fouls": 0.1667,
+    "shot_attempts": {
+      "A": 9,
+      "B": 19
+    },
+    "state_hash": "3f500188d04b30d23893a92638ed8749f1792e9b97458cb22db3a7d8de23a875",
+    "status": "final",
+    "steps": 52247,
+    "trace_hash": "c1ebccd65bb6628ca54d5301e23ef2d1463b6d04b35fce99b7ef002bd863f09e",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 4,
+        "legal": 275,
+        "legal_rate": 0.985663082437276
+      },
+      "B": {
+        "illegal": 5,
+        "legal": 261,
+        "legal_rate": 0.981203007518797
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 55,
+      "B": 56
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 0,
+      "B": 1
+    },
+    "end_ms": 5930313,
+    "foul_reasons": {
+      "archery_target": 9,
+      "zone_unmarked": 2
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.985663082437276,
+      "B": 0.981203007518797
+    },
+    "live_ms": 2400000,
+    "name": "real-seed05",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 0,
+      "B": 5
+    },
+    "points_from_play": {
+      "A": 21,
+      "B": 43
+    },
+    "possessions": {
+      "A": 353,
+      "B": 352
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 7.65,
+      "B": 7.95
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed05.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 34,
+    "result_file": "native/evidence/rb38-soak/real/real-seed05.json",
+    "runtime_s": 191.48,
+    "score": {
+      "A": 21,
+      "B": 48
+    },
+    "share_points_from_fouls": 0.0725,
+    "shot_attempts": {
+      "A": 19,
+      "B": 20
+    },
+    "state_hash": "9dddbba1b0d2d0ee2365abc6757fcd79ceb45a096871231ab48c2e2c42b63bfc",
+    "status": "final",
+    "steps": 50758,
+    "trace_hash": "e57a8d042a514acce91ebcf46531fec2b1b27cf9b218cbdf979c3cad4f0307f3",
+    "zone_unmarked": 2,
+    "zone_unmarked_calls": [
+      {
+        "fouler": "A:NBL24-07-03",
+        "period": 2,
+        "t_live_ms": 1164502,
+        "team": "A"
+      },
+      {
+        "fouler": "A:NBL24-07-17",
+        "period": 4,
+        "t_live_ms": 2378590,
+        "team": "A"
+      }
+    ]
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 3,
+        "legal": 294,
+        "legal_rate": 0.98989898989899
+      },
+      "B": {
+        "illegal": 4,
+        "legal": 271,
+        "legal_rate": 0.9854545454545455
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 52,
+      "B": 37
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "end_ms": 5913620,
+    "foul_reasons": {
+      "archery_target": 7
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.98989898989899,
+      "B": 0.9854545454545455
+    },
+    "live_ms": 2400000,
+    "name": "real-seed06",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 0,
+      "B": 1
+    },
+    "points_from_play": {
+      "A": 34,
+      "B": 13
+    },
+    "possessions": {
+      "A": 339,
+      "B": 340
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 7.96,
+      "B": 5.29
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed06.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 46,
+    "result_file": "native/evidence/rb38-soak/real/real-seed06.json",
+    "runtime_s": 191.2,
+    "score": {
+      "A": 34,
+      "B": 14
+    },
+    "share_points_from_fouls": 0.0208,
+    "shot_attempts": {
+      "A": 27,
+      "B": 15
+    },
+    "state_hash": "90d5e4e12b161bfa1669e9e9aee40718780e2ba88b0cd7d726237d65de1d071d",
+    "status": "final",
+    "steps": 51182,
+    "trace_hash": "3c8e47e417201e104ed4e4d085eaa4956437c71f804209062c751a44fd8d55db",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 7,
+        "legal": 281,
+        "legal_rate": 0.9756944444444444
+      },
+      "B": {
+        "illegal": 13,
+        "legal": 267,
+        "legal_rate": 0.9535714285714286
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 43,
+      "B": 44
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 1,
+      "B": 2
+    },
+    "end_ms": 5964897,
+    "foul_reasons": {
+      "archery_target": 20,
+      "protected_keeper": 1
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9756944444444444,
+      "B": 0.9535714285714286
+    },
+    "live_ms": 2400000,
+    "name": "real-seed07",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 3,
+      "B": 0
+    },
+    "points_from_play": {
+      "A": 6,
+      "B": 23
+    },
+    "possessions": {
+      "A": 360,
+      "B": 361
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 5.0,
+      "B": 5.26
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed07.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 47,
+    "result_file": "native/evidence/rb38-soak/real/real-seed07.json",
+    "runtime_s": 190.33,
+    "score": {
+      "A": 9,
+      "B": 23
+    },
+    "share_points_from_fouls": 0.0938,
+    "shot_attempts": {
+      "A": 18,
+      "B": 23
+    },
+    "state_hash": "09ab5282db417bda4668ec74fc0c8efdf9bc537742c94ae674e069b32389223c",
+    "status": "final",
+    "steps": 51440,
+    "trace_hash": "74183e7b583172d47e98d741bae15d3148aeea293e2d1017bcbde9d21edb413c",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 7,
+        "legal": 281,
+        "legal_rate": 0.9756944444444444
+      },
+      "B": {
+        "illegal": 7,
+        "legal": 262,
+        "legal_rate": 0.9739776951672863
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 61,
+      "B": 60
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "end_ms": 5850121,
+    "foul_reasons": {
+      "archery_target": 14
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9756944444444444,
+      "B": 0.9739776951672863
+    },
+    "live_ms": 2400000,
+    "name": "real-seed08",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 2,
+      "B": 1
+    },
+    "points_from_play": {
+      "A": 9,
+      "B": 8
+    },
+    "possessions": {
+      "A": 335,
+      "B": 335
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 5.67,
+      "B": 6.57
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed08.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 49,
+    "result_file": "native/evidence/rb38-soak/real/real-seed08.json",
+    "runtime_s": 191.8,
+    "score": {
+      "A": 11,
+      "B": 9
+    },
+    "share_points_from_fouls": 0.15,
+    "shot_attempts": {
+      "A": 18,
+      "B": 16
+    },
+    "state_hash": "ac00665e3ee9a02071eb6ede2a252deff72460e9692762a2a741842d5eb7ea7e",
+    "status": "final",
+    "steps": 50877,
+    "trace_hash": "bce4d9e1a790b8cfad2ecee460dfae4a8d9bb9c17115551a606045420068076d",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 4,
+        "legal": 288,
+        "legal_rate": 0.9863013698630136
+      },
+      "B": {
+        "illegal": 3,
+        "legal": 273,
+        "legal_rate": 0.9891304347826086
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 66,
+      "B": 40
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "end_ms": 5829618,
+    "foul_reasons": {
+      "archery_target": 7,
+      "zone_unmarked": 1
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9863013698630136,
+      "B": 0.9891304347826086
+    },
+    "live_ms": 2400000,
+    "name": "real-seed09",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 4,
+      "B": 0
+    },
+    "points_from_play": {
+      "A": 21,
+      "B": 15
+    },
+    "possessions": {
+      "A": 330,
+      "B": 331
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 7.58,
+      "B": 4.83
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed09.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 46,
+    "result_file": "native/evidence/rb38-soak/real/real-seed09.json",
+    "runtime_s": 189.47,
+    "score": {
+      "A": 25,
+      "B": 15
+    },
+    "share_points_from_fouls": 0.1,
+    "shot_attempts": {
+      "A": 25,
+      "B": 17
+    },
+    "state_hash": "dc6575f28ce2c1de99eaca2df8efb9b6fab627451841fe85cf02033e9597c6aa",
+    "status": "final",
+    "steps": 50433,
+    "trace_hash": "b0b8722a1d5e925914dbc0771543bfe63b324bd928ae8595275cd123ea68992d",
+    "zone_unmarked": 1,
+    "zone_unmarked_calls": [
+      {
+        "fouler": "B:NBL24-01-04",
+        "period": 4,
+        "t_live_ms": 2087791,
+        "team": "B"
+      }
+    ]
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 10,
+        "legal": 280,
+        "legal_rate": 0.9655172413793104
+      },
+      "B": {
+        "illegal": 8,
+        "legal": 234,
+        "legal_rate": 0.9669421487603306
+      }
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 60,
+      "B": 69
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "dqs": {
+      "A": 2,
+      "B": 1
+    },
+    "end_ms": 5828764,
+    "foul_reasons": {
+      "archery_target": 18,
+      "zone_unmarked": 1
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9655172413793104,
+      "B": 0.9669421487603306
+    },
+    "live_ms": 2400000,
+    "name": "real-seed10",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 6,
+      "B": 1
+    },
+    "points_from_play": {
+      "A": 2,
+      "B": 14
+    },
+    "possessions": {
+      "A": 353,
+      "B": 352
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 7.37,
+      "B": 6.25
+    },
+    "raw_log": "native/evidence/rb38-soak/real/raw-real-seed10.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 40,
+    "result_file": "native/evidence/rb38-soak/real/real-seed10.json",
+    "runtime_s": 185.8,
+    "score": {
+      "A": 8,
+      "B": 15
+    },
+    "share_points_from_fouls": 0.3043,
+    "shot_attempts": {
+      "A": 15,
+      "B": 19
+    },
+    "state_hash": "84c2524afcdf599370a74c775e8e6774f1726c2c5a1f8111e73f7935e58f5be7",
+    "status": "final",
+    "steps": 50376,
+    "trace_hash": "2a2dc38a71c3ac1db9d61786ab75ad28b2ae1fcf0c636d583b80fb1d88fe932c",
+    "zone_unmarked": 1,
+    "zone_unmarked_calls": [
+      {
+        "fouler": "B:NBL24-01-22",
+        "period": 3,
+        "t_live_ms": 1445245,
+        "team": "B"
+      }
+    ]
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 8,
+        "legal": 305,
+        "legal_rate": 0.9744408945686901
+      },
+      "B": {
+        "illegal": 8,
+        "legal": 255,
+        "legal_rate": 0.9695817490494296
+      }
+    },
+    "block": "control",
+    "carry_attempts": {
+      "A": 24,
+      "B": 21
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "end_ms": 6216453,
+    "foul_reasons": {
+      "archery_target": 16
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9744408945686901,
+      "B": 0.9695817490494296
+    },
+    "live_ms": 2400000,
+    "name": "control-seed01",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 1,
+      "B": 4
+    },
+    "points_from_play": {
+      "A": 0,
+      "B": 5
+    },
+    "possessions": {
+      "A": 328,
+      "B": 329
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 0.91,
+      "B": 3.34
+    },
+    "raw_log": "native/evidence/rb38-soak/control/raw-control-seed01.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 75,
+    "result_file": "native/evidence/rb38-soak/control/control-seed01.json",
+    "runtime_s": 197.42,
+    "score": {
+      "A": 1,
+      "B": 9
+    },
+    "share_points_from_fouls": 0.5,
+    "shot_attempts": {
+      "A": 1,
+      "B": 6
+    },
+    "state_hash": "4f4169e7082dc4ada24d0dc2c3bc3621d59ace0804748be6b66ea7f1c9b2593a",
+    "status": "final",
+    "steps": 55312,
+    "trace_hash": "3cc853697eb613703869e87a64ccbecf407a0017ef4903ab22667074efcdad72",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 6,
+        "legal": 260,
+        "legal_rate": 0.9774436090225563
+      },
+      "B": {
+        "illegal": 10,
+        "legal": 277,
+        "legal_rate": 0.9651567944250871
+      }
+    },
+    "block": "control",
+    "carry_attempts": {
+      "A": 66,
+      "B": 35
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+    "dqs": {
+      "A": 1,
+      "B": 2
+    },
+    "end_ms": 6157427,
+    "foul_reasons": {
+      "archery_target": 16,
+      "protected_keeper": 1
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9774436090225563,
+      "B": 0.9651567944250871
+    },
+    "live_ms": 2400000,
+    "name": "control-seed02",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 10,
+      "B": 6
+    },
+    "points_from_play": {
+      "A": 19,
+      "B": 8
+    },
+    "possessions": {
+      "A": 321,
+      "B": 321
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 6.23,
+      "B": 3.12
+    },
+    "raw_log": "native/evidence/rb38-soak/control/raw-control-seed02.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 48,
+    "result_file": "native/evidence/rb38-soak/control/control-seed02.json",
+    "runtime_s": 204.98,
+    "score": {
+      "A": 29,
+      "B": 14
+    },
+    "share_points_from_fouls": 0.3721,
+    "shot_attempts": {
+      "A": 16,
+      "B": 9
+    },
+    "state_hash": "8489af45024c260852230726589ce6b7c262f80d25a49dc64c34e71179e2d3ba",
+    "status": "final",
+    "steps": 53518,
+    "trace_hash": "b40500ab72eeffc47e9c10db985273fe765d7454c32d60662efd475507c1a103",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "arrows": {
+      "A": {
+        "illegal": 5,
+        "legal": 257,
+        "legal_rate": 0.9809160305343512
+      },
+      "B": {
+        "illegal": 8,
+        "legal": 299,
+        "legal_rate": 0.9739413680781759
+      }
+    },
+    "block": "control",
+    "carry_attempts": {
+      "A": 51,
+      "B": 26
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 0
+    },
+    "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "end_ms": 6004267,
+    "foul_reasons": {
+      "archery_target": 13
+    },
+    "freeze_recovery_in_foul_reasons": 0,
+    "freeze_recovery_in_raw_log": 0,
+    "legal_arrow_rate": {
+      "A": 0.9809160305343512,
+      "B": 0.9739413680781759
+    },
+    "live_ms": 2400000,
+    "name": "control-seed03",
+    "non_finishing": null,
+    "points_from_foul_awards": {
+      "A": 7,
+      "B": 1
+    },
+    "points_from_play": {
+      "A": 12,
+      "B": 8
+    },
+    "possessions": {
+      "A": 306,
+      "B": 308
+    },
+    "possessions_ending_in_attempt_pct": {
+      "A": 4.9,
+      "B": 2.6
+    },
+    "raw_log": "native/evidence/rb38-soak/control/raw-control-seed03.json.gz",
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 66,
+    "result_file": "native/evidence/rb38-soak/control/control-seed03.json",
+    "runtime_s": 201.42,
+    "score": {
+      "A": 19,
+      "B": 9
+    },
+    "share_points_from_fouls": 0.2857,
+    "shot_attempts": {
+      "A": 13,
+      "B": 6
+    },
+    "state_hash": "5804632a515d0ef69922d030d4a1b8fe16664c8a3bde75b92eb74151f501740d",
+    "status": "final",
+    "steps": 52339,
+    "trace_hash": "9012e932c123ce5e53825519a641508144c6643d9288b842284961959d499aa0",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  }
+]
