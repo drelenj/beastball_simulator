@@ -72,3 +72,7 @@ Owner: the 5 m / 25 m marking distances are default defender behavior, not a rul
 
 ## 18 Nov 2026 (refinement) - Defender leash is measured to the BALL
 Owner: use the ball (not the ball carrier) as the anchor for the 25 m defender leash, so loose balls and passes in flight need no separate handling. Baseline defender behavior: be within 5 m of an opposing field player or within 25 m of the ball, whichever is easier. Constant: defender_ball_leash_m = 25 (replaces defender_carrier_leash_m).
+
+## 18 Nov 2026 - Freeze recovery (CANON; resolves Q-RB36-1 and Q-RB36-2 by removal)
+Owner: the "recovery protection 3 m / 2 s" in the rulebook was the original THAW BUFFER (protection for the thawed player), not a requirement that the frozen player retreat. A frozen player is in perfect stasis (zero velocity) and, once thawed, may move wherever he is programmed. Ruling: DROP the "be 3 m back toward own end before acting" condition and the 2 s action wait entirely. The thaw contact buffer (1 s, immune_contact, thaw_contact_buffer_ms=1000) and freeze immunity cover the protection intent. Q-RB36-1 (latching) and Q-RB36-2 (cap at room to end line) are moot.
+Consequence: native/port.py freeze_recovery refusal is removed; no thawed player is ever blocked from acting. Add a test: a player frozen 2 m from his own end line can leave the field-side immediately after thaw and is never refused with freeze_recovery. Also remove the RB-3.6 cognition workaround for recovery if it only existed to route around this rule (keep any marking/leash behavior).
