@@ -568,7 +568,10 @@ def decide_v2(view, belief):
         return choice('restart_position',(max(.01,min(99.99,px)),max(.01,min(99.99,py))))
     # PLACEHOLDER rule compliance: leave before the 5 s residence deadline.
     # This projects a legal exit from own sensed position, not a tactical anchor.
-    if view.role=='field' and view.zone_elapsed_ms>=3000:
+    # RB-3.9c (native-rb/3): attackers exit at 4 s (margin before the 5 s zone_residence limit);
+    # defenders and every other profile keep the 3 s placeholder.
+    exit_ms=4000 if view.cognition=='native-rb/3' and view.signals.passive_team==view.team else 3000
+    if view.role=='field' and view.zone_elapsed_ms>=exit_ms:
         for gx in (view.own_goal_x,100-view.own_goal_x):
             dx,dy=view.x-gx,view.y-50;d=hypot(dx,dy)
             if d<view.zone_radius:

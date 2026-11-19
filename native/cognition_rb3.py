@@ -146,7 +146,53 @@ def defender_baseline(view, belief, intent, record):
     return out, record
 
 
+# ---------------------------------------------------------------- RB-3.9c carrier (B-2)
+CARRY_APPROACH_M = 30.     # PRIMITIVE: "in or approaching the attacked zone" (zone radius 20 + 10)
+CARRY_CLEAR_M = 5.         # PRIMITIVE, tunable: no believed defender this close
+KEEPER_LANE_M = 2.5        # PRIMITIVE: Keeper this close to my line to the goal is "in my lane"
+ZONE_LIMIT_MS = 5000       # rule: zone_residence after 5 s in the zone he attacks (unchanged)
+ZONE_MARGIN_MS = 500       # PRIMITIVE: arrive this long before the limit
+CARRY_SPEED_FRAC = .8      # PRIMITIVE: expected carry speed as a fraction of own top speed
+GOAL_AIM_INSET_M = 1.      # aim 1 m short of the goal plane: the carried ball crosses it ahead of the body
+
+
+def _seg_dist(px, py, ax, ay, bx, by):
+    dx, dy = bx - ax, by - ay; L = dx * dx + dy * dy or 1.
+    f = max(0., min(1., ((px - ax) * dx + (py - ay) * dy) / L))
+    return hypot(px - ax - f * dx, py - ay - f * dy)
+
+
+def carrier_to_goal(view, belief, intent, record):
+    """An unopposed carrier near the goal he attacks carries on to the goal when he can arrive
+    before the zone_residence limit; otherwise the decision (including the 4 s exit) stands."""
+    sig = view.signals
+    if (not view.holds_ball or view.role != 'field' or view.restart is not None or sig.phase != 'live'
+            or view.pending_command_id is not None or sig.passive_team != view.team):
+        return intent, record
+    sg = view.attack_sign; gx = view.own_goal_x + sg * 100.
+    d = hypot(gx - view.x, 50. - view.y)
+    if d > CARRY_APPROACH_M:
+        return intent, record
+    fresh = _fresh(view, belief)
+    opps = [t for t in fresh if t.team not in (view.team, 'ball')]
+    if any(t.role == 'field' and hypot(t.x - view.x, t.y - view.y) <= CARRY_CLEAR_M for t in opps):
+        return intent, record
+    if any(t.role == 'keeper' and _seg_dist(t.x, t.y, view.x, view.y, gx, 50.) <= KEEPER_LANE_M for t in opps):
+        return intent, record
+    top = view.body.maximum_speed if view.body else 27.
+    eta_ms = 1000. * d / max(1., CARRY_SPEED_FRAC * top)
+    inside = d < view.zone_radius
+    already = view.zone_elapsed_ms if inside else 0
+    entry_ms = 0. if inside else 1000. * max(0., d - view.zone_radius) / max(1., CARRY_SPEED_FRAC * top)
+    if already + (eta_ms - entry_ms) > ZONE_LIMIT_MS - ZONE_MARGIN_MS:
+        return intent, dict(record, rb39c='cannot_reach_goal_in_time')
+    aim = (round(gx - sg * GOAL_AIM_INSET_M, 3), 50.)
+    return (replace(intent, kind='carry', aim=aim, target=None, contact=None),
+            dict(record, rb39c=dict(rule='unopposed_carry_to_goal', distance_m=round(d, 2), eta_ms=round(eta_ms))))
+
+
 def adjust(view, belief, intent, record):
+    intent, record = carrier_to_goal(view, belief, intent, record)
     intent, record = defender_baseline(view, belief, intent, record)
     frozen = frozen_tracks(view, belief)
     if not frozen:
