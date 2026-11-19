@@ -118,3 +118,17 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB36-1 | Freeze recovery (a frozen player in a Keeper Zone may not act until 2 s after thaw and 3 m back toward his own end from the freeze spot) is checked against his current position every time and never completes. A recovered player who later steps forward past that line inside any zone is blocked again, for the rest of the match. Should recovery, once met, be complete? | CANON / ENGINEERING (rules layer, Codex). Unchanged here (no rule change this round); cognition keeps behind the line while in a zone. |
 | Q-RB36-2 | A player frozen within 3 m of his own end line can never retreat 3 m, so he can never act inside that zone again and is called for zone_unmarked repeatedly (32 of the 39 remaining calls). | CANON: what does recovery require next to the end line? |
 | Q-RB36-3 | The defender baseline holds 77-80% of defender live time (per-defender median 77-80%; leash 35 m: 86%; leash 15 m: 67%). The rest is time in transit to a new mark or behind the ball after a turnover. | BEHAVIORAL note; constants are PRIMITIVE. |
+
+## RB-3.9 provisional (claude/rb-3-9-offense-fixes, 19 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB39-1 | Nose tackle 2 m from the ball (your tunable default): his reach covers the snap as it leaves the snapper's hand, and he takes 121-178 snaps per match, most of the scrimmage interceptions (snap interception 42-52% after the fix, 40-49% before). | CANON: nose-tackle distance (or may he not touch the ball until it has travelled?). Kept at 2 m as ruled; not tuned. |
+| Q-RB39-2 | Designated receiver choice: "existing receiver valuation" has no lane to value in a set formation. Implemented: the eligible field teammate nearest the receiver spot, tie by id. | BEHAVIORAL / CANON detail. |
+| Q-RB39-3 | Offense players keep their y and stand 1 m behind the line; those near y = 50 stand in the snap lane and often catch the snap themselves (possession kept). Should the lane to the receiver be kept clear? | CANON detail. |
+| Q-RB39-4 | The ruling lists first tackle, score, toss-timeout awards and period starts. Implemented for every scrimmage and snap40 (also second-tackle turnovers, offside retakes, defence/offence minors, zone-rule awards, majors). | CANON scope. |
+| Q-RB39-5 | Major fouls at the goal line (spot on the end line) are now moved to 10 m by the [10, 90] clamp. | CANON. |
+| Q-RB39-6 | Offside retakes of a first-tackle scrimmage keep the tackler, so they keep the nose tackle. | CANON detail. |
+| Q-RB39-7 | Formation placement also moves frozen players (procedural placement). | CANON detail. |
+| Q-RB39-8 | B-1 (distance-chosen speed) is applied to open-play passes and the formation snap; toss throws keep the previous speed. | BEHAVIORAL scope. |
+| Q-RB39-9 | Attackers now exit the zone they attack at 4 s; defenders keep the 3 s exit (baseline unchanged). zone_residence calls persist (9-14 per match), almost all off-ball attackers, before and after stage 3. | BEHAVIORAL follow-up; not addressed. |
+| Q-RB39-10 | No R31-1 watchdog exists on 185b557; a log-only restart_repeat_report (same kind and spot 3 times without a possession change) was added. Field length is not a config value; 100 m is used. | ENGINEERING note. |
