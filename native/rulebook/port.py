@@ -11,6 +11,7 @@ class RulebookView(C.AthleteView):
     # RB-3.6 (native-rb/3 only; None elsewhere): public team instruction and own-body memory
     defender_baseline: tuple | None = None   # (enabled, mark_distance_m, ball_leash_m)
     own_zone_exit_ms_ago: int | None = None  # live ms since I last left my own Keeper Zone
+    formation: tuple | None = None            # RB-3.9a public: (snapper, receiver, receiver_x, receiver_y, my_spot_x, my_spot_y)
 
 from .config import RulebookConfig
 
@@ -57,6 +58,7 @@ class RulebookPort(NativePort):
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
         super().step()
+        if self.config.version=='native-rb/3':e.rb_form_restart() # RB-3.9a scrimmage formation
 
     def fill_cover(self):
         self.m.e.rb_fill_slots()
@@ -88,6 +90,8 @@ class RulebookPort(NativePort):
             c=self.config;exits=getattr(self.m.e,'rb35',{}).get('own_exit',{})
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None)
+            r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
+            extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=states,**extra),b
 
     def _submit_intent(self,intent):
@@ -116,7 +120,7 @@ class RulebookPort(NativePort):
     def view_from_json(payload):
         from copy import deepcopy
         data=deepcopy(payload);status=data['view'].pop('status_indicators',());officials=data['view'].pop('officials',CREW)
-        baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None)
+        baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
-                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago),b
+                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None),b

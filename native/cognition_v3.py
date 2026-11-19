@@ -249,8 +249,34 @@ def _stand(view, belief, kind, team, x, y, tx, ty, taker, tackler):
     return _intent(view, belief, 'restart_position', aim, why=why)
 
 
+def _formation(view, belief, kind, team, x, y, tx, ty, taker, ready, form):
+    """RB-3.9a (native-rb/3): set scrimmage formation. The snapper snaps straight back to the
+    designated receiver at a distance-chosen speed; everybody else holds the spot he was placed on."""
+    from .throw_speed import release_speed
+    snapper, receiver, rx, ry, mx, my = form
+    hold = (mx, my) if mx is not None else (round(view.x, 3), round(view.y, 3))
+    if view.athlete != snapper:
+        return _intent(view, belief, 'restart_position', hold, why='formation_hold')
+    if taker is None:
+        return _intent(view, belief, 'restart_claim', why='formation_snapper_claim')
+    if taker != view.athlete:
+        return _intent(view, belief, 'restart_position', hold, why='formation_hold')
+    if view.pending_command_id is not None:
+        return _intent(view, belief, 'continue_current', why='formation_snap_pending')
+    if hypot(view.x - tx, view.y - ty) > .6:
+        return _intent(view, belief, 'restart_position', (tx, ty), why='formation_snapper_to_spot')
+    if not ready or receiver is None:
+        return _intent(view, belief, 'restart_wait', why='formation_wait_for_set')
+    speed = release_speed(hypot(rx - x, ry - y), view.max_throw_speed)
+    i, r = _intent(view, belief, 'restart_pass', (rx, ry), receiver, why='formation_snap')
+    return replace(i, speed=speed), dict(r, snap_speed=speed)
+
+
 def restart_decide(view, belief):
     rid, kind, team, x, y, tx, ty, taker, snapper, tackler, created, ready = view.restart
+    form = getattr(view, 'formation', None)
+    if view.cognition == 'native-rb/3' and form is not None and kind in ('scrim', 'snap40'):
+        return _formation(view, belief, kind, team, x, y, tx, ty, taker, ready, form)
     if (taker is None and team == view.team and (snapper is None or snapper == view.athlete)
             and (view.role == 'field' or snapper == view.athlete)
             and _claim(view, belief, tx, ty, created, snapper)):
