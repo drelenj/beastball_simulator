@@ -79,3 +79,16 @@ Consequence: native/port.py freeze_recovery refusal is removed; no thawed player
 
 ## 18 Nov 2026 - RB-3.8 ACCEPTED as the new baseline (owner)
 Owner accepted claude/rb-3-8-drop-freeze-recovery @ 185b557 (native-rb/3, freeze recovery condition dropped; thaw buffer 1000 ms and immunity kept; defender baseline 5 m / 25 m-to-ball kept) as the new working baseline. Acceptance covers the freeze-recovery removal and the evidence that zone_unmarked and freeze_recovery refusals are gone (raw-log recompute by Claude agrees: 0 freeze_recovery mentions; discipline calls all archery_target). It does NOT accept the game's overall behaviour: scores 15-27, 18-28, 1-9 vs target 80-85 combined; ~340 possessions per team vs ~100; 5-8% possessions ending in an attempt; 0 carry goals. Those remain open (offense diagnosis next). native-rb/2 unchanged. Codex must reconcile the provisional claude/ branches onto this baseline.
+
+## 18 Nov 2026 (evening) - Scrimmage set formation (CANON; resolves diagnosis item C-1)
+Intent (owner): the scrimmage resembles a gridiron scrimmage: a set formation for offense and defense at the line; tactical differences come from what teams do after the snap.
+1. Applies to scrimmages: after a first tackle, after a score, toss-timeout awards, and period starts (snap40). Tosses (boundary restarts) are NOT changed (3 m clearance as now) pending re-measurement. [default, owner did not object]
+2. Ball spot: y = 50 always; the spot of the ball determines only x. Spot clamped to 10 m from either end line (x in [10, 90]).
+3. Snap is straight back (never forward) to a DESIGNATED RECEIVER directly behind the snapper on y = 50. Receiver depth 5 m; on snap40 10 m.
+4. Neutral zone (strip across the field, from the ball line toward the defense): 5 m deep; snap40 20 m (each team starts at its own 40). No player stands in it at the snap EXCEPT the nose tackle.
+5. Nose tackle: on a first-tackle scrimmage the tackler lines up in the neutral zone directly across from the snapper (the tackled player, who is the snapper), in a nose-tackle / center stance. He is the only defender allowed in the neutral zone. On snap40 there is no nose tackle: all defenders are outside the zone. Default distance of the nose tackle from the ball: 2 m (tunable; owner did not specify).
+6. Offense is behind the ball line at the snap. After the snap is released everyone is free to move and cross the zone.
+7. Snapper = the tackled player if he is an eligible field player; otherwise the nearest eligible field player. [default, owner did not object]
+8. Scrimmages inside the attacked Keeper Zone use the same formation (goal-line shotgun feel, receiver depth 5 m). Dead-ball formation time does not run residence clocks (live time only). [defaults]
+Known consequence: a carrier tackled within 10 m of the attacked end line is spotted back at 10 m; one tackled within 10 m of his own end line is spotted forward to 10 m.
+Status: DESIGN COMPLETE; not implemented. Supersedes the diagnosis proposal of a 3 m neutral zone.
