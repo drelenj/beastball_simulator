@@ -1,0 +1,11 @@
+{"player": "A:0", "acceleration": 8.75, "top_speed": 31.2928, "decision_ms": 500}
+{"depth": 1.0, "mode": "physics", "exit_s": 2.78, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 5.0, "mode": "physics", "exit_s": 2.4, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 10.0, "mode": "physics", "exit_s": 2.0, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 15.0, "mode": "physics", "exit_s": 1.5, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 19.0, "mode": "physics", "exit_s": 0.9, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 1.0, "mode": "cognition", "exit_s": 5.08, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 5.0, "mode": "cognition", "exit_s": 4.78, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 10.0, "mode": "cognition", "exit_s": 4.38, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 15.0, "mode": "cognition", "exit_s": 4.68, "called": false, "accel": NaN, "player": "A:0"}
+{"depth": 19.0, "mode": "cognition", "exit_s": 4.48, "called": false, "accel": NaN, "player": "A:0"}
