@@ -1,0 +1,70 @@
+## post_snap real
+== first_tackle n 467 median live s to end 2.64
+  ends: [('award:second_tackle', 242, 51.8), ('lost:c3_hold_end', 57, 12.2), ('award:boundary', 42, 9.0), ('lost:c3_collision', 25, 5.4), ('lost:release', 23, 4.9), ('lost:strip', 13, 2.8), ('goal', 11, 2.4), ('lost:arrow_outcome', 8, 1.7), ('award:zone_residence', 6, 1.3)]
+  first catch: {'own_other': 338, 'caught_by_receiver': 15}
+  first own action (kind, by receiver?): [(('pass', False), 221), (('pass', True), 139), (('tackled', False), 32), (('tackled', True), 29), (('shot', True), 17), (('shot', False), 9)]
+  median s to first own action: 1.0  median s to first tackle after snap: 2.29 tackles 243
+## snap_chain real
+first control after release (is_snap40, who): [((False, 'receiver'), 477), ((False, 'own_other'), 435), ((False, 'opponent'), 12), ((True, 'receiver'), 11), ((True, 'own_other'), 1)]
+  receiver: median ball travel to first touch 3.55 m, median lateral offset 0.0 m, n=488
+  own_other: median ball travel to first touch 0.49 m, median lateral offset 2.0 m, n=436
+  opponent: median ball travel to first touch 1.14 m, median lateral offset 0.0 m, n=12
+first-tackle scrimmages -> next: [('second_tackle', 243), ('possession', 143), ('restart_awarded', 70), ('goal', 11)]
+  passes before that: [(0, 104), (1, 182), (2, 92), (3, 46), (4, 21), (5, 11), (6, 8), (7, 2), (8, 1)]
+  pass direction after snap: {'backward_or_level': 564, 'forward': 149}
+  second tackle on: {'other': 118, 'snapper': 83, 'receiver': 42}  median gain from line (m, + = forward): 2.0  median s after snap: 2.47
+  gain quartiles: [0.0, 2.0, 5.6]
+## snap_chain control
+first control after release (is_snap40, who): [((False, 'receiver'), 179), ((False, 'own_other'), 166), ((False, 'opponent'), 11), ((True, 'receiver'), 4), ((False, 'snapper'), 1)]
+  receiver: median ball travel to first touch 3.58 m, median lateral offset 0.0 m, n=183
+  own_other: median ball travel to first touch 0.42 m, median lateral offset 2.0 m, n=166
+  opponent: median ball travel to first touch 0.69 m, median lateral offset 0.09 m, n=11
+  snapper: median ball travel to first touch 28.24 m, median lateral offset 0.0 m, n=1
+first-tackle scrimmages -> next: [('second_tackle', 117), ('possession', 53), ('restart_awarded', 25), ('goal', 5), (None, 1)]
+  passes before that: [(0, 34), (1, 73), (2, 48), (3, 26), (4, 16), (5, 3), (6, 1)]
+  pass direction after snap: {'backward_or_level': 254, 'forward': 78}
+  second tackle on: {'snapper': 38, 'other': 60, 'receiver': 19}  median gain from line (m, + = forward): 2.0  median s after snap: 2.81
+  gain quartiles: [0.2, 2.0, 5.4]
+## pass_ctx real
+open/backward                n= 585 fail=24.1% {'to target': 265, 'own other': 169, 'intercepted': 124, 'award': 10, 'out': 17}
+open/forward                 n= 380 fail=33.7% {'intercepted': 66, 'to target': 170, 'out': 62, 'own other': 77, 'award': 5}
+open/lateral                 n= 448 fail=27.0% {'own other': 140, 'to target': 182, 'out': 41, 'intercepted': 80, 'award': 4, 'other': 1}
+post-snap<3s/backward        n= 747 fail=9.5% {'to target': 264, 'own other': 406, 'intercepted': 60, 'award': 6, 'out': 11}
+post-snap<3s/forward         n= 170 fail=19.4% {'own other': 26, 'to target': 110, 'intercepted': 29, 'out': 4, 'award': 1}
+post-snap<3s/lateral         n= 402 fail=11.9% {'own other': 214, 'to target': 140, 'intercepted': 35, 'out': 13}
+ALL n 2732 fail 19.8 % {'own other': 1032, 'to target': 1131, 'intercepted': 394, 'out': 148, 'award': 26, 'other': 1}
+## pass_ctx control
+ALL n 919 fail 19.7 % {'own other': 379, 'to target': 356, 'out': 50, 'intercepted': 131, 'award': 2, 'other': 1}
+## holds real
+ball holds 4063 median hold s 0.8 median forward advance m 0.58
+  ended by release:pass: 2732 (67.2%), median advance 0.02 m
+  ended by tackle_count: 723 (17.8%), median advance 1.97 m
+  ended by release:loose: 209 (5.1%), median advance 1.46 m
+  ended by release:shot: 199 (4.9%), median advance 4.74 m
+  ended by restart_awarded: 112 (2.8%), median advance -0.0 m
+  ended by boundary: 80 (2.0%), median advance 6.0 m
+  ended by goal: 8 (0.2%), median advance 20.28 m
+advance quartiles [0.0, 0.6, 3.8]
+## holds control
+ball holds 1381 median hold s 0.8 median forward advance m 0.34
+  ended by release:pass: 919 (66.5%), median advance 0.0 m
+Traceback (most recent call last):
+  File "/home/claude/wt310/native/evidence/rb311diag/tools/holds.py", line 20, in <module>
+    for k,v in ends.most_common(8): print(f'  ended by {k}: {v} ({round(v/n*100,1)}%), median advance {med(adv_by[k])} m')
+                                    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+## shots real
+shots 199 median dist 11.48
+ outcomes [('defence recovered', 119), ('scored', 42), ('own recovered', 19), ('out', 18), ('award:zone_residence', 1)]
+  <10: n=65 scored=19 (29%) {'defence recovered': 31, 'scored': 19, 'own recovered': 7, 'out': 8}
+  10-15: n=118 scored=23 (19%) {'defence recovered': 75, 'scored': 23, 'award:zone_residence': 1, 'out': 9, 'own recovered': 10}
+  15-20: n=16 scored=0 (0%) {'defence recovered': 13, 'out': 1, 'own recovered': 2}
+## carrier motion
+control-seed01 segments 1364 median s 0.8 median fwd m 0.36 median lateral m 0.57 median mean speed m/s 2.18 median peak speed 3.96
+  decision kinds [('carry', 2053), ('pass', 921), ('retain', 101), ('shoot', 42), ('dribble', 23)]
+real-seed01 segments 1325 median s 0.8 median fwd m 0.39 median lateral m 0.7 median mean speed m/s 2.54 median peak speed 4.71
+  decision kinds [('carry', 2111), ('pass', 897), ('retain', 137), ('shoot', 67), ('dribble', 33), ('position', 5)]
+real-seed03 segments 1340 median s 0.8 median fwd m 0.77 median lateral m 0.63 median mean speed m/s 2.56 median peak speed 4.85
+  decision kinds [('carry', 2176), ('pass', 911), ('retain', 119), ('shoot', 70), ('dribble', 23), ('position', 1)]
+real-seed05 segments 1334 median s 0.8 median fwd m 0.68 median lateral m 0.65 median mean speed m/s 2.76 median peak speed 4.93
+  decision kinds [('carry', 2049), ('pass', 920), ('retain', 140), ('shoot', 89), ('dribble', 21), ('position', 1)]

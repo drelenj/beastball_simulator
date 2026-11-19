@@ -1,0 +1,1115 @@
+{
+ "control": {
+  "matches": 1,
+  "median_possession_live_s": 4.77,
+  "possessions": 414,
+  "possessions_per_team_per_match": 207.0,
+  "q1_end_causes": [
+   {
+    "cause": "lost in play: pass intercepted or loose after pass",
+    "count": 126,
+    "median_live_s": 5.0,
+    "share": 0.3043
+   },
+   {
+    "cause": "second tackle",
+    "count": 117,
+    "median_live_s": 5.62,
+    "share": 0.2826
+   },
+   {
+    "cause": "boundary: pass went out (last touch own)",
+    "count": 50,
+    "median_live_s": 5.05,
+    "share": 0.1208
+   },
+   {
+    "cause": "lost in play: restart throw intercepted or loose",
+    "count": 20,
+    "median_live_s": 0.22,
+    "share": 0.0483
+   },
+   {
+    "cause": "lost in play: shot saved/recovered by defence",
+    "count": 20,
+    "median_live_s": 3.85,
+    "share": 0.0483
+   },
+   {
+    "cause": "lost in play: carrier frozen by arrow (ball loose)",
+    "count": 19,
+    "median_live_s": 2.87,
+    "share": 0.0459
+   },
+   {
+    "cause": "boundary: other out (last touch own)",
+    "count": 14,
+    "median_live_s": 3.71,
+    "share": 0.0338
+   },
+   {
+    "cause": "zone rule (ZR-*/zone_residence)",
+    "count": 11,
+    "median_live_s": 6.0,
+    "share": 0.0266
+   },
+   {
+    "cause": "goal scored",
+    "count": 11,
+    "median_live_s": 7.55,
+    "share": 0.0266
+   },
+   {
+    "cause": "lost in play: strip",
+    "count": 9,
+    "median_live_s": 6.57,
+    "share": 0.0217
+   },
+   {
+    "cause": "award: turnover",
+    "count": 7,
+    "median_live_s": 0.0,
+    "share": 0.0169
+   },
+   {
+    "cause": "boundary: restart throw went out (last touch own)",
+    "count": 4,
+    "median_live_s": 2.6,
+    "share": 0.0097
+   },
+   {
+    "cause": "period/match end",
+    "count": 3,
+    "median_live_s": 3.88,
+    "share": 0.0072
+   },
+   {
+    "cause": "award: first_tackle",
+    "count": 2,
+    "median_live_s": 3.25,
+    "share": 0.0048
+   },
+   {
+    "cause": "boundary: carrier stepped out",
+    "count": 1,
+    "median_live_s": 7.9,
+    "share": 0.0024
+   }
+  ],
+  "q1_first_tackles_inside_possessions": 201,
+  "q1_possessions_with_shot": 31,
+  "q2": {
+   "end_distance": {
+    "max": 110.21,
+    "median": 50.36,
+    "min": 0.33,
+    "n": 409,
+    "q1": 23.53,
+    "q3": 67.06
+   },
+   "furthest_advance_distance": {
+    "max": 101.53,
+    "median": 41.69,
+    "min": 0.33,
+    "n": 409,
+    "q1": 20.5,
+    "q3": 60.0
+   },
+   "reached_cognition_shot_range_32m": 155,
+   "reached_keeper_zone_edge_20m": 96,
+   "reached_opposing_40": 218,
+   "start_distance": {
+    "max": 110.46,
+    "median": 59.94,
+    "min": 6.62,
+    "n": 409,
+    "q1": 38.63,
+    "q3": 71.47
+   }
+  },
+  "q3": {
+   "closest_ball_to_target_completed": {
+    "max": 30.11,
+    "median": 1.96,
+    "min": 0.01,
+    "n": 1010,
+    "q1": 0.63,
+    "q3": 4.42
+   },
+   "closest_ball_to_target_failed": {
+    "max": 18.86,
+    "median": 4.23,
+    "min": 0.16,
+    "n": 159,
+    "q1": 3.1,
+    "q3": 5.69
+   },
+   "completion_rate": 0.8,
+   "fail_rate_by_distance_open_play": {
+    "12-20 m": {
+     "fail": 33,
+     "fail_rate": 0.226,
+     "ok": 113
+    },
+    "20+ m": {
+     "fail": 17,
+     "fail_rate": 0.327,
+     "ok": 35
+    },
+    "6-8 m": {
+     "fail": 32,
+     "fail_rate": 0.218,
+     "ok": 115
+    },
+    "8-12 m": {
+     "fail": 43,
+     "fail_rate": 0.246,
+     "ok": 132
+    },
+    "<6 m": {
+     "fail": 38,
+     "fail_rate": 0.101,
+     "ok": 340
+    }
+   },
+   "fail_rate_by_distance_restart": {
+    "12-20 m": {
+     "fail": 5,
+     "fail_rate": 0.312,
+     "ok": 11
+    },
+    "20+ m": {
+     "fail": 1,
+     "fail_rate": 0.091,
+     "ok": 10
+    },
+    "6-8 m": {
+     "fail": 1,
+     "fail_rate": 0.091,
+     "ok": 10
+    },
+    "8-12 m": {
+     "fail": 5,
+     "fail_rate": 0.132,
+     "ok": 33
+    },
+    "<6 m": {
+     "fail": 9,
+     "fail_rate": 0.026,
+     "ok": 332
+    }
+   },
+   "failed_passing_within_3m_of_target": 34,
+   "failed_with_flight_data": 159,
+   "failures_within_5s_of_restart": {
+    "pass": 100,
+    "restart_pass": 27
+   },
+   "lane_clearance": {
+    "max": 42.99,
+    "median": 6.09,
+    "min": 0.03,
+    "n": 898,
+    "q1": 4.05,
+    "q3": 8.63
+   },
+   "nearest_defender_to_target": {
+    "max": 50.26,
+    "median": 8.69,
+    "min": 0.9,
+    "n": 898,
+    "q1": 5.83,
+    "q3": 11.87
+   },
+   "open_play_pass_results": {
+    "complete_other": 379,
+    "complete_to_target": 356,
+    "dead_before_control": 2,
+    "intercepted": 131,
+    "out_of_bounds": 50,
+    "unresolved": 1
+   },
+   "pass_distance": {
+    "max": 31.7,
+    "median": 6.64,
+    "min": 0.42,
+    "n": 898,
+    "q1": 4.66,
+    "q3": 11.35
+   },
+   "passes_per_possession": 2.196,
+   "restart_throw_results": {
+    "complete_other": 184,
+    "complete_to_target": 214,
+    "dead_before_control": 2,
+    "intercepted": 23,
+    "out_of_bounds": 4
+   },
+   "speed": {
+    "max": 50.29,
+    "median": 13.02,
+    "min": 10.0,
+    "n": 1346,
+    "q1": 12.5,
+    "q3": 26.85
+   },
+   "target_frozen": 19,
+   "target_in_attacked_zone": 6,
+   "target_in_own_zone": 30,
+   "with_geometry": 898
+  },
+  "q4": {
+   "carries": 103,
+   "closest_approach": {
+    "max": 19.99,
+    "median": 14.79,
+    "min": 1.46,
+    "n": 103,
+    "q1": 11.89,
+    "q3": 18.46
+   },
+   "closest_approach_any": 1.46,
+   "defenders_within_5m_at_start": {
+    "max": 11,
+    "median": 0,
+    "min": 0,
+    "n": 103,
+    "q1": 0,
+    "q3": 1
+   },
+   "distance_covered": {
+    "max": 20.33,
+    "median": 3.2,
+    "min": 0.0,
+    "n": 103,
+    "q1": 1.06,
+    "q3": 7.48
+   },
+   "ended_by": {
+    "boundary": 9,
+    "c3_grounding": 21,
+    "freeze": 10,
+    "goal": 2,
+    "rb_discipline": 4,
+    "release": 57
+   },
+   "held_s": {
+    "max": 4.0,
+    "median": 0.9,
+    "min": 0.0,
+    "n": 103,
+    "q1": 0.4,
+    "q3": 1.42
+   },
+   "keeper_distance_at_start": {
+    "max": 19.66,
+    "median": 15.35,
+    "min": 2.21,
+    "n": 103,
+    "q1": 13.92,
+    "q3": 15.98
+   },
+   "outcomes": {
+    "goal": 2,
+    "grounded": 21,
+    "stopped_short": 71,
+    "turnover": 9
+   },
+   "start_distance": {
+    "max": 20.0,
+    "median": 19.51,
+    "min": 7.37,
+    "n": 103,
+    "q1": 16.64,
+    "q3": 19.77
+   }
+  },
+  "q4_carrier_choices": {
+   "20-32": {
+    "carry": 407,
+    "dribble": 8,
+    "pass": 93,
+    "shoot": 1
+   },
+   "32-50": {
+    "carry": 481,
+    "dribble": 1,
+    "pass": 248
+   },
+   "50+": {
+    "carry": 1031,
+    "dribble": 12,
+    "pass": 565,
+    "retain": 101
+   },
+   "under 20": {
+    "carry": 134,
+    "dribble": 2,
+    "pass": 15,
+    "shoot": 41
+   }
+  },
+  "q5": {
+   "bands": {
+    "10_to20": 27,
+    "20plus": 1,
+    "under10": 8
+   },
+   "defenders_within_5m": {
+    "max": 9,
+    "median": 1,
+    "min": 0,
+    "n": 36,
+    "q1": 0,
+    "q3": 2
+   },
+   "distance": {
+    "max": 31.51,
+    "median": 12.55,
+    "min": 6.61,
+    "n": 36,
+    "q1": 10.63,
+    "q3": 14.36
+   },
+   "outcomes": {
+    "blocked/recovered by defence": 20,
+    "deflected": 10,
+    "scored": 6
+   },
+   "shots": 36
+  },
+  "q6": {
+   "arrows": 573,
+   "arrows_per_possession": 1.384,
+   "carrier_freezes": 34,
+   "freezes": 182,
+   "freezes_per_possession": 0.44,
+   "possessions_ended_by_carrier_freeze": 19,
+   "receiver_freezes": 4
+  },
+  "q7": {
+   "lost_within_5s_per_match": {
+    "ZR-1": 1.0,
+    "ZR-C": 1.0,
+    "ZR-T": 3.0,
+    "boundary": 43.0,
+    "defence_minor": 3.0,
+    "first_tackle": 139.0,
+    "goal": 3.0,
+    "minor_count_plus": 3.0,
+    "period_start": 1.0,
+    "second_tackle": 47.0,
+    "turnover": 3.0,
+    "zone_residence": 2.0
+   },
+   "per_match": {
+    "ZR-1": 1.0,
+    "ZR-C": 2.0,
+    "ZR-T": 3.0,
+    "boundary": 68.0,
+    "defence_minor": 4.0,
+    "first_tackle": 199.0,
+    "goal": 12.0,
+    "minor_count_plus": 5.0,
+    "period_start": 4.0,
+    "second_tackle": 117.0,
+    "turnover": 7.0,
+    "zone_residence": 5.0
+   }
+  },
+  "q8": {
+   "at_tackle": {
+    "attackers_within_5m": {
+     "max": 10,
+     "median": 2,
+     "min": 0,
+     "n": 318,
+     "q1": 0,
+     "q3": 4
+    },
+    "defenders_within_25m": {
+     "max": 11,
+     "median": 10,
+     "min": 1,
+     "n": 318,
+     "q1": 9,
+     "q3": 11
+    },
+    "defenders_within_5m": {
+     "max": 10,
+     "median": 0,
+     "min": 0,
+     "n": 318,
+     "q1": 0,
+     "q3": 2
+    }
+   },
+   "at_turnover": {
+    "attackers_within_5m": {
+     "max": 4,
+     "median": 2,
+     "min": 1,
+     "n": 10,
+     "q1": 2,
+     "q3": 3
+    },
+    "defenders_within_25m": {
+     "max": 11,
+     "median": 9,
+     "min": 2,
+     "n": 10,
+     "q1": 6,
+     "q3": 10
+    },
+    "defenders_within_5m": {
+     "max": 1,
+     "median": 0,
+     "min": 0,
+     "n": 10,
+     "q1": 0,
+     "q3": 0
+    }
+   }
+  }
+ },
+ "per_match": {
+  "control-seed01": {
+   "end_causes": {
+    "award: first_tackle": 2,
+    "award: turnover": 7,
+    "boundary: carrier stepped out": 1,
+    "boundary: other out (last touch own)": 14,
+    "boundary: pass went out (last touch own)": 50,
+    "boundary: restart throw went out (last touch own)": 4,
+    "goal scored": 11,
+    "lost in play: carrier frozen by arrow (ball loose)": 19,
+    "lost in play: pass intercepted or loose after pass": 126,
+    "lost in play: restart throw intercepted or loose": 20,
+    "lost in play: shot saved/recovered by defence": 20,
+    "lost in play: strip": 9,
+    "period/match end": 3,
+    "second tackle": 117,
+    "zone rule (ZR-*/zone_residence)": 11
+   },
+   "observed": true,
+   "possessions": 414,
+   "restart_awards": {
+    "ZR-1": 1,
+    "ZR-C": 2,
+    "ZR-T": 3,
+    "boundary": 73,
+    "defence_minor": 4,
+    "first_tackle": 201,
+    "goal": 12,
+    "minor_count_plus": 5,
+    "period_start": 4,
+    "second_tackle": 117,
+    "turnover": 7,
+    "zone_residence": 5
+   }
+  },
+  "real-seed01": {
+   "end_causes": {
+    "award: first_tackle": 1,
+    "award: turnover": 9,
+    "boundary: carrier stepped out": 2,
+    "boundary: other out (last touch own)": 16,
+    "boundary: pass went out (last touch own)": 45,
+    "boundary: restart throw went out (last touch own)": 9,
+    "boundary: shot missed out": 1,
+    "goal scored": 18,
+    "lost in play: ball loose at tackle/grounding": 1,
+    "lost in play: carrier frozen by arrow (ball loose)": 15,
+    "lost in play: pass intercepted or loose after pass": 124,
+    "lost in play: restart throw intercepted or loose": 20,
+    "lost in play: shot saved/recovered by defence": 21,
+    "lost in play: strip": 11,
+    "period/match end": 3,
+    "second tackle": 101,
+    "zone rule (ZR-*/zone_residence)": 27
+   },
+   "observed": true,
+   "possessions": 424,
+   "restart_awards": {
+    "ZR-1": 4,
+    "ZR-C": 4,
+    "ZR-T": 4,
+    "boundary": 79,
+    "defence_minor": 6,
+    "first_tackle": 169,
+    "goal": 18,
+    "minor_count_plus": 9,
+    "period_start": 4,
+    "second_tackle": 101,
+    "turnover": 9,
+    "zone_residence": 15
+   }
+  },
+  "real-seed03": {
+   "end_causes": {
+    "award: turnover": 7,
+    "boundary: carrier stepped out": 5,
+    "boundary: other out (last touch own)": 32,
+    "boundary: pass went out (last touch own)": 48,
+    "boundary: restart throw went out (last touch own)": 12,
+    "boundary: shot missed out": 2,
+    "goal scored": 15,
+    "lost in play: carrier frozen by arrow (ball loose)": 19,
+    "lost in play: pass intercepted or loose after pass": 123,
+    "lost in play: restart throw intercepted or loose": 28,
+    "lost in play: shot saved/recovered by defence": 38,
+    "lost in play: strip": 10,
+    "period/match end": 1,
+    "second tackle": 83,
+    "zone rule (ZR-*/zone_residence)": 15
+   },
+   "observed": true,
+   "possessions": 438,
+   "restart_awards": {
+    "ZR-1": 3,
+    "ZR-C": 4,
+    "ZR-T": 2,
+    "boundary": 104,
+    "defence_minor": 10,
+    "first_tackle": 157,
+    "goal": 16,
+    "major": 2,
+    "minor_count_plus": 11,
+    "period_start": 4,
+    "second_tackle": 83,
+    "turnover": 7,
+    "zone_residence": 6
+   }
+  },
+  "real-seed05": {
+   "end_causes": {
+    "award: first_tackle": 2,
+    "award: turnover": 5,
+    "boundary: carrier stepped out": 3,
+    "boundary: other out (last touch own)": 26,
+    "boundary: pass went out (last touch own)": 50,
+    "boundary: restart throw went out (last touch own)": 7,
+    "goal scored": 15,
+    "lost in play: carrier frozen by arrow (ball loose)": 22,
+    "lost in play: pass intercepted or loose after pass": 118,
+    "lost in play: restart throw intercepted or loose": 18,
+    "lost in play: shot saved/recovered by defence": 33,
+    "lost in play: strip": 14,
+    "period/match end": 2,
+    "second tackle": 72,
+    "zone rule (ZR-*/zone_residence)": 32
+   },
+   "observed": true,
+   "possessions": 419,
+   "restart_awards": {
+    "ZR-1": 7,
+    "ZR-C": 3,
+    "ZR-T": 7,
+    "boundary": 92,
+    "defence_minor": 11,
+    "first_tackle": 141,
+    "goal": 17,
+    "minor_count_plus": 7,
+    "period_start": 4,
+    "second_tackle": 72,
+    "turnover": 5,
+    "zone_residence": 15
+   }
+  }
+ },
+ "real": {
+  "matches": 3,
+  "median_possession_live_s": 4.52,
+  "possessions": 1281,
+  "possessions_per_team_per_match": 213.5,
+  "q1_end_causes": [
+   {
+    "cause": "lost in play: pass intercepted or loose after pass",
+    "count": 365,
+    "median_live_s": 4.33,
+    "share": 0.2849
+   },
+   {
+    "cause": "second tackle",
+    "count": 256,
+    "median_live_s": 6.03,
+    "share": 0.1998
+   },
+   {
+    "cause": "boundary: pass went out (last touch own)",
+    "count": 143,
+    "median_live_s": 5.41,
+    "share": 0.1116
+   },
+   {
+    "cause": "lost in play: shot saved/recovered by defence",
+    "count": 92,
+    "median_live_s": 2.94,
+    "share": 0.0718
+   },
+   {
+    "cause": "boundary: other out (last touch own)",
+    "count": 74,
+    "median_live_s": 2.94,
+    "share": 0.0578
+   },
+   {
+    "cause": "zone rule (ZR-*/zone_residence)",
+    "count": 74,
+    "median_live_s": 5.12,
+    "share": 0.0578
+   },
+   {
+    "cause": "lost in play: restart throw intercepted or loose",
+    "count": 66,
+    "median_live_s": 0.13,
+    "share": 0.0515
+   },
+   {
+    "cause": "lost in play: carrier frozen by arrow (ball loose)",
+    "count": 56,
+    "median_live_s": 5.42,
+    "share": 0.0437
+   },
+   {
+    "cause": "goal scored",
+    "count": 48,
+    "median_live_s": 5.71,
+    "share": 0.0375
+   },
+   {
+    "cause": "lost in play: strip",
+    "count": 35,
+    "median_live_s": 4.06,
+    "share": 0.0273
+   },
+   {
+    "cause": "boundary: restart throw went out (last touch own)",
+    "count": 28,
+    "median_live_s": 2.18,
+    "share": 0.0219
+   },
+   {
+    "cause": "award: turnover",
+    "count": 21,
+    "median_live_s": 0.0,
+    "share": 0.0164
+   },
+   {
+    "cause": "boundary: carrier stepped out",
+    "count": 10,
+    "median_live_s": 9.02,
+    "share": 0.0078
+   },
+   {
+    "cause": "period/match end",
+    "count": 6,
+    "median_live_s": 11.13,
+    "share": 0.0047
+   },
+   {
+    "cause": "boundary: shot missed out",
+    "count": 3,
+    "median_live_s": 4.11,
+    "share": 0.0023
+   },
+   {
+    "cause": "award: first_tackle",
+    "count": 3,
+    "median_live_s": 0.76,
+    "share": 0.0023
+   },
+   {
+    "cause": "lost in play: ball loose at tackle/grounding",
+    "count": 1,
+    "median_live_s": 0.26,
+    "share": 0.0008
+   }
+  ],
+  "q1_first_tackles_inside_possessions": 467,
+  "q1_possessions_with_shot": 161,
+  "q2": {
+   "end_distance": {
+    "max": 111.84,
+    "median": 47.57,
+    "min": 0.11,
+    "n": 1265,
+    "q1": 20.28,
+    "q3": 71.87
+   },
+   "furthest_advance_distance": {
+    "max": 107.42,
+    "median": 39.15,
+    "min": 0.11,
+    "n": 1265,
+    "q1": 16.58,
+    "q3": 60.0
+   },
+   "reached_cognition_shot_range_32m": 517,
+   "reached_keeper_zone_edge_20m": 368,
+   "reached_opposing_40": 702,
+   "start_distance": {
+    "max": 111.8,
+    "median": 60.0,
+    "min": 3.72,
+    "n": 1265,
+    "q1": 37.47,
+    "q3": 80.0
+   }
+  },
+  "q3": {
+   "closest_ball_to_target_completed": {
+    "max": 28.23,
+    "median": 2.07,
+    "min": 0.0,
+    "n": 2875,
+    "q1": 0.64,
+    "q3": 4.13
+   },
+   "closest_ball_to_target_failed": {
+    "max": 24.39,
+    "median": 4.15,
+    "min": 0.05,
+    "n": 488,
+    "q1": 3.18,
+    "q3": 6.24
+   },
+   "completion_rate": 0.792,
+   "fail_rate_by_distance_open_play": {
+    "12-20 m": {
+     "fail": 112,
+     "fail_rate": 0.259,
+     "ok": 320
+    },
+    "20+ m": {
+     "fail": 43,
+     "fail_rate": 0.27,
+     "ok": 116
+    },
+    "6-8 m": {
+     "fail": 90,
+     "fail_rate": 0.231,
+     "ok": 299
+    },
+    "8-12 m": {
+     "fail": 123,
+     "fail_rate": 0.208,
+     "ok": 469
+    },
+    "<6 m": {
+     "fail": 138,
+     "fail_rate": 0.126,
+     "ok": 960
+    }
+   },
+   "fail_rate_by_distance_restart": {
+    "12-20 m": {
+     "fail": 20,
+     "fail_rate": 0.392,
+     "ok": 31
+    },
+    "20+ m": {
+     "fail": 3,
+     "fail_rate": 0.158,
+     "ok": 16
+    },
+    "6-8 m": {
+     "fail": 6,
+     "fail_rate": 0.25,
+     "ok": 18
+    },
+    "8-12 m": {
+     "fail": 32,
+     "fail_rate": 0.16,
+     "ok": 168
+    },
+    "<6 m": {
+     "fail": 6,
+     "fail_rate": 0.007,
+     "ok": 857
+    }
+   },
+   "failed_passing_within_3m_of_target": 110,
+   "failed_with_flight_data": 488,
+   "failures_within_5s_of_restart": {
+    "pass": 308,
+    "restart_pass": 94
+   },
+   "lane_clearance": {
+    "max": 67.52,
+    "median": 5.95,
+    "min": 0.01,
+    "n": 2670,
+    "q1": 3.81,
+    "q3": 8.46
+   },
+   "nearest_defender_to_target": {
+    "max": 73.23,
+    "median": 8.57,
+    "min": 0.54,
+    "n": 2670,
+    "q1": 5.86,
+    "q3": 12.26
+   },
+   "open_play_pass_results": {
+    "complete_other": 1032,
+    "complete_to_target": 1132,
+    "dead_before_control": 26,
+    "intercepted": 394,
+    "out_of_bounds": 148
+   },
+   "pass_distance": {
+    "max": 37.32,
+    "median": 7.13,
+    "min": 0.23,
+    "n": 2670,
+    "q1": 4.54,
+    "q3": 11.32
+   },
+   "passes_per_possession": 2.087,
+   "restart_throw_results": {
+    "complete_other": 487,
+    "complete_to_target": 609,
+    "intercepted": 66,
+    "out_of_bounds": 28,
+    "unresolved": 1
+   },
+   "speed": {
+    "max": 63.7,
+    "median": 15.05,
+    "min": 10.0,
+    "n": 3923,
+    "q1": 12.5,
+    "q3": 28.31
+   },
+   "target_frozen": 53,
+   "target_in_attacked_zone": 56,
+   "target_in_own_zone": 242,
+   "with_geometry": 2670
+  },
+  "q4": {
+   "carries": 501,
+   "closest_approach": {
+    "max": 19.98,
+    "median": 15.0,
+    "min": 1.48,
+    "n": 501,
+    "q1": 11.91,
+    "q3": 17.68
+   },
+   "closest_approach_any": 1.48,
+   "defenders_within_5m_at_start": {
+    "max": 10,
+    "median": 0,
+    "min": 0,
+    "n": 501,
+    "q1": 0,
+    "q3": 1
+   },
+   "distance_covered": {
+    "max": 21.15,
+    "median": 3.29,
+    "min": 0.0,
+    "n": 501,
+    "q1": 1.31,
+    "q3": 6.8
+   },
+   "ended_by": {
+    "boundary": 38,
+    "c3_grounding": 69,
+    "freeze": 31,
+    "goal": 8,
+    "new_attempt": 8,
+    "rb_discipline": 18,
+    "release": 321,
+    "restart_awarded": 8
+   },
+   "held_s": {
+    "max": 3.4,
+    "median": 0.8,
+    "min": 0.0,
+    "n": 501,
+    "q1": 0.5,
+    "q3": 1.2
+   },
+   "keeper_distance_at_start": {
+    "max": 20.53,
+    "median": 15.14,
+    "min": 2.62,
+    "n": 501,
+    "q1": 11.7,
+    "q3": 15.93
+   },
+   "outcomes": {
+    "goal": 8,
+    "grounded": 69,
+    "stopped_short": 378,
+    "turnover": 46
+   },
+   "start_distance": {
+    "max": 20.0,
+    "median": 19.26,
+    "min": 3.9,
+    "n": 501,
+    "q1": 15.19,
+    "q3": 19.75
+   }
+  },
+  "q4_carrier_choices": {
+   "20-32": {
+    "carry": 1280,
+    "dribble": 17,
+    "pass": 289
+   },
+   "32-50": {
+    "carry": 1509,
+    "dribble": 30,
+    "pass": 620
+   },
+   "50+": {
+    "carry": 3065,
+    "dribble": 25,
+    "pass": 1707,
+    "retain": 396
+   },
+   "under 20": {
+    "carry": 482,
+    "dribble": 5,
+    "pass": 112,
+    "position": 7,
+    "shoot": 226
+   },
+   "under 20 & zone timer >= 3 s": {
+    "carry": 10,
+    "pass": 3,
+    "position": 7,
+    "shoot": 3
+   }
+  },
+  "q5": {
+   "bands": {
+    "10_to20": 156,
+    "20plus": 5,
+    "under10": 38
+   },
+   "defenders_within_5m": {
+    "max": 9,
+    "median": 1,
+    "min": 0,
+    "n": 199,
+    "q1": 0,
+    "q3": 2
+   },
+   "distance": {
+    "max": 60.62,
+    "median": 12.86,
+    "min": 2.1,
+    "n": 199,
+    "q1": 10.64,
+    "q3": 14.87
+   },
+   "outcomes": {
+    "blocked/recovered by defence": 115,
+    "blocked/recovered by own": 17,
+    "deflected": 30,
+    "missed (out)": 3,
+    "scored": 34
+   },
+   "shots": 199
+  },
+  "q6": {
+   "arrows": 1529,
+   "arrows_per_possession": 1.194,
+   "carrier_freezes": 88,
+   "freezes": 468,
+   "freezes_per_possession": 0.365,
+   "possessions_ended_by_carrier_freeze": 56,
+   "receiver_freezes": 12
+  },
+  "q7": {
+   "lost_within_5s_per_match": {
+    "ZR-1": 3.0,
+    "ZR-C": 2.0,
+    "ZR-T": 2.3,
+    "boundary": 57.3,
+    "defence_minor": 4.3,
+    "first_tackle": 115.3,
+    "goal": 4.7,
+    "minor_count_plus": 5.3,
+    "period_start": 1.3,
+    "second_tackle": 37.7,
+    "turnover": 4.3,
+    "zone_residence": 5.3
+   },
+   "per_match": {
+    "ZR-1": 4.7,
+    "ZR-C": 3.7,
+    "ZR-T": 4.3,
+    "boundary": 86.3,
+    "defence_minor": 9.0,
+    "first_tackle": 154.0,
+    "goal": 17.0,
+    "major": 0.7,
+    "minor_count_plus": 9.0,
+    "period_start": 4.0,
+    "second_tackle": 85.3,
+    "turnover": 7.0,
+    "zone_residence": 12.0
+   }
+  },
+  "q8": {
+   "at_tackle": {
+    "attackers_within_5m": {
+     "max": 11,
+     "median": 2,
+     "min": 0,
+     "n": 723,
+     "q1": 0,
+     "q3": 4
+    },
+    "defenders_within_25m": {
+     "max": 11,
+     "median": 10,
+     "min": 1,
+     "n": 723,
+     "q1": 9,
+     "q3": 11
+    },
+    "defenders_within_5m": {
+     "max": 11,
+     "median": 0,
+     "min": 0,
+     "n": 723,
+     "q1": 0,
+     "q3": 2
+    }
+   },
+   "at_turnover": {
+    "attackers_within_5m": {
+     "max": 9,
+     "median": 2,
+     "min": 1,
+     "n": 50,
+     "q1": 1,
+     "q3": 3
+    },
+    "defenders_within_25m": {
+     "max": 11,
+     "median": 8,
+     "min": 1,
+     "n": 50,
+     "q1": 5,
+     "q3": 11
+    },
+    "defenders_within_5m": {
+     "max": 5,
+     "median": 0,
+     "min": 0,
+     "n": 50,
+     "q1": 0,
+     "q3": 2
+    }
+   }
+  }
+ }
+}
