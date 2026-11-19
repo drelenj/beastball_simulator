@@ -57,6 +57,7 @@ class RulebookPort(NativePort):
                     e.elapse(1);return
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
+        if self.config.version=='native-rb/3':e.rb_hold_step(self) # RB-3.10 snap hold
         super().step()
         if self.config.version=='native-rb/3':e.rb_form_restart() # RB-3.9a scrimmage formation
 

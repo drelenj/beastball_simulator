@@ -28,7 +28,6 @@ def check(s, r):
     for q in s.players.values():
         if not q.active or q.role == 'archer' or q.id == sn.id: continue
         if q.team == r.team: assert sg * (q.x - x0) <= -F.OFFENSE_BEHIND_M + 1e-9 or q.id == rec.id
-        elif q.id == f['nose']: assert (q.x, q.y) == (x0 + sg * F.NOSE_TACKLE_M, 50.)
         else: assert sg * (q.x - x0) >= f['zone'] + F.DEFENSE_MARGIN_M - 1e-9
     return f
 
@@ -39,14 +38,17 @@ def test_spot_y50_and_x_clamped(x, want):
     assert (r.x, r.y) == (want, 50.); check(s, r)
 
 
-def test_first_tackle_scrimmage_has_one_nose_tackle_and_everybody_else_outside_the_zone():
+def test_first_tackle_scrimmage_tackler_across_the_snapper_outside_the_zone():
+    # RB-3.10: the nose-tackle exception is withdrawn; nobody stands in the neutral zone.
     p = rb3(); s, e, a, t = live(p)
     tackled = field(s, 'A')[0].id; tackler = field(s, 'B')[0].id
     s, e, r = scrim(p, 'A', 40., 70., 'first_tackle', tackled, tackler)
-    f = check(s, r); assert f['nose'] == tackler and f['snapper'] == tackled and f['depth'] == 5 and f['zone'] == 5
-    inside = [q.id for q in s.players.values() if q.active and q.role != 'archer' and q.team == 'B'
-              and 0 <= s.attack_sign('A') * (q.x - r.x) < f['zone']]
-    assert inside == [tackler]
+    f = check(s, r); assert f['nose'] is None and f['tackler'] == tackler and f['snapper'] == tackled
+    q = s.players[tackler]; sg = s.attack_sign('A')
+    assert (q.x, q.y) == (r.x + sg * (f['zone'] + F.DEFENSE_MARGIN_M), 50.)
+    inside = [x.id for x in s.players.values() if x.active and x.role != 'archer' and x.team == 'B'
+              and sg * (x.x - r.x) < f['zone']]
+    assert inside == []
 
 
 @pytest.mark.parametrize('reason', ['turnover', 'goal'])
