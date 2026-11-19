@@ -132,3 +132,12 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB39-8 | B-1 (distance-chosen speed) is applied to open-play passes and the formation snap; toss throws keep the previous speed. | BEHAVIORAL scope. |
 | Q-RB39-9 | Attackers now exit the zone they attack at 4 s; defenders keep the 3 s exit (baseline unchanged). zone_residence calls persist (9-14 per match), almost all off-ball attackers, before and after stage 3. | BEHAVIORAL follow-up; not addressed. |
 | Q-RB39-10 | No R31-1 watchdog exists on 185b557; a log-only restart_repeat_report (same kind and spot 3 times without a possession change) was added. Field length is not a config value; 100 m is used. | ENGINEERING note. |
+
+## RB-3.10 provisional (claude/rb-3-10-formation-hold, 19 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB310-1 | The tackler lines up across the snapper on y = 50 at the near edge of the neutral zone, outside it (your bracketed interpretation). | CANON confirm. Implemented as stated. |
+| Q-RB310-2 | Hold scope: every player is pinned, including the receiver's locomotion. The snapper's throw and the receiver's catch (the engine's catch reach) are unaffected. Any touch by any player ends the hold, not only the receiver's. Archers may still shoot during the hold. | CANON confirm. |
+| Q-RB310-3 | The receiver designation hook is a team-level setting (`port.receiver_designation[team]`, an id or a callable over public state), not an athlete decision. | ENGINEERING/BEHAVIORAL; tactics layer to use it. |
+| Q-RB310-4 | Auto-unfreeze applies only to players frozen at the formation. Players already thawed but still arrow-immune keep their immunity. | CANON confirm. |
+| Q-RB310-5 | Residence around a scrimmage near a goal: see ZONE_RESIDENCE_DIAGNOSIS.md, Z-1. | CANON. |

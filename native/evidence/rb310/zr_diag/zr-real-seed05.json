@@ -1,0 +1,451 @@
+{
+ "name": "real-seed05",
+ "trace_hash": "beb2762d41e49c93cf6f9501a6ac4e32719b1ade5b5a2824454bd05b4235accf",
+ "state_hash": "ba78d16962602bd155c479de12fdf594df015f7560375bd139eb90e23749a593",
+ "zone_residence_calls": [
+  {
+   "live_ms": 59510,
+   "offender": "B:NBL24-01-14",
+   "carrier": true,
+   "x": 15.75,
+   "y": 48.04,
+   "dist_goal_centre": 15.87,
+   "ball": [
+    14.36,
+    48.04
+   ],
+   "dist_ball": 1.39,
+   "nearest_teammate": {
+    "id": "B:NBL24-01-05",
+    "role": "field",
+    "dist": 5.05
+   },
+   "nearest_defender": {
+    "id": "A:NBL24-07-13",
+    "role": "field",
+    "dist": 1.38
+   },
+   "live_ms_in_zone": 5018,
+   "live_ms_timer": 5018,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "first_tackle",
+    "team": "A",
+    "line_x": 17.10246811998589,
+    "his_spot": null,
+    "placed_inside_attacked_zone": false,
+    "live_ms_since_formation": 5518
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "A",
+    "spot": [
+     20.0,
+     48.03902392281805
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 212257,
+   "offender": "B:DRAFT26-44",
+   "carrier": false,
+   "x": 13.0,
+   "y": 43.81,
+   "dist_goal_centre": 14.4,
+   "ball": [
+    37.12,
+    34.38
+   ],
+   "dist_ball": 25.9,
+   "nearest_teammate": {
+    "id": "B:NBL24-01-09",
+    "role": "field",
+    "dist": 6.06
+   },
+   "nearest_defender": {
+    "id": "A:NBL24-07-09",
+    "role": "field",
+    "dist": 9.67
+   },
+   "live_ms_in_zone": 5041,
+   "live_ms_timer": 5041,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "first_tackle",
+    "team": "B",
+    "line_x": 25.632724503092778,
+    "his_spot": null,
+    "placed_inside_attacked_zone": false,
+    "live_ms_since_formation": 10214
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "A",
+    "spot": [
+     20.0,
+     43.80608667064576
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 304325,
+   "offender": "A:NBL24-07-08",
+   "carrier": false,
+   "x": 88.32,
+   "y": 58.53,
+   "dist_goal_centre": 14.46,
+   "ball": [
+    62.88,
+    97.41
+   ],
+   "dist_ball": 46.46,
+   "nearest_teammate": {
+    "id": "A:NBL24-07-17",
+    "role": "field",
+    "dist": 12.47
+   },
+   "nearest_defender": {
+    "id": "B:NBL24-01-07",
+    "role": "field",
+    "dist": 4.4
+   },
+   "live_ms_in_zone": 5090,
+   "live_ms_timer": 5090,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "first_tackle",
+    "team": "B",
+    "line_x": 80.82458150917532,
+    "his_spot": null,
+    "placed_inside_attacked_zone": false,
+    "live_ms_since_formation": 9637
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "B",
+    "spot": [
+     80.0,
+     58.528593457689176
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 833183,
+   "offender": "B:NBL24-01-03",
+   "carrier": false,
+   "x": 92.81,
+   "y": 59.9,
+   "dist_goal_centre": 12.24,
+   "ball": [
+    76.82,
+    42.15
+   ],
+   "dist_ball": 23.89,
+   "nearest_teammate": {
+    "id": "B:NBL24-01-04",
+    "role": "field",
+    "dist": 10.81
+   },
+   "nearest_defender": {
+    "id": "A:NBL24-07-13",
+    "role": "field",
+    "dist": 6.68
+   },
+   "live_ms_in_zone": 5084,
+   "live_ms_timer": 5084,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "ZR-T",
+    "team": "B",
+    "line_x": 87.63700411241581,
+    "his_spot": [
+     86.637,
+     54.377
+    ],
+    "placed_inside_attacked_zone": true,
+    "live_ms_since_formation": 5084
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "A",
+    "spot": [
+     80.0,
+     59.90349257663057
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 1170817,
+   "offender": "A:NBL24-07-13",
+   "carrier": false,
+   "x": 6.6,
+   "y": 46.67,
+   "dist_goal_centre": 7.39,
+   "ball": [
+    18.45,
+    46.37
+   ],
+   "dist_ball": 11.85,
+   "nearest_teammate": {
+    "id": "A:NBL24-07-18",
+    "role": "field",
+    "dist": 13.12
+   },
+   "nearest_defender": {
+    "id": "B:DRAFT26-44",
+    "role": "field",
+    "dist": 3.96
+   },
+   "live_ms_in_zone": 5073,
+   "live_ms_timer": 5073,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "ZR-1",
+    "team": "A",
+    "line_x": 11.390106609440341,
+    "his_spot": [
+     11.39,
+     50.0
+    ],
+    "placed_inside_attacked_zone": true,
+    "live_ms_since_formation": 5073
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "B",
+    "spot": [
+     20.0,
+     46.67190999672581
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 1327089,
+   "offender": "A:NBL24-07-17",
+   "carrier": false,
+   "x": 91.67,
+   "y": 49.14,
+   "dist_goal_centre": 8.38,
+   "ball": [
+    70.32,
+    48.8
+   ],
+   "dist_ball": 21.35,
+   "nearest_teammate": {
+    "id": "A:NBL24-07-02",
+    "role": "field",
+    "dist": 13.91
+   },
+   "nearest_defender": {
+    "id": "B:NBL24-01-11",
+    "role": "keeper",
+    "dist": 4.38
+   },
+   "live_ms_in_zone": 5149,
+   "live_ms_timer": 5049,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "defence_minor",
+    "team": "A",
+    "line_x": 81.33678525685816,
+    "his_spot": [
+     81.337,
+     50.0
+    ],
+    "placed_inside_attacked_zone": true,
+    "live_ms_since_formation": 5049
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "B",
+    "spot": [
+     80.0,
+     49.13862547253257
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 1788328,
+   "offender": "A:NBL24-07-03",
+   "carrier": true,
+   "x": 81.03,
+   "y": 49.15,
+   "dist_goal_centre": 18.99,
+   "ball": [
+    82.35,
+    49.15
+   ],
+   "dist_ball": 1.32,
+   "nearest_teammate": {
+    "id": "A:NBL24-07-06",
+    "role": "field",
+    "dist": 3.38
+   },
+   "nearest_defender": {
+    "id": "B:DRAFT26-44",
+    "role": "field",
+    "dist": 1.23
+   },
+   "live_ms_in_zone": 5067,
+   "live_ms_timer": 5067,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "first_tackle",
+    "team": "B",
+    "line_x": 84.42390857658756,
+    "his_spot": null,
+    "placed_inside_attacked_zone": false,
+    "live_ms_since_formation": 5567
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "B",
+    "spot": [
+     80.0,
+     49.146552395964754
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 1954668,
+   "offender": "B:NBL24-01-09",
+   "carrier": false,
+   "x": 91.77,
+   "y": 53.61,
+   "dist_goal_centre": 8.99,
+   "ball": [
+    99.82,
+    65.09
+   ],
+   "dist_ball": 14.02,
+   "nearest_teammate": {
+    "id": "B:NBL24-01-08",
+    "role": "field",
+    "dist": 11.18
+   },
+   "nearest_defender": {
+    "id": "A:NBL24-07-01",
+    "role": "field",
+    "dist": 1.53
+   },
+   "live_ms_in_zone": 6024,
+   "live_ms_timer": 5026,
+   "previous_formation": {
+    "kind": "snap40",
+    "reason": "goal",
+    "team": "B",
+    "line_x": 40,
+    "his_spot": [
+     22.91,
+     51.392
+    ],
+    "placed_inside_attacked_zone": false,
+    "live_ms_since_formation": 20869
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "A",
+    "spot": [
+     80.0,
+     53.61270930527226
+    ],
+    "points": 0
+   }
+  },
+  {
+   "live_ms": 2088967,
+   "offender": "A:NBL24-07-13",
+   "carrier": false,
+   "x": 8.84,
+   "y": 54.34,
+   "dist_goal_centre": 9.85,
+   "ball": [
+    9.8,
+    32.72
+   ],
+   "dist_ball": 21.65,
+   "nearest_teammate": {
+    "id": "A:NBL24-07-02",
+    "role": "field",
+    "dist": 7.75
+   },
+   "nearest_defender": {
+    "id": "B:NBL24-01-11",
+    "role": "keeper",
+    "dist": 8.87
+   },
+   "live_ms_in_zone": 5088,
+   "live_ms_timer": 5088,
+   "previous_formation": {
+    "kind": "scrim",
+    "reason": "first_tackle",
+    "team": "A",
+    "line_x": 16.07039142369452,
+    "his_spot": [
+     25.467,
+     71.52
+    ],
+    "placed_inside_attacked_zone": false,
+    "live_ms_since_formation": 22099
+   },
+   "award": {
+    "kind": "scrim",
+    "team": "B",
+    "spot": [
+     20.0,
+     54.34491601934605
+    ],
+    "points": 0
+   }
+  }
+ ],
+ "foul_awards": [
+  {
+   "points": 1,
+   "method": "half_goal",
+   "origin": "zone_unmarked"
+  },
+  {
+   "points": 1,
+   "method": "half_goal",
+   "origin": "archery_target"
+  },
+  {
+   "points": 1,
+   "method": "half_goal",
+   "origin": "archery_target"
+  },
+  {
+   "points": 1,
+   "method": "half_goal",
+   "origin": "archery_target"
+  },
+  {
+   "points": 3,
+   "method": "full_goal_award",
+   "origin": "archery_target"
+  },
+  {
+   "points": 3,
+   "method": "full_goal_award",
+   "origin": "archery_target"
+  },
+  {
+   "points": 3,
+   "method": "full_goal_award",
+   "origin": "archery_target"
+  },
+  {
+   "points": 3,
+   "method": "full_goal_award",
+   "origin": "zone_unmarked"
+  }
+ ]
+}
