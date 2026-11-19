@@ -201,6 +201,7 @@ SUPPORT_DIST_M = 8.           # an off-ball attacker within this distance of the
 CARRIER_NEAR_BALL_M = 1.8     # the believed carrier is the player nearest the ball within this distance
 SHOT_MIN_TIME_MS = 500        # a carrier's shot option is exempt while at least this much time is left to release it
 ARC_INSET_M = 1.              # exit target: the zone radius + this, on the ray from the goal centre through the athlete
+MARK_TRACK_AGE_MS = 600       # "marked" is judged on tracks at most this old (belief memory is 2 s; the engine's marking is instantaneous)
 
 
 def time_to_cover(view, distance, toward=None):
@@ -336,7 +337,7 @@ def _defender_zone(view, belief, intent, record):
         return intent, record
     conf = getattr(view, 'defender_baseline', None)
     mark = conf[1] if conf else 5.
-    fresh = _fresh(view, belief)
+    fresh = _fresh(view, belief, MARK_TRACK_AGE_MS)
     opps = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
     if any(hypot(o.x - view.x, o.y - view.y) <= mark for o in opps):
         return intent, record                          # marked: the engine clock is reset

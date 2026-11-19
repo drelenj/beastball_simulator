@@ -223,3 +223,15 @@ def test_time_to_cover_counts_braking_when_moving_away_from_the_target():
     assert abs(R.time_to_cover(runs_away, 5., (1., 0.)) - (stop_t + R.time_to_cover(v, 5. + stop_d))) < 1e-9
     assert R.time_to_cover(runs_away, 5., (1., 0.)) > still + .5
     assert R.time_to_cover(runs_toward, 5., (1., 0.)) == still                    # moving toward it: conservative, from rest
+
+
+def test_marked_is_judged_on_recent_tracks_not_on_old_belief():
+    p = rb3(); s, e, a, t = live(p); me = field(s, 'A')[0]
+    p.capture(s.now); s.now += 300; v, b = p.view(me.id, s.now)
+    v = replace(v, restart=None, pending_command_id=None, holds_ball=False, x=6., y=50., zone_elapsed_ms=3900,
+                signals=replace(v.signals, passive_team='B', phase='live'))
+    old = C.Track('B:7', 'B', 'field', 8., 52., 0., 0., v.delivered_ms - 1500)        # seen within 5 m, 1.5 s ago
+    new = C.Track('B:7', 'B', 'field', 8., 52., 0., 0., v.delivered_ms - 100)         # seen within 5 m, just now
+    keep = C.ActionIntent('i', 'd', me.id, 'scan', None, (6., 50.), None, None, v.delivered_ms)
+    assert R.zone_behavior(v, replace(b, tracks=(old,)), keep, {})[1].get('rb311')                  # stale: not treated as marked
+    assert R.zone_behavior(v, replace(b, tracks=(new,)), keep, {})[0] is keep                        # recent: marked, untouched
