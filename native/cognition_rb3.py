@@ -191,9 +191,163 @@ def carrier_to_goal(view, belief, intent, record):
             dict(record, rb39c=dict(rule='unopposed_carry_to_goal', distance_m=round(d, 2), eta_ms=round(eta_ms))))
 
 
+# ------------------------------------------------- RB-3.11 zone behaviour (Z-2, Z-3, Z-4)
+# BEHAVIORAL defaults, PROVISIONAL, unsearched. The 5 s zone rules are unchanged; this only decides when
+# an athlete starts to leave (or close on a mark) so that he is clear before his clock completes.
+ZONE_LIMIT_MS_RULE = 5000     # rule: 5 s of live time (attacker in the zone he attacks; unmarked defender in his own)
+EXIT_MARGIN_S = .75           # start leaving when time needed + this margin reaches the time left (owner default)
+EXIT_SPEED_FRAC = .88         # off-ball speed cap used by the engine movement model (pace x .88); from rest, with own acceleration
+SUPPORT_DIST_M = 8.           # an off-ball attacker within this distance of the carrier is involved in the play (owner default)
+CARRIER_NEAR_BALL_M = 1.8     # the believed carrier is the player nearest the ball within this distance
+SHOT_MIN_TIME_MS = 500        # a carrier's shot option is exempt while at least this much time is left to release it
+ARC_INSET_M = 1.              # exit target: the zone radius + this, on the ray from the goal centre through the athlete
+
+
+def time_to_cover(view, distance):
+    """Time (s) to cover `distance` from rest with the athlete's own acceleration and capped top speed."""
+    b = view.body
+    v = (b.maximum_speed if b else 27.) * EXIT_SPEED_FRAC
+    a = b.acceleration if b else 10.
+    if distance <= 0:
+        return 0.
+    ramp = v * v / (2. * a)
+    return (2. * distance / a) ** .5 if distance <= ramp else v / a + (distance - ramp) / v
+
+
+def _arc_point(view, gx, x, y):
+    dx, dy = x - gx, y - 50.
+    d = hypot(dx, dy)
+    ux, uy = (dx / d, dy / d) if d > 1e-6 else (-view.attack_sign if gx != view.own_goal_x else view.attack_sign, 0.)
+    r = view.zone_radius + ARC_INSET_M
+    return (round(_clamp(gx + ux * r), 3), round(_clamp(50. + uy * r), 3))
+
+
+def _leave_distance(view, gx, aim):
+    """Distance along the straight line from the athlete to `aim` until it is outside the zone (None if aim is inside)."""
+    if hypot(aim[0] - gx, aim[1] - 50.) < view.zone_radius:
+        return None
+    ax, ay = aim[0] - view.x, aim[1] - view.y
+    L = hypot(ax, ay) or 1.
+    lo, hi = 0., 1.
+    for _ in range(20):
+        mid = (lo + hi) / 2.
+        if hypot(view.x + ax * mid - gx, view.y + ay * mid - 50.) < view.zone_radius: lo = mid
+        else: hi = mid
+    return hi * L
+
+
+def _believed_carrier_xy(view, belief):
+    ball = next((t for t in _fresh(view, belief) if t.entity == C.BALL), None)
+    if ball is None:
+        return None
+    mates = [t for t in _fresh(view, belief) if t.team == view.team and t.role == 'field' and t.entity != view.athlete]
+    best = min(mates, key=lambda t: (hypot(t.x - ball.x, t.y - ball.y), t.entity), default=None)
+    return (best.x, best.y) if best is not None and hypot(best.x - ball.x, best.y - ball.y) < CARRIER_NEAR_BALL_M else None
+
+
+def _involved(view, belief):
+    """Off-ball attacker involved in the play: designated receiver, intended pass target, or near the carrier."""
+    form = getattr(view, 'formation', None)
+    if form is not None and form[1] == view.athlete:
+        return 'designated_receiver'
+    call = view.signals.pass_call
+    if call is not None and call[1] == view.athlete:
+        return 'pass_target'
+    cxy = _believed_carrier_xy(view, belief)
+    if cxy is not None and hypot(cxy[0] - view.x, cxy[1] - view.y) <= SUPPORT_DIST_M:
+        return 'support_of_carrier'
+    return None
+
+
+def _leave(view, gx, intent, record, rule, **info):
+    aim = _arc_point(view, gx, view.x, view.y)
+    return (replace(intent, kind='position', aim=aim, target=None, contact=None),
+            dict(record, rb311=dict(rule=rule, **info)))
+
+
+def zone_behavior(view, belief, intent, record):
+    """Z-2 / Z-3 (attackers) and Z-4 (defenders). Cognition only; rule and clocks unchanged."""
+    sig = view.signals
+    if (view.role != 'field' or view.bench_role or view.restart is not None or sig.phase != 'live'
+            or view.pending_command_id is not None or sig.passive_team is None or view.body is None):
+        return intent, record
+    if sig.passive_team == view.team:
+        return _attacker_zone(view, belief, intent, record)
+    return _defender_zone(view, belief, intent, record)
+
+
+def _attacker_zone(view, belief, intent, record):
+    sg = view.attack_sign; gx = view.own_goal_x + sg * 100.
+    d = hypot(view.x - gx, view.y - 50.)
+    inside = d < view.zone_radius
+    if not inside:
+        # Z-3: an off-ball attacker does not walk into the zone he attacks unless involved in the play
+        if (not view.holds_ball and intent.aim is not None and hypot(intent.aim[0] - gx, intent.aim[1] - 50.) < view.zone_radius
+                and _involved(view, belief) is None):
+            return (replace(intent, aim=_arc_point(view, gx, intent.aim[0], intent.aim[1])),
+                    dict(record, rb311=dict(rule='Z-3_stay_out', aim_was=list(intent.aim))))
+        return intent, record
+    time_left = (ZONE_LIMIT_MS_RULE - view.zone_elapsed_ms) / 1000.
+    t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d)
+    if view.holds_ball:
+        rule = record.get('rb39c')
+        if isinstance(rule, dict) and rule.get('rule') == 'unopposed_carry_to_goal':
+            return intent, record                      # carrier rule: carrying on to score with margin (exempt)
+        if intent.kind == 'shoot' and time_left * 1000. >= SHOT_MIN_TIME_MS and t_arc + EXIT_MARGIN_S < time_left:
+            return intent, record                      # a real shot option, while there is still time to exit
+        if t_arc + EXIT_MARGIN_S < time_left:
+            return intent, record
+        eta = time_to_cover(view, d)
+        if t_arc >= time_left > eta:                   # cannot clear the arc in time, but can still score
+            aim = (round(gx - sg * GOAL_AIM_INSET_M, 3), 50.)
+            return (replace(intent, kind='carry', aim=aim, target=None, contact=None),
+                    dict(record, rb311=dict(rule='Z-2_carrier_last_resort_to_goal', eta_s=round(eta, 2), time_left_s=round(time_left, 2))))
+        return _leave(view, gx, intent, record, 'Z-2_carrier_exit', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
+    involved = _involved(view, belief)
+    if involved is None:                               # Z-3: off-ball and not involved: head out at once
+        return _leave(view, gx, intent, record, 'Z-3_off_ball_exit', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
+    if t_arc + EXIT_MARGIN_S >= time_left:             # Z-2: involved, but his clock is running out
+        cross = _leave_distance(view, gx, intent.aim) if intent.aim is not None else None
+        if cross is not None and time_to_cover(view, cross) <= t_arc * 1.15:
+            return intent, record                      # his own intent already takes him out as fast
+        return _leave(view, gx, intent, record, 'Z-2_exit', involved=involved, t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
+    return intent, record
+
+
+def _defender_zone(view, belief, intent, record):
+    gx = view.own_goal_x
+    d = hypot(view.x - gx, view.y - 50.)
+    if d >= view.zone_radius or view.holds_ball:
+        return intent, record
+    conf = getattr(view, 'defender_baseline', None)
+    mark = conf[1] if conf else 5.
+    fresh = _fresh(view, belief)
+    opps = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
+    if any(hypot(o.x - view.x, o.y - view.y) <= mark for o in opps):
+        return intent, record                          # marked: the engine clock is reset
+    time_left = (ZONE_LIMIT_MS_RULE - view.zone_elapsed_ms) / 1000.
+    t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d)
+    mates = [t for t in fresh if t.team == view.team and t.role == 'field' and t.entity != view.athlete]
+    free = [o for o in opps if not any(hypot(m.x - o.x, m.y - o.y) <= mark for m in mates)] or opps
+    best = min(free, key=lambda o: (hypot(o.x - view.x, o.y - view.y), o.entity), default=None)
+    t_mark = time_to_cover(view, max(0., hypot(best.x - view.x, best.y - view.y) - MARK_STANDOFF * mark)) if best else None
+    t_best = min(t for t in (t_arc, t_mark) if t is not None)
+    if t_best + EXIT_MARGIN_S < time_left:
+        return intent, record
+    if t_mark is not None and t_mark < t_arc:
+        aim = _toward(best.x, best.y, gx, 50., MARK_STANDOFF * mark)
+        return (replace(intent, kind='mark', aim=aim, target=best.entity, contact=None),
+                dict(record, rb311=dict(rule='Z-4_close_on_mark', target=best.entity, t_mark_s=round(t_mark, 2), time_left_s=round(time_left, 2))))
+    cross = _leave_distance(view, gx, intent.aim) if intent.aim is not None else None
+    if cross is not None and time_to_cover(view, cross) <= t_arc * 1.15:
+        return intent, record
+    return _leave(view, gx, intent, record, 'Z-4_leave', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
+
+
 def adjust(view, belief, intent, record):
     intent, record = carrier_to_goal(view, belief, intent, record)
     intent, record = defender_baseline(view, belief, intent, record)
+    intent, record = zone_behavior(view, belief, intent, record)
     frozen = frozen_tracks(view, belief)
     if not frozen:
         return intent, record

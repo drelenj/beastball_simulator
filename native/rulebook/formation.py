@@ -114,7 +114,7 @@ def install(co, cfg):
         r = self.s.restart; f = r.rs.get('formation') if r is not None and hasattr(r, 'rs') else None
         ok = old_release(self, taker, velocity, *a, **kw)
         if ok and f:
-            self.rb310_hold = dict(origin=(f['line_x'], 50.), restart_id=r.native_id, receiver=f['receiver'], log_index=len(self.log),
+            self.rb310_hold = dict(origin=(f['line_x'], 50.), restart_id=r.native_id, receiver=f['receiver'], snapper=f['snapper'], receiver_xy=f['receiver_xy'], log_index=len(self.log),
                                    live_ms=self.s.live_ms)
             for p in self.s.players.values():
                 if p.active and p.role != 'archer': p.vx = p.vy = 0.

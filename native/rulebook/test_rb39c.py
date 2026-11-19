@@ -71,13 +71,15 @@ def test_decision_rules():
     assert R.carrier_to_goal(v2, b2, base, {})[0] is base
 
 
-def test_attacker_exits_before_5s_when_he_cannot_score_and_defender_exit_stays_at_3s():
+def test_attacker_exits_before_5s_when_he_cannot_score_and_the_old_defender_exit_stays_for_other_profiles():
+    # RB-3.11: the fixed 4 s attacker timer of RB-3.9c is replaced by time-to-arc exits (see test_rb311.py);
+    # the fixed 3 s exit stays for every profile other than native-rb/3.
     p = rb3(); s, e, car = open_play(p, (88., 45.)); v, b = carrier_view(p, car)   # 13 m from goal, in the zone
     near = b.tracks + (C.Track('B:9', 'B', 'field', car.x + 2., car.y, 0., 0., v.delivered_ms),)
     v, b = replace(v, tracks=near), replace(b, tracks=near)
-    k, _ = C.decide(replace(v, zone_elapsed_ms=3500), b)
-    assert not (k.kind == 'position' and ((k.aim[0] - 100.) ** 2 + (k.aim[1] - 50.) ** 2) ** .5 > 20.)   # no exit yet at 3.5 s
+    k, _ = C.decide(replace(v, zone_elapsed_ms=500), b)
+    assert not (k.kind == 'position' and ((k.aim[0] - 100.) ** 2 + (k.aim[1] - 50.) ** 2) ** .5 > 20.)   # no exit at 0.5 s
     i, _ = C.decide(replace(v, zone_elapsed_ms=4000), b)
     assert i.kind == 'position' and ((i.aim[0] - 100.) ** 2 + (i.aim[1] - 50.) ** 2) ** .5 > 20.
-    d = replace(v, holds_ball=False, signals=replace(v.signals, passive_team='B'), zone_elapsed_ms=3000)
+    d = replace(v, holds_ball=False, signals=replace(v.signals, passive_team='B'), zone_elapsed_ms=3000, cognition='native-v0/2')
     j, _ = C.decide_v2(d, b); assert j.kind == 'position'

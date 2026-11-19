@@ -93,6 +93,9 @@ class RulebookPort(NativePort):
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None)
             r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
             extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
+            hold=getattr(self.m.e,'rb310_hold',None)
+            if fm is None and hold:   # RB-3.11: the designated receiver stays public during the snap hold (until the catch)
+                extra['formation']=(hold['snapper'],hold['receiver'],hold['receiver_xy'][0],hold['receiver_xy'][1],None,None)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=states,**extra),b
 
     def _submit_intent(self,intent):
