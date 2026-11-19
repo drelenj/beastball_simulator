@@ -203,15 +203,29 @@ SHOT_MIN_TIME_MS = 500        # a carrier's shot option is exempt while at least
 ARC_INSET_M = 1.              # exit target: the zone radius + this, on the ray from the goal centre through the athlete
 
 
-def time_to_cover(view, distance):
-    """Time (s) to cover `distance` from rest with the athlete's own acceleration and capped top speed."""
+def time_to_cover(view, distance, toward=None):
+    """Time (s) to cover `distance` with the athlete's own acceleration and capped top speed.
+    Starts from rest, except that an athlete moving AWAY from the target (own velocity is own-body
+    knowledge) first has to brake: braking time plus the distance he travels while stopping.
+    `toward` is the unit vector from the athlete to the target; None means from rest."""
     b = view.body
     v = (b.maximum_speed if b else 27.) * EXIT_SPEED_FRAC
     a = b.acceleration if b else 10.
     if distance <= 0:
         return 0.
+    extra_t = extra_d = 0.
+    if toward is not None and b is not None and getattr(b, 'braking', 0) > 0:
+        away = -(b.vx * toward[0] + b.vy * toward[1])
+        if away > 0:
+            extra_t, extra_d = away / b.braking, away * away / (2. * b.braking)
+    distance += extra_d
     ramp = v * v / (2. * a)
-    return (2. * distance / a) ** .5 if distance <= ramp else v / a + (distance - ramp) / v
+    return extra_t + ((2. * distance / a) ** .5 if distance <= ramp else v / a + (distance - ramp) / v)
+
+
+def _unit(ax, ay, bx, by):
+    d = hypot(bx - ax, by - ay)
+    return ((bx - ax) / d, (by - ay) / d) if d > 1e-9 else None
 
 
 def _arc_point(view, gx, x, y):
@@ -288,7 +302,8 @@ def _attacker_zone(view, belief, intent, record):
                     dict(record, rb311=dict(rule='Z-3_stay_out', aim_was=list(intent.aim))))
         return intent, record
     time_left = (ZONE_LIMIT_MS_RULE - view.zone_elapsed_ms) / 1000.
-    t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d)
+    out_dir = _unit(gx, 50., view.x, view.y)                       # outward from the goal centre: toward the arc
+    t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d, out_dir)
     if view.holds_ball:
         rule = record.get('rb39c')
         if isinstance(rule, dict) and rule.get('rule') == 'unopposed_carry_to_goal':
@@ -297,7 +312,7 @@ def _attacker_zone(view, belief, intent, record):
             return intent, record                      # a real shot option, while there is still time to exit
         if t_arc + EXIT_MARGIN_S < time_left:
             return intent, record
-        eta = time_to_cover(view, d)
+        eta = time_to_cover(view, d, _unit(view.x, view.y, gx, 50.))
         if t_arc >= time_left > eta:                   # cannot clear the arc in time, but can still score
             aim = (round(gx - sg * GOAL_AIM_INSET_M, 3), 50.)
             return (replace(intent, kind='carry', aim=aim, target=None, contact=None),
@@ -308,7 +323,7 @@ def _attacker_zone(view, belief, intent, record):
         return _leave(view, gx, intent, record, 'Z-3_off_ball_exit', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
     if t_arc + EXIT_MARGIN_S >= time_left:             # Z-2: involved, but his clock is running out
         cross = _leave_distance(view, gx, intent.aim) if intent.aim is not None else None
-        if cross is not None and time_to_cover(view, cross) <= t_arc * 1.15:
+        if cross is not None and time_to_cover(view, cross, _unit(view.x, view.y, *intent.aim)) <= t_arc * 1.15:
             return intent, record                      # his own intent already takes him out as fast
         return _leave(view, gx, intent, record, 'Z-2_exit', involved=involved, t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
     return intent, record
@@ -326,11 +341,11 @@ def _defender_zone(view, belief, intent, record):
     if any(hypot(o.x - view.x, o.y - view.y) <= mark for o in opps):
         return intent, record                          # marked: the engine clock is reset
     time_left = (ZONE_LIMIT_MS_RULE - view.zone_elapsed_ms) / 1000.
-    t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d)
+    t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d, _unit(gx, 50., view.x, view.y))
     mates = [t for t in fresh if t.team == view.team and t.role == 'field' and t.entity != view.athlete]
     free = [o for o in opps if not any(hypot(m.x - o.x, m.y - o.y) <= mark for m in mates)] or opps
     best = min(free, key=lambda o: (hypot(o.x - view.x, o.y - view.y), o.entity), default=None)
-    t_mark = time_to_cover(view, max(0., hypot(best.x - view.x, best.y - view.y) - MARK_STANDOFF * mark)) if best else None
+    t_mark = time_to_cover(view, max(0., hypot(best.x - view.x, best.y - view.y) - MARK_STANDOFF * mark), _unit(view.x, view.y, best.x, best.y)) if best else None
     t_best = min(t for t in (t_arc, t_mark) if t is not None)
     if t_best + EXIT_MARGIN_S < time_left:
         return intent, record
@@ -339,7 +354,7 @@ def _defender_zone(view, belief, intent, record):
         return (replace(intent, kind='mark', aim=aim, target=best.entity, contact=None),
                 dict(record, rb311=dict(rule='Z-4_close_on_mark', target=best.entity, t_mark_s=round(t_mark, 2), time_left_s=round(time_left, 2))))
     cross = _leave_distance(view, gx, intent.aim) if intent.aim is not None else None
-    if cross is not None and time_to_cover(view, cross) <= t_arc * 1.15:
+    if cross is not None and time_to_cover(view, cross, _unit(view.x, view.y, *intent.aim)) <= t_arc * 1.15:
         return intent, record
     return _leave(view, gx, intent, record, 'Z-4_leave', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
 

@@ -210,3 +210,16 @@ def test_determinism_same_code_roster_seed():
     a, _ = run_match(1, rb3().config, max_steps=2500, port_factory=lambda *x, **k: rb3())
     b, _ = run_match(1, rb3().config, max_steps=2500, port_factory=lambda *x, **k: rb3())
     assert (a['trace_hash'], a['state_hash']) == (b['trace_hash'], b['state_hash'])
+
+
+def test_time_to_cover_counts_braking_when_moving_away_from_the_target():
+    p = rb3(); s, e, a, t = live(p); p.capture(s.now); s.now += 300; v, b = p.view(field(s, 'A')[0].id, s.now)
+    from dataclasses import replace as rep
+    still = R.time_to_cover(v, 5., (1., 0.))
+    runs_away = rep(v, body=rep(v.body, vx=-18., vy=0.))          # running at 18 m/s in -x; the target is in +x
+    runs_toward = rep(v, body=rep(v.body, vx=18., vy=0.))
+    assert abs(still - R.time_to_cover(v, 5.)) < 1e-12                           # no direction: from rest
+    stop_t, stop_d = 18. / v.body.braking, 18. * 18. / (2. * v.body.braking)
+    assert abs(R.time_to_cover(runs_away, 5., (1., 0.)) - (stop_t + R.time_to_cover(v, 5. + stop_d))) < 1e-9
+    assert R.time_to_cover(runs_away, 5., (1., 0.)) > still + .5
+    assert R.time_to_cover(runs_toward, 5., (1., 0.)) == still                    # moving toward it: conservative, from rest
