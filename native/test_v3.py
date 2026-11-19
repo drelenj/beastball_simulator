@@ -353,7 +353,7 @@ def test_v3_poison_hidden_attributes_before_capture_leave_views_identical():
 def test_v3_cognition_module_is_pure(port3):
     tree=ast.parse(Path(C3.__file__).read_text())
     modules={n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)}|{a.name for n in ast.walk(tree) if isinstance(n,ast.Import) for a in n.names}
-    assert modules<={'dataclasses','math','cognition',None} and not any(m and ('port' in m or 'engine' in m or 'rules' in m or 'substrate' in m) for m in modules)
+    assert modules<={'dataclasses','math','cognition','throw_speed',None}   # throw_speed (RB-3.9) imports math only and not any(m and ('port' in m or 'engine' in m or 'rules' in m or 'substrate' in m) for m in modules)
     names={n.id for n in ast.walk(tree) if isinstance(n,ast.Name)}|{n.attr for n in ast.walk(tree) if isinstance(n,ast.Attribute)}
     assert not names&{'players','c3_holds','native_intent','quivers','engine','possession','random','rng'}
 
@@ -595,3 +595,12 @@ def test_v3_short_window_is_deterministic_and_null_m2_equals_plumbing_absent(pla
         assert (other['trace_hash'],other['state_hash'],other['score'])==(first['trace_hash'],first['state_hash'],first['score'])
     assert first['config_digest']==NativeConfigV3().digest and first['config']['version']=='native-v0/3'
     assert first['restart_metric']['all']['awarded']==first['restart_awarded']-first['restart_metric']['unobserved']
+
+
+def test_throw_speed_module_is_pure():
+    from pathlib import Path
+    import ast
+    from native import throw_speed
+    tree=ast.parse(Path(throw_speed.__file__).read_text())
+    mods={n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)}|{a.name for n in ast.walk(tree) if isinstance(n,ast.Import) for a in n.names}
+    assert mods<={'math'}

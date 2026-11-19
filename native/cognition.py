@@ -200,6 +200,19 @@ def _pass_options(view, mates, opps, restart=False):
     return out
 
 
+def rb3_lead(x, y, aim, vel, max_throw_speed, iterations=6):
+    """RB-3.9b E-1/B-1 (native-rb/3): lead a moving receiver by the real flight time at the speed
+    chosen for the led distance. Fixed point: the speed depends on the led aim, the aim on the speed.
+    Returns (aim, flight_time_s, speed)."""
+    from .throw_speed import release_speed, flight_time
+    tf = 0.
+    for _ in range(iterations):
+        led = (_clamp(aim[0] + vel[0] * tf, 2, 98), _clamp(aim[1] + vel[1] * tf, 2, 98))
+        d = hypot(led[0] - x, led[1] - y); speed = release_speed(d, max_throw_speed); tf = flight_time(d, speed)
+    led = (_clamp(aim[0] + vel[0] * tf, 2, 98), _clamp(aim[1] + vel[1] * tf, 2, 98))
+    return led, tf, speed
+
+
 def _m1_options(view, fresh, carrier, role, **cfg):
     """Delegate a sub-decision to the Base A (M1) pure decide(); one pipeline."""
     contacts = tuple(M1.Contact(t.entity, 'neutral' if t.team == 'ball' else t.team, t.x, t.y,
@@ -348,8 +361,11 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     # position advanced by its believed velocity over the nominal flight time
                     # (cognition's choice; Motor never leads the receiver).
                     rt = next(x for x in fresh if x.entity == t)
-                    tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
-                    a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
+                    if view.cognition == 'native-rb/3':
+                        a = rb3_lead(view.x, view.y, a, (rt.vx, rt.vy), view.max_throw_speed)[0]
+                    else:
+                        tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
+                        a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
                 if k in ('carry', 'pass'):
                     options.append((k, t, (round(a[0], 3), round(a[1], 3)),
                                     round(v + (4. if view.role == 'keeper' and k == 'pass' else 0.), 6)))
@@ -582,6 +598,10 @@ def decide_v2(view, belief):
     # The semantic pass already leads the believed receiver in the B1 policy.
     intent=replace(intent,speed=(min(80.,.5*view.max_throw_speed) if view.cognition=='native-rb/3' else min(27.,view.max_throw_speed)),height=1.6,
                    contact='wrap' if intent.kind=='press' else None,period=view.signals.period)
+    if view.cognition=='native-rb/3' and intent.kind=='pass' and intent.aim:
+        # RB-3.9b B-1: release speed chosen by the (led) pass distance; same speed as used in the lead.
+        from .throw_speed import release_speed
+        intent=replace(intent,speed=release_speed(hypot(intent.aim[0]-view.x,intent.aim[1]-view.y),view.max_throw_speed))
     if intent.kind=='pass' and intent.aim and not in_own_zone(view.team,view.x,view.y,view) and in_own_zone(view.team,*intent.aim,view):
         return choice('retain')
     if view.holds_ball and view.role=='field' and not view.dribble_used and view.pending_command_id is None:
