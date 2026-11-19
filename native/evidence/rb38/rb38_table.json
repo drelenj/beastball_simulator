@@ -1,0 +1,172 @@
+[
+  {
+    "attempts_per_possession": {
+      "A": 0.1849,
+      "B": 0.2905
+    },
+    "carry_attempts": {
+      "A": 53,
+      "B": 76
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "foul_reasons": {
+      "archery_target": 12
+    },
+    "freeze_recovery_mentions_in_raw_log": 0,
+    "name": "real-seed01",
+    "points_from_foul_awards": {
+      "A": 1,
+      "B": 5
+    },
+    "points_from_play": {
+      "A": 14,
+      "B": 22
+    },
+    "possessions": {
+      "A": 357,
+      "B": 358
+    },
+    "raw_log": "native/evidence/rb38/real/raw-real-seed01.json",
+    "result_file": "native/evidence/rb38/real/real-seed01.json",
+    "runtime_s": 217.49,
+    "score": {
+      "A": 15,
+      "B": 27
+    },
+    "share_points_from_fouls": 0.143,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0504,
+      "B": 0.081
+    },
+    "shot_attempts": {
+      "A": 13,
+      "B": 28
+    },
+    "state_hash": "e272f807ecbde2e7d2b46d2bd97d433a9084f183ee0b12b1b3fb9b94d0a9a341",
+    "status": "final",
+    "trace_hash": "2579828021cf33701a0d433038a0e9e8858d5ddc06c98223f3ff1e13a53c04c9",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  },
+  {
+    "attempts_per_possession": {
+      "A": 0.2832,
+      "B": 0.2448
+    },
+    "carry_attempts": {
+      "A": 70,
+      "B": 62
+    },
+    "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+    "foul_reasons": {
+      "archery_target": 13,
+      "zone_unmarked": 1
+    },
+    "freeze_recovery_mentions_in_raw_log": 0,
+    "name": "real-seed03",
+    "points_from_foul_awards": {
+      "A": 6,
+      "B": 7
+    },
+    "points_from_play": {
+      "A": 12,
+      "B": 21
+    },
+    "possessions": {
+      "A": 339,
+      "B": 339
+    },
+    "raw_log": "native/evidence/rb38/real/raw-real-seed03.json",
+    "result_file": "native/evidence/rb38/real/real-seed03.json",
+    "runtime_s": 218.99,
+    "score": {
+      "A": 18,
+      "B": 28
+    },
+    "share_points_from_fouls": 0.283,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0678,
+      "B": 0.0708
+    },
+    "shot_attempts": {
+      "A": 26,
+      "B": 21
+    },
+    "state_hash": "d4255da16d0e5b64d7f30d59758f5e728500357a7e69ae1d1d6ff171a3660fe5",
+    "status": "final",
+    "trace_hash": "c0fe0826456c2456d7e771049d9dd22bb2226533a1712aa0eac4f93ab39c8e53",
+    "zone_unmarked": 1,
+    "zone_unmarked_calls": [
+      {
+        "ball_distance": 50.081,
+        "ball_status": "carried",
+        "distance_to_own_goal_centre": 13.69,
+        "fouler": "A:NBL24-07-10",
+        "live_s_in_zone": 6.28,
+        "nearest_off_ball_opponent": {
+          "distance": 25.222,
+          "id": "B:NBL24-01-01",
+          "role": "field"
+        },
+        "nearest_opponent": {
+          "distance": 25.222,
+          "id": "B:NBL24-01-01",
+          "role": "field"
+        },
+        "period": 3,
+        "t_live_ms": 1719539,
+        "team": "A",
+        "x": 10.18,
+        "y": 59.154
+      }
+    ]
+  },
+  {
+    "attempts_per_possession": {
+      "A": 0.0762,
+      "B": 0.0821
+    },
+    "carry_attempts": {
+      "A": 24,
+      "B": 21
+    },
+    "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+    "foul_reasons": {
+      "archery_target": 16
+    },
+    "freeze_recovery_mentions_in_raw_log": 0,
+    "name": "control-seed01",
+    "points_from_foul_awards": {
+      "A": 1,
+      "B": 4
+    },
+    "points_from_play": {
+      "B": 5
+    },
+    "possessions": {
+      "A": 328,
+      "B": 329
+    },
+    "raw_log": "native/evidence/rb38/control/raw-control-seed01.json",
+    "result_file": "native/evidence/rb38/control/control-seed01.json",
+    "runtime_s": 223.5,
+    "score": {
+      "A": 1,
+      "B": 9
+    },
+    "share_points_from_fouls": 0.5,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0091,
+      "B": 0.0334
+    },
+    "shot_attempts": {
+      "A": 1,
+      "B": 6
+    },
+    "state_hash": "4f4169e7082dc4ada24d0dc2c3bc3621d59ace0804748be6b66ea7f1c9b2593a",
+    "status": "final",
+    "trace_hash": "3cc853697eb613703869e87a64ccbecf407a0017ef4903ab22667074efcdad72",
+    "zone_unmarked": 0,
+    "zone_unmarked_calls": []
+  }
+]

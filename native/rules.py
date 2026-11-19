@@ -100,7 +100,7 @@ def install(CO, cfg):
         s.ball=T.Ball(mode=B.DEAD,x=float(x),y=float(y),z=.1075,last_touch=team)
         if reason in ('possession_expiry','second_tackle','turnover','offence_minor_turnover'):
             own=s.ends[team];sg=s.attack_sign(team);x=max(x,own+40) if sg>0 else min(x,own-40)
-        kind='snap40' if reason=='goal' else 'toss' if reason=='boundary' else 'scrim'
+        kind='snap40' if reason in ('goal','period_start') else 'toss' if reason=='boundary' else 'scrim'
         if kind=='snap40':x=s.ends[team]+s.attack_sign(team)*40;y=50.
         if kind=='toss':
             x,y=max(0.,min(100.,x)),max(0.,min(100.,y))
@@ -392,10 +392,10 @@ def install(CO, cfg):
                 self.native_sync();return
             if r.kind=='toss' and s.now>=r.created_at+5500:
                 self.close_restart('toss_timeout')
-                # Canon 2026-11-17: every toss timeout is an ordinary
-                # turnover. award() applies the receiving team's own-40
-                # normalization while retaining the boundary spot's y.
-                self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True)
+                # Owner ruling 17 Nov 2026 (PROVISIONAL, supersedes RB-2 goal-line placement):
+                # every toss timeout (end line and side boundary) is a turnover scrimmage at the
+                # other team's own 40 or the spot, whichever is closer to the goal it attacks.
+                self.award(s.other(r.team),r.x,r.y,'turnover',fresh=True,normalize=False)
             elif s.now>=r.snap_deadline:
                 self.close_restart('snap_timeout');self.offside('offence')
         elif s.phase==P.FLIGHT:

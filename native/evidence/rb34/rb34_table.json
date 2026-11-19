@@ -1,0 +1,501 @@
+[
+  {
+    "archery_target_failed_predicates": {
+      "in_zone": 3,
+      "possession": 7
+    },
+    "arrows": {
+      "illegal": 10,
+      "inert_dead_ball_in_flight": 30,
+      "inert_dead_ball_release": 33,
+      "inert_late_on_arrival": {
+        "freeze_quota": 1,
+        "frozen": 1,
+        "immune": 2,
+        "off_panel": 65,
+        "other": 1,
+        "teammate": 76,
+        "zone": 1
+      },
+      "inert_late_total": 147,
+      "legal_released": 523
+    },
+    "coin_flip_winner": "B",
+    "dq_offences": {
+      "archery_target": 2,
+      "zone_unmarked": 10
+    },
+    "dqs_per_team": {
+      "A": 8,
+      "B": 4
+    },
+    "error": null,
+    "finished": true,
+    "foul_reasons": {
+      "archery_target": 10,
+      "zone_unmarked": 82
+    },
+    "name": "real-seed01",
+    "points_from_foul_awards": {
+      "A": 43,
+      "B": 107
+    },
+    "points_from_play": {
+      "B": 3
+    },
+    "possessions": {
+      "A": 330,
+      "B": 329
+    },
+    "quota_spent_per_archer": {
+      "A:DRAFT26-09": 270,
+      "A:NBL25-D32": 10,
+      "B:NBL24-01-12": 182,
+      "B:UFA26-BB-04": 41
+    },
+    "restart_timeouts": 73,
+    "restart_timeouts_per_period": {
+      "1": 11,
+      "2": 22,
+      "3": 16,
+      "4": 24
+    },
+    "runtime_s": 174.23,
+    "score": {
+      "A": 43,
+      "B": 110
+    },
+    "share_points_from_fouls": 0.98,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0061,
+      "B": 0.0182
+    },
+    "state_hash": "1101bdd9d8d44ec36e73fac4373355831e7af77f652009e15106d31ddf86adff",
+    "status": "final",
+    "steps": 57150,
+    "trace_hash": "dbdd4e73e9fd77ee012cb3065de6346573219ac42539a1c618754a2529d8fc08",
+    "zone_unmarked": {
+      "actor_roles": {
+        "field": 82
+      },
+      "count": 82,
+      "mean_eligible_field_defenders": 10.48,
+      "short_after_dqs": 24
+    }
+  },
+  {
+    "archery_target_failed_predicates": {
+      "in_zone": 2,
+      "possession": 6
+    },
+    "arrows": {
+      "illegal": 8,
+      "inert_dead_ball_in_flight": 29,
+      "inert_dead_ball_release": 37,
+      "inert_late_on_arrival": {
+        "frozen": 4,
+        "immune": 3,
+        "not_live": 1,
+        "off_panel": 79,
+        "other": 4,
+        "teammate": 67,
+        "zone": 3
+      },
+      "inert_late_total": 161,
+      "legal_released": 557
+    },
+    "coin_flip_winner": "A",
+    "dq_offences": {
+      "archery_target": 1,
+      "zone_unmarked": 6
+    },
+    "dqs_per_team": {
+      "A": 1,
+      "B": 6
+    },
+    "error": null,
+    "finished": true,
+    "foul_reasons": {
+      "archery_target": 8,
+      "zone_unmarked": 57
+    },
+    "name": "real-seed03",
+    "points_from_foul_awards": {
+      "A": 61,
+      "B": 21
+    },
+    "points_from_play": {
+      "A": 3,
+      "B": 6
+    },
+    "possessions": {
+      "A": 315,
+      "B": 316
+    },
+    "quota_spent_per_archer": {
+      "A:DRAFT26-09": 280,
+      "B:NBL24-01-12": 256
+    },
+    "restart_timeouts": 57,
+    "restart_timeouts_per_period": {
+      "1": 11,
+      "2": 8,
+      "3": 20,
+      "4": 18
+    },
+    "runtime_s": 167.3,
+    "score": {
+      "A": 64,
+      "B": 27
+    },
+    "share_points_from_fouls": 0.901,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0127,
+      "B": 0.0253
+    },
+    "state_hash": "bc89d58f6f0f98a3c03ce9ef064570c1af4461e04853fe59401e9156fe2fe83b",
+    "status": "final",
+    "steps": 53606,
+    "trace_hash": "508cc0eac4f895cd4f9cd81210a777ad90a8d5592c492994865d77adaf3948a1",
+    "zone_unmarked": {
+      "actor_roles": {
+        "field": 57
+      },
+      "count": 57,
+      "mean_eligible_field_defenders": 10.75,
+      "short_after_dqs": 8
+    }
+  },
+  {
+    "archery_target_failed_predicates": {
+      "in_zone": 5,
+      "possession": 7
+    },
+    "arrows": {
+      "illegal": 12,
+      "inert_dead_ball_in_flight": 23,
+      "inert_dead_ball_release": 28,
+      "inert_late_on_arrival": {
+        "frozen": 2,
+        "immune": 2,
+        "off_panel": 58,
+        "other": 2,
+        "teammate": 57,
+        "zone": 1
+      },
+      "inert_late_total": 122,
+      "legal_released": 536
+    },
+    "coin_flip_winner": "A",
+    "dq_offences": {
+      "archery_target": 1,
+      "zone_unmarked": 12
+    },
+    "dqs_per_team": {
+      "A": 10,
+      "B": 3
+    },
+    "error": null,
+    "finished": true,
+    "foul_reasons": {
+      "archery_target": 12,
+      "zone_unmarked": 93
+    },
+    "name": "real-seed10",
+    "points_from_foul_awards": {
+      "A": 39,
+      "B": 76
+    },
+    "points_from_play": {
+      "A": 2,
+      "B": 6
+    },
+    "possessions": {
+      "A": 336,
+      "B": 334
+    },
+    "quota_spent_per_archer": {
+      "A:DRAFT26-09": 47,
+      "A:NBL25-D32": 228,
+      "B:NBL24-01-12": 250
+    },
+    "restart_timeouts": 70,
+    "restart_timeouts_per_period": {
+      "1": 22,
+      "2": 18,
+      "3": 11,
+      "4": 19
+    },
+    "runtime_s": 170.7,
+    "score": {
+      "A": 41,
+      "B": 82
+    },
+    "share_points_from_fouls": 0.935,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0119,
+      "B": 0.018
+    },
+    "state_hash": "462d78022c6caf224ecaf9f5e4e238f53e4e581b3481bb9c29f306ce3e55f1de",
+    "status": "final",
+    "steps": 57028,
+    "trace_hash": "3d5551e023f7396f885768aaa4b6633c210153b66c296221af5048a0dfb06c29",
+    "zone_unmarked": {
+      "actor_roles": {
+        "field": 93
+      },
+      "count": 93,
+      "mean_eligible_field_defenders": 10.4,
+      "short_after_dqs": 36
+    }
+  },
+  {
+    "archery_target_failed_predicates": {
+      "in_zone": 3,
+      "possession": 9
+    },
+    "arrows": {
+      "illegal": 12,
+      "inert_dead_ball_in_flight": 47,
+      "inert_dead_ball_release": 40,
+      "inert_late_on_arrival": {
+        "frozen": 1,
+        "immune": 1,
+        "off_panel": 48,
+        "other": 5,
+        "teammate": 54
+      },
+      "inert_late_total": 109,
+      "legal_released": 554
+    },
+    "coin_flip_winner": "B",
+    "dq_offences": {
+      "archery_target": 2,
+      "zone_unmarked": 8
+    },
+    "dqs_per_team": {
+      "A": 6,
+      "B": 4
+    },
+    "error": null,
+    "finished": true,
+    "foul_reasons": {
+      "archery_target": 12,
+      "zone_unmarked": 85
+    },
+    "name": "control-seed01",
+    "points_from_foul_awards": {
+      "A": 49,
+      "B": 77
+    },
+    "points_from_play": {
+      "A": 7,
+      "B": 9
+    },
+    "possessions": {
+      "A": 350,
+      "B": 349
+    },
+    "quota_spent_per_archer": {
+      "A:20": 169,
+      "A:21": 89,
+      "B:20": 261
+    },
+    "restart_timeouts": 93,
+    "restart_timeouts_per_period": {
+      "1": 15,
+      "2": 23,
+      "3": 28,
+      "4": 27
+    },
+    "runtime_s": 182.8,
+    "score": {
+      "A": 56,
+      "B": 86
+    },
+    "share_points_from_fouls": 0.887,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0143,
+      "B": 0.0143
+    },
+    "state_hash": "79fb3df4e6dc41ad7562e0903f00375bcde06c7eb62f8b3eb448988d43642029",
+    "status": "final",
+    "steps": 61556,
+    "trace_hash": "2e8d27a474c87207c40e9b93fe519162ba1ffc4ca11caa3cbc889558286e829d",
+    "zone_unmarked": {
+      "actor_roles": {
+        "field": 85
+      },
+      "count": 85,
+      "mean_eligible_field_defenders": 10.53,
+      "short_after_dqs": 28
+    }
+  },
+  {
+    "archery_target_failed_predicates": {
+      "possession": 10
+    },
+    "arrows": {
+      "illegal": 10,
+      "inert_dead_ball_in_flight": 27,
+      "inert_dead_ball_release": 46,
+      "inert_late_on_arrival": {
+        "frozen": 1,
+        "immune": 7,
+        "not_live": 1,
+        "off_panel": 71,
+        "other": 4,
+        "teammate": 70,
+        "zone": 1
+      },
+      "inert_late_total": 155,
+      "legal_released": 543
+    },
+    "coin_flip_winner": "A",
+    "dq_offences": {
+      "archery_target": 2,
+      "zone_unmarked": 4
+    },
+    "dqs_per_team": {
+      "A": 4,
+      "B": 2
+    },
+    "error": null,
+    "finished": true,
+    "foul_reasons": {
+      "archery_target": 10,
+      "zone_unmarked": 47
+    },
+    "name": "control-seed02",
+    "points_from_foul_awards": {
+      "A": 24,
+      "B": 30
+    },
+    "points_from_play": {
+      "A": 6,
+      "B": 5
+    },
+    "possessions": {
+      "A": 293,
+      "B": 294
+    },
+    "quota_spent_per_archer": {
+      "A:20": 246,
+      "A:21": 7,
+      "B:20": 252,
+      "B:21": 21
+    },
+    "restart_timeouts": 58,
+    "restart_timeouts_per_period": {
+      "1": 13,
+      "2": 7,
+      "3": 19,
+      "4": 19
+    },
+    "runtime_s": 170.7,
+    "score": {
+      "A": 30,
+      "B": 35
+    },
+    "share_points_from_fouls": 0.831,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0068,
+      "B": 0.017
+    },
+    "state_hash": "4a2bb1a542ee63204f744c4660773bfa968011d6371b0401f8e7fc48dddd5a52",
+    "status": "final",
+    "steps": 54305,
+    "trace_hash": "06f5c77e88f7e822101a9dfca0e46f4e1f8aa10cbfd2e4996228889581ee30b7",
+    "zone_unmarked": {
+      "actor_roles": {
+        "field": 47
+      },
+      "count": 47,
+      "mean_eligible_field_defenders": 10.7,
+      "short_after_dqs": 12
+    }
+  },
+  {
+    "archery_target_failed_predicates": {
+      "in_zone": 1,
+      "in_zone,possession": 1,
+      "possession": 7
+    },
+    "arrows": {
+      "illegal": 9,
+      "inert_dead_ball_in_flight": 39,
+      "inert_dead_ball_release": 39,
+      "inert_late_on_arrival": {
+        "frozen": 2,
+        "immune": 3,
+        "off_panel": 61,
+        "other": 3,
+        "teammate": 61,
+        "zone": 5
+      },
+      "inert_late_total": 135,
+      "legal_released": 551
+    },
+    "coin_flip_winner": "A",
+    "dq_offences": {
+      "archery_target": 1,
+      "zone_unmarked": 5
+    },
+    "dqs_per_team": {
+      "A": 6,
+      "B": 0
+    },
+    "error": null,
+    "finished": true,
+    "foul_reasons": {
+      "archery_target": 9,
+      "zone_unmarked": 78
+    },
+    "name": "control-seed03",
+    "points_from_foul_awards": {
+      "A": 46,
+      "B": 62
+    },
+    "points_from_play": {
+      "A": 10,
+      "B": 6
+    },
+    "possessions": {
+      "A": 304,
+      "B": 304
+    },
+    "quota_spent_per_archer": {
+      "A:20": 283,
+      "B:20": 238
+    },
+    "restart_timeouts": 72,
+    "restart_timeouts_per_period": {
+      "1": 14,
+      "2": 16,
+      "3": 23,
+      "4": 19
+    },
+    "runtime_s": 178.36,
+    "score": {
+      "A": 56,
+      "B": 68
+    },
+    "share_points_from_fouls": 0.871,
+    "share_possessions_ending_in_attempt": {
+      "A": 0.0132,
+      "B": 0.0099
+    },
+    "state_hash": "55c3339bc494a781d1346bb4e22b71242fb05982d01c9dce2cf1556ef9799dac",
+    "status": "final",
+    "steps": 58824,
+    "trace_hash": "d00f195b7fb21978c00834545f5bc34348eb66316e387502be291f6bdaa5d107",
+    "zone_unmarked": {
+      "actor_roles": {
+        "field": 78
+      },
+      "count": 78,
+      "mean_eligible_field_defenders": 10.69,
+      "short_after_dqs": 16
+    }
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "block": "control",
+  "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+  "end_ms": 6336024,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 12,
+    "immune_contact": 1,
+    "zone_unmarked": 18
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 7,
+        "legal": 271,
+        "legal_rate": 0.9748201438848921
+      },
+      "B": {
+        "illegal": 5,
+        "legal": 305,
+        "legal_rate": 0.9838709677419355
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 13,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 11,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 1,
+      "B": 2
+    },
+    "groundings": 235,
+    "points": {
+      "A": {
+        "penalty_awards": 31,
+        "play": 5
+      },
+      "B": {
+        "penalty_awards": 2,
+        "play": 9
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 308,
+        "ending_in_attempt": 6,
+        "share_ending_in_attempt": 0.01948051948051948,
+        "with_attempt": 11
+      },
+      "B": {
+        "count": 308,
+        "ending_in_attempt": 7,
+        "share_ending_in_attempt": 0.022727272727272728,
+        "with_attempt": 10
+      }
+    },
+    "restart_timeouts": 86
+  },
+  "name": "control-seed01",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 502,
+    "snap_timeout": 20,
+    "toss_timeout": 66
+  },
+  "runtime_s": 238.52,
+  "score": {
+    "A": 36,
+    "B": 11
+  },
+  "seed": 1,
+  "state_hash": "200a05b942315d2759a4cfab019d91391874bf26fcb5585050a61a0d372b8e11",
+  "status": "final",
+  "steps": 56051,
+  "trace_hash": "219181735cd885164f49aef4fd3c62d0b232ac6b54f4f6bc22b472223f4e7780"
+}

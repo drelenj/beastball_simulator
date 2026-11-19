@@ -474,7 +474,11 @@ class NativePort:
             p=s.players[previous_carrier];distance=max(0.,s.attack_sign(p.team)*(p.x-previous_xy[0]))
             e.native_stats[p.team]['distance_progressed']+=distance
         # Native residency, strict arc geometry and 5 m marked-defender exemption.
-        if s.phase==P.LIVE:
+        if s.phase==P.LIVE and self.config.version=='native-rb/3':
+            # RB-3.5 (PROVISIONAL): residence by zone, config timings, diagnosis logging.
+            from .rulebook.zone_residence import residence
+            residence(self,before_live)
+        elif s.phase==P.LIVE:
             pp=e.possession.pp
             for p in s.players.values():
                 zn=e.zone(p.x,p.y)

@@ -23,7 +23,7 @@ def uniform_rosters():
     return {t:load_rows(rows,t) for t in ('A','B')}
 
 
-def measure(p,carry_events,foul_events,arrow_attempts):
+def measure(p,carry_events,foul_events=(),arrow_attempts=()):
     e=p.m.e;ledger=e.possession_history+e.possession.ledger
     # A possession begins on a change of passive team, including an award;
     # a period's first passive team begins another possession. An attempt is
@@ -104,7 +104,9 @@ def measure(p,carry_events,foul_events,arrow_attempts):
         stop=carry_events[n+1]['t_ms'] if n+1<len(carry_events) else float('inf')
         outcome='other_or_match_end'
         for row in terminal_events:
-            if not attempt['t_ms']<=row['t_ms']<stop:continue
+            # A restart/control already recorded at the entry timestamp is the
+            # attempt's starting state, not its terminating outcome.
+            if not attempt['t_ms']<row['t_ms']<stop:continue
             data=row['data']
             if row['event']=='goal' and data.get('team')==attempt['team'] and data.get('method')=='carry':outcome='carry_goal';break
             if row['event']=='c3_grounding':outcome='grounding';break

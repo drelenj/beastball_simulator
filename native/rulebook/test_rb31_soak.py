@@ -14,6 +14,7 @@ def test_terminal_attempt_is_not_any_attempt_during_possession():
     e=SimpleNamespace(possession_history=[],possession=SimpleNamespace(ledger=ledger),rb_attempts=attempts,
         log=[],s=SimpleNamespace(players=players),rb=SimpleNamespace(calls=[]),
         rb_bands={'A':Counter(),'B':Counter()},restart_results={})
-    result=measure(SimpleNamespace(m=SimpleNamespace(e=e)),[])
+    port=SimpleNamespace(m=SimpleNamespace(e=e),config=SimpleNamespace(release_bands=((10.,2),(20.,3),(None,4))))
+    result=measure(port,[])
     assert result['possessions']['A']=={'count':2,'with_attempt':1,'ending_in_attempt':0,'share_ending_in_attempt':0.}
     assert result['possessions']['B']=={'count':1,'with_attempt':1,'ending_in_attempt':1,'share_ending_in_attempt':1.}

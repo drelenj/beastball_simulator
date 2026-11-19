@@ -4,11 +4,27 @@ import math
 def install(co,cfg):
  E,M,T=co.engine.Engine,co.match.Match,co.types;P=T.Phase
  old_sync=E.native_sync;old_freeze=E.freeze
+ v3=cfg.version=='native-rb/3'
  def sync(self):
   old_sync(self)
   team=self.possession.pp
   if team is not None and team!=self.rb.possession:
    self.rb_publish(self.rb.turnover(team))
+   if v3:
+    epoch=self.__dict__.setdefault('rb_quota_epoch',{'A':0,'B':0});epoch[self.s.other(team)]+=1
+    # RB-3.5 ruling 2: an arrow in flight when possession changes is inert and stays spent.
+    for ar in self.s.arrows:
+     if ar.live:
+      ar.live=False;self.emit('arrow_inert','RB-3.5',arrow=ar.id,player=ar.shooter,target=ar.target,reason='possession_change',refunded=False)
+  if v3 and self.s.phase in (P.DEAD,P.FINAL):
+   # RB-3.4 ruling 2: an arrow still in flight when the ball goes dead is inert and is not
+   # charged to the Archer's quota (refunded only within the same possession quota).
+   epoch=self.__dict__.setdefault('rb_quota_epoch',{'A':0,'B':0})
+   for ar in self.s.arrows:
+    if not ar.live:continue
+    ar.live=False;refund=getattr(ar,'rb_epoch',None)==epoch[ar.team]
+    if refund:self.rb.quotas[ar.team]['arrows']=max(0,self.rb.quotas[ar.team]['arrows']-1)
+    self.emit('arrow_inert','RB-3.4',arrow=ar.id,player=ar.shooter,target=ar.target,reason='dead_ball_in_flight',refunded=refund)
   for t,q in self.s.quivers.items():
    q.allocation=cfg.arrows;q.spent=self.rb.quotas[t]['arrows'];q.loaded=cfg.arrows-q.spent
    self.freezes[t]=self.rb.quotas[t]['freezes']
@@ -16,7 +32,25 @@ def install(co,cfg):
  def shoot(self,pid,target,velocity,origin=None):
   s=self.s;p=s.players[pid];t=s.players.get(target);quota=self.rb.quotas[p.team]
   if quota['arrows']>=cfg.arrows:return False
-  legal=(p.role=='archer' and p.eligible(s.now) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.role=='field' and t.team!=p.team and t.eligible(s.now) and s.now>t.immune_until and self.zone(t.x,t.y) is None and abs(t.x-s.ends[p.team])<=50 and self.possession.pp==t.team and self.possession.tc==t.team)
+  if v3:
+   self.native_sync()
+   if s.phase in (P.DEAD,P.FLIGHT):
+    # RB-3.4 ruling 2: released while the ball is dead: inert, no foul, not charged.
+    # RB-3.5 ruling 2: the same for a release while a shot is in the air after the clock expired.
+    s.quivers[p.team].last_release=s.now
+    self.emit('arrow_inert','RB-3.4',player=pid,target=target,reason='dead_ball_release' if s.phase==P.DEAD else 'finishing_flight_release',refunded=True);return False
+   # RB-3.4 rulings 1 and 3: judged at release; passive possession only (no team-control test).
+   checks=dict(archer=p.role=='archer',archer_eligible=p.eligible(s.now),phase=s.phase==P.LIVE,hunt_not_cleared=self.hunt_cleared,
+               stale_target=t is not None and t.role=='field' and t.team!=p.team,
+               target_frozen=t is not None and not t.frozen(s.now),
+               target_ineligible=t is not None and (t.frozen(s.now) or t.eligible(s.now)),
+               target_immune=t is not None and s.now>t.immune_until,
+               in_zone=t is not None and self.zone(t.x,t.y) is None,
+               possession=t is not None and self.possession.pp==t.team)
+   legal=all(checks.values())
+   if not legal:self.emit('archery_target_diagnosis','RB-3.4-report',player=pid,target=target,failed=[k for k,v in checks.items() if not v],ball_status=self.possession.public().ball_status)
+  else:
+   legal=(p.role=='archer' and p.eligible(s.now) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.role=='field' and t.team!=p.team and t.eligible(s.now) and s.now>t.immune_until and self.zone(t.x,t.y) is None and abs(t.x-s.ends[p.team])<=50 and self.possession.pp==t.team and self.possession.tc==t.team)
   row=self.rb.arrow(p.team,legal);self.rb_publish(row);self.native_sync()
   s.quivers[p.team].last_release=s.now
   if not legal:self.foul(pid,target if t else None,'archery_target');return False
@@ -25,6 +59,7 @@ def install(co,cfg):
   # Engine owns canonical projectile speed, with no obsolete30m/s cap.
   v=tuple(c*cfg.arrow_speed/speed for c in velocity);point=(p.x,p.y,cfg.platform_height+.72*p.a.height)
   ar=T.Arrow(self.next_arrow,p.team,pid,target,*point,*v,point,s.now);self.next_arrow+=1;s.arrows.append(ar)
+  if v3:ar.rb_epoch=self.__dict__.setdefault('rb_quota_epoch',{'A':0,'B':0})[p.team]
   self.emit('arrow_release','RB-A',player=pid,target=target,arrow=ar.id,velocity=list(v),origin=list(point));return ar
  E.shoot_arrow=shoot
  def freeze(self,pid,arrow=None,panel=True,direct=True,in_range=True):
@@ -41,7 +76,7 @@ def install(co,cfg):
   if ok:
    self.rb.quotas[team]['freezes']+=1
    for t in ('A','B'):self.freezes[t]=self.rb.quotas[t]['freezes']
-   p.rb_recover=(p.x,p.y,p.freeze_until)
+   if not v3:p.rb_recover=(p.x,p.y,p.freeze_until) # native-rb/3: no freeze-recovery state (RB-3.8)
    self.rb_publish(self.rb.ruling('freeze',player=pid,until=p.freeze_until,immune_until=p.immune_until))
   return ok
  E.freeze=freeze
@@ -53,6 +88,11 @@ def install(co,cfg):
  # a freeze. Recovery locomotion is permitted; ball/contact acts are not.
  def blocked(self,p):return self.zone(p.x,p.y) is not None and not self.rb_recovery_ready(p)
  E.rb_recovery_blocked=blocked
+ if v3:
+  # RB-3.8 owner ruling (CANON, 18 Nov 2026): no freeze-recovery condition. A thawed player may act
+  # and move anywhere at once; only the thaw contact buffer and arrow immunity remain.
+  E.rb_recovery_ready=lambda self,p:True
+  E.rb_recovery_blocked=lambda self,p:False
  from functools import wraps
  def gate(fn):
   @wraps(fn)
@@ -61,7 +101,7 @@ def install(co,cfg):
    return fn(self,pid,*a,**kw)
   return call
  for name in ('acquire','touch','release','restart_release'):
-  setattr(E,name,gate(getattr(E,name)))
+  if not v3:setattr(E,name,gate(getattr(E,name)))
  old_move=M.move_players
  def move(self,ms,targets):
   allowed=dict(targets)
@@ -75,7 +115,7 @@ def install(co,cfg):
     # Cancel prohibited propulsion; do not choose a new destination.
     allowed[p.id]=(p.x,p.y);p.target=(p.x,p.y);p.vx=p.vy=0.
   return old_move(self,ms,allowed)
- M.move_players=move
+ if not v3:M.move_players=move # native-rb/3: no recovery propulsion cancel (RB-3.8)
  def arrows(self,ms):
   s=self.s;events=[];dt=ms/1000;g=self.assume['gravity'];previous=getattr(self,'rb_previous_positions',{})
   for ar in s.arrows:
@@ -100,6 +140,8 @@ def install(co,cfg):
     f,target,panel=min(hits);ar.x,ar.y,ar.z=tuple(a+(b-a)*f for a,b in zip(old,(ar.x,ar.y,ar.z)))
     events.append(T.Event('impact',target=target,data={'arrow':ar.id,'panel':panel,'kind':'ball' if target=='ball' else 'player'},at=int(f*ms)))
     self.e.emit('arrow_geometry_impact','RB-A:swept_relative',arrow=ar.id,target=target,panel=panel)
-   elif ar.z<=0 or not(-30<=ar.x<=130 and -40<=ar.y<=140):ar.live=False
+   elif ar.z<=0 or not(-30<=ar.x<=130 and -40<=ar.y<=140):
+    ar.live=False
+    if v3:self.e.emit('arrow_miss','RB-3.3-report',arrow=ar.id,position=[ar.x,ar.y,max(0,ar.z)]) # log only
   return events
  M.advance_arrows=arrows
