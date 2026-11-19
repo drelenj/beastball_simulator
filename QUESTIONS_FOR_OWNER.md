@@ -141,3 +141,13 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB310-3 | The receiver designation hook is a team-level setting (`port.receiver_designation[team]`, an id or a callable over public state), not an athlete decision. | ENGINEERING/BEHAVIORAL; tactics layer to use it. |
 | Q-RB310-4 | Auto-unfreeze applies only to players frozen at the formation. Players already thawed but still arrow-immune keep their immunity. | CANON confirm. |
 | Q-RB310-5 | Residence around a scrimmage near a goal: see ZONE_RESIDENCE_DIAGNOSIS.md, Z-1. | CANON. |
+
+## RB-3.11 Part A provisional (claude/rb-3-11-zone-behavior, 19 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB311-1 | "Involved in the play" for an off-ball attacker is exactly three things: designated receiver (before the catch), intended pass target, within 8 m of the carrier. An attacker chasing a LOOSE ball (a rebound after a shot) is therefore not involved and is kept out of the zone he attacks. | CANON/BEHAVIORAL: should loose-ball pursuit count as involvement? Implemented as written. |
+| Q-RB311-2 | A pass can reach an attacker deep in the zone late in his clock. Passers cannot see the receiver's clock. In real seed 3 two carriers were called at 5.03-5.05 s this way (the Keeper in the carry lane, 1.6 s left, he first chose to score, then one 0.5 s decision later to exit, and was called before either). | BEHAVIORAL/CANON: may a receiver whose clock is nearly out be passed to? Not addressed. |
+| Q-RB311-3 | Z-4 chooses between closing on a mark and leaving by the shorter time. If the mark runs away there may then be no time left to leave (traced: zone_unmarked at 5.06 s after a switch from "close on mark" to "leave" 0.5 s before the limit). Should leaving be preferred whenever it is feasible? | BEHAVIORAL. Implemented as specified (shorter time). |
+| Q-RB311-4 | The 3 s fixed exit (defenders) and the 4 s fixed exit (attackers) no longer exist on native-rb/3; they remain unchanged on every other profile. | Note. |
+| Q-RB311-5 | The designated receiver is shown in the athletes' view during the snap hold (public formation information), so he can be recognised before the catch. | CANON detail: the formation is public. |
+| Q-RB311-6 | Z-4 uses the believed positions of opposing field players (tracks at most 600 ms old) to decide "marked"; the rule uses true positions, so a defender can be unmarked by the rule while believing he is marked. | Note. |
