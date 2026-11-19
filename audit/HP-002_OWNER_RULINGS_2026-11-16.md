@@ -92,3 +92,11 @@ Intent (owner): the scrimmage resembles a gridiron scrimmage: a set formation fo
 8. Scrimmages inside the attacked Keeper Zone use the same formation (goal-line shotgun feel, receiver depth 5 m). Dead-ball formation time does not run residence clocks (live time only). [defaults]
 Known consequence: a carrier tackled within 10 m of the attacked end line is spotted back at 10 m; one tackled within 10 m of his own end line is spotted forward to 10 m.
 Status: DESIGN COMPLETE; not implemented. Supersedes the diagnosis proposal of a 3 m neutral zone.
+
+## 18 Nov 2026 (night) - Scrimmage formation refinements after RB-3.9 (CANON; answers Q-RB39-1, -2, -3, -7)
+1. (Q-RB39-1) ALL defenders stand outside the neutral zone; the nose-tackle exception is withdrawn. [Interpretation, owner to confirm: the tackler still lines up directly across the snapper at y = 50, at the near edge of the neutral zone, outside it.] NOBODY moves until the snap has travelled 5 m or the receiver touches it. A dropped or missed catch still counts as a touch/trigger. [Interpretation: "nobody" = every player except the snapper's throw and the receiver's own catch reaction; both teams are released at the trigger.]
+2. (Q-RB39-2) Default receiver = the teammate nearest the receiver spot. A team may legally designate ANY eligible field player as the receiver (tactical choice; needs a cognition/tactic hook).
+3. (Q-RB39-3) The snap lane between snapper and receiver is kept clear of players.
+4. (Q-RB39-7) Frozen players are automatically unfrozen when the scrimmage formation is set. No thaw period, no thaw contact buffer, no freeze immunity after that auto-unfreeze.
+Defaults standing unless the owner objects: Q-RB39-4 formation applies to every scrimmage; Q-RB39-5 majors spotted inside 10 m move to the 10 m clamp; Q-RB39-6 moot (no nose tackle); Q-RB39-8 tosses keep the old speed; Q-RB39-10 field length 100 m hard-coded.
+RB-3.9 (claude/rb-3-9-offense-fixes @ 6a328bf) is IMPLEMENTED and TESTED, NOT ACCEPTED.
