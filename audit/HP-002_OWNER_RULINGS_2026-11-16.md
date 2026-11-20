@@ -141,3 +141,9 @@ Open (not covered by acceptance): talent gap about twice the pro season (Ala Ape
 4. No holding: a block may push and obstruct but may not grab or restrain; restraint stays reserved for tackling the ball carrier.
 Build sent to Codex: RB-3.17 on codex/rb-3-17-handoff-block from claude/rb-3-16-merge @ 9c37fd4 (engine primitives + cognition hook behind a flag, default off).
 Side-swap result (claude/soak-rb-3-16-swap @ 881d4f4): team effect +18.1 per game for Ala Apex (95% range ~5-31; pro ~11 lies inside), slot-B effect +6.0 (not significant). Identical-team control test pending.
+
+## 20 Nov 2026 (evening) - Carrier moves and carry scoring (CANON)
+1. The ball carrier may stiff-arm, truck, juke, spin, hurdle, etc., anywhere on the field (answers RB-3.17 question 2: yes, a carrier may fend/block deliberately; carrier contact follows the normal contact rules, no grip on a non-carrier).
+2. Owner idea, to build: near the goal the carrier may STRETCH the ball out so it breaks the goal plane (like reaching for the pylon in football). A carried ball breaking the plane inside the goal mouth is a carry goal (5).
+3. Proposed by the owner, distance pending (3 m or 5 m): broaden the carry definition so that a release that scores from within N m of the goal, or the ball breaking the plane in hand, counts as a carry (5) instead of a throw (2/3/4). [Status: owner to pick N; not yet canon.]
+RB-3.17 question 1 (handoff entering the giver's own Keeper Zone from outside): no restriction found for passes or carries; default = treat a handoff exactly like a pass (allowed). Owner to correct if a back-zone restriction exists.
