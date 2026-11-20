@@ -38,7 +38,7 @@ def run(root):
                     if x['event'] == 'freeze' and x['data']['player'] == f['receiver']: rfreeze += 1; break
                     if x['event'] in ('restart_awarded', 'goal'): break
         fr = [x for x in log if x['event'] == 'freeze']; wasted = sum(1 for x in fr if not x['data'].get('was_carrier'))
-        out[name] = dict(passes=passes, intercepted=icp, intercept_rate=round(icp / passes, 3) if passes else None,
+        out[name] = dict(passes=passes, intercepted=icp, intercepted_within_3m=sum(d <= 3. for d in dist_i), intercept_rate=round(icp / passes, 3) if passes else None,
                          median_intercept_m=round(st.median(dist_i), 2) if dist_i else None, median_complete_m=round(st.median(dist_c), 2) if dist_c else None,
                          second_tackles=sec, on_receiver=rec2, arrows_in_hold=arrows_in_hold, inert_hold=inert_hold, receiver_freezes_after_snap=rfreeze,
                          freezes=len(fr), wasted_freezes=wasted)
