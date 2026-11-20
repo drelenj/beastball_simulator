@@ -1,1 +1,0 @@
-RB-3.16 evidence in progress (started 2026-11-20 11:06 UTC): full suite, legacy hash guards, then real seeds 1/3/5 and control 1 via native.rulebook.reach_run. Final results and raw logs will replace this note.
