@@ -1,0 +1,90 @@
+{
+  "block": "control",
+  "config_digest": "419f79e62e879fcf33471839b3c2ad27450f95fa10a37aed92b70a02d14a313d",
+  "end_ms": 4955587,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 10,
+    "protected_keeper": 1,
+    "zone_unmarked": 5
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 4,
+        "legal": 274,
+        "legal_rate": 0.9856115107913669
+      },
+      "B": {
+        "illegal": 6,
+        "legal": 237,
+        "legal_rate": 0.9753086419753086
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 46,
+        "goals": 0
+      },
+      "B": {
+        "attempts": 33,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 0,
+      "B": 1
+    },
+    "groundings": 95,
+    "points": {
+      "A": {
+        "penalty_awards": 6,
+        "play": 54
+      },
+      "B": {
+        "penalty_awards": 5,
+        "play": 54
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 203,
+        "ending_in_attempt": 38,
+        "share_ending_in_attempt": 0.18719211822660098,
+        "with_attempt": 43
+      },
+      "B": {
+        "count": 204,
+        "ending_in_attempt": 33,
+        "share_ending_in_attempt": 0.16176470588235295,
+        "with_attempt": 39
+      }
+    },
+    "restart_timeouts": 28
+  },
+  "name": "control-seed13",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 376,
+    "snap_timeout": 3,
+    "toss_timeout": 25
+  },
+  "runtime_s": 170.58,
+  "score": {
+    "A": 60,
+    "B": 59
+  },
+  "seed": 13,
+  "state_hash": "2813d6221c0801e2fd40eace2da1127b8ae153851d79c9dd8cc87486ef13469f",
+  "status": "final",
+  "steps": 38904,
+  "trace_hash": "c7a8d0c9ee019fe1a72e89473b86bdcd835349af23c3ee02697323ff361614f3"
+}

@@ -1,0 +1,1867 @@
+{
+ "summary": {
+  "n": 23,
+  "slotA_mean": 61.608695652173914,
+  "slotB_mean": 63.08695652173913,
+  "diff_B_minus_A_mean": 1.4782608695652173,
+  "diff_sd": 22.711369930294207,
+  "paired_t": 0.3121559861734286,
+  "ci95": [
+   -8.34347306884752,
+   11.299994807977953
+  ],
+  "B_wins": 11,
+  "A_wins": 12,
+  "ties": 0,
+  "coin_winner_B": 15,
+  "coin_winner_A": 8,
+  "shots_A_mean": 30.217391304347824,
+  "shots_B_mean": 29.608695652173914,
+  "shots_scored_A_mean": 13.304347826086957,
+  "shots_scored_B_mean": 13.826086956521738,
+  "possessions_A_mean": 204.1304347826087,
+  "possessions_B_mean": 204.1304347826087
+ },
+ "rows": [
+  {
+   "seed": 1,
+   "status": "final",
+   "score": {
+    "A": 68,
+    "B": 55
+   },
+   "possessions": {
+    "A": 206,
+    "B": 206
+   },
+   "attempt_share": {
+    "A": 0.16990291262135923,
+    "B": 0.16019417475728157
+   },
+   "shots": {
+    "A": 37,
+    "B": 24
+   },
+   "shots_scored": {
+    "A": 18,
+    "B": 9
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 33,
+     "shots_A": 13,
+     "scored_A": 10,
+     "attacks_A": "x100",
+     "points_B": 7,
+     "shots_B": 3,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 7,
+     "shots_A": 4,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 5,
+     "shots_B": 8,
+     "scored_B": 1,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 17,
+     "shots_A": 12,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 19,
+     "shots_B": 7,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 11,
+     "shots_A": 8,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 24,
+     "shots_B": 6,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 169.99,
+   "trace_hash": "c251c06f90ae4236b201af6a3e94ce587fce66d6ef8e630e95bcaefde84b7446",
+   "state_hash": "4a3cbc5c7c98d1c4e4b5b3fcf8db7278e5804c8d363c92ad9c0e7977ab76e3c4",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed01.json.gz"
+  },
+  {
+   "seed": 2,
+   "status": "final",
+   "score": {
+    "A": 56,
+    "B": 97
+   },
+   "possessions": {
+    "A": 202,
+    "B": 203
+   },
+   "attempt_share": {
+    "A": 0.1782178217821782,
+    "B": 0.21182266009852216
+   },
+   "shots": {
+    "A": 24,
+    "B": 30
+   },
+   "shots_scored": {
+    "A": 12,
+    "B": 18
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 23,
+     "shots_A": 6,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 23,
+     "shots_B": 9,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 12,
+     "shots_A": 7,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 18,
+     "shots_B": 7,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 11,
+     "shots_A": 6,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 4,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 10,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 36,
+     "shots_B": 10,
+     "scored_B": 7,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 187.3,
+   "trace_hash": "13fc440406aeb432035bc6adff29ad3b29498a45250948adf91c982f528fd6df",
+   "state_hash": "3aeb10e9c981db5ef5e25f50c7471fb643d945592361cd94f17f6fa5fcd9193a",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed02.json.gz"
+  },
+  {
+   "seed": 3,
+   "status": "final",
+   "score": {
+    "A": 40,
+    "B": 74
+   },
+   "possessions": {
+    "A": 206,
+    "B": 206
+   },
+   "attempt_share": {
+    "A": 0.20388349514563106,
+    "B": 0.19902912621359223
+   },
+   "shots": {
+    "A": 26,
+    "B": 35
+   },
+   "shots_scored": {
+    "A": 10,
+    "B": 16
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 11,
+     "shots_A": 9,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 27,
+     "shots_B": 10,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 22,
+     "shots_A": 11,
+     "scored_A": 5,
+     "attacks_A": "x0",
+     "points_B": 13,
+     "shots_B": 8,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 1,
+     "shots_A": 1,
+     "scored_A": 0,
+     "attacks_A": "x100",
+     "points_B": 19,
+     "shots_B": 10,
+     "scored_B": 5,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 6,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 15,
+     "shots_B": 7,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 187.21,
+   "trace_hash": "11ab900634e5916b7a44edf80385760afabb1b606aa9188574f1db74e364d784",
+   "state_hash": "d6bd850ec854f53b36603623b17b0afa2175c88a33e5fc9aa613d5f366f1f906",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed03.json.gz"
+  },
+  {
+   "seed": 4,
+   "status": "final",
+   "score": {
+    "A": 66,
+    "B": 43
+   },
+   "possessions": {
+    "A": 192,
+    "B": 192
+   },
+   "attempt_share": {
+    "A": 0.234375,
+    "B": 0.19791666666666666
+   },
+   "shots": {
+    "A": 32,
+    "B": 32
+   },
+   "shots_scored": {
+    "A": 15,
+    "B": 11
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 14,
+     "shots_A": 7,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 7,
+     "shots_B": 8,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 14,
+     "shots_A": 6,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 16,
+     "shots_B": 8,
+     "scored_B": 5,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 18,
+     "shots_A": 8,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 14,
+     "shots_B": 9,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 20,
+     "shots_A": 11,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 6,
+     "shots_B": 7,
+     "scored_B": 1,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 168.29,
+   "trace_hash": "a1b360215fd8c6875ddc6c22a6090f893b2cb5612a2e4b72a412f6ba7342e92f",
+   "state_hash": "3c543e752a068f64def245e83925bea70c086fb6cf2cabed55dd19218889978a",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed04.json.gz"
+  },
+  {
+   "seed": 5,
+   "status": "final",
+   "score": {
+    "A": 58,
+    "B": 62
+   },
+   "possessions": {
+    "A": 200,
+    "B": 199
+   },
+   "attempt_share": {
+    "A": 0.18,
+    "B": 0.20603015075376885
+   },
+   "shots": {
+    "A": 31,
+    "B": 30
+   },
+   "shots_scored": {
+    "A": 13,
+    "B": 15
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 11,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x100",
+     "points_B": 19,
+     "shots_B": 8,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 18,
+     "shots_A": 9,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 8,
+     "shots_B": 7,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 23,
+     "shots_A": 12,
+     "scored_A": 5,
+     "attacks_A": "x100",
+     "points_B": 26,
+     "shots_B": 9,
+     "scored_B": 7,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 6,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 9,
+     "shots_B": 6,
+     "scored_B": 1,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 169.34,
+   "trace_hash": "87e1d78bf0d19bc7f6b9962193eb9062c69ab045f2269d08bd3a383711deae97",
+   "state_hash": "4e0a6488b361d588137cd9a01e5ca5af0eb13431b598b31077770fc06dd7f596",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed05.json.gz"
+  },
+  {
+   "seed": 6,
+   "status": "final",
+   "score": {
+    "A": 73,
+    "B": 72
+   },
+   "possessions": {
+    "A": 243,
+    "B": 244
+   },
+   "attempt_share": {
+    "A": 0.205761316872428,
+    "B": 0.19672131147540983
+   },
+   "shots": {
+    "A": 34,
+    "B": 35
+   },
+   "shots_scored": {
+    "A": 19,
+    "B": 17
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 23,
+     "shots_A": 8,
+     "scored_A": 6,
+     "attacks_A": "x100",
+     "points_B": 17,
+     "shots_B": 8,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 10,
+     "shots_A": 5,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 32,
+     "shots_B": 14,
+     "scored_B": 7,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 13,
+     "shots_A": 8,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 13,
+     "shots_B": 6,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 23,
+     "shots_A": 9,
+     "scored_A": 5,
+     "attacks_A": "x0",
+     "points_B": 7,
+     "shots_B": 5,
+     "scored_B": 1,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 203.36,
+   "trace_hash": "b16f8d96976deba40fa2ce75201ecc3c810ab44ee7992b9359fd47e34f4275c4",
+   "state_hash": "27429f1fe17b9fcb2f7762170d504c9ed634603576b6a07e314e4951f7d736b7",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed06.json.gz"
+  },
+  {
+   "seed": 7,
+   "status": "final",
+   "score": {
+    "A": 73,
+    "B": 42
+   },
+   "possessions": {
+    "A": 199,
+    "B": 199
+   },
+   "attempt_share": {
+    "A": 0.20100502512562815,
+    "B": 0.16080402010050251
+   },
+   "shots": {
+    "A": 32,
+    "B": 23
+   },
+   "shots_scored": {
+    "A": 18,
+    "B": 10
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 16,
+     "shots_A": 6,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 11,
+     "shots_B": 8,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 31,
+     "shots_A": 11,
+     "scored_A": 7,
+     "attacks_A": "x0",
+     "points_B": 7,
+     "shots_B": 3,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 11,
+     "shots_A": 8,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 13,
+     "shots_B": 6,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 15,
+     "shots_A": 7,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 11,
+     "shots_B": 6,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 170.19,
+   "trace_hash": "89fc4200c2f8a658066876b7344e8f940f9a11c481d0f09cb2bd1f05a5d2394c",
+   "state_hash": "3b5eaa124d3387bdbd6bceebea52565a80f57b5c093aa3df9226d282ad1b2710",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed07.json.gz"
+  },
+  {
+   "seed": 8,
+   "status": "final",
+   "score": {
+    "A": 54,
+    "B": 67
+   },
+   "possessions": {
+    "A": 206,
+    "B": 205
+   },
+   "attempt_share": {
+    "A": 0.1553398058252427,
+    "B": 0.2
+   },
+   "shots": {
+    "A": 27,
+    "B": 33
+   },
+   "shots_scored": {
+    "A": 11,
+    "B": 15
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 14,
+     "shots_A": 6,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 18,
+     "shots_B": 9,
+     "scored_B": 5,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 23,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 4,
+     "shots_B": 6,
+     "scored_B": 1,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 6,
+     "shots_A": 7,
+     "scored_A": 2,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 8,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 11,
+     "shots_A": 9,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 25,
+     "shots_B": 10,
+     "scored_B": 5,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 165.81,
+   "trace_hash": "ff672b2914761966dcbf6ab5a27f01c4bd5dfdb1ed3a0dc00cc37781fecb5f73",
+   "state_hash": "be14e8adf6a8dcea981a18fa330282a294921f3d9ec78e882ab7bcb138a63bec",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed08.json.gz"
+  },
+  {
+   "seed": 9,
+   "status": "final",
+   "score": {
+    "A": 59,
+    "B": 52
+   },
+   "possessions": {
+    "A": 219,
+    "B": 222
+   },
+   "attempt_share": {
+    "A": 0.2374429223744292,
+    "B": 0.18468468468468469
+   },
+   "shots": {
+    "A": 46,
+    "B": 31
+   },
+   "shots_scored": {
+    "A": 16,
+    "B": 14
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 9,
+     "shots_A": 8,
+     "scored_A": 2,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 9,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 8,
+     "shots_A": 7,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 14,
+     "shots_B": 6,
+     "scored_B": 5,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 10,
+     "shots_A": 12,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 7,
+     "shots_B": 11,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 25,
+     "shots_A": 12,
+     "scored_A": 7,
+     "attacks_A": "x0",
+     "points_B": 11,
+     "shots_B": 4,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 188.76,
+   "trace_hash": "168d5ea6a2b8f28e9b343b7dee2b9e645f29b7ed5414198b62632643b8bf1d81",
+   "state_hash": "b315ca6cffc184c233cf2b9e7b06f4540bcd02e4b1bdc319fc6feb20c634f9bd",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed09.json.gz"
+  },
+  {
+   "seed": 10,
+   "status": "final",
+   "score": {
+    "A": 55,
+    "B": 70
+   },
+   "possessions": {
+    "A": 191,
+    "B": 190
+   },
+   "attempt_share": {
+    "A": 0.18324607329842932,
+    "B": 0.1736842105263158
+   },
+   "shots": {
+    "A": 30,
+    "B": 32
+   },
+   "shots_scored": {
+    "A": 13,
+    "B": 16
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 23,
+     "shots_A": 11,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 13,
+     "shots_B": 12,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 6,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 16,
+     "shots_B": 6,
+     "scored_B": 5,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 10,
+     "shots_A": 7,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 14,
+     "shots_B": 4,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 16,
+     "shots_A": 7,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 27,
+     "shots_B": 10,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 166.17,
+   "trace_hash": "0a36604e46f9806a3c1da90789cab58efd0caa707d3e63af71ada8fd6ba84fb7",
+   "state_hash": "01ee0e76fbbbe4ec835a4917c6c626851bcb2a1ee849f53f51fe8a456b80375d",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed10.json.gz"
+  },
+  {
+   "seed": 11,
+   "status": "final",
+   "score": {
+    "A": 63,
+    "B": 54
+   },
+   "possessions": {
+    "A": 209,
+    "B": 209
+   },
+   "attempt_share": {
+    "A": 0.19138755980861244,
+    "B": 0.20095693779904306
+   },
+   "shots": {
+    "A": 32,
+    "B": 28
+   },
+   "shots_scored": {
+    "A": 13,
+    "B": 12
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 22,
+     "shots_A": 7,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 13,
+     "shots_B": 8,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 10,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 16,
+     "shots_B": 8,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 19,
+     "shots_A": 12,
+     "scored_A": 5,
+     "attacks_A": "x100",
+     "points_B": 4,
+     "shots_B": 5,
+     "scored_B": 1,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 12,
+     "shots_A": 8,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 21,
+     "shots_B": 7,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 166.74,
+   "trace_hash": "69fd6ecfb33835af4ed4db677f65319f0983c7a1962515a5391dc04bd4665683",
+   "state_hash": "e2cdff93cea7797b9b61bdeee4a57d0670d1581dbe9b1cbc8ef43ad2b19026c9",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed11.json.gz"
+  },
+  {
+   "seed": 12,
+   "status": "final",
+   "score": {
+    "A": 57,
+    "B": 42
+   },
+   "possessions": {
+    "A": 200,
+    "B": 200
+   },
+   "attempt_share": {
+    "A": 0.225,
+    "B": 0.185
+   },
+   "shots": {
+    "A": 29,
+    "B": 23
+   },
+   "shots_scored": {
+    "A": 12,
+    "B": 8
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 22,
+     "shots_A": 11,
+     "scored_A": 6,
+     "attacks_A": "x100",
+     "points_B": 6,
+     "shots_B": 8,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 6,
+     "shots_A": 7,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 12,
+     "shots_B": 5,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 20,
+     "shots_A": 6,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 8,
+     "shots_B": 5,
+     "scored_B": 1,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 9,
+     "shots_A": 5,
+     "scored_A": 1,
+     "attacks_A": "x0",
+     "points_B": 16,
+     "shots_B": 5,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 169.49,
+   "trace_hash": "bdc2dda7f1ad739103e4d8ccab7596600e6ba9196565c302ea38df49e394bc06",
+   "state_hash": "4d3d2e4a23314df893711aae25ff75435d6bbca8ca28a97adfe67db6fc1ae0e5",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed12.json.gz"
+  },
+  {
+   "seed": 13,
+   "status": "final",
+   "score": {
+    "A": 60,
+    "B": 59
+   },
+   "possessions": {
+    "A": 203,
+    "B": 204
+   },
+   "attempt_share": {
+    "A": 0.18719211822660098,
+    "B": 0.16176470588235295
+   },
+   "shots": {
+    "A": 29,
+    "B": 32
+   },
+   "shots_scored": {
+    "A": 14,
+    "B": 13
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 13,
+     "shots_A": 5,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 6,
+     "shots_B": 6,
+     "scored_B": 0,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 9,
+     "shots_A": 7,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 22,
+     "shots_B": 8,
+     "scored_B": 5,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 25,
+     "shots_A": 11,
+     "scored_A": 7,
+     "attacks_A": "x100",
+     "points_B": 22,
+     "shots_B": 13,
+     "scored_B": 6,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 13,
+     "shots_A": 6,
+     "scored_A": 1,
+     "attacks_A": "x0",
+     "points_B": 9,
+     "shots_B": 5,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 170.58,
+   "trace_hash": "c7a8d0c9ee019fe1a72e89473b86bdcd835349af23c3ee02697323ff361614f3",
+   "state_hash": "2813d6221c0801e2fd40eace2da1127b8ae153851d79c9dd8cc87486ef13469f",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed13.json.gz"
+  },
+  {
+   "seed": 14,
+   "status": "final",
+   "score": {
+    "A": 83,
+    "B": 88
+   },
+   "possessions": {
+    "A": 227,
+    "B": 226
+   },
+   "attempt_share": {
+    "A": 0.1894273127753304,
+    "B": 0.19911504424778761
+   },
+   "shots": {
+    "A": 37,
+    "B": 39
+   },
+   "shots_scored": {
+    "A": 17,
+    "B": 21
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 19,
+     "shots_A": 7,
+     "scored_A": 5,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 9,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 27,
+     "shots_A": 7,
+     "scored_A": 5,
+     "attacks_A": "x0",
+     "points_B": 21,
+     "shots_B": 9,
+     "scored_B": 6,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 19,
+     "shots_A": 11,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 11,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 18,
+     "shots_A": 12,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 27,
+     "shots_B": 10,
+     "scored_B": 7,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 167.7,
+   "trace_hash": "81cc648b72733200995f5777a1fc644a296b57aa57e95367137056115e24d144",
+   "state_hash": "0775b17343085050775ad3e9a5774f4ecf484291af6a51ff93ddbe239af43bd1",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed14.json.gz"
+  },
+  {
+   "seed": 15,
+   "status": "final",
+   "score": {
+    "A": 44,
+    "B": 60
+   },
+   "possessions": {
+    "A": 201,
+    "B": 201
+   },
+   "attempt_share": {
+    "A": 0.208955223880597,
+    "B": 0.22388059701492538
+   },
+   "shots": {
+    "A": 32,
+    "B": 34
+   },
+   "shots_scored": {
+    "A": 9,
+    "B": 16
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 12,
+     "shots_A": 14,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 11,
+     "shots_B": 5,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 10,
+     "shots_A": 7,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 10,
+     "shots_B": 9,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 12,
+     "shots_A": 5,
+     "scored_A": 2,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 10,
+     "scored_B": 5,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 10,
+     "shots_A": 6,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 19,
+     "shots_B": 10,
+     "scored_B": 6,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 164.54,
+   "trace_hash": "f4838c0931726f11a896b453db7b5d52b9042bce21f1623a5334447c0954cbee",
+   "state_hash": "46945f0acf1a4a57ebac2855be6778d38f5f995b7d7d9d82f52f038833ac9176",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed15.json.gz"
+  },
+  {
+   "seed": 16,
+   "status": "final",
+   "score": {
+    "A": 72,
+    "B": 60
+   },
+   "possessions": {
+    "A": 185,
+    "B": 184
+   },
+   "attempt_share": {
+    "A": 0.1837837837837838,
+    "B": 0.16304347826086957
+   },
+   "shots": {
+    "A": 23,
+    "B": 24
+   },
+   "shots_scored": {
+    "A": 11,
+    "B": 10
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 14,
+     "shots_A": 4,
+     "scored_A": 2,
+     "attacks_A": "x100",
+     "points_B": 15,
+     "shots_B": 5,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 17,
+     "shots_A": 8,
+     "scored_A": 2,
+     "attacks_A": "x0",
+     "points_B": 18,
+     "shots_B": 6,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 27,
+     "shots_A": 5,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 23,
+     "shots_B": 10,
+     "scored_B": 5,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 14,
+     "shots_A": 6,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 4,
+     "shots_B": 3,
+     "scored_B": 0,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 163.29,
+   "trace_hash": "ff6339a4afe7cc6f035afd18387c6436ca8aad56e8487d142510f3fb2fea3d16",
+   "state_hash": "27329451aa6406e85f9e0f54d33cb611735f3a290e6b779b23bceb0eba7fb720",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed16.json.gz"
+  },
+  {
+   "seed": 17,
+   "status": "final",
+   "score": {
+    "A": 59,
+    "B": 88
+   },
+   "possessions": {
+    "A": 190,
+    "B": 190
+   },
+   "attempt_share": {
+    "A": 0.20526315789473684,
+    "B": 0.20526315789473684
+   },
+   "shots": {
+    "A": 26,
+    "B": 25
+   },
+   "shots_scored": {
+    "A": 11,
+    "B": 17
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 3,
+     "shots_A": 1,
+     "scored_A": 1,
+     "attacks_A": "x100",
+     "points_B": 16,
+     "shots_B": 6,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 6,
+     "shots_A": 2,
+     "scored_A": 1,
+     "attacks_A": "x0",
+     "points_B": 19,
+     "shots_B": 4,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 33,
+     "shots_A": 15,
+     "scored_A": 6,
+     "attacks_A": "x100",
+     "points_B": 17,
+     "shots_B": 8,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 17,
+     "shots_A": 8,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 36,
+     "shots_B": 7,
+     "scored_B": 7,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 170.94,
+   "trace_hash": "ff798a5b1f7e7eff3b476dc8c2a1fab87986e57898e4f8c9c4bbbf1925c60f08",
+   "state_hash": "65801686fa6337f6cba3f9fefd954eac7b70a8351e706509a0f84142665a6c88",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed17.json.gz"
+  },
+  {
+   "seed": 18,
+   "status": "final",
+   "score": {
+    "A": 36,
+    "B": 60
+   },
+   "possessions": {
+    "A": 208,
+    "B": 207
+   },
+   "attempt_share": {
+    "A": 0.125,
+    "B": 0.21256038647342995
+   },
+   "shots": {
+    "A": 17,
+    "B": 32
+   },
+   "shots_scored": {
+    "A": 8,
+    "B": 17
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 7,
+     "shots_A": 3,
+     "scored_A": 2,
+     "attacks_A": "x100",
+     "points_B": 20,
+     "shots_B": 9,
+     "scored_B": 6,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 10,
+     "shots_A": 4,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 15,
+     "shots_B": 9,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 11,
+     "shots_A": 4,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 10,
+     "shots_B": 7,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 8,
+     "shots_A": 6,
+     "scored_A": 0,
+     "attacks_A": "x0",
+     "points_B": 15,
+     "shots_B": 7,
+     "scored_B": 4,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 172.44,
+   "trace_hash": "14e535edf4037886d7412d4f5c7655f4b06ba549e0651513cc8186d712da10aa",
+   "state_hash": "3f79775d0ec1e35a80293dc3dc0ef71bd5a6352fa376b24910ad8438d06040cc",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed18.json.gz"
+  },
+  {
+   "seed": 19,
+   "status": "final",
+   "score": {
+    "A": 68,
+    "B": 69
+   },
+   "possessions": {
+    "A": 185,
+    "B": 185
+   },
+   "attempt_share": {
+    "A": 0.24324324324324326,
+    "B": 0.17297297297297298
+   },
+   "shots": {
+    "A": 28,
+    "B": 33
+   },
+   "shots_scored": {
+    "A": 11,
+    "B": 12
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 13,
+     "shots_A": 5,
+     "scored_A": 1,
+     "attacks_A": "x100",
+     "points_B": 23,
+     "shots_B": 12,
+     "scored_B": 6,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 10,
+     "shots_A": 6,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 13,
+     "shots_B": 5,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 12,
+     "shots_A": 7,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 18,
+     "shots_B": 7,
+     "scored_B": 1,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 33,
+     "shots_A": 10,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 15,
+     "shots_B": 9,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 157.03,
+   "trace_hash": "a148b8fa99db6c67178c7637af458b3b509ac5f123ec3dd1f1318b5a97eeac99",
+   "state_hash": "5cda7aff9b4a3cd2a2e0ba3c3719a0b05ca6de7ec1163e21839235e10a81de08",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed19.json.gz"
+  },
+  {
+   "seed": 20,
+   "status": "final",
+   "score": {
+    "A": 60,
+    "B": 59
+   },
+   "possessions": {
+    "A": 208,
+    "B": 208
+   },
+   "attempt_share": {
+    "A": 0.1778846153846154,
+    "B": 0.20192307692307693
+   },
+   "shots": {
+    "A": 26,
+    "B": 24
+   },
+   "shots_scored": {
+    "A": 13,
+    "B": 13
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 16,
+     "shots_A": 9,
+     "scored_A": 5,
+     "attacks_A": "x100",
+     "points_B": 15,
+     "shots_B": 7,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 0,
+     "shots_A": 5,
+     "scored_A": 0,
+     "attacks_A": "x0",
+     "points_B": 11,
+     "shots_B": 5,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 17,
+     "shots_A": 7,
+     "scored_A": 4,
+     "attacks_A": "x100",
+     "points_B": 21,
+     "shots_B": 6,
+     "scored_B": 4,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 27,
+     "shots_A": 5,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 12,
+     "shots_B": 6,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 166.02,
+   "trace_hash": "9371191776b456b3551cd71d854bccd85d043af08c6ee8b0ae378a7bb6090707",
+   "state_hash": "0bf31aaa6a82a67a01dd3aad478683ee3632aaa4acb9c0bf5867ef535bb2c9f3",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed20.json.gz"
+  },
+  {
+   "seed": 21,
+   "status": "final",
+   "score": {
+    "A": 52,
+    "B": 91
+   },
+   "possessions": {
+    "A": 212,
+    "B": 213
+   },
+   "attempt_share": {
+    "A": 0.19339622641509435,
+    "B": 0.24882629107981222
+   },
+   "shots": {
+    "A": 29,
+    "B": 36
+   },
+   "shots_scored": {
+    "A": 11,
+    "B": 18
+   },
+   "coin_flip_winner": "A",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "A",
+     "points_A": 7,
+     "shots_A": 6,
+     "scored_A": 1,
+     "attacks_A": "x100",
+     "points_B": 37,
+     "shots_B": 13,
+     "scored_B": 6,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "B",
+     "points_A": 15,
+     "shots_A": 8,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 21,
+     "shots_B": 7,
+     "scored_B": 5,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "B",
+     "points_A": 16,
+     "shots_A": 8,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 21,
+     "shots_B": 10,
+     "scored_B": 5,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "A",
+     "points_A": 14,
+     "shots_A": 7,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 12,
+     "shots_B": 6,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 166.23,
+   "trace_hash": "05e800f03c066ecfe1ed32123d78e48f8bf8a02c0e528bc451a5824f1af0606d",
+   "state_hash": "3bc25b53e93e9a7894bf6c0e19a992d807ce6ee9597a92a65f47b199cb4b2e7c",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed21.json.gz"
+  },
+  {
+   "seed": 22,
+   "status": "final",
+   "score": {
+    "A": 73,
+    "B": 40
+   },
+   "possessions": {
+    "A": 197,
+    "B": 197
+   },
+   "attempt_share": {
+    "A": 0.2182741116751269,
+    "B": 0.17766497461928935
+   },
+   "shots": {
+    "A": 40,
+    "B": 20
+   },
+   "shots_scored": {
+    "A": 18,
+    "B": 9
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 17,
+     "shots_A": 10,
+     "scored_A": 5,
+     "attacks_A": "x100",
+     "points_B": 9,
+     "shots_B": 5,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 14,
+     "shots_A": 11,
+     "scored_A": 3,
+     "attacks_A": "x0",
+     "points_B": 10,
+     "shots_B": 6,
+     "scored_B": 2,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 21,
+     "shots_A": 11,
+     "scored_A": 5,
+     "attacks_A": "x100",
+     "points_B": 11,
+     "shots_B": 7,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 21,
+     "shots_A": 8,
+     "scored_A": 5,
+     "attacks_A": "x0",
+     "points_B": 10,
+     "shots_B": 2,
+     "scored_B": 1,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 161.0,
+   "trace_hash": "e56e200f54cb69db531538f42b76b316acda3d869efb7c67030958c4a07f4316",
+   "state_hash": "fb4e45afcea97bd3925e3f6e0867b61a3499b9ba1165fb6cb0be5d8dcc51fad7",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed22.json.gz"
+  },
+  {
+   "seed": 23,
+   "status": "final",
+   "score": {
+    "A": 88,
+    "B": 47
+   },
+   "possessions": {
+    "A": 206,
+    "B": 205
+   },
+   "attempt_share": {
+    "A": 0.20388349514563106,
+    "B": 0.17073170731707318
+   },
+   "shots": {
+    "A": 28,
+    "B": 26
+   },
+   "shots_scored": {
+    "A": 13,
+    "B": 11
+   },
+   "coin_flip_winner": "B",
+   "first_offence": "first_offence",
+   "per_period": [
+    {
+     "period": 1,
+     "offence": "B",
+     "points_A": 25,
+     "shots_A": 8,
+     "scored_A": 3,
+     "attacks_A": "x100",
+     "points_B": 11,
+     "shots_B": 5,
+     "scored_B": 3,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 2,
+     "offence": "A",
+     "points_A": 19,
+     "shots_A": 9,
+     "scored_A": 4,
+     "attacks_A": "x0",
+     "points_B": 13,
+     "shots_B": 12,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    },
+    {
+     "period": 3,
+     "offence": "A",
+     "points_A": 17,
+     "shots_A": 4,
+     "scored_A": 1,
+     "attacks_A": "x100",
+     "points_B": 7,
+     "shots_B": 3,
+     "scored_B": 2,
+     "attacks_B": "x0"
+    },
+    {
+     "period": 4,
+     "offence": "B",
+     "points_A": 27,
+     "shots_A": 7,
+     "scored_A": 5,
+     "attacks_A": "x0",
+     "points_B": 16,
+     "shots_B": 6,
+     "scored_B": 3,
+     "attacks_B": "x100"
+    }
+   ],
+   "runtime_s": 162.61,
+   "trace_hash": "ab16ed0bc5fa1112ce477747287d53ed5176371e369b3d3584086b12e46df605",
+   "state_hash": "0b0a02147650b48a1da3de6fd5b159f78ea359e9380623aed7a88ab7d8c8b196",
+   "raw_log": "native/evidence/rb316-control/control/raw-control-seed23.json.gz"
+  }
+ ]
+}
