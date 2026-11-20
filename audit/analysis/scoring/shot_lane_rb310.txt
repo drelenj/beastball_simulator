@@ -1,0 +1,7 @@
+shots with positions 199
+overall Counter({'keeper': 95, 'defence': 47, 'scored': 34, 'own': 17, 'out/award': 6})
+lane clearance 0-2 m: n=68 scored 9% blocked-by-defence 63% keeper 16%  median dist 14.1
+lane clearance 2-4 m: n=27 scored 15% blocked-by-defence 11% keeper 48%  median dist 13.8
+lane clearance 4-6 m: n=7 scored 14% blocked-by-defence 0% keeper 86%  median dist 10.7
+lane clearance 6-9 m: n=8 scored 12% blocked-by-defence 0% keeper 62%  median dist 12.5
+lane clearance 9-99 m: n=89 scored 25% blocked-by-defence 1% keeper 67%  median dist 11.6

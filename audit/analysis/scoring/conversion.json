@@ -1,0 +1,119 @@
+{
+ "r310": {
+  "goals_by_method": {
+   "release": 42,
+   "carry": 8,
+   "own": 1
+  },
+  "points_by_method": {
+   "release": 107,
+   "carry": 40,
+   "own": 2
+  },
+  "goal_points_per_team": 24.8,
+  "shots": {
+   "10-20": {
+    "defence": 87,
+    "keeper": 15,
+    "scored": 17,
+    "out": 4,
+    "own recovery": 11
+   },
+   "<10": {
+    "defence": 29,
+    "scored": 17,
+    "own recovery": 6,
+    "keeper": 11,
+    "out": 2
+   }
+  },
+  "shot_conv": {
+   "10-20": 0.127,
+   "<10": 0.262
+  },
+  "shots_per_team": 33.2
+ },
+ "r312": {
+  "goals_by_method": {
+   "release": 27,
+   "carry": 29
+  },
+  "points_by_method": {
+   "release": 89,
+   "carry": 145
+  },
+  "goal_points_per_team": 39.0,
+  "shots": {
+   "10-20": {
+    "own recovery": 5,
+    "defence": 56,
+    "scored": 15,
+    "award": 1,
+    "out": 3,
+    "keeper": 2
+   },
+   "20+": {
+    "defence": 112,
+    "own recovery": 53,
+    "scored": 9,
+    "keeper": 2,
+    "out": 4
+   },
+   "<10": {
+    "own recovery": 1,
+    "defence": 4,
+    "scored": 1,
+    "out": 1,
+    "keeper": 1
+   }
+  },
+  "shot_conv": {
+   "10-20": 0.183,
+   "20+": 0.05,
+   "<10": 0.125
+  },
+  "shots_per_team": 45.0
+ },
+ "r313": {
+  "goals_by_method": {
+   "release": 33,
+   "carry": 7
+  },
+  "points_by_method": {
+   "release": 108,
+   "carry": 35
+  },
+  "goal_points_per_team": 23.8,
+  "shots": {
+   "20+": {
+    "own recovery": 32,
+    "defence": 86,
+    "scored": 11,
+    "keeper": 6,
+    "out": 2,
+    "award": 2
+   },
+   "<10": {
+    "scored": 6,
+    "keeper": 1,
+    "defence": 1,
+    "own recovery": 1,
+    "out": 1
+   },
+   "10-20": {
+    "defence": 34,
+    "out": 3,
+    "scored": 10,
+    "keeper": 2,
+    "own recovery": 5,
+    "award": 1
+   }
+  },
+  "shot_conv": {
+   "20+": 0.079,
+   "<10": 0.6,
+   "10-20": 0.182
+  },
+  "shots_per_team": 34.0
+ }
+}
