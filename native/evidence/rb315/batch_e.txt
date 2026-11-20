@@ -1,0 +1,2 @@
+S-1 {'keeper': 42, 'scored': 8}
+old {'keeper': 46, 'scored': 4}
