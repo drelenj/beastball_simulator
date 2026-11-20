@@ -304,7 +304,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
         # Ruleset 1.0.2 (D1 record R-17): any eligible player may be frozen; a Keeper inside
         # his own zone is protected; R-01: no target before the first passive possession.
         ready = (view.arrows_loaded or 0) > 0 and (
-            view.last_release_ms is None or now - view.last_release_ms >= 2600)
+            view.last_release_ms is None or now - view.last_release_ms >= 2600) and not getattr(view, 'snap_hold', False)   # RB-3.13: no arrow during the snap hold
         if ready and sig.phase == 'live' and sig.passive_team is not None and banned != 'draw_release':
             for t in sorted(opps, key=lambda t: t.entity):
                 if not archer_target_legal(t, view, now):
@@ -354,7 +354,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             options = [o for o in options if o[0] != 'carry']
             if view.cognition == 'native-rb/3':      # RB-3.12 B-5: carry and pass valued by cognition_rb3.carrier_options
                 from .cognition_rb3 import carrier_options
-                carrier_vals = carrier_options(view, fresh, carry_opt[2] if carry_opt else None, sg)
+                carrier_vals = carrier_options(view, fresh, carry_opt[2] if carry_opt else None, sg, belief.max_track_age_ms)
             else:
                 carrier_vals = _m1_options(view, fresh, carrier, 'carrier', carry_target=carry_opt[2] if carry_opt else None)
             for k, t, a, v in carrier_vals:
@@ -583,7 +583,7 @@ def decide_v2(view, belief):
                                           max(.6,min(99.4,50+uy*(view.zone_radius+1.)))))
     if view.role=='archer' and view.pending_command_id and view.pending_release_ms is not None and view.delivered_ms>=view.pending_release_ms:
         target=next((t for t in belief.tracks if t.entity==view.pending_target),None)
-        if target is None or view.signals.phase!='live' or not archer_target_legal(target,view,view.delivered_ms):
+        if target is None or view.signals.phase!='live' or getattr(view,'snap_hold',False) or not archer_target_legal(target,view,view.delivered_ms):
             intent,rec=choice('abort_draw',target=view.pending_target)
         else:
             intent,rec=choice('release_arrow',(target.x,target.y),view.pending_target)

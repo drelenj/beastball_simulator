@@ -146,67 +146,98 @@ def defender_baseline(view, belief, intent, record):
     return out, record
 
 
-# ------------------------------------------------ RB-3.12 B-5 carrier valuation (carry vs pass)
-# BEHAVIORAL defaults (owner spec, 20 Nov 2026), PROVISIONAL, unsearched. Replaces the M1 values (b1/core.py:
-# carry 10 if nearest opponent < 5.8 m else 2; pass = clearance - 3 - 0.03 d, which made an unpressured carrier
-# always pass and a pressured one always carry). Only the carrier's own belief tracks, own body and own feedback.
+# ------------------------------------- RB-3.12 / RB-3.13 B-5 carrier valuation (carry vs pass)
+# BEHAVIORAL defaults, PROVISIONAL, unsearched. Replaces the M1 values (b1/core.py) for native-rb/3. Only the
+# carrier's own belief tracks, own body and own feedback are read.
 #
 #  constant               value  meaning
 #  CARRY_BASE              2.0   carry value with no free run and nobody close
 #  CARRY_FREE_W            0.6   value per metre of free run
-#  CARRY_CONE_DEG          35    half-angle of the forward cone around the carry direction
-#  CARRY_FREE_OFFSET_M     2.0   subtracted from the distance to the nearest opponent in the cone
-#  CARRY_FREE_MAX_M        15    free run cap (also the value when no opponent is in the cone)
-#  CARRY_CLOSE_M           3.0   an opponent anywhere this close...
-#  CARRY_CLOSE_PENALTY     4.0   ...costs this much
-#  CARRY_GOAL_NEAR_M       25    within this distance of the goal...
-#  CARRY_GOAL_FREE_M       5     ...with at least this free run...
-#  CARRY_GOAL_BONUS        2.0   ...adds this
+#  CARRY_FREE_MAX_M        15    free run cap (also the value when no opponent can reach the path)
+#  CARRY_PATH_STEP_M       0.5   RB-3.13: path sampling step for the closing-time free run
+#  CARRY_CLOSE_M / PENALTY 3.0 / 4.0   an opponent anywhere this close costs this much
+#  CARRY_GOAL_NEAR_M / FREE_M / BONUS  25 / 5 / 2.0   near the goal with this free run adds this
 #  PASS_BASE               0.5   constant term
 #  PASS_GAIN_W             0.35  per metre of forward gain (negative backward), gain clamped to [-15, 25]
-#  PASS_CLEAR_W / BASE     0.4 / 3.0   lane clearance (capped 10) minus 3
+#  PASS_CLEAR_W / BASE     0.4 / 3.0   lane margin (capped 10) minus 3  (RB-3.13: margin beyond opponents' reach)
 #  PASS_SPACE_W / BASE     0.25 / 3.0  receiver's distance to his nearest opponent (capped 10) minus 3
 #  PASS_DIST_W             0.03  per metre of pass length (3-30 m as in M1)
-#  PRESSURED_M             4.0   nearest opponent to the carrier closer than this = pressured
-#  PRESSURED_SPACE_M       6.0   a pressured carrier gets the bonus for a receiver at least this free...
-#  PRESSURED_BONUS         3.0   ...of this size
+#  PRESSURE_T_S            0.8   RB-3.13: pressured = least time-to-contact of any believed opponent < this
+#  CLOSING_MIN_MS          1.0   RB-3.13: floor on the closing speed used in time-to-contact
+#  ACQ_RADIUS_M / EXTRA_M  0.45 / 0.2  engine radius and acquisition slack (same source as formation.acquisition_radius);
+#                                the opponent's reach is ESTIMATED by the carrier's own reach (opponent bodies are not in his view)
+#  LANE_MARGIN_M           0.5   RB-3.13: a lane is unsafe if any opponent, advanced by his velocity to the ball's arrival time,
+#                                comes within (acquisition reach + this) of the pass path
+#  LANE_SAMPLES            10    RB-3.13: path samples (0..1 of the pass)
+#  PRESSURED_SPACE_M / BONUS  6.0 / 3.0  a pressured carrier gets the bonus for a SAFE pass to a receiver this free
 #  BACKWARD_W              0.4   unpressured backward pass pays this per metre of loss
-#  COMMIT_MS               600   after gaining control an unpressured carrier does not pass...
-#  COMMIT_GAIN_M / CLEAR_M 10 / 4.0  ...unless the pass gains at least this and has at least this clearance
-#  RECEIVER_CLOCK_LIMIT_S  2.0   a receiver inside the zone he attacks with less than this left on his clock...
-#  RECEIVER_CLOCK_PENALTY  4.0   ...costs this much (owner: "subtract value", amount unspecified: owner question)
-CARRY_BASE, CARRY_FREE_W, CARRY_CONE_DEG = 2.0, 0.6, 35.
-CARRY_FREE_OFFSET_M, CARRY_FREE_MAX_M = 2.0, 15.
+#  COMMIT_MS               600   after gaining control an UNPRESSURED carrier does not pass...
+#  COMMIT_GAIN_M / CLEAR_M 10 / 4.0  ...unless the pass gains at least this and has at least this margin
+#  ESCAPE_ANGLES_DEG       +-45, +-90  RB-3.13: carry directions tried beside the straight carry ONLY when pressured with no safe pass
+#  RECEIVER_CLOCK_LIMIT_S  2.0   RB-3.13: receiver in the zone he attacks with t_left under this:
+#  RECEIVER_CLOCK_PENALTY  6.0   ...penalty = 6.0 * (1 - t_left / 2.0); read only for a teammate in FRESH tracks (Q-RB312-2 canon)
+CARRY_BASE, CARRY_FREE_W, CARRY_FREE_MAX_M, CARRY_PATH_STEP_M = 2.0, 0.6, 15., .5
 CARRY_CLOSE_M, CARRY_CLOSE_PENALTY = 3.0, 4.0
 CARRY_GOAL_NEAR_M, CARRY_GOAL_FREE_M, CARRY_GOAL_BONUS = 25., 5., 2.0
 PASS_BASE, PASS_GAIN_W, GAIN_MIN_M, GAIN_MAX_M = 0.5, 0.35, -15., 25.
 PASS_CLEAR_W, PASS_CLEAR_BASE, PASS_SPACE_W, PASS_SPACE_BASE, PASS_DIST_W = 0.4, 3.0, 0.25, 3.0, 0.03
 PASS_MIN_M, PASS_MAX_M = 3., 30.
-PRESSURED_M, PRESSURED_SPACE_M, PRESSURED_BONUS, BACKWARD_W = 4.0, 6.0, 3.0, 0.4
+PRESSURE_T_S, CLOSING_MIN_MS = .8, 1.0
+ACQ_RADIUS_M, ACQ_EXTRA_M, ACQ_DEFAULT_REACH_M = .45, .2, 3.05
+LANE_MARGIN_M, LANE_SAMPLES = .5, 10
+PRESSURED_SPACE_M, PRESSURED_BONUS, BACKWARD_W = 6.0, 3.0, 0.4
 COMMIT_MS, COMMIT_GAIN_M, COMMIT_CLEAR_M = 600, 10., 4.0
-RECEIVER_CLOCK_LIMIT_S, RECEIVER_CLOCK_PENALTY = 2.0, 4.0
+RECEIVER_CLOCK_LIMIT_S, RECEIVER_CLOCK_PENALTY = 2.0, 6.0
+ESCAPE_ANGLES_DEG, ESCAPE_LEN_M = (45., -45., 90., -90.), 15.   # RB-3.13: lateral carry directions tried beside the straight one (ties keep the straight one)
 
 
-def free_run_m(x, y, aim, opps):
-    """Distance to the nearest opponent inside the forward cone around (x,y)->aim, minus the offset, clamped."""
-    dx, dy = aim[0] - x, aim[1] - y
+def acquisition_reach(view):
+    """Estimated horizontal distance within which an opponent can take the ball (see the table; own reach as the proxy)."""
+    reach = view.body.reach if view.body is not None else ACQ_DEFAULT_REACH_M
+    return reach + ACQ_RADIUS_M + ACQ_EXTRA_M
+
+
+def time_to_contact(view, o, reach=None):
+    """Seconds until believed opponent `o` can reach the carrier: (distance - reach) over his closing speed (>= 1 m/s)."""
+    reach = acquisition_reach(view) if reach is None else reach
+    dx, dy = view.x - o.x, view.y - o.y
+    d = hypot(dx, dy)
+    if d < 1e-9:
+        return 0.
+    closing = max(CLOSING_MIN_MS, (o.vx * dx + o.vy * dy) / d)
+    return max(0., d - reach) / closing
+
+
+def is_pressured(view, opps):
+    return any(time_to_contact(view, o) < PRESSURE_T_S for o in opps)
+
+
+def free_run_m(view, opps, aim):
+    """Distance the carrier covers along (x,y)->aim before any believed opponent can reach his path: the first sample
+    where the opponent's time to that point (his distance minus reach, at the carrier's own top speed) is no more than
+    the carrier's own time to it. Clamped [0, CARRY_FREE_MAX_M]."""
+    dx, dy = aim[0] - view.x, aim[1] - view.y
     L = hypot(dx, dy)
     if L < 1e-9:
         return CARRY_FREE_MAX_M
-    from math import cos, radians
-    best = None
-    for o in opps:
-        ox, oy = o.x - x, o.y - y
-        d = hypot(ox, oy)
-        if d < 1e-9:
-            best = 0.; break
-        if (ox * dx + oy * dy) / (d * L) >= cos(radians(CARRY_CONE_DEG)) and (best is None or d < best):
-            best = d
-    return CARRY_FREE_MAX_M if best is None else max(0., min(CARRY_FREE_MAX_M, best - CARRY_FREE_OFFSET_M))
+    ux, uy = dx / L, dy / L
+    reach = acquisition_reach(view)
+    top = min(L, CARRY_FREE_MAX_M)
+    k = 0
+    while True:
+        sdist = k * CARRY_PATH_STEP_M
+        if sdist > top + 1e-9:
+            return round(top, 6)
+        px, py = view.x + ux * sdist, view.y + uy * sdist
+        t_me = time_to_cover(view, sdist)
+        for o in opps:
+            if time_to_cover(view, max(0., hypot(o.x - px, o.y - py) - reach)) <= t_me:
+                return round(max(0., (k - 1) * CARRY_PATH_STEP_M), 6) if k else 0.
+        k += 1
 
 
 def carry_value(view, opps, aim):
-    fr = free_run_m(view.x, view.y, aim, opps)
+    fr = free_run_m(view, opps, aim)
     near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=99.)
     gx = view.own_goal_x + view.attack_sign * 100.
     v = CARRY_BASE + CARRY_FREE_W * fr - (CARRY_CLOSE_PENALTY if near < CARRY_CLOSE_M else 0.)
@@ -215,49 +246,86 @@ def carry_value(view, opps, aim):
     return round(v, 6), fr
 
 
-def pass_value(view, c, opps, pressured):
-    """(value, gain, clearance) for a pass to believed teammate track `c`; None outside the 3-30 m range."""
+def lane_margin(view, c, opps, speed):
+    """Margin (m) by which the pass path to track `c` stays beyond every opponent's acquisition reach + LANE_MARGIN_M,
+    each opponent advanced by his believed velocity to the time the ball reaches the sample. Negative = unsafe."""
+    dx, dy = c.x - view.x, c.y - view.y
+    dist = hypot(dx, dy)
+    reach = acquisition_reach(view) + LANE_MARGIN_M
+    margin = 99.
+    for k in range(LANE_SAMPLES + 1):
+        f = k / LANE_SAMPLES
+        px, py, tb = view.x + dx * f, view.y + dy * f, dist * f / speed
+        for o in opps:
+            margin = min(margin, hypot(o.x + o.vx * tb - px, o.y + o.vy * tb - py) - reach)
+    return margin
+
+
+def zone_clock_penalty(view, c, max_age_ms):
+    """RB-3.13: 6.0 * (1 - t_left/2) for a receiver in the zone he attacks with t_left < 2 s. Canon (Q-RB312-2): the exact
+    clock is read only for a teammate who is in the carrier's fresh tracks (age <= max_age_ms)."""
+    if not 0 <= view.delivered_ms - c.captured_ms <= max_age_ms:
+        return 0.
+    clock = dict(getattr(view, 'mate_zone_ms', ()) or ()).get(c.entity)
+    if clock is None:
+        return 0.
+    left = max(0., (5000 - clock) / 1000.)
+    return RECEIVER_CLOCK_PENALTY * (1. - left / RECEIVER_CLOCK_LIMIT_S) if left < RECEIVER_CLOCK_LIMIT_S else 0.
+
+
+def pass_value(view, c, opps, pressured, max_age_ms=2000):
+    """(value, gain, margin) for a pass to believed teammate track `c`; None outside the range or on an unsafe lane."""
+    from .throw_speed import release_speed
     sg = view.attack_sign
     dx, dy = c.x - view.x, c.y - view.y
     dist = hypot(dx, dy)
     if not PASS_MIN_M <= dist <= PASS_MAX_M:
         return None
+    margin = lane_margin(view, c, opps, release_speed(dist, 120.))
+    if margin < 0:
+        return None                                              # unsafe lane: excluded
     gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
-    clearance = 10.
-    for o in opps:
-        f = max(0., min(1., ((o.x - view.x) * dx + (o.y - view.y) * dy) / (dist * dist)))
-        clearance = min(clearance, hypot(o.x - view.x - f * dx, o.y - view.y - f * dy))
     space = min([hypot(o.x - c.x, o.y - c.y) for o in opps] + [10.])
-    v = (PASS_BASE + PASS_GAIN_W * gain + PASS_CLEAR_W * (clearance - PASS_CLEAR_BASE)
+    v = (PASS_BASE + PASS_GAIN_W * gain + PASS_CLEAR_W * (min(margin, 10.) - PASS_CLEAR_BASE)
          + PASS_SPACE_W * (space - PASS_SPACE_BASE) - PASS_DIST_W * dist
          + (PRESSURED_BONUS if pressured and space >= PRESSURED_SPACE_M else 0.)
-         - (BACKWARD_W * abs(gain) if gain < 0 and not pressured else 0.))
-    clocks = dict(getattr(view, 'mate_zone_ms', ()) or ())
-    if c.entity in clocks and (5000 - clocks[c.entity]) / 1000. < RECEIVER_CLOCK_LIMIT_S:
-        v -= RECEIVER_CLOCK_PENALTY
-    return round(v, 6), gain, clearance
+         - (BACKWARD_W * abs(gain) if gain < 0 and not pressured else 0.)
+         - zone_clock_penalty(view, c, max_age_ms))
+    return round(v, 6), gain, margin
 
 
-def carrier_options(view, fresh, carry_aim, sg=None):
+def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
     """RB/3 carry and pass options for the ball carrier: [(kind, target, aim, value)], in the M1 tuple form.
     carry_aim None (a Keeper) means no carry option. Pure: own belief tracks (`fresh`), own body, own feedback."""
     opps = [t for t in fresh if t.team not in (view.team, 'ball') and t.role != 'archer']
     mates = sorted((t for t in fresh if t.team == view.team and t.role != 'archer' and t.entity != view.athlete), key=lambda t: t.entity)
-    near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=99.)
-    pressured = near < PRESSURED_M
+    pressured = is_pressured(view, opps)
     held = getattr(view, 'own_control_ms', None)
     committed = (not pressured) and held is not None and held < COMMIT_MS
     out = []
-    if carry_aim is not None:
-        out.append(('carry', None, carry_aim, carry_value(view, opps, carry_aim)[0]))
+    passes = []
     for c in mates:
-        r = pass_value(view, c, opps, pressured)
+        r = pass_value(view, c, opps, pressured, max_age_ms)
         if r is None:
             continue
-        v, gain, clearance = r
-        if committed and not (gain >= COMMIT_GAIN_M and clearance >= COMMIT_CLEAR_M):
+        v, gain, margin = r
+        if committed and not (gain >= COMMIT_GAIN_M and margin >= COMMIT_CLEAR_M):
             continue
-        out.append(('pass', c.entity, (c.x, c.y), v))
+        passes.append(('pass', c.entity, (c.x, c.y), v))
+    if carry_aim is not None:
+        best_aim, best_v = carry_aim, carry_value(view, opps, carry_aim)[0]
+        dx, dy = carry_aim[0] - view.x, carry_aim[1] - view.y
+        L = hypot(dx, dy)
+        if pressured and not passes and L > 1e-9:       # RB-3.13: pressured with no safe pass: look for a lateral way out
+            from math import cos, sin, radians
+            for ang in ESCAPE_ANGLES_DEG:
+                c_, s_ = cos(radians(ang)), sin(radians(ang))
+                aim = (round(_clamp(view.x + (dx * c_ - dy * s_) / L * ESCAPE_LEN_M), 3), round(_clamp(view.y + (dx * s_ + dy * c_) / L * ESCAPE_LEN_M), 3))
+                v_ = carry_value(view, opps, aim)[0]
+                if v_ > best_v + 1e-9:
+                    best_aim, best_v = aim, v_
+        out.append(('carry', None, best_aim, best_v))
+    out.extend(passes)
     return out
 
 

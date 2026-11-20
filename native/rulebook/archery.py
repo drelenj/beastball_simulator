@@ -39,6 +39,10 @@ def install(co,cfg):
     # RB-3.5 ruling 2: the same for a release while a shot is in the air after the clock expired.
     s.quivers[p.team].last_release=s.now
     self.emit('arrow_inert','RB-3.4',player=pid,target=target,reason='dead_ball_release' if s.phase==P.DEAD else 'finishing_flight_release',refunded=True);return False
+   if getattr(self,'rb310_hold',None):
+    # RB-3.13 CANON: no arrow may be released until the snap hold is over: inert, no foul, not charged.
+    s.quivers[p.team].last_release=s.now
+    self.emit('arrow_inert','RB-3.13',player=pid,target=target,reason='snap_hold_release',refunded=True);return False
    # RB-3.4 rulings 1 and 3: judged at release; passive possession only (no team-control test).
    checks=dict(archer=p.role=='archer',archer_eligible=p.eligible(s.now),phase=s.phase==P.LIVE,hunt_not_cleared=self.hunt_cleared,
                stale_target=t is not None and t.role=='field' and t.team!=p.team,

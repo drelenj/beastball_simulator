@@ -90,43 +90,52 @@ def test_unpressured_free_run_carries_where_M1_would_pass():
     assert any(r[0] == 'pass' for r in o)
 
 
-def test_control_blocked_runway_prefers_the_pass():                    # same scene, a defender in the cone: carry loses
-    v, tr, sg = carrier_scene(opps=[(50. + 5.5, 50.5)], mates=[(50. + 10, 42.)])
-    o = opts(v, tr); assert best(o)[0] == 'pass', o
+def test_blocked_runway_lowers_the_carry_and_an_unsafe_lane_is_excluded():      # RB-3.13: lane safety and closing-time free run
+    v, tr, _ = carrier_scene(opps=[(56., 50.)], mates=[(50., 30.), (62., 42.)])
+    o = opts(v, tr); assert [r[1] for r in o if r[0] == 'pass'] == ['A:1']                 # A:2's lane passes within reach of the defender
+    v2, tr2, _ = carrier_scene(opps=[(66., 50.)], mates=[(50., 30.), (62., 42.)])
+    assert [r[1] for r in opts(v2, tr2) if r[0] == 'pass'] == ['A:1', 'A:2']
+    assert [r[3] for r in o if r[0] == 'carry'][0] < [r[3] for r in opts(v2, tr2) if r[0] == 'carry'][0]
 
 
 def test_pressured_carrier_passes_to_an_open_teammate_and_unpressured_control_does_not():
-    v, tr, sg = carrier_scene(opps=[(50. + 2., 50.)], mates=[(50. + 12., 40.)])
-    o = opts(v, tr); assert best(o)[0] == 'pass', o
-    c = [r for r in o if r[0] == 'carry'][0][3]; assert c < 2.0                   # close defender in the way: carry is poor
-    v2, tr2, _ = carrier_scene(opps=[(50. - 30., 90.)], mates=[(50. + 12., 40.)])
+    v, tr, _ = carrier_scene(opps=[(60., 50.)], mates=[(62., 40.)])
+    tr = tuple(replace(t, vx=-9.) if t.team == 'B' else t for t in tr); v = replace(v, tracks=tr)
+    o = opts(v, tr); assert best(o)[0] == 'pass', o                                  # closing rush from the front: passes
+    v2, tr2, _ = carrier_scene(opps=[(50., 80.)], mates=[(62., 40.)])                # control: the defender far to the side, no rush
     assert best(opts(v2, tr2))[0] == 'carry'
+    assert [r[3] for r in o if r[0] == 'carry'][0] < [r[3] for r in opts(v2, tr2) if r[0] == 'carry'][0]
 
 
 def test_commitment_blocks_a_mediocre_pass_for_600ms_then_allows_it():
     scene = dict(opps=[(50. + 8., 56.)], mates=[(50. + 5., 38.)])
     v, tr, _ = carrier_scene(held_ms=200, **scene); assert not any(r[0] == 'pass' for r in opts(v, tr))
     v, tr, _ = carrier_scene(held_ms=900, **scene); assert any(r[0] == 'pass' for r in opts(v, tr))        # control: same scene, later
-    v, tr, _ = carrier_scene(held_ms=200, opps=[(50. + 2., 50.)], mates=[(50. + 5., 38.)])
-    assert any(r[0] == 'pass' for r in opts(v, tr))                                                          # pressured: commitment does not apply
+    v, tr, _ = carrier_scene(held_ms=200, opps=[(60., 50.)], mates=[(50., 30.)])
+    tr = tuple(replace(t, vx=-9.) if t.team == 'B' else t for t in tr); v = replace(v, tracks=tr)
+    assert R.is_pressured(v, [t for t in tr if t.team == 'B']) and any(r[0] == 'pass' for r in opts(v, tr))   # pressured: commitment does not apply
     v, tr, _ = carrier_scene(held_ms=200, opps=[(50. - 30., 90.)], mates=[(50. + 15., 40.)])
-    assert any(r[0] == 'pass' for r in opts(v, tr))                                                          # big gain + clear lane: exempt
+    assert any(r[0] == 'pass' for r in opts(v, tr))                                                          # big gain + safe lane: exempt
 
 
 def test_backward_pass_penalised_only_when_unpressured():
-    v, tr, sg = carrier_scene(opps=[(50. + 30., 90.)], mates=[(50. - 8., 40.)], held_ms=2000)
+    sc = dict(mates=[(50. - 8., 40.)], held_ms=2000)
+    v, tr, sg = carrier_scene(opps=[(58., 58.)], **sc)
     free = [r for r in opts(v, tr) if r[0] == 'pass'][0][3]
-    v, tr, sg = carrier_scene(opps=[(50. + 3., 50.), (50. + 30., 90.)], mates=[(50. - 8., 40.)], held_ms=2000)
+    v, tr, sg = carrier_scene(opps=[(58., 58.)], **sc)                                    # same, with a rush closing in from the front
+    tr = tuple(replace(t, vx=-9., vy=-9.) if t.team == 'B' else t for t in tr)
+    v = replace(v, tracks=tr); assert R.is_pressured(v, [t for t in tr if t.team == 'B'])
     pressed = [r for r in opts(v, tr) if r[0] == 'pass'][0][3]
     assert pressed > free + 2.
 
 
 def test_receiver_zone_clock_penalty_applies_below_two_seconds_only():
     scene = dict(opps=[(50. + 3., 55.)], mates=[(50. + 15., 40.)])
-    base = [r for r in opts(*carrier_scene(**scene)[:2]) if r[0] == 'pass'][0][3]
-    low = [r for r in opts(*carrier_scene(clocks=[('A:1', 4000)], **scene)[:2]) if r[0] == 'pass'][0][3]
-    ok = [r for r in opts(*carrier_scene(clocks=[('A:1', 2500)], **scene)[:2]) if r[0] == 'pass'][0][3]
-    assert abs(base - low - R.RECEIVER_CLOCK_PENALTY) < 1e-6 and ok == base
+    pv = lambda **kw: [r for r in opts(*carrier_scene(**scene, **kw)[:2]) if r[0] == 'pass'][0][3]
+    base = pv()
+    assert abs(base - pv(clocks=[('A:1', 4000)]) - 3.0) < 1e-6                                # t_left 1.0 s: 6 * (1 - .5)
+    assert abs(base - pv(clocks=[('A:1', 4900)]) - 5.7) < 1e-6                                # t_left 0.1 s
+    assert pv(clocks=[('A:1', 3000)]) == base == pv(clocks=[('A:1', 2500)])                   # t_left >= 2 s: none
 
 
 def test_carrier_options_is_deterministic_and_pure():
