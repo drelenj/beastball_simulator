@@ -419,15 +419,18 @@ class NativePort:
         for p in s.players.values():
             if p.role!='keeper' or not p.active:continue
             if rb3 and s.ball.carrier is None:
+                # Restart awards replace the Ball and can reuse its version.
+                marks = (s.ball.release_time, getattr(s.ball, 'course_time', -1))
+                flight = (s.ball.version, *marks)
                 timing = getattr(p, 'native_keeper_flight', None)
-                if timing is None or timing[0] != s.ball.version:
+                if timing is None or timing[0] != flight:
                     previous = timing[1] if timing else -math.inf
-                    started = max((t for t in (s.ball.release_time, getattr(s.ball, 'course_time', -1))
+                    started = max((t for t in marks
                                    if previous < t <= s.now and t >= 0), default=s.now)
                     reaction = m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness)
                     if p.speed > m.assume['keeper_set_mps']:
                         reaction += m.assume['keeper_unset_s']
-                    p.native_keeper_flight = (s.ball.version, started, started+1000*reaction)
+                    p.native_keeper_flight = (flight, started, started+1000*reaction)
             launch=getattr(p,'c4c_launch',None)
             if launch:
                 if p.posture=='airborne' and s.now<launch['t_land']-.5:continue

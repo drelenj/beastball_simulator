@@ -60,3 +60,17 @@ def test_keeper_admission_waits_and_uses_matching_body_parameters(monkeypatch, m
     state.now += 400
     port.keeper_motor({})
     assert calls == []
+
+
+def test_keeper_reaction_restarts_when_restart_reuses_ball_version():
+    port, keeper = lab('keeper')
+    state = port.m.s
+    first = new_flight(port, (12., 50., 1.5), (-25., 0., 0.))
+    port.keeper_motor({})
+    state.now += 300
+    second = new_flight(port, (20., 50., 1.5), (-25., 0., 0.))
+    assert second.version == first.version
+    port.keeper_motor({})
+    _, started, ready = keeper.native_keeper_flight
+    assert started == state.now
+    assert ready - started == pytest.approx(176)
