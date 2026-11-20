@@ -1,0 +1,1260 @@
+{
+  "keeper": [
+    {
+      "awareness": 0.5,
+      "aim": [
+        0.0,
+        1.5
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 155.0000000000001,
+      "plane_ms": 207.28049972566896,
+      "reaction_ms": 200.0,
+      "lateral_demand_m": 0.0,
+      "vertical_demand_m": 0.10483693896506541,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "acquire",
+      "contact_kind": "catch",
+      "at_ms": 146,
+      "flight_speed": 58.00000000000001,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.5,
+      "aim": [
+        2.4,
+        0.4
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.7711074537032,
+      "reaction_ms": 200.0,
+      "lateral_demand_m": 1.8026585295263473,
+      "vertical_demand_m": 0.7197096388876276,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "goal",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.5,
+      "aim": [
+        2.4,
+        2.0
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.78640928071573,
+      "reaction_ms": 200.0,
+      "lateral_demand_m": 1.8025284914543676,
+      "vertical_demand_m": 0.4820428403506736,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "frame",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.7,
+      "aim": [
+        0.0,
+        1.5
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 155.0000000000001,
+      "plane_ms": 207.28049972566896,
+      "reaction_ms": 176.00000000000003,
+      "lateral_demand_m": 0.0,
+      "vertical_demand_m": 0.10483693896506541,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "acquire",
+      "contact_kind": "catch",
+      "at_ms": 146,
+      "flight_speed": 58.00000000000001,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.7,
+      "aim": [
+        2.4,
+        0.4
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.7711074537032,
+      "reaction_ms": 176.00000000000003,
+      "lateral_demand_m": 1.8026585295263473,
+      "vertical_demand_m": 0.7197096388876276,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "goal",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.7,
+      "aim": [
+        2.4,
+        2.0
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.78640928071573,
+      "reaction_ms": 176.00000000000003,
+      "lateral_demand_m": 1.8025284914543676,
+      "vertical_demand_m": 0.4820428403506736,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "frame",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.9,
+      "aim": [
+        0.0,
+        1.5
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 155.0000000000001,
+      "plane_ms": 207.28049972566896,
+      "reaction_ms": 152.0,
+      "lateral_demand_m": 0.0,
+      "vertical_demand_m": 0.10483693896506541,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "acquire",
+      "contact_kind": "catch",
+      "at_ms": 146,
+      "flight_speed": 58.00000000000001,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.9,
+      "aim": [
+        2.4,
+        0.4
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.7711074537032,
+      "reaction_ms": 152.0,
+      "lateral_demand_m": 1.8026585295263473,
+      "vertical_demand_m": 0.7197096388876276,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "goal",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.9,
+      "aim": [
+        2.4,
+        2.0
+      ],
+      "forced_intent": false,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.78640928071573,
+      "reaction_ms": 152.0,
+      "lateral_demand_m": 1.8025284914543676,
+      "vertical_demand_m": 0.4820428403506736,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "frame",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.5,
+      "aim": [
+        0.0,
+        1.5
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 155.0000000000001,
+      "plane_ms": 207.28049972566896,
+      "reaction_ms": 200.0,
+      "lateral_demand_m": 0.0,
+      "vertical_demand_m": 0.10483693896506541,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "acquire",
+      "contact_kind": "catch",
+      "at_ms": 146,
+      "flight_speed": 58.00000000000001,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.5,
+      "aim": [
+        2.4,
+        0.4
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.7711074537032,
+      "reaction_ms": 200.0,
+      "lateral_demand_m": 1.8026585295263473,
+      "vertical_demand_m": 0.7197096388876276,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "goal",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.5,
+      "aim": [
+        2.4,
+        2.0
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.78640928071573,
+      "reaction_ms": 200.0,
+      "lateral_demand_m": 1.8025284914543676,
+      "vertical_demand_m": 0.4820428403506736,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "frame",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.7,
+      "aim": [
+        0.0,
+        1.5
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 155.0000000000001,
+      "plane_ms": 207.28049972566896,
+      "reaction_ms": 176.00000000000003,
+      "lateral_demand_m": 0.0,
+      "vertical_demand_m": 0.10483693896506541,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "acquire",
+      "contact_kind": "catch",
+      "at_ms": 146,
+      "flight_speed": 58.00000000000001,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.7,
+      "aim": [
+        2.4,
+        0.4
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.7711074537032,
+      "reaction_ms": 176.00000000000003,
+      "lateral_demand_m": 1.8026585295263473,
+      "vertical_demand_m": 0.7197096388876276,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "goal",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.7,
+      "aim": [
+        2.4,
+        2.0
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.78640928071573,
+      "reaction_ms": 176.00000000000003,
+      "lateral_demand_m": 1.8025284914543676,
+      "vertical_demand_m": 0.4820428403506736,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "frame",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.9,
+      "aim": [
+        0.0,
+        1.5
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 155.0000000000001,
+      "plane_ms": 207.28049972566896,
+      "reaction_ms": 152.0,
+      "lateral_demand_m": 0.0,
+      "vertical_demand_m": 0.10483693896506541,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "acquire",
+      "contact_kind": "catch",
+      "at_ms": 146,
+      "flight_speed": 58.00000000000001,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.9,
+      "aim": [
+        2.4,
+        0.4
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.7711074537032,
+      "reaction_ms": 152.0,
+      "lateral_demand_m": 1.8026585295263473,
+      "vertical_demand_m": 0.7197096388876276,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "goal",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    },
+    {
+      "awareness": 0.9,
+      "aim": [
+        2.4,
+        2.0
+      ],
+      "forced_intent": true,
+      "keeper_id": "A:NBL24-07-11",
+      "body_height_m": 2.279,
+      "arm_reach_m": 1.2535,
+      "standing_reach_m": 2.963,
+      "latency_ms": 200,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 211.78640928071573,
+      "reaction_ms": 152.0,
+      "lateral_demand_m": 1.8025284914543676,
+      "vertical_demand_m": 0.4820428403506736,
+      "hand_radius_m": 1.12815,
+      "hand_height_m": 1.41298,
+      "displaced_y_m": 0.0,
+      "lifted_m": 0.0,
+      "launched": false,
+      "outcome": "frame",
+      "contact_kind": null,
+      "at_ms": 213,
+      "flight_speed": 58.0,
+      "radius": 0.1075
+    }
+  ],
+  "catches": [
+    {
+      "role": "field",
+      "speed": 22.0,
+      "offset": 0.0,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              50.0,
+              1.4499333405115145
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 22.0,
+      "offset": 0.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "role": "field",
+      "speed": 22.0,
+      "offset": 0.0,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              50.0,
+              1.4499333405115145
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 22.0,
+      "offset": 0.8,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              50.8,
+              1.4499333405115145
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 22.0,
+      "offset": 0.8,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "role": "field",
+      "speed": 22.0,
+      "offset": 0.8,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              50.8,
+              1.4499333405115145
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 58.0,
+      "offset": 0.0,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.99973039227779,
+              50.0,
+              1.4499197800446162
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 58.0,
+      "offset": 0.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "role": "field",
+      "speed": 58.0,
+      "offset": 0.0,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.99973039227779,
+              50.0,
+              1.4499197800446162
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 58.0,
+      "offset": 0.8,
+      "seed": 1,
+      "events": [
+        [
+          "touch",
+          64,
+          {
+            "deliberate": false,
+            "velocity": [
+              9.8506130128494,
+              6.0928111890994865,
+              0.8039969324008618
+            ],
+            "ball_point": [
+              19.99973039227779,
+              50.8,
+              1.4499197800446162
+            ],
+            "c1_contact": true,
+            "cooldown_ms": 200,
+            "keeper_block": false,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "field",
+      "speed": 58.0,
+      "offset": 0.8,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "role": "field",
+      "speed": 58.0,
+      "offset": 0.8,
+      "seed": 3,
+      "events": [
+        [
+          "touch",
+          64,
+          {
+            "deliberate": false,
+            "velocity": [
+              11.153372721304393,
+              -3.1239721276920736,
+              1.5016989581144073
+            ],
+            "ball_point": [
+              19.99973039227779,
+              50.8,
+              1.4499197800446162
+            ],
+            "c1_contact": true,
+            "cooldown_ms": 200,
+            "keeper_block": false,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 22.0,
+      "offset": 0.0,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          39,
+          {
+            "ball_point": [
+              19.446025388425,
+              50.0,
+              1.4622686157717062
+            ],
+            "c1_contact": true,
+            "c4c_kind": "catch",
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 22.0,
+      "offset": 0.0,
+      "seed": 2,
+      "events": [
+        [
+          "touch",
+          39,
+          {
+            "deliberate": false,
+            "c4c_read": false,
+            "c4c_vin": [
+              21.967,
+              0.0,
+              -0.9795
+            ],
+            "c4c_hand_v": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "velocity": [
+              -6.5901074212888915,
+              0.0,
+              -0.9795296030733944
+            ],
+            "ball_point": [
+              19.446025390625,
+              50.0,
+              1.4622686157226563
+            ],
+            "c1_contact": true,
+            "cooldown_ms": 0,
+            "keeper_block": false,
+            "c4c_kind": "body",
+            "c4c_normal": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "c4c_secure_p": null,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 22.0,
+      "offset": 0.0,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          39,
+          {
+            "ball_point": [
+              19.446025388425,
+              50.0,
+              1.4622686157717062
+            ],
+            "c1_contact": true,
+            "c4c_kind": "catch",
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 22.0,
+      "offset": 0.8,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              50.8,
+              1.4499333405115145
+            ],
+            "c1_contact": true,
+            "c4c_kind": "catch",
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 22.0,
+      "offset": 0.8,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "role": "keeper",
+      "speed": 22.0,
+      "offset": 0.8,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              50.8,
+              1.4499333405115145
+            ],
+            "c1_contact": true,
+            "c4c_kind": "catch",
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 58.0,
+      "offset": 0.0,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          55,
+          {
+            "ball_point": [
+              19.4460546817,
+              50.0,
+              1.454602158252175
+            ],
+            "c1_contact": true,
+            "c4c_kind": "catch",
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 58.0,
+      "offset": 0.0,
+      "seed": 2,
+      "events": [
+        [
+          "touch",
+          55,
+          {
+            "deliberate": false,
+            "c4c_read": false,
+            "c4c_vin": [
+              57.9131,
+              0.0,
+              -0.9795
+            ],
+            "c4c_hand_v": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "velocity": [
+              -17.37391956521617,
+              0.0,
+              -0.9795296030733642
+            ],
+            "ball_point": [
+              19.446054687500002,
+              50.0,
+              1.454602158203125
+            ],
+            "c1_contact": true,
+            "cooldown_ms": 0,
+            "keeper_block": false,
+            "c4c_kind": "body",
+            "c4c_normal": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "c4c_secure_p": null,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 58.0,
+      "offset": 0.0,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          55,
+          {
+            "ball_point": [
+              19.4460546817,
+              50.0,
+              1.454602158252175
+            ],
+            "c1_contact": true,
+            "c4c_kind": "catch",
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 58.0,
+      "offset": 0.8,
+      "seed": 1,
+      "events": [
+        [
+          "touch",
+          64,
+          {
+            "deliberate": false,
+            "c4c_read": false,
+            "c4c_vin": [
+              57.9131,
+              0.0,
+              -0.9795
+            ],
+            "c4c_hand_v": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "velocity": [
+              57.91306521738723,
+              0.0,
+              -0.9795296030733944
+            ],
+            "ball_point": [
+              19.99973039227779,
+              50.8,
+              1.4499197800446162
+            ],
+            "c1_contact": true,
+            "cooldown_ms": 200,
+            "keeper_block": true,
+            "c4c_kind": "parry",
+            "c4c_normal": [
+              -0.0003,
+              0.9992,
+              -0.0398
+            ],
+            "c4c_secure_p": 0.1865,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "role": "keeper",
+      "speed": 58.0,
+      "offset": 0.8,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "role": "keeper",
+      "speed": 58.0,
+      "offset": 0.8,
+      "seed": 3,
+      "events": [
+        [
+          "touch",
+          64,
+          {
+            "deliberate": false,
+            "c4c_read": false,
+            "c4c_vin": [
+              57.9131,
+              0.0,
+              -0.9795
+            ],
+            "c4c_hand_v": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "velocity": [
+              57.91306521738723,
+              0.0,
+              -0.9795296030733944
+            ],
+            "ball_point": [
+              19.99973039227779,
+              50.8,
+              1.4499197800446162
+            ],
+            "c1_contact": true,
+            "cooldown_ms": 200,
+            "keeper_block": true,
+            "c4c_kind": "parry",
+            "c4c_normal": [
+              -0.0003,
+              0.9992,
+              -0.0398
+            ],
+            "c4c_secure_p": 0.1865,
+            "generation": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "interceptions": [
+    {
+      "speed": 22.0,
+      "offset": 1.0,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              51.0,
+              1.7419533405115146
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "speed": 22.0,
+      "offset": 1.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "speed": 22.0,
+      "offset": 1.0,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.999289518341858,
+              51.0,
+              1.7419533405115146
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "speed": 22.0,
+      "offset": 2.0,
+      "seed": 1,
+      "events": []
+    },
+    {
+      "speed": 22.0,
+      "offset": 2.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "speed": 22.0,
+      "offset": 2.0,
+      "seed": 3,
+      "events": []
+    },
+    {
+      "speed": 22.0,
+      "offset": 3.0,
+      "seed": 1,
+      "events": []
+    },
+    {
+      "speed": 22.0,
+      "offset": 3.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "speed": 22.0,
+      "offset": 3.0,
+      "seed": 3,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 1.0,
+      "seed": 1,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.99973039227779,
+              51.0,
+              1.7419397800446164
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "speed": 58.0,
+      "offset": 1.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 1.0,
+      "seed": 3,
+      "events": [
+        [
+          "acquire",
+          64,
+          {
+            "ball_point": [
+              19.99973039227779,
+              51.0,
+              1.7419397800446164
+            ],
+            "c1_contact": true,
+            "generation": 1
+          }
+        ]
+      ]
+    },
+    {
+      "speed": 58.0,
+      "offset": 2.0,
+      "seed": 1,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 2.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 2.0,
+      "seed": 3,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 3.0,
+      "seed": 1,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 3.0,
+      "seed": 2,
+      "events": []
+    },
+    {
+      "speed": 58.0,
+      "offset": 3.0,
+      "seed": 3,
+      "events": []
+    }
+  ],
+  "body_block": {
+    "event": "touch",
+    "at_ms": 55,
+    "kind": "body",
+    "outgoing": [
+      -17.37391956521617,
+      0.0,
+      -0.9795296030733642
+    ],
+    "carrier": null,
+    "mode": "shot"
+  },
+  "running": [
+    {
+      "carry": false,
+      "maximum": 31.2928,
+      "acceleration": 8.75,
+      "cap": 31.2928,
+      "speeds": [
+        8.75,
+        17.5,
+        26.25,
+        31.2928
+      ]
+    },
+    {
+      "carry": true,
+      "maximum": 31.2928,
+      "acceleration": 8.75,
+      "cap": 31.2928,
+      "speeds": [
+        8.75,
+        17.5,
+        26.25,
+        31.2928
+      ]
+    }
+  ]
+}
