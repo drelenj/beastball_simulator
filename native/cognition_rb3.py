@@ -173,6 +173,8 @@ def defender_baseline(view, belief, intent, record):
 #  BACKWARD_W              0.4   unpressured backward pass pays this per metre of loss
 #  COMMIT_MS               600   after gaining control an UNPRESSURED carrier does not pass...
 #  COMMIT_GAIN_M / CLEAR_M 10 / 4.0  ...unless the pass gains at least this and has at least this margin
+#  TYPICAL_ACCEL / TOP      8.75 / 0.88*31.2928  RB-3.14: opponent kinematics for the free run (from his believed velocity)
+#  CARRY_CONTACT_BUFFER_M  1.0   RB-3.14: free run = distance before the first opponent can reach the path, minus this
 #  ESCAPE_ANGLES_DEG       +-45, +-90  RB-3.13: carry directions tried beside the straight carry ONLY when pressured with no safe pass
 #  RECEIVER_CLOCK_LIMIT_S  2.0   RB-3.13: receiver in the zone he attacks with t_left under this:
 #  RECEIVER_CLOCK_PENALTY  6.0   ...penalty = 6.0 * (1 - t_left / 2.0); read only for a teammate in FRESH tracks (Q-RB312-2 canon)
@@ -188,18 +190,26 @@ LANE_MARGIN_M, LANE_SAMPLES = .5, 10
 PRESSURED_SPACE_M, PRESSURED_BONUS, BACKWARD_W = 6.0, 3.0, 0.4
 COMMIT_MS, COMMIT_GAIN_M, COMMIT_CLEAR_M = 600, 10., 4.0
 RECEIVER_CLOCK_LIMIT_S, RECEIVER_CLOCK_PENALTY = 2.0, 6.0
+TYPICAL_ACCEL, TYPICAL_TOP, CARRY_CONTACT_BUFFER_M = 8.75, .88 * 31.2928, 1.0   # RB-3.14: typical athlete (the 0.70 control) for opponent kinematics; contact buffer (m)
 ESCAPE_ANGLES_DEG, ESCAPE_LEN_M = (45., -45., 90., -90.), 15.   # RB-3.13: lateral carry directions tried beside the straight one (ties keep the straight one)
 
 
 def acquisition_reach(view):
-    """Estimated horizontal distance within which an opponent can take the ball (see the table; own reach as the proxy)."""
+    """Fallback estimate of an opponent's acquisition reach (the carrier's own reach + radius + slack)."""
     reach = view.body.reach if view.body is not None else ACQ_DEFAULT_REACH_M
     return reach + ACQ_RADIUS_M + ACQ_EXTRA_M
 
 
+def opp_reach(view, o):
+    """RB-3.14: the perceived opponent's own acquisition reach (public body size, read only for tracks in `fresh`);
+    falls back to the estimate when the view carries no body size for him."""
+    r = dict(getattr(view, 'body_reach', ()) or ()).get(o.entity)
+    return acquisition_reach(view) if r is None else r + ACQ_RADIUS_M + ACQ_EXTRA_M
+
+
 def time_to_contact(view, o, reach=None):
-    """Seconds until believed opponent `o` can reach the carrier: (distance - reach) over his closing speed (>= 1 m/s)."""
-    reach = acquisition_reach(view) if reach is None else reach
+    """Seconds until believed opponent `o` can reach the carrier: (distance - his reach) over his closing speed (>= 1 m/s)."""
+    reach = opp_reach(view, o) if reach is None else reach
     dx, dy = view.x - o.x, view.y - o.y
     d = hypot(dx, dy)
     if d < 1e-9:
@@ -208,20 +218,53 @@ def time_to_contact(view, o, reach=None):
     return max(0., d - reach) / closing
 
 
+def release_time_s(view):
+    """RB-3.14: seconds from this decision to the release: the engine's pass_release_ms plus any time left on a pending command."""
+    pending = 0
+    if getattr(view, 'pending_command_id', None) is not None and view.pending_release_ms is not None:
+        pending = max(0, view.pending_release_ms - view.delivered_ms)
+    return (getattr(view, 'pass_release_ms', 250) + pending) / 1000.
+
+
+def release_blocked(view, opps):
+    """RB-3.14: some opponent, advanced to the release time, is within his reach of the release point (the carrier)."""
+    t = release_time_s(view)
+    return any(hypot(o.x + o.vx * t - view.x, o.y + o.vy * t - view.y) <= opp_reach(view, o) for o in opps)
+
+
 def is_pressured(view, opps):
-    return any(time_to_contact(view, o) < PRESSURE_T_S for o in opps)
+    return any(time_to_contact(view, o) < PRESSURE_T_S for o in opps) or release_blocked(view, opps)
+
+
+def typical_time_to(o, px, py, reach):
+    """RB-3.14: seconds for a TYPICAL athlete (TYPICAL_ACCEL, TYPICAL_TOP) starting from believed opponent `o`'s position
+    and velocity to come within `reach` of (px, py). Signed velocity along the line first has to be braked if it points away."""
+    dx, dy = px - o.x, py - o.y
+    d = hypot(dx, dy)
+    D = max(0., d - reach)
+    if D <= 0.:
+        return 0.
+    a, vmax = TYPICAL_ACCEL, TYPICAL_TOP
+    v0 = (o.vx * dx + o.vy * dy) / d
+    t0 = 0.
+    if v0 < 0.:
+        t0, D, v0 = -v0 / a, D + v0 * v0 / (2. * a), 0.
+    v0 = min(v0, vmax)
+    d1 = (vmax * vmax - v0 * v0) / (2. * a)
+    if D <= d1:
+        return t0 + (-v0 + (v0 * v0 + 2. * a * D) ** .5) / a
+    return t0 + (vmax - v0) / a + (D - d1) / vmax
 
 
 def free_run_m(view, opps, aim):
-    """Distance the carrier covers along (x,y)->aim before any believed opponent can reach his path: the first sample
-    where the opponent's time to that point (his distance minus reach, at the carrier's own top speed) is no more than
-    the carrier's own time to it. Clamped [0, CARRY_FREE_MAX_M]."""
+    """RB-3.14: distance the carrier covers along (x,y)->aim before the first believed opponent can reach his path, minus
+    CARRY_CONTACT_BUFFER_M, clamped [0, CARRY_FREE_MAX_M]. The carrier's time uses his own body; an opponent's time is
+    typical-athlete kinematics from his believed velocity, to within his own acquisition reach."""
     dx, dy = aim[0] - view.x, aim[1] - view.y
     L = hypot(dx, dy)
     if L < 1e-9:
         return CARRY_FREE_MAX_M
     ux, uy = dx / L, dy / L
-    reach = acquisition_reach(view)
     top = min(L, CARRY_FREE_MAX_M)
     k = 0
     while True:
@@ -229,10 +272,10 @@ def free_run_m(view, opps, aim):
         if sdist > top + 1e-9:
             return round(top, 6)
         px, py = view.x + ux * sdist, view.y + uy * sdist
-        t_me = time_to_cover(view, sdist)
+        t_me = time_to_cover(view, sdist, (ux, uy))
         for o in opps:
-            if time_to_cover(view, max(0., hypot(o.x - px, o.y - py) - reach)) <= t_me:
-                return round(max(0., (k - 1) * CARRY_PATH_STEP_M), 6) if k else 0.
+            if typical_time_to(o, px, py, opp_reach(view, o)) <= t_me:
+                return round(max(0., min(CARRY_FREE_MAX_M, sdist - CARRY_CONTACT_BUFFER_M)), 6)
         k += 1
 
 
@@ -246,18 +289,19 @@ def carry_value(view, opps, aim):
     return round(v, 6), fr
 
 
-def lane_margin(view, c, opps, speed):
-    """Margin (m) by which the pass path to track `c` stays beyond every opponent's acquisition reach + LANE_MARGIN_M,
-    each opponent advanced by his believed velocity to the time the ball reaches the sample. Negative = unsafe."""
+def lane_margin(view, c, opps, speed, t_release=None):
+    """Margin (m) by which the pass path stays beyond every opponent's own acquisition reach + LANE_MARGIN_M.
+    RB-3.14: each opponent is advanced by his believed velocity over the release time and then over the ball's travel to
+    each sample; samples run from the release point (f=0) to the receiver. Negative = unsafe."""
+    t_release = release_time_s(view) if t_release is None else t_release
     dx, dy = c.x - view.x, c.y - view.y
     dist = hypot(dx, dy)
-    reach = acquisition_reach(view) + LANE_MARGIN_M
     margin = 99.
     for k in range(LANE_SAMPLES + 1):
         f = k / LANE_SAMPLES
-        px, py, tb = view.x + dx * f, view.y + dy * f, dist * f / speed
+        px, py, tb = view.x + dx * f, view.y + dy * f, t_release + dist * f / speed
         for o in opps:
-            margin = min(margin, hypot(o.x + o.vx * tb - px, o.y + o.vy * tb - py) - reach)
+            margin = min(margin, hypot(o.x + o.vx * tb - px, o.y + o.vy * tb - py) - (opp_reach(view, o) + LANE_MARGIN_M))
     return margin
 
 
@@ -316,14 +360,20 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
         best_aim, best_v = carry_aim, carry_value(view, opps, carry_aim)[0]
         dx, dy = carry_aim[0] - view.x, carry_aim[1] - view.y
         L = hypot(dx, dy)
-        if pressured and not passes and L > 1e-9:       # RB-3.13: pressured with no safe pass: look for a lateral way out
+        if pressured and not passes and L > 1e-9:       # pressured with no safe pass: look for a lateral way out
             from math import cos, sin, radians
+            near = min(opps, key=lambda o: (hypot(o.x - view.x, o.y - view.y), o.entity), default=None)
+            nx, ny = ((near.x - view.x), (near.y - view.y)) if near is not None else (0., 0.)
+            nl = hypot(nx, ny) or 1.
+            toward = lambda ax, ay: ((ax - view.x) * nx + (ay - view.y) * ny) / (nl * (hypot(ax - view.x, ay - view.y) or 1.))
+            best_key = (best_v, -toward(*best_aim))     # equal values (e.g. all blocked): prefer the direction away from the nearest opponent
             for ang in ESCAPE_ANGLES_DEG:
                 c_, s_ = cos(radians(ang)), sin(radians(ang))
                 aim = (round(_clamp(view.x + (dx * c_ - dy * s_) / L * ESCAPE_LEN_M), 3), round(_clamp(view.y + (dx * s_ + dy * c_) / L * ESCAPE_LEN_M), 3))
                 v_ = carry_value(view, opps, aim)[0]
-                if v_ > best_v + 1e-9:
-                    best_aim, best_v = aim, v_
+                key = (v_, -toward(*aim))
+                if key[0] > best_key[0] + 1e-9 or (abs(key[0] - best_key[0]) <= 1e-9 and key[1] > best_key[1] + 1e-9):
+                    best_aim, best_v, best_key = aim, v_, key
         out.append(('carry', None, best_aim, best_v))
     out.extend(passes)
     return out
