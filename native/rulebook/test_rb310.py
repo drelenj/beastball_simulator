@@ -71,10 +71,10 @@ def test_snap_lane_is_clear(kind_reason):
     p = rb3(); s, e, a, t = live(p)
     for i, q in enumerate(field(s, 'A') + field(s, 'B')): q.y = 49. + (i % 3) * .9            # crowd y = 50
     s, e, r = scrim(p, 'A', 50., 30., kind_reason); f = r.rs['formation']
-    lo, hi = sorted((r.x, f['receiver_xy'][0]))
+    sg = s.attack_sign('A'); lo, hi = sorted((r.x, f['receiver_xy'][0] - sg * F.LANE_BEYOND_RECEIVER_M))
     for q in s.players.values():
         if not q.active or q.role == 'archer' or q.id in (f['snapper'], f['receiver']): continue
-        assert not (lo - .5 <= q.x <= hi + .5 and abs(q.y - 50.) < F.LANE_HALF_WIDTH_M), q.id
+        assert not (lo <= q.x <= hi and abs(q.y - 50.) < f['lane_half_width']), q.id      # RB-3.12 E-3: wider corridor
 
 
 def test_frozen_players_are_unfrozen_with_no_buffer_or_immunity():

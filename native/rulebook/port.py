@@ -11,6 +11,8 @@ class RulebookView(C.AthleteView):
     # RB-3.6 (native-rb/3 only; None elsewhere): public team instruction and own-body memory
     defender_baseline: tuple | None = None   # (enabled, mark_distance_m, ball_leash_m)
     own_zone_exit_ms_ago: int | None = None  # live ms since I last left my own Keeper Zone
+    own_control_ms: int | None = None         # RB-3.12 own body: ms since I gained control of the ball (None if I do not hold it)
+    mate_zone_ms: tuple = ()                  # RB-3.12 public: (teammate id, live ms in the zone he attacks) for teammates inside it
     formation: tuple | None = None            # RB-3.9a public: (snapper, receiver, receiver_x, receiver_y, my_spot_x, my_spot_y)
 
 from .config import RulebookConfig
@@ -93,6 +95,12 @@ class RulebookPort(NativePort):
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None)
             r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
             extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
+            sb=self.m.s.ball
+            extra['own_control_ms']=self.m.s.now-sb.control_time if sb.carrier==pid else None
+            me_=self.m.s.players[pid];e_=self.m.e;res=getattr(e_,'residence',{});covered=self.m.s.own_zone(self.m.s.other(me_.team)) if e_.possession.pp==me_.team else None
+            extra['mate_zone_ms']=tuple(sorted((q.id,self.m.s.live_ms-res[q.id]) for q in self.m.s.players.values()
+                                               if covered is not None and q.active and q.team==me_.team and q.id!=pid and q.role=='field'
+                                               and q.id in res and e_.zone(q.x,q.y)==covered)) if covered is not None else ()
             hold=getattr(self.m.e,'rb310_hold',None)
             if fm is None and hold:   # RB-3.11: the designated receiver stays public during the snap hold (until the catch)
                 extra['formation']=(hold['snapper'],hold['receiver'],hold['receiver_xy'][0],hold['receiver_xy'][1],None,None)
@@ -124,7 +132,7 @@ class RulebookPort(NativePort):
     def view_from_json(payload):
         from copy import deepcopy
         data=deepcopy(payload);status=data['view'].pop('status_indicators',());officials=data['view'].pop('officials',CREW)
-        baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None)
+        baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None);ctl=data['view'].pop('own_control_ms',None);mz=data['view'].pop('mate_zone_ms',())
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
-                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None),b
+                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,mate_zone_ms=tuple(tuple(x) for x in mz)),b

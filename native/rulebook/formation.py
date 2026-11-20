@@ -14,7 +14,8 @@ Scrimmage set formation for every scrimmage and snap40 (tosses unchanged):
   any player touches it (a dropped or missed catch counts). Applied by the port (see hold_*).
 - RB-3.10 receiver: default = the eligible field teammate nearest the receiver spot (tie by id); a team
   may designate any eligible field player (port.receiver_designation[team], a tactic hook).
-- RB-3.10 lane: nobody other than snapper and receiver within LANE_HALF_WIDTH_M of y = 50 between them.
+- RB-3.10/3.12 lane: nobody other than snapper and receiver within `half` of y = 50 from the snapper to 1 m past the
+  receiver; half = max(2 m, largest acquisition radius on the field + 1 m) (RB-3.12 E-3).
 - RB-3.10 frozen players are unfrozen at the formation, with no thaw buffer and no freeze immunity.
 - Offense behind the ball line (at least 1 m); defense outside the neutral zone (0.5 m beyond it).
   Each player keeps his own y; only x moves, by the smallest amount needed.
@@ -29,7 +30,15 @@ SPOT_MIN_X, SPOT_MAX_X = 10., FIELD_LENGTH - 10.
 RECEIVER_DEPTH_M = {'scrim': 5., 'snap40': 10.}
 NEUTRAL_ZONE_M = {'scrim': 5., 'snap40': 20.}
 SNAP_HOLD_M = 5.            # RB-3.10: the hold ends when the snap has travelled this far (or on a touch)
-LANE_HALF_WIDTH_M = 2.     # RB-3.10: tunable half-width of the clear snap corridor
+LANE_MIN_HALF_WIDTH_M = 2.  # RB-3.10 floor of the clear snap corridor half-width
+LANE_EXTRA_M = 1.           # RB-3.12 E-3: corridor half-width = largest acquisition radius on the field + this
+LANE_BEYOND_RECEIVER_M = 1. # RB-3.12 E-3: the corridor reaches this far beyond the receiver, away from the line
+
+
+def acquisition_radius(p):
+    """Horizontal radius within which the engine lets a player take the ball: core_src/engine.py acquire():
+    hypot(ball - player) <= reach + radius + 0.2 (the hand-and-body reach test). Read from the player."""
+    return p.a.reach + p.radius + .2
 OFFENSE_BEHIND_M = 1.
 DEFENSE_MARGIN_M = .5
 WATCHDOG_REPEATS = 3
@@ -82,7 +91,11 @@ def install(co, cfg):
         tid = r.rs.get('tackler') if r.kind == 'scrim' else None
         tackler = tid if eligible_field(s, P.get(tid), other) else None
         edge = x0 + sg * (zone + DEFENSE_MARGIN_M)
-        lo, hi = min(x0, rx) - .5, max(x0, rx) + .5
+        # RB-3.12 E-3: corridor from the snapper to LANE_BEYOND_RECEIVER_M past the receiver, as wide as the
+        # largest acquisition radius of any player on the field plus LANE_EXTRA_M
+        half = max([LANE_MIN_HALF_WIDTH_M] + [acquisition_radius(p) + LANE_EXTRA_M for p in P.values() if p.active and p.role != 'archer'])
+        a_, b_ = x0, rx - sg * LANE_BEYOND_RECEIVER_M
+        lo, hi = min(a_, b_), max(a_, b_)
         spots = {}
         for p in sorted(P.values(), key=lambda p: p.id):
             if not p.active or p.role == 'archer':
@@ -93,10 +106,10 @@ def install(co, cfg):
             if p.team == team: x = x0 - sg * OFFENSE_BEHIND_M if sg * (p.x - x0) > -OFFENSE_BEHIND_M else p.x
             else: x = edge if sg * (p.x - x0) < zone + DEFENSE_MARGIN_M else p.x
             y = p.y
-            if lo <= x <= hi and abs(y - 50.) < LANE_HALF_WIDTH_M:          # keep the snap corridor clear
-                y = 50. + (LANE_HALF_WIDTH_M if y >= 50. else -LANE_HALF_WIDTH_M)
+            if lo <= x <= hi and abs(y - 50.) < half:                         # keep the snap corridor clear
+                y = 50. + (half if y >= 50. else -half)
             place(self, p, x, y, spots)
-        r.rs['formation'] = dict(snapper=sid, receiver=rid, receiver_xy=(rx, 50.), depth=depth, zone=zone, nose=None, tackler=tackler,
+        r.rs['formation'] = dict(snapper=sid, receiver=rid, receiver_xy=(rx, 50.), depth=depth, zone=zone, nose=None, tackler=tackler, lane_half_width=half,
                                  line_x=x0, spots=spots, receiver_source=source)
         self.emit('scrimmage_formation', 'RB-3.10', restart_id=r.native_id, kind=r.kind, reason=r.reason, team=team,
                   spot=[x0, 50.], snapper=sid, receiver=rid, receiver_source=source, receiver_spot=[rx, 50.], nose=None,

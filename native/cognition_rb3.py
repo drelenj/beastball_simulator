@@ -146,6 +146,121 @@ def defender_baseline(view, belief, intent, record):
     return out, record
 
 
+# ------------------------------------------------ RB-3.12 B-5 carrier valuation (carry vs pass)
+# BEHAVIORAL defaults (owner spec, 20 Nov 2026), PROVISIONAL, unsearched. Replaces the M1 values (b1/core.py:
+# carry 10 if nearest opponent < 5.8 m else 2; pass = clearance - 3 - 0.03 d, which made an unpressured carrier
+# always pass and a pressured one always carry). Only the carrier's own belief tracks, own body and own feedback.
+#
+#  constant               value  meaning
+#  CARRY_BASE              2.0   carry value with no free run and nobody close
+#  CARRY_FREE_W            0.6   value per metre of free run
+#  CARRY_CONE_DEG          35    half-angle of the forward cone around the carry direction
+#  CARRY_FREE_OFFSET_M     2.0   subtracted from the distance to the nearest opponent in the cone
+#  CARRY_FREE_MAX_M        15    free run cap (also the value when no opponent is in the cone)
+#  CARRY_CLOSE_M           3.0   an opponent anywhere this close...
+#  CARRY_CLOSE_PENALTY     4.0   ...costs this much
+#  CARRY_GOAL_NEAR_M       25    within this distance of the goal...
+#  CARRY_GOAL_FREE_M       5     ...with at least this free run...
+#  CARRY_GOAL_BONUS        2.0   ...adds this
+#  PASS_BASE               0.5   constant term
+#  PASS_GAIN_W             0.35  per metre of forward gain (negative backward), gain clamped to [-15, 25]
+#  PASS_CLEAR_W / BASE     0.4 / 3.0   lane clearance (capped 10) minus 3
+#  PASS_SPACE_W / BASE     0.25 / 3.0  receiver's distance to his nearest opponent (capped 10) minus 3
+#  PASS_DIST_W             0.03  per metre of pass length (3-30 m as in M1)
+#  PRESSURED_M             4.0   nearest opponent to the carrier closer than this = pressured
+#  PRESSURED_SPACE_M       6.0   a pressured carrier gets the bonus for a receiver at least this free...
+#  PRESSURED_BONUS         3.0   ...of this size
+#  BACKWARD_W              0.4   unpressured backward pass pays this per metre of loss
+#  COMMIT_MS               600   after gaining control an unpressured carrier does not pass...
+#  COMMIT_GAIN_M / CLEAR_M 10 / 4.0  ...unless the pass gains at least this and has at least this clearance
+#  RECEIVER_CLOCK_LIMIT_S  2.0   a receiver inside the zone he attacks with less than this left on his clock...
+#  RECEIVER_CLOCK_PENALTY  4.0   ...costs this much (owner: "subtract value", amount unspecified: owner question)
+CARRY_BASE, CARRY_FREE_W, CARRY_CONE_DEG = 2.0, 0.6, 35.
+CARRY_FREE_OFFSET_M, CARRY_FREE_MAX_M = 2.0, 15.
+CARRY_CLOSE_M, CARRY_CLOSE_PENALTY = 3.0, 4.0
+CARRY_GOAL_NEAR_M, CARRY_GOAL_FREE_M, CARRY_GOAL_BONUS = 25., 5., 2.0
+PASS_BASE, PASS_GAIN_W, GAIN_MIN_M, GAIN_MAX_M = 0.5, 0.35, -15., 25.
+PASS_CLEAR_W, PASS_CLEAR_BASE, PASS_SPACE_W, PASS_SPACE_BASE, PASS_DIST_W = 0.4, 3.0, 0.25, 3.0, 0.03
+PASS_MIN_M, PASS_MAX_M = 3., 30.
+PRESSURED_M, PRESSURED_SPACE_M, PRESSURED_BONUS, BACKWARD_W = 4.0, 6.0, 3.0, 0.4
+COMMIT_MS, COMMIT_GAIN_M, COMMIT_CLEAR_M = 600, 10., 4.0
+RECEIVER_CLOCK_LIMIT_S, RECEIVER_CLOCK_PENALTY = 2.0, 4.0
+
+
+def free_run_m(x, y, aim, opps):
+    """Distance to the nearest opponent inside the forward cone around (x,y)->aim, minus the offset, clamped."""
+    dx, dy = aim[0] - x, aim[1] - y
+    L = hypot(dx, dy)
+    if L < 1e-9:
+        return CARRY_FREE_MAX_M
+    from math import cos, radians
+    best = None
+    for o in opps:
+        ox, oy = o.x - x, o.y - y
+        d = hypot(ox, oy)
+        if d < 1e-9:
+            best = 0.; break
+        if (ox * dx + oy * dy) / (d * L) >= cos(radians(CARRY_CONE_DEG)) and (best is None or d < best):
+            best = d
+    return CARRY_FREE_MAX_M if best is None else max(0., min(CARRY_FREE_MAX_M, best - CARRY_FREE_OFFSET_M))
+
+
+def carry_value(view, opps, aim):
+    fr = free_run_m(view.x, view.y, aim, opps)
+    near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=99.)
+    gx = view.own_goal_x + view.attack_sign * 100.
+    v = CARRY_BASE + CARRY_FREE_W * fr - (CARRY_CLOSE_PENALTY if near < CARRY_CLOSE_M else 0.)
+    if hypot(gx - view.x, 50. - view.y) < CARRY_GOAL_NEAR_M and fr >= CARRY_GOAL_FREE_M:
+        v += CARRY_GOAL_BONUS
+    return round(v, 6), fr
+
+
+def pass_value(view, c, opps, pressured):
+    """(value, gain, clearance) for a pass to believed teammate track `c`; None outside the 3-30 m range."""
+    sg = view.attack_sign
+    dx, dy = c.x - view.x, c.y - view.y
+    dist = hypot(dx, dy)
+    if not PASS_MIN_M <= dist <= PASS_MAX_M:
+        return None
+    gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
+    clearance = 10.
+    for o in opps:
+        f = max(0., min(1., ((o.x - view.x) * dx + (o.y - view.y) * dy) / (dist * dist)))
+        clearance = min(clearance, hypot(o.x - view.x - f * dx, o.y - view.y - f * dy))
+    space = min([hypot(o.x - c.x, o.y - c.y) for o in opps] + [10.])
+    v = (PASS_BASE + PASS_GAIN_W * gain + PASS_CLEAR_W * (clearance - PASS_CLEAR_BASE)
+         + PASS_SPACE_W * (space - PASS_SPACE_BASE) - PASS_DIST_W * dist
+         + (PRESSURED_BONUS if pressured and space >= PRESSURED_SPACE_M else 0.)
+         - (BACKWARD_W * abs(gain) if gain < 0 and not pressured else 0.))
+    clocks = dict(getattr(view, 'mate_zone_ms', ()) or ())
+    if c.entity in clocks and (5000 - clocks[c.entity]) / 1000. < RECEIVER_CLOCK_LIMIT_S:
+        v -= RECEIVER_CLOCK_PENALTY
+    return round(v, 6), gain, clearance
+
+
+def carrier_options(view, fresh, carry_aim, sg=None):
+    """RB/3 carry and pass options for the ball carrier: [(kind, target, aim, value)], in the M1 tuple form.
+    carry_aim None (a Keeper) means no carry option. Pure: own belief tracks (`fresh`), own body, own feedback."""
+    opps = [t for t in fresh if t.team not in (view.team, 'ball') and t.role != 'archer']
+    mates = sorted((t for t in fresh if t.team == view.team and t.role != 'archer' and t.entity != view.athlete), key=lambda t: t.entity)
+    near = min((hypot(o.x - view.x, o.y - view.y) for o in opps), default=99.)
+    pressured = near < PRESSURED_M
+    held = getattr(view, 'own_control_ms', None)
+    committed = (not pressured) and held is not None and held < COMMIT_MS
+    out = []
+    if carry_aim is not None:
+        out.append(('carry', None, carry_aim, carry_value(view, opps, carry_aim)[0]))
+    for c in mates:
+        r = pass_value(view, c, opps, pressured)
+        if r is None:
+            continue
+        v, gain, clearance = r
+        if committed and not (gain >= COMMIT_GAIN_M and clearance >= COMMIT_CLEAR_M):
+            continue
+        out.append(('pass', c.entity, (c.x, c.y), v))
+    return out
+
+
 # ---------------------------------------------------------------- RB-3.9c carrier (B-2)
 CARRY_APPROACH_M = 30.     # PRIMITIVE: "in or approaching the attacked zone" (zone radius 20 + 10)
 CARRY_CLEAR_M = 5.         # PRIMITIVE, tunable: no believed defender this close
@@ -195,7 +310,10 @@ def carrier_to_goal(view, belief, intent, record):
 # BEHAVIORAL defaults, PROVISIONAL, unsearched. The 5 s zone rules are unchanged; this only decides when
 # an athlete starts to leave (or close on a mark) so that he is clear before his clock completes.
 ZONE_LIMIT_MS_RULE = 5000     # rule: 5 s of live time (attacker in the zone he attacks; unmarked defender in his own)
-EXIT_MARGIN_S = .75           # start leaving when time needed + this margin reaches the time left (owner default)
+EXIT_MARGIN_S = 1.5           # RB-3.12: was .75. Start leaving when time needed + this margin reaches the time left (owner)
+CLOSE_LEAVE_WINDOW_S = .3     # RB-3.12: |t_mark - t_arc| within this: pick the faster of closing on the mark and leaving
+CLOSE_LEAVE_TIE_S = .05       # RB-3.12: ...and a difference under this is a tie: leave if the mark is moving away (owner question)
+MARK_REASON_NEAR_M = 5.       # RB-3.12: an unmarked opponent in or within this of the zone is a reason to stay
 EXIT_SPEED_FRAC = .88         # off-ball speed cap used by the engine movement model (pace x .88); from rest, with own acceleration
 SUPPORT_DIST_M = 8.           # an off-ball attacker within this distance of the carrier is involved in the play (owner default)
 CARRIER_NEAR_BALL_M = 1.8     # the believed carrier is the player nearest the ball within this distance
@@ -260,7 +378,7 @@ def _believed_carrier_xy(view, belief):
     return (best.x, best.y) if best is not None and hypot(best.x - ball.x, best.y - ball.y) < CARRIER_NEAR_BALL_M else None
 
 
-def _involved(view, belief):
+def _involved(view, belief, intent=None):
     """Off-ball attacker involved in the play: designated receiver, intended pass target, or near the carrier."""
     form = getattr(view, 'formation', None)
     if form is not None and form[1] == view.athlete:
@@ -271,6 +389,8 @@ def _involved(view, belief):
     cxy = _believed_carrier_xy(view, belief)
     if cxy is not None and hypot(cxy[0] - view.x, cxy[1] - view.y) <= SUPPORT_DIST_M:
         return 'support_of_carrier'
+    if intent is not None and intent.kind == 'pursue' and cxy is None:
+        return 'loose_ball_pursuit'                # RB-3.12: chasing a loose ball is involvement
     return None
 
 
@@ -298,7 +418,7 @@ def _attacker_zone(view, belief, intent, record):
     if not inside:
         # Z-3: an off-ball attacker does not walk into the zone he attacks unless involved in the play
         if (not view.holds_ball and intent.aim is not None and hypot(intent.aim[0] - gx, intent.aim[1] - 50.) < view.zone_radius
-                and _involved(view, belief) is None):
+                and _involved(view, belief, intent) is None):
             return (replace(intent, aim=_arc_point(view, gx, intent.aim[0], intent.aim[1])),
                     dict(record, rb311=dict(rule='Z-3_stay_out', aim_was=list(intent.aim))))
         return intent, record
@@ -319,7 +439,7 @@ def _attacker_zone(view, belief, intent, record):
             return (replace(intent, kind='carry', aim=aim, target=None, contact=None),
                     dict(record, rb311=dict(rule='Z-2_carrier_last_resort_to_goal', eta_s=round(eta, 2), time_left_s=round(time_left, 2))))
         return _leave(view, gx, intent, record, 'Z-2_carrier_exit', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
-    involved = _involved(view, belief)
+    involved = _involved(view, belief, intent)
     if involved is None:                               # Z-3: off-ball and not involved: head out at once
         return _leave(view, gx, intent, record, 'Z-3_off_ball_exit', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
     if t_arc + EXIT_MARGIN_S >= time_left:             # Z-2: involved, but his clock is running out
@@ -347,13 +467,23 @@ def _defender_zone(view, belief, intent, record):
     free = [o for o in opps if not any(hypot(m.x - o.x, m.y - o.y) <= mark for m in mates)] or opps
     best = min(free, key=lambda o: (hypot(o.x - view.x, o.y - view.y), o.entity), default=None)
     t_mark = time_to_cover(view, max(0., hypot(best.x - view.x, best.y - view.y) - MARK_STANDOFF * mark), _unit(view.x, view.y, best.x, best.y)) if best else None
-    t_best = min(t for t in (t_arc, t_mark) if t is not None)
-    if t_best + EXIT_MARGIN_S < time_left:
+    # RB-3.12: a reason to stay is an unmarked opponent in or within MARK_REASON_NEAR_M of the zone whom he can reach in the time left
+    reason = (best is not None and hypot(best.x - gx, best.y - 50.) <= view.zone_radius + MARK_REASON_NEAR_M
+              and t_mark is not None and t_mark < time_left)
+    if not reason:
+        return _leave(view, gx, intent, record, 'Z-4_no_reason_leave', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
+    if min(t_arc, t_mark) + EXIT_MARGIN_S < time_left:
         return intent, record
-    if t_mark is not None and t_mark < t_arc:
+    diff = t_mark - t_arc
+    if abs(diff) <= CLOSE_LEAVE_TIE_S:                  # tie: leave if the mark is moving away from me
+        ux, uy = _unit(view.x, view.y, best.x, best.y) or (0., 0.)
+        close = (best.vx * ux + best.vy * uy) <= 0.
+    else:
+        close = t_mark < t_arc                          # within CLOSE_LEAVE_WINDOW_S or not: the faster
+    if close:
         aim = _toward(best.x, best.y, gx, 50., MARK_STANDOFF * mark)
         return (replace(intent, kind='mark', aim=aim, target=best.entity, contact=None),
-                dict(record, rb311=dict(rule='Z-4_close_on_mark', target=best.entity, t_mark_s=round(t_mark, 2), time_left_s=round(time_left, 2))))
+                dict(record, rb311=dict(rule='Z-4_close_on_mark', target=best.entity, t_mark_s=round(t_mark, 2), t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))))
     cross = _leave_distance(view, gx, intent.aim) if intent.aim is not None else None
     if cross is not None and time_to_cover(view, cross, _unit(view.x, view.y, *intent.aim)) <= t_arc * 1.15:
         return intent, record

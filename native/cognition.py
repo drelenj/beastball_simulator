@@ -352,8 +352,12 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             # Base A (M1) carrier decision supplies the carry-vs-pass valuation.
             carry_opt = next((o for o in options if o[0] == 'carry'), None)
             options = [o for o in options if o[0] != 'carry']
-            for k, t, a, v in _m1_options(view, fresh, carrier, 'carrier',
-                                          carry_target=carry_opt[2] if carry_opt else None):
+            if view.cognition == 'native-rb/3':      # RB-3.12 B-5: carry and pass valued by cognition_rb3.carrier_options
+                from .cognition_rb3 import carrier_options
+                carrier_vals = carrier_options(view, fresh, carry_opt[2] if carry_opt else None, sg)
+            else:
+                carrier_vals = _m1_options(view, fresh, carrier, 'carrier', carry_target=carry_opt[2] if carry_opt else None)
+            for k, t, a, v in carrier_vals:
                 if k == 'pass' and banned == 'pass':
                     continue
                 if k == 'pass':
