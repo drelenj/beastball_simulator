@@ -338,7 +338,14 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     side = -1. if keeper is not None and keeper.y > 50 else 1.
                     value = 5.5 - .2 * dg + (8. if near < 5.8 else 0.) + (
                         5. if 0 < sig.possession_ms < 5000 else 0.)
-                    options.append(('shoot', None, (goal[0], 50. + side * 1.), round(value, 6)))
+                    if view.cognition == 'native-rb/3':      # RB-3.15 S-1/S-2: aim away from the keeper, safe lane, margin in the value
+                        from . import cognition_rb3 as R3
+                        plan = R3.shot_plan(view, fresh)
+                        if plan is not None:
+                            options.append(('shoot', None, plan['aim'],
+                                            round(value + R3.SHOT_MARGIN_W * min(plan['margin'], R3.SHOT_MARGIN_CAP), 6)))
+                    else:
+                        options.append(('shoot', None, (goal[0], 50. + side * 1.), round(value, 6)))
                 # carry toward goal, drifting away from the nearest believed opponent ahead
                 ahead = [o for o in opps if sg * (o.x - view.x) > 0 and hypot(o.x - view.x, o.y - view.y) < 9]
                 drift = 0.
@@ -604,6 +611,12 @@ def decide_v2(view, belief):
     # The semantic pass already leads the believed receiver in the B1 policy.
     intent=replace(intent,speed=(min(80.,.5*view.max_throw_speed) if view.cognition=='native-rb/3' else min(27.,view.max_throw_speed)),height=1.6,
                    contact='wrap' if intent.kind=='press' else None,period=view.signals.period)
+    if view.cognition=='native-rb/3' and intent.kind=='shoot' and intent.aim:
+        from . import cognition_rb3 as R3             # RB-3.15 S-1: the chosen aim height (a pure re-derivation of the plan)
+        fresh_ = tuple(t for t in belief.tracks if 0 <= view.delivered_ms - t.captured_ms <= belief.max_track_age_ms)
+        plan_ = R3.shot_plan(view, fresh_)
+        if plan_ is not None and plan_['aim'] == tuple(intent.aim):
+            intent = replace(intent, height=plan_['z'])
     if view.cognition=='native-rb/3' and intent.kind=='pass' and intent.aim:
         # RB-3.9b B-1: release speed chosen by the (led) pass distance; same speed as used in the lead.
         from .throw_speed import release_speed

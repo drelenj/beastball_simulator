@@ -11,7 +11,7 @@ def scene(opps, mates, reach=None, release_ms=250, vel=(0., 0.), held_ms=2000, *
     v, tr, _ = carrier_scene(opps=opps, mates=mates, held_ms=held_ms, **kw)
     tr = tuple(replace(t, vx=vel[0], vy=vel[1]) if t.team == 'B' else t for t in tr)
     br = tuple((t.entity, reach if reach is not None else 3.05) for t in tr if t.team == 'B')
-    return replace(v, tracks=tr, pass_release_ms=release_ms, body_reach=br), tr
+    return replace(v, tracks=tr, pass_release_ms=release_ms, own_release_ms=release_ms, body_reach=br), tr
 
 
 def passes(v, tr): return [r for r in opts(v, tr) if r[0] == 'pass']
