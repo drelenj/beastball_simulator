@@ -253,7 +253,8 @@ def decide_keeper(view, belief, *, gravity=9.81, drag=.035,
 def plan_keeper_motor(intent, body, *, now_ms, gravity=9.81,
                       pushoff_fraction=.55, extension_fraction=.72,
                       launch_min_s=.12, dive_time_s=.32,
-                      attempt_margin_m=.35):
+                      attempt_margin_m=.35, reach_factor=1.1,
+                      dive_hand_fraction=.25, match_lean=False):
     """Admit a Keeper intent using only own-body capabilities."""
     cid = intent.intent_id+'/motor'
     if intent.kind in ('hold', 'position'):
@@ -264,7 +265,7 @@ def plan_keeper_motor(intent, body, *, now_ms, gravity=9.81,
         return KeeperMotorCommand(cid, intent.intent_id, body.athlete,
                                   'rejected', status='rejected',
                                   reason='unsupported_or_empty_intent')
-    reach = body.reach*1.1
+    reach = body.reach*reach_factor
     for t, x, y, z in intent.course[1:]:
         hx, hy = body.x+body.vx*t, body.y+body.vy*t
         horizontal = math.hypot(x-hx, y-hy)
@@ -291,9 +292,19 @@ def plan_keeper_motor(intent, body, *, now_ms, gravity=9.81,
         ux, uy = ((dx/distance, dy/distance) if distance > 1e-9
                   else (0., 0.))
         run = .5*body.acceleration*lead*lead+body.acceleration*lead*tau
-        remaining = max(0., distance-run-extension_fraction*body.height)
-        push = remaining/max(tau, 1e-9)
-        hand_z = body.z+.25*body.height
+        extension = extension_fraction*body.height
+        if match_lean:
+            # Until full lean, execution extends the hand in proportion to
+            # the horizontal impulse. Solve with that same hand position.
+            remaining = max(0., distance-run)
+            linear_push = remaining/(tau+extension/max(max_push, 1e-9))
+            push = linear_push if linear_push <= max_push else max(0., remaining-extension)/tau
+            lean = min(1., push/max(max_push, 1e-9))
+            hand_z = body.z+(.62-(.62-dive_hand_fraction)*lean)*body.height
+        else:
+            remaining = max(0., distance-run-extension)
+            push = remaining/max(tau, 1e-9)
+            hand_z = body.z+dive_hand_fraction*body.height
         need_vz = max(0., (z-hand_z+.5*gravity*tau*tau)/max(tau, 1e-9))
         budget = ((push/max(max_push, 1e-9))**2+
                   (need_vz/max(max_vz, 1e-9))**2)
@@ -310,6 +321,10 @@ def plan_keeper_motor(intent, body, *, now_ms, gravity=9.81,
                                   'rejected', status='rejected_infeasible',
                                   reason='own_body_cannot_reach_believed_course')
     _, lead, meet, ux, uy, push, vz = best
+    if match_lean:
+        budget = math.hypot(push/max(max_push, 1e-9), vz/max(max_vz, 1e-9))
+        if budget > 1.:
+            push, vz = push/budget, vz/budget
     if lead > .005:
         return KeeperMotorCommand(
             cid, intent.intent_id, body.athlete, 'approach',

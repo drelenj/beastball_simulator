@@ -29,6 +29,11 @@ def build_core(config):
                   ("capacity=A['catch_arrest_force_N']*A['catch_hand_travel_m']*(.4+.9*skill)*max(0.,1-miss*miss)", 'capacity=self.native_catch_capacity(skill,miss)'),
                   ('secure=1/(1+(energy/capacity)**2)if capacity>1e-9 else 0.', 'secure=1/(1+(energy/capacity)**8)if capacity>1e-9 else 0.')]
     }
+    if config.version == 'native-rb/3':
+        patches['match'].append((
+            "top=p.a.maximum_speed*(.70+.30*p.fatigue)*((policy.pace*.90)if s.ball.carrier==p.id else.88)",
+            "top=p.a.maximum_speed*(.70+.30*p.fatigue)",
+        ))
     for part in ('geometry','types','policies','engine','match'):
         path = ROOT/'core_src'/f'{part}.py'
         source = path.read_text()

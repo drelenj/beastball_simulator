@@ -310,6 +310,11 @@ class NativePort:
             return {'status':'accepted'}
         if kind=='keeper_control':
             self.keeper_intents[p.id]=intent
+            if self.config.version == 'native-rb/3':
+                observed = self.course_beliefs.get(p.id)
+                aux = intent.auxiliary
+                p.native_keeper_course_ms = (observed.captured_ms if observed and aux
+                                             and observed.revision == aux.belief_revision else None)
             self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'keeper'))
             return {'status':'accepted'}
         if kind=='release_arrow':
@@ -410,8 +415,19 @@ class NativePort:
 
     def keeper_motor(self,targets):
         m,s=self.m,self.m.s
+        rb3 = self.config.version == 'native-rb/3'
         for p in s.players.values():
             if p.role!='keeper' or not p.active:continue
+            if rb3 and s.ball.carrier is None:
+                timing = getattr(p, 'native_keeper_flight', None)
+                if timing is None or timing[0] != s.ball.version:
+                    previous = timing[1] if timing else -math.inf
+                    started = max((t for t in (s.ball.release_time, getattr(s.ball, 'course_time', -1))
+                                   if previous < t <= s.now and t >= 0), default=s.now)
+                    reaction = m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness)
+                    if p.speed > m.assume['keeper_set_mps']:
+                        reaction += m.assume['keeper_unset_s']
+                    p.native_keeper_flight = (s.ball.version, started, started+1000*reaction)
             launch=getattr(p,'c4c_launch',None)
             if launch:
                 if p.posture=='airborne' and s.now<launch['t_land']-.5:continue
@@ -423,7 +439,28 @@ class NativePort:
             i=self.keeper_intents.get(p.id)
             if i is None or i.auxiliary is None:targets[p.id]=(p.x,p.y);continue
             if s.ball.carrier==p.id:continue
-            cmd=plan_keeper_motor(i.auxiliary,body(p),now_ms=s.now,gravity=9.81)
+            if rb3 and i.auxiliary.kind == 'save':
+                observed_ms = getattr(p, 'native_keeper_course_ms', None)
+                if (s.ball.carrier is not None or observed_ms is None or
+                        observed_ms < p.native_keeper_flight[1] or
+                        s.now+1e-9 < p.native_keeper_flight[2]):
+                    targets[p.id] = (p.x, p.y)
+                    continue
+                # The forecast starts at capture, including both delivery
+                # latency and any remaining wait at the motor.
+                elapsed = max(0., (s.now-observed_ms)/1000)
+                course = tuple((t-elapsed, x, y, z) for t,x,y,z in i.auxiliary.course if t >= elapsed)
+                intent = replace(i.auxiliary, course=course)
+                cmd = plan_keeper_motor(
+                    intent, body(p), now_ms=s.now, gravity=m.assume['gravity'],
+                    pushoff_fraction=m.assume['keeper_pushoff_frac'],
+                    extension_fraction=m.assume['keeper_extension_frac'],
+                    launch_min_s=m.assume['keeper_launch_min_s'],
+                    dive_time_s=m.assume['keeper_dive_time_s'],
+                    dive_hand_fraction=m.assume['keeper_dive_hand_frac'],
+                    reach_factor=m.c4c_reach(p)/p.a.reach, match_lean=True)
+            else:
+                cmd=plan_keeper_motor(i.auxiliary,body(p),now_ms=s.now,gravity=9.81)
             if cmd.kind in ('hold','move','step','approach'):
                 targets[p.id]=cmd.target or (p.x,p.y)
                 if cmd.kind in ('step','approach'):p.c4c_plan=dict(kind='step',until=cmd.until_ms,target=cmd.target)
