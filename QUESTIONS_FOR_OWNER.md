@@ -151,3 +151,14 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB311-4 | The 3 s fixed exit (defenders) and the 4 s fixed exit (attackers) no longer exist on native-rb/3; they remain unchanged on every other profile. | Note. |
 | Q-RB311-5 | The designated receiver is shown in the athletes' view during the snap hold (public formation information), so he can be recognised before the catch. | CANON detail: the formation is public. |
 | Q-RB311-6 | Z-4 uses the believed positions of opposing field players (tracks at most 600 ms old) to decide "marked"; the rule uses true positions, so a defender can be unmarked by the rule while believing he is marked. | Note. |
+
+## RB-3.12 (provisional, branch claude/rb-3-12-carrier-valuation)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB312-1 | Receiver-clock penalty: you said "subtract value" without an amount. Default: a flat 4.0 for any teammate inside the zone he attacks with under 2 s left (RECEIVER_CLOCK_PENALTY). | BEHAVIORAL default; amount needed. |
+| Q-RB312-2 | The passer reads teammates' zone clocks (view.mate_zone_ms). Treated as public information (visible on the officials' clock). Confirm, or give a belief-based estimate. | Canon question. |
+| Q-RB312-3 | Close-vs-leave "tie": implemented as a difference under 0.05 s (CLOSE_LEAVE_TIE_S); within 0.3 s the faster option wins; on a tie he leaves if the mark is moving away. Is 0.05 s the intended tie? | BEHAVIORAL default. |
+| Q-RB312-4 | "Reach in time" for a defender's reason to stay: an unmarked opponent in or within 5 m of the zone whose time-to-cover (to the 0.7 x marking-distance standoff) is shorter than the time left. | BEHAVIORAL default. |
+| Q-RB312-5 | The shoot branch is unchanged (instruction) but carry values now reach about 13, so shots are outvalued by carries. Shot releases rose 212 -> 356 but see SUMMARY: carry attempts and goals rose, passes fell by two thirds. Should shooting be revalued? | Owner decision. |
+| Q-RB312-6 | E-3 corridor half-width 5.76 m (real) / 4.70 m (control) moves many offence players off the snap lane; first touch is now the receiver in 50/50 scrimmages. Is the width acceptable, or should the margin (1 m) be smaller? | BEHAVIORAL default. |
+| Q-RB312-7 | WORSE: open-play pass completion fell from 0.78-0.82 to 0.42-0.45 and interceptions rose (513 -> 541 on far fewer passes). The new pass valuation sends passes into traffic. Carrying and scoring improved. Do you want pass-lane valuation retuned? (Not tuned: no tuning beyond spec.) | Owner decision. |

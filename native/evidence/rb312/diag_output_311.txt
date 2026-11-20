@@ -1,0 +1,17 @@
+=== RB-3.11 (dcf2119)
+ball holds 5511 median hold s 0.8 median forward advance m 0.55
+  ended by release:pass: 3686 (66.9%), median advance 0.0 m
+  ended by tackle_count: 1034 (18.8%), median advance 1.95 m
+  ended by release:loose: 308 (5.6%), median advance 1.13 m
+  ended by release:shot: 212 (3.8%), median advance 7.56 m
+  ended by restart_awarded: 134 (2.4%), median advance -0.0 m
+  ended by boundary: 125 (2.3%), median advance 5.62 m
+  ended by goal: 12 (0.2%), median advance 29.8 m
+advance quartiles [0.0, 0.5, 3.4]
+open/backward                n= 801 fail=23.3% {'to target': 330, 'own other': 282, 'intercepted': 162, 'out': 25, 'award': 2}
+open/forward                 n= 532 fail=35.3% {'intercepted': 100, 'to target': 226, 'out': 88, 'own other': 115, 'award': 3}
+open/lateral                 n= 508 fail=29.5% {'own other': 137, 'to target': 221, 'intercepted': 94, 'out': 56}
+post-snap<3s/backward        n=1042 fail=8.7% {'to target': 377, 'own other': 571, 'out': 15, 'intercepted': 76, 'award': 3}
+post-snap<3s/forward         n= 220 fail=13.2% {'to target': 146, 'own other': 44, 'intercepted': 26, 'out': 3, 'award': 1}
+post-snap<3s/lateral         n= 583 fail=12.5% {'own other': 261, 'to target': 247, 'intercepted': 55, 'out': 18, 'award': 1, 'other': 1}
+ALL n 3686 fail 19.5 % {'own other': 1410, 'to target': 1547, 'intercepted': 513, 'out': 205, 'award': 10, 'other': 1}

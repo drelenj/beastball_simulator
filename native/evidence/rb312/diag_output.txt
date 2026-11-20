@@ -1,0 +1,65 @@
+=== RB-3.12
+ball holds 3529 median hold s 1.8 median forward advance m 2.47
+  ended by tackle_count: 1213 (34.4%), median advance 2.43 m
+  ended by release:pass: 1178 (33.4%), median advance 1.4 m
+  ended by boundary: 388 (11.0%), median advance 47.98 m
+  ended by release:shot: 356 (10.1%), median advance 0.84 m
+  ended by release:loose: 269 (7.6%), median advance 2.53 m
+  ended by restart_awarded: 92 (2.6%), median advance 4.46 m
+  ended by goal: 33 (0.9%), median advance 44.04 m
+advance quartiles [0.6, 2.5, 8.3]
+open/backward                n=  34 fail=70.6% {'intercepted': 22, 'own other': 10, 'out': 2}
+open/forward                 n= 850 fail=52.4% {'own other': 253, 'to target': 145, 'out': 103, 'intercepted': 342, 'award': 6, 'other': 1}
+open/lateral                 n= 123 fail=61.0% {'own other': 38, 'intercepted': 70, 'to target': 10, 'out': 5}
+post-snap<3s/backward        n=  45 fail=55.6% {'own other': 19, 'intercepted': 25, 'to target': 1}
+post-snap<3s/forward         n=  55 fail=70.9% {'own other': 11, 'intercepted': 35, 'to target': 5, 'out': 4}
+post-snap<3s/lateral         n=  71 fail=70.4% {'own other': 21, 'intercepted': 47, 'out': 3}
+ALL n 1178 fail 55.9 % {'own other': 352, 'intercepted': 541, 'to target': 161, 'out': 117, 'award': 6, 'other': 1}
+first control after release (is_snap40, who): [((False, 'receiver'), 1364), ((False, 'opponent'), 22), ((True, 'receiver'), 14), ((False, 'own_other'), 13), ((True, 'own_other'), 2)]
+  receiver: median ball travel to first touch 3.58 m, median lateral offset 0.0 m, n=1378
+  opponent: median ball travel to first touch 0.85 m, median lateral offset 0.38 m, n=22
+  own_other: median ball travel to first touch 3.22 m, median lateral offset 2.06 m, n=15
+first-tackle scrimmages -> next: [('second_tackle', 490), ('possession', 128), ('restart_awarded', 72), ('goal', 10), (None, 1)]
+  passes before that: [(0, 606), (1, 88), (2, 6), (3, 1)]
+  pass direction after snap: {'forward': 76, 'backward_or_level': 27}
+  second tackle on: {'receiver': 481, 'other': 7, 'snapper': 2}  median gain from line (m, + = forward): -1.4  median s after snap: 2.28
+  gain quartiles: [-2.3, -1.4, -0.1]
+
+=== RB-3.11
+Traceback (most recent call last):
+  File "/home/user/beastball_simulator/native/evidence/rb312/diag/holds.py", line 7, in <module>
+    m=Match(soak,'/nonexistent',b,s); log=m.log; cur=None
+  File "/home/user/beastball_simulator/native/evidence/rb312/diag/offense_diagnosis.py", line 39, in __init__
+    raw = load(Path(soak) / block / f'raw-{self.name}.json.gz')
+  File "/home/user/beastball_simulator/native/evidence/rb312/diag/offense_diagnosis.py", line 33, in load
+    return json.load(gzip.open(path, 'rt')) if str(path).endswith('.gz') else json.loads(Path(path).read_text())
+                     ~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/gzip.py", line 66, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+  File "/usr/local/lib/python3.13/gzip.py", line 205, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/beastball_simulator/native/evidence/rb311/runs/real/raw-real-seed01.json.gz'
+Traceback (most recent call last):
+  File "/home/user/beastball_simulator/native/evidence/rb312/diag/pass_ctx.py", line 7, in <module>
+    m=Match(soak,'/nonexistent',b,s); log=m.log; last_snap=-1e9
+  File "/home/user/beastball_simulator/native/evidence/rb312/diag/offense_diagnosis.py", line 39, in __init__
+    raw = load(Path(soak) / block / f'raw-{self.name}.json.gz')
+  File "/home/user/beastball_simulator/native/evidence/rb312/diag/offense_diagnosis.py", line 33, in load
+    return json.load(gzip.open(path, 'rt')) if str(path).endswith('.gz') else json.loads(Path(path).read_text())
+                     ~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/gzip.py", line 66, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+  File "/usr/local/lib/python3.13/gzip.py", line 205, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+                               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/beastball_simulator/native/evidence/rb311/runs/real/raw-real-seed01.json.gz'
+first control after release (is_snap40, who): [((False, 'receiver'), 687), ((False, 'own_other'), 555), ((False, 'opponent'), 17), ((True, 'receiver'), 15), ((True, 'own_other'), 1)]
+  receiver: median ball travel to first touch 3.58 m, median lateral offset 0.0 m, n=702
+  own_other: median ball travel to first touch 0.45 m, median lateral offset 2.0 m, n=556
+  opponent: median ball travel to first touch 0.8 m, median lateral offset 0.02 m, n=17
+first-tackle scrimmages -> next: [('second_tackle', 353), ('possession', 206), ('restart_awarded', 89), ('goal', 10), (None, 1)]
+  passes before that: [(0, 145), (1, 208), (2, 156), (3, 72), (4, 33), (5, 29), (6, 4), (7, 6), (8, 3), (9, 2), (10, 1)]
+  pass direction after snap: {'backward_or_level': 868, 'forward': 263}
+  second tackle on: {'other': 195, 'snapper': 105, 'receiver': 53}  median gain from line (m, + = forward): 2.3  median s after snap: 2.72
+  gain quartiles: [0.2, 2.3, 5.3]
