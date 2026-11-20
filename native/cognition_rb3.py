@@ -319,15 +319,15 @@ def zone_clock_penalty(view, c, max_age_ms):
     return RECEIVER_CLOCK_PENALTY * (1. - left / RECEIVER_CLOCK_LIMIT_S) if left < RECEIVER_CLOCK_LIMIT_S else 0.
 
 
-def pass_value(view, c, opps, pressured, max_age_ms=2000):
+def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     """(value, gain, margin) for a pass to believed teammate track `c`; None outside the range or on an unsafe lane."""
     from .throw_speed import release_speed
     sg = view.attack_sign
     dx, dy = c.x - view.x, c.y - view.y
     dist = hypot(dx, dy)
-    if not PASS_MIN_M <= dist <= PASS_MAX_M:
+    if not handoff and not PASS_MIN_M <= dist <= PASS_MAX_M:
         return None
-    margin = lane_margin(view, c, opps, release_speed(dist, 120.))
+    margin = 10. if handoff else lane_margin(view, c, opps, release_speed(dist, 120.))
     if margin < 0:
         return None                                              # unsafe lane: excluded
     gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
@@ -378,6 +378,19 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
                     best_aim, best_v, best_key = aim, v_, key
         out.append(('carry', None, best_aim, best_v))
     out.extend(passes)
+    if (view.cognition == 'native-rb/3' and getattr(view, 'rb3_handoff_block_enabled', False)
+            and not getattr(view, 'snap_hold', False) and view.body):
+        arm_reach = dict(getattr(view, 'body_reach', ()))
+        frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
+        for mate in mates:
+            if mate.entity in frozen or view.attack_sign * (mate.vx - view.body.vx) <= 0:
+                continue
+            if hypot(mate.x - view.x, mate.y - view.y) > view.body.reach + arm_reach.get(mate.entity, view.body.reach):
+                continue
+            if not C.in_own_zone(view.team, view.x, view.y, view) and C.in_own_zone(view.team, mate.x, mate.y, view):
+                continue
+            value, _, _ = pass_value(view, mate, opps, pressured, max_age_ms, handoff=True)
+            out.append(('handoff', mate.entity, (mate.x, mate.y), value))
     return out
 
 
@@ -679,10 +692,39 @@ def _defender_zone(view, belief, intent, record):
     return _leave(view, gx, intent, record, 'Z-4_leave', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
 
 
+def choose_block(view, belief, intent, record):
+    if (view.cognition != 'native-rb/3' or not getattr(view, 'rb3_handoff_block_enabled', False)
+            or view.role != 'field' or view.holds_ball or view.pending_command_id
+            or view.signals.phase != 'live' or getattr(view, 'snap_hold', False)
+            or view.signals.passive_team != view.team):
+        return intent, record
+    fresh = _fresh(view, belief, belief.max_track_age_ms)
+    carrier_id = (record.get('believed_carrier') or (None,))[0]
+    carrier = next((p for p in fresh if p.entity == carrier_id and p.team == view.team), None)
+    if carrier is None:
+        return intent, record
+    frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
+    closing = []
+    for target in fresh:
+        if target.role != 'field' or target.team == view.team or target.entity in frozen:
+            continue
+        dx, dy = carrier.x - target.x, carrier.y - target.y
+        gap = hypot(dx, dy)
+        if 0 < gap <= 8. and (target.vx - carrier.vx) * dx + (target.vy - carrier.vy) * dy > 0:
+            closing.append((gap, target.entity))
+    if not closing:
+        return intent, record
+    _, target_id = min(closing)
+    point = (carrier.x, carrier.y)
+    return (replace(intent, kind='block', target=target_id, aim=point, contact=None),
+            dict(record, selected=['block', target_id, point], rb317_protected=carrier.entity))
+
+
 def adjust(view, belief, intent, record):
     intent, record = carrier_to_goal(view, belief, intent, record)
     intent, record = defender_baseline(view, belief, intent, record)
     intent, record = zone_behavior(view, belief, intent, record)
+    intent, record = choose_block(view, belief, intent, record)
     frozen = frozen_tracks(view, belief)
     if not frozen:
         return intent, record

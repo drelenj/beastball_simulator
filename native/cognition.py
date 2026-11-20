@@ -377,7 +377,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     else:
                         tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
                         a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
-                if k in ('carry', 'pass'):
+                if k in ('carry', 'pass', 'handoff'):
                     options.append((k, t, (round(a[0], 3), round(a[1], 3)),
                                     round(v + (4. if view.role == 'keeper' and k == 'pass' else 0.), 6)))
     elif view.role == 'keeper':

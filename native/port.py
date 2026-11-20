@@ -296,6 +296,9 @@ class NativePort:
             e.vacancies.remove(vacancy);e.emit('substitute','native',player=p.id,role=role,intent_id=intent.intent_id);self.platform_motor(0)
             return {'status':'accepted'}
         if not p.active:return {'status':'rejected','reason':'inactive'}
+        if kind in ('handoff', 'block'):
+            actions = getattr(self, 'rb317', None)
+            return actions.submit(p, intent) if actions else {'status': 'rejected', 'reason': 'feature_off'}
         if kind in ('restart_claim','restart_position','restart_pass','restart_wait') and (s.restart is None or intent.record_id!=s.restart.native_id):
             return {'status':'rejected','reason':'stale_restart_record'}
         if kind=='hunt_claim':
@@ -378,6 +381,9 @@ class NativePort:
             if i.kind!='restart_pass' and s.ball.carrier!=pid:self.resolve(pid,'interrupted');continue
             if s.now<pend['due']:continue
             p=s.players[pid]
+            if i.kind == 'handoff':
+                self.rb317.execute_handoff(p, pend)
+                continue
             if i.kind=='restart_pass':
                 if s.restart is None:self.resolve(pid,'interrupted');continue
                 if s.restart.taker!=pid or i.record_id!=s.restart.native_id:self.resolve(pid,'rejected_taker_or_record');continue
@@ -517,7 +523,7 @@ class NativePort:
             if self.config.version == 'native-rb/3':
                 # Do not round a scheduled throw up to the next physics tick.
                 throw = self.pending.get(s.ball.carrier)
-                if throw and throw['cmd'].intent.kind in ('pass', 'shoot') and throw['due'] > s.now:
+                if throw and throw['cmd'].intent.kind in ('pass', 'shoot', 'handoff') and throw['due'] > s.now:
                     span = min(span, throw['due'] - s.now)
             m.c3_step(span,self.move.copy());m.step_count+=1;m.record()
         if s.phase==P.FINAL:return

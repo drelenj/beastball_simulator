@@ -6,6 +6,7 @@ from .authorities import CREW
 
 @dataclass(frozen=True)
 class RulebookView(C.AthleteView):
+    rb3_handoff_block_enabled: bool = False
     status_indicators: tuple = ()
     officials: tuple = CREW
     # RB-3.6 (native-rb/3 only; None elsewhere): public team instruction and own-body memory
@@ -38,6 +39,9 @@ class RulebookPort(NativePort):
                 reserve=next(p for p in self.m.s.players.values() if p.team==team and not p.active and p.role=='keeper')
                 self.m.e.rb_reserves[team]=reserve.id
         self.platform_motor(0)
+        if self.config.version == 'native-rb/3' and self.config.rb3_handoff_block_enabled:
+            from .handoff_block import HandoffBlock
+            self.rb317 = HandoffBlock(self)
 
     @property
     def intermission_pending(self):return self.m.e.rb_pause is not None
@@ -54,7 +58,12 @@ class RulebookPort(NativePort):
             self.platform_motor(0);self.last_reset_period=self.m.s.period
 
     def step(self):
-        if self.intermission_pending:self.advance_intermission();return
+        actions = getattr(self, 'rb317', None)
+        if self.intermission_pending:
+            if actions:
+                actions.update_blocks()
+            self.advance_intermission()
+            return
         e=self.m.e;s=self.m.s
         if s.phase==self.types.Phase.DEAD:
             for team in ('A','B'):
@@ -65,7 +74,11 @@ class RulebookPort(NativePort):
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
         if self.config.version=='native-rb/3':e.rb_hold_step(self) # RB-3.10 snap hold
+        if actions:
+            actions.update_blocks()
         super().step()
+        if actions:
+            actions.update_blocks(steer=False)
         if self.config.version=='native-rb/3':e.rb_form_restart() # RB-3.9a scrimmage formation
 
     def fill_cover(self):
@@ -95,6 +108,7 @@ class RulebookPort(NativePort):
         states=self.indicator_frames.get(f.frame_id,()) if f and hasattr(self,'indicator_frames') else ()
         extra={}
         if self.config.version=='native-rb/3':
+            extra['rb3_handoff_block_enabled'] = self.config.rb3_handoff_block_enabled
             c=self.config;exits=getattr(self.m.e,'rb35',{}).get('own_exit',{})
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None)
@@ -142,6 +156,7 @@ class RulebookPort(NativePort):
         data=deepcopy(payload);status=data['view'].pop('status_indicators',());officials=data['view'].pop('officials',CREW)
         baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None);ctl=data['view'].pop('own_control_ms',None);mz=data['view'].pop('mate_zone_ms',());sh=data['view'].pop('snap_hold',False);prm=data['view'].pop('pass_release_ms',250);br=data['view'].pop('body_reach',())
         own_release = data['view'].pop('own_release_ms', None);bh=data['view'].pop('body_height',())
+        actions = data['view'].pop('rb3_handoff_block_enabled', False)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
-                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz)),b
+                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions),b

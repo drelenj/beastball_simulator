@@ -52,7 +52,7 @@ def install(CO, cfg):
                 elif k=='restart_release':events.append(dict(kind=k,team=d['team']))
                 elif k=='boundary':events.append(dict(kind='out_of_play'))
                 elif k in ('goal','period_end','hunt_start'):events.append(dict(kind='dead'))
-                elif k in ('strip','c3_strip_in_wind_up'):events.append(dict(kind='loose'))
+                elif k in ('strip','c3_strip_in_wind_up','handoff_fumble'):events.append(dict(kind='loose'))
             self.native_seen=len(self.log)
             events.append(dict(kind='live' if s.phase in (P.LIVE,P.OPENING,P.FLIGHT) else 'dead')) if self.possession.live != (s.phase in (P.LIVE,P.OPENING,P.FLIGHT)) else None
             touching={b.carrier:s.players[b.carrier].team} if b.carrier else {}

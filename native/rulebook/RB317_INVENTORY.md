@@ -9,7 +9,8 @@ Baseline: `9c37fd4`.
   and applies balance shock from the remaining speed change. A lawful,
   material, voluntarily initiated hit on a non-carrier produces the block
   label. The label records the collision instant; it applies no continuing
-  force, displacement, speed loss, or restraint.
+  force, displacement, speed loss, or restraint. `c3_sync` retains the
+  bookkeeping engagement while eligible and within 4 m.
 - The older non-C3 `player_contacts` block branch uses strength × blocking ×
   sqrt(mass / 220) × fatigue factor, a displacement capped at 0.35 m per
   update, and a 0.72 multiplier on both velocities. It has no prescribed

@@ -52,6 +52,14 @@ class RulebookConfigV3(RulebookConfig):
     defender_baseline: bool = True
     defender_mark_distance_m: float = 5.0
     defender_ball_leash_m: float = 25.0
+    rb3_handoff_block_enabled: bool = False
+
+    def record(self):
+        record = super().record()
+        if not self.rb3_handoff_block_enabled:
+            # OFF is the exact RB-3.16 effective configuration.
+            record.pop('rb3_handoff_block_enabled')
+        return record
 
     def __post_init__(self):
         if self.thaw_contact_buffer_ms<0:raise ValueError('thaw_contact_buffer_ms must be >= 0')

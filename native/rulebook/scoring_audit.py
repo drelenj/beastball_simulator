@@ -141,12 +141,12 @@ def speeds(carry):
                 cap=match.c3_cache[runner.id][0], speeds=samples)
 
 
-def match_metrics(root):
+def match_metrics(root, cases=None):
     from native.nbl_roster import load_canon_nbl
 
     real_rosters = load_canon_nbl(('Garvian Guardians', 'Ala Apex'))
     rows = []
-    for block, seed in [('real', 1), ('real', 3), ('real', 5), ('control', 1)]:
+    for block, seed in cases or [('real', 1), ('real', 3), ('real', 5), ('control', 1)]:
         name = f'{block}-seed{seed:02d}'
         path = Path(root) / block / f'raw-{name}.json'
         run = json.loads(path.with_name(f'{name}.json').read_text())
