@@ -100,3 +100,12 @@ Status: DESIGN COMPLETE; not implemented. Supersedes the diagnosis proposal of a
 4. (Q-RB39-7) Frozen players are automatically unfrozen when the scrimmage formation is set. No thaw period, no thaw contact buffer, no freeze immunity after that auto-unfreeze.
 Defaults standing unless the owner objects: Q-RB39-4 formation applies to every scrimmage; Q-RB39-5 majors spotted inside 10 m move to the 10 m clamp; Q-RB39-6 moot (no nose tackle); Q-RB39-8 tosses keep the old speed; Q-RB39-10 field length 100 m hard-coded.
 RB-3.9 (claude/rb-3-9-offense-fixes @ 6a328bf) is IMPLEMENTED and TESTED, NOT ACCEPTED.
+
+## 19 Nov 2026 (evening) - Zone-exit behaviour plan LOCKED (BEHAVIORAL default, owner-approved)
+Owner: "lock in your recommended fix plan" after the zone-exit scenario (claude/rb-3-11-zone-scenario @ 8dbc031: a 0.70 athlete clears the zone from the goal mouth in 2.8 s if he simply leaves; the RB-3.11 Part A behaviour waited until 4.4-5.1 s).
+1. The 5 s residence rule and the whole-zone extent are unchanged (no canon change). Inner restricted-area idea parked; revisit after the carry/pass fixes if attempts still fall short.
+2. A player with NO reason to be in the zone leaves immediately: an unmarked defender with nobody he can reach to mark, and an off-ball attacker who is not involved in the play.
+3. Last-moment (time-to-arc) timing is kept ONLY for players with a reason to stay: the carrier going to goal, a player with a real shot option, the designated receiver before the catch, and a defender actually marking someone (opposing field player within 5 m) or closing on one he can reach in time.
+4. Safety margin for those players raised from 0.75 s to 1.5 s.
+5. Q-RB311 defaults: an attacker chasing a loose ball counts as involved; passers may target a teammate in the zone but weigh his believed time left; when closing and leaving take similar time, take the faster with a small bias to leaving when the mark moves away.
+Status: DESIGN COMPLETE; to be built with B-5.
