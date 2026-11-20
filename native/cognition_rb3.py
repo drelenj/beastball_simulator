@@ -219,11 +219,13 @@ def time_to_contact(view, o, reach=None):
 
 
 def release_time_s(view):
-    """RB-3.14: seconds from this decision to the release: the engine's pass_release_ms plus any time left on a pending command."""
+    """Seconds from this decision to the release: the athlete's OWN release delay (RB-3.15; the engine's
+    pass_release_ms x (1.35 - .5 x ball_handling)), else the flat pass_release_ms, plus any time left on a pending command."""
     pending = 0
     if getattr(view, 'pending_command_id', None) is not None and view.pending_release_ms is not None:
         pending = max(0, view.pending_release_ms - view.delivered_ms)
-    return (getattr(view, 'pass_release_ms', 250) + pending) / 1000.
+    own = getattr(view, 'own_release_ms', None)
+    return ((own if own is not None else getattr(view, 'pass_release_ms', 250)) + pending) / 1000.
 
 
 def release_blocked(view, opps):
@@ -377,6 +379,75 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
         out.append(('carry', None, best_aim, best_v))
     out.extend(passes)
     return out
+
+
+# ------------------------------------------------ RB-3.15 shot quality (S-1 aim, S-2 lane)
+# BEHAVIORAL defaults, PROVISIONAL, unsearched (lead decisions, 20 Nov 2026).
+#  constant              value   meaning
+#  SHOT_DY_M             -2.4..2.4 step .6   candidate aim offsets from the goal centre (goal plane)
+#  SHOT_Z_M              .4, 1.2, 2.0        candidate aim heights
+#  SHOT_BALL_R_M / EDGE  .1075 / .3          keep hypot(dy, z) <= goal_radius - ball radius - this
+#  SHOT_MIN_MARGIN_M     0.3     best keeper margin below this: no shot from this decision
+#  KEEPER_CENTRE_FRAC    .5      believed keeper body centre height = this x his height
+#  KEEPER lateral reach  (reach - height) + radius .45   the keeper's arm reach beyond his body in the goal plane; his
+#                        standing reach (3.05) is a vertical figure: used whole it would cover a 3.0 m mouth from the centre (owner/lead question)
+#  keeper position       advanced over own release delay + ball flight time (distance / shot speed) at his believed velocity
+#  S-2 lane              RB-3.14 lane check from the hand to the aim point, field defenders only (keeper excluded), margin < 0 = unsafe
+#  SHOT_MARGIN_W / CAP   1.5 / 2.0    value = existing shot value + SHOT_MARGIN_W x min(keeper_margin, SHOT_MARGIN_CAP)
+SHOT_DY_M = (-2.4, -1.8, -1.2, -.6, 0., .6, 1.2, 1.8, 2.4)
+SHOT_Z_M = (.4, 1.2, 2.0)
+SHOT_BALL_R_M, SHOT_EDGE_M, SHOT_MIN_MARGIN_M = .1075, .3, .3
+KEEPER_CENTRE_FRAC = .5
+SHOT_MARGIN_W, SHOT_MARGIN_CAP = 1.5, 2.0
+
+
+def shot_speed(view):
+    return min(80., .5 * view.max_throw_speed)
+
+
+def keeper_lateral_reach(view, k):
+    """Believed keeper's reach in the goal plane (perceived body size; see the table)."""
+    r = dict(getattr(view, 'body_reach', ()) or ()).get(k.entity)
+    h = dict(getattr(view, 'body_height', ()) or ()).get(k.entity)
+    if r is None or h is None:
+        return max(0., acquisition_reach(view) - ACQ_EXTRA_M - (view.body.height if view.body is not None else 2.39))
+    return max(0., r - h) + ACQ_RADIUS_M
+
+
+def shot_plan(view, fresh):
+    """S-1 and S-2: choose the aim point on the goal plane. Returns dict(aim=(x, y), z, margin) or None (shot not offered).
+    Pure: own belief tracks, own body, own release delay."""
+    sg = view.attack_sign
+    gx = view.own_goal_x + sg * 100.
+    speed = shot_speed(view)
+    t_rel = release_time_s(view)
+    t_flight = abs(gx - view.x) / speed
+    keeper = next((t for t in sorted(fresh, key=lambda t: t.entity)
+                   if t.team not in (view.team, 'ball') and t.role == 'keeper'), None)
+    fields = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
+    limit = view.goal_radius - SHOT_BALL_R_M - SHOT_EDGE_M
+    if keeper is not None:
+        ky = keeper.y + keeper.vy * (t_rel + t_flight)
+        kz = KEEPER_CENTRE_FRAC * (dict(getattr(view, 'body_height', ()) or ()).get(keeper.entity) or (view.body.height if view.body is not None else 2.39))
+        klat = keeper_lateral_reach(view, keeper)
+    best = None
+    for dy in SHOT_DY_M:
+        for z in SHOT_Z_M:
+            if hypot(dy, z) > limit + 1e-9:
+                continue
+            margin = 99. if keeper is None else hypot(50. + dy - ky, z - kz) - klat
+            key = (round(margin, 6), -abs(dy), -z, dy)
+            if best is None or key > best[0]:
+                best = (key, dy, z, margin)
+    if best is None or best[3] < SHOT_MIN_MARGIN_M:
+        return None
+    _, dy, z, margin = best
+    aim = (gx, round(50. + dy, 3))
+    if fields:
+        c = type('Aim', (), dict(x=aim[0], y=aim[1]))()
+        if lane_margin(view, c, fields, speed, t_rel) < 0:
+            return None                                                # S-2: a field defender can reach the shot path at release time
+    return dict(aim=aim, z=z, margin=margin)
 
 
 # ---------------------------------------------------------------- RB-3.9c carrier (B-2)
