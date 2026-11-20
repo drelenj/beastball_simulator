@@ -128,3 +128,37 @@ about 3.58 s and 56 m to reach 31.2928 m/s in an uninterrupted straight run.
 The scoring target is a median 76 points per pro team with a realistic
 spread. Four seeds are an audit sample. The fixes do not target a particular
 shot/carry share or adjust catch parameters to reach a score.
+
+## Match comparison
+
+All four completed in regulation on the engine commit
+`fddfc416cf7d2c643a70c11ce43c018d7d88d9c1`. Real fixtures are Garvian
+Guardians (A) and Ala Apex (B). Control uses the RB-3.14 evidence runner's
+uniform 0.70 roster. Values are RB-3.14 → audit.
+
+| Run | Score A–B | First shot outcome %, goal/Keeper/field defender | Pass interceptions % | Possessions A/B |
+| --- | --- | --- | --- | --- |
+| real-seed01 | 24–16 → 26–18 | 10.5/36.8/45.6 → 10.8/41.0/28.9 | 22.5 → 22.4 | 173/174 → 176/177 |
+| real-seed03 | 30–43 → 10–37 | 15.5/36.2/25.9 → 4.5/38.6/38.6 | 21.3 → 22.2 | 179/178 → 172/172 |
+| real-seed05 | 15–35 → 5–33 | 12.0/41.3/33.3 → 11.3/49.1/26.4 | 26.0 → 23.2 | 185/185 → 176/175 |
+| control-seed01 | 10–13 → 13–27 | 1.9/50.9/24.5 → 13.0/37.0/38.9 | 26.9 → 20.6 | 181/181 → 162/163 |
+
+The denominator is all shot or open-play pass releases, respectively.
+The shot columns exclude other outcomes, such as own-side recovery or
+out of play. A Keeper touch is an intervention, whether or not it secures
+the ball. An interception is opposing control before the pass sequence
+ends. Baseline raw logs are in `native/evidence/rb314/runs`.
+
+- `real-seed01` trace `b39086bd7dae713e29b35b3a954f74842fd5fc03a70fec46ede864c91c805985`, state `174042701b4376efe01ae3cd96290578dca91f4ea415fb1ae075c1ab3528135e`. Log `/tmp/rb3-scoring-final/real/raw-real-seed01.json`.
+- `real-seed03` trace `dc2ce7f2b4c0584cabecd3ebf1cd1db9215c5e6fb02655431c1802bf94ac204a`, state `e6085f9c970f80c7ead60307a5f00b28110c96e0c901d34ce6e91c9112544ae7`. Log `/tmp/rb3-scoring-final/real/raw-real-seed03.json`.
+- `real-seed05` trace `04ccb1e39ccbd512ac144a6c95f54482ab3b20c65c0b4fefe56a23607e482834`, state `12ca8c24c6f290bfa7679a24d07e2c3d8b894a215fc7f139339533295b193a56`. Log `/tmp/rb3-scoring-final/real/raw-real-seed05.json`.
+- `control-seed01` trace `d1e6edb8109ad3cfaca6892cfe1c7bab85c8035c116f0b6c78227491098315be`, state `42bcb8a55f5f3ce90bb617fcc3418668084a43feb8561ca742e73947937310b6`. Log `/tmp/rb3-scoring-final/control/raw-control-seed01.json`.
+
+All six legacy windows (3,000 steps, seeds 1 and 3) match `185b557` for
+trace, state and config digests. Full values are in
+`SCORING_AUDIT_LEGACY.txt`.
+
+TESTED: the maintained `pytest -q b1 native` suite passed 570 tests and 23
+subtests, including eight focused scoring-audit tests. The run emitted one
+AnyIO pytest deprecation warning. All four matches reached final status
+with 2,400 live seconds and a reported restart-completion ratio of 1.0.
