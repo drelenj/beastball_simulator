@@ -1,0 +1,1471 @@
+[
+  {
+    "attempt_share": {
+      "A": 0.23684210526315788,
+      "B": 0.20353982300884957
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 66,
+      "B": 52
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 4
+    },
+    "dqs": {
+      "A": 0,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 9,
+      "zone_unmarked": 1
+    },
+    "interceptions_within_3m": 6,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9830508474576272,
+      "B": 0.9824561403508771
+    },
+    "name": "real-seed01",
+    "pass_interception_pct": 13.8,
+    "pass_outcomes": {
+      "field": 43,
+      "keeper": 3,
+      "out/award": 119,
+      "own": 167,
+      "scored": 2
+    },
+    "passes": 334,
+    "points_awards": {
+      "A": 8,
+      "B": 1
+    },
+    "points_by_method": {
+      "A|award": 6,
+      "A|half": 2,
+      "A|release": 66,
+      "B|carry": 20,
+      "B|half": 1,
+      "B|own": 2,
+      "B|release": 69
+    },
+    "points_play": {
+      "A": 66,
+      "B": 91
+    },
+    "possessions": {
+      "A": 228,
+      "B": 226
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 17,
+    "runtime_s": 177.85,
+    "score": {
+      "A": 74,
+      "B": 92
+    },
+    "shot_outcome_shares_pct": {
+      "field": 1.6,
+      "keeper": 25.0,
+      "out/award": 10.9,
+      "own": 7.8,
+      "scored": 54.7
+    },
+    "shot_outcomes": {
+      "field": 1,
+      "keeper": 16,
+      "out/award": 7,
+      "own": 5,
+      "scored": 35
+    },
+    "shots_by_team": {
+      "A": 36,
+      "B": 28
+    },
+    "shots_total": 64,
+    "state_hash": "b9962ddfb23dbc96551258ea6c2132565804d22ec1b0c87295e3f3ff37d59854",
+    "status": "final",
+    "steps": 40468,
+    "tackles_by_actor_team": {
+      "A": 33,
+      "B": 49
+    },
+    "tackles_total": 82,
+    "trace_hash": "93b1f57e268ee6c436fae47109e4e2987cfdf7024df5575b6405e119c5ed32d7",
+    "zone_events": {
+      "zone_foul_diagnosis": 6,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 1
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "B:NBL24-01-10",
+        "live_ms": 2057253,
+        "period": 4
+      }
+    ],
+    "zone_unmarked_calls": 1
+  },
+  {
+    "attempt_share": {
+      "A": 0.23444976076555024,
+      "B": 0.24401913875598086
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 60,
+      "B": 58
+    },
+    "carry_goals": {
+      "A": 2,
+      "B": 3
+    },
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 11
+    },
+    "interceptions_within_3m": 8,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9824561403508771,
+      "B": 0.9760956175298805
+    },
+    "name": "real-seed02",
+    "pass_interception_pct": 19.7,
+    "pass_outcomes": {
+      "field": 62,
+      "keeper": 4,
+      "out/award": 111,
+      "own": 154,
+      "scored": 4
+    },
+    "passes": 335,
+    "points_awards": {
+      "A": 2,
+      "B": 5
+    },
+    "points_by_method": {
+      "A|carry": 10,
+      "A|half": 2,
+      "A|release": 59,
+      "B|award": 3,
+      "B|carry": 15,
+      "B|half": 2,
+      "B|release": 84
+    },
+    "points_play": {
+      "A": 69,
+      "B": 99
+    },
+    "possessions": {
+      "A": 209,
+      "B": 209
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 14,
+    "runtime_s": 175.64,
+    "score": {
+      "A": 71,
+      "B": 104
+    },
+    "shot_outcome_shares_pct": {
+      "field": 3.4,
+      "keeper": 27.1,
+      "out/award": 5.1,
+      "own": 3.4,
+      "scored": 61.0
+    },
+    "shot_outcomes": {
+      "field": 2,
+      "keeper": 16,
+      "out/award": 3,
+      "own": 2,
+      "scored": 36
+    },
+    "shots_by_team": {
+      "A": 27,
+      "B": 32
+    },
+    "shots_total": 59,
+    "state_hash": "b753afa1bbaf35ad947b498f4e7c19eebfbd482b11707ee7280265837e2a5842",
+    "status": "final",
+    "steps": 38181,
+    "tackles_by_actor_team": {
+      "A": 46,
+      "B": 37
+    },
+    "tackles_total": 83,
+    "trace_hash": "711e24c6242fb8101f7c06e296c363460e11c6dbfdc9b8510022aab8786a7e1b",
+    "zone_events": {
+      "zone_foul_diagnosis": 5,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 0
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [],
+    "zone_unmarked_calls": 0
+  },
+  {
+    "attempt_share": {
+      "A": 0.16589861751152074,
+      "B": 0.2488479262672811
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 40,
+      "B": 59
+    },
+    "carry_goals": {
+      "A": 1,
+      "B": 1
+    },
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 4,
+      "zone_unmarked": 2
+    },
+    "interceptions_within_3m": 10,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.993006993006993,
+      "B": 0.9927272727272727
+    },
+    "name": "real-seed03",
+    "pass_interception_pct": 19.1,
+    "pass_outcomes": {
+      "field": 53,
+      "keeper": 6,
+      "out/award": 113,
+      "own": 136,
+      "scored": 1
+    },
+    "passes": 309,
+    "points_awards": {
+      "A": 3,
+      "B": 7
+    },
+    "points_by_method": {
+      "A|award": 3,
+      "A|carry": 5,
+      "A|release": 34,
+      "B|award": 6,
+      "B|carry": 5,
+      "B|half": 1,
+      "B|release": 80
+    },
+    "points_play": {
+      "A": 39,
+      "B": 85
+    },
+    "possessions": {
+      "A": 217,
+      "B": 217
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 23,
+    "runtime_s": 176.07,
+    "score": {
+      "A": 42,
+      "B": 92
+    },
+    "shot_outcome_shares_pct": {
+      "field": 5.7,
+      "keeper": 28.6,
+      "out/award": 10.0,
+      "own": 11.4,
+      "scored": 44.3
+    },
+    "shot_outcomes": {
+      "field": 4,
+      "keeper": 20,
+      "out/award": 7,
+      "own": 8,
+      "scored": 31
+    },
+    "shots_by_team": {
+      "A": 29,
+      "B": 41
+    },
+    "shots_total": 70,
+    "state_hash": "835f70477706159b0a68959e56c35d04a4c529ebc45b8dea73f51d2f29e4ce71",
+    "status": "final",
+    "steps": 38636,
+    "tackles_by_actor_team": {
+      "A": 32,
+      "B": 36
+    },
+    "tackles_total": 68,
+    "trace_hash": "7ebf8e03e627e9dc09e4851ff168822faa245e58f100a40f8b694003307bf816",
+    "zone_events": {
+      "zone_foul_diagnosis": 6,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 2
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "A:NBL24-07-06",
+        "live_ms": 652047,
+        "period": 2
+      },
+      {
+        "fouler": "A:NBL24-07-06",
+        "live_ms": 2088475,
+        "period": 4
+      }
+    ],
+    "zone_unmarked_calls": 2
+  },
+  {
+    "attempt_share": {
+      "A": 0.24170616113744076,
+      "B": 0.22641509433962265
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 49,
+      "B": 53
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 1
+    },
+    "dqs": {
+      "A": 1,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 7
+    },
+    "interceptions_within_3m": 10,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9809160305343512,
+      "B": 0.992619926199262
+    },
+    "name": "real-seed04",
+    "pass_interception_pct": 16.2,
+    "pass_outcomes": {
+      "field": 50,
+      "keeper": 4,
+      "out/award": 107,
+      "own": 170,
+      "scored": 2
+    },
+    "passes": 333,
+    "points_awards": {
+      "A": 0,
+      "B": 5
+    },
+    "points_by_method": {
+      "A|release": 68,
+      "B|award": 3,
+      "B|carry": 5,
+      "B|half": 2,
+      "B|release": 66
+    },
+    "points_play": {
+      "A": 68,
+      "B": 71
+    },
+    "possessions": {
+      "A": 211,
+      "B": 212
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 16,
+    "runtime_s": 172.07,
+    "score": {
+      "A": 68,
+      "B": 76
+    },
+    "shot_outcome_shares_pct": {
+      "field": 2.9,
+      "keeper": 32.4,
+      "out/award": 10.3,
+      "own": 1.5,
+      "scored": 52.9
+    },
+    "shot_outcomes": {
+      "field": 2,
+      "keeper": 22,
+      "out/award": 7,
+      "own": 1,
+      "scored": 36
+    },
+    "shots_by_team": {
+      "A": 36,
+      "B": 32
+    },
+    "shots_total": 68,
+    "state_hash": "27ca2f397e4b529d948d6035d8459ac9e4505b0666fedcdcc5312900f2487329",
+    "status": "final",
+    "steps": 37598,
+    "tackles_by_actor_team": {
+      "A": 29,
+      "B": 29
+    },
+    "tackles_total": 58,
+    "trace_hash": "f7b16b77060cdcbe5eeaa9f3a7029d7c0dd26c732e98ef901f3d673b72227092",
+    "zone_events": {
+      "zone_foul_diagnosis": 2,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 0
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [],
+    "zone_unmarked_calls": 0
+  },
+  {
+    "attempt_share": {
+      "A": 0.263681592039801,
+      "B": 0.19900497512437812
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 59,
+      "B": 52
+    },
+    "carry_goals": {
+      "A": 1,
+      "B": 0
+    },
+    "dqs": {
+      "A": 0,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 13
+    },
+    "interceptions_within_3m": 11,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9861111111111112,
+      "B": 0.9642857142857143
+    },
+    "name": "real-seed05",
+    "pass_interception_pct": 14.1,
+    "pass_outcomes": {
+      "field": 44,
+      "out/award": 102,
+      "own": 163,
+      "scored": 2
+    },
+    "passes": 311,
+    "points_awards": {
+      "A": 15,
+      "B": 2
+    },
+    "points_by_method": {
+      "A|award": 12,
+      "A|carry": 5,
+      "A|half": 3,
+      "A|release": 64,
+      "B|half": 2,
+      "B|own": 2,
+      "B|release": 56
+    },
+    "points_play": {
+      "A": 69,
+      "B": 58
+    },
+    "possessions": {
+      "A": 201,
+      "B": 201
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 20,
+    "runtime_s": 174.38,
+    "score": {
+      "A": 84,
+      "B": 60
+    },
+    "shot_outcome_shares_pct": {
+      "field": 3.2,
+      "keeper": 29.0,
+      "out/award": 4.8,
+      "own": 11.3,
+      "scored": 51.6
+    },
+    "shot_outcomes": {
+      "field": 2,
+      "keeper": 18,
+      "out/award": 3,
+      "own": 7,
+      "scored": 32
+    },
+    "shots_by_team": {
+      "A": 34,
+      "B": 28
+    },
+    "shots_total": 62,
+    "state_hash": "52c4c25e08f6c13373a019a10e981eb76842d710c968ce2fc39e58c1e00f151e",
+    "status": "final",
+    "steps": 38313,
+    "tackles_by_actor_team": {
+      "A": 44,
+      "B": 44
+    },
+    "tackles_total": 88,
+    "trace_hash": "ceaf966728aea1fa5fbd3761adbeb02c6fe596196821ea5a681c3fe40535907c",
+    "zone_events": {
+      "zone_foul_diagnosis": 2,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 0
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [],
+    "zone_unmarked_calls": 0
+  },
+  {
+    "attempt_share": {
+      "A": 0.14473684210526316,
+      "B": 0.22026431718061673
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 37,
+      "B": 59
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 2
+    },
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 11,
+      "zone_unmarked": 1
+    },
+    "interceptions_within_3m": 7,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.977859778597786,
+      "B": 0.9807692307692307
+    },
+    "name": "real-seed06",
+    "pass_interception_pct": 19.4,
+    "pass_outcomes": {
+      "field": 66,
+      "keeper": 3,
+      "out/award": 123,
+      "own": 163,
+      "scored": 1
+    },
+    "passes": 356,
+    "points_awards": {
+      "A": 6,
+      "B": 2
+    },
+    "points_by_method": {
+      "A|award": 3,
+      "A|half": 3,
+      "A|release": 52,
+      "B|carry": 10,
+      "B|half": 2,
+      "B|release": 70
+    },
+    "points_play": {
+      "A": 52,
+      "B": 80
+    },
+    "possessions": {
+      "A": 228,
+      "B": 227
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 15,
+    "runtime_s": 177.53,
+    "score": {
+      "A": 58,
+      "B": 82
+    },
+    "shot_outcome_shares_pct": {
+      "keeper": 23.0,
+      "out/award": 9.8,
+      "own": 11.5,
+      "scored": 55.7
+    },
+    "shot_outcomes": {
+      "keeper": 14,
+      "out/award": 6,
+      "own": 7,
+      "scored": 34
+    },
+    "shots_by_team": {
+      "A": 26,
+      "B": 35
+    },
+    "shots_total": 61,
+    "state_hash": "f3edc40c77e887b48c5710fdb0dc5c61c87efef4e729a9ee4d95c7b75d139e7e",
+    "status": "final",
+    "steps": 38977,
+    "tackles_by_actor_team": {
+      "A": 42,
+      "B": 23
+    },
+    "tackles_total": 65,
+    "trace_hash": "cfadd324010c9af4fbc9f0b94a1f9940c6c5721c05131feb424d5222f63c4936",
+    "zone_events": {
+      "zone_foul_diagnosis": 6,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 1
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "B:NBL24-01-04",
+        "live_ms": 40990,
+        "period": 1
+      }
+    ],
+    "zone_unmarked_calls": 1
+  },
+  {
+    "attempt_share": {
+      "A": 0.23255813953488372,
+      "B": 0.26851851851851855
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 57,
+      "B": 68
+    },
+    "carry_goals": {
+      "A": 3,
+      "B": 3
+    },
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 10
+    },
+    "interceptions_within_3m": 4,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.980544747081712,
+      "B": 0.980544747081712
+    },
+    "name": "real-seed07",
+    "pass_interception_pct": 20.2,
+    "pass_outcomes": {
+      "field": 64,
+      "keeper": 6,
+      "out/award": 113,
+      "own": 160,
+      "scored": 3
+    },
+    "passes": 346,
+    "points_awards": {
+      "A": 3,
+      "B": 3
+    },
+    "points_by_method": {
+      "A|award": 3,
+      "A|carry": 15,
+      "A|release": 49,
+      "B|carry": 15,
+      "B|half": 3,
+      "B|release": 86
+    },
+    "points_play": {
+      "A": 64,
+      "B": 101
+    },
+    "possessions": {
+      "A": 215,
+      "B": 216
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 20,
+    "runtime_s": 174.11,
+    "score": {
+      "A": 67,
+      "B": 104
+    },
+    "shot_outcome_shares_pct": {
+      "field": 6.1,
+      "keeper": 35.4,
+      "out/award": 7.3,
+      "own": 8.5,
+      "scored": 42.7
+    },
+    "shot_outcomes": {
+      "field": 5,
+      "keeper": 29,
+      "out/award": 6,
+      "own": 7,
+      "scored": 35
+    },
+    "shots_by_team": {
+      "A": 34,
+      "B": 48
+    },
+    "shots_total": 82,
+    "state_hash": "0751281eef8540aa0775f8b5fe68a17e2bf2345310a546f9f9a726c34b64be56",
+    "status": "final",
+    "steps": 38218,
+    "tackles_by_actor_team": {
+      "A": 37,
+      "B": 43
+    },
+    "tackles_total": 80,
+    "trace_hash": "c222ff83eafc9896b6f3079d8a1f4b769c3a2197a99c05abbbf15528d3ce28e7",
+    "zone_events": {
+      "zone_foul_diagnosis": 5,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 0
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [],
+    "zone_unmarked_calls": 0
+  },
+  {
+    "attempt_share": {
+      "A": 0.19248826291079812,
+      "B": 0.2347417840375587
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 47,
+      "B": 54
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 2
+    },
+    "dqs": {
+      "A": 0,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 8,
+      "protected_keeper": 1,
+      "zone_unmarked": 1
+    },
+    "interceptions_within_3m": 12,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9964285714285714,
+      "B": 0.9737827715355806
+    },
+    "name": "real-seed08",
+    "pass_interception_pct": 17.8,
+    "pass_outcomes": {
+      "field": 56,
+      "keeper": 6,
+      "out/award": 107,
+      "own": 178,
+      "scored": 1
+    },
+    "passes": 348,
+    "points_awards": {
+      "A": 3,
+      "B": 1
+    },
+    "points_by_method": {
+      "A|half": 3,
+      "A|release": 52,
+      "B|carry": 10,
+      "B|half": 1,
+      "B|release": 90
+    },
+    "points_play": {
+      "A": 52,
+      "B": 100
+    },
+    "possessions": {
+      "A": 213,
+      "B": 213
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 26,
+    "runtime_s": 183.7,
+    "score": {
+      "A": 55,
+      "B": 101
+    },
+    "shot_outcome_shares_pct": {
+      "field": 9.0,
+      "keeper": 29.9,
+      "out/award": 3.0,
+      "own": 3.0,
+      "scored": 55.2
+    },
+    "shot_outcomes": {
+      "field": 6,
+      "keeper": 20,
+      "out/award": 2,
+      "own": 2,
+      "scored": 37
+    },
+    "shots_by_team": {
+      "A": 24,
+      "B": 43
+    },
+    "shots_total": 67,
+    "state_hash": "b0a4a4bff61db105c7fbbb5064471709fc5cd60278c691b2efca22cd7fde6bc1",
+    "status": "final",
+    "steps": 39040,
+    "tackles_by_actor_team": {
+      "A": 36,
+      "B": 49
+    },
+    "tackles_total": 85,
+    "trace_hash": "ba84dcb8a434dfb7929a995abedaf50a232a0af60ed75f9edda452be1a16ceb6",
+    "zone_events": {
+      "zone_foul_diagnosis": 3,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 1
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "A:NBL24-07-08",
+        "live_ms": 514183,
+        "period": 1
+      }
+    ],
+    "zone_unmarked_calls": 1
+  },
+  {
+    "attempt_share": {
+      "A": 0.23318385650224216,
+      "B": 0.2242152466367713
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 60,
+      "B": 55
+    },
+    "carry_goals": {
+      "A": 1,
+      "B": 2
+    },
+    "dqs": {
+      "A": 1,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 9,
+      "zone_unmarked": 1
+    },
+    "interceptions_within_3m": 5,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.972027972027972,
+      "B": 0.9961538461538462
+    },
+    "name": "real-seed09",
+    "pass_interception_pct": 12.8,
+    "pass_outcomes": {
+      "field": 38,
+      "keeper": 6,
+      "other": 1,
+      "out/award": 122,
+      "own": 172,
+      "scored": 5
+    },
+    "passes": 344,
+    "points_awards": {
+      "A": 1,
+      "B": 6
+    },
+    "points_by_method": {
+      "A|carry": 5,
+      "A|half": 1,
+      "A|release": 68,
+      "B|award": 3,
+      "B|carry": 10,
+      "B|half": 3,
+      "B|release": 78
+    },
+    "points_play": {
+      "A": 73,
+      "B": 88
+    },
+    "possessions": {
+      "A": 223,
+      "B": 223
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 21,
+    "runtime_s": 183.67,
+    "score": {
+      "A": 74,
+      "B": 94
+    },
+    "shot_outcome_shares_pct": {
+      "field": 3.0,
+      "keeper": 20.9,
+      "out/award": 10.4,
+      "own": 10.4,
+      "scored": 55.2
+    },
+    "shot_outcomes": {
+      "field": 2,
+      "keeper": 14,
+      "out/award": 7,
+      "own": 7,
+      "scored": 37
+    },
+    "shots_by_team": {
+      "A": 38,
+      "B": 29
+    },
+    "shots_total": 67,
+    "state_hash": "1a584f481a211ba33913f55bc3805519be2516c867a53396ef928f7dc078bed7",
+    "status": "final",
+    "steps": 39948,
+    "tackles_by_actor_team": {
+      "A": 36,
+      "B": 35
+    },
+    "tackles_total": 71,
+    "trace_hash": "266ec725b258e22e29f9008ccab75c3c213020558df855804af761d521c8f984",
+    "zone_events": {
+      "zone_foul_diagnosis": 5,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 1
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "A:NBL25-D06",
+        "live_ms": 988947,
+        "period": 2
+      }
+    ],
+    "zone_unmarked_calls": 1
+  },
+  {
+    "attempt_share": {
+      "A": 0.1743119266055046,
+      "B": 0.2328767123287671
+    },
+    "block": "real",
+    "carry_attempts": {
+      "A": 45,
+      "B": 63
+    },
+    "carry_goals": {
+      "A": 1,
+      "B": 3
+    },
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 3,
+      "zone_unmarked": 2
+    },
+    "interceptions_within_3m": 3,
+    "keepers": {
+      "A": "A:NBL24-07-11",
+      "B": "B:NBL24-01-11"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9930795847750865,
+      "B": 0.996415770609319
+    },
+    "name": "real-seed10",
+    "pass_interception_pct": 17.6,
+    "pass_outcomes": {
+      "field": 56,
+      "keeper": 5,
+      "out/award": 114,
+      "own": 171
+    },
+    "passes": 346,
+    "points_awards": {
+      "A": 3,
+      "B": 5
+    },
+    "points_by_method": {
+      "A|award": 3,
+      "A|carry": 5,
+      "A|release": 43,
+      "B|award": 3,
+      "B|carry": 15,
+      "B|half": 2,
+      "B|release": 60
+    },
+    "points_play": {
+      "A": 48,
+      "B": 75
+    },
+    "possessions": {
+      "A": 218,
+      "B": 219
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 27,
+    "runtime_s": 182.74,
+    "score": {
+      "A": 51,
+      "B": 80
+    },
+    "shot_outcome_shares_pct": {
+      "field": 7.7,
+      "keeper": 26.2,
+      "out/award": 6.2,
+      "own": 9.2,
+      "scored": 50.8
+    },
+    "shot_outcomes": {
+      "field": 5,
+      "keeper": 17,
+      "out/award": 4,
+      "own": 6,
+      "scored": 33
+    },
+    "shots_by_team": {
+      "A": 27,
+      "B": 38
+    },
+    "shots_total": 65,
+    "state_hash": "f0f328390815af1b4ce82d1e7bf383b3d15185c22e3708e95a5695dad09787db",
+    "status": "final",
+    "steps": 38404,
+    "tackles_by_actor_team": {
+      "A": 43,
+      "B": 33
+    },
+    "tackles_total": 76,
+    "trace_hash": "588c4cfbc65a7ccde424cce91ab5df6238ecac60c50eaf8bc5090f36df3630d5",
+    "zone_events": {
+      "zone_foul_diagnosis": 4,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 2
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "A:NBL24-07-01",
+        "live_ms": 598905,
+        "period": 1
+      },
+      {
+        "fouler": "A:NBL24-07-09",
+        "live_ms": 2108446,
+        "period": 4
+      }
+    ],
+    "zone_unmarked_calls": 2
+  },
+  {
+    "attempt_share": {
+      "A": 0.16990291262135923,
+      "B": 0.16019417475728157
+    },
+    "block": "control",
+    "carry_attempts": {
+      "A": 46,
+      "B": 46
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 2
+    },
+    "dqs": {
+      "A": 1,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 9,
+      "zone_unmarked": 4
+    },
+    "interceptions_within_3m": 4,
+    "keepers": {
+      "A": "A:18",
+      "B": "B:18"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9822064056939501,
+      "B": 0.9845559845559846
+    },
+    "name": "control-seed01",
+    "pass_interception_pct": 19.2,
+    "pass_outcomes": {
+      "field": 54,
+      "keeper": 2,
+      "other": 1,
+      "out/award": 112,
+      "own": 122,
+      "scored": 1
+    },
+    "passes": 292,
+    "points_awards": {
+      "A": 1,
+      "B": 1
+    },
+    "points_by_method": {
+      "A|half": 1,
+      "A|release": 67,
+      "B|carry": 10,
+      "B|half": 1,
+      "B|release": 44
+    },
+    "points_play": {
+      "A": 67,
+      "B": 54
+    },
+    "possessions": {
+      "A": 206,
+      "B": 206
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 27,
+    "runtime_s": 178.45,
+    "score": {
+      "A": 68,
+      "B": 55
+    },
+    "shot_outcome_shares_pct": {
+      "field": 3.3,
+      "keeper": 26.2,
+      "out/award": 11.5,
+      "own": 14.8,
+      "scored": 44.3
+    },
+    "shot_outcomes": {
+      "field": 2,
+      "keeper": 16,
+      "out/award": 7,
+      "own": 9,
+      "scored": 27
+    },
+    "shots_by_team": {
+      "A": 37,
+      "B": 24
+    },
+    "shots_total": 61,
+    "state_hash": "4a3cbc5c7c98d1c4e4b5b3fcf8db7278e5804c8d363c92ad9c0e7977ab76e3c4",
+    "status": "final",
+    "steps": 38302,
+    "tackles_by_actor_team": {
+      "A": 41,
+      "B": 34
+    },
+    "tackles_total": 75,
+    "trace_hash": "c251c06f90ae4236b201af6a3e94ce587fce66d6ef8e630e95bcaefde84b7446",
+    "zone_events": {
+      "zone_foul_diagnosis": 8,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 4
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "B:9",
+        "live_ms": 212779,
+        "period": 1
+      },
+      {
+        "fouler": "B:1",
+        "live_ms": 426048,
+        "period": 1
+      },
+      {
+        "fouler": "A:1",
+        "live_ms": 776912,
+        "period": 2
+      },
+      {
+        "fouler": "A:9",
+        "live_ms": 911476,
+        "period": 2
+      }
+    ],
+    "zone_unmarked_calls": 4
+  },
+  {
+    "attempt_share": {
+      "A": 0.1782178217821782,
+      "B": 0.21182266009852216
+    },
+    "block": "control",
+    "carry_attempts": {
+      "A": 46,
+      "B": 50
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 2
+    },
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "foul_reasons": {
+      "archery_target": 14,
+      "zone_unmarked": 4
+    },
+    "interceptions_within_3m": 2,
+    "keepers": {
+      "A": "A:18",
+      "B": "B:18"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9755102040816327,
+      "B": 0.9716312056737588
+    },
+    "name": "control-seed02",
+    "pass_interception_pct": 16.5,
+    "pass_outcomes": {
+      "field": 50,
+      "keeper": 3,
+      "out/award": 112,
+      "own": 153,
+      "scored": 4
+    },
+    "passes": 322,
+    "points_awards": {
+      "A": 5,
+      "B": 8
+    },
+    "points_by_method": {
+      "A|half": 5,
+      "A|release": 51,
+      "B|award": 6,
+      "B|carry": 10,
+      "B|half": 2,
+      "B|own": 2,
+      "B|release": 77
+    },
+    "points_play": {
+      "A": 51,
+      "B": 89
+    },
+    "possessions": {
+      "A": 202,
+      "B": 203
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 28,
+    "runtime_s": 187.3,
+    "score": {
+      "A": 56,
+      "B": 97
+    },
+    "shot_outcome_shares_pct": {
+      "field": 3.7,
+      "keeper": 25.9,
+      "out/award": 11.1,
+      "own": 3.7,
+      "scored": 55.6
+    },
+    "shot_outcomes": {
+      "field": 2,
+      "keeper": 14,
+      "out/award": 6,
+      "own": 2,
+      "scored": 30
+    },
+    "shots_by_team": {
+      "A": 24,
+      "B": 30
+    },
+    "shots_total": 54,
+    "state_hash": "3aeb10e9c981db5ef5e25f50c7471fb643d945592361cd94f17f6fa5fcd9193a",
+    "status": "final",
+    "steps": 38548,
+    "tackles_by_actor_team": {
+      "A": 35,
+      "B": 43
+    },
+    "tackles_total": 78,
+    "trace_hash": "13fc440406aeb432035bc6adff29ad3b29498a45250948adf91c982f528fd6df",
+    "zone_events": {
+      "zone_foul_diagnosis": 7,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 4
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "A:1",
+        "live_ms": 684198,
+        "period": 2
+      },
+      {
+        "fouler": "B:3",
+        "live_ms": 758517,
+        "period": 2
+      },
+      {
+        "fouler": "A:1",
+        "live_ms": 2102866,
+        "period": 4
+      },
+      {
+        "fouler": "A:7",
+        "live_ms": 2286370,
+        "period": 4
+      }
+    ],
+    "zone_unmarked_calls": 4
+  },
+  {
+    "attempt_share": {
+      "A": 0.20388349514563106,
+      "B": 0.19902912621359223
+    },
+    "block": "control",
+    "carry_attempts": {
+      "A": 51,
+      "B": 46
+    },
+    "carry_goals": {
+      "A": 0,
+      "B": 1
+    },
+    "dqs": {
+      "A": 1,
+      "B": 0
+    },
+    "foul_reasons": {
+      "archery_target": 8,
+      "zone_unmarked": 3
+    },
+    "interceptions_within_3m": 5,
+    "keepers": {
+      "A": "A:18",
+      "B": "B:18"
+    },
+    "legal_arrow_rate": {
+      "A": 0.9724409448818898,
+      "B": 0.9964285714285714
+    },
+    "name": "control-seed03",
+    "pass_interception_pct": 15.9,
+    "pass_outcomes": {
+      "field": 46,
+      "keeper": 3,
+      "other": 1,
+      "out/award": 121,
+      "own": 137,
+      "scored": 1
+    },
+    "passes": 309,
+    "points_awards": {
+      "A": 2,
+      "B": 6
+    },
+    "points_by_method": {
+      "A|half": 2,
+      "A|release": 38,
+      "B|award": 3,
+      "B|carry": 5,
+      "B|half": 3,
+      "B|release": 63
+    },
+    "points_play": {
+      "A": 38,
+      "B": 68
+    },
+    "possessions": {
+      "A": 206,
+      "B": 206
+    },
+    "restart_completion_ratio": 1.0,
+    "restart_timeouts": 25,
+    "runtime_s": 187.21,
+    "score": {
+      "A": 40,
+      "B": 74
+    },
+    "shot_outcome_shares_pct": {
+      "field": 8.2,
+      "keeper": 37.7,
+      "out/award": 4.9,
+      "own": 6.6,
+      "scored": 42.6
+    },
+    "shot_outcomes": {
+      "field": 5,
+      "keeper": 23,
+      "out/award": 3,
+      "own": 4,
+      "scored": 26
+    },
+    "shots_by_team": {
+      "A": 26,
+      "B": 35
+    },
+    "shots_total": 61,
+    "state_hash": "d6bd850ec854f53b36603623b17b0afa2175c88a33e5fc9aa613d5f366f1f906",
+    "status": "final",
+    "steps": 38945,
+    "tackles_by_actor_team": {
+      "A": 40,
+      "B": 45
+    },
+    "tackles_total": 85,
+    "trace_hash": "11ab900634e5916b7a44edf80385760afabb1b606aa9188574f1db74e364d784",
+    "zone_events": {
+      "zone_foul_diagnosis": 6,
+      "zone_time_summary": 4,
+      "zone_unmarked_diagnosis": 3
+    },
+    "zone_residence_events": 0,
+    "zone_unmarked_call_detail": [
+      {
+        "fouler": "B:3",
+        "live_ms": 1447101,
+        "period": 3
+      },
+      {
+        "fouler": "A:2",
+        "live_ms": 1624583,
+        "period": 3
+      },
+      {
+        "fouler": "B:6",
+        "live_ms": 2202421,
+        "period": 4
+      }
+    ],
+    "zone_unmarked_calls": 3
+  }
+]

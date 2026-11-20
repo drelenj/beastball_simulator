@@ -1,0 +1,21 @@
+{
+  "owner_target_canon": {
+    "median": 76,
+    "p5_p95": [
+      59,
+      102
+    ],
+    "sd": 12.7
+  },
+  "real_team_scores": {
+    "max": 104,
+    "mean": 76.45,
+    "median": 75.0,
+    "min": 42,
+    "n": 20,
+    "p5": 50.55,
+    "p95": 104.0,
+    "sd_population": 17.49,
+    "sd_sample": 17.95
+  }
+}
