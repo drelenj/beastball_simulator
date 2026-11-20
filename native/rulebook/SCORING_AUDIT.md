@@ -8,6 +8,7 @@ changes apply only to `native-rb/3`. Roster source: `81f92e3`.
 ```sh
 python -m native.rulebook.scoring_audit
 python -m native.rulebook.scoring_audit --real
+python -m native.rulebook.scoring_audit --legacy
 python -m pytest -q b1 native
 PYTHONPATH=. python native/evidence/rb314/tools/soak_driver3.py --block real --seed 1 --outdir /tmp/rb3-scoring-final/real
 python -m native.rulebook.scoring_audit --matches native/evidence/rb314/runs /tmp/rb3-scoring-final
@@ -98,7 +99,9 @@ player and a randomized direction. It cannot itself award control.
   `native/rules.py`). At 58 m/s the ball carries about 673 J. Retuning that
   capacity curve or adding a minimum reaction floor would likely reduce
   early field takes and direct catches. Measure hands deflections and body
-  rebounds separately before selecting a change.
+  rebounds separately before selecting a change. For example, at rating
+  0.70 and zero miss the Native capacity is about 1,109 J, giving about 98%
+  secure probability conditional on a central 58 m/s hands contact.
 
 ## C. Achieved running speeds
 

@@ -197,11 +197,29 @@ def match_metrics(root):
     return rows
 
 
+def legacy_hashes():
+    from native.config import NativeConfig, NativeConfigV3
+    from native.run import run_match
+    from .config import RulebookConfig
+
+    profiles = [(NativeConfig(), {}), (NativeConfigV3(), {}),
+                (RulebookConfig(), {'port_factory': RulebookPort})]
+    for cfg, kwargs in profiles:
+        for seed in (1, 3):
+            result, _ = run_match(seed, cfg, max_steps=3000, **kwargs)
+            print(cfg.version, seed, *(result[key] for key in (
+                'trace_hash', 'state_hash', 'config_digest')), flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--real', action='store_true', help='use the NBL rosters in the keeper lab')
     parser.add_argument('--matches', nargs='+', metavar='DIR', help='measure completed runs from raw logs')
+    parser.add_argument('--legacy', action='store_true', help='emit six 3000-step legacy hash guards')
     args = parser.parse_args()
+    if args.legacy:
+        legacy_hashes()
+        return
     if args.matches:
         print(json.dumps({root: match_metrics(root) for root in args.matches}, indent=2))
         return
