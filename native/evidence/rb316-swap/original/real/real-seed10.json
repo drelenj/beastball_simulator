@@ -1,0 +1,88 @@
+{
+  "block": "real",
+  "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+  "end_ms": 4786522,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 3,
+    "zone_unmarked": 2
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 2,
+        "legal": 287,
+        "legal_rate": 0.9930795847750865
+      },
+      "B": {
+        "illegal": 1,
+        "legal": 278,
+        "legal_rate": 0.996415770609319
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 45,
+        "goals": 1
+      },
+      "B": {
+        "attempts": 63,
+        "goals": 3
+      }
+    },
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "groundings": 83,
+    "points": {
+      "A": {
+        "penalty_awards": 3,
+        "play": 48
+      },
+      "B": {
+        "penalty_awards": 5,
+        "play": 75
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 218,
+        "ending_in_attempt": 38,
+        "share_ending_in_attempt": 0.1743119266055046,
+        "with_attempt": 43
+      },
+      "B": {
+        "count": 219,
+        "ending_in_attempt": 51,
+        "share_ending_in_attempt": 0.2328767123287671,
+        "with_attempt": 56
+      }
+    },
+    "restart_timeouts": 27
+  },
+  "name": "real-seed10",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 362,
+    "toss_timeout": 27
+  },
+  "runtime_s": 182.74,
+  "score": {
+    "A": 51,
+    "B": 80
+  },
+  "seed": 10,
+  "state_hash": "f0f328390815af1b4ce82d1e7bf383b3d15185c22e3708e95a5695dad09787db",
+  "status": "final",
+  "steps": 38404,
+  "trace_hash": "588c4cfbc65a7ccde424cce91ab5df6238ecac60c50eaf8bc5090f36df3630d5"
+}
