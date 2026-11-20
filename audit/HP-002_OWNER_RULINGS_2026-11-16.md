@@ -116,3 +116,8 @@ Context: positions are deliberately absent from the rebuilt sport; archetypes sh
 2. MOTION: any player NOT on the line may be in motion at the snap, in any direction. [Implementation note: he must still be behind the ball line and outside the neutral zone at the snap.]
 3. ELIGIBILITY: everyone is eligible (no ineligible line players).
 Status: DESIGN COMPLETE; build after B-5 and after the engine models blocking contact and handoffs.
+
+## 19 Nov 2026 (night) - Arrows during the snap hold (CANON; answers Q-RB310-2 arrow part)
+No arrow may be released until the snap hold is over (the snap has travelled 5 m or the receiver has touched it). [Implementation default, owner to correct if wrong: an arrow released during the hold is treated like a dead-ball arrow - inert, no foul, refunded - and Archer cognition must not choose to release during the hold.]
+Withdrawn suggestion: an Archer "alignment" rule is moot because Archers shoot from platforms off the field.
+Owner expectation recorded: if Archers punish the receiver heavily, a deception-based attack (Wing-T style: motion, misdirection, handoffs, several possible ball carriers) should become the meta. That needs handoffs modelled and Archers acting on belief about who has the ball.
