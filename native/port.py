@@ -431,8 +431,11 @@ class NativePort:
     def keeper_motor(self,targets):
         m,s=self.m,self.m.s
         rb3 = self.config.version == 'native-rb/3'
+        actions = getattr(self, 'rb317', None)
         for p in s.players.values():
             if p.role!='keeper' or not p.active:continue
+            if actions and p.id in actions.blocks and actions.current(p.id, actions.blocks[p.id]):
+                continue  # The Keeper's current locomotion command is a block.
             if rb3 and s.ball.carrier is None:
                 # Restart awards replace the Ball and can reuse its version.
                 marks = (s.ball.release_time, getattr(s.ball, 'course_time', -1))

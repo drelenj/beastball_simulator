@@ -108,10 +108,10 @@ class RulebookPort(NativePort):
         states=self.indicator_frames.get(f.frame_id,()) if f and hasattr(self,'indicator_frames') else ()
         extra={}
         if self.config.version=='native-rb/3':
-            extra['rb3_handoff_block_enabled'] = self.config.rb3_handoff_block_enabled
             c=self.config;exits=getattr(self.m.e,'rb35',{}).get('own_exit',{})
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
-                       own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None)
+                       own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None,
+                       rb3_handoff_block_enabled=c.rb3_handoff_block_enabled)
             r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
             extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
             sb=self.m.s.ball
