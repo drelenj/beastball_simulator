@@ -147,3 +147,7 @@ Side-swap result (claude/soak-rb-3-16-swap @ 881d4f4): team effect +18.1 per gam
 2. Owner idea, to build: near the goal the carrier may STRETCH the ball out so it breaks the goal plane (like reaching for the pylon in football). A carried ball breaking the plane inside the goal mouth is a carry goal (5).
 3. Proposed by the owner, distance pending (3 m or 5 m): broaden the carry definition so that a release that scores from within N m of the goal, or the ball breaking the plane in hand, counts as a carry (5) instead of a throw (2/3/4). [Status: owner to pick N; not yet canon.]
 RB-3.17 question 1 (handoff entering the giver's own Keeper Zone from outside): no restriction found for passes or carries; default = treat a handoff exactly like a pass (allowed). Owner to correct if a back-zone restriction exists.
+
+## 20 Nov 2026 (evening) - Carry definition distance and handoff into own zone (CANON)
+1. BROADENED CARRY: a goal counts as a carry (5 points) if the ball breaks the goal plane while in hand (including a stretch) OR if it is released from within 3 m of the goal (inside the goal circle: the goal mouth radius is 3 m). Releases from 3 m or farther keep the throw bands (2/3/4).
+2. HANDOFF INTO OWN KEEPER ZONE: allowed; a handoff is treated exactly like a pass (owner confirmed the default).
