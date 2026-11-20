@@ -93,7 +93,7 @@ with the real Garvian Guardians and Ala Apex roster from `81f92e3`.
 | ON 1 | 59–105 | 207/206 | 356/281/0 | 125 / 114.99 ms | 18.43% | 77 |
 | ON 3 | 75–64 | 209/208 | 337/281/0 | 66 / 108.89 ms | 15.00% | 67 |
 
-All four finished in regulation. A handoff attempt is an admitted
+All four finished in regulation with a 1.0 restart-completion ratio. A handoff attempt is an admitted
 `handoff_start`, so the 75 and 56 unmatched starts include refusals or
 interruptions before an exchange. No live fumble occurred in these two
 enabled matches. The forced large-mismatch test produces one. The block
@@ -116,3 +116,8 @@ The initial enabled run was halted during period 1 on both seeds after
 the hook test caught a view builder overwriting the enabled flag.
 `25fdfad54368baa8619a9e2a8dbf7b1caf69ea38` corrected the view wiring.
 The table includes only the two completed full matches per setting.
+
+The final maintained `pytest -q b1 native` run passed **599 tests and
+23 subtests**, including 13 RB-3.17 scenario tests. It emitted one AnyIO
+deprecation warning. The frozen core and accepted B1 files match the
+baseline byte for byte.
