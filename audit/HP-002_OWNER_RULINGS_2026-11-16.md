@@ -133,3 +133,11 @@ Supersedes the T3 working number (80-85 per team) for measurement purposes. Sour
 ## 20 Nov 2026 - RB-3.16 ACCEPTED as the new baseline (owner)
 Owner accepted claude/rb-3-16-merge @ 9c37fd4 (R-1 arm reach = arm span / 2, one per-athlete release clock, keeper reaction gate, off-ball top speed; RB-3.15 shot aim/lane; lead integration fixes) as the new working baseline. Soak evidence: claude/soak-rb-3-16 @ 409135f (13 matches): real-roster team-score median 75 (owner target 76, NBL median), mean 76.5; per-team sd 12.7 / 14.0 (pro 12.7); shots 54% scored.
 Open (not covered by acceptance): talent gap about twice the pro season (Ala Apex 88.5 vs Garvian 64.4 per game, B won 9 of 10; pro implies ~11-point gap) - side-swap test pending; possessions ~216 per team (target ~100); ~23% of possessions end in an attempt (target ~50%); carries produce little (175 of 1,919 points). Codex reconcile of the provisional stack still pending (Codex budget spent on building first).
+
+## 20 Nov 2026 - Handoffs and blocking (CANON; confirmed by owner)
+1. HANDOFF: a hand-to-hand exchange between teammates within reach (arm reach = arm span / 2), any direction, no ball flight; legal anywhere a pass is legal.
+2. BLOCKING: body contact that impedes an opposing FIELD player who does not have the ball; legal once the snap hold has ended, like all contact.
+3. No blocking a frozen player (frozen players are obstacles) or a player inside the 1000 ms thaw contact buffer.
+4. No holding: a block may push and obstruct but may not grab or restrain; restraint stays reserved for tackling the ball carrier.
+Build sent to Codex: RB-3.17 on codex/rb-3-17-handoff-block from claude/rb-3-16-merge @ 9c37fd4 (engine primitives + cognition hook behind a flag, default off).
+Side-swap result (claude/soak-rb-3-16-swap @ 881d4f4): team effect +18.1 per game for Ala Apex (95% range ~5-31; pro ~11 lies inside), slot-B effect +6.0 (not significant). Identical-team control test pending.
