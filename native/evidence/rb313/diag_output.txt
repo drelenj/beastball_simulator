@@ -1,0 +1,26 @@
+=== RB-3.13
+ball holds 2468 median hold s 1.79 median forward advance m 2.29
+  ended by release:pass: 812 (32.9%), median advance 1.98 m
+  ended by tackle_count: 764 (31.0%), median advance 2.25 m
+  ended by release:loose: 305 (12.4%), median advance 2.01 m
+  ended by release:shot: 268 (10.9%), median advance 1.64 m
+  ended by boundary: 175 (7.1%), median advance 45.32 m
+  ended by restart_awarded: 132 (5.3%), median advance 1.31 m
+  ended by goal: 12 (0.5%), median advance 53.03 m
+advance quartiles [0.5, 2.3, 5.9]
+open/backward                n=  13 fail=30.8% {'intercepted': 4, 'own other': 5, 'to target': 4}
+open/forward                 n= 286 fail=36.4% {'out': 47, 'to target': 110, 'award': 1, 'intercepted': 57, 'own other': 71}
+open/lateral                 n=  54 fail=44.4% {'own other': 10, 'to target': 19, 'intercepted': 11, 'award': 1, 'out': 13}
+post-snap<3s/backward        n=  64 fail=34.4% {'to target': 14, 'intercepted': 22, 'own other': 27, 'award': 1}
+post-snap<3s/forward         n=  77 fail=28.6% {'to target': 40, 'own other': 15, 'intercepted': 18, 'out': 4}
+post-snap<3s/lateral         n= 318 fail=43.4% {'to target': 52, 'intercepted': 119, 'own other': 127, 'out': 19, 'award': 1}
+ALL n 812 fail 38.7 % {'to target': 239, 'own other': 255, 'intercepted': 231, 'out': 83, 'award': 4}
+first control after release (is_snap40, who): [((False, 'receiver'), 940), ((False, 'opponent'), 20), ((True, 'receiver'), 15), ((False, 'own_other'), 8), ((True, 'own_other'), 1)]
+  receiver: median ball travel to first touch 3.58 m, median lateral offset 0.0 m, n=955
+  opponent: median ball travel to first touch 1.06 m, median lateral offset 0.18 m, n=20
+  own_other: median ball travel to first touch 7.32 m, median lateral offset 0.7 m, n=9
+first-tackle scrimmages -> next: [('second_tackle', 254), ('possession', 155), ('restart_awarded', 85), ('goal', 11)]
+  passes before that: [(0, 261), (1, 201), (2, 37), (3, 5), (4, 1)]
+  pass direction after snap: {'forward': 194, 'backward_or_level': 100}
+  second tackle on: {'receiver': 171, 'other': 52, 'snapper': 31}  median gain from line (m, + = forward): -0.1  median s after snap: 2.7
+  gain quartiles: [-1.8, -0.1, 3.5]
