@@ -124,3 +124,8 @@ Owner expectation recorded: if Archers punish the receiver heavily, a deception-
 
 ## 19 Nov 2026 (night) - Zone clock visibility (CANON; answers Q-RB312-2)
 A teammate's (or opponent's) Keeper Zone residence clock is PUBLIC, exact information, but a player only knows it for players he currently perceives: a passer must observe the receiver to read that receiver's clock (exact value, gated by perception). Where vision/perception is not fully hooked up, treat it as plain public information for all players. [Implementation default: when the receiver is not in the passer's fresh perceived tracks, the passer has no clock reading for him and the zone-clock penalty does not apply from that reading.]
+
+## 20 Nov 2026 - Score targets (CANON; answers the scoring analysis confirmations)
+1. Target the MEDIANS of the pro season logs (owner's Drive "NBL 25-26", "MBL 2026"): NBL men's median team score 76 (median game total 152); MBL women's median team score 87 (median game total 175). The simulator currently uses the NBL roster, so its working target is 76 per team.
+2. Constrain the TOTALS AND THEIR SPREAD only; the split of points by method (carries, throws by band, half goals, awards) is left to emerge. Spread reference: NBL team-score sd 12.7, p5-p95 59-102, game-total sd 17.8; MBL team-score sd 11.9, p5-p95 66-104, game-total sd 16.8.
+Supersedes the T3 working number (80-85 per team) for measurement purposes. Source: audit/HP-002_SCORING_ANALYSIS_2026-11-20.md.
