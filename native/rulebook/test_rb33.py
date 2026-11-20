@@ -9,13 +9,7 @@ from .test_clocks import release_period_start
 from native.run import run_match
 
 
-def control_rosters():
-    from native.roster import RATINGS, load_rows
-    roles=['field']*18+['keeper']*2+['archer']*2;rows=[]
-    for n,role in enumerate(roles):
-        row={k:.7 for k in RATINGS};row.update(id=str(n),role=role,height_m=2.39,mass_kg=226.,reach_m=3.05,acceleration=.7)
-        rows.append(row)
-    return {t:load_rows(rows,t) for t in ('A','B')}
+from native.roster import rb3_control_rosters as control_rosters
 
 
 def test_flip_is_seeded_from_its_own_stream_and_deterministic():

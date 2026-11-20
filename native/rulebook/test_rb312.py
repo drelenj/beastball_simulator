@@ -41,7 +41,8 @@ def test_snap_first_touch_is_the_designated_receiver_in_50_scrimmages():
         halves.add(round(f['lane_half_width'], 3))
         if who != f['receiver']: fails.append((k, who, f['receiver']))
     assert n == 50 and not fails, fails
-    assert halves == {round(max(F.LANE_MIN_HALF_WIDTH_M, 3.05 + p.m.s.players['A:0'].radius + .2 + F.LANE_EXTRA_M), 3)}
+    body = p.m.s.players['A:0']
+    assert halves == {round(max(F.LANE_MIN_HALF_WIDTH_M, .529 * body.a.height + body.radius + .2 + F.LANE_EXTRA_M), 3)}
 
 
 def test_corridor_half_width_follows_the_engine_acquisition_rule():
@@ -91,9 +92,10 @@ def test_unpressured_free_run_carries_where_M1_would_pass():
 
 
 def test_blocked_runway_lowers_the_carry_and_an_unsafe_lane_is_excluded():      # RB-3.13: lane safety and closing-time free run
-    v, tr, _ = carrier_scene(opps=[(56., 50.)], mates=[(50., 30.), (62., 42.)])
+    # The 1 m lateral lane offset is inside corrected arm reach.
+    v, tr, _ = carrier_scene(opps=[(56., 50.)], mates=[(50., 30.), (62., 48.)])
     o = opts(v, tr); assert [r[1] for r in o if r[0] == 'pass'] == ['A:1']                 # A:2's lane passes within reach of the defender
-    v2, tr2, _ = carrier_scene(opps=[(66., 50.)], mates=[(50., 30.), (62., 42.)])
+    v2, tr2, _ = carrier_scene(opps=[(66., 50.)], mates=[(50., 30.), (62., 48.)])
     assert [r[1] for r in opts(v2, tr2) if r[0] == 'pass'] == ['A:1', 'A:2']
     assert [r[3] for r in o if r[0] == 'carry'][0] < [r[3] for r in opts(v2, tr2) if r[0] == 'carry'][0]
 
@@ -111,7 +113,9 @@ def test_commitment_blocks_a_mediocre_pass_for_600ms_then_allows_it():
     scene = dict(opps=[(50. + 8., 56.)], mates=[(50. + 5., 38.)])
     v, tr, _ = carrier_scene(held_ms=200, **scene); assert not any(r[0] == 'pass' for r in opts(v, tr))
     v, tr, _ = carrier_scene(held_ms=900, **scene); assert any(r[0] == 'pass' for r in opts(v, tr))        # control: same scene, later
-    v, tr, _ = carrier_scene(held_ms=200, opps=[(60., 50.)], mates=[(50., 30.)])
+    # At 8 m the closing defender is within the pressure window even
+    # with corrected arm reach, but still cannot reach the release point.
+    v, tr, _ = carrier_scene(held_ms=200, opps=[(58., 50.)], mates=[(50., 30.)])
     tr = tuple(replace(t, vx=-9.) if t.team == 'B' else t for t in tr); v = replace(v, tracks=tr)
     assert R.is_pressured(v, [t for t in tr if t.team == 'B']) and any(r[0] == 'pass' for r in opts(v, tr))   # pressured: commitment does not apply
     v, tr, _ = carrier_scene(held_ms=200, opps=[(50. - 30., 90.)], mates=[(50. + 15., 40.)])

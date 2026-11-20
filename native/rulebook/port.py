@@ -13,8 +13,9 @@ class RulebookView(C.AthleteView):
     own_zone_exit_ms_ago: int | None = None  # live ms since I last left my own Keeper Zone
     own_control_ms: int | None = None         # RB-3.12 own body: ms since I gained control of the ball (None if I do not hold it)
     mate_zone_ms: tuple = ()                  # RB-3.12 public: (teammate id, live ms in the zone he attacks) for teammates inside it
-    pass_release_ms: int = 250                # RB-3.14 public engine assumption: release motion between decision and release
-    body_reach: tuple = ()                    # RB-3.14 public body size: (player id, standing reach m) for every active player; cognition reads it only for players it perceives
+    pass_release_ms: int = 250                # RB-3.14 compatibility spelling for own_release_ms
+    own_release_ms: int | None = None          # RB/3 own unrestrained pass/shot delay
+    body_reach: tuple = ()                    # Public arm reach (half span), keyed by player id
     snap_hold: bool = False                   # RB-3.13 public: the snap hold is in force (no arrow may be released)
     formation: tuple | None = None            # RB-3.9a public: (snapper, receiver, receiver_x, receiver_y, my_spot_x, my_spot_y)
 
@@ -104,7 +105,9 @@ class RulebookPort(NativePort):
             extra['mate_zone_ms']=tuple(sorted((q.id,self.m.s.live_ms-res[q.id]) for q in self.m.s.players.values()
                                                if covered is not None and q.active and q.team==me_.team and q.id!=pid and q.role=='field'
                                                and q.id in res and e_.zone(q.x,q.y)==covered)) if covered is not None else ()
-            hold=getattr(self.m.e,'rb310_hold',None);extra['snap_hold']=bool(hold);extra['pass_release_ms']=int(self.m.assume['pass_release_ms']);extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
+            hold=getattr(self.m.e,'rb310_hold',None);extra['snap_hold']=bool(hold)
+            extra['own_release_ms'] = extra['pass_release_ms'] = self.own_release_ms(me_)
+            extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
             if fm is None and hold:   # RB-3.11: the designated receiver stays public during the snap hold (until the catch)
                 extra['formation']=(hold['snapper'],hold['receiver'],hold['receiver_xy'][0],hold['receiver_xy'][1],None,None)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=states,**extra),b
@@ -136,6 +139,7 @@ class RulebookPort(NativePort):
         from copy import deepcopy
         data=deepcopy(payload);status=data['view'].pop('status_indicators',());officials=data['view'].pop('officials',CREW)
         baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None);ctl=data['view'].pop('own_control_ms',None);mz=data['view'].pop('mate_zone_ms',());sh=data['view'].pop('snap_hold',False);prm=data['view'].pop('pass_release_ms',250);br=data['view'].pop('body_reach',())
+        own_release = data['view'].pop('own_release_ms', None)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
-                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz)),b
+                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz)),b

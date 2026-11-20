@@ -199,7 +199,11 @@ def test_updated_workbook_all_teams_and_named_canon_bodies():
     assert (highest[headers['Player ID']],highest[headers['Opening-day OVR']])==('NBL24-11-12',99)
     rs=load_canon_nbl(('Ala Marauders','Kasuf Bloodravens'))
     kamasi=next(a for a in rs['A'].athletes if a.source_id=='NBL24-02-04')
-    assert kamasi.get('mass_kg')==461.8 and kamasi.get('reach_m')==3.833
+    kamasi_row = next(row for row in lines if row[headers['Player ID']] == kamasi.source_id)
+    arm_reach = kamasi_row[headers['Arm span (m)']] / 2
+    assert kamasi.get('mass_kg') == 461.8
+    assert kamasi.get('reach_m') == arm_reach
+    assert kamasi.get('standing_reach_m') == 3.833
     cfg=RulebookConfigV3(roster_digests=(rs['A'].digest,rs['B'].digest))
     p=RulebookPort(1,cfg,rosters=rs);q=p.m.s.players['A:NBL24-02-04']
-    assert q.a.mass==461.8 and q.a.reach==3.833
+    assert q.a.mass == 461.8 and q.a.reach == arm_reach and q.a.standing_reach_m == 3.833

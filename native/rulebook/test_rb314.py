@@ -89,7 +89,9 @@ def test_body_size_and_release_time_are_public_view_fields_that_round_trip():
     from .test_rb34 import live
     p = rb3(); s, e, a, t = live(p); p.capture(s.now); s.now += 300
     v, b = p.view('A:0', s.now)
-    assert v.pass_release_ms == 250 and dict(v.body_reach)['B:0'] == 3.05 and len(v.body_reach) == len([q for q in s.players.values() if q.active])
+    assert v.pass_release_ms == v.own_release_ms == 250
+    assert dict(v.body_reach)['B:0'] == round(.529 * 2.39, 4)
+    assert len(v.body_reach) == len([q for q in s.players.values() if q.active])
 
 
 def test_determinism():

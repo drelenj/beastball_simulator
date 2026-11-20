@@ -8,13 +8,13 @@ from pathlib import Path
 
 from .config import RulebookConfigV3
 from .port import RulebookPort
-from .rb31_soak import uniform_rosters
+from native.roster import rb3_control_rosters
 from b1.emergence_intents import BallCourseBelief, KeeperIntent, forecast_course
 from types import SimpleNamespace
 
 
 def lab(role, rosters=None):
-    rosters = rosters or uniform_rosters()
+    rosters = rosters or rb3_control_rosters()
     cfg = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A', 'B')))
     port = RulebookPort(1, cfg, rosters=rosters)
     state = port.m.s
@@ -78,7 +78,8 @@ def keeper_case(awareness, offset, height, *, force_intent=False, rosters=None):
         state.now += 1
     at_depth = min(course, key=lambda point: abs(point[1] - 3.))
     return dict(awareness=awareness, aim=[offset, height], forced_intent=force_intent,
-                keeper_id=keeper.id, body_height_m=keeper.a.height, mapped_reach_m=keeper.a.reach,
+                keeper_id=keeper.id, body_height_m=keeper.a.height, arm_reach_m=keeper.a.reach,
+                standing_reach_m=keeper.a.standing_reach_m,
                 latency_ms=port.config.latency_ms, depth_ms=1000 * at_depth[0],
                 plane_ms=None if cross is None else 1000 * cross[1],
                 reaction_ms=200 * (1.3 - .6 * awareness),
@@ -92,8 +93,8 @@ def keeper_case(awareness, offset, height, *, force_intent=False, rosters=None):
                 flight_speed=math.hypot(*velocity), radius=ball.radius)
 
 
-def catch_case(role, speed, offset, *, random_seed=1, age_ms=0, hands=None):
-    port, player = lab(role)
+def catch_case(role, speed, offset, *, random_seed=1, age_ms=0, hands=None, rosters=None):
+    port, player = lab(role, rosters)
     match = port.m
     player.x = 20.
     origin = (20. - speed * .065, 50. + offset, player.hand_height)
@@ -154,6 +155,7 @@ def match_metrics(root):
             continue
         log = json.loads(path.read_text())['log']
         shots, passes = Counter(), Counter()
+        near_interceptions = 0
         keeper_ids = ({f'{team}:{slot}' for team in ('A', 'B') for slot in (18, 19)}
                       if block == 'control' else
                       {f'{team}:{player.source_id}' for team, roster in real_rosters.items()
@@ -179,6 +181,8 @@ def match_metrics(root):
                     athlete = info['player']
                     if athlete.split(':')[0] != team:
                         outcome = 'keeper' if shot and athlete in keeper_ids else 'opponent'
+                        if not shot and math.dist(event['ball'][:2], next_event['ball'][:2]) <= 3:
+                            near_interceptions += 1
                     break
                 if kind == 'keeper_contact' and shot:
                     if info['player'].split(':')[0] != team:
@@ -192,6 +196,9 @@ def match_metrics(root):
                     break
             (shots if shot else passes)[outcome] += 1
         rows[-1].update(shots=dict(shots), passes=dict(passes),
+                        interceptions_within_3m=near_interceptions,
+                        tackles=sum(event['event'] == 'tackle_count' for event in log),
+                        carries=run['metrics']['carry_attempts'],
                         possessions={team: values['count'] for team, values in
                                      run['metrics']['possessions'].items()})
     return rows
@@ -234,7 +241,10 @@ def main():
                     events=catch_case(role, speed, offset, random_seed=seed))
                for role in ('field', 'keeper') for speed in (22., 58.)
                for offset in (0., .8) for seed in (1, 2, 3)]
-    print(json.dumps(dict(keeper=cases, catches=catches, body_block=body_block(),
+    interceptions = [dict(speed=speed, offset=offset, seed=seed,
+                          events=catch_case('field', speed, offset, random_seed=seed, rosters=rosters))
+                     for speed in (22., 58.) for offset in (1., 2., 3.) for seed in (1, 2, 3)]
+    print(json.dumps(dict(keeper=cases, catches=catches, interceptions=interceptions, body_block=body_block(),
                           running=[speeds(False), speeds(True)]), indent=2))
 
 

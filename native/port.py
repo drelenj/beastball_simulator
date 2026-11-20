@@ -71,6 +71,8 @@ class NativePort:
                     old.id=f'{team}:{record.source_id}';old.slot=slot;old.role=record.role;old.active=slot<12
                     for key,value in mapped_values(record).items():setattr(old.a,key,value)
                     raw=dict(record.values)
+                    if cfg.version == 'native-rb/3':
+                        old.a.standing_reach_m = raw.get('standing_reach_m')
                     old.native_source_id=record.source_id
                     old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
                     old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
@@ -344,7 +346,10 @@ class NativePort:
             if kind!='draw_release' and intent.speed>limit+1e-9:return {'status':'rejected','reason':'throw_speed'}
             ans=self.geom.launch_for(origin,target,min(intent.speed,limit),9.81,.015) if kind!='draw_release' else None
             if kind!='draw_release' and ans is None:return {'status':'rejected','reason':'geometry'}
-            cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now+(600 if kind=='draw_release' else 250),
+            delay = 600 if kind == 'draw_release' else 250
+            if self.config.version == 'native-rb/3' and kind in ('pass', 'shoot'):
+                delay = self.own_release_ms(p)
+            cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now+delay,
                                'bow' if kind=='draw_release' else 'ball',ans[0] if ans else None)
             self.pending[p.id]={'cmd':cmd,'velocity':ans[0] if ans else None,'due':cmd.release_ms,'period':s.period}
             self.command_log.append(cmd)
@@ -352,6 +357,10 @@ class NativePort:
             if kind not in ('draw_release','restart_pass'):self.move[p.id]=(p.x,p.y)
             return {'status':'accepted','command':cmd}
         return {'status':'rejected','reason':'unknown_kind'}
+
+    def own_release_ms(self, player):
+        """Unrestrained thrown-pass and shot wind-up on the integer clock."""
+        return round(self.m.assume['pass_release_ms'] * (1.35 - .5 * player.a.ball_handling))
 
     def resolve(self,pid,status):
         p=self.pending.pop(pid,None)
@@ -505,6 +514,11 @@ class NativePort:
             self.ball_motor()
         elif s.phase!=P.FINAL:
             span=min(self.config.dt_ms,max(1,e.next_deadline()-s.now))
+            if self.config.version == 'native-rb/3':
+                # Do not round a scheduled throw up to the next physics tick.
+                throw = self.pending.get(s.ball.carrier)
+                if throw and throw['cmd'].intent.kind in ('pass', 'shoot') and throw['due'] > s.now:
+                    span = min(span, throw['due'] - s.now)
             m.c3_step(span,self.move.copy());m.step_count+=1;m.record()
         if s.phase==P.FINAL:return
         m.c4c_land_due()

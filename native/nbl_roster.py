@@ -39,7 +39,8 @@ def load_nbl_workbook(source, franchises):
                 rating=lambda field:float(row[columns[field]])/100.
                 entry=dict(id=str(row[columns['Player ID']]),role=role,
                            height_m=float(row[columns['Height (m)']]),mass_kg=float(row[columns['Mass (kg)']]),
-                           reach_m=float(row[columns['Standing reach (m)']]))
+                           reach_m=float(row[columns['Arm span (m)']]) / 2.,
+                           standing_reach_m=float(row[columns['Standing reach (m)']]))
                 entry.update({key:rating(header) for key,header in PHYSICAL.items()})
                 entry.update({key:rating('Opening-day OVR') for key in TECHNICAL_OVR})
                 entry['contact_resistance']=entry['balance'] # PLACEHOLDER
