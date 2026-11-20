@@ -116,3 +116,15 @@ directly from the archived logs:
 ```sh
 python -m native.rulebook.scoring_audit --matches native/evidence/rb314/runs native/evidence/rb3-reach/audit native/evidence/rb3-reach/corrected
 ```
+
+The maintained `pytest -q b1 native` suite passed **579 tests and 23
+subtests** with one AnyIO deprecation warning. The nine new tests include
+six actual-timestamp checks for passes and shots. Existing lane and
+pressure fixtures use distances appropriate to the corrected body. The
+corridor-edge tests now compare in world coordinates to avoid loss of
+precision at exactly legal placement. The production corridor code is
+unchanged.
+
+Every legacy trace hash, state hash, and config digest matched `185b557`
+for 3,000 steps at seeds 1 and 3 on `native-v0/2`, `native-v0/3`, and
+`native-rb/2`. All four R-1 runs recorded a restart-completion ratio of 1.0.
