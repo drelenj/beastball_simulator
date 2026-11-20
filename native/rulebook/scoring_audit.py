@@ -1,5 +1,6 @@
 """Forced scoring-physics cases: python -m native.rulebook.scoring_audit."""
 import argparse
+import gzip
 import json
 import math
 import random
@@ -149,11 +150,17 @@ def match_metrics(root):
         name = f'{block}-seed{seed:02d}'
         path = Path(root) / block / f'raw-{name}.json'
         run = json.loads(path.with_name(f'{name}.json').read_text())
+        if not path.exists():
+            path = path.with_suffix('.json.gz')
         row = {key: run.get(key) for key in ('status', 'score', 'trace_hash', 'state_hash', 'config_digest')}
         rows.append(dict(case=name, raw_log=str(path), **row))
         if not path.exists():
             continue
-        log = json.loads(path.read_text())['log']
+        if path.suffix == '.gz':
+            with gzip.open(path, 'rt') as stream:
+                log = json.load(stream)['log']
+        else:
+            log = json.loads(path.read_text())['log']
         shots, passes = Counter(), Counter()
         near_interceptions = 0
         keeper_ids = ({f'{team}:{slot}' for team in ('A', 'B') for slot in (18, 19)}
