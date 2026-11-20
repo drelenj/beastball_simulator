@@ -109,3 +109,10 @@ Owner: "lock in your recommended fix plan" after the zone-exit scenario (claude/
 4. Safety margin for those players raised from 0.75 s to 1.5 s.
 5. Q-RB311 defaults: an attacker chasing a loose ball counts as involved; passers may target a teammate in the zone but weigh his believed time left; when closing and leaving take similar time, take the faster with a small bias to leaving when the mark moves away.
 Status: DESIGN COMPLETE; to be built with B-5.
+
+## 19 Nov 2026 (night) - Scrimmage line rule, motion, eligibility (CANON)
+Context: positions are deliberately absent from the rebuilt sport; archetypes should emerge before positions are reintroduced. Blocking is weakly coded and handoffs are not modelled yet (engine work before this is meaningful).
+1. LINE RULE: yes. At the snap at least N offensive field players are "set" within about 1.5 m behind the ball line; everyone else is free behind the line. The rule constrains slots, not identities (no position labels). N to be tested between 4 and 6 before it is fixed. Defence unconstrained apart from the neutral zone.
+2. MOTION: any player NOT on the line may be in motion at the snap, in any direction. [Implementation note: he must still be behind the ball line and outside the neutral zone at the snap.]
+3. ELIGIBILITY: everyone is eligible (no ineligible line players).
+Status: DESIGN COMPLETE; build after B-5 and after the engine models blocking contact and handoffs.
