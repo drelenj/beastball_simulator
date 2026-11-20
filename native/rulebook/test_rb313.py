@@ -25,7 +25,7 @@ def opp_tracks(tr): return [t for t in tr if t.team == 'B']
 
 # a. a pass lane within reach of a defender is excluded
 def test_a_no_pass_into_a_lane_within_a_defenders_reach_and_the_control_passes():
-    v, tr, _ = carrier_scene(opps=[(60., 54.)], mates=[(70., 52.)], held_ms=2000)     # the only forward lane passes ~3 m from him
+    v, tr, _ = carrier_scene(opps=[(60., 52.4)], mates=[(70., 52.)], held_ms=2000)   # the forward lane passes within corrected arm reach
     tr = moving(tr, -12., 0.); v = replace(v, tracks=tr)
     assert R.is_pressured(v, opp_tracks(tr))
     o = opts(v, tr); assert not any(r[0] == 'pass' for r in o), o
@@ -40,12 +40,12 @@ def test_a_lane_margin_is_beyond_the_acquisition_reach_and_uses_velocity():
     mate = next(t for t in tr if t.team == 'A'); still = [t for t in tr if t.team == 'B']
     m0 = R.lane_margin(v, mate, still, 46.)
     m1 = R.lane_margin(v, mate, [replace(still[0], vy=-30.)], 46.)       # the same defender running toward the lane
-    assert m1 < m0 and m0 > 0 and abs(R.acquisition_reach(v) - (3.05 + .45 + .2)) < 1e-9
+    assert m1 < m0 and m0 > 0 and R.acquisition_reach(v) == pytest.approx(.529 * 2.39 + .45 + .2)
 
 
 # b. receiver after the snap
 def test_b_receiver_with_a_closing_rush_passes_when_a_safe_pass_exists_and_escapes_laterally_when_not():
-    rush = dict(opps=[(60., 50.)], held_ms=100)
+    rush = dict(opps=[(58., 50.)], held_ms=100)
     v, tr, _ = carrier_scene(mates=[(50., 30.)], **rush); tr = moving(tr, -9., 0.); v = replace(v, tracks=tr)
     assert R.is_pressured(v, opp_tracks(tr))
     i, _ = decide(v, tr); assert i.kind == 'pass' and i.target == 'A:1'                         # passes before contact
@@ -88,7 +88,7 @@ def test_c_free_run_is_a_closing_time_not_a_static_distance():
 def test_pressure_by_time_to_contact():
     v, tr, _ = carrier_scene(opps=[(55., 50.)], mates=[])
     o = opp_tracks(tr)[0]
-    still = replace(o, x=57.); fast = replace(o, x=60., vx=-10.); close = replace(o, x=52.)
+    still = replace(o, x=57.); fast = replace(o, x=59., vx=-10.); close = replace(o, x=51.8)
     assert not R.is_pressured(v, [still]) and R.is_pressured(v, [fast]) and R.is_pressured(v, [close])
     assert R.time_to_contact(v, close) == 0.
 
