@@ -74,7 +74,10 @@ def test_snap_lane_is_clear(kind_reason):
     sg = s.attack_sign('A'); lo, hi = sorted((r.x, f['receiver_xy'][0] - sg * F.LANE_BEYOND_RECEIVER_M))
     for q in s.players.values():
         if not q.active or q.role == 'archer' or q.id in (f['snapper'], f['receiver']): continue
-        assert not (lo <= q.x <= hi and abs(q.y - 50.) < f['lane_half_width']), q.id      # RB-3.12 E-3: wider corridor
+        # Compare in world coordinates, where placement puts players exactly
+        # on the edge. Subtracting 50 again can round them a few ulps inside.
+        half = f['lane_half_width']
+        assert not (lo <= q.x <= hi and 50. - half < q.y < 50. + half), q.id
 
 
 def test_frozen_players_are_unfrozen_with_no_buffer_or_immunity():
