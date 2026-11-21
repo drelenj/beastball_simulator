@@ -56,6 +56,10 @@ class RulebookConfigV3(RulebookConfig):
     rb3_handoff_block_enabled: bool = False
     rb3_carrier_moves_enabled: bool = False
     carry_release_radius_m: float = 3.0
+    # RB-3.19 BEHAVIORAL (cognition only, PROVISIONAL): keep the ball in play. rb319_parts lists the enabled steps (A1 toss speed and lane,
+    # A2 boundary awareness, A3 missed-ball pursuit, A4 pass depth safety). OFF (default) is the exact RB-3.18 effective configuration.
+    rb319_ball_in_play_enabled: bool = False
+    rb319_parts: str = 'A1A2A3A4'
 
     def record(self):
         record = super().record()
@@ -66,6 +70,8 @@ class RulebookConfigV3(RulebookConfig):
             record.pop('rb3_carrier_moves_enabled')
         if self.carry_release_radius_m == 0:
             record.pop('carry_release_radius_m')
+        if not self.rb319_ball_in_play_enabled:
+            record.pop('rb319_ball_in_play_enabled'); record.pop('rb319_parts')
         return record
 
     def __post_init__(self):

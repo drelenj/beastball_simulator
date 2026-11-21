@@ -148,6 +148,13 @@ def _throw_options(view, belief, kind, x, y):
     return out, opps
 
 
+def _distance_speed(view, intent):
+    """RB-3.19 A1: restart throws use the shared distance-based release speed (native/throw_speed.py)."""
+    from .throw_speed import release_speed
+    from dataclasses import replace as _r
+    return _r(intent, speed=release_speed(hypot(intent.aim[0] - view.x, intent.aim[1] - view.y), view.max_throw_speed))
+
+
 def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
     now = view.delivered_ms
     elapsed = now - created
@@ -157,6 +164,15 @@ def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
     if hypot(view.x - tx, view.y - ty) > .6:
         return _intent(view, belief, 'restart_position', (tx, ty), why='restart_taker_to_spot')
     options, opps = _throw_options(view, belief, kind, x, y)
+    safe_only = view.cognition == 'native-rb/3' and 'A1' in getattr(view, 'rb319', '')
+    if safe_only:                      # RB-3.19 A1: the passes' release-time lane check; speed by distance (below)
+        from . import cognition_rb3 as R3
+        from .throw_speed import release_speed
+        tracks = {t.entity: t for t in _fresh(view, belief, TRACK_FRESH_MS)}
+        fopps = [t for t in opps if t.role != 'archer']
+        t_rel = R3.release_time_s(view)
+        options = [o for o in options if R3.lane_margin(view, tracks[o[1]], fopps,
+                                                         release_speed(hypot(o[2][0] - view.x, o[2][1] - view.y), view.max_throw_speed), t_rel) >= 0]
     latest = belief.own_feedback[-1] if belief.own_feedback else None
     if latest and latest[1].startswith('rejected_') and latest[1].endswith(':restart_pass') and len(options) > 1:
         options.remove(max(options, key=lambda o: (o[3], o[1])))     # the throw just refused: try another
@@ -178,17 +194,23 @@ def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
         return _intent(view, belief, 'restart_wait', options=[('restart_wait', None, None, 0.)] + options,
                        why='restart_taker_waits_for_legal_release')
     if not options:
-        if not last_call:
+        if not last_call and not safe_only:
             return _intent(view, belief, 'restart_wait', why='restart_taker_no_believed_target')
         ux, uy = _spot_side(x, y)
         if kind != 'toss':
             ux, uy = -view.attack_sign, 0.
         # PLACEHOLDER: no believed legal teammate before the deadline: throw to legal space.
         aim = (round(_clamp(x + ux * 8., 1., 99.), 3), round(_clamp(y + uy * 8., 1., 99.), 3))
-        return _intent(view, belief, 'restart_pass', aim, None, why='restart_taker_space_placeholder')
+        if safe_only:                  # RB-3.19 A1: an in-field space aim (toward the middle of the field), distance-based speed
+            cx, cy = 50. - x, 50. - y
+            cl = hypot(cx, cy) or 1.
+            aim = (round(_clamp(x + cx / cl * 8., 2., 98.), 3), round(_clamp(y + cy / cl * 8., 2., 98.), 3))
+        i, r = _intent(view, belief, 'restart_pass', aim, None, why='restart_taker_space_placeholder')
+        return (_distance_speed(view, i), r) if safe_only else (i, r)
     chosen = max(options, key=lambda o: (o[3], o[1]))
-    return _intent(view, belief, chosen[0], chosen[2], chosen[1],
+    i, r = _intent(view, belief, chosen[0], chosen[2], chosen[1],
                    options=[('restart_wait', None, None, 0.)] + options, why='restart_taker_throw')
+    return (_distance_speed(view, i), r) if safe_only else (i, r)
 
 
 def _claim(view, belief, tx, ty, created, snapper):

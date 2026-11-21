@@ -330,6 +330,8 @@ def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     margin = 10. if handoff else lane_margin(view, c, opps, release_speed(dist, 120.))
     if margin < 0:
         return None                                              # unsafe lane: excluded
+    if not handoff and rb319_has(view, 'A4') and pass_exit_s(view, c, release_speed(dist, 120.)) < PASS_EXIT_MIN_S:
+        return None                                              # RB-3.19 A4: a missed ball would leave the field within 1 s of the receiver
     gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
     space = min([hypot(o.x - c.x, o.y - c.y) for o in opps] + [10.])
     v = (PASS_BASE + PASS_GAIN_W * gain + PASS_CLEAR_W * (min(margin, 10.) - PASS_CLEAR_BASE)
@@ -350,6 +352,8 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
     committed = (not pressured) and held is not None and held < COMMIT_MS
     out = []
     passes = []
+    if carry_aim is not None and rb319_has(view, 'A2'):
+        carry_aim = keep_in(view, carry_aim)          # RB-3.19 A2
     for c in mates:
         r = pass_value(view, c, opps, pressured, max_age_ms)
         if r is None:
@@ -372,6 +376,8 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
             for ang in ESCAPE_ANGLES_DEG:
                 c_, s_ = cos(radians(ang)), sin(radians(ang))
                 aim = (round(_clamp(view.x + (dx * c_ - dy * s_) / L * ESCAPE_LEN_M), 3), round(_clamp(view.y + (dx * s_ + dy * c_) / L * ESCAPE_LEN_M), 3))
+                if rb319_has(view, 'A2'):
+                    aim = keep_in(view, aim)
                 v_ = carry_value(view, opps, aim)[0]
                 key = (v_, -toward(*aim))
                 if key[0] > best_key[0] + 1e-9 or (abs(key[0] - best_key[0]) <= 1e-9 and key[1] > best_key[1] + 1e-9):
@@ -383,15 +389,112 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
         arm_reach = dict(getattr(view, 'body_reach', ()))
         frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
         for mate in mates:
-            if mate.entity in frozen or view.attack_sign * (mate.vx - view.body.vx) <= 0:
+            if mate.entity in frozen:
                 continue
             if hypot(mate.x - view.x, mate.y - view.y) > view.body.reach + arm_reach.get(mate.entity, view.body.reach):
-                continue
+                continue                                                  # B1: the receiver is within reach
             if not C.in_own_zone(view.team, view.x, view.y, view) and C.in_own_zone(view.team, mate.x, mate.y, view):
                 continue
+            faster = view.attack_sign * (mate.vx - view.body.vx) >= HANDOFF_FASTER_MS
+            backward = view.attack_sign * (mate.x - view.x) < 0
+            if not (pressured or faster) or (backward and not pressured):
+                continue                                                  # B1: pressured, or the receiver is clearly faster toward the goal; never back unless pressured
             value, _, _ = pass_value(view, mate, opps, pressured, max_age_ms, handoff=True)
             out.append(('handoff', mate.entity, (mate.x, mate.y), value))
     return out
+
+
+# ------------------------------------------------ RB-3.19 keep the ball in play (A2, A3, A4)
+# BEHAVIORAL defaults, PROVISIONAL (lead decisions, 20 Nov 2026). Only when the team instruction view.rb319 lists the step.
+#  constant              value  meaning
+#  BOUNDARY_MARGIN_M     2.0    A2: carry/escape/truck aims stay at least this far inside every boundary line (convex clamp of the aim);
+#                               the end line inside the goal mouth (|y-50| <= goal_radius) is the goal and is exempt
+#  PURSUERS              2      A3: the nearest two teammates (by time to the ball's path before it reaches a line) pursue a loose ball
+#  PURSUIT_STEP_S        .1     A3: sampling step of the ball's path
+#  PASS_EXIT_MIN_S       1.0    A4: no pass whose path, if not caught, reaches a boundary line less than this many seconds beyond the receiver
+BOUNDARY_MARGIN_M, PURSUERS, PURSUIT_STEP_S, PASS_EXIT_MIN_S = 2.0, 2, .1, 1.0
+
+# ------------------------------------------------ RB-3.19 Part B tactics (B1 handoff, B2 blocks, B3 carrier moves)
+# BEHAVIORAL defaults, PROVISIONAL (lead decisions, 21 Nov 2026); only when rb3_handoff_block_enabled / rb3_carrier_moves_enabled.
+#  HANDOFF_FASTER_MS      2.0   B1: receiver this much faster toward the attacked goal (m/s), or the carrier is pressured
+#  BLOCKERS               2     B2: at most this many off-ball attackers block (within BLOCK_NEAR_M of the carrier and AHEAD of him)
+#  BLOCK_NEAR_M / BLOCK_FAR_M  8 / 10  B2: blocker distance to the carrier; never block a defender farther than BLOCK_FAR_M from the carrier
+#  BLOCK_THREAT_S         1.5   B2: block defenders whose time-to-contact with the carrier is under this
+#  MOVE_REACT_S           0.5   B3: truck / stiff-arm only when a tackler reaches the carrier within this
+#  FACING_GOAL_COS        .5    B3: the carrier is "facing the goal" if his heading is within 60 degrees of it
+HANDOFF_FASTER_MS = 2.0
+BLOCKERS, BLOCK_NEAR_M, BLOCK_FAR_M, BLOCK_THREAT_S = 2, 8., 10., 1.5
+MOVE_REACT_S, FACING_GOAL_COS = .5, .5
+
+
+def rb319_has(view, part):
+    return view.cognition == 'native-rb/3' and part in (getattr(view, 'rb319', '') or '')
+
+
+def keep_in(view, aim):
+    """A2: clamp an aim into the field minus BOUNDARY_MARGIN_M (the box is convex, so the path from any inside point stays inside);
+    the end line within the goal mouth is exempt."""
+    m = BOUNDARY_MARGIN_M
+    x, y = aim
+    y = max(m, min(100. - m, y))
+    if abs(y - 50.) > view.goal_radius:
+        x = max(m, min(100. - m, x))
+    return (round(x, 3), round(y, 3))
+
+
+def pass_exit_s(view, c, speed):
+    """A4: seconds, beyond the receiver, until the line of the pass reaches a boundary (end line in the goal mouth exempt); inf if none."""
+    dx, dy = c.x - view.x, c.y - view.y
+    L = hypot(dx, dy)
+    if L < 1e-9:
+        return float('inf')
+    ux, uy = dx / L, dy / L
+    best = float('inf')
+    if abs(ux) > 1e-9:
+        d = ((100. if ux > 0 else 0.) - c.x) / ux
+        if d >= 0 and abs(c.y + uy * d - 50.) > view.goal_radius:
+            best = min(best, d)
+    if abs(uy) > 1e-9:
+        d = ((100. if uy > 0 else 0.) - c.y) / uy
+        if d >= 0:
+            best = min(best, d)
+    return best / max(speed, 1e-6)
+
+
+def missed_ball_pursuit(view, belief, intent, record):
+    """A3: the passer's team's two nearest (by time to intercept the loose ball's path before it reaches a line) pursue it at once."""
+    sig = view.signals
+    if (not rb319_has(view, 'A3') or view.role != 'field' or view.holds_ball or view.restart is not None or sig.phase != 'live'
+            or sig.ball_status != 'loose' or sig.passive_team != view.team or view.pending_command_id is not None
+            or view.body is None or getattr(view, 'snap_hold', False)):
+        return intent, record
+    fresh = _fresh(view, belief, 700)
+    ball = next((t for t in fresh if t.entity == C.BALL), None)
+    if ball is None:
+        return intent, record
+    frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
+    mates = [t for t in fresh if t.team == view.team and t.role == 'field' and t.entity != view.athlete and t.entity not in frozen]
+    sp = hypot(ball.vx, ball.vy)
+    t_line = 6.
+    if sp > 1e-6:
+        for lim_t in ((100. - ball.x) / ball.vx if ball.vx > 1e-9 else (0. - ball.x) / ball.vx if ball.vx < -1e-9 else 99.,
+                      (100. - ball.y) / ball.vy if ball.vy > 1e-9 else (0. - ball.y) / ball.vy if ball.vy < -1e-9 else 99.):
+            t_line = min(t_line, max(0., lim_t))
+    steps = [k * PURSUIT_STEP_S for k in range(int(t_line / PURSUIT_STEP_S) + 1)] or [0.]
+    pts = [(ball.x + ball.vx * t, ball.y + ball.vy * t) for t in steps]
+
+    def plan(arrive):
+        """Earliest rendezvous with the ball's path before the line: argmin over the path samples of max(his arrival, the ball's time)."""
+        best = min(((max(arrive(pt), t), t, pt) for t, pt in zip(steps, pts)), key=lambda r: (r[0], r[1]))
+        return best[0], best[2]
+
+    me_t, me_pt = plan(lambda pt: time_to_cover(view, hypot(pt[0] - view.x, pt[1] - view.y), _unit(view.x, view.y, *pt)))
+    keys = [(me_t, view.athlete)] + [(plan(lambda pt, m=m: typical_time_to(m, pt[0], pt[1], 0.))[0], m.entity) for m in mates]
+    if (me_t, view.athlete) not in sorted(keys)[:PURSUERS]:
+        return intent, record
+    aim = (round(_clamp(me_pt[0]), 3), round(_clamp(me_pt[1]), 3))
+    return (replace(intent, kind='pursue', aim=aim, target=C.BALL, contact=None),
+            dict(record, rb319_pursuit=dict(t_s=round(me_t, 2), rank=sorted(keys).index((me_t, view.athlete)))))
 
 
 # ------------------------------------------------ RB-3.15 shot quality (S-1 aim, S-2 lane)
@@ -692,11 +795,23 @@ def _defender_zone(view, belief, intent, record):
     return _leave(view, gx, intent, record, 'Z-4_leave', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
 
 
+def ttc_at(view, o, cx, cy):
+    """Time-to-contact of believed opponent `o` with a body at (cx, cy) (the believed carrier): RB-3.13 definition."""
+    dx, dy = cx - o.x, cy - o.y
+    d = hypot(dx, dy)
+    if d < 1e-9:
+        return 0.
+    closing = max(CLOSING_MIN_MS, (o.vx * dx + o.vy * dy) / d)
+    return max(0., d - opp_reach(view, o)) / closing
+
+
 def choose_block(view, belief, intent, record):
+    """B2: up to BLOCKERS off-ball attackers within BLOCK_NEAR_M of the carrier and ahead of him block the defenders whose
+    time-to-contact with him is under BLOCK_THREAT_S; each takes the threat he can reach first; none beyond BLOCK_FAR_M."""
     if (view.cognition != 'native-rb/3' or not getattr(view, 'rb3_handoff_block_enabled', False)
             or view.role != 'field' or view.holds_ball or view.pending_command_id
             or view.signals.phase != 'live' or getattr(view, 'snap_hold', False)
-            or view.signals.passive_team != view.team):
+            or view.signals.passive_team != view.team or view.body is None):
         return intent, record
     fresh = _fresh(view, belief, belief.max_track_age_ms)
     carrier_id = (record.get('believed_carrier') or (None,))[0]
@@ -704,20 +819,37 @@ def choose_block(view, belief, intent, record):
     if carrier is None:
         return intent, record
     frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
-    closing = []
-    for target in fresh:
-        if target.role != 'field' or target.team == view.team or target.entity in frozen:
+    sg = view.attack_sign
+    threats = []
+    for t in fresh:
+        if t.role != 'field' or t.team in (view.team, 'ball') or t.entity in frozen:
             continue
-        dx, dy = carrier.x - target.x, carrier.y - target.y
-        gap = hypot(dx, dy)
-        if 0 < gap <= 8. and (target.vx - carrier.vx) * dx + (target.vy - carrier.vy) * dy > 0:
-            closing.append((gap, target.entity))
-    if not closing:
+        if hypot(t.x - carrier.x, t.y - carrier.y) <= BLOCK_FAR_M and ttc_at(view, t, carrier.x, carrier.y) < BLOCK_THREAT_S:
+            threats.append(t)
+    if not threats:
         return intent, record
-    _, target_id = min(closing)
+    me = type('Me', (), dict(entity=view.athlete, x=view.x, y=view.y, vx=view.body.vx, vy=view.body.vy))()
+    pool = [me] + [t for t in fresh if t.team == view.team and t.role == 'field' and t.entity not in (view.athlete, carrier.entity) and t.entity not in frozen]
+    cands = sorted((q for q in pool if sg * (q.x - carrier.x) > 0 and hypot(q.x - carrier.x, q.y - carrier.y) <= BLOCK_NEAR_M),
+                   key=lambda q: (hypot(q.x - carrier.x, q.y - carrier.y), q.entity))[:BLOCKERS]
+    left = list(threats)
+    mine = None
+    for q in cands:
+        if not left:
+            break
+        if q.entity == view.athlete:
+            reach_t = lambda o, q=q: time_to_cover(view, hypot(o.x - q.x, o.y - q.y), _unit(q.x, q.y, o.x, o.y))
+        else:
+            reach_t = lambda o, q=q: typical_time_to(q, o.x, o.y, 0.)
+        pick = min(left, key=lambda o: (reach_t(o), o.entity))
+        left.remove(pick)
+        if q.entity == view.athlete:
+            mine = pick
+    if mine is None:
+        return intent, record
     point = (carrier.x, carrier.y)
-    return (replace(intent, kind='block', target=target_id, aim=point, contact=None),
-            dict(record, selected=['block', target_id, point], rb317_protected=carrier.entity))
+    return (replace(intent, kind='block', target=mine.entity, aim=point, contact=None),
+            dict(record, selected=['block', mine.entity, point], rb317_protected=carrier.entity))
 
 
 def choose_carrier_move(view, belief, intent, record):
@@ -746,6 +878,9 @@ def choose_carrier_move(view, belief, intent, record):
                 candidates.append((distance, opponent.entity, opponent, own_speed, opp_speed))
         if not candidates:
             return intent, record
+        candidates = [c for c in candidates if ttc_at(view, c[2], view.x, view.y) <= MOVE_REACT_S]    # B3: a tackler reaches me within 0.5 s
+        if not candidates:
+            return intent, record
         distance, _, opponent, own_speed, opp_speed = min(candidates)
         # Size and closing motion are public. Use the 0.70 control as an
         # opponent strength prior and scale its mass by observed height.
@@ -755,7 +890,9 @@ def choose_carrier_move(view, belief, intent, record):
         radius = lambda kg: max(.38, min(.82, .30 + .00065 * kg))
         closing_ms = 1000 * max(0., distance - radius(own_mass) - radius(mass)) / (own_speed + opp_speed)
         strength = dict(view.own_skills).get('strength', .70)
-        if closing_ms <= 300 and own_speed > 0 and own_mass * own_speed * strength > mass * max(0., opp_speed) * .70:
+        heading = hypot(view.body.vx, view.body.vy)
+        facing_goal = view.attack_sign * view.body.vx > FACING_GOAL_COS * heading if heading > .3 else True
+        if closing_ms <= 300 and own_speed > 0 and facing_goal and own_mass * own_speed * strength > mass * max(0., opp_speed) * .70:
             choice = ('truck', opponent.entity, (opponent.x, opponent.y))
         elif opp_speed > 0 and distance <= view.body.reach + radius(mass):
             choice = ('stiff_arm', opponent.entity, None)
@@ -770,8 +907,11 @@ def adjust(view, belief, intent, record):
     intent, record = carrier_to_goal(view, belief, intent, record)
     intent, record = defender_baseline(view, belief, intent, record)
     intent, record = zone_behavior(view, belief, intent, record)
+    intent, record = missed_ball_pursuit(view, belief, intent, record)
     intent, record = choose_block(view, belief, intent, record)
     intent, record = choose_carrier_move(view, belief, intent, record)
+    if rb319_has(view, 'A2') and intent.kind in ('carry', 'truck') and intent.aim is not None and view.holds_ball:
+        intent = replace(intent, aim=keep_in(view, tuple(intent.aim)))     # RB-3.19 A2: also for the Part B moves and the zone/goal rules
     frozen = frozen_tracks(view, belief)
     if not frozen:
         return intent, record

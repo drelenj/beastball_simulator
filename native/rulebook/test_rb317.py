@@ -174,7 +174,7 @@ def test_belief_based_minimal_hooks():
     assert not any(o[0] == 'handoff' for o in R.carrier_options(off, [teammate], None))
     ball_carrier = C.Track(giver.id, 'A', 'field', giver.x, giver.y, 0., 0., view.delivered_ms)
     closing = C.Track(target.id, 'B', 'field', giver.x + 5., giver.y, -3., 0., view.delivered_ms)
-    view = replace(view, athlete=receiver.id, holds_ball=False)
+    view = replace(view, athlete=receiver.id, holds_ball=False, x=giver.x + 2. * view.attack_sign, y=giver.y)   # RB-3.19 B2: the blocker is ahead of the carrier
     belief = replace(belief, tracks=(ball_carrier, closing))
     intent = C.ActionIntent('forced', 'forced', receiver.id, 'support', None,
                              (40., 40.), None, None, view.delivered_ms)
