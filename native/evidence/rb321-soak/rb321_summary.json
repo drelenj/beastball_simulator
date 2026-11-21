@@ -1,0 +1,19 @@
+{
+ "matches_any_team_over_150": 6,
+ "possessions_team": {
+  "max": 163,
+  "mean": 151.9,
+  "median": 150.5,
+  "min": 143,
+  "n_over_150": 10,
+  "n_under_100": 0
+ },
+ "team_score": {
+  "mean": 89.05,
+  "median": 84.5,
+  "n": 20,
+  "p5": 61.8,
+  "p95": 121.2,
+  "sd_sample": 21.93
+ }
+}
