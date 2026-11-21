@@ -162,3 +162,8 @@ RB-3.18 verification (claude/rb-3-18-verify @ 5e1917d): suite 613 passed, legacy
 
 ## 21 Nov 2026 - Ball material (CANON)
 Owner: "You can throw in some magikal material science to make things realistic." The Beastball ball is a fictional material; its physical properties (air drag, bounce restitution, horizontal speed kept per bounce, rolling resistance) need not match a real football. They are set by the lead to make play feel realistic and to meet the owner's targets, provided they are stated in config with their design basis and applied consistently (engine and athlete forecasts alike).
+
+## 21 Nov 2026 - RB-3.21 ACCEPTED as the new baseline; everything on by default (owner)
+- Accepted: claude/rb-3-21-ball-material @ eb788ec (ball material, RB-3.17 handoff/block, RB-3.18 carrier moves and 3 m carry rule, RB-3.19 ball in play and tactics, RB-3.20 exact bounce; RB-3.20 Part 2 reverted except no hand-back). Soak claude/soak-rb-3-21 @ 9e66749: league median team score 84.5 (range 75-90), possessions 151.9 per team (range 100-150, median 150.5).
+- Owner: EVERYTHING ON BY DEFAULT (rb3_carrier_moves_enabled, rb3_handoff_block_enabled, rb319_ball_in_play_enabled, exact bounce, ball material, carry radius 3 m) - builder change pending.
+- Talent gap guidance (owner): do NOT calibrate against the pro season logs - different simulator, rosters and version of the sport; the season is a feel reference only. The question is whether the gap is right for the ACTUAL difference in talent. The Overall (OVR) rating is not formulated from anything, so it does not describe a player's actual skill set; judge talent from the ratings and bodies the simulator uses.
