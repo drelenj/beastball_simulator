@@ -42,13 +42,16 @@ Run `python -m native.rulebook.scoring_audit --legacy` for the six 3,000-step ca
 
 ## 2. Talent-gap soak
 
-**TESTED** for the default block, using the 10 original per-match results at `9e66749:native/evidence/rb321-soak/real/`. The three neutral blocks are in progress at the time of this checkpoint. The 16 completed matches in this snapshot, their paired seeds, their per-match results and their event streams are recorded under `native/evidence/rb322-codex/talent/`. Technical-neutral and physical-neutral seed 1 reuse the per-match files on `e6ca6a4` in `native/evidence/rb322/runs/`. Missing matches run from a clean Python-source export of `eb30f60`, with roster workbook ref `81f92e3` and a maximum of two matches at a time.
+**TESTED** for the completed default and technical-neutral blocks. The default block uses the 10 original per-match results at `9e66749:native/evidence/rb321-soak/real/`. The physical-neutral and both-neutral blocks are in progress at this checkpoint. The 28 completed matches in this snapshot, their paired seeds, their per-match results and their event streams are recorded under `native/evidence/rb322-codex/talent/`. Technical-neutral and physical-neutral seed 1 reuse the per-match files on `e6ca6a4` in `native/evidence/rb322/runs/`. Missing matches run from a clean Python-source export of `eb30f60`, with roster workbook ref `81f92e3` and a maximum of two matches at a time.
 
 The estimator weights each team-match equally for median, possessions and pooled standard deviation. The margin is Ala (B) minus Garvian (A). SDs are sample SDs. The median describes the 20 team scores from this fixture. Raw score events and changes in passive possession were also checked against the per-match records.
 
 | Mode | Seeds | Median team points | Possessions/team | Ala mean margin | Ala wins | SD Garvian / Ala / pooled |
 |---|---|---:|---:|---:|---:|---|
 | Default | 1–10 | 84.5 | 151.95 | +32.1 | 9/10 | 12.85 / 16.68 / 21.93 |
+| Technical neutral | 1–10 | 86.5 | 147.45 | +1.9 | 5/10 | 19.54 / 20.28 / 19.41 |
+
+With roster physical ratings retained, setting the technical proxies to the same value reduced the mean margin by 30.2 points. The remaining blocks test whether this effect holds when physical ratings are also fixed.
 
 `python -m audit.native.rb322_talent_probe RESULTS_ROOT --verify-raw` recomputes from per-match files and verifies seed, terminal status, score and possession count. Use `--allow-partial` while the soak is running. The optional runner fills missing result files using `reach_run`. The physical-neutral block equalizes the nine ratings while retaining body differences and the OVR-selected players. Technical neutral equalizes current technical proxies. Both-neutral retains those bodies, roster selection, side assignment and seeded match effects.
 

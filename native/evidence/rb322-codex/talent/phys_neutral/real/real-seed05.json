@@ -1,0 +1,91 @@
+{
+  "block": "real",
+  "config_digest": "fb53ffa9ec5929e10ecdfc66db8eb699831def0ea51e18291f72afe552a9dd57",
+  "end_ms": 4330224,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 12,
+    "immune_contact": 1,
+    "protected_keeper": 1,
+    "zone_unmarked": 1
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 7,
+        "legal": 266,
+        "legal_rate": 0.9743589743589743
+      },
+      "B": {
+        "illegal": 5,
+        "legal": 253,
+        "legal_rate": 0.9806201550387597
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 48,
+        "goals": 1
+      },
+      "B": {
+        "attempts": 78,
+        "goals": 6
+      }
+    },
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "groundings": 140,
+    "points": {
+      "A": {
+        "penalty_awards": 2,
+        "play": 84
+      },
+      "B": {
+        "penalty_awards": 6,
+        "play": 113
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 142,
+        "ending_in_attempt": 51,
+        "share_ending_in_attempt": 0.3591549295774648,
+        "with_attempt": 54
+      },
+      "B": {
+        "count": 141,
+        "ending_in_attempt": 65,
+        "share_ending_in_attempt": 0.46099290780141844,
+        "with_attempt": 67
+      }
+    },
+    "restart_timeouts": 4
+  },
+  "name": "real-seed05",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 273,
+    "snap_timeout": 2,
+    "toss_timeout": 2
+  },
+  "runtime_s": 179.52,
+  "score": {
+    "A": 86,
+    "B": 119
+  },
+  "seed": 5,
+  "state_hash": "a3eed9bb01afe77a25c27076cd0279e2afc63c971fc4f7fe67798659902f057a",
+  "status": "final",
+  "steps": 33119,
+  "trace_hash": "ce6b272480152f6b5b15359b962af9d3f0742ab40ea574ba930d41d9807cbc4a"
+}
