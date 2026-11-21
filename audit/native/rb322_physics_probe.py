@@ -4,15 +4,18 @@ import math
 from types import SimpleNamespace
 
 from b1.emergence_intents import KeeperIntent
+from native.nbl_roster import load_canon_nbl
 from native.roster import acceleration, speed_mps
 from native.rulebook.ball_material import params, path
 from native.rulebook.scoring_audit import lab, new_flight
 
 
-def keeper_trial(distance, lateral, height, awareness, force_intent):
-    port, keeper = lab('keeper')
+def keeper_trial(distance, lateral, height, awareness, force_intent, rosters=None):
+    port, keeper = lab('keeper', rosters)
     match, state = port.m, port.m.s
     start = state.now
+    if awareness is None:
+        awareness = keeper.a.awareness
     keeper.a.awareness = awareness
     depth = max(match.assume['keeper_depth_min_m'],
                 min(match.assume['keeper_depth_max_m'],
@@ -56,7 +59,8 @@ def keeper_trial(distance, lateral, height, awareness, force_intent):
                 depth_m=depth, depth_ms=1000*at_depth[0], plane_ms=1000*cross[1],
                 reaction_ms=keeper.native_keeper_flight[2] - start,
                 lateral_vertical_demand_m=demand, move_m=max_travel, lift_m=max_lift,
-                dive=dive, hand_height_m=.62*keeper.a.height,
+                dive=dive, keeper=keeper.id, body_height_m=keeper.a.height,
+                hand_height_m=.62*keeper.a.height,
                 hand_radius_m=match.c4c_reach(keeper), sensor_latency_ms=port.config.latency_ms,
                 outcome=event.kind if event else None,
                 contact=event.data.get('c4c_kind') if event else None,
@@ -86,10 +90,19 @@ def speed_trial(rating, carry):
 
 
 if __name__ == '__main__':
+    aims = ((0., 1.5), (2.4, .4), (2.4, 2.))
+    real_rosters = load_canon_nbl(('Garvian Guardians', 'Ala Apex'))
+    # The lab always uses the Keeper defending x=0. Swap the roster bodies
+    # by loading the same fixture the other way to exercise both starters.
+    swapped_rosters = load_canon_nbl(('Ala Apex', 'Garvian Guardians'))
     print(json.dumps(dict(
         keeper=[keeper_trial(d, y, z, awareness, intent)
-                for d in (10., 12., 15.) for y, z in ((0., 1.5), (2.4, .4), (2.4, 2.))
+                for d in (10., 12., 15.) for y, z in aims
                 for awareness in (.5, .7, .9) for intent in (False, True)],
+        keeper_real=[keeper_trial(d, y, z, None, intent, rosters)
+                     for rosters in (real_rosters, swapped_rosters)
+                     for d in (10., 12., 15.) for y, z in aims
+                     for intent in (False, True)],
         speed=[speed_trial(r, carry) for r in (0., .4, .6, .7, .8, 1.)
                for carry in (False, True)],
     ), indent=2))

@@ -4,7 +4,7 @@
 
 1. **Accomplished.** Reconciled the Codex line to the exact RB-3.22 source tree, checked keeper geometry and running speed, and staged the draft ratings.
 2. **What it can do now.** Native runs the RB-3.21 defaults and can store draft technical and mental ratings separately from the ratings used in matches.
-3. **Unproven.** The neutral-rating soak and the post-preparation full-suite and replay checks are in progress. Carrier moves phase 2 is deferred within this run budget.
+3. **Unproven.** The neutral-rating soak is in progress. The post-preparation full-suite and replay checks passed. Carrier moves phase 2 is deferred within this run budget.
 4. **Blocking.** GitHub did not return the named talent-soak branch. The missing matches are running from the reconciled source.
 5. **Recommended action.** Use the reconciled code as the review point and use the paired neutral-rating runs to assess the talent-gap breakdown.
 
@@ -26,10 +26,10 @@ d) Identity: unless a task says it changes behavior, real seed 1 and control see
 
 | Gate | Reconciled source | Draft-rating preparation |
 |---|---|---|
-| a | **TESTED** — 662 passed, 23 subtests passed | Full suite running |
+| a | **TESTED** — 662 passed, 23 subtests passed | **TESTED** — 665 passed, 23 subtests passed |
 | b | **TESTED** — six trace/state/config rows matched | **TESTED** — the same six rows matched |
-| c | **TESTED** — real seed 1 matched across the instrumented run, the local suite and the upstream run. | **TESTED** — paired 300-step runs with and without supplied draft values match each other. Full run pending. |
-| d | **TESTED** — both full matches matched all three hashes | Full runs pending |
+| c | **TESTED** — real seed 1 matched across the instrumented run, the local suite and the upstream run. | **TESTED** — paired 300-step runs with and without supplied draft values match each other. The real seed-1 full run also matched in the suite. |
+| d | **TESTED** — both full matches matched all three hashes | **TESTED** — real seed 1 matched in the full suite, and the full control replay matched trace, state and config |
 
 Full hashes from the `eb30f60` runs, compared with `9e66749`:
 
@@ -62,7 +62,7 @@ The estimator weights each team-match equally for median, possessions and pooled
 | 12 m | 156 / 159 ms | 208 / 212 ms | Catch at 145 ms | Goal at 214 ms | Frame at 213 ms |
 | 15 m | 195 / 197 ms | 260 / 263 ms | Catch at 184 ms | Goal at 265 ms | Frame at 265 ms |
 
-Central aim was 1.50 m high. Wide aim was 2.40 m off centre at 0.40 and 2.00 m high. At 12 m, the wide low shot was 1.80 m lateral and 0.77 m vertical from the standing hand point at depth, 1.96 m away. The wide high shot was 1.80 m lateral and 0.43 m vertical at depth. Its plane aim is outside the semicircle. Step travel, lift and dives were zero in all 54 trials. The keeper motor reaction was 200/176/152 ms across the awareness values, with another 100 ms for an unset keeper and a 100 ms dive lead requirement. The normal sensor delay is 200 ms.
+Central aim was 1.50 m high. Wide aim was 2.40 m off centre at 0.40 and 2.00 m high. At 12 m, the wide low shot was 1.80 m lateral and 0.77 m vertical from the standing hand point at depth, 1.96 m away. The wide high shot was 1.80 m lateral and 0.43 m vertical at depth. Its plane aim is outside the semicircle. Step travel, lift and dives were zero in all 54 trials. The keeper motor reaction was 200/176/152 ms across the awareness values, with another 100 ms for an unset keeper and a 100 ms dive lead requirement. The normal sensor delay is 200 ms. The 36 real-body trials produced the same outcomes without motion or dives. Garvian starter NBL24-07-11 had 1.128 m coverage and 165.2 ms deliberate reaction. Ala starter NBL24-01-11 had 1.331 m coverage and 158.0 ms reaction. Both bodies were loaded unchanged from workbook ref `81f92e3`.
 
 The observed saves did not require superhuman movement or reach. The catch kernel separately samples when a player can set their hands, using a 120 ms base time constant scaled by awareness. The 120 ms is a stochastic mean at .5 awareness and permits earlier reactions. At .7 awareness, the mean is 105.6 ms. A 0.4 kg ball at 58 m/s carries about 673 J. Native uses Catching for all roles and gives the .70 control keeper 1,109 J centred arrest capacity. The actual central contacts had 86.6% modelled security conditional on timely hands. The capacity and readiness curves are calibration assumptions. It uses the live flight clock, so the keeper may secure a ball on his standing hands before a deliberate movement command can arrive. Central placement and that reflex assumption can contribute to the reported save rate. This forced lab does not estimate the match save rate or validate the stochastic readiness curve empirically. It found no engine-law contradiction that called for a fix commit. References are `native/port.py::keeper_motor`, `native/substrate.py` (0.9 reach patch), `native/rulebook/ball_material.py`, `native/rules.py` (Native arrest capacity), and `core_src/match.py` (catch readiness and energy check).
 
@@ -83,7 +83,7 @@ All nonzero ratings hit their caps by the 4 s sample. Native removes the old car
 
 ## 5. Draft ratings preparation
 
-**IMPLEMENTED** at `bb782f6061b2d305a0a9b9a44f7d91702c9556cf` and **TESTED** in three focused scenarios. `native/nbl_roster.py` accepts all 18 optional names on the workbook's 0–100 scale, normalizes them, and records which cells fall back to Opening-day OVR. These values live in the staged roster record. Active gameplay ratings, roster/config replay digests and athlete views keep their current inputs. Engine `finishing` and `long_shot` each initialize to the old kicking value of zero. The existing live throw-power-derived speed ceiling remains in effect. `rb3_stage_throw_power` defaults false and, when true, supplies raw normalized Throw Power as a separate engine input for a later mapping. Three focused tests cover the draft fields, a forced invalid rating, hash identity in a paired bounded run, and the switch. No ratings were generated.
+**IMPLEMENTED** at `bb782f6061b2d305a0a9b9a44f7d91702c9556cf` and **TESTED** in three focused scenarios, the 665-test full suite, the six legacy windows and both baseline full-match replays. The post-preparation test log and control raw replay are in `native/evidence/rb322-codex/staged/`. `native/nbl_roster.py` accepts all 18 optional names on the workbook's 0–100 scale, normalizes them, and records which cells fall back to Opening-day OVR. These values live in the staged roster record. Active gameplay ratings, roster/config replay digests and athlete views keep their current inputs. Engine `finishing` and `long_shot` each initialize to the old kicking value of zero. The existing live throw-power-derived speed ceiling remains in effect. `rb3_stage_throw_power` defaults false and, when true, supplies raw normalized Throw Power as a separate engine input for a later mapping. Three focused tests cover the draft fields, a forced invalid rating, hash identity in a paired bounded run, and the switch. No ratings were generated.
 
 ## 6. Carrier moves phase 2
 
