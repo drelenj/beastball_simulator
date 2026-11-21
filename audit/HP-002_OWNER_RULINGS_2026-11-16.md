@@ -155,3 +155,7 @@ RB-3.17 question 1 (handoff entering the giver's own Keeper Zone from outside): 
 ## 20 Nov 2026 (evening) - Acceptable target ranges (CANON)
 - Team score: anywhere from 75 to 90 points per team (median team score) is acceptable. Point estimate remains the NBL median 76 for comparison; overshoot inside 90 is fine.
 - Possessions: 100 to 150 per team is acceptable (was a ~100 point target).
+
+## 20 Nov 2026 (night) - Stretch angles (CANON; answers the RB-3.18 owner question)
+A carrier may choose the angle of a stretch (not only straight toward the plane: low, high or sideways, e.g. around the keeper). Engine work for a stretch direction convention goes to Codex phase 2 with juke, spin and hurdle.
+RB-3.18 verification (claude/rb-3-18-verify @ 5e1917d): suite 613 passed, legacy identical, identity exact; rule only = RB-3.16 (0 release carries); all ON median 66.5 per team (below the 75-90 range) with a placeholder hook - keep the flags OFF until the tactics pass.
