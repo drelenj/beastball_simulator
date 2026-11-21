@@ -216,7 +216,8 @@ def test_determinism_part_a_and_b_decisions():
 
 def test_defaults_leave_the_effective_config_record_unchanged():
     from .config import RulebookConfigV3
-    rec = RulebookConfigV3().record()
-    assert 'rb319_ball_in_play_enabled' not in rec and 'rb319_parts' not in rec
-    on = RulebookConfigV3(rb319_ball_in_play_enabled=True).record()
-    assert on['rb319_parts'] == 'A1A2A3A4' and RulebookConfigV3(rb319_ball_in_play_enabled=True).digest != RulebookConfigV3().digest
+    from .test_rb33 import control_rosters
+    d = tuple(control_rosters()[t].digest for t in ('A', 'B'))
+    off, on = RulebookConfigV3(roster_digests=d), RulebookConfigV3(roster_digests=d, rb319_ball_in_play_enabled=True)
+    assert 'rb319_ball_in_play_enabled' not in off.record() and 'rb319_parts' not in off.record()
+    assert on.record()['rb319_parts'] == 'A1A2A3A4' and on.digest != off.digest
