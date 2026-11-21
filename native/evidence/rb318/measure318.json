@@ -1,0 +1,240 @@
+{
+ "rule": {
+  "real1": {
+   "score": [
+    74,
+    92
+   ],
+   "possessions": [
+    228,
+    226
+   ],
+   "attempt_share": [
+    0.237,
+    0.204
+   ],
+   "points_by_method": {
+    "release": 135,
+    "own": 2,
+    "carry": 20
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 4,
+   "events": {
+    "tackle_count": 82,
+    "strip": 12
+   }
+  },
+  "real3": {
+   "score": [
+    42,
+    92
+   ],
+   "possessions": [
+    217,
+    217
+   ],
+   "attempt_share": [
+    0.166,
+    0.249
+   ],
+   "points_by_method": {
+    "release": 114,
+    "carry": 10
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 2,
+   "events": {
+    "strip": 24,
+    "tackle_count": 68
+   }
+  },
+  "real5": {
+   "score": [
+    84,
+    60
+   ],
+   "possessions": [
+    201,
+    201
+   ],
+   "attempt_share": [
+    0.264,
+    0.199
+   ],
+   "points_by_method": {
+    "release": 120,
+    "own": 2,
+    "carry": 5
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 1,
+   "events": {
+    "tackle_count": 88,
+    "strip": 20
+   }
+  },
+  "control1": {
+   "score": [
+    68,
+    55
+   ],
+   "possessions": [
+    206,
+    206
+   ],
+   "attempt_share": [
+    0.17,
+    0.16
+   ],
+   "points_by_method": {
+    "release": 111,
+    "carry": 10
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 2,
+   "events": {
+    "tackle_count": 75,
+    "strip": 17
+   }
+  },
+  "_real_team_score_median": 79.0,
+  "_real_possessions_mean": 215
+ },
+ "on": {
+  "real1": {
+   "score": [
+    67,
+    92
+   ],
+   "possessions": [
+    218,
+    217
+   ],
+   "attempt_share": [
+    0.229,
+    0.217
+   ],
+   "points_by_method": {
+    "release": 134,
+    "carry": 20
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 4,
+   "events": {
+    "truck": 104,
+    "strip": 17,
+    "handoff_complete": 243,
+    "block_engaged": 121,
+    "stiff_arm": 82,
+    "stiff_arm_effect": 82,
+    "tackle_count": 74,
+    "truck_broken": 13,
+    "stretch_start": 3,
+    "stretch_goal": 3,
+    "truck_stopped": 1
+   }
+  },
+  "real3": {
+   "score": [
+    66,
+    80
+   ],
+   "possessions": [
+    195,
+    194
+   ],
+   "attempt_share": [
+    0.221,
+    0.186
+   ],
+   "points_by_method": {
+    "release": 106,
+    "carry": 30
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 6,
+   "events": {
+    "handoff_complete": 299,
+    "strip": 22,
+    "truck": 126,
+    "truck_broken": 15,
+    "block_engaged": 139,
+    "truck_stopped": 3,
+    "tackle_count": 106,
+    "stiff_arm": 121,
+    "stiff_arm_effect": 121,
+    "stretch_start": 4,
+    "stretch_goal": 4
+   }
+  },
+  "real5": {
+   "score": [
+    55,
+    51
+   ],
+   "possessions": [
+    198,
+    200
+   ],
+   "attempt_share": [
+    0.232,
+    0.17
+   ],
+   "points_by_method": {
+    "carry": 25,
+    "release": 77
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 5,
+   "events": {
+    "block_engaged": 119,
+    "tackle_count": 90,
+    "handoff_complete": 239,
+    "stretch_start": 6,
+    "stretch_goal": 5,
+    "truck": 105,
+    "stiff_arm": 86,
+    "stiff_arm_effect": 86,
+    "strip": 16,
+    "truck_broken": 12,
+    "truck_stopped": 1
+   }
+  },
+  "control1": {
+   "score": [
+    59,
+    80
+   ],
+   "possessions": [
+    182,
+    181
+   ],
+   "attempt_share": [
+    0.154,
+    0.171
+   ],
+   "points_by_method": {
+    "release": 106,
+    "carry": 25
+   },
+   "release_carry_goals": 0,
+   "carry_goals": 5,
+   "events": {
+    "tackle_count": 100,
+    "truck": 113,
+    "truck_broken": 7,
+    "strip": 22,
+    "block_engaged": 164,
+    "handoff_complete": 323,
+    "stiff_arm": 160,
+    "stiff_arm_effect": 160,
+    "stretch_start": 5,
+    "stretch_goal": 5,
+    "truck_stopped": 3
+   }
+  },
+  "_real_team_score_median": 66.5,
+  "_real_possessions_mean": 203.7
+ }
+}
