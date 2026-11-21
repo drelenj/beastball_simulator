@@ -10,22 +10,35 @@ PHYSICAL = {
 }
 TECHNICAL_OVR = ('tackling','blocking','ball_handling','catching','awareness',
                  'throw_accuracy','keeper_skill','archery_accuracy')
+# RB-3.22 talent source (diagnosis only; defaults reproduce the RB-3.21 rosters exactly)
+TECHNICAL_SOURCES = ('ovr', 'neutral')
+PHYSICAL_SOURCES = ('roster', 'neutral')
+NEUTRAL_TECHNICAL = .784          # the league mean Opening-day OVR / 100 (owner/lead figure)
 
 
-def load_nbl_workbook(source, franchises):
+def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     """Choose each franchise's top OVR 2 KPR, 2 ARC, 18 field; ties keep sheet order.
 
     Technical skills use OVR/100, contact resistance uses Balance/100: PLACEHOLDER.
     No player labels enter the validated attribute record.
+    RB-3.22: technical='neutral' sets every technical skill to NEUTRAL_TECHNICAL; physical='neutral' sets each of the nine
+    physical ratings to its league mean (all players on the sheet); bodies (height, mass, arm span, standing reach) are
+    unchanged. Starters are chosen by OVR in every mode, so the same players play.
     """
+    if technical not in TECHNICAL_SOURCES or physical not in PHYSICAL_SOURCES:
+        raise RosterError(f'talent source: technical {technical!r} / physical {physical!r}')
     from openpyxl import load_workbook
     book=load_workbook(source,read_only=True,data_only=True)
     sheet=book['All 712 Players'];lines=sheet.values
     columns={name:i for i,name in enumerate(next(lines))}
     candidates={team:[] for team in franchises}
+    league={key:[] for key in PHYSICAL}
     for number,line in enumerate(lines,start=2):
         franchise=line[columns['Franchise']]
         if franchise in candidates:candidates[franchise].append((number,line))
+        if line[columns['Player ID']] is not None:
+            for key,header in PHYSICAL.items():league[key].append(float(line[columns[header]])/100.)
+    league_mean={key:sum(v)/len(v) for key,v in league.items()}
     out={}
     for side,franchise in zip(('A','B'),franchises):
         if not candidates.get(franchise):raise RosterError(f'franchise {franchise}: no roster rows')
@@ -41,18 +54,18 @@ def load_nbl_workbook(source, franchises):
                            height_m=float(row[columns['Height (m)']]),mass_kg=float(row[columns['Mass (kg)']]),
                            reach_m=float(row[columns['Arm span (m)']]) / 2.,
                            standing_reach_m=float(row[columns['Standing reach (m)']]))
-                entry.update({key:rating(header) for key,header in PHYSICAL.items()})
-                entry.update({key:rating('Opening-day OVR') for key in TECHNICAL_OVR})
+                entry.update({key:(league_mean[key] if physical=='neutral' else rating(header)) for key,header in PHYSICAL.items()})
+                entry.update({key:(NEUTRAL_TECHNICAL if technical=='neutral' else rating('Opening-day OVR')) for key in TECHNICAL_OVR})
                 entry['contact_resistance']=entry['balance'] # PLACEHOLDER
                 selected.append(entry)
         out[side]=load_rows(selected,side)
     return out
 
 
-def load_canon_nbl(franchises,ref='81f92e3'):
+def load_canon_nbl(franchises,ref='81f92e3',technical='ovr',physical='roster'):
     """Read the owner workbook from a local Git object without copying it into this branch."""
     import io
     import subprocess
     path='audit/arcade/morphology/NBL_2026-27_Opening_Night_Rosters_CANON_OVR_morphology_physical.xlsx'
     blob=subprocess.check_output(['git','show',ref+':'+path])
-    return load_nbl_workbook(io.BytesIO(blob),franchises)
+    return load_nbl_workbook(io.BytesIO(blob),franchises,technical,physical)

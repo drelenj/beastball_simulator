@@ -215,10 +215,10 @@ def test_determinism_part_a_and_b_decisions():
     assert opts(v, tr) == opts(v, tr)
 
 
-def test_defaults_leave_the_effective_config_record_unchanged():
+def test_ball_in_play_flag_switches_off_and_parts_are_recorded():
     from .config import RulebookConfigV3
     from .test_rb33 import control_rosters
     d = tuple(control_rosters()[t].digest for t in ('A', 'B'))
-    off, on = RulebookConfigV3(roster_digests=d), RulebookConfigV3(roster_digests=d, rb319_ball_in_play_enabled=True)
+    off, on = RulebookConfigV3(roster_digests=d, rb319_ball_in_play_enabled=False), RulebookConfigV3(roster_digests=d)   # RB-3.22: ON by default
     assert 'rb319_ball_in_play_enabled' not in off.record() and 'rb319_parts' not in off.record()
     assert on.record()['rb319_parts'] == 'A1A2A3A4' and on.digest != off.digest

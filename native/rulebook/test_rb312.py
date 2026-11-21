@@ -72,7 +72,8 @@ def carrier_scene(me=(50., 50.), opps=(), mates=(), held_ms=2000, clocks=()):
     tr = tuple(T(i, 'B', x, y, v.delivered_ms) for i, (x, y) in enumerate(opps)) \
         + tuple(T(f'A:{i + 1}', 'A', x, y, v.delivered_ms) for i, (x, y) in enumerate(mates))
     tr = tuple(replace(t_, entity=f'B:{i}') if t_.team == 'B' else t_ for i, t_ in enumerate(tr))
-    v = replace(v, x=me[0], y=me[1], tracks=tr, holds_ball=True, own_control_ms=held_ms, mate_zone_ms=tuple(clocks))
+    v = replace(v, x=me[0], y=me[1], tracks=tr, holds_ball=True, own_control_ms=held_ms, mate_zone_ms=tuple(clocks),
+                rb3_handoff_block_enabled=False, rb3_carrier_moves_enabled=False, rb319='')   # RB-3.22: pin the B-5 scene to its own rules (tactics now on by default)
     return v, tr, sg
 
 

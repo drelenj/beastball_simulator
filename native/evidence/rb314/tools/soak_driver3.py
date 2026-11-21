@@ -50,7 +50,8 @@ def main():
     name = f"{a.block}-seed{a.seed:02d}" + (f'-{a.tag}' if a.tag else '')
     overrides = {k: json.loads(v) for k, v in (o.split('=', 1) for o in a.override)}
     started = time.monotonic()
-    rosters = control_rosters() if a.block == 'control' else load_canon_nbl(('Garvian Guardians', 'Ala Apex'))
+    talent = dict(technical=overrides.get('rb322_technical_source', 'ovr'), physical=overrides.get('rb322_physical_source', 'roster'))
+    rosters = control_rosters() if a.block == 'control' else load_canon_nbl(('Garvian Guardians', 'Ala Apex'), **talent)   # RB-3.22 talent source
     cfg = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A', 'B')), **overrides)
     carry = []
     try:
