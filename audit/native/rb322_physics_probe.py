@@ -4,6 +4,7 @@ import math
 from types import SimpleNamespace
 
 from b1.emergence_intents import KeeperIntent
+from native.roster import acceleration, speed_mps
 from native.rulebook.ball_material import params, path
 from native.rulebook.scoring_audit import lab, new_flight
 
@@ -65,8 +66,8 @@ def keeper_trial(distance, lateral, height, awareness, force_intent):
 def speed_trial(rating, carry):
     port, runner = lab('field')
     match = port.m
-    runner.a.maximum_speed = 44.704 * rating
-    runner.a.acceleration = 12.5 * rating
+    runner.a.maximum_speed = speed_mps(rating)
+    runner.a.acceleration = acceleration(rating)
     match.s.ball.carrier = runner.id if carry else None
     samples = {}
     for tick in range(1, 101):
@@ -77,7 +78,7 @@ def speed_trial(rating, carry):
         match.s.now += 100
         if tick in (10, 20, 30, 40, 100):
             samples[tick // 10] = runner.speed
-    return dict(rating=rating, carry=carry, canon_mps=runner.a.maximum_speed,
+    return dict(rating=rating, carry=carry, canon_mps=44.704 * rating,
                 motor_cap_mps=match.c3_cache[runner.id][0], at_seconds_mps=samples)
 
 

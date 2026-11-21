@@ -10,7 +10,7 @@
 
 ## 1. Reconciliation
 
-**IMPLEMENTED** on `codex/rb-3-22-reconciled` at `eb30f605f24b906777b88d6cb3a552b3584639ef`. Parents are `ac520686ea9` and `e6ca6a4e3bc7e76493d6aa2999acb48f4bf9dcc5`. The complete tracked tree matches the latter, `9ef4eff55dd3d91a7f3f11bb65d992545cd0bfa0`. Where older Codex-only restart behavior differed, exact RB-3.22 parity took precedence.
+**IMPLEMENTED and TESTED** on `codex/rb-3-22-reconciled` at `eb30f605f24b906777b88d6cb3a552b3584639ef`. Parents are `ac520686ea9` and `e6ca6a4e3bc7e76493d6aa2999acb48f4bf9dcc5`. The complete tracked tree matches the latter, `9ef4eff55dd3d91a7f3f11bb65d992545cd0bfa0`. Where older Codex-only restart behavior differed, exact RB-3.22 parity took precedence.
 
 The reconciled tree already uses the shared per-athlete release clock, `round(250 * (1.35 - 0.5 * ball_handling))`, for the view and the executing port. The workbook converts arm span to arm reach by halving it (median 1.23425 m across 712 players at workbook ref `81f92e3`) and keeps standing reach separate. The control arm reach is 1.26431 m. The keeper's standing hand point and hand radius are 0.62 times height and 0.9 times arm reach, respectively. The keeper forecast fallback uses the control reach, and the rulebook port populates `body_height`.
 
@@ -26,9 +26,9 @@ d) Identity: unless a task says it changes behavior, real seed 1 and control see
 
 | Gate | Reconciled source | Draft-rating preparation |
 |---|---|---|
-| a | Full suite running | Full suite pending |
-| b | **TESTED** — six trace/state/config rows matched | Comparison running |
-| c | Real seed 1 matches upstream independent execution. Local suite repeats it. | **TESTED** — paired 300-step runs with and without supplied draft values match each other. Full run pending. |
+| a | **TESTED** — 662 passed, 23 subtests passed | Full suite running |
+| b | **TESTED** — six trace/state/config rows matched | **TESTED** — the same six rows matched |
+| c | **TESTED** — real seed 1 matched across the instrumented run, the local suite and the upstream run. | **TESTED** — paired 300-step runs with and without supplied draft values match each other. Full run pending. |
 | d | **TESTED** — both full matches matched all three hashes | Full runs pending |
 
 Full hashes from the `eb30f60` runs, compared with `9e66749`:
@@ -44,7 +44,7 @@ Run `python -m native.rulebook.scoring_audit --legacy` for the six 3,000-step ca
 
 **TESTED** for the default block, using the 10 original per-match results at `9e66749:native/evidence/rb321-soak/real/`. The three neutral blocks are in progress at the time of this checkpoint. Technical-neutral and physical-neutral seed 1 reuse the per-match files on `e6ca6a4` in `native/evidence/rb322/runs/`. Missing matches run from a clean Python-source export of `eb30f60`, with roster workbook ref `81f92e3` and a maximum of two matches at a time.
 
-The estimator weights each team-match equally for median, possessions and pooled standard deviation. The margin is Ala (B) minus Garvian (A). SDs are sample SDs. The median describes the 20 team scores from this fixture.
+The estimator weights each team-match equally for median, possessions and pooled standard deviation. The margin is Ala (B) minus Garvian (A). SDs are sample SDs. The median describes the 20 team scores from this fixture. Raw score events and changes in passive possession were also checked against the per-match records.
 
 | Mode | Seeds | Median team points | Possessions/team | Ala mean margin | Ala wins | SD Garvian / Ala / pooled |
 |---|---|---:|---:|---:|---:|---|
@@ -64,7 +64,7 @@ The estimator weights each team-match equally for median, possessions and pooled
 
 Central aim was 1.50 m high. Wide aim was 2.40 m off centre at 0.40 and 2.00 m high. At 12 m, the wide low shot was 1.80 m lateral and 0.77 m vertical from the standing hand point at depth, 1.96 m away. The wide high shot was 1.80 m lateral and 0.43 m vertical at depth. Its plane aim is outside the semicircle. Step travel, lift and dives were zero in all 54 trials. The keeper motor reaction was 200/176/152 ms across the awareness values, with another 100 ms for an unset keeper and a 100 ms dive lead requirement. The normal sensor delay is 200 ms.
 
-The observed saves did not require superhuman movement or reach. The catch kernel separately samples when a player can set their hands, using a 120 ms base time constant scaled by awareness. The 120 ms is a stochastic mean at .5 awareness and permits earlier reactions. It uses the live flight clock, so the keeper may secure a ball on his standing hands before a deliberate movement command can arrive. Central placement and that reflex assumption can contribute to the reported save rate. This forced lab does not estimate the match save rate or validate the stochastic readiness curve empirically. It found no engine-law contradiction that called for a fix commit. References are `native/port.py::keeper_motor`, `native/substrate.py` (0.9 reach patch), `native/rulebook/ball_material.py`, and `core_src/match.py` (catch readiness and energy check).
+The observed saves did not require superhuman movement or reach. The catch kernel separately samples when a player can set their hands, using a 120 ms base time constant scaled by awareness. The 120 ms is a stochastic mean at .5 awareness and permits earlier reactions. At .7 awareness, the mean is 105.6 ms. A 0.4 kg ball at 58 m/s carries about 673 J, close to the model’s 680 J centred arrest capacity at .7 keeping skill. It uses the live flight clock, so the keeper may secure a ball on his standing hands before a deliberate movement command can arrive. Central placement and that reflex assumption can contribute to the reported save rate. This forced lab does not estimate the match save rate or validate the stochastic readiness curve empirically. It found no engine-law contradiction that called for a fix commit. References are `native/port.py::keeper_motor`, `native/substrate.py` (0.9 reach patch), `native/rulebook/ball_material.py`, and `core_src/match.py` (catch readiness and energy check).
 
 ## 4. Achieved speed
 

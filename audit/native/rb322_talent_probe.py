@@ -6,6 +6,7 @@ import shutil
 import statistics
 import subprocess
 import sys
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -50,7 +51,23 @@ def fill(root, source, jobs, modes, seeds):
         list(pool.map(run, cases))
 
 
-def summarize(root, allow_partial=False):
+def verify_raw(source, row):
+    with gzip.open(source, "rt") as log:
+        raw = json.load(log)
+    points = Counter()
+    for event in raw["log"]:
+        if event["event"] in ("goal", "foul_award"):
+            points[event["data"]["team"]] += event["data"]["points"]
+    possessions = Counter(entry["team"] for entry in
+                          raw["possession_history"] + raw["possession_ledger"]
+                          if entry["event"] == "passive_possession"
+                          or (entry["event"] == "restart_awarded" and entry.get("pp_changed")))
+    for side in ("A", "B"):
+        if points[side] != row["score"][side] or possessions[side] != row["metrics"]["possessions"][side]["count"]:
+            raise ValueError(f"{source}: raw logs disagree with the reported score or possessions for {side}")
+
+
+def summarize(root, allow_partial=False, check_raw=False):
     data = {}
     for mode in MODES:
         scores = {side: [] for side in ("A", "B")}
@@ -63,6 +80,8 @@ def summarize(root, allow_partial=False):
             row = json.loads(source.read_text())
             if row["seed"] != seed or row["status"] != "final":
                 raise ValueError(f"{source}: wrong seed or incomplete match")
+            if check_raw:
+                verify_raw(source.with_name("raw-" + source.name + ".gz"), row)
             seeds.append(seed)
             for side in scores:
                 scores[side].append(row["score"][side])
@@ -89,6 +108,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("root", type=Path)
     parser.add_argument("--allow-partial", action="store_true")
+    parser.add_argument("--verify-raw", action="store_true")
     parser.add_argument("--run-missing", choices=MODES, nargs="+")
     parser.add_argument("--source", type=Path, default=Path.cwd())
     parser.add_argument("--jobs", type=int, choices=(1, 2), default=1)
@@ -96,4 +116,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.run_missing:
         fill(args.root.resolve(), args.source.resolve(), args.jobs, args.run_missing, args.seeds)
-    print(json.dumps(summarize(args.root, args.allow_partial), indent=2))
+    print(json.dumps(summarize(args.root, args.allow_partial, args.verify_raw), indent=2))
