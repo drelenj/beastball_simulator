@@ -1,0 +1,563 @@
+{
+ "source": "Claude Doc 'Beastball Technical Ratings Spec (draft v0)', tab 'Rating shapes', rev 1",
+ "position_shapes": {
+  "PDR": {
+   "Tackling": -6,
+   "Blocking": -6,
+   "Ball security": 6,
+   "Passing": -2,
+   "Finishing": 6,
+   "Long shot": 0,
+   "Catching": 2,
+   "Evasion": 8,
+   "Vision": 2,
+   "Anticipation": 2,
+   "Reaction": 6,
+   "Judgment": 0,
+   "Composure": 2,
+   "Discipline": -4,
+   "Aggression": 6,
+   "Work rate": 0
+  },
+  "STR": {
+   "Tackling": -4,
+   "Blocking": 4,
+   "Ball security": 4,
+   "Passing": -4,
+   "Finishing": 8,
+   "Long shot": -6,
+   "Catching": 6,
+   "Evasion": 4,
+   "Vision": -2,
+   "Anticipation": 4,
+   "Reaction": 0,
+   "Judgment": 0,
+   "Composure": 4,
+   "Discipline": 2,
+   "Aggression": 4,
+   "Work rate": 0
+  },
+  "SCT": {
+   "Tackling": -6,
+   "Blocking": -6,
+   "Ball security": 0,
+   "Passing": 4,
+   "Finishing": 2,
+   "Long shot": 8,
+   "Catching": 4,
+   "Evasion": 2,
+   "Vision": 6,
+   "Anticipation": 2,
+   "Reaction": 6,
+   "Judgment": 2,
+   "Composure": 2,
+   "Discipline": 0,
+   "Aggression": -2,
+   "Work rate": 2
+  },
+  "PFD": {
+   "Tackling": -4,
+   "Blocking": -4,
+   "Ball security": 6,
+   "Passing": 8,
+   "Finishing": -2,
+   "Long shot": 2,
+   "Catching": 4,
+   "Evasion": 0,
+   "Vision": 8,
+   "Anticipation": 4,
+   "Reaction": 4,
+   "Judgment": 8,
+   "Composure": 8,
+   "Discipline": 4,
+   "Aggression": -4,
+   "Work rate": 2
+  },
+  "HNT": {
+   "Tackling": 2,
+   "Blocking": 1,
+   "Ball security": 2,
+   "Passing": 2,
+   "Finishing": 2,
+   "Long shot": 1,
+   "Catching": 2,
+   "Evasion": 2,
+   "Vision": 4,
+   "Anticipation": 6,
+   "Reaction": 4,
+   "Judgment": 6,
+   "Composure": 2,
+   "Discipline": 2,
+   "Aggression": 0,
+   "Work rate": 6
+  },
+  "TRK": {
+   "Tackling": 2,
+   "Blocking": 0,
+   "Ball security": 2,
+   "Passing": 4,
+   "Finishing": -4,
+   "Long shot": -2,
+   "Catching": 2,
+   "Evasion": 0,
+   "Vision": 2,
+   "Anticipation": 4,
+   "Reaction": 2,
+   "Judgment": 2,
+   "Composure": 0,
+   "Discipline": 6,
+   "Aggression": 2,
+   "Work rate": 8
+  },
+  "SEN": {
+   "Tackling": 6,
+   "Blocking": 4,
+   "Ball security": 2,
+   "Passing": 4,
+   "Finishing": -6,
+   "Long shot": -4,
+   "Catching": 2,
+   "Evasion": -4,
+   "Vision": 2,
+   "Anticipation": 6,
+   "Reaction": 2,
+   "Judgment": 4,
+   "Composure": 4,
+   "Discipline": 8,
+   "Aggression": 0,
+   "Work rate": 4
+  },
+  "TRP": {
+   "Tackling": 6,
+   "Blocking": 2,
+   "Ball security": -2,
+   "Passing": 0,
+   "Finishing": -8,
+   "Long shot": -6,
+   "Catching": 4,
+   "Evasion": -4,
+   "Vision": 0,
+   "Anticipation": 8,
+   "Reaction": 6,
+   "Judgment": 2,
+   "Composure": 2,
+   "Discipline": 4,
+   "Aggression": 4,
+   "Work rate": 4
+  },
+  "GRD": {
+   "Tackling": 8,
+   "Blocking": 8,
+   "Ball security": 0,
+   "Passing": -2,
+   "Finishing": -8,
+   "Long shot": -8,
+   "Catching": 0,
+   "Evasion": -4,
+   "Vision": 0,
+   "Anticipation": 6,
+   "Reaction": 0,
+   "Judgment": 4,
+   "Composure": 6,
+   "Discipline": 6,
+   "Aggression": 4,
+   "Work rate": 2
+  },
+  "KPR": {
+   "Tackling": -2,
+   "Blocking": 0,
+   "Ball security": 2,
+   "Passing": 2,
+   "Finishing": -8,
+   "Long shot": -8,
+   "Catching": 8,
+   "Evasion": -8,
+   "Keeping": 10,
+   "Vision": 4,
+   "Anticipation": 8,
+   "Reaction": 6,
+   "Judgment": 2,
+   "Composure": 8,
+   "Discipline": 4,
+   "Aggression": -2,
+   "Work rate": -4
+  },
+  "ARC": {
+   "Archery": 10,
+   "Vision": 8,
+   "Anticipation": 6,
+   "Reaction": 4,
+   "Judgment": 6,
+   "Composure": 8,
+   "Discipline": 6,
+   "Aggression": 0,
+   "Work rate": -4
+  }
+ },
+ "archetypes": [
+  {
+   "position": "PDR",
+   "archetype": "The Slasher",
+   "frequency": "common",
+   "body_fit": "speed, acceleration",
+   "offsets": "Reaction +2, Evasion +2, Aggression +2"
+  },
+  {
+   "position": "PDR",
+   "archetype": "The Ghost",
+   "frequency": "uncommon",
+   "body_fit": "agility, lighter frame",
+   "offsets": "Evasion +4, Vision +2, Judgment +2"
+  },
+  {
+   "position": "PDR",
+   "archetype": "The Power Predator",
+   "frequency": "uncommon",
+   "body_fit": "mass, strength",
+   "offsets": "Evasion +2, Blocking +2, Ball security +2"
+  },
+  {
+   "position": "PDR",
+   "archetype": "The Tempo Predator",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Passing +4, Vision +4, Judgment +4, Finishing -4"
+  },
+  {
+   "position": "PDR",
+   "archetype": "The Far-Side Predator",
+   "frequency": "uncommon",
+   "body_fit": "speed",
+   "offsets": "Long shot +2, Anticipation +2, Reaction +2"
+  },
+  {
+   "position": "STR",
+   "archetype": "The Tower",
+   "frequency": "common",
+   "body_fit": "height, reach",
+   "offsets": "Catching +2, Finishing +2, Evasion -4"
+  },
+  {
+   "position": "STR",
+   "archetype": "The Cutter",
+   "frequency": "uncommon",
+   "body_fit": "agility",
+   "offsets": "Evasion +6, Anticipation +2, Blocking -2"
+  },
+  {
+   "position": "STR",
+   "archetype": "The Bruiser",
+   "frequency": "uncommon",
+   "body_fit": "mass, strength",
+   "offsets": "Blocking +4, Aggression +4, Finishing -4, Discipline -2"
+  },
+  {
+   "position": "STR",
+   "archetype": "The Pivot",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Passing +6, Vision +4, Judgment +4, Finishing -2"
+  },
+  {
+   "position": "STR",
+   "archetype": "The Dual Threat",
+   "frequency": "rare",
+   "body_fit": "none",
+   "offsets": "Long shot +8, Evasion +2"
+  },
+  {
+   "position": "SCT",
+   "archetype": "The Sniper",
+   "frequency": "common",
+   "body_fit": "throw power",
+   "offsets": "Long shot +4, Composure +2, Blocking -2"
+  },
+  {
+   "position": "SCT",
+   "archetype": "The Cutter",
+   "frequency": "uncommon",
+   "body_fit": "agility, acceleration",
+   "offsets": "Evasion +4, Reaction +2, Long shot -2"
+  },
+  {
+   "position": "SCT",
+   "archetype": "The False Pathfinder",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Passing +4, Vision +2, Judgment +4, Long shot -2"
+  },
+  {
+   "position": "SCT",
+   "archetype": "The Transition Scout",
+   "frequency": "uncommon",
+   "body_fit": "speed",
+   "offsets": "Reaction +2, Work rate +2, Anticipation +2"
+  },
+  {
+   "position": "SCT",
+   "archetype": "The Rotational Scout",
+   "frequency": "uncommon",
+   "body_fit": "stamina",
+   "offsets": "Work rate +4, Vision +2, Evasion +2, Composure -2"
+  },
+  {
+   "position": "PFD",
+   "archetype": "The Conductor",
+   "frequency": "common",
+   "body_fit": "none",
+   "offsets": "Passing +2, Composure +2, Discipline +2, Aggression -2"
+  },
+  {
+   "position": "PFD",
+   "archetype": "The Aggressor",
+   "frequency": "uncommon",
+   "body_fit": "acceleration",
+   "offsets": "Aggression +4, Reaction +4, Composure -2, Discipline -2"
+  },
+  {
+   "position": "PFD",
+   "archetype": "The Field Surgeon",
+   "frequency": "rare",
+   "body_fit": "none",
+   "offsets": "Judgment +4, Vision +2, Passing +2"
+  },
+  {
+   "position": "PFD",
+   "archetype": "The Hybrid Pathfinder",
+   "frequency": "uncommon",
+   "body_fit": "agility",
+   "offsets": "Evasion +4, Finishing +2, Work rate +2, Passing -2"
+  },
+  {
+   "position": "PFD",
+   "archetype": "The Possession Monarch",
+   "frequency": "uncommon",
+   "body_fit": "stamina",
+   "offsets": "Ball security +4, Composure +2, Discipline +2, Aggression -2"
+  },
+  {
+   "position": "HNT",
+   "archetype": "The Apex Hunter",
+   "frequency": "very rare",
+   "body_fit": "none",
+   "offsets": "+4 on every rating"
+  },
+  {
+   "position": "HNT",
+   "archetype": "The Transition Hunter",
+   "frequency": "uncommon",
+   "body_fit": "speed, acceleration",
+   "offsets": "Anticipation +4, Reaction +2, Tackling +2"
+  },
+  {
+   "position": "HNT",
+   "archetype": "The Tactical Hunter",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Judgment +4, Vision +4"
+  },
+  {
+   "position": "HNT",
+   "archetype": "The Predator Hunter",
+   "frequency": "uncommon",
+   "body_fit": "agility",
+   "offsets": "Evasion +4, Finishing +4, Aggression +2, Discipline -2"
+  },
+  {
+   "position": "HNT",
+   "archetype": "The Sentinel Hunter",
+   "frequency": "uncommon",
+   "body_fit": "strength",
+   "offsets": "Tackling +4, Anticipation +2, Discipline +2"
+  },
+  {
+   "position": "HNT",
+   "archetype": "The Pathfinder Hunter",
+   "frequency": "rare",
+   "body_fit": "none",
+   "offsets": "Passing +6, Vision +4, Judgment +2"
+  },
+  {
+   "position": "TRK",
+   "archetype": "The Shuttle",
+   "frequency": "common",
+   "body_fit": "stamina",
+   "offsets": "Work rate +2, Reaction +2"
+  },
+  {
+   "position": "TRK",
+   "archetype": "The Anchor Tracker",
+   "frequency": "uncommon",
+   "body_fit": "strength",
+   "offsets": "Discipline +4, Tackling +2, Aggression -2"
+  },
+  {
+   "position": "TRK",
+   "archetype": "The Overload Tracker",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Aggression +2, Passing +2, Discipline -2"
+  },
+  {
+   "position": "TRK",
+   "archetype": "The Transition Tracker",
+   "frequency": "uncommon",
+   "body_fit": "speed",
+   "offsets": "Reaction +2, Anticipation +2, Evasion +2"
+  },
+  {
+   "position": "TRK",
+   "archetype": "The Tactical Tracker",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Judgment +4, Vision +2"
+  },
+  {
+   "position": "SEN",
+   "archetype": "The Stopper (proposed)",
+   "frequency": "common",
+   "body_fit": "strength",
+   "offsets": "Tackling +4, Aggression +2"
+  },
+  {
+   "position": "SEN",
+   "archetype": "The Launcher (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Passing +4, Vision +2"
+  },
+  {
+   "position": "SEN",
+   "archetype": "The Screen (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "mass",
+   "offsets": "Discipline +4, Blocking +2"
+  },
+  {
+   "position": "SEN",
+   "archetype": "The Rover (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "stamina",
+   "offsets": "Work rate +4, Anticipation +2"
+  },
+  {
+   "position": "TRP",
+   "archetype": "The Containment Specialist",
+   "frequency": "common",
+   "body_fit": "balance",
+   "offsets": "Discipline +2, Anticipation +2"
+  },
+  {
+   "position": "TRP",
+   "archetype": "The Press Trapper",
+   "frequency": "uncommon",
+   "body_fit": "acceleration",
+   "offsets": "Aggression +4, Reaction +2, Discipline -2"
+  },
+  {
+   "position": "TRP",
+   "archetype": "The Recovery Trapper",
+   "frequency": "uncommon",
+   "body_fit": "speed, stamina",
+   "offsets": "Work rate +4, Anticipation +2"
+  },
+  {
+   "position": "TRP",
+   "archetype": "The Archer Trapper",
+   "frequency": "rare",
+   "body_fit": "none",
+   "offsets": "Judgment +4, Vision +2"
+  },
+  {
+   "position": "TRP",
+   "archetype": "The Hybrid Trapper",
+   "frequency": "uncommon",
+   "body_fit": "agility",
+   "offsets": "Passing +2, Evasion +2, Work rate +2"
+  },
+  {
+   "position": "GRD",
+   "archetype": "The Anchor",
+   "frequency": "common",
+   "body_fit": "mass",
+   "offsets": "Composure +2, Discipline +2"
+  },
+  {
+   "position": "GRD",
+   "archetype": "The Crusher",
+   "frequency": "uncommon",
+   "body_fit": "strength, mass",
+   "offsets": "Tackling +2, Blocking +2, Aggression +6, Discipline -4"
+  },
+  {
+   "position": "GRD",
+   "archetype": "The Sweeping Guard",
+   "frequency": "uncommon",
+   "body_fit": "speed, agility",
+   "offsets": "Anticipation +2, Reaction +4, Blocking -2"
+  },
+  {
+   "position": "GRD",
+   "archetype": "The Field General",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Judgment +6, Vision +4, Composure +2"
+  },
+  {
+   "position": "GRD",
+   "archetype": "The Hybrid Guard",
+   "frequency": "rare",
+   "body_fit": "mass and speed together",
+   "offsets": "Evasion +4, Reaction +2, Work rate +2"
+  },
+  {
+   "position": "KPR",
+   "archetype": "The Wall (proposed)",
+   "frequency": "common",
+   "body_fit": "height, reach",
+   "offsets": "Keeping +2, Composure +2, Discipline +2"
+  },
+  {
+   "position": "KPR",
+   "archetype": "The Sweeper Keeper (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "speed",
+   "offsets": "Reaction +4, Passing +4, Anticipation +2"
+  },
+  {
+   "position": "KPR",
+   "archetype": "The Reflex Keeper (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "agility",
+   "offsets": "Reaction +6, Anticipation +2, Composure -2"
+  },
+  {
+   "position": "ARC",
+   "archetype": "The Marksman (proposed)",
+   "frequency": "common",
+   "body_fit": "none",
+   "offsets": "Archery +2, Composure +4"
+  },
+  {
+   "position": "ARC",
+   "archetype": "The Tempo Archer (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Reaction +4, Judgment +2"
+  },
+  {
+   "position": "ARC",
+   "archetype": "The Hunter Archer (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Anticipation +4, Vision +2"
+  },
+  {
+   "position": "ARC",
+   "archetype": "The Controller (proposed)",
+   "frequency": "uncommon",
+   "body_fit": "none",
+   "offsets": "Discipline +4, Judgment +4"
+  }
+ ]
+}
