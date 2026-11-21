@@ -25,7 +25,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8663,
       "event_ms": 119
     },
     {
@@ -53,7 +55,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8663,
       "event_ms": 119
     },
     {
@@ -81,7 +85,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8663,
       "event_ms": 119
     },
     {
@@ -109,7 +115,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8663,
       "event_ms": 119
     },
     {
@@ -137,7 +145,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8663,
       "event_ms": 119
     },
     {
@@ -165,7 +175,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8663,
       "event_ms": 119
     },
     {
@@ -193,7 +205,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -221,7 +235,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -249,7 +265,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -277,7 +295,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -305,7 +325,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -333,7 +355,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -361,7 +385,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -389,7 +415,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -417,7 +445,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -445,7 +475,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -473,7 +505,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -501,7 +535,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 180
     },
     {
@@ -529,7 +565,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8666,
       "event_ms": 145
     },
     {
@@ -557,7 +595,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8666,
       "event_ms": 145
     },
     {
@@ -585,7 +625,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8666,
       "event_ms": 145
     },
     {
@@ -613,7 +655,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8666,
       "event_ms": 145
     },
     {
@@ -641,7 +685,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8666,
       "event_ms": 145
     },
     {
@@ -669,7 +715,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8666,
       "event_ms": 145
     },
     {
@@ -697,7 +745,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 214
     },
     {
@@ -725,7 +775,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 214
     },
     {
@@ -753,7 +805,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 214
     },
     {
@@ -781,7 +835,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 214
     },
     {
@@ -809,7 +865,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 214
     },
     {
@@ -837,7 +895,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 214
     },
     {
@@ -865,7 +925,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 213
     },
     {
@@ -893,7 +955,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 213
     },
     {
@@ -921,7 +985,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 213
     },
     {
@@ -949,7 +1015,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 213
     },
     {
@@ -977,7 +1045,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 213
     },
     {
@@ -1005,7 +1075,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 213
     },
     {
@@ -1033,7 +1105,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8657,
       "event_ms": 184
     },
     {
@@ -1061,7 +1135,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8657,
       "event_ms": 184
     },
     {
@@ -1089,7 +1165,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8657,
       "event_ms": 184
     },
     {
@@ -1117,7 +1195,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8657,
       "event_ms": 184
     },
     {
@@ -1145,7 +1225,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8657,
       "event_ms": 184
     },
     {
@@ -1173,7 +1255,9 @@
       "sensor_latency_ms": 200,
       "outcome": "acquire",
       "contact": "catch",
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": 0.8657,
       "event_ms": 184
     },
     {
@@ -1201,7 +1285,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1229,7 +1315,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1257,7 +1345,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1285,7 +1375,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1313,7 +1405,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1341,7 +1435,9 @@
       "sensor_latency_ms": 200,
       "outcome": "goal",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1369,7 +1465,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1397,7 +1495,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1425,7 +1525,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1453,7 +1555,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1481,7 +1585,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     },
     {
@@ -1509,7 +1615,9 @@
       "sensor_latency_ms": 200,
       "outcome": "frame",
       "contact": null,
-      "control": null,
+      "catching_rating": 0.7,
+      "centred_capacity_j": 1108.5266788846116,
+      "secure_given_hand_contact": null,
       "event_ms": 265
     }
   ],

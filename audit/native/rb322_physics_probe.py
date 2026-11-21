@@ -49,6 +49,7 @@ def keeper_trial(distance, lateral, height, awareness, force_intent):
             break
         state.now += 1
     demand = (abs(at_depth[2] - 50.), abs(at_depth[3] - .62 * keeper.a.height))
+    hands = match.c4c_cinfo.get((keeper.id, 'hands'))
     return dict(distance_m=distance, launch_speed_mps=math.hypot(*velocity),
                 aim_m=[lateral, height], awareness=awareness,
                 release_time_intent=force_intent,
@@ -59,7 +60,9 @@ def keeper_trial(distance, lateral, height, awareness, force_intent):
                 hand_radius_m=match.c4c_reach(keeper), sensor_latency_ms=port.config.latency_ms,
                 outcome=event.kind if event else None,
                 contact=event.data.get('c4c_kind') if event else None,
-                control=event.data.get('secure') if event else None,
+                catching_rating=keeper.a.catching,
+                centred_capacity_j=match.native_catch_capacity(keeper.a.catching, 0.),
+                secure_given_hand_contact=hands[2] if hands else None,
                 event_ms=state.now - start + event.at if event else None)
 
 
