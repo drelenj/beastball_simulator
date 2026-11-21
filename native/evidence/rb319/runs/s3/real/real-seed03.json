@@ -1,0 +1,91 @@
+{
+  "block": "real",
+  "config_digest": "f1e9621aceff704062ae653609cd0b818be6031044f1ff0852f3ddc0532726aa",
+  "end_ms": 4556962,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 5,
+    "immune_contact": 3,
+    "protected_keeper": 1,
+    "zone_unmarked": 1
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 3,
+        "legal": 266,
+        "legal_rate": 0.9888475836431226
+      },
+      "B": {
+        "illegal": 2,
+        "legal": 289,
+        "legal_rate": 0.993127147766323
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 61,
+        "goals": 3
+      },
+      "B": {
+        "attempts": 43,
+        "goals": 5
+      }
+    },
+    "dqs": {
+      "A": 0,
+      "B": 0
+    },
+    "groundings": 118,
+    "points": {
+      "A": {
+        "penalty_awards": 4,
+        "play": 74
+      },
+      "B": {
+        "penalty_awards": 3,
+        "play": 78
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 163,
+        "ending_in_attempt": 46,
+        "share_ending_in_attempt": 0.2822085889570552,
+        "with_attempt": 53
+      },
+      "B": {
+        "count": 163,
+        "ending_in_attempt": 36,
+        "share_ending_in_attempt": 0.22085889570552147,
+        "with_attempt": 39
+      }
+    },
+    "restart_timeouts": 11
+  },
+  "name": "real-seed03",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 313,
+    "snap_timeout": 1,
+    "toss_timeout": 10
+  },
+  "runtime_s": 162.22,
+  "score": {
+    "A": 78,
+    "B": 81
+  },
+  "seed": 3,
+  "state_hash": "ce2f90cc3cc21d5b4327ec1e0c84ebe3b25454c3c6c82c2361e2be39cf258f09",
+  "status": "final",
+  "steps": 35382,
+  "trace_hash": "485f897d41ee26bd833ad59d712d813c4a101d2cff58a1a4c8a9707c92e7bb42"
+}
