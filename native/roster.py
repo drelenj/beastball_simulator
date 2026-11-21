@@ -84,6 +84,10 @@ class AthleteAttributes:
     role: str
     values: tuple
     defaults: tuple = ()
+    # Workbook inputs for the prospective technical spec. Kept separate from
+    # the gameplay record and never read by the motor, rules, sensors or views.
+    staged_ratings: tuple[tuple[str, float], ...] = ()
+    staged_rating_defaults: tuple[str, ...] = ()
 
     def get(self,name):
         return dict(self.values)[name]

@@ -79,6 +79,7 @@ class RulebookConfigV3(RulebookConfig):
     # loaded (native/nbl_roster.load_canon_nbl via native.rulebook.reach_run --override); recorded here so the run is labelled.
     rb322_technical_source: str = 'ovr'       # 'ovr' (Opening-day OVR/100) | 'neutral' (.784 for every player)
     rb322_physical_source: str = 'roster'     # 'roster' | 'neutral' (league mean of each of the nine physical ratings)
+    rb3_stage_throw_power: bool = False      # Raw input for a future engine mapping; existing cap stays active.
 
     def record(self):
         record = super().record()
@@ -93,6 +94,8 @@ class RulebookConfigV3(RulebookConfig):
             record.pop('rb322_technical_source')
         if self.rb322_physical_source == 'roster':
             record.pop('rb322_physical_source')
+        if not self.rb3_stage_throw_power:
+            record.pop('rb3_stage_throw_power')
         if not self.rb321_ball_material_enabled:
             for key in ('rb321_ball_material_enabled', 'rb321_ball_drag_k', 'rb321_ball_bounce_h', 'rb321_ball_restitution', 'rb321_ball_roll_decel'):
                 record.pop(key)

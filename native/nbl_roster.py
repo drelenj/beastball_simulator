@@ -1,4 +1,6 @@
 """Opening night workbook adapter for native-rb/3. Labels select eligibility only."""
+from dataclasses import replace
+
 from .roster import load_rows, RosterError
 
 PHYSICAL = {
@@ -14,13 +16,42 @@ TECHNICAL_OVR = ('tackling','blocking','ball_handling','catching','awareness',
 TECHNICAL_SOURCES = ('ovr', 'neutral')
 PHYSICAL_SOURCES = ('roster', 'neutral')
 NEUTRAL_TECHNICAL = .784          # the league mean Opening-day OVR / 100 (owner/lead figure)
+STAGED_HEADERS = {
+    'tackling': 'Tackling', 'blocking': 'Blocking', 'ball_security': 'Ball security',
+    'passing': 'Passing', 'finishing': 'Finishing', 'long_shot': 'Long shot',
+    'catching': 'Catching', 'evasion': 'Evasion', 'keeping': 'Keeping', 'archery': 'Archery',
+    'vision': 'Vision', 'anticipation': 'Anticipation', 'reaction': 'Reaction',
+    'judgment': 'Judgment', 'composure': 'Composure', 'discipline': 'Discipline',
+    'aggression': 'Aggression', 'work_rate': 'Work rate',
+}
+
+
+def _stage_ratings(row, columns, number, fallback):
+    values, defaults = [], []
+    for key, label in STAGED_HEADERS.items():
+        index = columns.get(label, columns.get(f'{label} (rating)'))
+        raw = row[index] if index is not None else None
+        if raw is None or (isinstance(raw, str) and not raw.strip()):
+            values.append((key, fallback))
+            defaults.append(key)
+            continue
+        try:
+            rating = float(raw)
+        except (ValueError, TypeError):
+            raise RosterError(f'row {number} column {label}: expected a rating in 0..100') from None
+        if not 0 <= rating <= 100:
+            raise RosterError(f'row {number} column {label}: rating {rating} outside 0..100')
+        values.append((key, rating / 100.))
+    return tuple(values), tuple(defaults)
 
 
 def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     """Choose each franchise's top OVR 2 KPR, 2 ARC, 18 field; ties keep sheet order.
 
     Technical skills use OVR/100, contact resistance uses Balance/100: PLACEHOLDER.
-    No player labels enter the validated attribute record.
+    No player labels enter the validated attribute record. Optional draft technical
+    and mental workbook columns use the same 0..100 scale, with an OVR fallback;
+    they are stored separately from the active attributes and gameplay digest.
     RB-3.22: technical='neutral' sets every technical skill to NEUTRAL_TECHNICAL; physical='neutral' sets each of the nine
     physical ratings to its league mean (all players on the sheet); bodies (height, mass, arm span, standing reach) are
     unchanged. Starters are chosen by OVR in every mode, so the same players play.
@@ -43,6 +74,7 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     for side,franchise in zip(('A','B'),franchises):
         if not candidates.get(franchise):raise RosterError(f'franchise {franchise}: no roster rows')
         selected=[]
+        staged=[]
         for code,count,role in (('KPR',2,'keeper'),('ARC',2,'archer'),('field',18,'field')):
             pool=[(number,row) for number,row in candidates[franchise]
                   if (row[columns['Position']]==code if code!='field' else row[columns['Position']] not in ('KPR','ARC'))]
@@ -58,7 +90,11 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                 entry.update({key:(NEUTRAL_TECHNICAL if technical=='neutral' else rating('Opening-day OVR')) for key in TECHNICAL_OVR})
                 entry['contact_resistance']=entry['balance'] # PLACEHOLDER
                 selected.append(entry)
-        out[side]=load_rows(selected,side)
+                staged.append(_stage_ratings(row, columns, number, rating('Opening-day OVR')))
+        roster=load_rows(selected,side)
+        athletes=tuple(replace(athlete, staged_ratings=values, staged_rating_defaults=defaults)
+                       for athlete, (values, defaults) in zip(roster.athletes, staged, strict=True))
+        out[side]=replace(roster, athletes=athletes)
     return out
 
 

@@ -73,6 +73,10 @@ class NativePort:
                     raw=dict(record.values)
                     if cfg.version == 'native-rb/3':
                         old.a.standing_reach_m = raw.get('standing_reach_m')
+                        # Inert replacements for the two future shot bands.
+                        old.a.finishing = old.a.long_shot = old.a.kicking
+                        if cfg.rb3_stage_throw_power:
+                            old.a.raw_throw_power = raw['throw_power']
                     old.native_source_id=record.source_id
                     old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
                     old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
