@@ -84,6 +84,8 @@ def install(co,cfg):
             return True
         return old_assert(self)
     E.assert_invariants=invariants
+    from .ball_ground import install as install_ball_ground
+    install_ball_ground(co,cfg)
     from .substitutions import install as install_substitutions
     install_substitutions(co,cfg)
     from .discipline import install as install_discipline

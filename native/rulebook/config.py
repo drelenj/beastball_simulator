@@ -60,6 +60,9 @@ class RulebookConfigV3(RulebookConfig):
     # A2 boundary awareness, A3 missed-ball pursuit, A4 pass depth safety). OFF (default) is the exact RB-3.18 effective configuration.
     rb319_ball_in_play_enabled: bool = False
     rb319_parts: str = 'A1A2A3A4'
+    # RB-3.20a DEFECT FIX (engine, PROVISIONAL): exact ball-ground contact inside the step (native/rulebook/ball_ground.py).
+    # False is the exact RB-3.19 effective configuration and physics.
+    rb320_exact_bounce: bool = True
 
     def record(self):
         record = super().record()
@@ -70,6 +73,8 @@ class RulebookConfigV3(RulebookConfig):
             record.pop('rb3_carrier_moves_enabled')
         if self.carry_release_radius_m == 0:
             record.pop('carry_release_radius_m')
+        if not self.rb320_exact_bounce:
+            record.pop('rb320_exact_bounce')
         if not self.rb319_ball_in_play_enabled:
             record.pop('rb319_ball_in_play_enabled'); record.pop('rb319_parts')
         return record

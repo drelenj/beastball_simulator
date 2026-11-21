@@ -45,6 +45,10 @@ def build_core(config):
                  "self.c3_add(a,('shock',b.id),0. if truck and a is car else sa,lawful[b.id],now_ms);"
                  "self.c3_add(b,('shock',a.id),0. if truck and b is car else sb,lawful[a.id],now_ms)"),
             ])
+    from .rulebook.ball_ground import enabled as _rb320_enabled, PATCHES as _RB320, GEOMETRY_PATCHES as _RB320G
+    if _rb320_enabled(config):            # RB-3.20a: exact ball-ground contact (defect fix), native-rb/3 only
+        patches['match'].extend(_RB320)
+        patches.setdefault('geometry', []).extend(_RB320G)
     for part in ('geometry','types','policies','engine','match'):
         path = ROOT/'core_src'/f'{part}.py'
         source = path.read_text()
