@@ -49,30 +49,42 @@
       2,
       3,
       4,
-      5
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
     ],
     "median_team_score": 88.5,
-    "mean_possessions_per_team": 151.4,
-    "ala_mean_margin": 35.8,
-    "ala_wins": 5,
+    "mean_possessions_per_team": 150.9,
+    "ala_mean_margin": 34.1,
+    "ala_wins": 10,
     "ties": 0,
-    "sample_sd_garvian": 11.458621208504974,
-    "sample_sd_ala": 16.513630733427462,
-    "sample_sd_all": 23.142313338702046
+    "sample_sd_garvian": 12.1385519912568,
+    "sample_sd_ala": 14.642404174178502,
+    "sample_sd_all": 21.848461345318913
   },
   "both_neutral": {
     "seeds": [
       1,
       2,
-      3
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
     ],
-    "median_team_score": 88.5,
-    "mean_possessions_per_team": 154.16666666666666,
-    "ala_mean_margin": 37,
-    "ala_wins": 3,
+    "median_team_score": 90.0,
+    "mean_possessions_per_team": 150.8,
+    "ala_mean_margin": 29.2,
+    "ala_wins": 10,
     "ties": 0,
-    "sample_sd_garvian": 10.0,
-    "sample_sd_ala": 0.0,
-    "sample_sd_all": 21.22969618247044
+    "sample_sd_garvian": 13.806600675844225,
+    "sample_sd_ala": 9.191783770786218,
+    "sample_sd_all": 18.83334109610149
   }
 }

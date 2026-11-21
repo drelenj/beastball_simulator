@@ -2,10 +2,10 @@
 
 ## OWNER BRIEFING
 
-1. **Accomplished.** Reconciled the Codex line to the exact RB-3.22 source tree, checked keeper geometry and running speed, and staged the draft ratings.
+1. **Accomplished.** Reconciled the Codex line to the exact RB-3.22 source tree, verified the 40-match talent comparison, checked keeper geometry and running speed, and staged the draft ratings.
 2. **What it can do now.** Native runs the RB-3.21 defaults and can store draft technical and mental ratings separately from the ratings used in matches.
-3. **Unproven.** The neutral-rating soak is in progress. The post-preparation full-suite and replay checks passed. Carrier moves phase 2 is deferred within this run budget.
-4. **Blocking.** GitHub did not return the named talent-soak branch. The missing matches are running from the reconciled source.
+3. **Unproven.** Carrier moves phase 2 is deferred within this run budget. The keeper drill checks isolated shot physics. The live-match save rate needs a separate breakdown by aim.
+4. **Blocking.** All required checks completed. GitHub did not return the named talent-soak branch, so Codex ran the missing matches.
 5. **Recommended action.** Use the reconciled code as the review point and use the paired neutral-rating runs to assess the talent-gap breakdown.
 
 ## 1. Reconciliation
@@ -42,7 +42,7 @@ Run `python -m native.rulebook.scoring_audit --legacy` for the six 3,000-step ca
 
 ## 2. Talent-gap soak
 
-**TESTED** for the completed default and technical-neutral blocks. The default block uses the 10 original per-match results at `9e66749:native/evidence/rb321-soak/real/`. The physical-neutral and both-neutral blocks are in progress at this checkpoint. The 28 completed matches in this snapshot, their paired seeds, their per-match results and their event streams are recorded under `native/evidence/rb322-codex/talent/`. Technical-neutral and physical-neutral seed 1 reuse the per-match files on `e6ca6a4` in `native/evidence/rb322/runs/`. Missing matches run from a clean Python-source export of `eb30f60`, with roster workbook ref `81f92e3` and a maximum of two matches at a time.
+**TESTED** on 40 full matches, all seeds 1–10 in each mode. The default block uses the 10 original per-match results at `9e66749:native/evidence/rb321-soak/real/`. Technical-neutral and physical-neutral seed 1 reuse the per-match files on `e6ca6a4` in `native/evidence/rb322/runs/`. Codex ran the remaining 28 matches from an exact Python-source export of `eb30f60`, with workbook ref `81f92e3` and up to two matches at a time. All 40 reached final with 100% restart completion. Their result files and gzipped event streams are committed under `native/evidence/rb322-codex/talent/`.
 
 The estimator weights each team-match equally for median, possessions and pooled standard deviation. The margin is Ala (B) minus Garvian (A). SDs are sample SDs. The median describes the 20 team scores from this fixture. Raw score events and changes in passive possession were also checked against the per-match records.
 
@@ -50,10 +50,12 @@ The estimator weights each team-match equally for median, possessions and pooled
 |---|---|---:|---:|---:|---:|---|
 | Default | 1–10 | 84.5 | 151.95 | +32.1 | 9/10 | 12.85 / 16.68 / 21.93 |
 | Technical neutral | 1–10 | 86.5 | 147.45 | +1.9 | 5/10 | 19.54 / 20.28 / 19.41 |
+| Physical neutral | 1–10 | 88.5 | 150.90 | +34.1 | 10/10 | 12.14 / 14.64 / 21.85 |
+| Both neutral | 1–10 | 90.0 | 150.80 | +29.2 | 10/10 | 13.81 / 9.19 / 18.83 |
 
-With roster physical ratings retained, setting the technical proxies to the same value reduced the mean margin by 30.2 points. The remaining blocks test whether this effect holds when physical ratings are also fixed.
+With roster physical ratings, neutralising the technical proxies changed Ala’s margin by -30.2 points. With physical ratings neutral, neutralising the technical proxies changed it by -4.9 points. Neutralising physical ratings changed the margin by +2.0 points with roster technical proxies and by +27.3 points with neutral technical proxies. The interaction is +25.3 points. Averaging the two contrasts per source assigns +17.6 points of the default Ala advantage to technical ratings and -14.7 to physical ratings, relative to both neutral. The both-neutral margin of +29.2 points remains with bodies, selected players and sides held fixed. These are paired comparisons for Ala versus Garvian.
 
-`python -m audit.native.rb322_talent_probe RESULTS_ROOT --verify-raw` recomputes from per-match files and verifies seed, terminal status, score and possession count. Use `--allow-partial` while the soak is running. The optional runner fills missing result files using `reach_run`. The physical-neutral block equalizes the nine ratings while retaining body differences and the OVR-selected players. Technical neutral equalizes current technical proxies. Both-neutral retains those bodies, roster selection, side assignment and seeded match effects.
+`python -m audit.native.rb322_talent_probe RESULTS_ROOT --verify-raw` recomputes from per-match files and verifies seed, terminal status, score and possession count. Each match file records its config digest. The runner defines the exact overrides per mode. The optional runner fills missing result files using `reach_run`. The physical-neutral block equalizes the nine ratings while retaining body differences and the OVR-selected players. Technical neutral equalizes current technical proxies. Both-neutral retains those bodies, roster selection, side assignment and seeded match effects.
 
 ## 3. Keeper save physics
 
@@ -67,7 +69,7 @@ With roster physical ratings retained, setting the technical proxies to the same
 
 Central aim was 1.50 m high. Wide aim was 2.40 m off centre at 0.40 and 2.00 m high. At 12 m, the wide low shot was 1.80 m lateral and 0.77 m vertical from the standing hand point at depth, 1.96 m away. The wide high shot was 1.80 m lateral and 0.43 m vertical at depth. Its plane aim is outside the semicircle. Step travel, lift and dives were zero in all 54 trials. The keeper motor reaction was 200/176/152 ms across the awareness values, with another 100 ms for an unset keeper and a 100 ms dive lead requirement. The normal sensor delay is 200 ms. The 36 real-body trials produced the same outcomes without motion or dives. Garvian starter NBL24-07-11 had 1.128 m coverage and 165.2 ms deliberate reaction. Ala starter NBL24-01-11 had 1.331 m coverage and 158.0 ms reaction. Both bodies were loaded unchanged from workbook ref `81f92e3`.
 
-The observed saves did not require superhuman movement or reach. The catch kernel separately samples when a player can set their hands, using a 120 ms base time constant scaled by awareness. The 120 ms is a stochastic mean at .5 awareness and permits earlier reactions. At .7 awareness, the mean is 105.6 ms. A 0.4 kg ball at 58 m/s carries about 673 J. Native uses Catching for all roles and gives the .70 control keeper 1,109 J centred arrest capacity. The actual central contacts had 86.6% modelled security conditional on timely hands. The capacity and readiness curves are calibration assumptions. It uses the live flight clock, so the keeper may secure a ball on his standing hands before a deliberate movement command can arrive. Central placement and that reflex assumption can contribute to the reported save rate. This forced lab does not estimate the match save rate or validate the stochastic readiness curve empirically. It found no engine-law contradiction that called for a fix commit. References are `native/port.py::keeper_motor`, `native/substrate.py` (0.9 reach patch), `native/rulebook/ball_material.py`, `native/rules.py` (Native arrest capacity), and `core_src/match.py` (catch readiness and energy check).
+The observed saves did not require superhuman movement or reach. The catch kernel separately samples when a player can set their hands, using a 120 ms base time constant scaled by awareness. The 120 ms is a stochastic mean at .5 awareness and permits earlier reactions. At .7 awareness, the mean is 105.6 ms. A 0.4 kg ball at 58 m/s carries about 673 J. Native uses Catching for all roles and gives the .70 control keeper 1,109 J centred arrest capacity. The actual central contacts had 86.6% modelled security conditional on timely hands. The capacity and readiness curves are calibration assumptions. Hand readiness uses the live flight clock, so the keeper may secure a ball on his standing hands before a deliberate movement command can arrive. Central placement and that reflex assumption can contribute to the reported save rate. This forced lab does not estimate the match save rate or validate the stochastic readiness curve empirically. It found no engine-law contradiction that called for a fix commit. References are `native/port.py::keeper_motor`, `native/substrate.py` (0.9 reach patch), `native/rulebook/ball_material.py`, `native/rules.py` (Native arrest capacity), and `core_src/match.py` (catch readiness and energy check).
 
 ## 4. Achieved speed
 
