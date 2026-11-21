@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import math
 from native.config import NativeConfig,POCKET
 
 _RB_POCKET_OVERRIDES=dict(arrow_speed=250.,arrow_limit=None,player_speed=44.7,inner_zone_radius=10.,inner_points=2,release_points=3,outside_points=4,carry_value=5)
@@ -53,15 +54,23 @@ class RulebookConfigV3(RulebookConfig):
     defender_mark_distance_m: float = 5.0
     defender_ball_leash_m: float = 25.0
     rb3_handoff_block_enabled: bool = False
+    rb3_carrier_moves_enabled: bool = False
+    carry_release_radius_m: float = 3.0
 
     def record(self):
         record = super().record()
         if not self.rb3_handoff_block_enabled:
             # OFF is the exact RB-3.16 effective configuration.
             record.pop('rb3_handoff_block_enabled')
+        if not self.rb3_carrier_moves_enabled:
+            record.pop('rb3_carrier_moves_enabled')
+        if self.carry_release_radius_m == 0:
+            record.pop('carry_release_radius_m')
         return record
 
     def __post_init__(self):
+        if not math.isfinite(self.carry_release_radius_m) or self.carry_release_radius_m < 0:
+            raise ValueError('carry release radius must be finite and nonnegative')
         if self.thaw_contact_buffer_ms<0:raise ValueError('thaw_contact_buffer_ms must be >= 0')
         if self.defender_mark_distance_m<=0 or self.defender_ball_leash_m<=0:raise ValueError('defender baseline distances must be positive')
         if self.zone_residence_ms<=0 or self.zone_marked_distance_m<0:raise ValueError('zone residence parameters out of range')

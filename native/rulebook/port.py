@@ -7,6 +7,7 @@ from .authorities import CREW
 @dataclass(frozen=True)
 class RulebookView(C.AthleteView):
     rb3_handoff_block_enabled: bool = False
+    rb3_carrier_moves_enabled: bool = False
     status_indicators: tuple = ()
     officials: tuple = CREW
     # RB-3.6 (native-rb/3 only; None elsewhere): public team instruction and own-body memory
@@ -42,6 +43,9 @@ class RulebookPort(NativePort):
         if self.config.version == 'native-rb/3' and self.config.rb3_handoff_block_enabled:
             from .handoff_block import HandoffBlock
             self.rb317 = HandoffBlock(self)
+        if self.config.version == 'native-rb/3' and self.config.rb3_carrier_moves_enabled:
+            from .carrier_moves import CarrierMoves
+            self.rb318 = CarrierMoves(self)
 
     @property
     def intermission_pending(self):return self.m.e.rb_pause is not None
@@ -59,6 +63,7 @@ class RulebookPort(NativePort):
 
     def step(self):
         actions = getattr(self, 'rb317', None)
+        moves = getattr(self, 'rb318', None)
         if self.intermission_pending:
             if actions:
                 actions.update_blocks()
@@ -74,11 +79,15 @@ class RulebookPort(NativePort):
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
         if self.config.version=='native-rb/3':e.rb_hold_step(self) # RB-3.10 snap hold
+        if moves:
+            moves.update()
         if actions:
             actions.update_blocks()
         super().step()
         if actions:
             actions.update_blocks(steer=False)
+        if moves:
+            moves.update(execute=False)
         if self.config.version=='native-rb/3':e.rb_form_restart() # RB-3.9a scrimmage formation
 
     def fill_cover(self):
@@ -112,6 +121,7 @@ class RulebookPort(NativePort):
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None,
                        rb3_handoff_block_enabled=c.rb3_handoff_block_enabled)
+            extra['rb3_carrier_moves_enabled'] = c.rb3_carrier_moves_enabled
             r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
             extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
             sb=self.m.s.ball
@@ -157,6 +167,8 @@ class RulebookPort(NativePort):
         baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None);ctl=data['view'].pop('own_control_ms',None);mz=data['view'].pop('mate_zone_ms',());sh=data['view'].pop('snap_hold',False);prm=data['view'].pop('pass_release_ms',250);br=data['view'].pop('body_reach',())
         own_release = data['view'].pop('own_release_ms', None);bh=data['view'].pop('body_height',())
         actions = data['view'].pop('rb3_handoff_block_enabled', False)
+        moves = data['view'].pop('rb3_carrier_moves_enabled', False)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
-                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions),b
+                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions,
+                            rb3_carrier_moves_enabled=moves),b

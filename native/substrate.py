@@ -34,6 +34,17 @@ def build_core(config):
             "top=p.a.maximum_speed*(.70+.30*p.fatigue)*((policy.pace*.90)if s.ball.carrier==p.id else.88)",
             "top=p.a.maximum_speed*(.70+.30*p.fatigue)",
         ))
+        if config.rb3_carrier_moves_enabled:
+            patches['match'].extend([
+                ("else:hd['pin_now']=0.",
+                 "else:hd['pin_now']=0.\n    lam*=self.rb318_strip_multiplier(car,end_ms)"),
+                ("J=(1+(eps if armed else 0.))*vn/(1/ma+1/mb)",
+                 "truck=self.rb318_truck(car,a,b,ua,ub,t,now_ms) if armed else False\n"
+                 "   J=(1+(eps if armed and not truck else 0.))*vn/(1/ma+1/mb)"),
+                ("self.c3_add(a,('shock',b.id),sa,lawful[b.id],now_ms);self.c3_add(b,('shock',a.id),sb,lawful[a.id],now_ms)",
+                 "self.c3_add(a,('shock',b.id),0. if truck and a is car else sa,lawful[b.id],now_ms);"
+                 "self.c3_add(b,('shock',a.id),0. if truck and b is car else sb,lawful[a.id],now_ms)"),
+            ])
     for part in ('geometry','types','policies','engine','match'):
         path = ROOT/'core_src'/f'{part}.py'
         source = path.read_text()

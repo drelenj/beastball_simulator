@@ -296,6 +296,9 @@ class NativePort:
             e.vacancies.remove(vacancy);e.emit('substitute','native',player=p.id,role=role,intent_id=intent.intent_id);self.platform_motor(0)
             return {'status':'accepted'}
         if not p.active:return {'status':'rejected','reason':'inactive'}
+        if kind in ('stretch', 'stiff_arm', 'truck'):
+            moves = getattr(self, 'rb318', None)
+            return moves.submit(p, intent) if moves else {'status': 'rejected', 'reason': 'feature_off'}
         if kind in ('handoff', 'block'):
             actions = getattr(self, 'rb317', None)
             return actions.submit(p, intent) if actions else {'status': 'rejected', 'reason': 'feature_off'}

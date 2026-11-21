@@ -720,11 +720,58 @@ def choose_block(view, belief, intent, record):
             dict(record, selected=['block', target_id, point], rb317_protected=carrier.entity))
 
 
+def choose_carrier_move(view, belief, intent, record):
+    if (view.cognition != 'native-rb/3' or not getattr(view, 'rb3_carrier_moves_enabled', False)
+            or not view.holds_ball or not view.body or view.role != 'field'
+            or view.pending_command_id or view.signals.phase != 'live' or getattr(view, 'snap_hold', False)):
+        return intent, record
+    goal = 100. - view.own_goal_x
+    if abs(goal - view.x) <= view.body.reach + 1. and abs(view.y - 50.) < view.goal_radius:
+        choice = ('stretch', None, (goal, view.y))
+    else:
+        frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
+        front = (view.body.vx, view.body.vy) if hypot(view.body.vx, view.body.vy) > .3 else (view.attack_sign, 0.)
+        candidates = []
+        for opponent in _fresh(view, belief, belief.max_track_age_ms):
+            if opponent.team == view.team or opponent.role != 'field' or opponent.entity in frozen:
+                continue
+            dx, dy = opponent.x - view.x, opponent.y - view.y
+            distance = hypot(dx, dy)
+            if not distance or dx * front[0] + dy * front[1] < 0:
+                continue
+            nx, ny = dx / distance, dy / distance
+            own_speed = view.body.vx * nx + view.body.vy * ny
+            opp_speed = -(opponent.vx * nx + opponent.vy * ny)
+            if own_speed + opp_speed > 0.:
+                candidates.append((distance, opponent.entity, opponent, own_speed, opp_speed))
+        if not candidates:
+            return intent, record
+        distance, _, opponent, own_speed, opp_speed = min(candidates)
+        # Size and closing motion are public. Use the 0.70 control as an
+        # opponent strength prior and scale its mass by observed height.
+        height = dict(getattr(view, 'body_height', ())).get(opponent.entity, 2.39)
+        mass = 226. * (height / 2.39) ** 3
+        own_mass = view.own_mass_kg or 226.
+        radius = lambda kg: max(.38, min(.82, .30 + .00065 * kg))
+        closing_ms = 1000 * max(0., distance - radius(own_mass) - radius(mass)) / (own_speed + opp_speed)
+        strength = dict(view.own_skills).get('strength', .70)
+        if closing_ms <= 300 and own_speed > 0 and own_mass * own_speed * strength > mass * max(0., opp_speed) * .70:
+            choice = ('truck', opponent.entity, (opponent.x, opponent.y))
+        elif opp_speed > 0 and distance <= view.body.reach + radius(mass):
+            choice = ('stiff_arm', opponent.entity, None)
+        else:
+            return intent, record
+    kind, target, aim = choice
+    return (replace(intent, kind=kind, target=target, aim=aim, contact=None),
+            dict(record, selected=list(choice), rb318_move=kind))
+
+
 def adjust(view, belief, intent, record):
     intent, record = carrier_to_goal(view, belief, intent, record)
     intent, record = defender_baseline(view, belief, intent, record)
     intent, record = zone_behavior(view, belief, intent, record)
     intent, record = choose_block(view, belief, intent, record)
+    intent, record = choose_carrier_move(view, belief, intent, record)
     frozen = frozen_tracks(view, belief)
     if not frozen:
         return intent, record

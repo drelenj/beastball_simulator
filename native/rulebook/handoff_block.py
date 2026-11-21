@@ -57,10 +57,6 @@ class HandoffBlock:
             return 'not_teammate'
         if not (self.actor_ready(giver) and self.actor_ready(receiver)) or not e.rb_can_enter(receiver):
             return 'ineligible_hands'
-        # A conservative guard for the unsettled case of a transfer into
-        # the giving team's own zone from outside (no ZR-T flight exists).
-        if e.zone(giver.x, giver.y) != s.own_zone(giver.team) and e.zone(receiver.x, receiver.y) == s.own_zone(giver.team):
-            return 'own_zone_entry'
         return None
 
     def block_reason(self, blocker, target):
@@ -136,16 +132,28 @@ class HandoffBlock:
             # Reuse committed control, including possession, dribble and
             # Keeper bookkeeping. No release or flight event is emitted.
             saved = vars(ball).copy()
+            previous_inside = e.possession.carry_inside
+            own_zone = s.own_zone(giver.team)
+            zone_entry = (e.zone(ball.x, ball.y) != own_zone and e.zone(receiver.x, receiver.y) == own_zone)
+            if zone_entry:
+                # This is a deliberate exchange into the zone, not a
+                # running carrier crossing. Let the exchange commit, then
+                # award the ordinary ZR-T restart without a flight event.
+                e.possession.carry_inside = True
             ball.carrier = ball.last_releaser = None
             ball.x, ball.y, ball.z = point
             if not e.acquire(receiver.id):
                 vars(ball).clear()
                 vars(ball).update(saved)
+                e.possession.carry_inside = previous_inside
                 p.resolve(giver.id, 'rejected_acquisition')
                 return
             self.match.c3_reconcile()
             e.emit('handoff_complete', 'RB-3.17', **data)
             p.resolve(giver.id, 'handoff_complete')
+            if zone_entry:
+                e.emit('handoff_zone_entry', 'ZR-T', giver=giver.id, receiver=receiver.id)
+                e.award(s.other(giver.team), ball.x, ball.y, 'ZR-T', fresh=True, normalize=False)
         else:
             ball.carrier = ball.last_releaser = ball.intended = None
             ball.mode = p.types.BallMode.LOOSE
