@@ -151,3 +151,7 @@ RB-3.17 question 1 (handoff entering the giver's own Keeper Zone from outside): 
 ## 20 Nov 2026 (evening) - Carry definition distance and handoff into own zone (CANON)
 1. BROADENED CARRY: a goal counts as a carry (5 points) if the ball breaks the goal plane while in hand (including a stretch) OR if it is released from within 3 m of the goal (inside the goal circle: the goal mouth radius is 3 m). Releases from 3 m or farther keep the throw bands (2/3/4).
 2. HANDOFF INTO OWN KEEPER ZONE: allowed; a handoff is treated exactly like a pass (owner confirmed the default).
+
+## 20 Nov 2026 (evening) - Acceptable target ranges (CANON)
+- Team score: anywhere from 75 to 90 points per team (median team score) is acceptable. Point estimate remains the NBL median 76 for comparison; overshoot inside 90 is fine.
+- Possessions: 100 to 150 per team is acceptable (was a ~100 point target).
