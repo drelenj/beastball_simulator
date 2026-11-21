@@ -1,0 +1,1674 @@
+{
+  "keeper": [
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 130.00000000000009,
+      "plane_ms": 172.8689875478347,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.0410484043070245
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 119
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 130.00000000000009,
+      "plane_ms": 172.8689875478347,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.0410484043070245
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 119
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 130.00000000000009,
+      "plane_ms": 172.8689875478347,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.0410484043070245
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 119
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 130.00000000000009,
+      "plane_ms": 172.8689875478347,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.0410484043070245
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 119
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 130.00000000000009,
+      "plane_ms": 172.8689875478347,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.0410484043070245
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 119
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 130.00000000000009,
+      "plane_ms": 172.8689875478347,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.0410484043070245
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 119
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.4875913666891,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.8029663083277825,
+        0.7834327299932962
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.4875913666891,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.8029663083277825,
+        0.7834327299932962
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.4875913666891,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.8029663083277825,
+        0.7834327299932962
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.4875913666891,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.8029663083277825,
+        0.7834327299932962
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.4875913666891,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.8029663083277825,
+        0.7834327299932962
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.4875913666891,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.8029663083277825,
+        0.7834327299932962
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.1481423904713,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.80638972447354,
+        0.4190630678696434
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.1481423904713,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.80638972447354,
+        0.4190630678696434
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.1481423904713,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.80638972447354,
+        0.4190630678696434
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.1481423904713,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.80638972447354,
+        0.4190630678696434
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.1481423904713,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.80638972447354,
+        0.4190630678696434
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 10.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 2.5,
+      "depth_ms": 134.00000000000009,
+      "plane_ms": 178.1481423904713,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.80638972447354,
+        0.4190630678696434
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 180
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 156.0000000000001,
+      "plane_ms": 207.5563706944902,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.05315224695040377
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 145
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 156.0000000000001,
+      "plane_ms": 207.5563706944902,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.05315224695040377
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 145
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 156.0000000000001,
+      "plane_ms": 207.5563706944902,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.05315224695040377
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 145
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 156.0000000000001,
+      "plane_ms": 207.5563706944902,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.05315224695040377
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 145
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 156.0000000000001,
+      "plane_ms": 207.5563706944902,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.05315224695040377
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 145
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 156.0000000000001,
+      "plane_ms": 207.5563706944902,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.05315224695040377
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 145
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.1666541415648,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.799969437909752,
+        0.7698602498564833
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 214
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.1666541415648,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.799969437909752,
+        0.7698602498564833
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 214
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.1666541415648,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.799969437909752,
+        0.7698602498564833
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 214
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.1666541415648,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.799969437909752,
+        0.7698602498564833
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 214
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.1666541415648,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.799969437909752,
+        0.7698602498564833
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 214
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.1666541415648,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.799969437909752,
+        0.7698602498564833
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 214
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.0263599398558,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.8011530409216903,
+        0.4302652639733828
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 213
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.0263599398558,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.8011530409216903,
+        0.4302652639733828
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 213
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.0263599398558,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.8011530409216903,
+        0.4302652639733828
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 213
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.0263599398558,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.8011530409216903,
+        0.4302652639733828
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 213
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.0263599398558,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.8011530409216903,
+        0.4302652639733828
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 213
+    },
+    {
+      "distance_m": 12.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 3.0,
+      "depth_ms": 159.0000000000001,
+      "plane_ms": 212.0263599398558,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.8011530409216903,
+        0.4302652639733828
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 213
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 195.00000000000014,
+      "plane_ms": 259.6629691803117,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.07551136322942198
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 184
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 195.00000000000014,
+      "plane_ms": 259.6629691803117,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.07551136322942198
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 184
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 195.00000000000014,
+      "plane_ms": 259.6629691803117,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.07551136322942198
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 184
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 195.00000000000014,
+      "plane_ms": 259.6629691803117,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.07551136322942198
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 184
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 195.00000000000014,
+      "plane_ms": 259.6629691803117,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.07551136322942198
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 184
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.00000000000001,
+      "aim_m": [
+        0.0,
+        1.5
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 195.00000000000014,
+      "plane_ms": 259.6629691803117,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        0.0,
+        0.07551136322942198
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "acquire",
+      "contact": "catch",
+      "control": null,
+      "event_ms": 184
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 57.99999999999999,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.22349217473266,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.7979112044343921,
+        0.7464213232167095
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 57.99999999999999,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.22349217473266,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.7979112044343921,
+        0.7464213232167095
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 57.99999999999999,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.22349217473266,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.7979112044343921,
+        0.7464213232167095
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 57.99999999999999,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.22349217473266,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.7979112044343921,
+        0.7464213232167095
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 57.99999999999999,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.22349217473266,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.7979112044343921,
+        0.7464213232167095
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 57.99999999999999,
+      "aim_m": [
+        2.4,
+        0.4
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.22349217473266,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.7979112044343921,
+        0.7464213232167095
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "goal",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.5,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.3267964683694,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.7972038935471417,
+        0.4521328594395704
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.5,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.3267964683694,
+      "reaction_ms": 200.0,
+      "lateral_vertical_demand_m": [
+        1.7972038935471417,
+        0.4521328594395704
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.7,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.3267964683694,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.7972038935471417,
+        0.4521328594395704
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.7,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.3267964683694,
+      "reaction_ms": 176.0,
+      "lateral_vertical_demand_m": [
+        1.7972038935471417,
+        0.4521328594395704
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.9,
+      "release_time_intent": false,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.3267964683694,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.7972038935471417,
+        0.4521328594395704
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    },
+    {
+      "distance_m": 15.0,
+      "launch_speed_mps": 58.0,
+      "aim_m": [
+        2.4,
+        2.0
+      ],
+      "awareness": 0.9,
+      "release_time_intent": true,
+      "depth_m": 3.75,
+      "depth_ms": 197.00000000000014,
+      "plane_ms": 263.3267964683694,
+      "reaction_ms": 152.0,
+      "lateral_vertical_demand_m": [
+        1.7972038935471417,
+        0.4521328594395704
+      ],
+      "move_m": 0.0,
+      "lift_m": 0.0,
+      "dive": false,
+      "hand_height_m": 1.4818,
+      "hand_radius_m": 1.137879,
+      "sensor_latency_ms": 200,
+      "outcome": "frame",
+      "contact": null,
+      "control": null,
+      "event_ms": 265
+    }
+  ],
+  "speed": [
+    {
+      "rating": 0.0,
+      "carry": false,
+      "canon_mps": 0.0,
+      "motor_cap_mps": 0.0,
+      "at_seconds_mps": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "10": 0.0
+      }
+    },
+    {
+      "rating": 0.0,
+      "carry": true,
+      "canon_mps": 0.0,
+      "motor_cap_mps": 0.0,
+      "at_seconds_mps": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "10": 0.0
+      }
+    },
+    {
+      "rating": 0.4,
+      "carry": false,
+      "canon_mps": 17.881600000000002,
+      "motor_cap_mps": 17.881600000000002,
+      "at_seconds_mps": {
+        "1": 5.0,
+        "2": 10.0,
+        "3": 15.0,
+        "4": 17.881600000000002,
+        "10": 17.881600000000002
+      }
+    },
+    {
+      "rating": 0.4,
+      "carry": true,
+      "canon_mps": 17.881600000000002,
+      "motor_cap_mps": 17.881600000000002,
+      "at_seconds_mps": {
+        "1": 5.0,
+        "2": 10.0,
+        "3": 15.0,
+        "4": 17.881600000000002,
+        "10": 17.881600000000002
+      }
+    },
+    {
+      "rating": 0.6,
+      "carry": false,
+      "canon_mps": 26.8224,
+      "motor_cap_mps": 26.8224,
+      "at_seconds_mps": {
+        "1": 7.5,
+        "2": 15.0,
+        "3": 22.5,
+        "4": 26.8224,
+        "10": 26.8224
+      }
+    },
+    {
+      "rating": 0.6,
+      "carry": true,
+      "canon_mps": 26.8224,
+      "motor_cap_mps": 26.8224,
+      "at_seconds_mps": {
+        "1": 7.5,
+        "2": 15.0,
+        "3": 22.5,
+        "4": 26.8224,
+        "10": 26.8224
+      }
+    },
+    {
+      "rating": 0.7,
+      "carry": false,
+      "canon_mps": 31.2928,
+      "motor_cap_mps": 31.2928,
+      "at_seconds_mps": {
+        "1": 8.75,
+        "2": 17.5,
+        "3": 26.25,
+        "4": 31.2928,
+        "10": 31.2928
+      }
+    },
+    {
+      "rating": 0.7,
+      "carry": true,
+      "canon_mps": 31.2928,
+      "motor_cap_mps": 31.2928,
+      "at_seconds_mps": {
+        "1": 8.75,
+        "2": 17.5,
+        "3": 26.25,
+        "4": 31.2928,
+        "10": 31.2928
+      }
+    },
+    {
+      "rating": 0.8,
+      "carry": false,
+      "canon_mps": 35.763200000000005,
+      "motor_cap_mps": 35.763200000000005,
+      "at_seconds_mps": {
+        "1": 10.0,
+        "2": 20.0,
+        "3": 30.0,
+        "4": 35.763200000000005,
+        "10": 35.763200000000005
+      }
+    },
+    {
+      "rating": 0.8,
+      "carry": true,
+      "canon_mps": 35.763200000000005,
+      "motor_cap_mps": 35.763200000000005,
+      "at_seconds_mps": {
+        "1": 10.0,
+        "2": 20.0,
+        "3": 30.0,
+        "4": 35.763200000000005,
+        "10": 35.763200000000005
+      }
+    },
+    {
+      "rating": 1.0,
+      "carry": false,
+      "canon_mps": 44.704,
+      "motor_cap_mps": 44.704,
+      "at_seconds_mps": {
+        "1": 12.5,
+        "2": 25.0,
+        "3": 37.5,
+        "4": 44.704,
+        "10": 44.704
+      }
+    },
+    {
+      "rating": 1.0,
+      "carry": true,
+      "canon_mps": 44.704,
+      "motor_cap_mps": 44.704,
+      "at_seconds_mps": {
+        "1": 12.5,
+        "2": 25.0,
+        "3": 37.5,
+        "4": 44.704,
+        "10": 44.704
+      }
+    }
+  ]
+}
