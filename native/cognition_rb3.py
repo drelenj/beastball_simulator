@@ -397,11 +397,8 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
                 continue
             faster = view.attack_sign * (mate.vx - view.body.vx) >= HANDOFF_FASTER_MS
             backward = view.attack_sign * (mate.x - view.x) < 0
-            own_t = min((time_to_contact(view, o) for o in opps), default=99.)
-            mate_t = min((ttc_at(view, o, mate.x, mate.y) for o in opps), default=99.)
-            relief = mate_t >= own_t + HANDOFF_RELIEF_S                  # RB-3.20b: the receiver is clearly freer than I am
-            if not (relief or faster) or (backward and not pressured):
-                continue                                                  # B1: improves pressure, or the receiver is clearly faster toward the goal; never back unless pressured
+            if not (pressured or faster) or (backward and not pressured):
+                continue                                                  # B1 (RB-3.19, restored in RB-3.21): pressured, or the receiver is clearly faster; never back unless pressured
             hb = getattr(view, 'handed_by', None)
             if hb is not None and hb[0] == mate.entity and hb[1] < HANDBACK_MS:
                 continue                                                  # RB-3.20b: no immediate hand-back
@@ -417,21 +414,20 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
 #                               the end line inside the goal mouth (|y-50| <= goal_radius) is the goal and is exempt
 #  PURSUERS              2      A3: the nearest two teammates (by time to the ball's path before it reaches a line) pursue a loose ball
 #  PURSUIT_STEP_S        .1     A3: sampling step of the ball's path
-#  PASS_EXIT_MIN_S       0.5    A4 (RB-3.20b, was 1.0): no pass whose path, if not caught, reaches a boundary line less than this many seconds beyond the receiver
-BOUNDARY_MARGIN_M, PURSUERS, PURSUIT_STEP_S, PASS_EXIT_MIN_S = 2.0, 2, .1, .5     # RB-3.20b: A4 horizon 1.0 -> 0.5 s (lead)
+#  PASS_EXIT_MIN_S       1.0    A4 (RB-3.21: RB-3.20b's 0.5 s reverted): no pass whose path, if not caught, reaches a boundary line less than this many seconds beyond the receiver
+BOUNDARY_MARGIN_M, PURSUERS, PURSUIT_STEP_S, PASS_EXIT_MIN_S = 2.0, 2, .1, 1.0     # RB-3.21: A4 horizon back to 1.0 s (lead; RB-3.20b 0.5 s reverted)
 
 # ------------------------------------------------ RB-3.19 Part B tactics (B1 handoff, B2 blocks, B3 carrier moves)
 # BEHAVIORAL defaults, PROVISIONAL (lead decisions, 21 Nov 2026); only when rb3_handoff_block_enabled / rb3_carrier_moves_enabled.
 #  HANDOFF_FASTER_MS      2.0   B1: receiver this much faster toward the attacked goal (m/s), or the carrier is pressured
-#  HANDOFF_RELIEF_S       0.5   B1 (RB-3.20b): offer only if the receiver's least time-to-contact exceeds the carrier's by this (or he is faster)
-#  HANDBACK_MS            2000  B1 (RB-3.20b): never back to the teammate who handed me the ball within this
+#  HANDBACK_MS            2000  B1 (RB-3.20b, kept in RB-3.21): never back to the teammate who handed me the ball within this
 #  BLOCKERS               2     B2: at most this many off-ball attackers block (within BLOCK_NEAR_M of the carrier and AHEAD of him)
 #  BLOCK_NEAR_M / BLOCK_FAR_M  8 / 10  B2: blocker distance to the carrier; never block a defender farther than BLOCK_FAR_M from the carrier
 #  BLOCK_THREAT_S         1.5   B2: block defenders whose time-to-contact with the carrier is under this
 #  MOVE_REACT_S           0.5   B3: truck / stiff-arm only when a tackler reaches the carrier within this
 #  FACING_GOAL_COS        .5    B3: the carrier is "facing the goal" if his heading is within 60 degrees of it
 HANDOFF_FASTER_MS = 2.0
-HANDOFF_RELIEF_S, HANDBACK_MS = .5, 2000      # RB-3.20b: receiver's least time-to-contact must exceed mine by this; no hand-back within this
+HANDBACK_MS = 2000      # RB-3.20b (kept in RB-3.21): no hand-back to the giver within this
 BLOCKERS, BLOCK_NEAR_M, BLOCK_FAR_M, BLOCK_THREAT_S = 2, 8., 10., 1.5
 MOVE_REACT_S, FACING_GOAL_COS = .5, .5
 
@@ -935,3 +931,26 @@ def adjust(view, belief, intent, record):
             intent = replace(intent, aim=aim)
             record['rb3_detour_around'] = around
     return intent, record
+
+
+# ------------------------------------------------ RB-3.21 the Native Keeper's course with the ball material
+def keeper_decide(view, belief, material):
+    """b1.emergence_intents.decide_keeper with the course forecast by the Beastball ball material (same decision rules;
+    only the forecast differs). `material` is the public (k, h, e, a_roll) of the ball."""
+    import math
+    from b1 import emergence_intents as E
+    from native.rulebook.ball_material import path
+    iid = f'{view.observation_id}/keeper-intent'
+    if belief is None:
+        return E.KeeperIntent(iid, view.body.athlete, 'hold', view.now_ms, None, target=(view.body.x, view.body.y), reason='no_delivered_ball_belief')
+    if not belief.fresh(view.now_ms):
+        return E.KeeperIntent(iid, view.body.athlete, 'hold', view.now_ms, belief.revision, target=(view.body.x, view.body.y), reason='stale_ball_belief')
+    course = tuple(path((belief.x, belief.y, belief.z, belief.vx, belief.vy, belief.vz), tuple(material), belief.radius, 3., .01, -2., 102.))
+    cross = E._goal_crossing(view, course)
+    if cross is None:
+        target = view.position_belief or (view.body.x, view.body.y)
+        return E.KeeperIntent(iid, view.body.athlete, 'position', view.now_ms, belief.revision, target=target, reason='no_believed_threat')
+    usable = tuple(p for p in course if p[0] <= cross[0] + 1e-12)
+    return E.KeeperIntent(iid, view.body.athlete, 'save', view.now_ms, belief.revision,
+                          intercept_window_ms=(view.now_ms, view.now_ms + int(math.ceil(cross[0] * 1000))),
+                          course=usable, reason='believed_goal_crossing')

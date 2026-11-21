@@ -604,7 +604,11 @@ def decide_v2(view, belief):
             position=(view.own_goal_x+view.attack_sign*depth,50+(course.y-50)*depth/max(d,.01))
         kv=E.KeeperView(view.observation_id,view.delivered_ms,view.body,view.own_goal_x,
                         goal_radius=view.goal_radius,position_belief=position)
-        ki=E.decide_keeper(kv,course,gravity=9.81,drag=.015,restitution=.7745966692)
+        if getattr(view,'ball_material',None) is not None:   # RB-3.21: the Keeper forecasts the ball the material produces
+            from .cognition_rb3 import keeper_decide
+            ki=keeper_decide(kv,course,view.ball_material)
+        else:
+            ki=E.decide_keeper(kv,course,gravity=9.81,drag=.015,restitution=.7745966692)
         return choice('keeper_control',aux=ki)
     intent,record=_base_decide(view,belief)
     # PLACEHOLDER: expose release speed and height as athlete-owned inputs.

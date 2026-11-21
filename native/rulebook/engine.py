@@ -86,6 +86,8 @@ def install(co,cfg):
     E.assert_invariants=invariants
     from .ball_ground import install as install_ball_ground
     install_ball_ground(co,cfg)
+    from .ball_material import install as install_ball_material
+    install_ball_material(co,cfg)
     from .substitutions import install as install_substitutions
     install_substitutions(co,cfg)
     from .discipline import install as install_discipline

@@ -8,7 +8,7 @@ from native.rulebook.test_rb34 import live
 
 
 def trial(speed, mode, max_s=8., fix=True):
-    p = rb3(rb320_exact_bounce=fix); s, e, a, t = live(p); T = p.types; s.restart = None; e.rb_period_start_open = False
+    p = rb3(rb320_exact_bounce=fix, rb321_ball_material_enabled=False); s, e, a, t = live(p); T = p.types; s.restart = None; e.rb_period_start_open = False
     for i, q in enumerate(q for q in s.players.values() if q.role != 'archer'):
         q.x, q.y = 2. + (i % 6) * .8, 96. + (i // 6) * .8; q.vx = q.vy = 0.; q.target = (q.x, q.y); p.move[q.id] = (q.x, q.y)
     x0, y0, z0 = 2., 50., 1.5

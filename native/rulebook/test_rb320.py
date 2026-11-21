@@ -52,14 +52,14 @@ def test_engine_bounces_keep_the_stated_restitution_with_the_fix_and_exceed_it_w
 
 
 def test_the_free_ball_forecast_uses_the_same_contact_rule():
-    p = rb3(); s, e, a, t = live(p); g = p.geom
+    p = rb3(rb321_ball_material_enabled=False); s, e, a, t = live(p); g = p.geom
     class Ball: pass
     b = Ball(); b.x, b.y, b.z, b.vx, b.vy, b.vz, b.radius = 10., 50., 1.5, 20., 0., 0., .1075
     path = g.predict_path(b, 9.81, .015, E, horizon=4., step=.05)
     zs = [z for _, _, _, z in path]
     apex = [zs[i] for i in range(1, len(zs) - 1) if zs[i] >= zs[i - 1] and zs[i] > zs[i + 1] and zs[i] > .2]
     assert len(apex) >= 2 and abs(((apex[1] - .1075) / (apex[0] - .1075)) ** .5 - E) < .05
-    p0 = rb3(rb320_exact_bounce=False); s0, *_ = live(p0); b0 = Ball(); b0.x, b0.y, b0.z, b0.vx, b0.vy, b0.vz, b0.radius = 10., 50., 1.5, 20., 0., 0., .1075
+    p0 = rb3(rb320_exact_bounce=False, rb321_ball_material_enabled=False); s0, *_ = live(p0); b0 = Ball(); b0.x, b0.y, b0.z, b0.vx, b0.vy, b0.vz, b0.radius = 10., 50., 1.5, 20., 0., 0., .1075
     zs0 = [z for _, _, _, z in p0.geom.predict_path(b0, 9.81, .015, E, horizon=4., step=.05)]
     apex0 = [zs0[i] for i in range(1, len(zs0) - 1) if zs0[i] >= zs0[i - 1] and zs0[i] > zs0[i + 1] and zs0[i] > .2]
     assert ((apex0[1] - .1075) / (apex0[0] - .1075)) ** .5 > ((apex[1] - .1075) / (apex[0] - .1075)) ** .5
@@ -69,7 +69,7 @@ def test_fix_flag_is_in_the_effective_config_only_when_on():
     from .config import RulebookConfigV3
     from .test_rb33 import control_rosters
     d = tuple(control_rosters()[t].digest for t in ('A', 'B'))
-    assert RulebookConfigV3(roster_digests=d).record()['rb320_exact_bounce'] is True
+    assert RulebookConfigV3(roster_digests=d, rb321_ball_material_enabled=False).record()['rb320_exact_bounce'] is True
     assert 'rb320_exact_bounce' not in RulebookConfigV3(roster_digests=d, rb320_exact_bounce=False).record()
 
 
@@ -88,25 +88,22 @@ def passes_to(me, mate, rb='A4'):
     return [r[1] for r in opts(v, tr) if r[0] == 'pass'], v, tr
 
 
-def test_a4_horizon_is_half_a_second_beyond_the_receiver(monkeypatch):
-    assert R.PASS_EXIT_MIN_S == .5
-    ok, v, tr = passes_to((60., 50.), (75., 62.))                      # exits about 0.67 s beyond the receiver
-    assert R.pass_exit_s(v, tr[-1], 37.5) > .5 and ok == ['A:1']
-    bad, v2, tr2 = passes_to((70., 60.), (88., 78.))                    # exits about 0.28 s beyond the receiver
-    assert bad == []
-    monkeypatch.setattr(R, 'PASS_EXIT_MIN_S', 1.0)                     # control: the RB-3.19 horizon refused the 0.67 s pass
-    assert passes_to((60., 50.), (75., 62.))[0] == []
-    assert passes_to((60., 50.), (75., 62.), rb='')[0] == ['A:1']       # and with A4 off it is offered
+def test_rb321_reverts_the_a4_horizon_to_one_second(monkeypatch):
+    assert R.PASS_EXIT_MIN_S == 1.0                                     # RB-3.21: RB-3.20b's 0.5 s reverted
+    assert passes_to((60., 50.), (75., 62.))[0] == []                   # exits about 0.67 s beyond the receiver: refused again
+    assert passes_to((60., 50.), (75., 62.), rb='')[0] == ['A:1']       # control: A4 off
+    monkeypatch.setattr(R, 'PASS_EXIT_MIN_S', .5)                      # control: the RB-3.20b horizon allowed it
+    assert passes_to((60., 50.), (75., 62.))[0] == ['A:1']
 
 
-def test_b1_handoff_to_a_teammate_under_the_same_pressure_is_refused_and_to_a_freer_one_accepted():
+def test_rb321_restores_the_rb319_handoff_rule():
     rush = dict(opps=[(50., 57.)], oppvel=(0., -6.))
-    vs, trs = tactics_scene(mates=[(52., 52.)], **rush)                 # beside me, as close to the rush
-    assert R.is_pressured(vs, [t for t in trs if t.team == 'B']) and not handoffs(vs, trs)
-    vf, trf = tactics_scene(mates=[(48., 47.)], **rush)                 # clearly freer (>= 0.5 s more time to contact)
-    assert [r[1] for r in handoffs(vf, trf)] == ['A:1']
-    vq, trq = tactics_scene(mates=[(52., 52.)], matevel=(6., 0.), **rush)   # the faster-receiver clause still applies
-    assert [r[1] for r in handoffs(vq, trq)] == ['A:1']
+    vs, trs = tactics_scene(mates=[(52., 52.)], **rush)                 # pressured, receiver under the same pressure: RB-3.19 offers it
+    assert R.is_pressured(vs, [t for t in trs if t.team == 'B']) and [r[1] for r in handoffs(vs, trs)] == ['A:1']
+    vu, tru = tactics_scene(opps=[(50., 90.)], mates=[(53., 52.)], matevel=(1., 0.))   # unpressured, not faster: refused
+    assert not handoffs(vu, tru)
+    vb, trb = tactics_scene(opps=[(50., 90.)], mates=[(47., 52.)], matevel=(6., 0.))   # backward while unpressured: refused
+    assert not handoffs(vb, trb)
 
 
 def test_b1_no_immediate_hand_back():

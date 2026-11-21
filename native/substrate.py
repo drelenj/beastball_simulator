@@ -46,7 +46,11 @@ def build_core(config):
                  "self.c3_add(b,('shock',a.id),0. if truck and b is car else sb,lawful[a.id],now_ms)"),
             ])
     from .rulebook.ball_ground import enabled as _rb320_enabled, PATCHES as _RB320, GEOMETRY_PATCHES as _RB320G
-    if _rb320_enabled(config):            # RB-3.20a: exact ball-ground contact (defect fix), native-rb/3 only
+    from .rulebook import ball_material as _rb321
+    if _rb321.enabled(config):            # RB-3.21: Beastball ball material everywhere (engine step and every forecast)
+        patches['match'].extend(_rb321.match_patches(ROOT))
+        patches.setdefault('geometry', []).extend(_rb321.geometry_patches(ROOT, _rb321.params(config)))
+    elif _rb320_enabled(config):          # RB-3.20a: exact ball-ground contact (defect fix), native-rb/3 only
         patches['match'].extend(_RB320)
         patches.setdefault('geometry', []).extend(_RB320G)
     for part in ('geometry','types','policies','engine','match'):

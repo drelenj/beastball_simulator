@@ -63,6 +63,17 @@ class RulebookConfigV3(RulebookConfig):
     # RB-3.20a DEFECT FIX (engine, PROVISIONAL): exact ball-ground contact inside the step (native/rulebook/ball_ground.py).
     # False is the exact RB-3.19 effective configuration and physics.
     rb320_exact_bounce: bool = True
+    # RB-3.21 BALL MATERIAL (owner ruling 21 Nov 2026: Beastball's ball is a fictional material; lead-set values, PROVISIONAL).
+    # Model and use: native/rulebook/ball_material.py (engine step, predict_path, launch_for, c4c_path, the Native Keeper's course).
+    # Design basis (lead targets): T-B1 level 35 m/s from 1.5 m rests after 38-45 m; T-B2 level 50 m/s rests within 60 m;
+    # T-B3 a 58 m/s shot keeps >= 90% of its speed over 20 m of flight; T-B4 a 20 m/s pass at the normal launch angle rests within
+    # 25 m. Values: the gentlest grid point meeting all four (least change from the previous engine: horizontal .76, restitution
+    # .7746, roll ~exp(-3t) ~ 3 m/s^2 at 1 m/s, drag ~0), searched in native/evidence/rb321/material_search.py.
+    rb321_ball_material_enabled: bool = True
+    rb321_ball_drag_k: float = .0005        # 1/m, quadratic air drag dv/dt = -k|v|v
+    rb321_ball_bounce_h: float = .44        # horizontal speed kept per bounce (was .76)
+    rb321_ball_restitution: float = .6      # vertical restitution (was .7746)
+    rb321_ball_roll_decel: float = 3.0      # m/s^2, constant rolling resistance (was v *= 1 - 3 dt)
 
     def record(self):
         record = super().record()
@@ -73,6 +84,9 @@ class RulebookConfigV3(RulebookConfig):
             record.pop('rb3_carrier_moves_enabled')
         if self.carry_release_radius_m == 0:
             record.pop('carry_release_radius_m')
+        if not self.rb321_ball_material_enabled:
+            for key in ('rb321_ball_material_enabled', 'rb321_ball_drag_k', 'rb321_ball_bounce_h', 'rb321_ball_restitution', 'rb321_ball_roll_decel'):
+                record.pop(key)
         if not self.rb320_exact_bounce:
             record.pop('rb320_exact_bounce')
         if not self.rb319_ball_in_play_enabled:

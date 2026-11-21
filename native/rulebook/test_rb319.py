@@ -37,7 +37,8 @@ def test_a1_toss_with_no_safe_target_throws_to_space_at_distance_speed():
 
 
 def toss_flight(speed):
-    p = rb3(); s, e, a, t = live(p); T_ = p.types; s.restart = None; e.rb_period_start_open = False
+    p = rb3(rb321_ball_material_enabled=False)   # RB-3.21: the RB-3.19/3.20 ball (the material keeps both tosses in)
+    s, e, a, t = live(p); T_ = p.types; s.restart = None; e.rb_period_start_open = False
     for i, q in enumerate(q for q in s.players.values() if q.role != 'archer'):
         q.x, q.y = 5. + (i % 6) * 2, 5. + (i // 6) * 1.5; q.vx = q.vy = 0.; q.target = (q.x, q.y); p.move[q.id] = (q.x, q.y)
     ans = p.geom.launch_for((50., 1., 1.6), (50., 13., 1.6), speed, 9.81, .015)
@@ -136,10 +137,9 @@ def test_b1_handoff_to_a_faster_teammate_unpressured_and_not_to_a_slower_one():
 
 
 def test_b1_pressured_carrier_may_hand_off_even_backward_and_the_receiver_must_be_within_reach():
-    # RB-3.20b: the backward receiver must also be clearly freer (least time-to-contact >= mine + 0.5 s)
-    v, tr = tactics_scene(opps=[(50., 57.)], oppvel=(0., -6.), mates=[(48., 47.)])
+    v, tr = tactics_scene(opps=[(58., 50.)], oppvel=(-12., 0.), mates=[(47., 52.)])
     assert R.is_pressured(v, [t for t in tr if t.team == 'B']) and [r[1] for r in handoffs(v, tr)] == ['A:1']
-    vf, trf = tactics_scene(opps=[(50., 57.)], oppvel=(0., -6.), mates=[(40., 45.)])            # control: 10 m away, out of reach
+    vf, trf = tactics_scene(opps=[(58., 50.)], oppvel=(-12., 0.), mates=[(40., 52.)])           # control: 10 m away, out of reach
     assert not handoffs(vf, trf)
 
 
