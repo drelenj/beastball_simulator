@@ -23,8 +23,13 @@ def rows(root):
             data = event['data']
             if event['event'] == 'goal':
                 method = data['method']
-                label = ('release_carry' if data.get('release_carry') else
-                         data.get('band', method) if method == 'release' else method)
+                if data.get('release_carry'):
+                    label = 'release_carry'
+                elif method == 'release':
+                    distance = data['release_distance']
+                    label = 'under10' if distance < 10 else '10_to20' if distance < 20 else '20plus'
+                else:
+                    label = method
                 points[data['team']][label] += data['points']
             elif event['event'] == 'foul_award':
                 label = 'half_award' if data['points'] == 1 else 'full_award'
