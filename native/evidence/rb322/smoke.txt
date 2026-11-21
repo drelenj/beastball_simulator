@@ -1,0 +1,4 @@
+default {'A': 57, 'B': 76} possessions per team 144.5 {'A': 145, 'B': 144}
+alloff {'A': 74, 'B': 92} possessions per team 227.0 {'A': 228, 'B': 226}
+tech_neutral {'A': 123, 'B': 73} possessions per team 145.0 {'A': 145, 'B': 145}
+phys_neutral {'A': 88, 'B': 116} possessions per team 157.5 {'A': 158, 'B': 157}
