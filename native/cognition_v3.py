@@ -148,6 +148,13 @@ def _throw_options(view, belief, kind, x, y):
     return out, opps
 
 
+def _distance_speed(view, intent):
+    """RB-3.19 A1: restart throws use the shared distance-based release speed (native/throw_speed.py)."""
+    from .throw_speed import release_speed
+    from dataclasses import replace as _r
+    return _r(intent, speed=release_speed(hypot(intent.aim[0] - view.x, intent.aim[1] - view.y), view.max_throw_speed))
+
+
 def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
     now = view.delivered_ms
     elapsed = now - created
@@ -157,6 +164,15 @@ def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
     if hypot(view.x - tx, view.y - ty) > .6:
         return _intent(view, belief, 'restart_position', (tx, ty), why='restart_taker_to_spot')
     options, opps = _throw_options(view, belief, kind, x, y)
+    safe_only = view.cognition == 'native-rb/3' and 'A1' in getattr(view, 'rb319', '')
+    if safe_only:                      # RB-3.19 A1: the passes' release-time lane check; speed by distance (below)
+        from . import cognition_rb3 as R3
+        from .throw_speed import release_speed
+        tracks = {t.entity: t for t in _fresh(view, belief, TRACK_FRESH_MS)}
+        fopps = [t for t in opps if t.role != 'archer']
+        t_rel = R3.release_time_s(view)
+        options = [o for o in options if R3.lane_margin(view, tracks[o[1]], fopps,
+                                                         release_speed(hypot(o[2][0] - view.x, o[2][1] - view.y), view.max_throw_speed), t_rel) >= 0]
     latest = belief.own_feedback[-1] if belief.own_feedback else None
     if latest and latest[1].startswith('rejected_') and latest[1].endswith(':restart_pass') and len(options) > 1:
         options.remove(max(options, key=lambda o: (o[3], o[1])))     # the throw just refused: try another
@@ -178,30 +194,23 @@ def _taker(view, belief, kind, team, x, y, tx, ty, created, ready):
         return _intent(view, belief, 'restart_wait', options=[('restart_wait', None, None, 0.)] + options,
                        why='restart_taker_waits_for_legal_release')
     if not options:
-        if not last_call:
+        if not last_call and not safe_only:
             return _intent(view, belief, 'restart_wait', why='restart_taker_no_believed_target')
         ux, uy = _spot_side(x, y)
         if kind != 'toss':
-            behind_room = x - 3. if view.attack_sign > 0 else 97. - x
-            # With less than six metres of legal space behind the ball line,
-            # use an in-field lateral throw rather than pointing at the end line.
-            if behind_room < 6.:
-                ux, uy = (-view.attack_sign * min(.8, max(.1, behind_room)),
-                          1. if y <= 50. else -1.)
-            else:
-                ux, uy = -view.attack_sign, 0.
-        # PLACEHOLDER: no believed legal teammate before the deadline. The
-        # athlete owns a replaceable space throw, at least 3 m from every line.
-        distance = 8.
-        aim = (round(_clamp(x + ux * distance, 3., 97.), 3),
-               round(_clamp(y + uy * distance, 3., 97.), 3))
-        intent, record = _intent(view, belief, 'restart_pass', aim, None,
-                                 why='restart_taker_space_placeholder')
-        aim_distance = hypot(aim[0] - x, aim[1] - y)
-        return replace(intent, speed=min(view.max_throw_speed, max(8., 2. * aim_distance))), record
+            ux, uy = -view.attack_sign, 0.
+        # PLACEHOLDER: no believed legal teammate before the deadline: throw to legal space.
+        aim = (round(_clamp(x + ux * 8., 1., 99.), 3), round(_clamp(y + uy * 8., 1., 99.), 3))
+        if safe_only:                  # RB-3.19 A1: an in-field space aim (toward the middle of the field), distance-based speed
+            cx, cy = 50. - x, 50. - y
+            cl = hypot(cx, cy) or 1.
+            aim = (round(_clamp(x + cx / cl * 8., 2., 98.), 3), round(_clamp(y + cy / cl * 8., 2., 98.), 3))
+        i, r = _intent(view, belief, 'restart_pass', aim, None, why='restart_taker_space_placeholder')
+        return (_distance_speed(view, i), r) if safe_only else (i, r)
     chosen = max(options, key=lambda o: (o[3], o[1]))
-    return _intent(view, belief, chosen[0], chosen[2], chosen[1],
+    i, r = _intent(view, belief, chosen[0], chosen[2], chosen[1],
                    options=[('restart_wait', None, None, 0.)] + options, why='restart_taker_throw')
+    return (_distance_speed(view, i), r) if safe_only else (i, r)
 
 
 def _claim(view, belief, tx, ty, created, snapper):
@@ -247,24 +256,14 @@ def _stand(view, belief, kind, team, x, y, tx, ty, taker, tackler):
         own = hypot(view.x - x, view.y - y)
         rank = sum(1 for d, _ in mates if d < own)
         if rank < 2 and not SUPPORT_NEAR_M <= hypot(px - x, py - y) <= SUPPORT_FAR_M:
-            lateral = False
             if kind == 'toss':
                 ux, uy = _spot_side(x, y)
             else:
-                behind_room = x - 3. if sg > 0 else 97. - x
-                if behind_room < 6.:
-                    lateral = True
-                else:
-                    ux, uy = -sg, 0.                      # behind the ball line / inside own 40
+                ux, uy = -sg, 0.                          # behind the ball line / inside own 40
             lat = 6. if rank == 0 else -6.
-            if lateral:
-                # Under six metres behind the line, retain a small onside
-                # offset and put the receiving lane across the field.
-                px, py = x - sg * min(.8, max(.1, behind_room)), y + (8. if rank == 0 else -8.)
-            else:
-                px, py = x + ux * 8. - uy * lat, y + uy * 8. + ux * lat
-                if not 3. <= py <= 97.: py = y + uy * 8. - ux * lat
-                if not 3. <= px <= 97.: px = x + ux * 8. + uy * lat
+            px, py = x + ux * 8. - uy * lat, y + uy * 8. + ux * lat
+            if not 3. <= py <= 97.: py = y + uy * 8. - ux * lat
+            if not 3. <= px <= 97.: px = x + ux * 8. + uy * lat
             why = 'restart_support'
     if taker and hypot(px - tx, py - ty) < 2.:
         py = ty + (2. if view.athlete < taker else -2.)       # physical room for the taker
@@ -272,8 +271,34 @@ def _stand(view, belief, kind, team, x, y, tx, ty, taker, tackler):
     return _intent(view, belief, 'restart_position', aim, why=why)
 
 
+def _formation(view, belief, kind, team, x, y, tx, ty, taker, ready, form):
+    """RB-3.9a (native-rb/3): set scrimmage formation. The snapper snaps straight back to the
+    designated receiver at a distance-chosen speed; everybody else holds the spot he was placed on."""
+    from .throw_speed import release_speed
+    snapper, receiver, rx, ry, mx, my = form
+    hold = (mx, my) if mx is not None else (round(view.x, 3), round(view.y, 3))
+    if view.athlete != snapper:
+        return _intent(view, belief, 'restart_position', hold, why='formation_hold')
+    if taker is None:
+        return _intent(view, belief, 'restart_claim', why='formation_snapper_claim')
+    if taker != view.athlete:
+        return _intent(view, belief, 'restart_position', hold, why='formation_hold')
+    if view.pending_command_id is not None:
+        return _intent(view, belief, 'continue_current', why='formation_snap_pending')
+    if hypot(view.x - tx, view.y - ty) > .6:
+        return _intent(view, belief, 'restart_position', (tx, ty), why='formation_snapper_to_spot')
+    if not ready or receiver is None:
+        return _intent(view, belief, 'restart_wait', why='formation_wait_for_set')
+    speed = release_speed(hypot(rx - x, ry - y), view.max_throw_speed)
+    i, r = _intent(view, belief, 'restart_pass', (rx, ry), receiver, why='formation_snap')
+    return replace(i, speed=speed), dict(r, snap_speed=speed)
+
+
 def restart_decide(view, belief):
     rid, kind, team, x, y, tx, ty, taker, snapper, tackler, created, ready = view.restart
+    form = getattr(view, 'formation', None)
+    if view.cognition == 'native-rb/3' and form is not None and kind in ('scrim', 'snap40'):
+        return _formation(view, belief, kind, team, x, y, tx, ty, taker, ready, form)
     if (taker is None and team == view.team and (snapper is None or snapper == view.athlete)
             and (view.role == 'field' or snapper == view.athlete)
             and _claim(view, belief, tx, ty, created, snapper)):

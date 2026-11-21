@@ -1,17 +1,29 @@
 """RB engine driver; reuses Native's unchanged athlete decision implementation."""
 from native.port import NativePort,body
-from dataclasses import asdict,dataclass,fields
-import json
+from dataclasses import dataclass,fields
 from native import cognition as C
 from .authorities import CREW
 
 @dataclass(frozen=True)
 class RulebookView(C.AthleteView):
+    rb3_handoff_block_enabled: bool = False
+    rb3_carrier_moves_enabled: bool = False
+    ball_material: tuple | None = None        # RB-3.21 public: the ball material (k, h, e, a_roll) when the material model is on
+    handed_by: tuple | None = None            # RB-3.20b own memory: (teammate who handed me the ball I hold, ms ago)
+    rb319: str = ''                           # RB-3.19 public team instruction: enabled ball-in-play steps ('' = off)
     status_indicators: tuple = ()
     officials: tuple = CREW
     # RB-3.6 (native-rb/3 only; None elsewhere): public team instruction and own-body memory
     defender_baseline: tuple | None = None   # (enabled, mark_distance_m, ball_leash_m)
     own_zone_exit_ms_ago: int | None = None  # live ms since I last left my own Keeper Zone
+    own_control_ms: int | None = None         # RB-3.12 own body: ms since I gained control of the ball (None if I do not hold it)
+    mate_zone_ms: tuple = ()                  # RB-3.12 public: (teammate id, live ms in the zone he attacks) for teammates inside it
+    pass_release_ms: int = 250                # RB-3.14 compatibility spelling for own_release_ms
+    own_release_ms: int | None = None          # RB/3 own unrestrained pass/shot delay (one source: port own_release_ms)
+    body_reach: tuple = ()                    # Public arm reach (half span), keyed by player id; read only for perceived players
+    body_height: tuple = ()                   # RB-3.15 public body size: (player id, height m); read only for perceived players
+    snap_hold: bool = False                   # RB-3.13 public: the snap hold is in force (no arrow may be released)
+    formation: tuple | None = None            # RB-3.9a public: (snapper, receiver, receiver_x, receiver_y, my_spot_x, my_spot_y)
 
 from .config import RulebookConfig
 
@@ -20,10 +32,6 @@ class RulebookPort(NativePort):
         super().__init__(seed,config or RulebookConfig(),policies,plumbing,rosters=rosters)
         self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values()}
         self.last_reset_period=1
-        self._restart_watch=[]
-        self._restart_watch_id=None
-        self._restart_watch_pp=None
-        self._restart_watch_ledger=0
         self.m.e.rb_port=self
         if self.attr:
             self.m.e.rb_designated={team:{role:tuple(q.id for q in self.m.s.players.values() if q.team==team and q.role==role)
@@ -35,6 +43,12 @@ class RulebookPort(NativePort):
                 reserve=next(p for p in self.m.s.players.values() if p.team==team and not p.active and p.role=='keeper')
                 self.m.e.rb_reserves[team]=reserve.id
         self.platform_motor(0)
+        if self.config.version == 'native-rb/3' and self.config.rb3_handoff_block_enabled:
+            from .handoff_block import HandoffBlock
+            self.rb317 = HandoffBlock(self)
+        if self.config.version == 'native-rb/3' and self.config.rb3_carrier_moves_enabled:
+            from .carrier_moves import CarrierMoves
+            self.rb318 = CarrierMoves(self)
 
     @property
     def intermission_pending(self):return self.m.e.rb_pause is not None
@@ -51,7 +65,13 @@ class RulebookPort(NativePort):
             self.platform_motor(0);self.last_reset_period=self.m.s.period
 
     def step(self):
-        if self.intermission_pending:self.advance_intermission();return
+        actions = getattr(self, 'rb317', None)
+        moves = getattr(self, 'rb318', None)
+        if self.intermission_pending:
+            if actions:
+                actions.update_blocks()
+            self.advance_intermission()
+            return
         e=self.m.e;s=self.m.s
         if s.phase==self.types.Phase.DEAD:
             for team in ('A','B'):
@@ -61,49 +81,17 @@ class RulebookPort(NativePort):
                     e.elapse(1);return
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
+        if self.config.version=='native-rb/3':e.rb_hold_step(self) # RB-3.10 snap hold
+        if moves:
+            moves.update()
+        if actions:
+            actions.update_blocks()
         super().step()
-        self._watch_restart_progress()
-
-    def _watch_restart_progress(self):
-        """Fail boundedly on a repeating restart instead of consuming a soak worker.
-
-        Secure direct control is completed live play. A direct-possession change
-        or completed live play starts a new watchdog episode; bare release and
-        dead-ball awards do not disguise a restart cycle as progress.
-        """
-        s,e=self.m.s,self.m.e
-        ledger=e.possession_history+e.possession.ledger
-        new_rows=ledger[self._restart_watch_ledger:]
-        self._restart_watch_ledger=len(ledger)
-        # The possession ledger is authoritative. Direct possession may be
-        # established and lapse again inside one physical step, so sampling
-        # only the end-state would falsely call completed play a recurrence.
-        if any(row['event']=='direct_possession' for row in new_rows):
-            self._restart_watch.clear()
-        direct=e.possession.dp_team
-        passive=e.possession.pp or s.owner
-        if any(row['event']=='passive_possession' and self._restart_watch_pp is not None
-               and row.get('team')!=self._restart_watch_pp for row in new_rows):
-            self._restart_watch.clear()
-        if self._restart_watch_pp is not None and passive!=self._restart_watch_pp:
-            self._restart_watch.clear()
-        if direct is not None and s.ball.carrier is not None and s.phase==self.types.Phase.LIVE:
-            self._restart_watch.clear()
-        self._restart_watch_pp=passive
-        r=s.restart
-        if r is None or r.native_id==self._restart_watch_id:return
-        self._restart_watch_id=r.native_id
-        same=[row for row in self._restart_watch
-              if row['kind']==r.kind and abs(row['x']-r.x)<=1. and abs(row['y']-r.y)<=1.]
-        row=dict(id=r.native_id,kind=r.kind,team=r.team,x=r.x,y=r.y,
-                 reason=r.reason,now=s.now,live_ms=s.live_ms,direct=direct,
-                 passive=passive)
-        self._restart_watch.append(row)
-        if len(same)>=2:
-            state=dict(now=s.now,live_ms=s.live_ms,period=s.period,
-                       score=dict(s.score),ball=asdict(s.ball),restart=asdict(r),
-                       episode=self._restart_watch[-12:])
-            raise RuntimeError('stuck restart invariant: '+json.dumps(state,sort_keys=True,default=str))
+        if actions:
+            actions.update_blocks(steer=False)
+        if moves:
+            moves.update(execute=False)
+        if self.config.version=='native-rb/3':e.rb_form_restart() # RB-3.9a scrimmage formation
 
     def fill_cover(self):
         self.m.e.rb_fill_slots()
@@ -134,7 +122,27 @@ class RulebookPort(NativePort):
         if self.config.version=='native-rb/3':
             c=self.config;exits=getattr(self.m.e,'rb35',{}).get('own_exit',{})
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
-                       own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None)
+                       own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None,
+                       rb3_handoff_block_enabled=c.rb3_handoff_block_enabled)
+            extra['rb3_carrier_moves_enabled'] = c.rb3_carrier_moves_enabled
+            extra['rb319'] = c.rb319_parts if c.rb319_ball_in_play_enabled else ''
+            extra['ball_material'] = (c.rb321_ball_drag_k, c.rb321_ball_bounce_h, c.rb321_ball_restitution, c.rb321_ball_roll_decel) if c.rb321_ball_material_enabled else None
+            hb_ = getattr(self, 'rb317', None); got_ = hb_.last_handoff.get(pid) if hb_ is not None else None
+            extra['handed_by'] = (got_[0], self.m.s.now - got_[1]) if got_ and self.m.s.ball.carrier == pid else None
+            r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
+            extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
+            sb=self.m.s.ball
+            extra['own_control_ms']=self.m.s.now-sb.control_time if sb.carrier==pid else None
+            me_=self.m.s.players[pid];e_=self.m.e;res=getattr(e_,'residence',{});covered=self.m.s.own_zone(self.m.s.other(me_.team)) if e_.possession.pp==me_.team else None
+            extra['mate_zone_ms']=tuple(sorted((q.id,self.m.s.live_ms-res[q.id]) for q in self.m.s.players.values()
+                                               if covered is not None and q.active and q.team==me_.team and q.id!=pid and q.role=='field'
+                                               and q.id in res and e_.zone(q.x,q.y)==covered)) if covered is not None else ()
+            hold=getattr(self.m.e,'rb310_hold',None);extra['snap_hold']=bool(hold)
+            extra['own_release_ms'] = extra['pass_release_ms'] = self.own_release_ms(me_)
+            extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
+            extra['body_height']=tuple(sorted((q.id,round(q.a.height,4)) for q in self.m.s.players.values() if q.active))
+            if fm is None and hold:   # RB-3.11: the designated receiver stays public during the snap hold (until the catch)
+                extra['formation']=(hold['snapper'],hold['receiver'],hold['receiver_xy'][0],hold['receiver_xy'][1],None,None)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=states,**extra),b
 
     def _submit_intent(self,intent):
@@ -163,7 +171,14 @@ class RulebookPort(NativePort):
     def view_from_json(payload):
         from copy import deepcopy
         data=deepcopy(payload);status=data['view'].pop('status_indicators',());officials=data['view'].pop('officials',CREW)
-        baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None)
+        baseline=data['view'].pop('defender_baseline',None);exit_ago=data['view'].pop('own_zone_exit_ms_ago',None);form=data['view'].pop('formation',None);ctl=data['view'].pop('own_control_ms',None);mz=data['view'].pop('mate_zone_ms',());sh=data['view'].pop('snap_hold',False);prm=data['view'].pop('pass_release_ms',250);br=data['view'].pop('body_reach',())
+        own_release = data['view'].pop('own_release_ms', None);bh=data['view'].pop('body_height',())
+        actions = data['view'].pop('rb3_handoff_block_enabled', False)
+        moves = data['view'].pop('rb3_carrier_moves_enabled', False)
+        r319 = data['view'].pop('rb319', '')
+        hby = data['view'].pop('handed_by', None)
+        bmat = data['view'].pop('ball_material', None)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
-                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago),b
+                            defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions,
+                            rb3_carrier_moves_enabled=moves,rb319=r319,handed_by=tuple(hby) if hby is not None else None,ball_material=tuple(bmat) if bmat is not None else None),b

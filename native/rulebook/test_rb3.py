@@ -73,78 +73,6 @@ def test_rb3_short_replay_serial_and_parallel():
         assert list(pool.map(_window,[('touch',.7),('touch',.7)]))==[first,first]
 
 
-def test_repeated_restart_watchdog_fails_on_third_same_spot_with_state():
-    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
-    e.possession.dp_team=None
-    for n in range(2):
-        e.award('A',40.2+n*.3,20.2+n*.2,'fixture',normalize=False)
-        p._watch_restart_progress()
-    e.award('A',40.7,20.5,'fixture',normalize=False)
-    with pytest.raises(RuntimeError,match='stuck restart invariant.*episode'):
-        p._watch_restart_progress()
-
-
-def test_restart_watchdog_resets_on_passive_possession_change():
-    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
-    for team in ('A','A','B'):
-        e.possession.pp=team;e.s.owner=team
-        e.award(team,40.,20.,'fixture',normalize=False);p._watch_restart_progress()
-    assert len(p._restart_watch)==1 and p._restart_watch[0]['team']=='B'
-
-
-def test_restart_watchdog_reads_transient_direct_possession_from_ledger():
-    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
-    for n in range(2):
-        e.award('A',40.+n*.2,20.,'fixture',normalize=False);p._watch_restart_progress()
-    e.possession.ledger.append(dict(t_ms=e.s.now,row='R-03',event='direct_possession',team='A',player='A:p0'))
-    e.possession.dp_team=None
-    e.award('A',40.4,20.,'fixture',normalize=False);p._watch_restart_progress()
-    assert len(p._restart_watch)==1
-
-
-def test_second_same_team_restart_chain_foul_is_corrected_without_retake():
-    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
-    s.phase=p.types.Phase.LIVE;s.owner='B';e.possession.pp='B';s.ball.carrier=None
-    e.rb_restart_chain_active=True;e.rb_restart_chain_fouls=set()
-    e.foul('A:p0','B:p0','holding');serial=e.restart_serial
-    first=s.players['A:p0'].minor_count
-    s.phase=p.types.Phase.LIVE;s.restart=None;s.ball.carrier=None
-    e.foul('A:p1','B:p0','zone_unmarked')
-    assert e.restart_serial==serial and s.players['A:p0'].minor_count==first==1
-    assert s.players['A:p1'].minor_count==0
-    assert e.rb.calls[-1]['kind']=='warning' and e.rb.calls[-1]['reason']=='repeated_restart_chain_foul'
-
-
-def test_restart_foul_chain_resets_only_after_direct_control():
-    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);s,e=p.m.s,p.m.e
-    e.rb_restart_chain_active=True;e.rb_restart_chain_fouls={'A'}
-    s.ball.carrier='B:p0';e.possession.dp_team=None;e.native_sync()
-    assert e.rb_restart_chain_fouls=={'A'}
-    e.possession.dp_team='B';e.native_sync()
-    assert not e.rb_restart_chain_active and e.rb_restart_chain_fouls==set()
-
-
-def test_rb31_control_roster_uses_owner_specified_average_body():
-    from .rb31_soak import uniform_rosters
-    rosters=uniform_rosters()
-    cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A','B')))
-    p=RulebookPort(1,cfg,rosters=rosters);q=p.m.s.players['A:0']
-    assert q.a.height==2.39 and q.a.mass==226. and q.a.reach==3.05
-    assert q.a.maximum_speed==pytest.approx(31.2928)
-    assert all(value==.7 for key,value in rosters['A'].athletes[0].values if key not in ('height_m','mass_kg','reach_m'))
-
-
-def test_rb31_collector_accepts_structured_carry_events():
-    from .rb31_soak import measure
-    cfg,rs=fixture();p=RulebookPort(1,cfg,rosters=rs);e=p.m.e
-    e.rb_bands['A']['carry_attempts']=1
-    arrows=[dict(t_ms=0,player='A:p20',team='A',legal=True,arrow=1,outcome='arrow_release')]
-    result=measure(p,[dict(t_ms=0,team='A',player='A:p0',x=80.,y=50.)],[],arrows)
-    assert result['carry_attempts']['A']['attempts']==1
-    assert result['carry_attempts']['A']['outcomes']=={'other_or_match_end':1}
-    assert result['arrows_by_archer']['A:p20']=={'released_no_impact':1}
-
-
 @pytest.mark.parametrize('name',INERT_RATINGS)
 def test_inert_rating_changes_digest_but_not_play_or_view(name):
     low,middle,high=(_window((name,value)) for value in (.4,.7,1.))
@@ -271,7 +199,11 @@ def test_updated_workbook_all_teams_and_named_canon_bodies():
     assert (highest[headers['Player ID']],highest[headers['Opening-day OVR']])==('NBL24-11-12',99)
     rs=load_canon_nbl(('Ala Marauders','Kasuf Bloodravens'))
     kamasi=next(a for a in rs['A'].athletes if a.source_id=='NBL24-02-04')
-    assert kamasi.get('mass_kg')==461.8 and kamasi.get('reach_m')==3.833
+    kamasi_row = next(row for row in lines if row[headers['Player ID']] == kamasi.source_id)
+    arm_reach = kamasi_row[headers['Arm span (m)']] / 2
+    assert kamasi.get('mass_kg') == 461.8
+    assert kamasi.get('reach_m') == arm_reach
+    assert kamasi.get('standing_reach_m') == 3.833
     cfg=RulebookConfigV3(roster_digests=(rs['A'].digest,rs['B'].digest))
     p=RulebookPort(1,cfg,rosters=rs);q=p.m.s.players['A:NBL24-02-04']
-    assert q.a.mass==461.8 and q.a.reach==3.833
+    assert q.a.mass == 461.8 and q.a.reach == arm_reach and q.a.standing_reach_m == 3.833

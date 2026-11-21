@@ -200,6 +200,19 @@ def _pass_options(view, mates, opps, restart=False):
     return out
 
 
+def rb3_lead(x, y, aim, vel, max_throw_speed, iterations=6):
+    """RB-3.9b E-1/B-1 (native-rb/3): lead a moving receiver by the real flight time at the speed
+    chosen for the led distance. Fixed point: the speed depends on the led aim, the aim on the speed.
+    Returns (aim, flight_time_s, speed)."""
+    from .throw_speed import release_speed, flight_time
+    tf = 0.
+    for _ in range(iterations):
+        led = (_clamp(aim[0] + vel[0] * tf, 2, 98), _clamp(aim[1] + vel[1] * tf, 2, 98))
+        d = hypot(led[0] - x, led[1] - y); speed = release_speed(d, max_throw_speed); tf = flight_time(d, speed)
+    led = (_clamp(aim[0] + vel[0] * tf, 2, 98), _clamp(aim[1] + vel[1] * tf, 2, 98))
+    return led, tf, speed
+
+
 def _m1_options(view, fresh, carrier, role, **cfg):
     """Delegate a sub-decision to the Base A (M1) pure decide(); one pipeline."""
     contacts = tuple(M1.Contact(t.entity, 'neutral' if t.team == 'ball' else t.team, t.x, t.y,
@@ -291,7 +304,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
         # Ruleset 1.0.2 (D1 record R-17): any eligible player may be frozen; a Keeper inside
         # his own zone is protected; R-01: no target before the first passive possession.
         ready = (view.arrows_loaded or 0) > 0 and (
-            view.last_release_ms is None or now - view.last_release_ms >= 2600)
+            view.last_release_ms is None or now - view.last_release_ms >= 2600) and not getattr(view, 'snap_hold', False)   # RB-3.13: no arrow during the snap hold
         if ready and sig.phase == 'live' and sig.passive_team is not None and banned != 'draw_release':
             for t in sorted(opps, key=lambda t: t.entity):
                 if not archer_target_legal(t, view, now):
@@ -325,7 +338,14 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     side = -1. if keeper is not None and keeper.y > 50 else 1.
                     value = 5.5 - .2 * dg + (8. if near < 5.8 else 0.) + (
                         5. if 0 < sig.possession_ms < 5000 else 0.)
-                    options.append(('shoot', None, (goal[0], 50. + side * 1.), round(value, 6)))
+                    if view.cognition == 'native-rb/3':      # RB-3.15 S-1/S-2: aim away from the keeper, safe lane, margin in the value
+                        from . import cognition_rb3 as R3
+                        plan = R3.shot_plan(view, fresh)
+                        if plan is not None:
+                            options.append(('shoot', None, plan['aim'],
+                                            round(value + R3.SHOT_MARGIN_W * min(plan['margin'], R3.SHOT_MARGIN_CAP), 6)))
+                    else:
+                        options.append(('shoot', None, (goal[0], 50. + side * 1.), round(value, 6)))
                 # carry toward goal, drifting away from the nearest believed opponent ahead
                 ahead = [o for o in opps if sg * (o.x - view.x) > 0 and hypot(o.x - view.x, o.y - view.y) < 9]
                 drift = 0.
@@ -339,8 +359,12 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             # Base A (M1) carrier decision supplies the carry-vs-pass valuation.
             carry_opt = next((o for o in options if o[0] == 'carry'), None)
             options = [o for o in options if o[0] != 'carry']
-            for k, t, a, v in _m1_options(view, fresh, carrier, 'carrier',
-                                          carry_target=carry_opt[2] if carry_opt else None):
+            if view.cognition == 'native-rb/3':      # RB-3.12 B-5: carry and pass valued by cognition_rb3.carrier_options
+                from .cognition_rb3 import carrier_options
+                carrier_vals = carrier_options(view, fresh, carry_opt[2] if carry_opt else None, sg, belief.max_track_age_ms)
+            else:
+                carrier_vals = _m1_options(view, fresh, carrier, 'carrier', carry_target=carry_opt[2] if carry_opt else None)
+            for k, t, a, v in carrier_vals:
                 if k == 'pass' and banned == 'pass':
                     continue
                 if k == 'pass':
@@ -348,9 +372,12 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     # position advanced by its believed velocity over the nominal flight time
                     # (cognition's choice; Motor never leads the receiver).
                     rt = next(x for x in fresh if x.entity == t)
-                    tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
-                    a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
-                if k in ('carry', 'pass'):
+                    if view.cognition == 'native-rb/3':
+                        a = rb3_lead(view.x, view.y, a, (rt.vx, rt.vy), view.max_throw_speed)[0]
+                    else:
+                        tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
+                        a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
+                if k in ('carry', 'pass', 'handoff'):
                     options.append((k, t, (round(a[0], 3), round(a[1], 3)),
                                     round(v + (4. if view.role == 'keeper' and k == 'pass' else 0.), 6)))
     elif view.role == 'keeper':
@@ -552,7 +579,9 @@ def decide_v2(view, belief):
         return choice('restart_position',(max(.01,min(99.99,px)),max(.01,min(99.99,py))))
     # PLACEHOLDER rule compliance: leave before the 5 s residence deadline.
     # This projects a legal exit from own sensed position, not a tactical anchor.
-    if view.role=='field' and view.zone_elapsed_ms>=3000:
+    # RB-3.11 (native-rb/3): the fixed 3 s / 4 s timers are replaced by time-to-arc exits and defender
+    # marking in cognition_rb3.zone_behavior; every other profile keeps the 3 s placeholder.
+    if view.cognition!='native-rb/3' and view.role=='field' and view.zone_elapsed_ms>=3000:
         for gx in (view.own_goal_x,100-view.own_goal_x):
             dx,dy=view.x-gx,view.y-50;d=hypot(dx,dy)
             if d<view.zone_radius:
@@ -561,7 +590,7 @@ def decide_v2(view, belief):
                                           max(.6,min(99.4,50+uy*(view.zone_radius+1.)))))
     if view.role=='archer' and view.pending_command_id and view.pending_release_ms is not None and view.delivered_ms>=view.pending_release_ms:
         target=next((t for t in belief.tracks if t.entity==view.pending_target),None)
-        if target is None or view.signals.phase!='live' or not archer_target_legal(target,view,view.delivered_ms):
+        if target is None or view.signals.phase!='live' or getattr(view,'snap_hold',False) or not archer_target_legal(target,view,view.delivered_ms):
             intent,rec=choice('abort_draw',target=view.pending_target)
         else:
             intent,rec=choice('release_arrow',(target.x,target.y),view.pending_target)
@@ -575,13 +604,27 @@ def decide_v2(view, belief):
             position=(view.own_goal_x+view.attack_sign*depth,50+(course.y-50)*depth/max(d,.01))
         kv=E.KeeperView(view.observation_id,view.delivered_ms,view.body,view.own_goal_x,
                         goal_radius=view.goal_radius,position_belief=position)
-        ki=E.decide_keeper(kv,course,gravity=9.81,drag=.015,restitution=.7745966692)
+        if getattr(view,'ball_material',None) is not None:   # RB-3.21: the Keeper forecasts the ball the material produces
+            from .cognition_rb3 import keeper_decide
+            ki=keeper_decide(kv,course,view.ball_material)
+        else:
+            ki=E.decide_keeper(kv,course,gravity=9.81,drag=.015,restitution=.7745966692)
         return choice('keeper_control',aux=ki)
     intent,record=_base_decide(view,belief)
     # PLACEHOLDER: expose release speed and height as athlete-owned inputs.
     # The semantic pass already leads the believed receiver in the B1 policy.
     intent=replace(intent,speed=(min(80.,.5*view.max_throw_speed) if view.cognition=='native-rb/3' else min(27.,view.max_throw_speed)),height=1.6,
                    contact='wrap' if intent.kind=='press' else None,period=view.signals.period)
+    if view.cognition=='native-rb/3' and intent.kind=='shoot' and intent.aim:
+        from . import cognition_rb3 as R3             # RB-3.15 S-1: the chosen aim height (a pure re-derivation of the plan)
+        fresh_ = tuple(t for t in belief.tracks if 0 <= view.delivered_ms - t.captured_ms <= belief.max_track_age_ms)
+        plan_ = R3.shot_plan(view, fresh_)
+        if plan_ is not None and plan_['aim'] == tuple(intent.aim):
+            intent = replace(intent, height=plan_['z'])
+    if view.cognition=='native-rb/3' and intent.kind=='pass' and intent.aim:
+        # RB-3.9b B-1: release speed chosen by the (led) pass distance; same speed as used in the lead.
+        from .throw_speed import release_speed
+        intent=replace(intent,speed=release_speed(hypot(intent.aim[0]-view.x,intent.aim[1]-view.y),view.max_throw_speed))
     if intent.kind=='pass' and intent.aim and not in_own_zone(view.team,view.x,view.y,view) and in_own_zone(view.team,*intent.aim,view):
         return choice('retain')
     if view.holds_ball and view.role=='field' and not view.dribble_used and view.pending_command_id is None:

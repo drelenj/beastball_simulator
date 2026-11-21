@@ -1,0 +1,202 @@
+{
+  "off": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb317/off/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 74,
+        "B": 92
+      },
+      "trace_hash": "93b1f57e268ee6c436fae47109e4e2987cfdf7024df5575b6405e119c5ed32d7",
+      "state_hash": "b9962ddfb23dbc96551258ea6c2132565804d22ec1b0c87295e3f3ff37d59854",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "other": 12,
+        "scored": 35,
+        "keeper": 16,
+        "opponent": 1
+      },
+      "passes": {
+        "other": 289,
+        "opponent": 45
+      },
+      "interceptions_within_3m": 6,
+      "tackles": 82,
+      "carries": {
+        "A": {
+          "attempts": 66,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 52,
+          "goals": 4
+        }
+      },
+      "possessions": {
+        "A": 228,
+        "B": 226
+      },
+      "handoffs": {
+        "attempted": 0,
+        "complete": 0,
+        "fumbled": 0
+      },
+      "blocks": {
+        "engaged": 0,
+        "shed": 0,
+        "mean_duration_ms": null
+      },
+      "pass_interception_rate": 0.1347305389221557
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb317/off/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 42,
+        "B": 92
+      },
+      "trace_hash": "7ebf8e03e627e9dc09e4851ff168822faa245e58f100a40f8b694003307bf816",
+      "state_hash": "835f70477706159b0a68959e56c35d04a4c529ebc45b8dea73f51d2f29e4ce71",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "other": 15,
+        "scored": 31,
+        "keeper": 20,
+        "opponent": 4
+      },
+      "passes": {
+        "other": 253,
+        "opponent": 56
+      },
+      "interceptions_within_3m": 10,
+      "tackles": 68,
+      "carries": {
+        "A": {
+          "attempts": 40,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 59,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 217,
+        "B": 217
+      },
+      "handoffs": {
+        "attempted": 0,
+        "complete": 0,
+        "fumbled": 0
+      },
+      "blocks": {
+        "engaged": 0,
+        "shed": 0,
+        "mean_duration_ms": null
+      },
+      "pass_interception_rate": 0.18122977346278318
+    }
+  ],
+  "on": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb317/on/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 59,
+        "B": 105
+      },
+      "trace_hash": "56fb5e98b578e930d9c87b2c6c5a3002783ca0dfe58bfc511eecb70f37dc3d1b",
+      "state_hash": "060cd873cad03dde1f60257889eadf5cf680b5cb7494d36d77f8b6276fc9cbb0",
+      "config_digest": "c6ff94dda7bdc2813ef7fee7641dac3bf5bd870acf8e512156b3ec248551e823",
+      "shots": {
+        "keeper": 32,
+        "scored": 35,
+        "opponent": 2,
+        "other": 13
+      },
+      "passes": {
+        "other": 270,
+        "opponent": 61
+      },
+      "interceptions_within_3m": 6,
+      "tackles": 77,
+      "carries": {
+        "A": {
+          "attempts": 77,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 57,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 207,
+        "B": 206
+      },
+      "handoffs": {
+        "attempted": 356,
+        "complete": 281,
+        "fumbled": 0
+      },
+      "blocks": {
+        "engaged": 125,
+        "shed": 125,
+        "mean_duration_ms": 114.992
+      },
+      "pass_interception_rate": 0.18429003021148035
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb317/on/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 75,
+        "B": 64
+      },
+      "trace_hash": "bc006c38e5d6bfeea99c559dd391bba399893a5e26925d46c188eb4a41971ff1",
+      "state_hash": "8ce90bf45cf110bc1ffe06290d8445c6d81e304d8480a985f67382d085b67fd0",
+      "config_digest": "c6ff94dda7bdc2813ef7fee7641dac3bf5bd870acf8e512156b3ec248551e823",
+      "shots": {
+        "keeper": 25,
+        "scored": 31,
+        "other": 8,
+        "opponent": 2
+      },
+      "passes": {
+        "other": 289,
+        "opponent": 51
+      },
+      "interceptions_within_3m": 5,
+      "tackles": 67,
+      "carries": {
+        "A": {
+          "attempts": 57,
+          "goals": 2
+        },
+        "B": {
+          "attempts": 60,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 209,
+        "B": 208
+      },
+      "handoffs": {
+        "attempted": 337,
+        "complete": 281,
+        "fumbled": 0
+      },
+      "blocks": {
+        "engaged": 66,
+        "shed": 66,
+        "mean_duration_ms": 108.89393939393939
+      },
+      "pass_interception_rate": 0.15
+    }
+  ]
+}

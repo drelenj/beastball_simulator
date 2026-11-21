@@ -48,14 +48,4 @@ def test_original_rb21_shot_bands_under_rb3(distance,points):
 
 
 def test_original_rb21_defender_hold_under_rb3():
-    # The legacy witness placed two independent scenarios back-to-back. RB/3's
-    # dead-ball loop guard correctly treats a second foul in that same stopped
-    # episode as a correction, so exercise each tackle-count branch afresh.
-    p=rb3_port();s,e=p.m.s,p.m.e;s.owner='A';e.possession.pp='A';s.tackle_count=0
-    e.foul('B:p0','A:p4','holding')
-    assert s.tackle_count==0 and s.score=={'A':1,'B':0}
-    p=rb3_port();s,e=p.m.s,p.m.e;s.owner='A';e.possession.pp='A';s.tackle_count=1
-    e.foul('B:p1','A:p5','holding')
-    assert s.tackle_count==0 and s.score=={'A':0,'B':0}
-    before=dict(s.score);e.offside('defence')
-    assert s.tackle_count==0 and s.score==before
+    adapted(test_discipline.test_defender_noncarrier_hold_is_defence_minor_and_offside_no_award)(rb3_port())

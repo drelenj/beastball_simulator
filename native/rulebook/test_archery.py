@@ -12,21 +12,20 @@ def live(p):
  return s,e
 
 def test_speed_quota_any_distance_legal_and_no_tunnelling(p):
- from .test_rb34 import rb3,live as rb3_live
- p=rb3();s,e,archer,target=rb3_live(p);a=e.shoot_arrow(archer,target.id,(1,0,0))
+ s,e=live(p);a=e.shoot_arrow('A11','B0',(1,0,0))
  assert math.sqrt(a.vx*a.vx+a.vy*a.vy+a.vz*a.vz)==pytest.approx(250)
  a.x=30;a.y=50;a.z=1.5;a.vz=0
  events=p.m.advance_arrows(100)
- assert any(ev.target==target.id for ev in events)
+ assert any(ev.target=='B0' for ev in events)
  # Owner ruling 17 Nov 2026: any offensive player outside the Keeper Zones. B0 at x=60
  # (more than 50 m from A's own end) was illegal under RB-3.1 and is now a legal target.
- target.x=60;minors=s.players[archer].minor_count
+ s.players['B0'].x=60;minors=s.players['A11'].minor_count
  for _ in range(14):
-  target.immune_until=-1;assert e.shoot_arrow(archer,target.id,(1,0,0))
- assert s.players[archer].minor_count==minors
+  s.players['B0'].immune_until=-1;assert e.shoot_arrow('A11','B0',(1,0,0))
+ assert s.players['A11'].minor_count==minors
  assert not any(r['event']=='foul' and r['data'].get('reason')=='archery_target' for r in e.log)
  assert e.rb.quotas['A']['arrows']==15
- assert not e.shoot_arrow(archer,target.id,(1,0,0))
+ assert not e.shoot_arrow('A11','B0',(1,0,0))
 
 def test_archer_still_cannot_target_inside_a_keeper_zone_or_non_possessing_team(p):
  s,e=live(p);t=s.players['B0'];t.x,t.y=95.,50.         # inside B's attacked zone (A's own)

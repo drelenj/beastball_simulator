@@ -1,9 +1,8 @@
 import pytest
 from .port import RulebookPort
-from .testing import rb3_port
 
 @pytest.fixture
-def p():return rb3_port(1)
+def p():return RulebookPort(1)
 
 def release_period_start(p):
  """Release the period-start snap through the real ready/release path."""
@@ -44,10 +43,8 @@ def test_release_restarts_clock_and_tackle_preserves_remaining(p):
  s,e=p.m.s,p.m.e;e.award('A',50,50,'fixture')
  for q in s.players.values():
   if q.role!='archer':q.x=45 if q.team=='A' else 55
- taker=next(q for q in s.players.values() if q.team=='A' and q.role=='field' and q.active)
- receiver=next(q for q in s.players.values() if q.team=='A' and q.role=='field' and q.active and q is not taker)
- taker.x=taker.y=50
- assert e.restart_release(taker.id,(24.,0.,1.),receiver.id)
+ s.players['A0'].x=50;s.players['A0'].y=50
+ assert e.restart_release('A0',(24.,0.,1.),'A1')
  e.elapse(100);assert s.game_ms==599900
 
 def test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog(p):
@@ -62,18 +59,14 @@ def test_consecutive_legal_timeouts_do_not_trigger_restart_watchdog(p):
 def test_real_tackle_keeps_play_clock_and_snap_window_runs_only_above_ten(p):
  s,e=p.m.s,p.m.e;s.phase=p.types.Phase.LIVE;e.rb_hunt_running=True
  s.owner='A';e.possession.pp=e.possession.tc='A';s.possession_ms=17000
- carrier=next(q for q in s.players.values() if q.team=='A' and q.role=='field' and q.active)
- tackler=next(q for q in s.players.values() if q.team=='B' and q.role=='field' and q.active)
- carrier.x,carrier.y=50,50
- s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=carrier.id,x=50,y=50,z=1.5,scoring=True)
- assert e.tackle(tackler.id,carrier.id,witnessed=True)
- assert s.possession_ms==17000 and s.tackle_count==1 and s.restart.rs['snapper']==carrier.id
+ s.players['A0'].x,s.players['A0'].y=50,50
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A0',x=50,y=50,z=1.5,scoring=True)
+ assert e.tackle('B0','A0',witnessed=True)
+ assert s.possession_ms==17000 and s.tackle_count==1 and s.restart.rs['snapper']=='A0'
  e.elapse(100,False);assert s.possession_ms==16900
  s.phase=p.types.Phase.LIVE;s.tackle_count=0;s.possession_ms=10000
- carrier=next(q for q in s.players.values() if q.team=='A' and q.role=='field' and q.active and q is not carrier)
- tackler=next(q for q in s.players.values() if q.team=='B' and q.role=='field' and q.active and q is not tackler)
- s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier=carrier.id,x=50,y=50,z=1.5,scoring=True)
- assert e.tackle(tackler.id,carrier.id,witnessed=True)
+ s.ball=p.types.Ball(mode=p.types.BallMode.CONTROLLED,carrier='A1',x=50,y=50,z=1.5,scoring=True)
+ assert e.tackle('B1','A1',witnessed=True)
  e.elapse(100,False);assert s.possession_ms==10000
 
 @pytest.mark.parametrize('points,kind',[(2,'release'),(1,'half_goal'),(3,'full_goal_award')])

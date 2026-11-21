@@ -29,6 +29,7 @@ IGNORED_LABELS = ('name','position','archetype','overall')
 DEFAULT_ALIASES = {
     **{name:(name,) for name in REQUIRED + OPTIONAL_RATINGS + IGNORED_LABELS},
     'reach_m':('reach_m','reach'),
+    'standing_reach_m':('standing_reach_m',),
     'id':('id','athlete_id','player_id'),
     'role':('role',),
     # Known player_gen_v1/export metadata, accepted but never consumed.
@@ -164,6 +165,11 @@ def load_rows(rows,team,alias_map=None):
         reach=_number(row.get('reach_m',.46*height),row_number,'reach_m')
         if reach<=0:raise RosterError(f"row {row_number} column reach_m: must be positive")
         values.update(height_m=height,mass_kg=mass,reach_m=reach)
+        if 'standing_reach_m' in row:
+            standing = _number(row['standing_reach_m'], row_number, 'standing_reach_m')
+            if standing <= 0:
+                raise RosterError(f"row {row_number} column standing_reach_m: must be positive")
+            values['standing_reach_m'] = standing
         canonical.append(AthleteAttributes(source_id,role,tuple(sorted(values.items())),tuple(sorted(defaults))))
     ids={}
     for index,a in enumerate(canonical,start=2):
@@ -191,6 +197,17 @@ def load_csv(path,team,alias_map=None):
         reader=csv.DictReader(stream)
         if reader.fieldnames is None:raise RosterError('row 1 column header: missing header')
         return load_rows(list(reader),team,alias_map)
+
+
+def rb3_control_rosters():
+    """RB/3 evidence control: matched ratings and separate body reach measures."""
+    height = 2.39
+    roles = ['field'] * 18 + ['keeper'] * 2 + ['archer'] * 2
+    rows = [dict.fromkeys(RATINGS, .70) | dict(
+        id=str(index), role=role, height_m=height, mass_kg=226.,
+        reach_m=.529 * height, standing_reach_m=3.05, acceleration=.70)
+        for index, role in enumerate(roles)]
+    return {team: load_rows(rows, team) for team in ('A', 'B')}
 
 
 def engine_order(roster):

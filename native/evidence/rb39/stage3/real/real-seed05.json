@@ -1,0 +1,91 @@
+{
+  "block": "real",
+  "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+  "end_ms": 4501453,
+  "entry_point": "native/run.py::run_match via rb31_soak.job path (matches reference hashes)",
+  "error": null,
+  "foul_reasons": {
+    "archery_target": 11,
+    "immune_contact": 1,
+    "protected_keeper": 1,
+    "zone_unmarked": 2
+  },
+  "live_ms": 2400000,
+  "max_steps": 200000,
+  "metrics": {
+    "arrows": {
+      "A": {
+        "illegal": 5,
+        "legal": 255,
+        "legal_rate": 0.9807692307692307
+      },
+      "B": {
+        "illegal": 6,
+        "legal": 232,
+        "legal_rate": 0.9747899159663865
+      }
+    },
+    "carry_attempts": {
+      "A": {
+        "attempts": 57,
+        "goals": 2
+      },
+      "B": {
+        "attempts": 70,
+        "goals": 0
+      }
+    },
+    "dqs": {
+      "A": 1,
+      "B": 1
+    },
+    "groundings": 231,
+    "points": {
+      "A": {
+        "penalty_awards": 11,
+        "play": 21
+      },
+      "B": {
+        "penalty_awards": 5,
+        "play": 18
+      }
+    },
+    "points_check": {
+      "A": true,
+      "B": true
+    },
+    "possessions": {
+      "A": {
+        "count": 257,
+        "ending_in_attempt": 33,
+        "share_ending_in_attempt": 0.12840466926070038,
+        "with_attempt": 44
+      },
+      "B": {
+        "count": 256,
+        "ending_in_attempt": 38,
+        "share_ending_in_attempt": 0.1484375,
+        "with_attempt": 53
+      }
+    },
+    "restart_timeouts": 10
+  },
+  "name": "real-seed05",
+  "non_finishing": null,
+  "restart_completion_ratio": 1.0,
+  "restart_statuses": {
+    "released": 375,
+    "snap_timeout": 2,
+    "toss_timeout": 8
+  },
+  "runtime_s": 156.43,
+  "score": {
+    "A": 32,
+    "B": 23
+  },
+  "seed": 5,
+  "state_hash": "ba78d16962602bd155c479de12fdf594df015f7560375bd139eb90e23749a593",
+  "status": "final",
+  "steps": 36996,
+  "trace_hash": "beb2762d41e49c93cf6f9501a6ac4e32719b1ade5b5a2824454bd05b4235accf"
+}

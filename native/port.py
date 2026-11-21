@@ -71,6 +71,8 @@ class NativePort:
                     old.id=f'{team}:{record.source_id}';old.slot=slot;old.role=record.role;old.active=slot<12
                     for key,value in mapped_values(record).items():setattr(old.a,key,value)
                     raw=dict(record.values)
+                    if cfg.version == 'native-rb/3':
+                        old.a.standing_reach_m = raw.get('standing_reach_m')
                     old.native_source_id=record.source_id
                     old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
                     old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
@@ -294,6 +296,12 @@ class NativePort:
             e.vacancies.remove(vacancy);e.emit('substitute','native',player=p.id,role=role,intent_id=intent.intent_id);self.platform_motor(0)
             return {'status':'accepted'}
         if not p.active:return {'status':'rejected','reason':'inactive'}
+        if kind in ('stretch', 'stiff_arm', 'truck'):
+            moves = getattr(self, 'rb318', None)
+            return moves.submit(p, intent) if moves else {'status': 'rejected', 'reason': 'feature_off'}
+        if kind in ('handoff', 'block'):
+            actions = getattr(self, 'rb317', None)
+            return actions.submit(p, intent) if actions else {'status': 'rejected', 'reason': 'feature_off'}
         if kind in ('restart_claim','restart_position','restart_pass','restart_wait') and (s.restart is None or intent.record_id!=s.restart.native_id):
             return {'status':'rejected','reason':'stale_restart_record'}
         if kind=='hunt_claim':
@@ -310,6 +318,11 @@ class NativePort:
             return {'status':'accepted'}
         if kind=='keeper_control':
             self.keeper_intents[p.id]=intent
+            if self.config.version == 'native-rb/3':
+                observed = self.course_beliefs.get(p.id)
+                aux = intent.auxiliary
+                p.native_keeper_course_ms = (observed.captured_ms if observed and aux
+                                             and observed.revision == aux.belief_revision else None)
             self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'keeper'))
             return {'status':'accepted'}
         if kind=='release_arrow':
@@ -339,7 +352,10 @@ class NativePort:
             if kind!='draw_release' and intent.speed>limit+1e-9:return {'status':'rejected','reason':'throw_speed'}
             ans=self.geom.launch_for(origin,target,min(intent.speed,limit),9.81,.015) if kind!='draw_release' else None
             if kind!='draw_release' and ans is None:return {'status':'rejected','reason':'geometry'}
-            cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now+(600 if kind=='draw_release' else 250),
+            delay = 600 if kind == 'draw_release' else 250
+            if self.config.version == 'native-rb/3' and kind in ('pass', 'shoot'):
+                delay = self.own_release_ms(p)
+            cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now+delay,
                                'bow' if kind=='draw_release' else 'ball',ans[0] if ans else None)
             self.pending[p.id]={'cmd':cmd,'velocity':ans[0] if ans else None,'due':cmd.release_ms,'period':s.period}
             self.command_log.append(cmd)
@@ -347,6 +363,10 @@ class NativePort:
             if kind not in ('draw_release','restart_pass'):self.move[p.id]=(p.x,p.y)
             return {'status':'accepted','command':cmd}
         return {'status':'rejected','reason':'unknown_kind'}
+
+    def own_release_ms(self, player):
+        """Unrestrained thrown-pass and shot wind-up on the integer clock."""
+        return round(self.m.assume['pass_release_ms'] * (1.35 - .5 * player.a.ball_handling))
 
     def resolve(self,pid,status):
         p=self.pending.pop(pid,None)
@@ -364,6 +384,9 @@ class NativePort:
             if i.kind!='restart_pass' and s.ball.carrier!=pid:self.resolve(pid,'interrupted');continue
             if s.now<pend['due']:continue
             p=s.players[pid]
+            if i.kind == 'handoff':
+                self.rb317.execute_handoff(p, pend)
+                continue
             if i.kind=='restart_pass':
                 if s.restart is None:self.resolve(pid,'interrupted');continue
                 if s.restart.taker!=pid or i.record_id!=s.restart.native_id:self.resolve(pid,'rejected_taker_or_record');continue
@@ -410,8 +433,25 @@ class NativePort:
 
     def keeper_motor(self,targets):
         m,s=self.m,self.m.s
+        rb3 = self.config.version == 'native-rb/3'
+        actions = getattr(self, 'rb317', None)
         for p in s.players.values():
             if p.role!='keeper' or not p.active:continue
+            if actions and p.id in actions.blocks and actions.current(p.id, actions.blocks[p.id]):
+                continue  # The Keeper's current locomotion command is a block.
+            if rb3 and s.ball.carrier is None:
+                # Restart awards replace the Ball and can reuse its version.
+                marks = (s.ball.release_time, getattr(s.ball, 'course_time', -1))
+                flight = (s.ball.version, *marks)
+                timing = getattr(p, 'native_keeper_flight', None)
+                if timing is None or timing[0] != flight:
+                    previous = timing[1] if timing else -math.inf
+                    started = max((t for t in marks
+                                   if previous < t <= s.now and t >= 0), default=s.now)
+                    reaction = m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness)
+                    if p.speed > m.assume['keeper_set_mps']:
+                        reaction += m.assume['keeper_unset_s']
+                    p.native_keeper_flight = (flight, started, started+1000*reaction)
             launch=getattr(p,'c4c_launch',None)
             if launch:
                 if p.posture=='airborne' and s.now<launch['t_land']-.5:continue
@@ -423,7 +463,28 @@ class NativePort:
             i=self.keeper_intents.get(p.id)
             if i is None or i.auxiliary is None:targets[p.id]=(p.x,p.y);continue
             if s.ball.carrier==p.id:continue
-            cmd=plan_keeper_motor(i.auxiliary,body(p),now_ms=s.now,gravity=9.81)
+            if rb3 and i.auxiliary.kind == 'save':
+                observed_ms = getattr(p, 'native_keeper_course_ms', None)
+                if (s.ball.carrier is not None or observed_ms is None or
+                        observed_ms < p.native_keeper_flight[1] or
+                        s.now+1e-9 < p.native_keeper_flight[2]):
+                    targets[p.id] = (p.x, p.y)
+                    continue
+                # The forecast starts at capture, including both delivery
+                # latency and any remaining wait at the motor.
+                elapsed = max(0., (s.now-observed_ms)/1000)
+                course = tuple((t-elapsed, x, y, z) for t,x,y,z in i.auxiliary.course if t >= elapsed)
+                intent = replace(i.auxiliary, course=course)
+                cmd = plan_keeper_motor(
+                    intent, body(p), now_ms=s.now, gravity=m.assume['gravity'],
+                    pushoff_fraction=m.assume['keeper_pushoff_frac'],
+                    extension_fraction=m.assume['keeper_extension_frac'],
+                    launch_min_s=m.assume['keeper_launch_min_s'],
+                    dive_time_s=m.assume['keeper_dive_time_s'],
+                    dive_hand_fraction=m.assume['keeper_dive_hand_frac'],
+                    reach_factor=m.c4c_reach(p)/p.a.reach, match_lean=True)
+            else:
+                cmd=plan_keeper_motor(i.auxiliary,body(p),now_ms=s.now,gravity=9.81)
             if cmd.kind in ('hold','move','step','approach'):
                 targets[p.id]=cmd.target or (p.x,p.y)
                 if cmd.kind in ('step','approach'):p.c4c_plan=dict(kind='step',until=cmd.until_ms,target=cmd.target)
@@ -465,6 +526,11 @@ class NativePort:
             self.ball_motor()
         elif s.phase!=P.FINAL:
             span=min(self.config.dt_ms,max(1,e.next_deadline()-s.now))
+            if self.config.version == 'native-rb/3':
+                # Do not round a scheduled throw up to the next physics tick.
+                throw = self.pending.get(s.ball.carrier)
+                if throw and throw['cmd'].intent.kind in ('pass', 'shoot', 'handoff') and throw['due'] > s.now:
+                    span = min(span, throw['due'] - s.now)
             m.c3_step(span,self.move.copy());m.step_count+=1;m.record()
         if s.phase==P.FINAL:return
         m.c4c_land_due()

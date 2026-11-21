@@ -29,6 +29,30 @@ def build_core(config):
                   ("capacity=A['catch_arrest_force_N']*A['catch_hand_travel_m']*(.4+.9*skill)*max(0.,1-miss*miss)", 'capacity=self.native_catch_capacity(skill,miss)'),
                   ('secure=1/(1+(energy/capacity)**2)if capacity>1e-9 else 0.', 'secure=1/(1+(energy/capacity)**8)if capacity>1e-9 else 0.')]
     }
+    if config.version == 'native-rb/3':
+        patches['match'].append((
+            "top=p.a.maximum_speed*(.70+.30*p.fatigue)*((policy.pace*.90)if s.ball.carrier==p.id else.88)",
+            "top=p.a.maximum_speed*(.70+.30*p.fatigue)",
+        ))
+        if config.rb3_carrier_moves_enabled:
+            patches['match'].extend([
+                ("else:hd['pin_now']=0.",
+                 "else:hd['pin_now']=0.\n    lam*=self.rb318_strip_multiplier(car,end_ms)"),
+                ("J=(1+(eps if armed else 0.))*vn/(1/ma+1/mb)",
+                 "truck=self.rb318_truck(car,a,b,ua,ub,t,now_ms) if armed else False\n"
+                 "   J=(1+(eps if armed and not truck else 0.))*vn/(1/ma+1/mb)"),
+                ("self.c3_add(a,('shock',b.id),sa,lawful[b.id],now_ms);self.c3_add(b,('shock',a.id),sb,lawful[a.id],now_ms)",
+                 "self.c3_add(a,('shock',b.id),0. if truck and a is car else sa,lawful[b.id],now_ms);"
+                 "self.c3_add(b,('shock',a.id),0. if truck and b is car else sb,lawful[a.id],now_ms)"),
+            ])
+    from .rulebook.ball_ground import enabled as _rb320_enabled, PATCHES as _RB320, GEOMETRY_PATCHES as _RB320G
+    from .rulebook import ball_material as _rb321
+    if _rb321.enabled(config):            # RB-3.21: Beastball ball material everywhere (engine step and every forecast)
+        patches['match'].extend(_rb321.match_patches(ROOT))
+        patches.setdefault('geometry', []).extend(_rb321.geometry_patches(ROOT, _rb321.params(config)))
+    elif _rb320_enabled(config):          # RB-3.20a: exact ball-ground contact (defect fix), native-rb/3 only
+        patches['match'].extend(_RB320)
+        patches.setdefault('geometry', []).extend(_RB320G)
     for part in ('geometry','types','policies','engine','match'):
         path = ROOT/'core_src'/f'{part}.py'
         source = path.read_text()

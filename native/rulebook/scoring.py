@@ -4,6 +4,7 @@ from collections import Counter
 
 def install(co,cfg):
  E,T=co.engine.Engine,co.types;P=T.Phase
+ radius=cfg.carry_release_radius_m if cfg.version=='native-rb/3' else 0.
  old_init,old_release,old_acquire,old_award,old_follow=E.__init__,E.release,E.acquire,E.award,E.follow_carrier
  def init(self,*a,**kw):
   old_init(self,*a,**kw);self.rb_bands={t:Counter() for t in ('A','B')};self.rb_attempts=[]
@@ -16,10 +17,14 @@ def install(co,cfg):
    s=self.s;p=s.players[pid];d=math.hypot(s.ball.x-s.attack_goal(p.team),s.ball.y-50);key=band(d)
    # Release provenance survives touches/deflections but never secure control.
    s.ball.rb_release_team=p.team
-   if kind=='shot':
+   release_carry=d<radius
+   if release_carry:
+    key='carry'
+    self.rb_carry_attempt(p,force=True)
+   elif kind=='shot':
     s.ball.rb_release_band=key
     self.rb_bands[p.team][key+'_attempts']+=1
-   self.rb_attempts.append(dict(player=pid,team=p.team,distance=d,band=key,t_ms=s.now,kind=kind,shot_attempt=kind=='shot'))
+   self.rb_attempts.append(dict(player=pid,team=p.team,distance=d,band=key,t_ms=s.now,kind=kind,shot_attempt=kind=='shot' and not release_carry))
   return ok
  E.release=release
  def carry_attempt(self,holder,force=False):
@@ -73,13 +78,20 @@ def install(co,cfg):
    self.boundary(b.x,y);return False
   carry=bool(holder and holder.team==scoring)
   origin=getattr(b,'native_release_point',(b.x,b.y));distance=math.hypot(origin[0]-s.attack_goal(scoring),origin[1]-50)
+  release_carry=not own and holder is None and getattr(b,'rb_release_team',None)==scoring and distance<radius
+  carry=carry or release_carry
   key='own' if own else 'carry' if carry else getattr(b,'rb_release_band',band(distance))
   if carry:self.rb_carry_attempt(holder,force=True)
   if own or carry or getattr(b,'rb_release_band',None) is not None:
    self.rb_bands[scoring][key+'_goals']+=1
   if carry:self.native_stats[scoring]['carries']+=1
   elif not own:self.release_successes[scoring][int(distance)]+=1
-  self.add_score(scoring,self.rb.points(carry,distance,own),'own' if own else 'carry' if carry else 'release',release_distance=None if carry else distance,band=key)
+  fields=dict(release_carry=True) if release_carry else {}
+  if carry and holder and getattr(self,'rb318_stretch',None):
+   stretch=self.rb318_stretch(holder,self.s.now)
+   if stretch>0:self.emit('stretch_goal','RB-3.18',carrier=holder.id,team=holder.team,extension=stretch)
+  self.add_score(scoring,self.rb.points(carry,distance,own),'own' if own else 'carry' if carry else 'release',
+                 release_distance=distance if release_carry or not carry else None,band=key,**fields)
   if s.phase==P.FINAL:return True
   if s.game_ms<=0:self.end_period()
   else:self.award(defending,s.ends[defending]+s.attack_sign(defending)*40,50,'goal',fresh=True,normalize=False)

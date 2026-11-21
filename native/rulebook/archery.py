@@ -39,6 +39,10 @@ def install(co,cfg):
     # RB-3.5 ruling 2: the same for a release while a shot is in the air after the clock expired.
     s.quivers[p.team].last_release=s.now
     self.emit('arrow_inert','RB-3.4',player=pid,target=target,reason='dead_ball_release' if s.phase==P.DEAD else 'finishing_flight_release',refunded=True);return False
+   if getattr(self,'rb310_hold',None):
+    # RB-3.13 CANON: no arrow may be released until the snap hold is over: inert, no foul, not charged.
+    s.quivers[p.team].last_release=s.now
+    self.emit('arrow_inert','RB-3.13',player=pid,target=target,reason='snap_hold_release',refunded=True);return False
    # RB-3.4 rulings 1 and 3: judged at release; passive possession only (no team-control test).
    checks=dict(archer=p.role=='archer',archer_eligible=p.eligible(s.now),phase=s.phase==P.LIVE,hunt_not_cleared=self.hunt_cleared,
                stale_target=t is not None and t.role=='field' and t.team!=p.team,
@@ -50,7 +54,7 @@ def install(co,cfg):
    legal=all(checks.values())
    if not legal:self.emit('archery_target_diagnosis','RB-3.4-report',player=pid,target=target,failed=[k for k,v in checks.items() if not v],ball_status=self.possession.public().ball_status)
   else:
-   legal=(p.role=='archer' and p.eligible(s.now) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.role=='field' and t.team!=p.team and t.eligible(s.now) and s.now>t.immune_until and self.zone(t.x,t.y) is None and abs(t.x-s.ends[p.team])<=50 and self.possession.pp==t.team and self.possession.tc==t.team)
+   legal=(p.role=='archer' and p.eligible(s.now) and s.phase==P.LIVE and self.hunt_cleared and t is not None and t.role=='field' and t.team!=p.team and t.eligible(s.now) and s.now>t.immune_until and self.zone(t.x,t.y) is None and self.possession.pp==t.team and self.possession.tc==t.team)
   row=self.rb.arrow(p.team,legal);self.rb_publish(row);self.native_sync()
   s.quivers[p.team].last_release=s.now
   if not legal:self.foul(pid,target if t else None,'archery_target');return False
@@ -141,7 +145,6 @@ def install(co,cfg):
     events.append(T.Event('impact',target=target,data={'arrow':ar.id,'panel':panel,'kind':'ball' if target=='ball' else 'player'},at=int(f*ms)))
     self.e.emit('arrow_geometry_impact','RB-A:swept_relative',arrow=ar.id,target=target,panel=panel)
    elif ar.z<=0 or not(-30<=ar.x<=130 and -40<=ar.y<=140):
-    ar.live=False
-    if v3:self.e.emit('arrow_miss','RB-3.3-report',arrow=ar.id,position=[ar.x,ar.y,max(0,ar.z)]) # log only
+    ar.live=False;self.e.emit('arrow_miss','RB-3.3-report',arrow=ar.id,position=[ar.x,ar.y,max(0,ar.z)]) # log only
   return events
  M.advance_arrows=arrows

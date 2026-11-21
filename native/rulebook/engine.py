@@ -84,6 +84,10 @@ def install(co,cfg):
             return True
         return old_assert(self)
     E.assert_invariants=invariants
+    from .ball_ground import install as install_ball_ground
+    install_ball_ground(co,cfg)
+    from .ball_material import install as install_ball_material
+    install_ball_material(co,cfg)
     from .substitutions import install as install_substitutions
     install_substitutions(co,cfg)
     from .discipline import install as install_discipline
@@ -94,13 +98,14 @@ def install(co,cfg):
     install_scoring(co,cfg)
     from .review import install as install_review
     install_review(co,cfg)
-    if cfg.version == 'native-rb/3':
-        from .period_start import install as install_period_start
-        install_period_start(co,cfg)
-        from .zone_residence import install as install_zone_residence
-        install_zone_residence(co,cfg)
-        from .report_fields import install as install_report_fields
-        install_report_fields(co,cfg)
+    from .period_start import install as install_period_start
+    install_period_start(co,cfg)
+    from .zone_residence import install as install_zone_residence
+    install_zone_residence(co,cfg)
+    from .formation import install as install_formation
+    install_formation(co,cfg)
+    from .report_fields import install as install_report_fields
+    install_report_fields(co,cfg)
     from functools import wraps
     def terminal(fn):
         @wraps(fn)

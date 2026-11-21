@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import math
 from native.config import NativeConfig,POCKET
 
 _RB_POCKET_OVERRIDES=dict(arrow_speed=250.,arrow_limit=None,player_speed=44.7,inner_zone_radius=10.,inner_points=2,release_points=3,outside_points=4,carry_value=5)
@@ -52,8 +53,60 @@ class RulebookConfigV3(RulebookConfig):
     defender_baseline: bool = True
     defender_mark_distance_m: float = 5.0
     defender_ball_leash_m: float = 25.0
+    # RB-3.22 (owner CANON, 'everything on by default'): the ACCEPTED RB-3.21 baseline is the default; each stays switchable.
+    rb3_handoff_block_enabled: bool = True
+    rb3_carrier_moves_enabled: bool = True
+    carry_release_radius_m: float = 3.0
+    # RB-3.19 BEHAVIORAL (cognition only, PROVISIONAL): keep the ball in play. rb319_parts lists the enabled steps (A1 toss speed and lane,
+    # A2 boundary awareness, A3 missed-ball pursuit, A4 pass depth safety). OFF (default) is the exact RB-3.18 effective configuration.
+    rb319_ball_in_play_enabled: bool = True
+    rb319_parts: str = 'A1A2A3A4'
+    # RB-3.20a DEFECT FIX (engine, PROVISIONAL): exact ball-ground contact inside the step (native/rulebook/ball_ground.py).
+    # False is the exact RB-3.19 effective configuration and physics.
+    rb320_exact_bounce: bool = True
+    # RB-3.21 BALL MATERIAL (owner ruling 21 Nov 2026: Beastball's ball is a fictional material; lead-set values, PROVISIONAL).
+    # Model and use: native/rulebook/ball_material.py (engine step, predict_path, launch_for, c4c_path, the Native Keeper's course).
+    # Design basis (lead targets): T-B1 level 35 m/s from 1.5 m rests after 38-45 m; T-B2 level 50 m/s rests within 60 m;
+    # T-B3 a 58 m/s shot keeps >= 90% of its speed over 20 m of flight; T-B4 a 20 m/s pass at the normal launch angle rests within
+    # 25 m. Values: the gentlest grid point meeting all four (least change from the previous engine: horizontal .76, restitution
+    # .7746, roll ~exp(-3t) ~ 3 m/s^2 at 1 m/s, drag ~0), searched in native/evidence/rb321/material_search.py.
+    rb321_ball_material_enabled: bool = True
+    rb321_ball_drag_k: float = .0005        # 1/m, quadratic air drag dv/dt = -k|v|v
+    rb321_ball_bounce_h: float = .44        # horizontal speed kept per bounce (was .76)
+    rb321_ball_restitution: float = .6      # vertical restitution (was .7746)
+    rb321_ball_roll_decel: float = 3.0      # m/s^2, constant rolling resistance (was v *= 1 - 3 dt)
+    # RB-3.22 talent source (ENGINEERING, diagnosis only): how the NBL roster loader fills ratings. Applied when the roster is
+    # loaded (native/nbl_roster.load_canon_nbl via native.rulebook.reach_run --override); recorded here so the run is labelled.
+    rb322_technical_source: str = 'ovr'       # 'ovr' (Opening-day OVR/100) | 'neutral' (.784 for every player)
+    rb322_physical_source: str = 'roster'     # 'roster' | 'neutral' (league mean of each of the nine physical ratings)
+
+    def record(self):
+        record = super().record()
+        if not self.rb3_handoff_block_enabled:
+            # OFF is the exact RB-3.16 effective configuration.
+            record.pop('rb3_handoff_block_enabled')
+        if not self.rb3_carrier_moves_enabled:
+            record.pop('rb3_carrier_moves_enabled')
+        if self.carry_release_radius_m == 0:
+            record.pop('carry_release_radius_m')
+        if self.rb322_technical_source == 'ovr':
+            record.pop('rb322_technical_source')
+        if self.rb322_physical_source == 'roster':
+            record.pop('rb322_physical_source')
+        if not self.rb321_ball_material_enabled:
+            for key in ('rb321_ball_material_enabled', 'rb321_ball_drag_k', 'rb321_ball_bounce_h', 'rb321_ball_restitution', 'rb321_ball_roll_decel'):
+                record.pop(key)
+        if not self.rb320_exact_bounce:
+            record.pop('rb320_exact_bounce')
+        if not self.rb319_ball_in_play_enabled:
+            record.pop('rb319_ball_in_play_enabled'); record.pop('rb319_parts')
+        return record
 
     def __post_init__(self):
+        if self.rb322_technical_source not in ('ovr', 'neutral') or self.rb322_physical_source not in ('roster', 'neutral'):
+            raise ValueError('rb322 talent source must be ovr|neutral and roster|neutral')
+        if not math.isfinite(self.carry_release_radius_m) or self.carry_release_radius_m < 0:
+            raise ValueError('carry release radius must be finite and nonnegative')
         if self.thaw_contact_buffer_ms<0:raise ValueError('thaw_contact_buffer_ms must be >= 0')
         if self.defender_mark_distance_m<=0 or self.defender_ball_leash_m<=0:raise ValueError('defender baseline distances must be positive')
         if self.zone_residence_ms<=0 or self.zone_marked_distance_m<0:raise ValueError('zone residence parameters out of range')

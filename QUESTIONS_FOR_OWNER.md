@@ -118,3 +118,47 @@ ATTR-1 implements the owner-ratified proportional speed curve and records the fo
 | Q-RB36-1 | Freeze recovery (a frozen player in a Keeper Zone may not act until 2 s after thaw and 3 m back toward his own end from the freeze spot) is checked against his current position every time and never completes. A recovered player who later steps forward past that line inside any zone is blocked again, for the rest of the match. Should recovery, once met, be complete? | CANON / ENGINEERING (rules layer, Codex). Unchanged here (no rule change this round); cognition keeps behind the line while in a zone. |
 | Q-RB36-2 | A player frozen within 3 m of his own end line can never retreat 3 m, so he can never act inside that zone again and is called for zone_unmarked repeatedly (32 of the 39 remaining calls). | CANON: what does recovery require next to the end line? |
 | Q-RB36-3 | The defender baseline holds 77-80% of defender live time (per-defender median 77-80%; leash 35 m: 86%; leash 15 m: 67%). The rest is time in transit to a new mark or behind the ball after a turnover. | BEHAVIORAL note; constants are PRIMITIVE. |
+
+## RB-3.9 provisional (claude/rb-3-9-offense-fixes, 19 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB39-1 | Nose tackle 2 m from the ball (your tunable default): his reach covers the snap as it leaves the snapper's hand, and he takes 121-178 snaps per match, most of the scrimmage interceptions (snap interception 42-52% after the fix, 40-49% before). | CANON: nose-tackle distance (or may he not touch the ball until it has travelled?). Kept at 2 m as ruled; not tuned. |
+| Q-RB39-2 | Designated receiver choice: "existing receiver valuation" has no lane to value in a set formation. Implemented: the eligible field teammate nearest the receiver spot, tie by id. | BEHAVIORAL / CANON detail. |
+| Q-RB39-3 | Offense players keep their y and stand 1 m behind the line; those near y = 50 stand in the snap lane and often catch the snap themselves (possession kept). Should the lane to the receiver be kept clear? | CANON detail. |
+| Q-RB39-4 | The ruling lists first tackle, score, toss-timeout awards and period starts. Implemented for every scrimmage and snap40 (also second-tackle turnovers, offside retakes, defence/offence minors, zone-rule awards, majors). | CANON scope. |
+| Q-RB39-5 | Major fouls at the goal line (spot on the end line) are now moved to 10 m by the [10, 90] clamp. | CANON. |
+| Q-RB39-6 | Offside retakes of a first-tackle scrimmage keep the tackler, so they keep the nose tackle. | CANON detail. |
+| Q-RB39-7 | Formation placement also moves frozen players (procedural placement). | CANON detail. |
+| Q-RB39-8 | B-1 (distance-chosen speed) is applied to open-play passes and the formation snap; toss throws keep the previous speed. | BEHAVIORAL scope. |
+| Q-RB39-9 | Attackers now exit the zone they attack at 4 s; defenders keep the 3 s exit (baseline unchanged). zone_residence calls persist (9-14 per match), almost all off-ball attackers, before and after stage 3. | BEHAVIORAL follow-up; not addressed. |
+| Q-RB39-10 | No R31-1 watchdog exists on 185b557; a log-only restart_repeat_report (same kind and spot 3 times without a possession change) was added. Field length is not a config value; 100 m is used. | ENGINEERING note. |
+
+## RB-3.10 provisional (claude/rb-3-10-formation-hold, 19 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB310-1 | The tackler lines up across the snapper on y = 50 at the near edge of the neutral zone, outside it (your bracketed interpretation). | CANON confirm. Implemented as stated. |
+| Q-RB310-2 | Hold scope: every player is pinned, including the receiver's locomotion. The snapper's throw and the receiver's catch (the engine's catch reach) are unaffected. Any touch by any player ends the hold, not only the receiver's. Archers may still shoot during the hold. | CANON confirm. |
+| Q-RB310-3 | The receiver designation hook is a team-level setting (`port.receiver_designation[team]`, an id or a callable over public state), not an athlete decision. | ENGINEERING/BEHAVIORAL; tactics layer to use it. |
+| Q-RB310-4 | Auto-unfreeze applies only to players frozen at the formation. Players already thawed but still arrow-immune keep their immunity. | CANON confirm. |
+| Q-RB310-5 | Residence around a scrimmage near a goal: see ZONE_RESIDENCE_DIAGNOSIS.md, Z-1. | CANON. |
+
+## RB-3.11 Part A provisional (claude/rb-3-11-zone-behavior, 19 Nov 2026)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB311-1 | "Involved in the play" for an off-ball attacker is exactly three things: designated receiver (before the catch), intended pass target, within 8 m of the carrier. An attacker chasing a LOOSE ball (a rebound after a shot) is therefore not involved and is kept out of the zone he attacks. | CANON/BEHAVIORAL: should loose-ball pursuit count as involvement? Implemented as written. |
+| Q-RB311-2 | A pass can reach an attacker deep in the zone late in his clock. Passers cannot see the receiver's clock. In real seed 3 two carriers were called at 5.03-5.05 s this way (the Keeper in the carry lane, 1.6 s left, he first chose to score, then one 0.5 s decision later to exit, and was called before either). | BEHAVIORAL/CANON: may a receiver whose clock is nearly out be passed to? Not addressed. |
+| Q-RB311-3 | Z-4 chooses between closing on a mark and leaving by the shorter time. If the mark runs away there may then be no time left to leave (traced: zone_unmarked at 5.06 s after a switch from "close on mark" to "leave" 0.5 s before the limit). Should leaving be preferred whenever it is feasible? | BEHAVIORAL. Implemented as specified (shorter time). |
+| Q-RB311-4 | The 3 s fixed exit (defenders) and the 4 s fixed exit (attackers) no longer exist on native-rb/3; they remain unchanged on every other profile. | Note. |
+| Q-RB311-5 | The designated receiver is shown in the athletes' view during the snap hold (public formation information), so he can be recognised before the catch. | CANON detail: the formation is public. |
+| Q-RB311-6 | Z-4 uses the believed positions of opposing field players (tracks at most 600 ms old) to decide "marked"; the rule uses true positions, so a defender can be unmarked by the rule while believing he is marked. | Note. |
+
+## RB-3.12 (provisional, branch claude/rb-3-12-carrier-valuation)
+| ID | Question / replaceable default | Class and current handling |
+|---|---|---|
+| Q-RB312-1 | Receiver-clock penalty: you said "subtract value" without an amount. Default: a flat 4.0 for any teammate inside the zone he attacks with under 2 s left (RECEIVER_CLOCK_PENALTY). | BEHAVIORAL default; amount needed. |
+| Q-RB312-2 | The passer reads teammates' zone clocks (view.mate_zone_ms). Treated as public information (visible on the officials' clock). Confirm, or give a belief-based estimate. | Canon question. |
+| Q-RB312-3 | Close-vs-leave "tie": implemented as a difference under 0.05 s (CLOSE_LEAVE_TIE_S); within 0.3 s the faster option wins; on a tie he leaves if the mark is moving away. Is 0.05 s the intended tie? | BEHAVIORAL default. |
+| Q-RB312-4 | "Reach in time" for a defender's reason to stay: an unmarked opponent in or within 5 m of the zone whose time-to-cover (to the 0.7 x marking-distance standoff) is shorter than the time left. | BEHAVIORAL default. |
+| Q-RB312-5 | The shoot branch is unchanged (instruction) but carry values now reach about 13, so shots are outvalued by carries. Shot releases rose 212 -> 356 but see SUMMARY: carry attempts and goals rose, passes fell by two thirds. Should shooting be revalued? | Owner decision. |
+| Q-RB312-6 | E-3 corridor half-width 5.76 m (real) / 4.70 m (control) moves many offence players off the snap lane; first touch is now the receiver in 50/50 scrimmages. Is the width acceptable, or should the margin (1 m) be smaller? | BEHAVIORAL default. |
+| Q-RB312-7 | WORSE: open-play pass completion fell from 0.78-0.82 to 0.42-0.45 and interceptions rose (513 -> 541 on far fewer passes). The new pass valuation sends passes into traffic. Carrying and scoring improved. Do you want pass-lane valuation retuned? (Not tuned: no tuning beyond spec.) | Owner decision. |

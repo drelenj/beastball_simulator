@@ -1,0 +1,464 @@
+{
+  "native/evidence/rb314/runs": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb314/runs/real/raw-real-seed01.json",
+      "status": "final",
+      "score": {
+        "A": 24,
+        "B": 16
+      },
+      "trace_hash": "517baf322a9081ba159170848360425eb175e5ef3cbafaed022f229b66d1e8b2",
+      "state_hash": "da85176ce1e2325dc3673b90791134146fee21a043d01188d21e7004fd99ac31",
+      "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+      "shots": {
+        "keeper": 21,
+        "opponent": 26,
+        "other": 4,
+        "scored": 6
+      },
+      "passes": {
+        "other": 183,
+        "opponent": 53
+      },
+      "interceptions_within_3m": 28,
+      "tackles": 200,
+      "carries": {
+        "A": {
+          "attempts": 39,
+          "goals": 2
+        },
+        "B": {
+          "attempts": 35,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 173,
+        "B": 174
+      }
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb314/runs/real/raw-real-seed03.json",
+      "status": "final",
+      "score": {
+        "A": 30,
+        "B": 43
+      },
+      "trace_hash": "02cbdb2ce8a7e725f7f0b2e4663859d0b854219cc801e9e5af6bd594073f5737",
+      "state_hash": "fafe0d943e8eb513896954af4a5926bf3ce5100ea416dd590edfcf8fa33f0430",
+      "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+      "shots": {
+        "other": 13,
+        "opponent": 15,
+        "keeper": 21,
+        "scored": 9
+      },
+      "passes": {
+        "other": 192,
+        "opponent": 52
+      },
+      "interceptions_within_3m": 26,
+      "tackles": 222,
+      "carries": {
+        "A": {
+          "attempts": 47,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 51,
+          "goals": 5
+        }
+      },
+      "possessions": {
+        "A": 179,
+        "B": 178
+      }
+    },
+    {
+      "case": "real-seed05",
+      "raw_log": "native/evidence/rb314/runs/real/raw-real-seed05.json",
+      "status": "final",
+      "score": {
+        "A": 15,
+        "B": 35
+      },
+      "trace_hash": "e28fffde303c84d1b3a1d2493aa30201cde65876c19ff6d822879a43b8e64b49",
+      "state_hash": "5c8114e1f591f350add62b7810b10fb1fbf78d373016a444a00281381610655c",
+      "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+      "shots": {
+        "keeper": 31,
+        "opponent": 25,
+        "other": 10,
+        "scored": 9
+      },
+      "passes": {
+        "other": 168,
+        "opponent": 59
+      },
+      "interceptions_within_3m": 30,
+      "tackles": 232,
+      "carries": {
+        "A": {
+          "attempts": 52,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 40,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 185,
+        "B": 185
+      }
+    },
+    {
+      "case": "control-seed01",
+      "raw_log": "native/evidence/rb314/runs/control/raw-control-seed01.json",
+      "status": "final",
+      "score": {
+        "A": 10,
+        "B": 13
+      },
+      "trace_hash": "e5308509d7f8e839439bcc7c5a77e5c899ec8e2d81300921dab6cf4b685258c6",
+      "state_hash": "86bbd6754ceecb774f7824b77987f5d370a4585303d289981679d8c889c7fe7e",
+      "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+      "shots": {
+        "keeper": 27,
+        "opponent": 13,
+        "other": 12,
+        "scored": 1
+      },
+      "passes": {
+        "other": 171,
+        "opponent": 63
+      },
+      "interceptions_within_3m": 32,
+      "tackles": 242,
+      "carries": {
+        "A": {
+          "attempts": 46,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 37,
+          "goals": 0
+        }
+      },
+      "possessions": {
+        "A": 181,
+        "B": 181
+      }
+    }
+  ],
+  "native/evidence/rb3-reach/audit": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb3-reach/audit/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 26,
+        "B": 18
+      },
+      "trace_hash": "b39086bd7dae713e29b35b3a954f74842fd5fc03a70fec46ede864c91c805985",
+      "state_hash": "174042701b4376efe01ae3cd96290578dca91f4ea415fb1ae075c1ab3528135e",
+      "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+      "shots": {
+        "keeper": 34,
+        "opponent": 24,
+        "other": 16,
+        "scored": 9
+      },
+      "passes": {
+        "other": 173,
+        "opponent": 50
+      },
+      "interceptions_within_3m": 28,
+      "tackles": 196,
+      "carries": {
+        "A": {
+          "attempts": 54,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 36,
+          "goals": 0
+        }
+      },
+      "possessions": {
+        "A": 176,
+        "B": 177
+      }
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb3-reach/audit/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 10,
+        "B": 37
+      },
+      "trace_hash": "dc2ce7f2b4c0584cabecd3ebf1cd1db9215c5e6fb02655431c1802bf94ac204a",
+      "state_hash": "e6085f9c970f80c7ead60307a5f00b28110c96e0c901d34ce6e91c9112544ae7",
+      "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+      "shots": {
+        "keeper": 17,
+        "opponent": 17,
+        "scored": 2,
+        "other": 8
+      },
+      "passes": {
+        "other": 158,
+        "opponent": 45
+      },
+      "interceptions_within_3m": 17,
+      "tackles": 165,
+      "carries": {
+        "A": {
+          "attempts": 30,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 44,
+          "goals": 6
+        }
+      },
+      "possessions": {
+        "A": 172,
+        "B": 172
+      }
+    },
+    {
+      "case": "real-seed05",
+      "raw_log": "native/evidence/rb3-reach/audit/real/raw-real-seed05.json.gz",
+      "status": "final",
+      "score": {
+        "A": 5,
+        "B": 33
+      },
+      "trace_hash": "04ccb1e39ccbd512ac144a6c95f54482ab3b20c65c0b4fefe56a23607e482834",
+      "state_hash": "12ca8c24c6f290bfa7679a24d07e2c3d8b894a215fc7f139339533295b193a56",
+      "config_digest": "d5f9527ea0a7432f931c6d91e55d58c55a04926b79dbe471934874b525b8b785",
+      "shots": {
+        "scored": 6,
+        "keeper": 26,
+        "opponent": 14,
+        "other": 7
+      },
+      "passes": {
+        "other": 209,
+        "opponent": 63
+      },
+      "interceptions_within_3m": 33,
+      "tackles": 222,
+      "carries": {
+        "A": {
+          "attempts": 48,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 39,
+          "goals": 3
+        }
+      },
+      "possessions": {
+        "A": 176,
+        "B": 175
+      }
+    },
+    {
+      "case": "control-seed01",
+      "raw_log": "native/evidence/rb3-reach/audit/control/raw-control-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 13,
+        "B": 27
+      },
+      "trace_hash": "d1e6edb8109ad3cfaca6892cfe1c7bab85c8035c116f0b6c78227491098315be",
+      "state_hash": "42bcb8a55f5f3ce90bb617fcc3418668084a43feb8561ca742e73947937310b6",
+      "config_digest": "46ab6f709dd5a4fe0e74c2aa655945e58bf91cdb025a200e80255c2de4ca5e72",
+      "shots": {
+        "scored": 7,
+        "keeper": 20,
+        "other": 6,
+        "opponent": 21
+      },
+      "passes": {
+        "other": 197,
+        "opponent": 51
+      },
+      "interceptions_within_3m": 23,
+      "tackles": 169,
+      "carries": {
+        "A": {
+          "attempts": 32,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 39,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 162,
+        "B": 163
+      }
+    }
+  ],
+  "native/evidence/rb3-reach/corrected": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb3-reach/corrected/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 43,
+        "B": 66
+      },
+      "trace_hash": "be2543354c7a90ea0502002edf8758df13e1c84bca331dfd0ab294ea74db4a40",
+      "state_hash": "a07729d72bbcb774942761abcda4a2ffba282dfe65fc8e8e65e6e157188435fa",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "keeper": 22,
+        "scored": 21,
+        "opponent": 11,
+        "other": 6
+      },
+      "passes": {
+        "other": 246,
+        "opponent": 55
+      },
+      "interceptions_within_3m": 3,
+      "tackles": 63,
+      "carries": {
+        "A": {
+          "attempts": 58,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 53,
+          "goals": 2
+        }
+      },
+      "possessions": {
+        "A": 223,
+        "B": 224
+      }
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb3-reach/corrected/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 57,
+        "B": 88
+      },
+      "trace_hash": "1f9fc27effd5ae3fb16578360445bb40e3f8abfc31f279127f9149fff2e06302",
+      "state_hash": "5494ee1b9918af64650f045faafc4c0407ee63ea70ba58355df983d71d1714d6",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "other": 10,
+        "keeper": 35,
+        "scored": 34,
+        "opponent": 13
+      },
+      "passes": {
+        "other": 314,
+        "opponent": 72
+      },
+      "interceptions_within_3m": 9,
+      "tackles": 54,
+      "carries": {
+        "A": {
+          "attempts": 44,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 66,
+          "goals": 2
+        }
+      },
+      "possessions": {
+        "A": 241,
+        "B": 240
+      }
+    },
+    {
+      "case": "real-seed05",
+      "raw_log": "native/evidence/rb3-reach/corrected/real/raw-real-seed05.json.gz",
+      "status": "final",
+      "score": {
+        "A": 51,
+        "B": 60
+      },
+      "trace_hash": "9523b377bc7825258750661f188c78e9365e4436ac52923c699f41388db3d886",
+      "state_hash": "bdbdebffa7743ea11dde8120df9fb1f709e48261a4b4ccd7300e22b85efdf214",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "scored": 26,
+        "keeper": 23,
+        "other": 8,
+        "opponent": 6
+      },
+      "passes": {
+        "other": 309,
+        "opponent": 67
+      },
+      "interceptions_within_3m": 10,
+      "tackles": 57,
+      "carries": {
+        "A": {
+          "attempts": 67,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 50,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 244,
+        "B": 244
+      }
+    },
+    {
+      "case": "control-seed01",
+      "raw_log": "native/evidence/rb3-reach/corrected/control/raw-control-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 59,
+        "B": 83
+      },
+      "trace_hash": "653255757612eb1ae651125ec9478f503fdb68c4e9098a8ea10519562d847c7a",
+      "state_hash": "5ae6962f5c0b24e8582a49358f4844d44e3cde47cce08380044da484019cc061",
+      "config_digest": "419f79e62e879fcf33471839b3c2ad27450f95fa10a37aed92b70a02d14a313d",
+      "shots": {
+        "scored": 26,
+        "other": 8,
+        "keeper": 20,
+        "opponent": 8
+      },
+      "passes": {
+        "other": 256,
+        "opponent": 51
+      },
+      "interceptions_within_3m": 6,
+      "tackles": 78,
+      "carries": {
+        "A": {
+          "attempts": 53,
+          "goals": 2
+        },
+        "B": {
+          "attempts": 51,
+          "goals": 2
+        }
+      },
+      "possessions": {
+        "A": 210,
+        "B": 211
+      }
+    }
+  ]
+}

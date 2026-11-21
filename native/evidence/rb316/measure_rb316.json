@@ -1,0 +1,172 @@
+{
+ "real1": {
+  "score": [
+   74,
+   92
+  ],
+  "play_points": [
+   66,
+   91
+  ],
+  "award_points": [
+   8,
+   1
+  ],
+  "points_by_method": {
+   "release": 135,
+   "own": 2,
+   "carry": 20
+  },
+  "possessions": [
+   228,
+   226
+  ],
+  "attempt_share": [
+   0.237,
+   0.204
+  ],
+  "shots": 64,
+  "shot_shares": {
+   "scored": 54.7,
+   "keeper": 25.0,
+   "out/award": 10.9,
+   "own": 7.8,
+   "field": 1.6
+  },
+  "passes": 334,
+  "pass_intercepted_pct": 13.8,
+  "intercepted_within_3m": 6,
+  "tackles": 82,
+  "carries": [
+   118,
+   4
+  ]
+ },
+ "real3": {
+  "score": [
+   42,
+   92
+  ],
+  "play_points": [
+   39,
+   85
+  ],
+  "award_points": [
+   3,
+   7
+  ],
+  "points_by_method": {
+   "release": 114,
+   "carry": 10
+  },
+  "possessions": [
+   217,
+   217
+  ],
+  "attempt_share": [
+   0.166,
+   0.249
+  ],
+  "shots": 70,
+  "shot_shares": {
+   "scored": 44.3,
+   "keeper": 28.6,
+   "own": 11.4,
+   "out/award": 10.0,
+   "field": 5.7
+  },
+  "passes": 309,
+  "pass_intercepted_pct": 19.1,
+  "intercepted_within_3m": 10,
+  "tackles": 68,
+  "carries": [
+   99,
+   2
+  ]
+ },
+ "real5": {
+  "score": [
+   84,
+   60
+  ],
+  "play_points": [
+   69,
+   58
+  ],
+  "award_points": [
+   15,
+   2
+  ],
+  "points_by_method": {
+   "release": 120,
+   "own": 2,
+   "carry": 5
+  },
+  "possessions": [
+   201,
+   201
+  ],
+  "attempt_share": [
+   0.264,
+   0.199
+  ],
+  "shots": 62,
+  "shot_shares": {
+   "scored": 51.6,
+   "keeper": 29.0,
+   "own": 11.3,
+   "out/award": 4.8,
+   "field": 3.2
+  },
+  "passes": 311,
+  "pass_intercepted_pct": 14.1,
+  "intercepted_within_3m": 11,
+  "tackles": 88,
+  "carries": [
+   111,
+   1
+  ]
+ },
+ "control1": {
+  "score": [
+   68,
+   55
+  ],
+  "play_points": [
+   67,
+   54
+  ],
+  "award_points": [
+   1,
+   1
+  ],
+  "points_by_method": {
+   "release": 111,
+   "carry": 10
+  },
+  "possessions": [
+   206,
+   206
+  ],
+  "attempt_share": [
+   0.17,
+   0.16
+  ],
+  "shots": 61,
+  "shot_shares": {
+   "scored": 44.3,
+   "keeper": 18.0,
+   "own": 14.8,
+   "field": 11.5,
+   "out/award": 11.5
+  },
+  "passes": 292,
+  "pass_intercepted_pct": 19.2,
+  "intercepted_within_3m": 4,
+  "tackles": 75,
+  "carries": [
+   92,
+   2
+  ]
+ }
+}
