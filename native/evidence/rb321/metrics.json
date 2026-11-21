@@ -1,0 +1,378 @@
+{
+ "m": {
+  "per_match": {
+   "control-seed01": {
+    "actions": {
+     "block_engaged": 45,
+     "handoff_complete": 238,
+     "stiff_arm": 159,
+     "stretch_goal": 3,
+     "truck": 64,
+     "truck_broken": 3
+    },
+    "boundaries": 57,
+    "boundary_after": {
+     "carrier": 31,
+     "pass": 17,
+     "shot": 9
+    },
+    "handoffs": 238,
+    "missed": 173,
+    "missed_end_median_m": 21.0,
+    "missed_exit_median_m": 21.0,
+    "missed_exit_median_s": 1.17,
+    "missed_exits": 17,
+    "missed_recovered": 76,
+    "passes": 253,
+    "points_by_method": {
+     "carry": 20,
+     "release": 108
+    },
+    "possessions_per_team": 142.5,
+    "score": {
+     "A": 55,
+     "B": 79
+    },
+    "state_hash": "b28b5ba40f82c6d0d601af8dc6a8a86e0b3dcad763df14b6c75da83cd6645676",
+    "steps": 33097,
+    "trace_hash": "b4f5ed690665f894ad06560b1108a83f9b556b9cfe50e56463fdc39adb9f523b"
+   },
+   "real-seed01": {
+    "actions": {
+     "block_engaged": 62,
+     "handoff_complete": 257,
+     "stiff_arm": 166,
+     "stretch_goal": 2,
+     "truck": 60,
+     "truck_broken": 8
+    },
+    "boundaries": 77,
+    "boundary_after": {
+     "carrier": 48,
+     "pass": 19,
+     "shot": 9,
+     "toss": 1
+    },
+    "handoffs": 257,
+    "missed": 164,
+    "missed_end_median_m": 22.4,
+    "missed_exit_median_m": 36.9,
+    "missed_exit_median_s": 1.52,
+    "missed_exits": 19,
+    "missed_recovered": 77,
+    "passes": 250,
+    "points_by_method": {
+     "carry": 10,
+     "release": 116
+    },
+    "possessions_per_team": 144.0,
+    "score": {
+     "A": 57,
+     "B": 76
+    },
+    "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+    "steps": 32528,
+    "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072"
+   },
+   "real-seed03": {
+    "actions": {
+     "block_engaged": 53,
+     "handoff_complete": 258,
+     "stiff_arm": 126,
+     "stretch_goal": 5,
+     "truck": 69,
+     "truck_broken": 12
+    },
+    "boundaries": 67,
+    "boundary_after": {
+     "carrier": 45,
+     "pass": 16,
+     "shot": 6
+    },
+    "handoffs": 258,
+    "missed": 202,
+    "missed_end_median_m": 21.0,
+    "missed_exit_median_m": 33.0,
+    "missed_exit_median_s": 1.42,
+    "missed_exits": 16,
+    "missed_recovered": 100,
+    "passes": 285,
+    "points_by_method": {
+     "carry": 25,
+     "release": 150
+    },
+    "possessions_per_team": 150.0,
+    "score": {
+     "A": 64,
+     "B": 117
+    },
+    "state_hash": "19dc3a43d6be47264b57d0eab25948cfe43903165c85dc5c8575c50e0f730565",
+    "steps": 31752,
+    "trace_hash": "4ae3525dadd2f463c9337f7f76f879fae3d6298f740baf6f023dd95698ec6db9"
+   },
+   "real-seed05": {
+    "actions": {
+     "block_engaged": 75,
+     "handoff_complete": 254,
+     "stiff_arm": 150,
+     "stretch_goal": 7,
+     "truck": 60,
+     "truck_broken": 7,
+     "truck_stopped": 2
+    },
+    "boundaries": 75,
+    "boundary_after": {
+     "carrier": 56,
+     "pass": 13,
+     "shot": 6
+    },
+    "handoffs": 254,
+    "missed": 188,
+    "missed_end_median_m": 18.4,
+    "missed_exit_median_m": 32.0,
+    "missed_exit_median_s": 1.54,
+    "missed_exits": 13,
+    "missed_recovered": 78,
+    "passes": 287,
+    "points_by_method": {
+     "carry": 35,
+     "release": 150
+    },
+    "possessions_per_team": 162.0,
+    "score": {
+     "A": 99,
+     "B": 95
+    },
+    "state_hash": "8f78544774717c46aec571fa37f054b9ab0f9dfa5419248b0bb250e4c0460160",
+    "steps": 32743,
+    "trace_hash": "953c2c79f7283c9fca4de4c2538f372d1627555e6a04018935559effbef4e74d"
+   }
+  },
+  "summary": {
+   "real_end_causes_pct": {
+    "award: first_tackle": 0.3,
+    "award: possession_expiry": 1.1,
+    "award: turnover": 0.2,
+    "boundary: carrier stepped out": 1.2,
+    "boundary: other out (last touch own)": 14.9,
+    "boundary: pass went out (last touch own)": 5.3,
+    "boundary: restart throw went out (last touch own)": 0.1,
+    "boundary: shot missed out": 1.9,
+    "foul: major": 0.1,
+    "goal scored": 14.5,
+    "lost in play: ball loose at tackle/grounding": 0.1,
+    "lost in play: carrier frozen by arrow (ball loose)": 10.6,
+    "lost in play: pass intercepted or loose after pass": 24.8,
+    "lost in play: restart throw intercepted or loose": 6.6,
+    "lost in play: shot saved/recovered by defence": 5.7,
+    "lost in play: strip": 1.4,
+    "period/match end": 0.9,
+    "second tackle": 7.9,
+    "zone rule (ZR-*/zone_residence)": 2.4
+   },
+   "real_median_team_score": 85.5,
+   "real_missed_end_median_m": 20.6,
+   "real_missed_exit_median_m": 32.1,
+   "real_missed_exit_median_s": 1.5,
+   "real_possessions_per_team": 152.0,
+   "real_scores": [
+    57,
+    76,
+    64,
+    117,
+    99,
+    95
+   ]
+  }
+ },
+ "p1": {
+  "per_match": {
+   "control-seed01": {
+    "actions": {
+     "block_engaged": 69,
+     "handoff_complete": 379,
+     "stiff_arm": 108,
+     "stretch_goal": 4,
+     "truck": 83,
+     "truck_broken": 12,
+     "truck_stopped": 1
+    },
+    "boundaries": 104,
+    "boundary_after": {
+     "carrier": 32,
+     "pass": 66,
+     "shot": 4,
+     "toss": 2
+    },
+    "handoffs": 379,
+    "missed": 171,
+    "missed_end_median_m": 31.1,
+    "missed_exit_median_m": 52.6,
+    "missed_exit_median_s": 2.09,
+    "missed_exits": 66,
+    "missed_recovered": 55,
+    "passes": 273,
+    "points_by_method": {
+     "carry": 20,
+     "own": 2,
+     "release": 138
+    },
+    "possessions_per_team": 152.5,
+    "score": {
+     "A": 106,
+     "B": 60
+    },
+    "state_hash": "ba0bea18d76f64930527f40d6b91a10d63765ccf4118d09e65081266c5e6ffbf",
+    "steps": 34261,
+    "trace_hash": "6d60731dae1a61098925cbb4050bb71097fcab4048197a585e31cf92b3937c57"
+   },
+   "real-seed01": {
+    "actions": {
+     "block_engaged": 81,
+     "handoff_complete": 365,
+     "stiff_arm": 122,
+     "stretch_goal": 6,
+     "truck": 86,
+     "truck_broken": 8,
+     "truck_stopped": 2
+    },
+    "boundaries": 123,
+    "boundary_after": {
+     "carrier": 37,
+     "pass": 69,
+     "shot": 11,
+     "toss": 6
+    },
+    "handoffs": 365,
+    "missed": 186,
+    "missed_end_median_m": 28.8,
+    "missed_exit_median_m": 57.1,
+    "missed_exit_median_s": 2.12,
+    "missed_exits": 69,
+    "missed_recovered": 57,
+    "passes": 272,
+    "points_by_method": {
+     "carry": 30,
+     "release": 141
+    },
+    "possessions_per_team": 162.5,
+    "score": {
+     "A": 95,
+     "B": 84
+    },
+    "state_hash": "9b312336f5d2f77ba63a9e22c932e148801a19e4588c74806d3489aa2e095d2d",
+    "steps": 34724,
+    "trace_hash": "86d075ba218c54c04e35bdb19762c5099f42846fb967c97e091490a760953877"
+   },
+   "real-seed03": {
+    "actions": {
+     "block_engaged": 42,
+     "handoff_complete": 309,
+     "stiff_arm": 121,
+     "stretch_goal": 5,
+     "truck": 71,
+     "truck_broken": 8,
+     "truck_stopped": 2
+    },
+    "boundaries": 125,
+    "boundary_after": {
+     "carrier": 45,
+     "pass": 70,
+     "shot": 6,
+     "toss": 4
+    },
+    "handoffs": 309,
+    "missed": 171,
+    "missed_end_median_m": 28.0,
+    "missed_exit_median_m": 55.9,
+    "missed_exit_median_s": 1.99,
+    "missed_exits": 69,
+    "missed_recovered": 52,
+    "passes": 263,
+    "points_by_method": {
+     "carry": 30,
+     "release": 135
+    },
+    "possessions_per_team": 168.0,
+    "score": {
+     "A": 92,
+     "B": 75
+    },
+    "state_hash": "eb340b80b91a4aff6bb670e38c5143bcb225489230f0cc302e6516880ae60b69",
+    "steps": 34779,
+    "trace_hash": "a8293ec5a7ab0e7271d1e1b5bee9bd0b1e28fdcbad874334552da64348a0b28f"
+   },
+   "real-seed05": {
+    "actions": {
+     "block_engaged": 16,
+     "handoff_complete": 218,
+     "stiff_arm": 115,
+     "stretch_goal": 9,
+     "truck": 41,
+     "truck_broken": 9
+    },
+    "boundaries": 136,
+    "boundary_after": {
+     "carrier": 52,
+     "pass": 68,
+     "shot": 11,
+     "toss": 5
+    },
+    "handoffs": 218,
+    "missed": 172,
+    "missed_end_median_m": 26.1,
+    "missed_exit_median_m": 51.6,
+    "missed_exit_median_s": 1.77,
+    "missed_exits": 67,
+    "missed_recovered": 48,
+    "passes": 260,
+    "points_by_method": {
+     "carry": 50,
+     "own": 2,
+     "release": 127
+    },
+    "possessions_per_team": 169.5,
+    "score": {
+     "A": 82,
+     "B": 109
+    },
+    "state_hash": "c020727228862396e278ae8778446fbfc7984da887deac822804371181cdd49e",
+    "steps": 34708,
+    "trace_hash": "996b7c3c5e34c34a6563ecee25d399173e61349066c989d5e01babcd8842e57a"
+   }
+  },
+  "summary": {
+   "real_end_causes_pct": {
+    "award: possession_expiry": 0.7,
+    "award: turnover": 3.1,
+    "boundary: carrier stepped out": 1.5,
+    "boundary: other out (last touch own)": 11.6,
+    "boundary: pass went out (last touch own)": 20.2,
+    "boundary: restart throw went out (last touch own)": 1.5,
+    "boundary: shot missed out": 1.7,
+    "goal scored": 14.1,
+    "lost in play: carrier frozen by arrow (ball loose)": 8.5,
+    "lost in play: pass intercepted or loose after pass": 15.1,
+    "lost in play: restart throw intercepted or loose": 7.3,
+    "lost in play: shot saved/recovered by defence": 4.9,
+    "lost in play: strip": 1.4,
+    "period/match end": 0.5,
+    "second tackle": 6.2,
+    "zone rule (ZR-*/zone_residence)": 1.7
+   },
+   "real_median_team_score": 88.0,
+   "real_missed_end_median_m": 28.0,
+   "real_missed_exit_median_m": 55.1,
+   "real_missed_exit_median_s": 1.99,
+   "real_possessions_per_team": 166.7,
+   "real_scores": [
+    95,
+    84,
+    92,
+    75,
+    82,
+    109
+   ]
+  }
+ }
+}
