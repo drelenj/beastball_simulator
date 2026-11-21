@@ -1,0 +1,836 @@
+{
+  "baseline": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb316/runs/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 74,
+        "B": 92
+      },
+      "trace_hash": "93b1f57e268ee6c436fae47109e4e2987cfdf7024df5575b6405e119c5ed32d7",
+      "state_hash": "b9962ddfb23dbc96551258ea6c2132565804d22ec1b0c87295e3f3ff37d59854",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "other": 12,
+        "scored": 35,
+        "keeper": 16,
+        "opponent": 1
+      },
+      "passes": {
+        "other": 289,
+        "opponent": 45
+      },
+      "interceptions_within_3m": 6,
+      "tackles": 82,
+      "carries": {
+        "A": {
+          "attempts": 66,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 52,
+          "goals": 4
+        }
+      },
+      "possessions": {
+        "A": 228,
+        "B": 226
+      },
+      "points_by_method": {
+        "A": {
+          "10_to20": 36,
+          "half_award": 2,
+          "under10": 2,
+          "20plus": 28,
+          "full_award": 6
+        },
+        "B": {
+          "10_to20": 33,
+          "under10": 4,
+          "own": 2,
+          "20plus": 32,
+          "carry": 20,
+          "half_award": 1
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 12
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb316/runs/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 42,
+        "B": 92
+      },
+      "trace_hash": "7ebf8e03e627e9dc09e4851ff168822faa245e58f100a40f8b694003307bf816",
+      "state_hash": "835f70477706159b0a68959e56c35d04a4c529ebc45b8dea73f51d2f29e4ce71",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "other": 15,
+        "scored": 31,
+        "keeper": 20,
+        "opponent": 4
+      },
+      "passes": {
+        "other": 253,
+        "opponent": 56
+      },
+      "interceptions_within_3m": 10,
+      "tackles": 68,
+      "carries": {
+        "A": {
+          "attempts": 40,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 59,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 217,
+        "B": 217
+      },
+      "points_by_method": {
+        "A": {
+          "20plus": 16,
+          "10_to20": 18,
+          "carry": 5,
+          "full_award": 3
+        },
+        "B": {
+          "20plus": 32,
+          "under10": 6,
+          "10_to20": 42,
+          "carry": 5,
+          "half_award": 1,
+          "full_award": 6
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 24
+    },
+    {
+      "case": "real-seed05",
+      "raw_log": "native/evidence/rb316/runs/real/raw-real-seed05.json.gz",
+      "status": "final",
+      "score": {
+        "A": 84,
+        "B": 60
+      },
+      "trace_hash": "ceaf966728aea1fa5fbd3761adbeb02c6fe596196821ea5a681c3fe40535907c",
+      "state_hash": "52c4c25e08f6c13373a019a10e981eb76842d710c968ce2fc39e58c1e00f151e",
+      "config_digest": "c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615",
+      "shots": {
+        "opponent": 2,
+        "scored": 32,
+        "keeper": 18,
+        "other": 10
+      },
+      "passes": {
+        "other": 267,
+        "opponent": 44
+      },
+      "interceptions_within_3m": 11,
+      "tackles": 88,
+      "carries": {
+        "A": {
+          "attempts": 59,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 52,
+          "goals": 0
+        }
+      },
+      "possessions": {
+        "A": 201,
+        "B": 201
+      },
+      "points_by_method": {
+        "A": {
+          "half_award": 3,
+          "10_to20": 36,
+          "20plus": 28,
+          "carry": 5,
+          "full_award": 12
+        },
+        "B": {
+          "20plus": 36,
+          "under10": 2,
+          "10_to20": 18,
+          "own": 2,
+          "half_award": 2
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 20
+    },
+    {
+      "case": "control-seed01",
+      "raw_log": "native/evidence/rb316/runs/control/raw-control-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 68,
+        "B": 55
+      },
+      "trace_hash": "c251c06f90ae4236b201af6a3e94ce587fce66d6ef8e630e95bcaefde84b7446",
+      "state_hash": "4a3cbc5c7c98d1c4e4b5b3fcf8db7278e5804c8d363c92ad9c0e7977ab76e3c4",
+      "config_digest": "419f79e62e879fcf33471839b3c2ad27450f95fa10a37aed92b70a02d14a313d",
+      "shots": {
+        "scored": 27,
+        "keeper": 16,
+        "other": 16,
+        "opponent": 2
+      },
+      "passes": {
+        "other": 237,
+        "opponent": 55
+      },
+      "interceptions_within_3m": 4,
+      "tackles": 75,
+      "carries": {
+        "A": {
+          "attempts": 46,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 46,
+          "goals": 2
+        }
+      },
+      "possessions": {
+        "A": 206,
+        "B": 206
+      },
+      "points_by_method": {
+        "A": {
+          "10_to20": 27,
+          "20plus": 36,
+          "under10": 4,
+          "half_award": 1
+        },
+        "B": {
+          "20plus": 24,
+          "10_to20": 18,
+          "half_award": 1,
+          "carry": 10,
+          "under10": 2
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 17
+    }
+  ],
+  "rule": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb318/rule/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 74,
+        "B": 92
+      },
+      "trace_hash": "ca2e240246ddcd376b35cbe3d66c5b2fa612253c7bcb00a5bac595e44a9a94ee",
+      "state_hash": "aa9b27a5b7e7e4100b8d86a50e1a1e6fcda1545581100e49472f4857574f9737",
+      "config_digest": "2820f0f612fcd8a8cd0103444962efb516fb04fc4564b06c3ef2c902b83d41f8",
+      "shots": {
+        "other": 12,
+        "scored": 35,
+        "keeper": 16,
+        "opponent": 1
+      },
+      "passes": {
+        "other": 289,
+        "opponent": 45
+      },
+      "interceptions_within_3m": 6,
+      "tackles": 82,
+      "carries": {
+        "A": {
+          "attempts": 66,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 52,
+          "goals": 4
+        }
+      },
+      "possessions": {
+        "A": 228,
+        "B": 226
+      },
+      "points_by_method": {
+        "A": {
+          "10_to20": 36,
+          "half_award": 2,
+          "under10": 2,
+          "20plus": 28,
+          "full_award": 6
+        },
+        "B": {
+          "10_to20": 33,
+          "under10": 4,
+          "own": 2,
+          "20plus": 32,
+          "carry": 20,
+          "half_award": 1
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 12
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb318/rule/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 42,
+        "B": 92
+      },
+      "trace_hash": "2c6e7fcdd147d3890fbe9c9a3f5c867de69c8e28b43e81c6eeb02f83432dc135",
+      "state_hash": "edfeebe01bb5d640d09125f51a896b41f763ffae3ecb3eb5a016f64fe5161ac6",
+      "config_digest": "2820f0f612fcd8a8cd0103444962efb516fb04fc4564b06c3ef2c902b83d41f8",
+      "shots": {
+        "other": 15,
+        "scored": 31,
+        "keeper": 20,
+        "opponent": 4
+      },
+      "passes": {
+        "other": 253,
+        "opponent": 56
+      },
+      "interceptions_within_3m": 10,
+      "tackles": 68,
+      "carries": {
+        "A": {
+          "attempts": 40,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 59,
+          "goals": 1
+        }
+      },
+      "possessions": {
+        "A": 217,
+        "B": 217
+      },
+      "points_by_method": {
+        "A": {
+          "20plus": 16,
+          "10_to20": 18,
+          "carry": 5,
+          "full_award": 3
+        },
+        "B": {
+          "20plus": 32,
+          "under10": 6,
+          "10_to20": 42,
+          "carry": 5,
+          "half_award": 1,
+          "full_award": 6
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 24
+    },
+    {
+      "case": "real-seed05",
+      "raw_log": "native/evidence/rb318/rule/real/raw-real-seed05.json.gz",
+      "status": "final",
+      "score": {
+        "A": 84,
+        "B": 60
+      },
+      "trace_hash": "d7b5331f6f3255253a5821c0ee0fe59f4e6d7a6474ffc289601390ed3129f65a",
+      "state_hash": "54c27562d03bef84f7ca10af6f7d1797cb9930c1bf0e42ba80f0af9ef88b1d1a",
+      "config_digest": "2820f0f612fcd8a8cd0103444962efb516fb04fc4564b06c3ef2c902b83d41f8",
+      "shots": {
+        "opponent": 2,
+        "scored": 32,
+        "keeper": 18,
+        "other": 10
+      },
+      "passes": {
+        "other": 267,
+        "opponent": 44
+      },
+      "interceptions_within_3m": 11,
+      "tackles": 88,
+      "carries": {
+        "A": {
+          "attempts": 59,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 52,
+          "goals": 0
+        }
+      },
+      "possessions": {
+        "A": 201,
+        "B": 201
+      },
+      "points_by_method": {
+        "A": {
+          "half_award": 3,
+          "10_to20": 36,
+          "20plus": 28,
+          "carry": 5,
+          "full_award": 12
+        },
+        "B": {
+          "20plus": 36,
+          "under10": 2,
+          "10_to20": 18,
+          "own": 2,
+          "half_award": 2
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 20
+    },
+    {
+      "case": "control-seed01",
+      "raw_log": "native/evidence/rb318/rule/control/raw-control-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 68,
+        "B": 55
+      },
+      "trace_hash": "1ed2a222bc90d6f25a30e7ddec03ac056363ed52ac2cf613b0770a447a0b6792",
+      "state_hash": "7630a0108a0fc3498f82e4d7504fdaa5f6d89220dad43136569bbc7b092efec4",
+      "config_digest": "5b71b7181e336a518a98734d698d2fdd7e5264fa4012f133e6d0d4529f5acd59",
+      "shots": {
+        "scored": 27,
+        "keeper": 16,
+        "other": 16,
+        "opponent": 2
+      },
+      "passes": {
+        "other": 237,
+        "opponent": 55
+      },
+      "interceptions_within_3m": 4,
+      "tackles": 75,
+      "carries": {
+        "A": {
+          "attempts": 46,
+          "goals": 0
+        },
+        "B": {
+          "attempts": 46,
+          "goals": 2
+        }
+      },
+      "possessions": {
+        "A": 206,
+        "B": 206
+      },
+      "points_by_method": {
+        "A": {
+          "10_to20": 27,
+          "20plus": 36,
+          "under10": 4,
+          "half_award": 1
+        },
+        "B": {
+          "20plus": 24,
+          "10_to20": 18,
+          "half_award": 1,
+          "carry": 10,
+          "under10": 2
+        }
+      },
+      "moves": {
+        "stretch_start": 0,
+        "stretch_end": 0,
+        "stretch_goal": 0,
+        "stiff_arm": 0,
+        "stiff_arm_effect": 0,
+        "truck": 0,
+        "truck_broken": 0,
+        "truck_stopped": 0,
+        "handoff_complete": 0,
+        "block_engaged": 0
+      },
+      "stiff_arm_reacquire_delays": 0,
+      "stiff_arm_grip_reductions": 0,
+      "strips": 17
+    }
+  ],
+  "on": [
+    {
+      "case": "real-seed01",
+      "raw_log": "native/evidence/rb318/on/real/raw-real-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 67,
+        "B": 92
+      },
+      "trace_hash": "4160c809ec3fb8213da9c00d3cfac225b2177628c64d915378625eac4b8a8579",
+      "state_hash": "59482396a11f5fd6e3454ecb9453577886d57c5fafb8c343cec03f1f828584a2",
+      "config_digest": "1687ccb14047c4a1fb8279120871d304db409a1c29251ec9a422c2a11daf05a1",
+      "shots": {
+        "scored": 33,
+        "keeper": 25,
+        "other": 10,
+        "opponent": 2
+      },
+      "passes": {
+        "other": 259,
+        "opponent": 59
+      },
+      "interceptions_within_3m": 8,
+      "tackles": 74,
+      "carries": {
+        "A": {
+          "attempts": 53,
+          "goals": 1
+        },
+        "B": {
+          "attempts": 54,
+          "goals": 3
+        }
+      },
+      "possessions": {
+        "A": 218,
+        "B": 217
+      },
+      "points_by_method": {
+        "A": {
+          "10_to20": 24,
+          "20plus": 32,
+          "half_award": 4,
+          "carry": 5,
+          "under10": 2
+        },
+        "B": {
+          "10_to20": 24,
+          "under10": 4,
+          "20plus": 48,
+          "carry": 15,
+          "half_award": 1
+        }
+      },
+      "moves": {
+        "stretch_start": 3,
+        "stretch_end": 3,
+        "stretch_goal": 3,
+        "stiff_arm": 82,
+        "stiff_arm_effect": 82,
+        "truck": 104,
+        "truck_broken": 13,
+        "truck_stopped": 1,
+        "handoff_complete": 243,
+        "block_engaged": 121
+      },
+      "stiff_arm_reacquire_delays": 54,
+      "stiff_arm_grip_reductions": 34,
+      "strips": 17
+    },
+    {
+      "case": "real-seed03",
+      "raw_log": "native/evidence/rb318/on/real/raw-real-seed03.json.gz",
+      "status": "final",
+      "score": {
+        "A": 66,
+        "B": 80
+      },
+      "trace_hash": "011053eb8d0cb9c0fcca38a51f0798d53533692a6aed5d1b19c272dd93e8d499",
+      "state_hash": "8f131fa32e0276ff17a69b8a2e9af5e7e77b8c269e390b53816ad28eacc2e28a",
+      "config_digest": "1687ccb14047c4a1fb8279120871d304db409a1c29251ec9a422c2a11daf05a1",
+      "shots": {
+        "scored": 25,
+        "keeper": 10,
+        "other": 4,
+        "opponent": 1
+      },
+      "passes": {
+        "other": 247,
+        "opponent": 47
+      },
+      "interceptions_within_3m": 2,
+      "tackles": 106,
+      "carries": {
+        "A": {
+          "attempts": 47,
+          "goals": 2
+        },
+        "B": {
+          "attempts": 44,
+          "goals": 4
+        }
+      },
+      "possessions": {
+        "A": 195,
+        "B": 194
+      },
+      "points_by_method": {
+        "A": {
+          "20plus": 40,
+          "half_award": 1,
+          "carry": 10,
+          "10_to20": 12,
+          "full_award": 3
+        },
+        "B": {
+          "10_to20": 24,
+          "carry": 20,
+          "half_award": 3,
+          "20plus": 28,
+          "under10": 2,
+          "full_award": 3
+        }
+      },
+      "moves": {
+        "stretch_start": 4,
+        "stretch_end": 4,
+        "stretch_goal": 4,
+        "stiff_arm": 121,
+        "stiff_arm_effect": 121,
+        "truck": 126,
+        "truck_broken": 15,
+        "truck_stopped": 3,
+        "handoff_complete": 299,
+        "block_engaged": 139
+      },
+      "stiff_arm_reacquire_delays": 82,
+      "stiff_arm_grip_reductions": 45,
+      "strips": 22
+    },
+    {
+      "case": "real-seed05",
+      "raw_log": "native/evidence/rb318/on/real/raw-real-seed05.json.gz",
+      "status": "final",
+      "score": {
+        "A": 55,
+        "B": 51
+      },
+      "trace_hash": "344c750005b58d0f96458a26bbe273b16e34f6965aa89e4ba80d6d8ebfa38b52",
+      "state_hash": "b91bd9b4ed2ccc53688ae2122518bd1ded9bf021b665e2e8fbacbf70c1daa7cd",
+      "config_digest": "1687ccb14047c4a1fb8279120871d304db409a1c29251ec9a422c2a11daf05a1",
+      "shots": {
+        "scored": 18,
+        "keeper": 20,
+        "other": 7,
+        "opponent": 2
+      },
+      "passes": {
+        "other": 304,
+        "opponent": 46
+      },
+      "interceptions_within_3m": 4,
+      "tackles": 90,
+      "carries": {
+        "A": {
+          "attempts": 58,
+          "goals": 2
+        },
+        "B": {
+          "attempts": 41,
+          "goals": 3
+        }
+      },
+      "possessions": {
+        "A": 198,
+        "B": 200
+      },
+      "points_by_method": {
+        "A": {
+          "10_to20": 21,
+          "20plus": 20,
+          "under10": 2,
+          "half_award": 2,
+          "carry": 10
+        },
+        "B": {
+          "half_award": 2,
+          "carry": 15,
+          "20plus": 20,
+          "10_to20": 12,
+          "under10": 2
+        }
+      },
+      "moves": {
+        "stretch_start": 6,
+        "stretch_end": 6,
+        "stretch_goal": 5,
+        "stiff_arm": 86,
+        "stiff_arm_effect": 86,
+        "truck": 105,
+        "truck_broken": 12,
+        "truck_stopped": 1,
+        "handoff_complete": 239,
+        "block_engaged": 119
+      },
+      "stiff_arm_reacquire_delays": 61,
+      "stiff_arm_grip_reductions": 35,
+      "strips": 16
+    },
+    {
+      "case": "control-seed01",
+      "raw_log": "native/evidence/rb318/on/control/raw-control-seed01.json.gz",
+      "status": "final",
+      "score": {
+        "A": 59,
+        "B": 80
+      },
+      "trace_hash": "613e0d4931d590d4a539e2220d63c7d761019ca3fa8b6a76a995bc02abf12b95",
+      "state_hash": "8a4889bbc4cbaff9c5bf580bd1fa053a0f8f352dbf56e002ff862c0596b70355",
+      "config_digest": "6595708d462cdbdce8a747525db84c624e16d354bf0d653a45d3efc769afed5e",
+      "shots": {
+        "keeper": 12,
+        "scored": 26,
+        "other": 9,
+        "opponent": 2
+      },
+      "passes": {
+        "other": 243,
+        "opponent": 51
+      },
+      "interceptions_within_3m": 7,
+      "tackles": 100,
+      "carries": {
+        "A": {
+          "attempts": 33,
+          "goals": 3
+        },
+        "B": {
+          "attempts": 35,
+          "goals": 2
+        }
+      },
+      "possessions": {
+        "A": 182,
+        "B": 181
+      },
+      "points_by_method": {
+        "A": {
+          "20plus": 20,
+          "10_to20": 24,
+          "carry": 15
+        },
+        "B": {
+          "half_award": 2,
+          "20plus": 40,
+          "10_to20": 18,
+          "carry": 10,
+          "under10": 4,
+          "full_award": 6
+        }
+      },
+      "moves": {
+        "stretch_start": 5,
+        "stretch_end": 5,
+        "stretch_goal": 5,
+        "stiff_arm": 160,
+        "stiff_arm_effect": 160,
+        "truck": 113,
+        "truck_broken": 7,
+        "truck_stopped": 3,
+        "handoff_complete": 323,
+        "block_engaged": 164
+      },
+      "stiff_arm_reacquire_delays": 97,
+      "stiff_arm_grip_reductions": 67,
+      "strips": 22
+    }
+  ]
+}

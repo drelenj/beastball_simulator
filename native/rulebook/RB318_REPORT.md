@@ -75,3 +75,48 @@ python -m native.rulebook.rb318_report /tmp/rb318
 Repeat the last two match commands for real seeds 3 and 5 and control seed 1.
 Use the output directory corresponding to the block. Real rosters are
 Garvian Guardians and Ala Apex at roster ref `81f92e3`.
+
+## TESTED | match evidence
+
+Base means the archived RB-3.16 match. Each rule-only event log is
+byte-identical to its base log. None of these matches or the four enabled
+matches scored a release carry. The forced 2.5 m test verifies the rule.
+The rule-only config hash changes because the radius is recorded.
+
+Points by method are combined across both teams in this order:
+held carry / released carry / 2-point throw band / 3-point throw band /
+4-point throw band / own goal / half award / full award. The JSON archive
+also gives the team split. Stiff-arm columns are attempts/effects
+(delayed reacquisitions/reduced live grips). A single effect can count
+in both categories. Truck columns are commands/broken/stopped, so an
+unresolved command did not reach a qualifying impact before it ended.
+
+| Build, match | Score A–B | Points by method | Carry attempts/goals | Stretch attempts/goals | Stiff-arm | Truck | Tackles/strips | Possessions A/B |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Base / rule real-seed01 | 74–92 | 20/0/6/69/60/2/3/6 | 118/4 | 0/0 | 0/0 (0/0) | 0/0/0 | 82/12 | 228/226 |
+| Base / rule real-seed03 | 42–92 | 10/0/6/60/48/0/1/9 | 99/2 | 0/0 | 0/0 (0/0) | 0/0/0 | 68/24 | 217/217 |
+| Base / rule real-seed05 | 84–60 | 5/0/2/54/64/2/5/12 | 111/1 | 0/0 | 0/0 (0/0) | 0/0/0 | 88/20 | 201/201 |
+| Base / rule control-seed01 | 68–55 | 10/0/6/45/60/0/2/0 | 92/2 | 0/0 | 0/0 (0/0) | 0/0/0 | 75/17 | 206/206 |
+| ON real-seed01 | 67–92 | 20/0/6/48/80/0/5/0 | 107/4 | 3/3 | 82/82 (54/34) | 104/13/1 | 74/17 | 218/217 |
+| ON real-seed03 | 66–80 | 30/0/2/36/68/0/4/6 | 91/6 | 4/4 | 121/121 (82/45) | 126/15/3 | 106/22 | 195/194 |
+| ON real-seed05 | 55–51 | 25/0/4/33/40/0/4/0 | 99/5 | 6/5 | 86/86 (61/35) | 105/12/1 | 90/16 | 198/200 |
+| ON control-seed01 | 59–80 | 25/0/4/42/60/0/2/6 | 68/5 | 5/5 | 160/160 (97/67) | 113/7/3 | 100/22 | 182/181 |
+
+Against the owner target of 76 points per team, the enabled A/B deltas
+were −9/+16 (real 1), −10/+4 (real 3), −21/−25 (real 5), and −17/+4
+(control 1). The enabled real-roster median was 66.5 across six team scores.
+The movements and handoff/block flags were enabled together. The sample
+does not isolate any individual move's contribution.
+
+The full radius-zero replay, real seed 1 with both flags OFF, exactly
+matched RB-3.16:
+
+- Trace `93b1f57e268ee6c436fae47109e4e2987cfdf7024df5575b6405e119c5ed32d7`
+- State `b9962ddfb23dbc96551258ea6c2132565804d22ec1b0c87295e3f3ff37d59854`
+- Config `c51d4bbcbc7a9569b1f3d98b3b26779711d8166a1669171b1e47578968f19615`
+
+All six 3,000-step seed 1/3 guards (native-v0/2, native-v0/3, native-rb/2)
+matched `185b557` for trace, state and config. Full hashes are in
+`native/evidence/rb318/legacy-hashes.txt`. The raw logs are committed in
+`native/evidence/rb318/{identity,rule,on}/{real,control}` as gzip files.
+`comparison.json` records per-team methods, attempts, outcomes, and hashes.
