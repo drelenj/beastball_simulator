@@ -159,3 +159,6 @@ RB-3.17 question 1 (handoff entering the giver's own Keeper Zone from outside): 
 ## 20 Nov 2026 (night) - Stretch angles (CANON; answers the RB-3.18 owner question)
 A carrier may choose the angle of a stretch (not only straight toward the plane: low, high or sideways, e.g. around the keeper). Engine work for a stretch direction convention goes to Codex phase 2 with juke, spin and hurdle.
 RB-3.18 verification (claude/rb-3-18-verify @ 5e1917d): suite 613 passed, legacy identical, identity exact; rule only = RB-3.16 (0 release carries); all ON median 66.5 per team (below the 75-90 range) with a placeholder hook - keep the flags OFF until the tactics pass.
+
+## 21 Nov 2026 - Ball material (CANON)
+Owner: "You can throw in some magikal material science to make things realistic." The Beastball ball is a fictional material; its physical properties (air drag, bounce restitution, horizontal speed kept per bounce, rolling resistance) need not match a real football. They are set by the lead to make play feel realistic and to meet the owner's targets, provided they are stated in config with their design basis and applied consistently (engine and athlete forecasts alike).
