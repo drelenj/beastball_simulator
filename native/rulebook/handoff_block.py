@@ -34,6 +34,7 @@ class HandoffBlock:
         self.state = self.match.s
         self.engine = self.match.e
         self.blocks = {}
+        self.last_handoff = {}        # RB-3.20b: receiver id -> (giver id, time); read as the receiver's own memory
         self.engaged = {}
         self.drive = self.match.c3_desired
         self.match.c3_desired = self.drive_with_blocks
@@ -150,6 +151,7 @@ class HandoffBlock:
                 return
             self.match.c3_reconcile()
             e.emit('handoff_complete', 'RB-3.17', **data)
+            self.last_handoff[receiver.id] = (giver.id, s.now)
             p.resolve(giver.id, 'handoff_complete')
             if zone_entry:
                 e.emit('handoff_zone_entry', 'ZR-T', giver=giver.id, receiver=receiver.id)

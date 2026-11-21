@@ -136,9 +136,10 @@ def test_b1_handoff_to_a_faster_teammate_unpressured_and_not_to_a_slower_one():
 
 
 def test_b1_pressured_carrier_may_hand_off_even_backward_and_the_receiver_must_be_within_reach():
-    v, tr = tactics_scene(opps=[(58., 50.)], oppvel=(-12., 0.), mates=[(47., 52.)])
+    # RB-3.20b: the backward receiver must also be clearly freer (least time-to-contact >= mine + 0.5 s)
+    v, tr = tactics_scene(opps=[(50., 57.)], oppvel=(0., -6.), mates=[(48., 47.)])
     assert R.is_pressured(v, [t for t in tr if t.team == 'B']) and [r[1] for r in handoffs(v, tr)] == ['A:1']
-    vf, trf = tactics_scene(opps=[(58., 50.)], oppvel=(-12., 0.), mates=[(40., 52.)])           # control: 10 m away, out of reach
+    vf, trf = tactics_scene(opps=[(50., 57.)], oppvel=(0., -6.), mates=[(40., 45.)])            # control: 10 m away, out of reach
     assert not handoffs(vf, trf)
 
 

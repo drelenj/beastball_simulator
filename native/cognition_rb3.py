@@ -397,8 +397,14 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
                 continue
             faster = view.attack_sign * (mate.vx - view.body.vx) >= HANDOFF_FASTER_MS
             backward = view.attack_sign * (mate.x - view.x) < 0
-            if not (pressured or faster) or (backward and not pressured):
-                continue                                                  # B1: pressured, or the receiver is clearly faster toward the goal; never back unless pressured
+            own_t = min((time_to_contact(view, o) for o in opps), default=99.)
+            mate_t = min((ttc_at(view, o, mate.x, mate.y) for o in opps), default=99.)
+            relief = mate_t >= own_t + HANDOFF_RELIEF_S                  # RB-3.20b: the receiver is clearly freer than I am
+            if not (relief or faster) or (backward and not pressured):
+                continue                                                  # B1: improves pressure, or the receiver is clearly faster toward the goal; never back unless pressured
+            hb = getattr(view, 'handed_by', None)
+            if hb is not None and hb[0] == mate.entity and hb[1] < HANDBACK_MS:
+                continue                                                  # RB-3.20b: no immediate hand-back
             value, _, _ = pass_value(view, mate, opps, pressured, max_age_ms, handoff=True)
             out.append(('handoff', mate.entity, (mate.x, mate.y), value))
     return out
@@ -411,18 +417,21 @@ def carrier_options(view, fresh, carry_aim, sg=None, max_age_ms=2000):
 #                               the end line inside the goal mouth (|y-50| <= goal_radius) is the goal and is exempt
 #  PURSUERS              2      A3: the nearest two teammates (by time to the ball's path before it reaches a line) pursue a loose ball
 #  PURSUIT_STEP_S        .1     A3: sampling step of the ball's path
-#  PASS_EXIT_MIN_S       1.0    A4: no pass whose path, if not caught, reaches a boundary line less than this many seconds beyond the receiver
-BOUNDARY_MARGIN_M, PURSUERS, PURSUIT_STEP_S, PASS_EXIT_MIN_S = 2.0, 2, .1, 1.0
+#  PASS_EXIT_MIN_S       0.5    A4 (RB-3.20b, was 1.0): no pass whose path, if not caught, reaches a boundary line less than this many seconds beyond the receiver
+BOUNDARY_MARGIN_M, PURSUERS, PURSUIT_STEP_S, PASS_EXIT_MIN_S = 2.0, 2, .1, .5     # RB-3.20b: A4 horizon 1.0 -> 0.5 s (lead)
 
 # ------------------------------------------------ RB-3.19 Part B tactics (B1 handoff, B2 blocks, B3 carrier moves)
 # BEHAVIORAL defaults, PROVISIONAL (lead decisions, 21 Nov 2026); only when rb3_handoff_block_enabled / rb3_carrier_moves_enabled.
 #  HANDOFF_FASTER_MS      2.0   B1: receiver this much faster toward the attacked goal (m/s), or the carrier is pressured
+#  HANDOFF_RELIEF_S       0.5   B1 (RB-3.20b): offer only if the receiver's least time-to-contact exceeds the carrier's by this (or he is faster)
+#  HANDBACK_MS            2000  B1 (RB-3.20b): never back to the teammate who handed me the ball within this
 #  BLOCKERS               2     B2: at most this many off-ball attackers block (within BLOCK_NEAR_M of the carrier and AHEAD of him)
 #  BLOCK_NEAR_M / BLOCK_FAR_M  8 / 10  B2: blocker distance to the carrier; never block a defender farther than BLOCK_FAR_M from the carrier
 #  BLOCK_THREAT_S         1.5   B2: block defenders whose time-to-contact with the carrier is under this
 #  MOVE_REACT_S           0.5   B3: truck / stiff-arm only when a tackler reaches the carrier within this
 #  FACING_GOAL_COS        .5    B3: the carrier is "facing the goal" if his heading is within 60 degrees of it
 HANDOFF_FASTER_MS = 2.0
+HANDOFF_RELIEF_S, HANDBACK_MS = .5, 2000      # RB-3.20b: receiver's least time-to-contact must exceed mine by this; no hand-back within this
 BLOCKERS, BLOCK_NEAR_M, BLOCK_FAR_M, BLOCK_THREAT_S = 2, 8., 10., 1.5
 MOVE_REACT_S, FACING_GOAL_COS = .5, .5
 

@@ -75,3 +75,57 @@ def test_fix_flag_is_in_the_effective_config_only_when_on():
 
 def test_free_ball_scenario_is_deterministic():
     assert trial(35., 'level') == trial(35., 'level')
+
+
+# ---------------------------------------------------------------- Part 2
+from .test_rb312 import carrier_scene, opts
+from .test_rb319 import tactics_scene, handoffs
+
+
+def passes_to(me, mate, rb='A4'):
+    v, tr, _ = carrier_scene(me=me, opps=[(30., 10.)], mates=[mate], held_ms=2000)
+    v = replace(v, rb319=rb)
+    return [r[1] for r in opts(v, tr) if r[0] == 'pass'], v, tr
+
+
+def test_a4_horizon_is_half_a_second_beyond_the_receiver(monkeypatch):
+    assert R.PASS_EXIT_MIN_S == .5
+    ok, v, tr = passes_to((60., 50.), (75., 62.))                      # exits about 0.67 s beyond the receiver
+    assert R.pass_exit_s(v, tr[-1], 37.5) > .5 and ok == ['A:1']
+    bad, v2, tr2 = passes_to((70., 60.), (88., 78.))                    # exits about 0.28 s beyond the receiver
+    assert bad == []
+    monkeypatch.setattr(R, 'PASS_EXIT_MIN_S', 1.0)                     # control: the RB-3.19 horizon refused the 0.67 s pass
+    assert passes_to((60., 50.), (75., 62.))[0] == []
+    assert passes_to((60., 50.), (75., 62.), rb='')[0] == ['A:1']       # and with A4 off it is offered
+
+
+def test_b1_handoff_to_a_teammate_under_the_same_pressure_is_refused_and_to_a_freer_one_accepted():
+    rush = dict(opps=[(50., 57.)], oppvel=(0., -6.))
+    vs, trs = tactics_scene(mates=[(52., 52.)], **rush)                 # beside me, as close to the rush
+    assert R.is_pressured(vs, [t for t in trs if t.team == 'B']) and not handoffs(vs, trs)
+    vf, trf = tactics_scene(mates=[(48., 47.)], **rush)                 # clearly freer (>= 0.5 s more time to contact)
+    assert [r[1] for r in handoffs(vf, trf)] == ['A:1']
+    vq, trq = tactics_scene(mates=[(52., 52.)], matevel=(6., 0.), **rush)   # the faster-receiver clause still applies
+    assert [r[1] for r in handoffs(vq, trq)] == ['A:1']
+
+
+def test_b1_no_immediate_hand_back():
+    rush = dict(opps=[(50., 57.)], oppvel=(0., -6.), mates=[(48., 47.)])
+    v, tr = tactics_scene(**rush)
+    assert [r[1] for r in handoffs(replace(v, handed_by=('A:1', 900)), tr)] == []            # he just handed it to me
+    assert [r[1] for r in handoffs(replace(v, handed_by=('A:1', 2500)), tr)] == ['A:1']      # more than 2 s ago: allowed
+    assert [r[1] for r in handoffs(replace(v, handed_by=('A:7', 900)), tr)] == ['A:1']       # someone else handed it
+
+
+def test_handed_by_is_the_receivers_own_memory_in_the_view():
+    from .test_rb318 import fixture
+    p, rosters, c, d = fixture(moves=False, handoffs=True)
+    s = p.m.s; p.rb317.last_handoff[c.id] = ('A:3', s.now - 700)
+    p.capture(s.now); s.now += p.config.latency_ms
+    v, b = p.view(c.id, s.now); assert v.handed_by == ('A:3', 700 + p.config.latency_ms)
+    v2, _ = p.view('A:3', s.now); assert v2.handed_by is None
+
+
+def test_part2_decisions_are_deterministic():
+    v, tr = tactics_scene(opps=[(50., 57.)], oppvel=(0., -6.), mates=[(48., 47.), (52., 52.)])
+    assert opts(v, tr) == opts(v, tr)

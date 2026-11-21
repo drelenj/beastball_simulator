@@ -8,6 +8,7 @@ from .authorities import CREW
 class RulebookView(C.AthleteView):
     rb3_handoff_block_enabled: bool = False
     rb3_carrier_moves_enabled: bool = False
+    handed_by: tuple | None = None            # RB-3.20b own memory: (teammate who handed me the ball I hold, ms ago)
     rb319: str = ''                           # RB-3.19 public team instruction: enabled ball-in-play steps ('' = off)
     status_indicators: tuple = ()
     officials: tuple = CREW
@@ -124,6 +125,8 @@ class RulebookPort(NativePort):
                        rb3_handoff_block_enabled=c.rb3_handoff_block_enabled)
             extra['rb3_carrier_moves_enabled'] = c.rb3_carrier_moves_enabled
             extra['rb319'] = c.rb319_parts if c.rb319_ball_in_play_enabled else ''
+            hb_ = getattr(self, 'rb317', None); got_ = hb_.last_handoff.get(pid) if hb_ is not None else None
+            extra['handed_by'] = (got_[0], self.m.s.now - got_[1]) if got_ and self.m.s.ball.carrier == pid else None
             r=self.m.s.restart;fm=r.rs.get('formation') if r is not None and hasattr(r,'rs') else None
             extra['formation']=(fm['snapper'],fm['receiver'],fm['receiver_xy'][0],fm['receiver_xy'][1],*fm['spots'].get(pid,(None,None))) if fm else None
             sb=self.m.s.ball
@@ -171,7 +174,8 @@ class RulebookPort(NativePort):
         actions = data['view'].pop('rb3_handoff_block_enabled', False)
         moves = data['view'].pop('rb3_carrier_moves_enabled', False)
         r319 = data['view'].pop('rb319', '')
+        hby = data['view'].pop('handed_by', None)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
                             defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions,
-                            rb3_carrier_moves_enabled=moves,rb319=r319),b
+                            rb3_carrier_moves_enabled=moves,rb319=r319,handed_by=tuple(hby) if hby is not None else None),b
