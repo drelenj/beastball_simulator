@@ -80,8 +80,12 @@ class RulebookConfigV3(RulebookConfig):
     rb322_technical_source: str = 'ovr'       # 'ovr' (Opening-day OVR/100) | 'neutral' (.784 for every player)
     rb322_physical_source: str = 'roster'     # 'roster' | 'neutral' (league mean of each of the nine physical ratings)
 
+    individuation: str = 'off'
+
     def record(self):
         record = super().record()
+        if self.individuation == 'off':
+            record.pop('individuation')
         if not self.rb3_handoff_block_enabled:
             # OFF is the exact RB-3.16 effective configuration.
             record.pop('rb3_handoff_block_enabled')
@@ -103,8 +107,14 @@ class RulebookConfigV3(RulebookConfig):
         return record
 
     def __post_init__(self):
-        if self.rb322_technical_source not in ('ovr', 'neutral') or self.rb322_physical_source not in ('roster', 'neutral'):
-            raise ValueError('rb322 talent source must be ovr|neutral and roster|neutral')
+        if self.individuation not in ('off', 'individuation/1'):
+            raise ValueError('unknown individuation mapping')
+        if self.individuation == 'individuation/1':
+            object.__setattr__(self, 'physical_assumptions', tuple(
+                (key, 1. if key == 'fatigue_rate' else value)
+                for key, value in self.physical_assumptions))
+        if self.rb322_technical_source not in ('ovr', 'neutral', 'explicit') or self.rb322_physical_source not in ('roster', 'neutral'):
+            raise ValueError('rb322 talent source must be ovr|neutral|explicit and roster|neutral')
         if not math.isfinite(self.carry_release_radius_m) or self.carry_release_radius_m < 0:
             raise ValueError('carry release radius must be finite and nonnegative')
         if self.thaw_contact_buffer_ms<0:raise ValueError('thaw_contact_buffer_ms must be >= 0')

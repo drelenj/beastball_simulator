@@ -1,5 +1,9 @@
 """Opening night workbook adapter for native-rb/3. Labels select eligibility only."""
-from .roster import load_rows, RosterError
+from dataclasses import replace
+import hashlib
+import json
+
+from .roster import INERT_RATINGS, load_rows, RosterError
 
 PHYSICAL = {
     'speed':'Speed (rating)', 'strength':'Strength (rating)',
@@ -11,7 +15,7 @@ PHYSICAL = {
 TECHNICAL_OVR = ('tackling','blocking','ball_handling','catching','awareness',
                  'throw_accuracy','keeper_skill','archery_accuracy')
 # RB-3.22 talent source (diagnosis only; defaults reproduce the RB-3.21 rosters exactly)
-TECHNICAL_SOURCES = ('ovr', 'neutral')
+TECHNICAL_SOURCES = ('ovr', 'neutral', 'explicit')
 PHYSICAL_SOURCES = ('roster', 'neutral')
 NEUTRAL_TECHNICAL = .784          # the league mean Opening-day OVR / 100 (owner/lead figure)
 
@@ -43,6 +47,7 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     for side,franchise in zip(('A','B'),franchises):
         if not candidates.get(franchise):raise RosterError(f'franchise {franchise}: no roster rows')
         selected=[]
+        source_records = []
         for code,count,role in (('KPR',2,'keeper'),('ARC',2,'archer'),('field',18,'field')):
             pool=[(number,row) for number,row in candidates[franchise]
                   if (row[columns['Position']]==code if code!='field' else row[columns['Position']] not in ('KPR','ARC'))]
@@ -57,8 +62,32 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                 entry.update({key:(league_mean[key] if physical=='neutral' else rating(header)) for key,header in PHYSICAL.items()})
                 entry.update({key:(NEUTRAL_TECHNICAL if technical=='neutral' else rating('Opening-day OVR')) for key in TECHNICAL_OVR})
                 entry['contact_resistance']=entry['balance'] # PLACEHOLDER
+                if technical == 'explicit':
+                    sources = {}
+                    for key in (*TECHNICAL_OVR, 'contact_resistance', *INERT_RATINGS):
+                        header = key.replace('_', ' ').title() + ' (rating)'
+                        value = row[columns[header]] if header in columns else None
+                        if value is not None and value != '':
+                            if isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 <= value <= 100:
+                                raise RosterError(f'workbook row {number}, {header}: expected 0..100')
+                            entry[key] = value / 100.
+                            sources[key] = 'explicit:' + header
+                        elif key == 'contact_resistance':
+                            entry[key] = NEUTRAL_TECHNICAL
+                            sources[key] = 'neutral fallback'
+                        else:
+                            sources[key] = '0.70 default' if key in INERT_RATINGS else 'Opening-day OVR fallback'
+                    source_records.append(tuple(sorted(sources.items())))
                 selected.append(entry)
-        out[side]=load_rows(selected,side)
+        roster = load_rows(selected, side)
+        if technical == 'explicit':
+            athletes = tuple(replace(a, sources=sources) for a, sources in
+                             zip(roster.athletes, source_records, strict=True))
+            roster = replace(roster, athletes=athletes)
+            fingerprint = hashlib.sha256(json.dumps(roster.record(), sort_keys=True,
+                                                    separators=(',', ':')).encode()).hexdigest()
+            roster = replace(roster, digest=fingerprint)
+        out[side] = roster
     return out
 
 

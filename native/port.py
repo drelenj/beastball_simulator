@@ -11,6 +11,7 @@ from b1.communication import DeliveryModel, TeamTransport, receive_messages
 from b1.emergence_intents import BallCourseBelief, AthleteBody, plan_keeper_motor
 from . import cognition as C
 from .config import NativeConfig, is_v3, is_attr
+from . import individuation as IND
 from .roster import INERT_RATINGS, engine_order, mapped_values, max_throw_speed, throw_error_base_deg, sensor_noise_scale
 from .perception import visibility
 from .substrate import build_core
@@ -46,6 +47,7 @@ class NativePort:
         self.types,self.geom=co.types,co.geometry
         make_roster=co.match.make_roster
         self.attr=is_attr(cfg)
+        self.individuation = getattr(cfg, "individuation", "off") == IND.VERSION
         self.behavior_digest=cfg.digest
         if self.attr:
             if not rosters or set(rosters)!=set(('A','B')):raise ValueError('ATTR-1 requires A and B rosters')
@@ -53,7 +55,7 @@ class NativePort:
             if cfg.version=='native-rb/3':
                 # Full config/roster digest is retained in the result. Gameplay hashes
                 # use only consumed ratings, so changing stored inert fields has no effect.
-                active={t:[(a.source_id,a.role,tuple((k,v) for k,v in a.values if k not in INERT_RATINGS))
+                active={t:[(a.source_id,a.role,tuple((k,v) for k,v in a.values if (k not in ('injury', 'durability') if self.individuation else k not in INERT_RATINGS)))
                            for a in rosters[t].athletes] for t in ('A','B')}
                 config_record=cfg.record();config_record['roster_digests']=('behavior-only','behavior-only')
                 self.behavior_digest=digest((config_record,active))
@@ -73,6 +75,8 @@ class NativePort:
                     raw=dict(record.values)
                     if cfg.version == 'native-rb/3':
                         old.a.standing_reach_m = raw.get('standing_reach_m')
+                    if self.individuation:
+                        old.native_individual = {key: raw[key] for key in IND.DRAFT_RATINGS}
                     old.native_source_id=record.source_id
                     old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
                     old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
@@ -183,6 +187,12 @@ class NativePort:
     def active_ids(self):
         return sorted(p.id for p in self.m.s.players.values() if p.active and p.eligible(self.m.s.now))
 
+    def decision_interval_ms(self, pid):
+        if not self.individuation:
+            return self.config.decision_ms
+        return IND.cognitive_interval_ms(self.config.decision_ms,
+                                         self.m.s.players[pid].native_individual['reaction'])
+
     def capture(self,now):
         s=self.m.s;e=self.m.e;e.native_sync();rs=e.possession.public();r=s.restart
         restart=(r.native_id,r.kind,r.team,r.x,r.y,*r.taker_spot,r.taker,r.rs.get('snapper'),r.rs.get('tackler'),r.created_at,r.ready_at is not None) if r else None
@@ -200,14 +210,17 @@ class NativePort:
             facing=math.atan2(p.facing[1],p.facing[0])
             # PLACEHOLDER sensor: bounded field cone + body-cylinder occlusion;
             # platform vision has no occlusion; positions noisy, velocities from own reads.
+            individual = p.native_individual if self.individuation else None
+            half_angle = IND.visual_half_angle(individual['vision']) if individual else math.radians(120)
+            z_noise = .04 * (1.4 - .6 * individual['clarity']) if individual else .04
             for ei,(eid,team,role,x,y,z) in enumerate(entities):
                 if eid==pid:continue
                 dx,dy=x-p.x,y-p.y;d=math.hypot(dx,dy)
                 off=(math.atan2(dy,dx)-facing+math.pi)%(2*math.pi)-math.pi
-                if p.role!='archer' and abs(off)>math.radians(120) and d>2:continue
+                if p.role!='archer' and abs(off)>half_angle and d>2:continue
                 if not mask[vi,ei]:continue
                 sigma=(.04+.002*d)*(p.native_sensor_noise_scale if self.attr else 1.)
-                ox,oy,oz=x+rng.gauss(0,sigma),y+rng.gauss(0,sigma),max(.1075,z+rng.gauss(0,.04))
+                ox,oy,oz=x+rng.gauss(0,sigma),y+rng.gauss(0,sigma),max(.1075,z+rng.gauss(0,z_noise))
                 old=self.history.get((pid,eid));vx=vy=vz=0.
                 if old and now>old[0]:
                     dt=(now-old[0])/1000;vx,vy,vz=((ox-old[1])/dt,(oy-old[2])/dt,(oz-old[3])/dt)
@@ -239,7 +252,8 @@ class NativePort:
             f=ObservationFrame(f'native/{now}/{pid}/bench',now,pid,(),None,sig,None,None,False,self.m.e.hunt_cleared)
         mem=self.memory.setdefault(pid,{})
         mem.update({t.entity:t for t in f.tracks})
-        tracks=tuple(t for t in sorted(mem.values(),key=lambda t:t.entity) if now-t.captured_ms<=2000)
+        track_age = round(1400 + 600 * p.native_individual['focus']) if self.individuation else 2000
+        tracks=tuple(t for t in sorted(mem.values(),key=lambda t:t.entity) if now-t.captured_ms<=track_age)
         course=f.ball_course
         # No sensor fallback: own old course can go stale, or be absent.
         self.course_beliefs[pid]=course
@@ -258,10 +272,11 @@ class NativePort:
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
                            own_skills=tuple((key,getattr(p.a,key)) for key in ('strength','agility','endurance','balance','contact_resistance','tackling','blocking','ball_handling','passing','catching','awareness','archery_accuracy','keeper_skill')) if self.attr else (),
+                           individual_ratings=tuple(p.native_individual.items()) if self.individuation else (),
                            hunt_cleared=f.hunt_cleared,messages=messages,ownership_enabled=True,ball_course=course,
                            own_restraint=self.m.c3_rho(p,'pass'),tuck_fraction=self.m.assume['tuck_after_delay_frac'],zone_radius=self.config.zone_radius,
                            **(self.own_contact(p) if self.v3 else {}))
-        belief=C.BeliefState(oid+'/belief',oid,tracks,tuple(self.feedback.pop(pid,())),2000,None,course,receive_messages(view))
+        belief=C.BeliefState(oid+'/belief',oid,tracks,tuple(self.feedback.pop(pid,())),track_age,None,course,receive_messages(view))
         return view,belief
 
     def own_contact(self,p):
@@ -339,6 +354,8 @@ class NativePort:
         if kind in ('position','restart_position','carry','pursue','press','mark','support','receive','search','keeper_set','keeper_save') or (kind=='tackle' and self.v3):
             if intent.aim is None:return {'status':'rejected','reason':'missing_aim'}
             self.move[p.id]=intent.aim
+            if self.individuation and kind != 'restart_position' and not getattr(e, 'rb310_hold', None):
+                self.move[p.id] = IND.movement_aim(p.x, p.y, intent.aim, p.native_individual['motor_control'])
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'locomotion')
             self.command_log.append(cmd);return {'status':'accepted','command':cmd}
         if kind in ('pass','shoot','restart_pass','draw_release','dribble','bounce'):
@@ -400,6 +417,8 @@ class NativePort:
             angle=math.degrees(math.acos(max(-1,min(1,dot/max(sizes,1e-9)))))
             if angle>60:self.resolve(pid,'rejected_geometry');continue
             self.release_log.append(dict(command_id=pend['cmd'].command_id,intent_id=i.intent_id,angle=angle,speed=i.speed,height=i.height,target=i.target))
+            if self.individuation and i.kind != 'restart_pass':
+                new = IND.delivery_velocity(new, p.native_individual['touch'], m.rng['ball'].uniform(-1., 1.))
             if i.kind=='restart_pass':
                 ok=e.restart_release(pid,new,i.target)
                 if not ok and s.restart is not None and s.restart.taker==pid:
@@ -477,7 +496,8 @@ class NativePort:
                 intent = replace(i.auxiliary, course=course)
                 cmd = plan_keeper_motor(
                     intent, body(p), now_ms=s.now, gravity=m.assume['gravity'],
-                    pushoff_fraction=m.assume['keeper_pushoff_frac'],
+                    pushoff_fraction=m.assume['keeper_pushoff_frac'] * (
+                        .75 + .25 * p.a.keeper_skill if self.individuation else 1.),
                     extension_fraction=m.assume['keeper_extension_frac'],
                     launch_min_s=m.assume['keeper_launch_min_s'],
                     dive_time_s=m.assume['keeper_dive_time_s'],

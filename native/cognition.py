@@ -97,6 +97,7 @@ class AthleteView:
     own_balance_load: float = 0.         # SELF-1: own balance, 0 settled .. 1 grounded
     own_hold_target: str | None = None   # own action: whom my own hands hold
     own_mass_kg: float | None = None     # ATTR-1: exact own-body knowledge only
+    individual_ratings: tuple[tuple[str, float], ...] = ()
     own_skills: tuple = ()               # ATTR-1: self only; never teammate/opponent ratings
 
 
@@ -256,6 +257,7 @@ def archer_target_legal(t, view, now):
 def _base_decide(view: AthleteView, belief: BeliefState):
     if belief.observation_id != view.observation_id:
         raise ValueError('belief/view provenance mismatch')
+    from .individuation import effect
     COM.plan_hooks(view, belief)
     now = view.delivered_ms
     fresh = tuple(t for t in belief.tracks
@@ -343,7 +345,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                         plan = R3.shot_plan(view, fresh)
                         if plan is not None:
                             options.append(('shoot', None, plan['aim'],
-                                            round(value + R3.SHOT_MARGIN_W * min(plan['margin'], R3.SHOT_MARGIN_CAP), 6)))
+                                            round(value + (R3.SHOT_MARGIN_W + effect(view, 'finishing', .8)) * min(plan['margin'], R3.SHOT_MARGIN_CAP), 6)))
                     else:
                         options.append(('shoot', None, (goal[0], 50. + side * 1.), round(value, 6)))
                 # carry toward goal, drifting away from the nearest believed opponent ahead
@@ -373,7 +375,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     # (cognition's choice; Motor never leads the receiver).
                     rt = next(x for x in fresh if x.entity == t)
                     if view.cognition == 'native-rb/3':
-                        a = rb3_lead(view.x, view.y, a, (rt.vx, rt.vy), view.max_throw_speed)[0]
+                        a = rb3_lead(view.x, view.y, a, (rt.vx * (1 + effect(view, 'anticipation', .5)),
+                                                        rt.vy * (1 + effect(view, 'anticipation', .5))), view.max_throw_speed)[0]
                     else:
                         tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
                         a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
@@ -423,9 +426,11 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(px - t.x, py - t.y) < mine)
             options.append(('position', None, position_from_belief(view, ball.x, False), 1.))
-            if closer <= 1 or mine < 7.:
+            airborne = belief.ball_course is not None and belief.ball_course.z > .45
+            pursuit = 'in_air_ball_pursuit' if airborne else 'live_ball_pursuit'
+            if closer <= 1 or mine < 7. + effect(view, pursuit, 6.):
                 options.append(('pursue', BALL, (round(px, 3), round(py, 3)),
-                                round(4. - .05 * mine, 6)))
+                                round(4. - .05 * mine + effect(view, pursuit, 1.), 6)))
         elif carrier[1] == view.team:
             options.append(('support', carrier[0], position_from_belief(view, ball.x, False), 1.))
         else:
@@ -433,12 +438,18 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             mine = hypot(c.x - view.x, c.y - view.y)
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(c.x - t.x, c.y - t.y) < mine)
-            options.append(('mark', None, position_from_belief(view, ball.x, True), 1.))
+            mark_aim = position_from_belief(view, ball.x, True)
+            if view.individual_ratings:
+                mix = .4 + effect(view, 'marking', .5)
+                mark_aim = tuple(round((1 - mix) * a + mix * b, 3)
+                                 for a, b in zip(mark_aim, (c.x - sg * 4., c.y)))
+                mark_aim = tuple(_clamp(a, 1., 99.) for a in mark_aim)
+            options.append(('mark', None, mark_aim, 1.))
             # KP (R-15): no opponent-initiated contact on a protected Keeper
             if closer <= 1 and banned != 'press' and not keeper_protected(c, view):
                 # Base A (M1) defender decision: pursuit or the continuous lane option
                 for k, t, a, v in _m1_options(view, fresh, carrier, 'defender',
-                                              enable_lane_option=True, defender_judgment=.7):
+                                              enable_lane_option=True, defender_judgment=.7 + effect(view, 'judgment', .35)):
                     if k == 'move':
                         options.append(('press', t, (round(_clamp(a[0], 1, 99), 3), round(_clamp(a[1], 1, 99), 3)),
                                         round(v - 7., 6)))
@@ -455,6 +466,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
     bias = {'pass':view.policy.bias_pass,'shoot':view.policy.bias_shoot,
             'press':view.policy.bias_press,'pursue':view.policy.bias_pursue,
             'draw_release':view.policy.archer_eager}
+    if 0 < sig.possession_ms < 3000 and view.holds_ball:
+        bias['shoot'] += effect(view, 'instinct', 2.)
     options = [(k,t,a,round(v+bias.get(k,0.),6)) for k,t,a,v in options
                if not(k=='pass' and view.policy.pass_min_clearance>0 and
                       _lane_clearance(view.x,view.y,a[0],a[1],opps)<view.policy.pass_min_clearance)]
@@ -482,6 +495,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    if not view.individual_ratings:
+        result['view'].pop('individual_ratings')
     for d in result.values():
         for message in d['messages']:
             e = message['envelope']
@@ -494,6 +509,8 @@ def view_from_json(d):
     v, b = dict(d['view']), dict(d['belief'])
     tr = lambda xs: tuple(Track(**t) for t in xs)
     v['tracks'] = tr(v['tracks'])
+    if 'individual_ratings' in v:
+        v['individual_ratings'] = tuple(tuple(row) for row in v['individual_ratings'])
     v['policy'] = PolicyParams.from_dict(v['policy']) if isinstance(v.get('policy'),dict) else PolicyParams()
     if isinstance(v.get('body'),dict):v['body']=E.AthleteBody(**v['body'])
     if v.get('restart') is not None:v['restart']=tuple(v['restart'])
@@ -601,7 +618,9 @@ def decide_v2(view, belief):
         position=None
         if course and course.fresh(view.delivered_ms):
             d=hypot(course.x-view.own_goal_x,course.y-50);depth=max(1.,min(4.,d*.25))
-            position=(view.own_goal_x+view.attack_sign*depth,50+(course.y-50)*depth/max(d,.01))
+            from .individuation import effect
+            lateral = (course.y-50)*depth/max(d,.01)
+            position=(view.own_goal_x+view.attack_sign*depth,50+lateral*(1+effect(view, 'goalkeeping', .5)))
         kv=E.KeeperView(view.observation_id,view.delivered_ms,view.body,view.own_goal_x,
                         goal_radius=view.goal_radius,position_belief=position)
         if getattr(view,'ball_material',None) is not None:   # RB-3.21: the Keeper forecasts the ball the material produces

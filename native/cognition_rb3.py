@@ -321,6 +321,7 @@ def zone_clock_penalty(view, c, max_age_ms):
 
 def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     """(value, gain, margin) for a pass to believed teammate track `c`; None outside the range or on an unsafe lane."""
+    from .individuation import effect
     from .throw_speed import release_speed
     sg = view.attack_sign
     dx, dy = c.x - view.x, c.y - view.y
@@ -335,7 +336,7 @@ def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
     space = min([hypot(o.x - c.x, o.y - c.y) for o in opps] + [10.])
     v = (PASS_BASE + PASS_GAIN_W * gain + PASS_CLEAR_W * (min(margin, 10.) - PASS_CLEAR_BASE)
-         + PASS_SPACE_W * (space - PASS_SPACE_BASE) - PASS_DIST_W * dist
+         + (PASS_SPACE_W + effect(view, 'playmaking', .10)) * (space - PASS_SPACE_BASE) - PASS_DIST_W * dist
          + (PRESSURED_BONUS if pressured and space >= PRESSURED_SPACE_M else 0.)
          - (BACKWARD_W * abs(gain) if gain < 0 and not pressured else 0.)
          - zone_clock_penalty(view, c, max_age_ms))
@@ -732,16 +733,18 @@ def _attacker_zone(view, belief, intent, record):
             return (replace(intent, aim=_arc_point(view, gx, intent.aim[0], intent.aim[1])),
                     dict(record, rb311=dict(rule='Z-3_stay_out', aim_was=list(intent.aim))))
         return intent, record
+    from .individuation import effect
     time_left = (ZONE_LIMIT_MS_RULE - view.zone_elapsed_ms) / 1000.
+    exit_margin = EXIT_MARGIN_S + effect(view, 'zone_reads', .65)
     out_dir = _unit(gx, 50., view.x, view.y)                       # outward from the goal centre: toward the arc
     t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d, out_dir)
     if view.holds_ball:
         rule = record.get('rb39c')
         if isinstance(rule, dict) and rule.get('rule') == 'unopposed_carry_to_goal':
             return intent, record                      # carrier rule: carrying on to score with margin (exempt)
-        if intent.kind == 'shoot' and time_left * 1000. >= SHOT_MIN_TIME_MS and t_arc + EXIT_MARGIN_S < time_left:
+        if intent.kind == 'shoot' and time_left * 1000. >= SHOT_MIN_TIME_MS and t_arc + exit_margin < time_left:
             return intent, record                      # a real shot option, while there is still time to exit
-        if t_arc + EXIT_MARGIN_S < time_left:
+        if t_arc + exit_margin < time_left:
             return intent, record
         eta = time_to_cover(view, d, _unit(view.x, view.y, gx, 50.))
         if t_arc >= time_left > eta:                   # cannot clear the arc in time, but can still score
@@ -752,7 +755,7 @@ def _attacker_zone(view, belief, intent, record):
     involved = _involved(view, belief, intent)
     if involved is None:                               # Z-3: off-ball and not involved: head out at once
         return _leave(view, gx, intent, record, 'Z-3_off_ball_exit', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
-    if t_arc + EXIT_MARGIN_S >= time_left:             # Z-2: involved, but his clock is running out
+    if t_arc + exit_margin >= time_left:             # Z-2: involved, but his clock is running out
         cross = _leave_distance(view, gx, intent.aim) if intent.aim is not None else None
         if cross is not None and time_to_cover(view, cross, _unit(view.x, view.y, *intent.aim)) <= t_arc * 1.15:
             return intent, record                      # his own intent already takes him out as fast

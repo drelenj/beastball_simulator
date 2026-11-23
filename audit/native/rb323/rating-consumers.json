@@ -1,0 +1,3577 @@
+{
+  "baseline": "eb30f605f24b906777b88d6cb3a552b3584639ef",
+  "ratings": {
+    "speed": {
+      "status": "active",
+      "baseline_effect": "mapped maximum_speed; C3 propulsion cap and own movement forecasts",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "227"
+        ],
+        [
+          "native/cognition.py",
+          "127"
+        ],
+        [
+          "native/cognition.py",
+          "204"
+        ],
+        [
+          "native/cognition.py",
+          "205"
+        ],
+        [
+          "native/cognition.py",
+          "206"
+        ],
+        [
+          "native/cognition.py",
+          "211"
+        ],
+        [
+          "native/cognition.py",
+          "213"
+        ],
+        [
+          "native/cognition.py",
+          "393"
+        ],
+        [
+          "native/cognition.py",
+          "395"
+        ],
+        [
+          "native/cognition.py",
+          "401"
+        ],
+        [
+          "native/cognition.py",
+          "540"
+        ],
+        [
+          "native/cognition.py",
+          "614"
+        ],
+        [
+          "native/cognition.py",
+          "616"
+        ],
+        [
+          "native/cognition.py",
+          "625"
+        ],
+        [
+          "native/cognition.py",
+          "627"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "166"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "211"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "294"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "304"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "450"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "466"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "515"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "543"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "545"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "569"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "580"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "627"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "636"
+        ],
+        [
+          "native/port.py",
+          "287"
+        ],
+        [
+          "native/port.py",
+          "352"
+        ],
+        [
+          "native/port.py",
+          "353"
+        ],
+        [
+          "native/port.py",
+          "396"
+        ],
+        [
+          "native/port.py",
+          "402"
+        ],
+        [
+          "native/port.py",
+          "413"
+        ],
+        [
+          "native/port.py",
+          "452"
+        ],
+        [
+          "native/rules.py",
+          "465"
+        ],
+        [
+          "native/rules.py",
+          "467"
+        ],
+        [
+          "native/nbl_roster.py",
+          "5"
+        ],
+        [
+          "native/cognition_v3.py",
+          "42"
+        ],
+        [
+          "native/cognition_v3.py",
+          "152"
+        ],
+        [
+          "native/cognition_v3.py",
+          "155"
+        ],
+        [
+          "native/cognition_v3.py",
+          "168"
+        ],
+        [
+          "native/cognition_v3.py",
+          "204"
+        ],
+        [
+          "native/cognition_v3.py",
+          "276"
+        ],
+        [
+          "native/cognition_v3.py",
+          "292"
+        ],
+        [
+          "native/cognition_v3.py",
+          "294"
+        ],
+        [
+          "core_src/match.py",
+          "13"
+        ],
+        [
+          "core_src/match.py",
+          "65"
+        ],
+        [
+          "core_src/match.py",
+          "189"
+        ],
+        [
+          "core_src/match.py",
+          "190"
+        ],
+        [
+          "core_src/match.py",
+          "221"
+        ],
+        [
+          "core_src/match.py",
+          "240"
+        ],
+        [
+          "core_src/match.py",
+          "272"
+        ],
+        [
+          "core_src/match.py",
+          "494"
+        ],
+        [
+          "core_src/match.py",
+          "536"
+        ],
+        [
+          "core_src/match.py",
+          "566"
+        ],
+        [
+          "core_src/match.py",
+          "568"
+        ],
+        [
+          "core_src/match.py",
+          "596"
+        ],
+        [
+          "core_src/match.py",
+          "614"
+        ],
+        [
+          "core_src/match.py",
+          "616"
+        ],
+        [
+          "core_src/match.py",
+          "624"
+        ],
+        [
+          "core_src/match.py",
+          "632"
+        ],
+        [
+          "core_src/match.py",
+          "744"
+        ],
+        [
+          "core_src/match.py",
+          "745"
+        ],
+        [
+          "core_src/match.py",
+          "746"
+        ],
+        [
+          "core_src/match.py",
+          "763"
+        ],
+        [
+          "core_src/match.py",
+          "764"
+        ],
+        [
+          "core_src/match.py",
+          "765"
+        ],
+        [
+          "core_src/match.py",
+          "770"
+        ],
+        [
+          "core_src/match.py",
+          "773"
+        ],
+        [
+          "core_src/match.py",
+          "775"
+        ],
+        [
+          "core_src/match.py",
+          "781"
+        ],
+        [
+          "core_src/match.py",
+          "783"
+        ],
+        [
+          "core_src/match.py",
+          "784"
+        ],
+        [
+          "core_src/match.py",
+          "787"
+        ],
+        [
+          "core_src/match.py",
+          "797"
+        ],
+        [
+          "core_src/match.py",
+          "801"
+        ],
+        [
+          "core_src/match.py",
+          "805"
+        ],
+        [
+          "core_src/match.py",
+          "815"
+        ],
+        [
+          "core_src/match.py",
+          "821"
+        ],
+        [
+          "core_src/match.py",
+          "822"
+        ],
+        [
+          "core_src/match.py",
+          "825"
+        ],
+        [
+          "core_src/match.py",
+          "827"
+        ],
+        [
+          "core_src/match.py",
+          "829"
+        ],
+        [
+          "core_src/match.py",
+          "830"
+        ],
+        [
+          "core_src/match.py",
+          "831"
+        ],
+        [
+          "core_src/match.py",
+          "834"
+        ],
+        [
+          "core_src/match.py",
+          "835"
+        ],
+        [
+          "core_src/match.py",
+          "838"
+        ],
+        [
+          "core_src/match.py",
+          "845"
+        ],
+        [
+          "core_src/match.py",
+          "846"
+        ],
+        [
+          "core_src/match.py",
+          "847"
+        ],
+        [
+          "core_src/match.py",
+          "854"
+        ],
+        [
+          "core_src/match.py",
+          "856"
+        ],
+        [
+          "core_src/match.py",
+          "857"
+        ],
+        [
+          "core_src/match.py",
+          "858"
+        ],
+        [
+          "core_src/match.py",
+          "994"
+        ],
+        [
+          "core_src/match.py",
+          "1009"
+        ],
+        [
+          "core_src/match.py",
+          "1012"
+        ],
+        [
+          "core_src/match.py",
+          "1019"
+        ],
+        [
+          "core_src/match.py",
+          "1038"
+        ],
+        [
+          "core_src/match.py",
+          "1206"
+        ],
+        [
+          "core_src/match.py",
+          "1211"
+        ],
+        [
+          "core_src/match.py",
+          "1212"
+        ],
+        [
+          "core_src/match.py",
+          "1243"
+        ],
+        [
+          "core_src/match.py",
+          "1245"
+        ],
+        [
+          "core_src/match.py",
+          "1255"
+        ],
+        [
+          "core_src/match.py",
+          "1294"
+        ],
+        [
+          "core_src/match.py",
+          "1312"
+        ],
+        [
+          "core_src/match.py",
+          "1326"
+        ],
+        [
+          "core_src/match.py",
+          "1327"
+        ],
+        [
+          "core_src/match.py",
+          "1365"
+        ],
+        [
+          "core_src/match.py",
+          "1366"
+        ],
+        [
+          "core_src/match.py",
+          "1370"
+        ],
+        [
+          "core_src/match.py",
+          "1379"
+        ],
+        [
+          "core_src/match.py",
+          "1470"
+        ],
+        [
+          "core_src/match.py",
+          "1542"
+        ],
+        [
+          "core_src/match.py",
+          "1848"
+        ],
+        [
+          "core_src/match.py",
+          "1858"
+        ],
+        [
+          "core_src/match.py",
+          "1862"
+        ],
+        [
+          "core_src/match.py",
+          "1863"
+        ],
+        [
+          "core_src/match.py",
+          "1901"
+        ],
+        [
+          "core_src/match.py",
+          "1902"
+        ],
+        [
+          "core_src/match.py",
+          "1903"
+        ],
+        [
+          "core_src/match.py",
+          "1905"
+        ],
+        [
+          "core_src/match.py",
+          "2043"
+        ],
+        [
+          "core_src/match.py",
+          "2044"
+        ],
+        [
+          "core_src/match.py",
+          "2054"
+        ],
+        [
+          "core_src/match.py",
+          "2315"
+        ],
+        [
+          "core_src/match.py",
+          "2389"
+        ],
+        [
+          "core_src/match.py",
+          "2390"
+        ],
+        [
+          "core_src/match.py",
+          "2471"
+        ],
+        [
+          "core_src/match.py",
+          "2642"
+        ],
+        [
+          "core_src/match.py",
+          "2645"
+        ],
+        [
+          "core_src/match.py",
+          "2664"
+        ],
+        [
+          "core_src/match.py",
+          "2669"
+        ],
+        [
+          "core_src/match.py",
+          "2680"
+        ],
+        [
+          "core_src/match.py",
+          "2682"
+        ],
+        [
+          "core_src/match.py",
+          "2683"
+        ],
+        [
+          "core_src/match.py",
+          "2684"
+        ],
+        [
+          "core_src/match.py",
+          "2685"
+        ],
+        [
+          "core_src/match.py",
+          "2693"
+        ],
+        [
+          "core_src/match.py",
+          "2734"
+        ],
+        [
+          "core_src/match.py",
+          "2759"
+        ],
+        [
+          "core_src/match.py",
+          "2763"
+        ],
+        [
+          "native/rulebook/config.py",
+          "60"
+        ],
+        [
+          "native/rulebook/config.py",
+          "70"
+        ],
+        [
+          "native/rulebook/config.py",
+          "75"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "97"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "101"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "102"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "139"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "247"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "248"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "249"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "251"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "252"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "253"
+        ],
+        [
+          "native/rulebook/archery.py",
+          "61"
+        ],
+        [
+          "native/rulebook/archery.py",
+          "62"
+        ],
+        [
+          "native/rulebook/archery.py",
+          "63"
+        ],
+        [
+          "native/rulebook/archery.py",
+          "64"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "2"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "85"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "86"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "91"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "96"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "119"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "120"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "160"
+        ],
+        [
+          "native/rulebook/ball_material.py",
+          "163"
+        ],
+        [
+          "core_src/geometry.py",
+          "40"
+        ],
+        [
+          "core_src/geometry.py",
+          "42"
+        ],
+        [
+          "core_src/geometry.py",
+          "43"
+        ],
+        [
+          "core_src/geometry.py",
+          "45"
+        ],
+        [
+          "core_src/geometry.py",
+          "46"
+        ],
+        [
+          "core_src/geometry.py",
+          "47"
+        ],
+        [
+          "core_src/geometry.py",
+          "55"
+        ],
+        [
+          "core_src/geometry.py",
+          "56"
+        ],
+        [
+          "core_src/geometry.py",
+          "57"
+        ],
+        [
+          "core_src/geometry.py",
+          "59"
+        ],
+        [
+          "core_src/geometry.py",
+          "62"
+        ],
+        [
+          "core_src/geometry.py",
+          "76"
+        ],
+        [
+          "core_src/geometry.py",
+          "77"
+        ],
+        [
+          "core_src/geometry.py",
+          "100"
+        ],
+        [
+          "core_src/geometry.py",
+          "105"
+        ],
+        [
+          "core_src/geometry.py",
+          "106"
+        ],
+        [
+          "core_src/geometry.py",
+          "136"
+        ],
+        [
+          "core_src/geometry.py",
+          "138"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "125"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "126"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "131"
+        ],
+        [
+          "core_src/policies.py",
+          "26"
+        ],
+        [
+          "core_src/policies.py",
+          "56"
+        ],
+        [
+          "core_src/policies.py",
+          "104"
+        ],
+        [
+          "core_src/policies.py",
+          "171"
+        ],
+        [
+          "core_src/engine.py",
+          "25"
+        ],
+        [
+          "core_src/engine.py",
+          "346"
+        ],
+        [
+          "core_src/engine.py",
+          "347"
+        ],
+        [
+          "core_src/engine.py",
+          "408"
+        ],
+        [
+          "core_src/engine.py",
+          "566"
+        ],
+        [
+          "core_src/engine.py",
+          "802"
+        ],
+        [
+          "core_src/engine.py",
+          "803"
+        ],
+        [
+          "core_src/engine.py",
+          "805"
+        ],
+        [
+          "core_src/engine.py",
+          "809"
+        ],
+        [
+          "core_src/engine.py",
+          "813"
+        ],
+        [
+          "core_src/engine.py",
+          "820"
+        ],
+        [
+          "core_src/engine.py",
+          "1035"
+        ],
+        [
+          "core_src/engine.py",
+          "1036"
+        ],
+        [
+          "core_src/types.py",
+          "82"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Speed (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "agility": {
+      "status": "active",
+      "baseline_effect": "braking and turning mappings; C3 movement and contact balance",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "52"
+        ],
+        [
+          "native/roster.py",
+          "56"
+        ],
+        [
+          "native/roster.py",
+          "57"
+        ],
+        [
+          "native/roster.py",
+          "60"
+        ],
+        [
+          "native/roster.py",
+          "61"
+        ],
+        [
+          "native/roster.py",
+          "229"
+        ],
+        [
+          "native/roster.py",
+          "230"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "7"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "2570"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "56"
+        ],
+        [
+          "core_src/engine.py",
+          "1373"
+        ],
+        [
+          "core_src/engine.py",
+          "1374"
+        ],
+        [
+          "core_src/engine.py",
+          "1383"
+        ],
+        [
+          "core_src/types.py",
+          "20"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Agility (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "strength": {
+      "status": "active",
+      "baseline_effect": "C3 grip/contact and Native block power",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "230"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "891"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "897"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "900"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "5"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "166"
+        ],
+        [
+          "core_src/match.py",
+          "167"
+        ],
+        [
+          "core_src/match.py",
+          "170"
+        ],
+        [
+          "core_src/match.py",
+          "171"
+        ],
+        [
+          "core_src/match.py",
+          "182"
+        ],
+        [
+          "core_src/match.py",
+          "720"
+        ],
+        [
+          "core_src/match.py",
+          "734"
+        ],
+        [
+          "core_src/match.py",
+          "1549"
+        ],
+        [
+          "core_src/match.py",
+          "1551"
+        ],
+        [
+          "core_src/match.py",
+          "1554"
+        ],
+        [
+          "core_src/match.py",
+          "1557"
+        ],
+        [
+          "core_src/match.py",
+          "1560"
+        ],
+        [
+          "core_src/match.py",
+          "1561"
+        ],
+        [
+          "core_src/match.py",
+          "1571"
+        ],
+        [
+          "core_src/match.py",
+          "1609"
+        ],
+        [
+          "core_src/match.py",
+          "1626"
+        ],
+        [
+          "core_src/match.py",
+          "1645"
+        ],
+        [
+          "core_src/match.py",
+          "1711"
+        ],
+        [
+          "core_src/match.py",
+          "1746"
+        ],
+        [
+          "core_src/match.py",
+          "1747"
+        ],
+        [
+          "core_src/match.py",
+          "1763"
+        ],
+        [
+          "core_src/match.py",
+          "2060"
+        ],
+        [
+          "core_src/match.py",
+          "2080"
+        ],
+        [
+          "core_src/match.py",
+          "2081"
+        ],
+        [
+          "core_src/match.py",
+          "2570"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "56"
+        ],
+        [
+          "core_src/policies.py",
+          "57"
+        ],
+        [
+          "core_src/policies.py",
+          "59"
+        ],
+        [
+          "core_src/policies.py",
+          "60"
+        ],
+        [
+          "core_src/policies.py",
+          "62"
+        ],
+        [
+          "core_src/types.py",
+          "15"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "15"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "19"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "20"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "21"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "22"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "179"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "18"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Strength (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "balance": {
+      "status": "active",
+      "baseline_effect": "C3 balance/grounding; NBL fallback for contact_resistance",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "231"
+        ],
+        [
+          "native/cognition.py",
+          "97"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/port.py",
+          "268"
+        ],
+        [
+          "native/nbl_roster.py",
+          "7"
+        ],
+        [
+          "native/nbl_roster.py",
+          "59"
+        ],
+        [
+          "native/cognition_v3.py",
+          "7"
+        ],
+        [
+          "native/cognition_v3.py",
+          "23"
+        ],
+        [
+          "native/cognition_v3.py",
+          "101"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "166"
+        ],
+        [
+          "core_src/match.py",
+          "167"
+        ],
+        [
+          "core_src/match.py",
+          "170"
+        ],
+        [
+          "core_src/match.py",
+          "171"
+        ],
+        [
+          "core_src/match.py",
+          "182"
+        ],
+        [
+          "core_src/match.py",
+          "495"
+        ],
+        [
+          "core_src/match.py",
+          "497"
+        ],
+        [
+          "core_src/match.py",
+          "719"
+        ],
+        [
+          "core_src/match.py",
+          "720"
+        ],
+        [
+          "core_src/match.py",
+          "734"
+        ],
+        [
+          "core_src/match.py",
+          "1043"
+        ],
+        [
+          "core_src/match.py",
+          "1208"
+        ],
+        [
+          "core_src/match.py",
+          "1311"
+        ],
+        [
+          "core_src/match.py",
+          "1321"
+        ],
+        [
+          "core_src/match.py",
+          "1474"
+        ],
+        [
+          "core_src/match.py",
+          "1504"
+        ],
+        [
+          "core_src/match.py",
+          "1505"
+        ],
+        [
+          "core_src/match.py",
+          "1506"
+        ],
+        [
+          "core_src/match.py",
+          "1513"
+        ],
+        [
+          "core_src/match.py",
+          "1549"
+        ],
+        [
+          "core_src/match.py",
+          "1552"
+        ],
+        [
+          "core_src/match.py",
+          "1560"
+        ],
+        [
+          "core_src/match.py",
+          "1628"
+        ],
+        [
+          "core_src/match.py",
+          "1634"
+        ],
+        [
+          "core_src/match.py",
+          "1674"
+        ],
+        [
+          "core_src/match.py",
+          "1868"
+        ],
+        [
+          "core_src/match.py",
+          "1899"
+        ],
+        [
+          "core_src/match.py",
+          "1905"
+        ],
+        [
+          "core_src/match.py",
+          "1957"
+        ],
+        [
+          "core_src/match.py",
+          "1959"
+        ],
+        [
+          "core_src/match.py",
+          "1962"
+        ],
+        [
+          "core_src/match.py",
+          "1967"
+        ],
+        [
+          "core_src/match.py",
+          "1977"
+        ],
+        [
+          "core_src/match.py",
+          "2060"
+        ],
+        [
+          "core_src/match.py",
+          "2570"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "57"
+        ],
+        [
+          "core_src/engine.py",
+          "408"
+        ],
+        [
+          "core_src/engine.py",
+          "989"
+        ],
+        [
+          "core_src/engine.py",
+          "993"
+        ],
+        [
+          "core_src/engine.py",
+          "1546"
+        ],
+        [
+          "core_src/types.py",
+          "22"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Balance (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "stamina": {
+      "status": "inert",
+      "baseline_effect": "endurance on C3 fatigue and recovery; fatigue_rate is zero in RB-3.22",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "231"
+        ],
+        [
+          "native/nbl_roster.py",
+          "8"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "experiment_reader": "core_src/match.py:c3_move",
+      "owner": "physics",
+      "effect": "existing fatigue burn/recovery",
+      "effect_type": "stored",
+      "workbook_header": "Stamina (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "tackling": {
+      "status": "active",
+      "baseline_effect": "C3 tackle and wrap",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "232"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "11"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "167"
+        ],
+        [
+          "core_src/match.py",
+          "170"
+        ],
+        [
+          "core_src/match.py",
+          "171"
+        ],
+        [
+          "core_src/match.py",
+          "182"
+        ],
+        [
+          "core_src/match.py",
+          "720"
+        ],
+        [
+          "core_src/match.py",
+          "734"
+        ],
+        [
+          "core_src/match.py",
+          "1546"
+        ],
+        [
+          "core_src/match.py",
+          "1598"
+        ],
+        [
+          "core_src/match.py",
+          "2060"
+        ],
+        [
+          "core_src/match.py",
+          "2071"
+        ],
+        [
+          "core_src/match.py",
+          "2571"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/types.py",
+          "24"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Tackling (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "blocking": {
+      "status": "active",
+      "baseline_effect": "Native block power and core contact",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "16"
+        ],
+        [
+          "native/roster.py",
+          "232"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "11"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "1279"
+        ],
+        [
+          "core_src/match.py",
+          "2080"
+        ],
+        [
+          "core_src/match.py",
+          "2081"
+        ],
+        [
+          "core_src/match.py",
+          "2571"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "57"
+        ],
+        [
+          "core_src/policies.py",
+          "58"
+        ],
+        [
+          "core_src/types.py",
+          "25"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "164"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Blocking (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "contact_resistance": {
+      "status": "active",
+      "baseline_effect": "C3 contact shock/load; workbook defaults to Balance",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "17"
+        ],
+        [
+          "native/roster.py",
+          "231"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "59"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "1547"
+        ],
+        [
+          "core_src/match.py",
+          "2060"
+        ],
+        [
+          "core_src/match.py",
+          "2571"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "56"
+        ],
+        [
+          "core_src/policies.py",
+          "57"
+        ],
+        [
+          "core_src/types.py",
+          "23"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Contact Resistance (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "hidden_dependence": "Balance fallback for ovr/neutral workbook modes; explicit mode can override independently."
+    },
+    "ball_handling": {
+      "status": "active",
+      "baseline_effect": "release preparation, strip resistance and handoff exchange",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "17"
+        ],
+        [
+          "native/roster.py",
+          "232"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "223"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/port.py",
+          "369"
+        ],
+        [
+          "native/nbl_roster.py",
+          "11"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "532"
+        ],
+        [
+          "core_src/match.py",
+          "864"
+        ],
+        [
+          "core_src/match.py",
+          "909"
+        ],
+        [
+          "core_src/match.py",
+          "1598"
+        ],
+        [
+          "core_src/match.py",
+          "2071"
+        ],
+        [
+          "core_src/match.py",
+          "2155"
+        ],
+        [
+          "core_src/match.py",
+          "2571"
+        ],
+        [
+          "core_src/match.py",
+          "2755"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "59"
+        ],
+        [
+          "core_src/engine.py",
+          "1373"
+        ],
+        [
+          "core_src/engine.py",
+          "1374"
+        ],
+        [
+          "core_src/engine.py",
+          "1383"
+        ],
+        [
+          "core_src/types.py",
+          "26"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "117"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "163"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "87"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Ball Handling (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "catching": {
+      "status": "active",
+      "baseline_effect": "Native arrest capacity, including Keepers",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "17"
+        ],
+        [
+          "native/roster.py",
+          "233"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "11"
+        ],
+        [
+          "native/substrate.py",
+          "28"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "62"
+        ],
+        [
+          "core_src/match.py",
+          "2153"
+        ],
+        [
+          "core_src/match.py",
+          "2278"
+        ],
+        [
+          "core_src/match.py",
+          "2572"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "58"
+        ],
+        [
+          "core_src/policies.py",
+          "59"
+        ],
+        [
+          "core_src/policies.py",
+          "64"
+        ],
+        [
+          "core_src/policies.py",
+          "68"
+        ],
+        [
+          "core_src/policies.py",
+          "204"
+        ],
+        [
+          "core_src/policies.py",
+          "215"
+        ],
+        [
+          "core_src/types.py",
+          "29"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ],
+        [
+          "native/rulebook/handoff_block.py",
+          "128"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Catching (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "awareness": {
+      "status": "active",
+      "baseline_effect": "sensor XY noise, passive hands readiness and Keeper deliberate reaction",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "17"
+        ],
+        [
+          "native/roster.py",
+          "77"
+        ],
+        [
+          "native/roster.py",
+          "78"
+        ],
+        [
+          "native/roster.py",
+          "233"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "79"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/port.py",
+          "451"
+        ],
+        [
+          "native/nbl_roster.py",
+          "11"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "331"
+        ],
+        [
+          "core_src/match.py",
+          "364"
+        ],
+        [
+          "core_src/match.py",
+          "757"
+        ],
+        [
+          "core_src/match.py",
+          "1301"
+        ],
+        [
+          "core_src/match.py",
+          "2154"
+        ],
+        [
+          "core_src/match.py",
+          "2176"
+        ],
+        [
+          "core_src/match.py",
+          "2243"
+        ],
+        [
+          "core_src/match.py",
+          "2572"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "59"
+        ],
+        [
+          "core_src/policies.py",
+          "64"
+        ],
+        [
+          "core_src/types.py",
+          "30"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ],
+        [
+          "native/rulebook/config.py",
+          "61"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "46"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "50"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "81"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "86"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Awareness (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "throw_power": {
+      "status": "active",
+      "baseline_effect": "per-athlete release ceiling",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "17"
+        ],
+        [
+          "native/port.py",
+          "77"
+        ],
+        [
+          "native/nbl_roster.py",
+          "8"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Throw Power (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "throw_accuracy": {
+      "status": "active",
+      "baseline_effect": "release yaw dispersion; legacy passing alias",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "18"
+        ],
+        [
+          "native/roster.py",
+          "233"
+        ],
+        [
+          "native/port.py",
+          "78"
+        ],
+        [
+          "native/nbl_roster.py",
+          "12"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Throw Accuracy (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "jump": {
+      "status": "active",
+      "baseline_effect": "mapped jump height; Keeper motor and vertical impulse",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "18"
+        ],
+        [
+          "native/roster.py",
+          "230"
+        ],
+        [
+          "native/nbl_roster.py",
+          "6"
+        ],
+        [
+          "core_src/match.py",
+          "65"
+        ],
+        [
+          "core_src/match.py",
+          "193"
+        ],
+        [
+          "core_src/match.py",
+          "337"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Jumping (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "keeper_skill": {
+      "status": "inert",
+      "baseline_effect": "legacy catch reader replaced by Catching; specialist legacy paths are not regular Native save execution",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "18"
+        ],
+        [
+          "native/roster.py",
+          "234"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "12"
+        ],
+        [
+          "native/substrate.py",
+          "28"
+        ],
+        [
+          "core_src/match.py",
+          "62"
+        ],
+        [
+          "core_src/match.py",
+          "2153"
+        ],
+        [
+          "core_src/match.py",
+          "2278"
+        ],
+        [
+          "core_src/match.py",
+          "2573"
+        ],
+        [
+          "core_src/policies.py",
+          "65"
+        ],
+        [
+          "core_src/policies.py",
+          "68"
+        ],
+        [
+          "core_src/engine.py",
+          "1296"
+        ],
+        [
+          "core_src/engine.py",
+          "1364"
+        ],
+        [
+          "core_src/engine.py",
+          "1387"
+        ],
+        [
+          "core_src/types.py",
+          "34"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "experiment_reader": "native/port.py:keeper_motor",
+      "owner": "motor",
+      "effect": "push-off fraction",
+      "effect_type": "stored",
+      "workbook_header": "Keeper Skill (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "archery_accuracy": {
+      "status": "inert",
+      "baseline_effect": "Native RulebookPort passed the ballistic velocity unmodified.",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "18"
+        ],
+        [
+          "native/roster.py",
+          "234"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "native/nbl_roster.py",
+          "12"
+        ],
+        [
+          "core_src/match.py",
+          "67"
+        ],
+        [
+          "core_src/match.py",
+          "1000"
+        ],
+        [
+          "core_src/match.py",
+          "1035"
+        ],
+        [
+          "core_src/match.py",
+          "1041"
+        ],
+        [
+          "core_src/match.py",
+          "2573"
+        ],
+        [
+          "core_src/policies.py",
+          "65"
+        ],
+        [
+          "core_src/policies.py",
+          "69"
+        ],
+        [
+          "core_src/engine.py",
+          "1296"
+        ],
+        [
+          "core_src/types.py",
+          "32"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "experiment_reader": "native/rulebook/port.py:archer_motor",
+      "owner": "motor",
+      "effect": "yaw dispersion",
+      "effect_type": "stored",
+      "workbook_header": "Archery Accuracy (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "touch": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ],
+        [
+          "native/cognition.py",
+          "96"
+        ],
+        [
+          "native/rules.py",
+          "14"
+        ],
+        [
+          "native/rules.py",
+          "50"
+        ],
+        [
+          "native/rules.py",
+          "178"
+        ],
+        [
+          "native/rules.py",
+          "183"
+        ],
+        [
+          "native/rules.py",
+          "507"
+        ],
+        [
+          "core_src/match.py",
+          "96"
+        ],
+        [
+          "core_src/match.py",
+          "2161"
+        ],
+        [
+          "core_src/match.py",
+          "2302"
+        ],
+        [
+          "core_src/match.py",
+          "2303"
+        ],
+        [
+          "core_src/match.py",
+          "2311"
+        ],
+        [
+          "core_src/match.py",
+          "2319"
+        ],
+        [
+          "core_src/engine.py",
+          "260"
+        ],
+        [
+          "core_src/engine.py",
+          "263"
+        ],
+        [
+          "core_src/engine.py",
+          "264"
+        ],
+        [
+          "core_src/engine.py",
+          "265"
+        ],
+        [
+          "core_src/engine.py",
+          "271"
+        ],
+        [
+          "core_src/engine.py",
+          "279"
+        ],
+        [
+          "core_src/engine.py",
+          "295"
+        ],
+        [
+          "core_src/engine.py",
+          "297"
+        ],
+        [
+          "core_src/engine.py",
+          "315"
+        ],
+        [
+          "core_src/engine.py",
+          "322"
+        ],
+        [
+          "core_src/engine.py",
+          "323"
+        ],
+        [
+          "core_src/engine.py",
+          "324"
+        ],
+        [
+          "core_src/engine.py",
+          "325"
+        ],
+        [
+          "core_src/engine.py",
+          "1174"
+        ],
+        [
+          "core_src/engine.py",
+          "1537"
+        ],
+        [
+          "core_src/engine.py",
+          "1538"
+        ],
+        [
+          "core_src/engine.py",
+          "1610"
+        ],
+        [
+          "native/rulebook/archery.py",
+          "107"
+        ],
+        [
+          "native/rulebook/formation.py",
+          "32"
+        ],
+        [
+          "native/rulebook/formation.py",
+          "143"
+        ],
+        [
+          "native/rulebook/formation.py",
+          "145"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "motor",
+      "experiment_reader": "native/port.py:ball_motor",
+      "effect": "release pitch",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Touch (rating)"
+    },
+    "vision": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ],
+        [
+          "native/port.py",
+          "202"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "perception",
+      "experiment_reader": "native/port.py:capture",
+      "effect": "visual_half_angle",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Vision (rating)"
+    },
+    "clarity": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "perception",
+      "experiment_reader": "native/port.py:capture",
+      "effect": "vertical observation SD",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Clarity (rating)"
+    },
+    "reaction": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ],
+        [
+          "native/port.py",
+          "451"
+        ],
+        [
+          "native/port.py",
+          "453"
+        ],
+        [
+          "native/port.py",
+          "454"
+        ],
+        [
+          "core_src/match.py",
+          "537"
+        ],
+        [
+          "core_src/match.py",
+          "1089"
+        ],
+        [
+          "core_src/match.py",
+          "1246"
+        ],
+        [
+          "core_src/match.py",
+          "1247"
+        ],
+        [
+          "core_src/match.py",
+          "1343"
+        ],
+        [
+          "core_src/match.py",
+          "1441"
+        ],
+        [
+          "core_src/match.py",
+          "1534"
+        ],
+        [
+          "core_src/match.py",
+          "1704"
+        ],
+        [
+          "core_src/match.py",
+          "1814"
+        ],
+        [
+          "core_src/match.py",
+          "1820"
+        ],
+        [
+          "core_src/match.py",
+          "1847"
+        ],
+        [
+          "core_src/match.py",
+          "1849"
+        ],
+        [
+          "core_src/match.py",
+          "1857"
+        ],
+        [
+          "core_src/match.py",
+          "1861"
+        ],
+        [
+          "core_src/match.py",
+          "1862"
+        ],
+        [
+          "core_src/match.py",
+          "2238"
+        ],
+        [
+          "core_src/match.py",
+          "2302"
+        ],
+        [
+          "core_src/engine.py",
+          "480"
+        ],
+        [
+          "core_src/engine.py",
+          "800"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition scheduling",
+      "experiment_reader": "native/port.py:decision_interval_ms",
+      "effect": "next decision due",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Reaction (rating)"
+    },
+    "anticipation": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide",
+      "effect": "receiver lead velocity",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Anticipation (rating)"
+    },
+    "focus": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "belief",
+      "experiment_reader": "native/port.py:view",
+      "effect": "track age cutoff",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Focus (rating)"
+    },
+    "instinct": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide",
+      "effect": "short clock shot option",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Instinct (rating)"
+    },
+    "judgment": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide; b1/core.py:decide",
+      "effect": "passing-lane depth",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Judgment (rating)"
+    },
+    "motor_control": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "20"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "motor",
+      "experiment_reader": "native/port.py:_submit_intent",
+      "effect": "heading quantization",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Motor Control (rating)"
+    },
+    "playmaking": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "21"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition_rb3.py:pass_value",
+      "effect": "receiver open space",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Playmaking (rating)"
+    },
+    "finishing": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "21"
+        ],
+        [
+          "core_src/match.py",
+          "286"
+        ],
+        [
+          "core_src/engine.py",
+          "315"
+        ],
+        [
+          "core_src/engine.py",
+          "1449"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide",
+      "effect": "shot clearance weight",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Finishing (rating)"
+    },
+    "marking": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "21"
+        ],
+        [
+          "native/cognition.py",
+          "583"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "55"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "632"
+        ],
+        [
+          "core_src/match.py",
+          "1732"
+        ],
+        [
+          "core_src/engine.py",
+          "36"
+        ],
+        [
+          "core_src/engine.py",
+          "797"
+        ],
+        [
+          "core_src/engine.py",
+          "892"
+        ],
+        [
+          "core_src/engine.py",
+          "909"
+        ],
+        [
+          "core_src/engine.py",
+          "921"
+        ],
+        [
+          "core_src/engine.py",
+          "931"
+        ],
+        [
+          "core_src/engine.py",
+          "939"
+        ],
+        [
+          "core_src/engine.py",
+          "940"
+        ],
+        [
+          "core_src/engine.py",
+          "969"
+        ],
+        [
+          "core_src/engine.py",
+          "970"
+        ],
+        [
+          "core_src/engine.py",
+          "1710"
+        ],
+        [
+          "native/rulebook/zone_residence.py",
+          "52"
+        ],
+        [
+          "native/rulebook/zone_residence.py",
+          "54"
+        ],
+        [
+          "native/rulebook/discipline.py",
+          "133"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide",
+      "effect": "goal-side marking aim",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Marking (rating)"
+    },
+    "zone_reads": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "21"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition_rb3.py:_attacker_zone",
+      "effect": "exit margin",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Zone Reads (rating)"
+    },
+    "goalkeeping": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "21"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:decide_v2",
+      "effect": "lateral set position",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Goalkeeping (rating)"
+    },
+    "in_air_ball_pursuit": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "21"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide",
+      "effect": "elevated free ball",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "In Air Ball Pursuit (rating)"
+    },
+    "live_ball_pursuit": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "22"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition.py:_base_decide",
+      "effect": "low free ball",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Live Ball Pursuit (rating)"
+    },
+    "carrier_duel": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "22"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition_v3.py:carrier_contact",
+      "effect": "brace/run through/dodge choice",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Carrier Duel (rating)"
+    },
+    "defender_duel": {
+      "status": "inert",
+      "baseline_effect": "Baseline draft storage only",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "22"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "experiment_status": "active",
+      "owner": "cognition",
+      "experiment_reader": "native/cognition_v3.py:defender_contact",
+      "effect": "wrap/takedown choice",
+      "writer": "native/roster.py:load_rows; native/port.py:uniform",
+      "default": 0.7,
+      "independent_test": "native/rulebook/test_individuation.py",
+      "active_path": "native-rb/3 with individuation/1",
+      "effect_type": "derived",
+      "workbook_header": "Defender Duel (rating)"
+    },
+    "passing": {
+      "status": "alias",
+      "baseline_effect": "See source candidates",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "233"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "17"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "83"
+        ],
+        [
+          "native/port.py",
+          "260"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "647"
+        ],
+        [
+          "core_src/match.py",
+          "877"
+        ],
+        [
+          "core_src/match.py",
+          "891"
+        ],
+        [
+          "core_src/match.py",
+          "2484"
+        ],
+        [
+          "core_src/match.py",
+          "2487"
+        ],
+        [
+          "core_src/match.py",
+          "2491"
+        ],
+        [
+          "core_src/match.py",
+          "2572"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/policies.py",
+          "59"
+        ],
+        [
+          "core_src/policies.py",
+          "64"
+        ],
+        [
+          "core_src/types.py",
+          "27"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Passing (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "hidden_dependence": "throw_accuracy compatibility alias"
+    },
+    "kicking": {
+      "status": "fixed",
+      "baseline_effect": "Fixed zero and unavailable as a Native command.",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "235"
+        ],
+        [
+          "native/port.py",
+          "63"
+        ],
+        [
+          "native/port.py",
+          "85"
+        ],
+        [
+          "core_src/match.py",
+          "61"
+        ],
+        [
+          "core_src/match.py",
+          "532"
+        ],
+        [
+          "core_src/match.py",
+          "877"
+        ],
+        [
+          "core_src/match.py",
+          "891"
+        ],
+        [
+          "core_src/match.py",
+          "902"
+        ],
+        [
+          "core_src/match.py",
+          "904"
+        ],
+        [
+          "core_src/match.py",
+          "909"
+        ],
+        [
+          "core_src/match.py",
+          "2572"
+        ],
+        [
+          "core_src/policies.py",
+          "53"
+        ],
+        [
+          "core_src/types.py",
+          "28"
+        ],
+        [
+          "core_src/types.py",
+          "40"
+        ],
+        [
+          "native/rulebook/discipline.py",
+          "58"
+        ],
+        [
+          "native/rulebook/discipline.py",
+          "125"
+        ],
+        [
+          "native/rulebook/discipline.py",
+          "128"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Kicking (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "decision_speed": {
+      "status": "fixed",
+      "baseline_effect": "See source candidates",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "235"
+        ],
+        [
+          "core_src/match.py",
+          "757"
+        ],
+        [
+          "core_src/match.py",
+          "943"
+        ],
+        [
+          "core_src/match.py",
+          "1093"
+        ],
+        [
+          "core_src/match.py",
+          "1233"
+        ],
+        [
+          "core_src/match.py",
+          "1301"
+        ],
+        [
+          "core_src/match.py",
+          "1442"
+        ],
+        [
+          "core_src/match.py",
+          "1535"
+        ],
+        [
+          "core_src/match.py",
+          "1715"
+        ],
+        [
+          "core_src/match.py",
+          "1757"
+        ],
+        [
+          "core_src/match.py",
+          "1826"
+        ],
+        [
+          "core_src/match.py",
+          "1856"
+        ],
+        [
+          "core_src/policies.py",
+          "55"
+        ],
+        [
+          "core_src/policies.py",
+          "59"
+        ],
+        [
+          "core_src/policies.py",
+          "104"
+        ],
+        [
+          "core_src/engine.py",
+          "485"
+        ],
+        [
+          "core_src/engine.py",
+          "496"
+        ],
+        [
+          "core_src/engine.py",
+          "532"
+        ],
+        [
+          "core_src/engine.py",
+          "812"
+        ],
+        [
+          "core_src/engine.py",
+          "1712"
+        ],
+        [
+          "core_src/types.py",
+          "31"
+        ],
+        [
+          "native/rulebook/carrier_moves.py",
+          "188"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Decision Speed (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "durability": {
+      "status": "inert",
+      "baseline_effect": "See source candidates",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "23"
+        ],
+        [
+          "native/nbl_roster.py",
+          "9"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "stored",
+      "workbook_header": "Durability (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "injury": {
+      "status": "inert",
+      "baseline_effect": "See source candidates",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "23"
+        ],
+        [
+          "core_src/engine.py",
+          "99"
+        ],
+        [
+          "core_src/engine.py",
+          "122"
+        ],
+        [
+          "core_src/engine.py",
+          "1343"
+        ],
+        [
+          "core_src/engine.py",
+          "1348"
+        ],
+        [
+          "core_src/engine.py",
+          "1349"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "1"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "50"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "75"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "78"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "79"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "81"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "86"
+        ],
+        [
+          "native/rulebook/substitutions.py",
+          "88"
+        ],
+        [
+          "native/rulebook/validate_matches.py",
+          "24"
+        ],
+        [
+          "native/rulebook/reproduce_blocker.py",
+          "24"
+        ],
+        [
+          "native/rulebook/authorities.py",
+          "75"
+        ],
+        [
+          "native/rulebook/authorities.py",
+          "79"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "stored",
+      "workbook_header": "Injury (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    },
+    "acceleration": {
+      "status": "active",
+      "baseline_effect": "See source candidates",
+      "normalization": "Validated normalized [0,1] for roster ratings. Workbook numeric ratings divided by 100.",
+      "candidate_source_references": [
+        [
+          "native/roster.py",
+          "23"
+        ],
+        [
+          "native/roster.py",
+          "52"
+        ],
+        [
+          "native/roster.py",
+          "159"
+        ],
+        [
+          "native/roster.py",
+          "208"
+        ],
+        [
+          "native/roster.py",
+          "228"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "627"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "636"
+        ],
+        [
+          "native/cognition_rb3.py",
+          "642"
+        ],
+        [
+          "native/port.py",
+          "39"
+        ],
+        [
+          "native/port.py",
+          "62"
+        ],
+        [
+          "native/nbl_roster.py",
+          "6"
+        ],
+        [
+          "core_src/match.py",
+          "60"
+        ],
+        [
+          "core_src/match.py",
+          "65"
+        ],
+        [
+          "core_src/match.py",
+          "337"
+        ],
+        [
+          "core_src/match.py",
+          "425"
+        ],
+        [
+          "core_src/match.py",
+          "536"
+        ],
+        [
+          "core_src/match.py",
+          "545"
+        ],
+        [
+          "core_src/match.py",
+          "551"
+        ],
+        [
+          "core_src/match.py",
+          "779"
+        ],
+        [
+          "core_src/match.py",
+          "782"
+        ],
+        [
+          "core_src/match.py",
+          "815"
+        ],
+        [
+          "core_src/match.py",
+          "1205"
+        ],
+        [
+          "core_src/match.py",
+          "1263"
+        ],
+        [
+          "core_src/match.py",
+          "1271"
+        ],
+        [
+          "core_src/match.py",
+          "1312"
+        ],
+        [
+          "core_src/match.py",
+          "1343"
+        ],
+        [
+          "core_src/match.py",
+          "1344"
+        ],
+        [
+          "core_src/match.py",
+          "2611"
+        ],
+        [
+          "core_src/match.py",
+          "2646"
+        ],
+        [
+          "core_src/match.py",
+          "2655"
+        ],
+        [
+          "core_src/match.py",
+          "2669"
+        ],
+        [
+          "core_src/match.py",
+          "2732"
+        ],
+        [
+          "core_src/geometry.py",
+          "100"
+        ],
+        [
+          "core_src/geometry.py",
+          "108"
+        ],
+        [
+          "core_src/geometry.py",
+          "138"
+        ],
+        [
+          "core_src/policies.py",
+          "55"
+        ],
+        [
+          "core_src/policies.py",
+          "56"
+        ],
+        [
+          "core_src/policies.py",
+          "57"
+        ],
+        [
+          "core_src/policies.py",
+          "58"
+        ],
+        [
+          "core_src/policies.py",
+          "63"
+        ],
+        [
+          "core_src/policies.py",
+          "104"
+        ],
+        [
+          "core_src/engine.py",
+          "532"
+        ],
+        [
+          "core_src/engine.py",
+          "566"
+        ],
+        [
+          "core_src/engine.py",
+          "571"
+        ],
+        [
+          "core_src/engine.py",
+          "800"
+        ],
+        [
+          "core_src/engine.py",
+          "804"
+        ],
+        [
+          "core_src/engine.py",
+          "809"
+        ],
+        [
+          "core_src/engine.py",
+          "813"
+        ],
+        [
+          "core_src/engine.py",
+          "818"
+        ],
+        [
+          "core_src/engine.py",
+          "820"
+        ],
+        [
+          "core_src/engine.py",
+          "1712"
+        ],
+        [
+          "core_src/types.py",
+          "16"
+        ],
+        [
+          "core_src/types.py",
+          "39"
+        ],
+        [
+          "native/rulebook/scoring_audit.py",
+          "140"
+        ],
+        [
+          "native/rulebook/rb31_soak.py",
+          "21"
+        ]
+      ],
+      "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
+      "effect_type": "derived",
+      "workbook_header": "Acceleration (rating)",
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+    }
+  }
+}

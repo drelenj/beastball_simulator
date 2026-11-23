@@ -63,13 +63,14 @@ def defender_contact(view, belief, intent, record):
     c = next((t for t in _fresh(view, belief) if t.entity == carrier[0]), None)
     if c is None or C.keeper_protected(c, view):
         return replace(intent, contact=None), record
+    from .individuation import effect
     gap = hypot(c.x - view.x, c.y - view.y)
     top = view.body.maximum_speed if view.body else 27.
     lead = min(TACKLE_LEAD_S, gap / max(1., top))
     meet = (round(_clamp(c.x + c.vx * lead, .6, 99.4), 3), round(_clamp(c.y + c.vy * lead, .6, 99.4), 3))
     # values: a takedown is worth more than staying with him once the believed gap is inside the commit range
     options = [('press', c.entity, intent.aim, 1., 'wrap'),
-               ('tackle', c.entity, meet, round(1. + (TACKLE_COMMIT_M - gap), 6), 'takedown')]
+               ('tackle', c.entity, meet, round(1. + (TACKLE_COMMIT_M + effect(view, 'defender_duel', 1.) - gap), 6), 'takedown')]
     if view.own_hold_target == c.entity:          # own hands are on him (own action knowledge)
         options[1] = ('tackle', c.entity, meet, round(2. + TACKLE_COMMIT_M, 6), 'takedown')
     kind, target, aim, value, contact = max(options, key=lambda o: (o[3], o[0]))
@@ -80,6 +81,7 @@ def defender_contact(view, belief, intent, record):
 
 def carrier_contact(view, belief, intent, record):
     """A field carrier who is carrying owns his response to contact: run through, brace or dodge."""
+    from .individuation import effect
     now = view.delivered_ms
     vx, vy = (view.body.vx, view.body.vy) if view.body else (0., 0.)
     threats = []
@@ -99,13 +101,13 @@ def carrier_contact(view, belief, intent, record):
     options = []
     if view.own_held > 0:
         # held: fight the grip while balance allows, otherwise protect the ball and accept the tackle
-        options.append(('carry', None, intent.aim, round(1. - view.own_balance_load, 6), 'run_through'))
+        options.append(('carry', None, intent.aim, round(1. - view.own_balance_load + effect(view, 'carrier_duel', .5), 6), 'run_through'))
         options.append(('carry', None, (round(view.x, 3), round(view.y, 3)), round(1. - BRACE_LOAD, 6), 'brace'))
     else:
         eta, who, dx, dy = threats[0]
         imminent = [t for t in threats if t[0] < DODGE_MIN_S]
         options.append(('carry', None, intent.aim, 1., 'run_through'))
-        if eta >= DODGE_MIN_S and intent.aim:
+        if eta >= DODGE_MIN_S - effect(view, 'carrier_duel', .15) and intent.aim:
             ax, ay = intent.aim[0] - view.x, intent.aim[1] - view.y
             n = hypot(ax, ay) or 1.
             ux, uy = ax / n, ay / n

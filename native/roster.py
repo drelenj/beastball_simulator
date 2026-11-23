@@ -84,12 +84,16 @@ class AthleteAttributes:
     role: str
     values: tuple
     defaults: tuple = ()
+    sources: tuple[tuple[str, str], ...] = ()
 
     def get(self,name):
         return dict(self.values)[name]
 
     def record(self):
-        return {'id':self.source_id,'role':self.role,**dict(self.values),'defaults':self.defaults}
+        record = {'id':self.source_id,'role':self.role,**dict(self.values),'defaults':self.defaults}
+        if self.sources:
+            record['sources'] = self.sources
+        return record
 
 
 @dataclass(frozen=True)

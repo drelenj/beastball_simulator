@@ -29,7 +29,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
             admission=port.submit(intent)
             if admission['status']=='rejected':
                 port.feedback.setdefault(pid,[]).append((intent.intent_id+'/rejected','rejected_'+admission.get('reason','unknown')+':'+intent.kind,now))
-            next_dec[pid]=now+port.config.decision_ms
+            next_dec[pid]=now+port.decision_interval_ms(pid)
         m.pending_break=[] # breaks/timeouts deferred; no legacy intermission injection
         port.step();steps+=1
         if max_steps and steps>=max_steps:break

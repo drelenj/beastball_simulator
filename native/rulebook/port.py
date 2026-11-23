@@ -141,6 +141,10 @@ class RulebookPort(NativePort):
             extra['own_release_ms'] = extra['pass_release_ms'] = self.own_release_ms(me_)
             extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
             extra['body_height']=tuple(sorted((q.id,round(q.a.height,4)) for q in self.m.s.players.values() if q.active))
+            if self.individuation:
+                known = {t.entity for t in v.tracks} | {pid}
+                for key in ('body_reach', 'body_height', 'mate_zone_ms'):
+                    extra[key] = tuple(row for row in extra[key] if row[0] in known)
             if fm is None and hold:   # RB-3.11: the designated receiver stays public during the snap hold (until the catch)
                 extra['formation']=(hold['snapper'],hold['receiver'],hold['receiver_xy'][0],hold['receiver_xy'][1],None,None)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=states,**extra),b
@@ -165,7 +169,11 @@ class RulebookPort(NativePort):
             target=(i.aim[0]+vx*age,i.aim[1]+vy*age,1.6)
             ans=self.geom.ballistic((p.x,p.y,p.z+.72*p.a.height),target,self.config.arrow_speed,9.81)
             if ans is None:self.resolve(pid,'rejected_geometry');continue
-            ok=m.e.shoot_arrow(pid,i.target,ans[0]);self.resolve(pid,'arrow_released' if ok else 'rejected_by_engine')
+            velocity = ans[0]
+            if self.individuation:
+                from native.individuation import yaw_velocity
+                velocity = yaw_velocity(velocity, m.rng['arrow'].uniform(-1., 1.) * (1 - p.a.archery_accuracy))
+            ok=m.e.shoot_arrow(pid,i.target,velocity);self.resolve(pid,'arrow_released' if ok else 'rejected_by_engine')
 
     @staticmethod
     def view_from_json(payload):
