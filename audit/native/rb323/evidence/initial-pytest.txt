@@ -1,0 +1,38 @@
+................................................. [  7%]
+........................................................................ [ 17%]
+........................................................................ [ 27%]
+........................................................................ [ 38%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+........................................................................ [ 69%]
+........................................................................ [ 79%]
+........................................................................ [ 89%]
+........................................................F.............   [100%]
+=================================== FAILURES ===================================
+_______________________ test_v3_cognition_module_is_pure _______________________
+
+port3 = <native.port.NativePort object at 0x7f105d2fd850>
+
+    def test_v3_cognition_module_is_pure(port3):
+        tree=ast.parse(Path(C3.__file__).read_text())
+        modules={n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)}|{a.name for n in ast.walk(tree) if isinstance(n,ast.Import) for a in n.names}
+>       assert modules<={'dataclasses','math','cognition','throw_speed',None}   # throw_speed (RB-3.9) imports math only and not any(m and ('port' in m or 'engine' in m or 'rules' in m or 'substrate' in m) for m in modules)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert {None, 'math'...ndividuation'} <= {None, 'cogni...'throw_speed'}
+E
+E         Extra items in the left set:
+E         'individuation'
+
+native/test_v3.py:356: AssertionError
+=============================== warnings summary ===============================
+../../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/anyio/pytest_plugin.py:14: PytestRemovedIn10Warning: _pytest.python.CallSpec2 has been renamed to CallSpec.
+  The CallSpec2 alias will be removed in pytest 10.
+  Update imports to use CallSpec instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#callspec2-renamed
+    from _pytest.python import CallSpec2
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED native/test_v3.py::test_v3_cognition_module_is_pure - AssertionError: ...
+1 failed, 694 passed, 1 warning, 23 subtests passed in 853.35s (0:14:13)

@@ -854,7 +854,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Speed (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "core_src/match.py:c3_move",
+      "constant_or_dependency": "44.704 m/s unit is universal",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "agility": {
       "status": "active",
@@ -949,7 +955,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Agility (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "core_src/match.py:c3_free",
+      "constant_or_dependency": "Braking and turning share this source",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "strength": {
       "status": "active",
@@ -1164,7 +1176,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Strength (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "core_src/match.py:C3; native/rulebook/handoff_block.py",
+      "constant_or_dependency": "Mass stays independent",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "balance": {
       "status": "active",
@@ -1399,7 +1417,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Balance (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "core_src/match.py:C3 balance and grip primitives",
+      "constant_or_dependency": "Legacy contact resistance uses Balance as a source",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "stamina": {
       "status": "inert",
@@ -1426,7 +1450,12 @@
       "effect": "existing fatigue burn/recovery",
       "effect_type": "stored",
       "workbook_header": "Stamina (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "engine_consumer": "core_src/match.py:c3_move",
+      "constant_or_dependency": "Existing fatigue burn and recovery coefficients",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "tackling": {
       "status": "active",
@@ -1521,7 +1550,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Tackling (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "core_src/match.py:C3 grip building",
+      "constant_or_dependency": "Defender Duel does not change grip",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "blocking": {
       "status": "active",
@@ -1604,7 +1639,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Blocking (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "native/rulebook/handoff_block.py:block power",
+      "constant_or_dependency": "Mass and Strength contribute separately",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "contact_resistance": {
       "status": "active",
@@ -1676,7 +1717,13 @@
       "effect_type": "derived",
       "workbook_header": "Contact Resistance (rating)",
       "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
-      "hidden_dependence": "Balance fallback for ovr/neutral workbook modes; explicit mode can override independently."
+      "hidden_dependence": "Balance fallback for ovr/neutral workbook modes; explicit mode can override independently.",
+      "owner": "physics",
+      "engine_consumer": "core_src/match.py:C3 contact load",
+      "constant_or_dependency": "Independently normalized in explicit mode",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Balance in legacy workbook modes, .784 in explicit if missing"
     },
     "ball_handling": {
       "status": "active",
@@ -1795,7 +1842,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Ball Handling (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "motor and physics",
+      "engine_consumer": "native/port.py:own_release_ms; native/rulebook/handoff_block.py; core_src/match.py",
+      "constant_or_dependency": "Ball release preparation rate and security",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "catching": {
       "status": "active",
@@ -1894,7 +1947,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Catching (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "native/rules.py:native_catch_capacity; native/substrate.py",
+      "constant_or_dependency": "Universal ball mass and the same arrest model across roles",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "awareness": {
       "status": "active",
@@ -2021,7 +2080,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Awareness (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "perception and motor",
+      "engine_consumer": "native/port.py:capture and keeper_motor; core_src/match.py:catch window",
+      "constant_or_dependency": "XY perception error; keeper reflex and deliberate reaction are distinct",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "throw_power": {
       "status": "active",
@@ -2044,7 +2109,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Throw Power (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "motor",
+      "engine_consumer": "native/port.py:uniform and _submit_intent",
+      "constant_or_dependency": "The speed ceiling bounds execution, with no bonus to scoring",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "throw_accuracy": {
       "status": "active",
@@ -2071,7 +2142,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Throw Accuracy (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "motor",
+      "engine_consumer": "native/port.py:ball_motor",
+      "constant_or_dependency": "Horizontal release dispersion; Touch controls pitch separately",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "jump": {
       "status": "active",
@@ -2106,7 +2183,13 @@
       "note": "Static references include inactive substrate paths, aliases and definitions; baseline_effect identifies confirmed execution effects.",
       "effect_type": "derived",
       "workbook_header": "Jumping (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "owner": "physics",
+      "engine_consumer": "native/port.py:body and keeper_motor",
+      "constant_or_dependency": "Gravity remains universal",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in baseline and individuation/1",
+      "missing": "required in locked physical workbook"
     },
     "keeper_skill": {
       "status": "inert",
@@ -2193,7 +2276,12 @@
       "effect": "push-off fraction",
       "effect_type": "stored",
       "workbook_header": "Keeper Skill (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "engine_consumer": "native/port.py:keeper_motor",
+      "constant_or_dependency": "Push-off stays within the universal motor envelope",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "archery_accuracy": {
       "status": "inert",
@@ -2272,7 +2360,12 @@
       "effect": "yaw dispersion",
       "effect_type": "stored",
       "workbook_header": "Archery Accuracy (rating)",
-      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
+      "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values",
+      "engine_consumer": "native/rulebook/port.py:archer_motor",
+      "constant_or_dependency": "Arrow speed stays at 250 m/s",
+      "independent_measurement": "native/test_attr.py; native/attr_sensitivity.py; new-mode checks in native/rulebook/test_individuation.py",
+      "runtime_path": "active in individuation/1",
+      "missing": "Opening-day OVR proxy or neutral .784 per source mode"
     },
     "touch": {
       "status": "inert",
@@ -3573,5 +3666,6 @@
       "workbook_header": "Acceleration (rating)",
       "writer": "native/nbl_roster.py:load_nbl_workbook; native/roster.py:load_rows/mapped_values"
     }
-  }
+  },
+  "rating_schema": "attr-map/2 + individuation/1"
 }
