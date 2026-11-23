@@ -15,11 +15,12 @@ The inspected implementation runs a deterministic, opt-in rating path and passes
 ## Branch and source identity
 
 - Validation branch: `codex/rb-3-23-individuation-validation`
+- Branch URL: `https://github.com/drelenj/beastball_simulator/tree/codex/rb-3-23-individuation-validation`
 - Implementation commit tested: `d1845d022625ddaf6d0f9d5ddc5e60179c63be34`
 - Implementation source/test commit: `32ef9dad14ee9407e32d4214edd541867c9b7a6e`
 - Verified RB-3.22 parent: `eb30f605f24b906777b88d6cb3a552b3584639ef`, tree `9ef4eff55dd3d91a7f3f11bb65d992545cd0bfa0`; it has the same tree as Claude tip `e6ca6a4e3bc7e76493d6aa2999acb48f4bf9dcc5` (also tree `9ef4eff55dd3d91a7f3f11bb65d992545cd0bfa0`). `git diff-tree` between them returned no paths. The implementation parent is the authorized Codex reconciliation commit.
-- Validation commit: recorded after evidence is finalized.
-- Branch setup: local validation branch was created from exact implementation head `d1845d0…`. A fresh `git fetch` attempt failed because the managed shell cannot connect through its configured proxy; the pre-existing `origin/codex/rb-3-23-prism-individuation` remote-tracking ref already pointed to that exact commit. Push status is recorded after the upload attempt.
+- Validation commit: branch tip contains this report and all committed evidence; exact final SHA is in the handoff response.
+- Branch setup: local validation branch was created from exact implementation head `d1845d0…`. A fresh `git fetch` attempt failed because the managed shell could not connect through its configured proxy; the pre-existing `origin/codex/rb-3-23-prism-individuation` remote-tracking ref already pointed to that exact commit. After evidence completion, `git push -u origin codex/rb-3-23-individuation-validation` succeeded and created the branch on GitHub.
 
 ## Coverage summary
 
