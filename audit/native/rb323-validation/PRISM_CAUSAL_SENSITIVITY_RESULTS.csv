@@ -1,0 +1,35 @@
+rating,observed_quantity,mapping,low_0.25_mid_0.50_high_0.95,status,interpretation
+agility,braking + turning,(16.875 + 16.25)*r,8.28125 / 16.5625 / 31.46875 m/s²·unit,PASS,Exact mapped inputs; no isolated movement outcome sweep.
+strength,contact,direct strength input to contact/grip formulas,one-rating effect size not measured,PARTIAL,This audit did not vary .25/.50/.95 in physical contact scenes.
+balance,balance/recovery,direct balance input to existing contact kernel,one-rating effect size not measured,PARTIAL,This audit did not vary .25/.50/.95 in matched contact scenes.
+stamina,fatigue load,experimental fatigue rate,paired deterministic scenario; numeric summary in pytest only,PASS,Need multi-condition late-period validation.
+tackling,grip acquisition,direct tackling input to grip formula,one-rating effect size not measured,PARTIAL,Dedicated paired low/mid/high tackle outcomes not run.
+blocking,block/contact,direct blocking input to block power,one-rating effect size not measured,PARTIAL,Dedicated paired low/mid/high block outcomes not run.
+contact_resistance,grip resistance,direct input; NBL compatibility fallback equals Balance,one-rating effect size not measured,PARTIAL,Explicit independent source accepted but canonical workbook has no values.
+ball_handling,release delay,round(250*(1.35-.5*r)) ms,306.25 / 275 / 218.75 ms,PASS,Deterministic timing input; physical catch/secure effect not separately sampled.
+catching,catch arrest,direct Catching input to secure/catch model,one-rating effect size not measured,PARTIAL,No paired fast-ball acquisition distribution run.
+awareness,sensor noise scale,2 - 1.25*r,1.6875 / 1.375 / 0.8125,PASS,Direct mapping; separate from Vision and Clarity.
+jump,jump height,1.3*r m,0.325 / 0.65 / 1.235 m,PASS,Exact mapped height; no isolated jump outcome sweep.
+keeper_skill,Keeper push-off fraction,.75 + .25*r,0.8125 / 0.875 / 0.9875,PASS,"Execution ceiling, not save probability."
+archery_accuracy,arrow yaw,seeded yaw error scaled by (1-r),vector changed in fixed-seed scenario; no distribution,PASS,Speed magnitude preserved at 250 m/s.
+vision,field-of-view half-angle,90 + 30*r degrees,97.5 / 105 / 118.5 degrees,PASS,Direct sensor detection scenario; no CI (single controlled scenario).
+reaction,decision interval,round(500*(1.3-.4*r)) ms,600 / 550 / 460 ms,PASS,Exact deterministic schedule transform; effective delays quantize to simulation steps.
+focus,track retention,round(1400 + 600*r) ms,1550 / 1700 / 1970 ms,PASS,Direct stale-track scenario; no repeated-seed CI.
+motor_control,heading grid,6*(1-r) degrees,4.5 / 3.0 / 0.3 degrees,PASS,Command precision changes; no physical outcome advantage asserted.
+touch,vertical pitch allocation,2*(1-r)*draw degrees,1.5 / 1.0 / 0.1 degrees at |draw|=1,PASS,Speed magnitude conserved in controlled vector test.
+strength,contact outcomes,physics contact kernel,not independently sampled,PARTIAL,No effect size or confidence interval computed.
+balance,contact/recovery outcomes,existing balance kernel,not independently sampled,PARTIAL,No effect size or confidence interval computed.
+throw_power,maximum feasible release speed,134.1*(.5+.5*clamp((r-.4)/.6)) m/s,67.05 / 78.225 / 128.5125 m/s,PASS,"These are ceilings, not observed cognition choices or typical release speeds."
+throw_accuracy,horizontal yaw SD base,"max(.15,3*(1-clamp((r-.4)/.6))) degrees",3.0 / 2.5 / 0.25 degrees,PASS,Engine samples a uniform half-width sqrt(3)*SD; no sampled distribution included here.
+anticipation,receiver velocity lead multiplier,1 + .5*(r-.70),0.775 / 0.900 / 1.125,PARTIAL,Code input verified; no receiver prediction-error distribution.
+instinct,last-three-second shot value delta,2*(r-.70),-0.90 / -0.40 / +0.50 option value,PARTIAL,Option value only; selected-action rates not sampled.
+judgment,defender lane-evaluation input,.70 + .35*(r-.70),0.5425 / 0.6300 / 0.7875,PARTIAL,Defensive lane only; no general risk/legality effect claim.
+playmaking,receiver-space value coefficient delta,.10*(r-.70),-0.045 / -0.020 / +0.025,PARTIAL,Option value only; selected-pass rate not sampled.
+finishing,shot-value delta,.8*(r-.70) times clearance margin,-0.36 / -0.16 / +0.20 per margin unit,PARTIAL,Option value only; no shot outcome distribution.
+marking,mark-position blend,.4 + .5*(r-.70),0.175 / 0.300 / 0.525,PARTIAL,Aim/option changes tested; assignment success not sampled.
+zone_reads,exit margin delta,.65*(r-.70) seconds,-0.2925 / -0.1300 / +0.1625 s,PASS,Legal five-second zone clock is unchanged.
+goalkeeping,Keeper lateral alignment multiplier,1 + .5*(r-.70),0.775 / 0.900 / 1.125,PARTIAL,Target-position change tested; save rate not sampled.
+in_air_ball_pursuit,nearby-pursuit threshold delta,6*(r-.70) m,-2.70 / -1.20 / +1.50 m,PARTIAL,Context separation tested; selected pursuit success not sampled.
+live_ball_pursuit,nearby-pursuit threshold delta,6*(r-.70) m,-2.70 / -1.20 / +1.50 m,PARTIAL,Context separation tested; selected pursuit success not sampled.
+carrier_duel,run-through value delta,.5*(r-.70),-0.225 / -0.100 / +0.125 option value,PARTIAL,Contact choice changes tested; escape rate not sampled.
+defender_duel,tackle-commit threshold delta,r-.70 metres,-0.45 / -0.20 / +0.25 m,PARTIAL,Contact choice changes tested; tackle rate not sampled.

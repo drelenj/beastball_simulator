@@ -1,0 +1,5 @@
+Registry audit: 40 entries.
+18 draft ratings still have status=inert and runtime_path/independent_measurement absent.
+Stamina, Keeper Skill, and Archery Accuracy remain labeled inert in registry despite new-mode active consumers.
+Optional acceleration has no runtime_path/independent_measurement entry.
+This is a registry/documentation defect; executable tests and code contain corresponding mechanisms.

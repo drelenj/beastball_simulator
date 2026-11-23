@@ -1,0 +1,4 @@
+compatibility score {'A': 57, 'B': 76} steps 32528 runtime_s 179.271 restart 260 / 260 decisions 152737 decisions_per_s 851.99 trace 44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072 state 046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d config 3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550
+individuation/1 score {'A': 67, 'B': 123} steps 34354 runtime_s 173.671 restart 280 / 280 decisions 142951 decisions_per_s 823.11 trace da8e42307e99a2bab2d7925c5903664fd617d19b9b441a1ce49530ff3b1f219d state 291c0baff747503c522643fc0c86f57b0403365c6f1bda481c51eb8a08a20d14 config 51362523dadf2ddcfd41a2af08b3e7da9f579f2819511df309dd00436ab44c4b
+Independent same-seed full-match fingerprints identical: yes
+Compatibility run matches archived RB-3.22 fixture: yes

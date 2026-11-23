@@ -1,0 +1,38 @@
+rating,class,status,evidence,independent_finding
+speed,canonical,PASS,native/test_attr.py::test_at1_at2_speed_curve_and_measured_top_speed,Run speed reaches mapped 44.704 m/s in the treadmill lab; low/mid/high curve is unit-tested.
+agility,canonical,PASS,native/test_attr.py::test_at4_mapping_table; test_at5_monotone_and_at6_independence,Maps independently to braking and turning; no separate full-movement outcome sweep.
+strength,canonical,PARTIAL,native/test_attr.py mapping; native/rulebook/test_individuation.py::test_contact_choices_depend_on_own_duel_rating,Mapped and used by contact physics; isolated contact outcome distributions by strength were not run here.
+balance,canonical,PARTIAL,native/test_attr.py mapping,Mapped into contact/balance physics; no independent low-to-high outcome distribution in this validation.
+stamina,canonical,PASS,native/rulebook/test_individuation.py::test_existing_physics_fatigue_reads_stamina_in_experiment_only,Paired physics fatigue test shows the experimental profile activates stamina.
+tackling,canonical,PARTIAL,native/test_attr.py mapping,Reach/grip pathway is active; dedicated one-rating tackle outcome distribution not run.
+blocking,canonical,PARTIAL,native/test_attr.py mapping,Mapped into physical block/contact path; no isolated block outcome distribution here.
+contact_resistance,canonical,PARTIAL,native/test_attr.py mapping; native/nbl_roster.py fallback,"Independent values can be loaded, but current workbook fallback is Balance; independent NBL values are unavailable."
+ball_handling,canonical,PASS,native/cognition_rb3.py::release_time_s; native/port.py::decision_interval_ms,Release preparation and decision timing read Ball Handling; paired timing tests cover it.
+catching,canonical,PARTIAL,native/test_attr.py mapping; core_src/match.py catch kernel,Catch/secure physical path is present; a paired catch outcome series was not run.
+awareness,canonical,PASS,native/roster.py::sensor_noise_scale; native/test_attr.py mapping,Own XY sensor noise scale is separately mapped; kept distinct from Vision/Clarity.
+throw_power,canonical,PASS,native/test_attr.py::test_engine_and_ingress_use_thrower_maximum,Thrower-specific feasible speed ceiling changes; no cognition release-speed tuning claim.
+throw_accuracy,canonical,PASS,native/test_attr.py mapping; native/rulebook/port.py release yaw,Controls horizontal release error; Passing is the compatibility alias to this value.
+jump,canonical,PARTIAL,native/test_attr.py mapping,Height parameter propagates; no isolated jump/catch/tackle outcome distribution here.
+keeper_skill,canonical,PARTIAL,native/rulebook/port.py::keeper_motor,"Changes available push-off fraction; only one keeper-motor context, not save-rate evidence."
+archery_accuracy,canonical,PASS,native/rulebook/test_individuation.py::test_archery_accuracy_changes_actual_release_vector,Seeded release vector changes while arrow speed stays 250 m/s.
+vision,draft,PASS,native/rulebook/test_individuation.py::test_sensor_focus_and_reaction_live_port,Changes legitimate detection in a controlled field-of-view scenario.
+clarity,draft,PARTIAL,native/rulebook/test_individuation.py::test_clarity_changes_only_vertical_sample_error,One fixed random stream changes vertical observation error; distribution and cognition response remain untested.
+reaction,draft,PASS,native/port.py::decision_interval_ms; focused sensor test,Changes scheduled cognitive interval; perceptual/motor clocks are not multiplied by this mechanism.
+anticipation,draft,PARTIAL,native/rulebook/test_individuation.py::test_existing_carrier_options_change_with_one_rating,Changes receiver lead input; no multi-seed prediction-error distribution.
+focus,draft,PASS,native/rulebook/test_individuation.py::test_sensor_focus_and_reaction_live_port,Changes track retention in the tested delayed-view scenario.
+instinct,draft,PARTIAL,native/rulebook/test_individuation.py::test_existing_carrier_options_change_with_one_rating,Changes deadline shot option value; selected-action frequency not measured.
+judgment,draft,PARTIAL,native/rulebook/test_individuation.py::test_marking_and_judgment_influence_different_options,"Changes defensive lane option evaluation, not a general risk/legality model."
+motor_control,draft,PASS,native/individuation.py::movement_aim; focused motor test,Changes feasible steering quantization without changing propulsion or collision physics.
+touch,draft,PASS,native/individuation.py::delivery_velocity; focused motor test,Changes vertical release allocation while conserving speed; horizontal Throw Accuracy remains separate.
+playmaking,draft,PARTIAL,native/rulebook/test_individuation.py::test_existing_carrier_options_change_with_one_rating,Changes pass receiver-space value; action selection and resulting team opportunity not measured.
+finishing,draft,PARTIAL,native/rulebook/test_individuation.py::test_existing_carrier_options_change_with_one_rating,Changes shot valuation against keeper clearance; selected-shot outcome not measured.
+marking,draft,PARTIAL,native/rulebook/test_individuation.py::test_marking_and_judgment_influence_different_options,Changes mark option target/aim; no tracking error or marking success series.
+zone_reads,draft,PASS,native/rulebook/test_individuation.py::test_zone_reads_change_exit_decision_without_changing_zone_limit,Changes a lawful leave/hold choice while the five-second rule is unchanged.
+goalkeeping,draft,PARTIAL,native/rulebook/test_individuation.py::test_keeper_position_uses_delivered_course_and_own_rating_only,Changes Keeper alignment from delivered course; save outcome effect not quantified.
+in_air_ball_pursuit,draft,PARTIAL,native/rulebook/test_individuation.py::test_pursuit_uses_only_matching_ball_context,Changes option value/range for high-ball context only; selected pursuit outcomes not tested.
+live_ball_pursuit,draft,PARTIAL,native/rulebook/test_individuation.py::test_pursuit_uses_only_matching_ball_context,Changes option value/range for low/unknown ball context only; selected pursuit outcomes not tested.
+carrier_duel,draft,PASS,native/rulebook/test_individuation.py::test_contact_choices_depend_on_own_duel_rating,Changes own carrier contact choice in paired scenario; resulting escape/tackle distribution not tested.
+defender_duel,draft,PASS,native/rulebook/test_individuation.py::test_contact_choices_depend_on_own_duel_rating,Changes defender contact choice in paired scenario; resulting tackle distribution not tested.
+acceleration,optional,PASS,native/roster.py::mapped_values; native/test_attr.py::test_at4_mapping_table,Independent proportional acceleration mapping is accepted and validated.
+durability,optional,BLOCKED,native/roster.py; audit/native/rb323/DESIGN.md,Validated/stored but staged; no authorized injury susceptibility semantics.
+injury,optional,BLOCKED,native/roster.py; audit/native/rb323/DESIGN.md,Validated/stored only; active injury is a separate forced regulation state.

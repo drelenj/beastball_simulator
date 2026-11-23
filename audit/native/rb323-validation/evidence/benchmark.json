@@ -1,0 +1,52 @@
+{
+  "runs": {
+    "off": [
+      {
+        "seed": 1,
+        "steps": 1500,
+        "live_ms": 105989,
+        "cpu_seconds": 7.22556594,
+        "cpu_ms_per_step": 4.81704396,
+        "trace_hash": "36e1da27742da6360c7c4550eff9cea3759a99b1e250199e7d9293a046b6c30d",
+        "state_hash": "47833f7b18951ef28f060d7d49f74df61c95ac6720063216a3d0ef4f1e22741a",
+        "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550"
+      },
+      {
+        "seed": 3,
+        "steps": 1500,
+        "live_ms": 105137,
+        "cpu_seconds": 7.304121334999998,
+        "cpu_ms_per_step": 4.869414223333332,
+        "trace_hash": "6460a902a3b6d9ddde293fa7b81a0f92910d111f373ba5424bb49af17e78af88",
+        "state_hash": "872499b605fb9d25c8a0d1ff9705c4f36dade5c45ced901bd26b7891da01af7c",
+        "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550"
+      }
+    ],
+    "individuation/1": [
+      {
+        "seed": 1,
+        "steps": 1500,
+        "live_ms": 97038,
+        "cpu_seconds": 6.488830544000001,
+        "cpu_ms_per_step": 4.325887029333334,
+        "trace_hash": "358229d409421dd224e84d1206dde4c1cda57cd79a380a0d154e790d03a50757",
+        "state_hash": "216c903b8f86365b31975a1f167e7303a4536fa9a5adc615e1cbd84b32be1860",
+        "config_digest": "51362523dadf2ddcfd41a2af08b3e7da9f579f2819511df309dd00436ab44c4b"
+      },
+      {
+        "seed": 3,
+        "steps": 1500,
+        "live_ms": 107971,
+        "cpu_seconds": 7.375731350999999,
+        "cpu_ms_per_step": 4.917154233999999,
+        "trace_hash": "b5e92cca5cb4a748d8f2a718ef3efe6368472047cc1f284e698b80a1ea7dcd4d",
+        "state_hash": "35c4595610080d0475694740c06d559379b05038cf474dd41299a1add49e723f",
+        "config_digest": "51362523dadf2ddcfd41a2af08b3e7da9f579f2819511df309dd00436ab44c4b"
+      }
+    ]
+  },
+  "median_cpu_ms_per_step": {
+    "off": 4.843229091666666,
+    "individuation/1": 4.621520631666666
+  }
+}
