@@ -29,6 +29,15 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
             admission=port.submit(intent)
             if admission['status']=='rejected':
                 port.feedback.setdefault(pid,[]).append((intent.intent_id+'/rejected','rejected_'+admission.get('reason','unknown')+':'+intent.kind,now))
+            if port.individuation:
+                from .individuation import rating
+                from .prism_registry import select_agent, commit_owner
+                parent = select_agent(view, belief, rating)
+                port.prism_agents[parent] += 1
+                child = commit_owner(intent)
+                if child and admission['status'] == 'accepted':
+                    port.prism_commits.append(dict(athlete=pid, action=intent.kind, parent=parent,
+                                                  commit_ms=now, subagent=child, intent_id=intent.intent_id))
             next_dec[pid]=now+port.decision_interval_ms(pid)
         m.pending_break=[] # breaks/timeouts deferred; no legacy intermission injection
         port.step();steps+=1
@@ -72,6 +81,9 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 release_distances={t:{str(d):{'attempts':n,'goals':e.release_successes[t].get(d,0),'success_rate':e.release_successes[t].get(d,0)/n} for d,n in e.release_attempts[t].items()} for t in ('A','B')},
                 rules_ledger=dict(Counter(row['row'] for row in e.possession_history+e.possession.ledger)),
                 runtime_s=round(time.perf_counter()-started,3))
+    if port.individuation:
+        result['prism_agents'] = dict(port.prism_agents)
+        result['prism_commits'] = port.prism_commits
     return result,port
 
 

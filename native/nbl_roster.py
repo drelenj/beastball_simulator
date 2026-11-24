@@ -3,6 +3,7 @@ from dataclasses import replace
 import hashlib
 import json
 
+from .prism_registry import NEW_RATINGS, LEGACY_SOURCES, AVERAGE
 from .roster import INERT_RATINGS, load_rows, RosterError
 
 PHYSICAL = {
@@ -35,6 +36,8 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     book=load_workbook(source,read_only=True,data_only=True)
     sheet=book['All 712 Players'];lines=sheet.values
     columns={name:i for i,name in enumerate(next(lines))}
+    registry_columns = {key: key.replace('_', ' ').title() + ' (rating)' for key in NEW_RATINGS}
+    registry_present = any(header in columns for header in registry_columns.values())
     candidates={team:[] for team in franchises}
     league={key:[] for key in PHYSICAL}
     for number,line in enumerate(lines,start=2):
@@ -62,12 +65,12 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                 entry.update({key:(league_mean[key] if physical=='neutral' else rating(header)) for key,header in PHYSICAL.items()})
                 entry.update({key:(NEUTRAL_TECHNICAL if technical=='neutral' else rating('Opening-day OVR')) for key in TECHNICAL_OVR})
                 entry['contact_resistance']=entry['balance'] # PLACEHOLDER
-                if technical == 'explicit':
+                if technical == 'explicit' or registry_present:
                     sources = {}
                     for key in (*TECHNICAL_OVR, 'contact_resistance', *INERT_RATINGS):
                         header = key.replace('_', ' ').title() + ' (rating)'
                         value = row[columns[header]] if header in columns else None
-                        if value is not None and value != '':
+                        if technical == 'explicit' and value is not None and value != '':
                             if isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 <= value <= 100:
                                 raise RosterError(f'workbook row {number}, {header}: expected 0..100')
                             entry[key] = value / 100.
@@ -77,10 +80,20 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                             sources[key] = 'neutral fallback'
                         else:
                             sources[key] = '0.70 default' if key in INERT_RATINGS else 'Opening-day OVR fallback'
+                    for key, header in registry_columns.items():
+                        value = row[columns[header]] if header in columns else None
+                        if value is not None and value != '':
+                            if isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 <= value <= 100:
+                                raise RosterError(f'workbook row {number}, {header}: expected 0..100')
+                            entry[key] = value / 100.
+                            sources[key] = 'explicit:' + header
+                        else:
+                            alias = next((name for name in LEGACY_SOURCES.get(key, ()) if name in entry), None)
+                            sources[key] = 'alias:' + alias if alias else f'{AVERAGE:.2f} default'
                     source_records.append(tuple(sorted(sources.items())))
                 selected.append(entry)
         roster = load_rows(selected, side)
-        if technical == 'explicit':
+        if source_records:
             athletes = tuple(replace(a, sources=sources) for a, sources in
                              zip(roster.athletes, source_records, strict=True))
             roster = replace(roster, athletes=athletes)

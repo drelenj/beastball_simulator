@@ -13,6 +13,7 @@ from . import cognition as C
 from .config import NativeConfig, is_v3, is_attr
 from . import individuation as IND
 from .roster import INERT_RATINGS, engine_order, mapped_values, max_throw_speed, throw_error_base_deg, sensor_noise_scale
+from .prism_registry import NEW_RATINGS
 from .perception import visibility
 from .substrate import build_core
 from .restart_metric import RestartMetric
@@ -49,13 +50,16 @@ class NativePort:
         self.attr=is_attr(cfg)
         self.individuation = getattr(cfg, "individuation", "off") == IND.VERSION
         self.behavior_digest=cfg.digest
+        if self.individuation:
+            self.prism_agents = Counter()
+            self.prism_commits = []
         if self.attr:
             if not rosters or set(rosters)!=set(('A','B')):raise ValueError('ATTR-1 requires A and B rosters')
             if tuple(rosters[t].digest for t in ('A','B'))!=cfg.roster_digests:raise ValueError('roster digest/config mismatch')
             if cfg.version=='native-rb/3':
                 # Full config/roster digest is retained in the result. Gameplay hashes
                 # use only consumed ratings, so changing stored inert fields has no effect.
-                active={t:[(a.source_id,a.role,tuple((k,v) for k,v in a.values if (k not in ('injury', 'durability') if self.individuation else k not in INERT_RATINGS)))
+                active={t:[(a.source_id,a.role,tuple((k,v) for k,v in a.values if (k not in ('injury', 'durability') if self.individuation else k not in (*INERT_RATINGS, *NEW_RATINGS))))
                            for a in rosters[t].athletes] for t in ('A','B')}
                 config_record=cfg.record();config_record['roster_digests']=('behavior-only','behavior-only')
                 self.behavior_digest=digest((config_record,active))
