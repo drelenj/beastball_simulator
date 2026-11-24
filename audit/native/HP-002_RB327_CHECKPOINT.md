@@ -16,7 +16,7 @@
 
 | Task | Status | Evidence |
 |---|---|---|
-| 1. Possession scoring | DESIGN COMPLETE, IMPLEMENTED | Focused scenario checks passed. Original-sample regrade in progress. |
+| 1. Possession scoring | DESIGN COMPLETE, IMPLEMENTED, TESTED | All 150 original decisions regraded. 11,880 rollouts. |
 | 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED | Ten neutral seeds completed with 1,599,060 delivered decisions. Stratified grading and fit in progress. |
 | 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED | Opt-in integration and focused firewall tests passed. Regulation anchor and performance checks pending. |
 | 4. Gauge | DESIGN COMPLETE, IMPLEMENTED | Paired-seed script ready. Held-out result depends on the fit. |
@@ -43,6 +43,15 @@ The full suite reported `767 passed, 1 warning, 23 subtests passed in 670.14s (0
 The six legacy trace, state and config rows matched exactly. The full compatibility and CORE learned-off runs reproduced gates d and e. Their raw results are in `rb327/evidence/compatibility.json` and `rb327/evidence/core.json`.
 
 The focused tests cover a defensive intervention during the opponent's possession, separate reporting of the action outcome, rejection of a changed table, decisions after removal of the loaded file, an information-boundary poison test, and independent 0.422 roster selection.
+
+## Original sample regrade
+
+| Stage | Multi-option menus | All options tied, action horizon | All options tied, possession horizon | Best options tied, possession horizon |
+|---|---:|---:|---:|---:|
+| Passing | 29 | 27 | 2 | 4 |
+| Takedown | 30 | 30 | 5 | 14 |
+
+Passing also had one single-option menu. Including it in the all-equal count reproduces the lead's original 28 of 30, compared with 3 of 30 through possession end. With the longer horizon, the hand-set best fell in the best-return group in 9 of 29 Passing and 9 of 30 Takedown menus. The mean gaps to the best observed return were 0.321 and 0.260 points respectively. The 11,880 original-sample rollouts took 4,083.3 CPU seconds. Option-level evidence is summarised in `rb327/evidence/original.json`.
 
 ## Implemented measurement
 
