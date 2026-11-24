@@ -392,9 +392,10 @@ class NativePort:
                 (t.x-player.x)**2+(t.y-player.y)**2, -t.captured_ms, t.entity))[:capacity]
         self.memory[player.id] = {t.entity: t for t in candidates}
         if frame.signals.phase == 'live' and (player.role == 'archer' or player.id not in self.pending):
-            candidates = [t if t.captured_ms >= frame.captured_ms else replace(t, x=xy[0], y=xy[1])
-                          for t in candidates for xy in (PRISM.remembered_position(
-                              t, now, focus, traits['instinct'], frame.captured_ms),)]
+            for index, track in enumerate(candidates):
+                if track.captured_ms < frame.captured_ms:
+                    x, y = PRISM.remembered_position(track, now, focus, traits['instinct'], frame.captured_ms)
+                    candidates[index] = replace(track, x=x, y=y)
         result = age, tuple(sorted(candidates, key=lambda t: t.entity))
         self.core_track_cache[player.id] = (key, result)
         return result
