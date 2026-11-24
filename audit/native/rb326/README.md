@@ -36,6 +36,8 @@ An authored scene takes a roster preset or two sets of roster rows. Supply clock
 
 Full snapshots retain the live graph, historical events, transport state, random streams and trace bytes. The smaller drill snapshots retain active rule witnesses at their original event indices and start a branch trace tied to the original prefix fingerprint. Use the full format for exact match continuation. A prepared snapshot retains the already delivered view and starts from that specific actor's turn within the tick.
 
+The replay state includes the five Native engine RNGs, the per-athlete sensor RNGs and the Rulebook period coin. The MESH transport retains its queue, audit, intake clocks and seed. It derives each delivery draw from that seed and its envelope identity. CORE derives its decision draws from the saved match seed and decision time. Branch rollouts reseed future draws while retaining the observations already delivered.
+
 ## Drill and Gauge
 
 ```bash
@@ -48,6 +50,6 @@ python -m native.oracle.drill --mined /tmp/rb326-review/mined \
 
 Keep simultaneous matches and rollout workers at two or fewer. The miner emits compressed per-seed decision logs with the delivered beliefs, option values, owners and selected actions. It samples carrier moments by distance and pressure, and samples the three commitment stages by a stable hash of the match and decision identity. Each branch has a deterministic seed derived from the moment, option index and replicate. The rollout output keeps scores, results, event counts, fingerprints and CPU cost for every replicate.
 
-Possession horizons end at a score, turnover or period end. The sub-agent horizons follow the action witness through control, a ruling, invalidated motor commitment or ended hold. Points are scoreboard changes at the stopping tick. The raw reason counts include any administrative time caps. The fitted tables use all labels from the training moments, with seed 3 reserved as a match-level holdout. The comparison baseline is the pooled training mean. Binary-table mean squared errors are Brier scores.
+Possession horizons end at a goal, turnover or period end. Play continues after a foul award that leaves possession with the same team. The sub-agent horizons follow the action witness through control, a ruling, invalidated motor commitment or ended hold. Points are scoreboard changes at the stopping tick. The raw reason counts include any administrative time caps. The fitted tables use all labels from the training moments, with seed 3 reserved as a match-level holdout. The comparison baseline is the pooled training mean. Binary-table mean squared errors are Brier scores. The estimates reflect the recorded rosters, the sampled positions and CORE's continuation after the forced choice.
 
 The Gauge uses the same entropy at all three Playmaking levels. Belief regret is against the athlete's hand-set estimate before the choice error. The summary also records regret against the estimate after applying the error. Maximizing that last estimate gives zero regret by construction. The artifact and every other ORACLE input stay in the offline package.

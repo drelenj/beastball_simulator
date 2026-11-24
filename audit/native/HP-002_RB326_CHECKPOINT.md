@@ -79,4 +79,31 @@ Every continuation reproduced the uninterrupted final score, steps, config, trac
 | 14,000 | 87.9 | 83.0 |
 | 25,000 | 35.9 | 34.2 |
 
+## Drill sample
+
+The three neutral-real CORE matches recorded every delivered decision. Each journal includes the observed tracks and ball course, the owning ratings, the menu values, and the selected action. Procedural turns may have a procedural menu in place of a rated Strategy menu.
+
+| Match seed | Score A–B | Decisions logged | Mining CPU s |
+|---:|---:|---:|---:|
+| 1 | 61–80 | 160,374 | 258.6 |
+| 2 | 79–71 | 158,414 | 260.9 |
+| 3 | 78–84 | 162,154 | 265.3 |
+| Total | | 480,942 | 784.8 |
+
+The carrier sample assigned ten decisions to each distance and pressure stratum. Pressure uses the Playmaking predicate on the athlete's delivered beliefs. The three sub-agent samples each contain 30 commitments selected by the same stable decision-identity ranking.
+
+| Stage or stratum | Eligible | Sampled |
+|---|---:|---:|
+| Carrier, under 20 m, open | 596 | 10 |
+| Carrier, under 20 m, pressured | 330 | 10 |
+| Carrier, 20–40 m, open | 1,204 | 10 |
+| Carrier, 20–40 m, pressured | 1,143 | 10 |
+| Carrier, over 40 m, open | 3,540 | 10 |
+| Carrier, over 40 m, pressured | 3,133 | 10 |
+| Passing | 925 | 30 |
+| Finishing | 262 | 30 |
+| Takedown | 1,752 | 30 |
+
+The complete compressed journals and captured source moments live in `/workspace/rb326-evidence/mined/`. The committed journal manifest lists the byte counts and SHA-256 fingerprints. The selected beliefs and individual rollout and Gauge rows are the review dataset.
+
 See `rb326/README.md` for commands and `rb326/evidence/` for raw results.
