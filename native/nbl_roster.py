@@ -76,10 +76,11 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                             entry[key] = value / 100.
                             sources[key] = 'explicit:' + header
                         elif key == 'contact_resistance':
-                            entry[key] = NEUTRAL_TECHNICAL
-                            sources[key] = 'neutral fallback'
+                            if technical == 'explicit':
+                                entry[key] = NEUTRAL_TECHNICAL
+                            sources[key] = 'neutral fallback' if technical == 'explicit' else 'Balance fallback'
                         else:
-                            sources[key] = '0.70 default' if key in INERT_RATINGS else 'Opening-day OVR fallback'
+                            sources[key] = '0.70 default' if key in INERT_RATINGS else ('neutral fallback' if technical == 'neutral' else 'Opening-day OVR fallback')
                     for key, header in registry_columns.items():
                         value = row[columns[header]] if header in columns else None
                         if value is not None and value != '':

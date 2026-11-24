@@ -109,3 +109,25 @@ def test_reaction_and_reflex_have_separate_clocks(sensor_port):
     me.native_individual['reaction'] = .95
     assert port.prism_decision_interval_ms(me.id, evade) == interval
     assert port.prism_decision_interval_ms(me.id, intent) < deliberate
+
+
+def test_optional_workbook_ratings_do_not_replace_compatibility_skills():
+    import io
+    from openpyxl import load_workbook
+    from native.nbl_roster import load_nbl_workbook
+    from .test_rb322 import TEAMS, _workbook
+
+    workbook = load_workbook(io.BytesIO(_workbook()))
+    sheet = workbook['All 712 Players']
+    column = sheet.max_column + 1
+    sheet.cell(1, column, 'Reflex (rating)')
+    for row in range(2, sheet.max_row + 1):
+        sheet.cell(row, column, 43)
+    output = io.BytesIO()
+    workbook.save(output)
+    rosters = load_nbl_workbook(output, TEAMS)
+    for team in rosters.values():
+        for athlete in team.athletes:
+            assert athlete.get('reflex') == .43
+            assert athlete.get('contact_resistance') == athlete.get('balance')
+            assert dict(athlete.prism_sources)['reflex'] == 'explicit:Reflex (rating)'
