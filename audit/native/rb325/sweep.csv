@@ -62,13 +62,13 @@ catching,0.7,20,847.5748768027213,0.0,775.0291593021996,0.0,,{},,False,False,Fal
 catching,0.8,20,1831.8841924272856,116.13243178439194,775.0291593021996,0.1,,{},,False,False,False,catch arrest capacity threshold
 catching,0.9,20,3713.3992762572148,338.120498600094,775.0291593021996,0.1,,{},,False,False,False,catch arrest capacity threshold
 catching,1.0,20,6874.790774387526,711.1130901285172,775.0291593021996,0.1,,{},,False,False,False,catch arrest capacity threshold
-clarity,0.4,20,0.0464,18.367346938775505,36.73469387755101,0.05,,{},,False,False,False,recognition outcome
-clarity,0.5,20,0.044,12.244897959183671,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
-clarity,0.6,20,0.041600000000000005,6.122448979591853,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
-clarity,0.7,20,0.0392,0.0,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
-clarity,0.8,20,0.0368,-6.1224489795918355,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
-clarity,0.9,20,0.03439999999999999,-12.244897959183687,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
-clarity,1.0,20,0.032,-18.367346938775505,36.73469387755101,0.05,,{},,False,False,False,recognition outcome
+clarity,0.4,20,0.0464,18.367346938775505,36.73469387755101,0.05,,{},,False,False,False,observed-height flight classification
+clarity,0.5,20,0.044,12.244897959183671,36.73469387755101,0.05,,{},,False,False,False,observed-height flight classification
+clarity,0.6,20,0.041600000000000005,6.122448979591853,36.73469387755101,0.05,,{},,False,False,False,observed-height flight classification
+clarity,0.7,20,0.0392,0.0,36.73469387755101,0.0,,{},,False,False,False,observed-height flight classification
+clarity,0.8,20,0.0368,-6.1224489795918355,36.73469387755101,0.0,,{},,False,False,False,observed-height flight classification
+clarity,0.9,20,0.03439999999999999,-12.244897959183687,36.73469387755101,0.0,,{},,False,False,False,observed-height flight classification
+clarity,1.0,20,0.032,-18.367346938775505,36.73469387755101,0.0,,{},,False,False,False,observed-height flight classification
 defending,0.4,20,0.20670234200601478,99.99999999999997,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
 defending,0.5,20,0.17225195167167898,66.66666666666663,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
 defending,0.6,20,0.1378015613373432,33.33333333333333,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu

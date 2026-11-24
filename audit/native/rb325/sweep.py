@@ -99,6 +99,11 @@ def probe(name, value, seed):
         cap = CORE.FOCUS_BASE_CAPACITY + round(8 * (value-.7))
         age = CORE.FOCUS_BASE_RETENTION_MS + round(600 * (value-.7))
         return age, min(cap,rng.randrange(17,25)), 'track age and capacity'
+    if name == 'clarity':
+        height = R.IN_FLIGHT_Z_M + rng.uniform(-.05,.05)
+        deviation = R.clarity_sd(value)
+        observed = max(.1075, height + rng.gauss(0.,deviation))
+        return deviation, observed > R.IN_FLIGHT_Z_M, 'observed-height flight classification'
     if name == 'anticipation':
         course = CORE.future_course(belief,value).ball_course
         return course.vy, round(course.y + course.vy * .35,5), 'forecast displacement'
