@@ -55,10 +55,11 @@ class Option:
 class Menu:
     """Fresh deterministic draws of symmetric error for each valued option."""
 
-    def __init__(self, view):
+    def __init__(self, view, selector=None):
         self.ratings = dict(view.registry_ratings)
         self.seed = view.core_entropy
         self.records = []
+        self.selector = selector
 
     def choose(self, name, options):
         if not options:
@@ -78,7 +79,10 @@ class Menu:
                 stream >>= 64
                 spread = ERROR_WIDTH * (1 - self.ratings.get(option.owner, .7))
                 ranked.append((option.value + spread * (2 * unit - 1), -index, option))
-        best = max(ranked)[2]
+        chosen = self.selector(name, tuple(options)) if self.selector is not None else None
+        if chosen is not None and not 0 <= chosen < len(options):
+            raise ValueError(f'{name}: option index {chosen} is outside the menu')
+        best = max(ranked)[2] if chosen is None else options[chosen]
         self.records.append({
             'stage': name,
             'owner': best.owner,
@@ -327,7 +331,7 @@ def future_course(belief, rating):
     return replace(belief, ball_course=replace(course, vy=course.vy * factor, vz=course.vz * factor))
 
 
-def decide(view, belief):
+def decide(view, belief, *, selector=None):
     if view.observation_id != belief.observation_id:
         raise ValueError('belief/view provenance mismatch')
     baseline = displayed(view)
@@ -335,7 +339,7 @@ def decide(view, belief):
             view.signals.phase != 'live' or getattr(view, 'snap_hold', False)):
         from . import cognition_v3
         return RB.adjust(baseline, belief, *cognition_v3.decide(baseline, belief))
-    menu = Menu(view)
+    menu = Menu(view, selector)
     if view.pending_command_id or view.role == 'keeper' and not view.holds_ball:
         forecast = belief
         course = belief.ball_course

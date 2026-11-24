@@ -20,25 +20,57 @@ def reaction_deadline(now, previous, interval):
     return previous + interval
 
 
-def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None,rosters=None):
-    started=time.perf_counter();factory=port_factory or NativePort
-    port=factory(seed,config,policies,plumbing,rosters=rosters) if rosters is not None else factory(seed,config,policies,plumbing)
-    m,s,e=port.m,port.m.s,port.m.e
-    next_dec={};reaction_due={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
-    while s.phase!=port.types.Phase.FINAL:
-        if getattr(port,"intermission_pending",False):
-            port.advance_intermission();last_live_at=s.now
-            continue
-        now=s.now
-        if now>=next_sense:port.capture(now);next_sense=now+port.config.sense_ms
-        for pid in port.active_ids():
-            if now<next_dec.get(pid,0):continue
-            view,belief=port.view(pid,now)
-            if view is None:continue
-            intent,record=cognition.decide(view,belief)
-            admission=port.submit(intent)
-            if admission['status']=='rejected':
-                port.feedback.setdefault(pid,[]).append((intent.intent_id+'/rejected','rejected_'+admission.get('reason','unknown')+':'+intent.kind,now))
+class MatchDriver:
+    """Resumable Native clock, with an optional caller-supplied decision observer."""
+
+    def __init__(self, port):
+        self.port = port
+        self.next_dec = {}
+        self.reaction_due = {}
+        self.next_sense = self.steps = 0
+        self.last_progress = self.last_live_ms = self.last_live_at = 0
+
+    @property
+    def final(self):
+        return self.port.m.s.phase == self.port.types.Phase.FINAL
+
+    def advance(self, select=None, *, prepared=None, progress=None):
+        """Advance one tick. A prepared turn resumes after its view was delivered."""
+        port = self.port
+        m, s = port.m, port.m.s
+        if self.final:
+            raise ValueError('match is already final')
+        if prepared is None and getattr(port, 'intermission_pending', False):
+            port.advance_intermission()
+            self.last_live_at = s.now
+            return
+        now = s.now
+        if prepared is None:
+            if now >= self.next_sense:
+                port.capture(now)
+                self.next_sense = now + port.config.sense_ms
+            ids = port.active_ids()
+        else:
+            view, belief, remaining = prepared
+            ids = (view.athlete, *remaining)
+        next_dec, reaction_due = self.next_dec, self.reaction_due
+        for index, pid in enumerate(ids):
+            if prepared is not None and index == 0:
+                view, belief, _ = prepared
+            else:
+                if now < next_dec.get(pid, 0):
+                    continue
+                view, belief = port.view(pid, now)
+                if view is None:
+                    continue
+            if select is None:
+                intent, record = cognition.decide(view, belief)
+            else:
+                intent, record = select(view, belief, tuple(ids[index + 1:]))
+            admission = port.submit(intent)
+            if admission['status'] == 'rejected':
+                port.feedback.setdefault(pid, []).append(
+                    (intent.intent_id+'/rejected','rejected_'+admission.get('reason','unknown')+':'+intent.kind,now))
             if port.individuation:
                 from .prism_registry import commit_owner
                 parent = record.get('prism_agent', view.role)
@@ -54,54 +86,89 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 reaction_due[pid] = next_dec[pid] = due
             else:
                 reaction_due.pop(pid, None)
-                next_dec[pid]=now+port.prism_decision_interval_ms(pid, intent)
-        m.pending_break=[] # breaks/timeouts deferred; no legacy intermission injection
-        port.step();steps+=1
-        if max_steps and steps>=max_steps:break
-        if progress and s.live_ms-last_progress>=60000:
-            last_progress=s.live_ms;progress(dict(seed=seed,period=s.period,live_ms=s.live_ms,now=s.now,steps=steps,score=dict(s.score)))
-        if s.now-now<=0 and s.phase!=port.types.Phase.FINAL:raise RuntimeError('clock stalled')
-        if getattr(port,"intermission_pending",False):last_live_at=s.now
-        if s.live_ms>last_live_ms:last_live_ms=s.live_ms;last_live_at=s.now
-        elif s.phase!=port.types.Phase.FINAL and s.now-last_live_at>port.config.dead_stall_limit_ms:
-            raise RuntimeError('restart stall: '+json.dumps({'now':s.now,'live_ms':s.live_ms,'restart':asdict(s.restart) if s.restart else None,'record':getattr(s.restart,'native_id',None),'players':{p.id:{'x':p.x,'y':p.y,'target':p.target,'role':p.role,'posture':p.posture,'launch':getattr(p,'c4c_launch',None),'intent':getattr(getattr(p,'native_intent',None),'kind',None)} for p in s.players.values() if p.active},'pending':{pid:pend['cmd'].intent.kind for pid,pend in port.pending.items()}},sort_keys=True))
-        if s.now>100000000:raise RuntimeError('unbounded match / sudden death: no artificial winner supplied')
-    if s.phase==port.types.Phase.FINAL:
-        for rid,status in list(e.restart_results.items()):
-            if status=='pending':e.restart_results[rid]='match_end'
-    port.trace.update(digest([asdict(o) for o in port.outcomes]).encode())
-    port.trace.update(digest(e.log).encode())
-    state=dict(config_digest=port.behavior_digest,public_rules=asdict(e.possession.public()),restart_results=dict(e.restart_results),now=s.now,period=s.period,phase=s.phase.value,game_ms=s.game_ms,play_ms=s.possession_ms,
-               score=dict(s.score),ball=asdict(s.ball),players={p.id:asdict(p) for p in s.players.values()})
-    # Dynamic instance attrs (motor commitments) have separate execution records;
-    # canonical dataclass state excludes Python object addresses.
-    pending=sum(v=='pending' for v in e.restart_results.values())
-    if s.phase==port.types.Phase.FINAL and pending:
-        for rid,status in list(e.restart_results.items()):
-            if status=='pending':e.restart_results[rid]='match_end'
-        pending=0
-    released=sum(v=='released' for v in e.restart_results.values());total=len(e.restart_results)
-    result=dict(seed=seed,status='final' if s.phase==port.types.Phase.FINAL else 'partial',config=port.config.record(),
-                config_digest=port.config.digest,effective=port.verify_effective(),score=dict(s.score),period=s.period,
-                result=s.result,trace_hash=port.trace.hexdigest(),state_hash=digest(state),steps=steps,
-                live_ms=s.live_ms,end_ms=s.now,policy_params={t:p.as_dict() for t,p in port.policies.items()},
-                outcomes_by_status=dict(Counter(o.status for o in port.outcomes)),
-                rules={'ledger_by_row':dict(Counter(row['row'] for row in e.possession_history+e.possession.ledger))},
-                decisions_total=len(port.intents),decisions_by_kind=dict(port.decisions),
-                restart_awarded=total,restart_released=released,restart_closed=total-pending,
-                restart_completion_ratio=(total-pending)/total if total else 1.,restart_release_ratio=released/total if total else 1.,
-                restart_statuses=dict(Counter(e.restart_results.values())),invariants='passed',
-                restart_metric=port.restart_metric.summary(e.restart_results),contact_intents=dict(Counter(i.contact for i in port.intents if i.contact)),
-                foul_reasons=dict(Counter(row['data'].get('reason') for row in e.log if row['event']=='foul')),
-                engine_events=dict(Counter(row['event'] for row in e.log)),team_stats={t:dict(c) for t,c in e.native_stats.items()},
-                release_distances={t:{str(d):{'attempts':n,'goals':e.release_successes[t].get(d,0),'success_rate':e.release_successes[t].get(d,0)/n} for d,n in e.release_attempts[t].items()} for t in ('A','B')},
-                rules_ledger=dict(Counter(row['row'] for row in e.possession_history+e.possession.ledger)),
-                runtime_s=round(time.perf_counter()-started,3))
-    if port.individuation:
-        result['prism_agents'] = dict(port.prism_agents)
-        result['prism_sources'] = port.prism_sources
-        result['prism_commits'] = port.prism_commits
-    return result,port
+                next_dec[pid] = now + port.prism_decision_interval_ms(pid, intent)
+        m.pending_break = []
+        port.step()
+        self.steps += 1
+        if progress and s.live_ms-self.last_progress >= 60000:
+            self.last_progress = s.live_ms
+            progress(dict(seed=port.seed, period=s.period, live_ms=s.live_ms,
+                          now=s.now, steps=self.steps, score=dict(s.score)))
+        if s.now <= now and not self.final:
+            raise RuntimeError('clock stalled')
+        if getattr(port, 'intermission_pending', False):
+            self.last_live_at = s.now
+        if s.live_ms > self.last_live_ms:
+            self.last_live_ms, self.last_live_at = s.live_ms, s.now
+        elif not self.final and s.now-self.last_live_at > port.config.dead_stall_limit_ms:
+            raise RuntimeError('restart stall: '+json.dumps({
+                'now':s.now,'live_ms':s.live_ms,'restart':asdict(s.restart) if s.restart else None,
+                'record':getattr(s.restart,'native_id',None),
+                'players':{p.id:{'x':p.x,'y':p.y,'target':p.target,'role':p.role,'posture':p.posture,
+                                 'launch':getattr(p,'c4c_launch',None),
+                                 'intent':getattr(getattr(p,'native_intent',None),'kind',None)}
+                           for p in s.players.values() if p.active},
+                'pending':{pid:pend['cmd'].intent.kind for pid,pend in port.pending.items()}},sort_keys=True))
+        if s.now > 100000000:
+            raise RuntimeError('unbounded match / sudden death: no artificial winner supplied')
+
+    def play(self, max_steps=None, progress=None):
+        while not self.final:
+            self.advance(progress=progress)
+            if max_steps and self.steps >= max_steps:
+                break
+
+    def result(self, runtime_s=0.):
+        port, steps = self.port, self.steps
+        seed = port.seed
+        m = port.m
+        s, e = m.s, m.e
+        trace = port.trace.copy()
+        if s.phase==port.types.Phase.FINAL:
+            for rid,status in list(e.restart_results.items()):
+                if status=='pending':e.restart_results[rid]='match_end'
+        trace.update(digest([asdict(o) for o in port.outcomes]).encode())
+        trace.update(digest(e.log).encode())
+        state=dict(config_digest=port.behavior_digest,public_rules=asdict(e.possession.public()),restart_results=dict(e.restart_results),now=s.now,period=s.period,phase=s.phase.value,game_ms=s.game_ms,play_ms=s.possession_ms,
+                   score=dict(s.score),ball=asdict(s.ball),players={p.id:asdict(p) for p in s.players.values()})
+        # Dynamic instance attrs (motor commitments) have separate execution records;
+        # canonical dataclass state excludes Python object addresses.
+        pending=sum(v=='pending' for v in e.restart_results.values())
+        if s.phase==port.types.Phase.FINAL and pending:
+            for rid,status in list(e.restart_results.items()):
+                if status=='pending':e.restart_results[rid]='match_end'
+            pending=0
+        released=sum(v=='released' for v in e.restart_results.values());total=len(e.restart_results)
+        result=dict(seed=seed,status='final' if s.phase==port.types.Phase.FINAL else 'partial',config=port.config.record(),
+                    config_digest=port.config.digest,effective=port.verify_effective(),score=dict(s.score),period=s.period,
+                    result=s.result,trace_hash=trace.hexdigest(),state_hash=digest(state),steps=steps,
+                    live_ms=s.live_ms,end_ms=s.now,policy_params={t:p.as_dict() for t,p in port.policies.items()},
+                    outcomes_by_status=dict(Counter(o.status for o in port.outcomes)),
+                    rules={'ledger_by_row':dict(Counter(row['row'] for row in e.possession_history+e.possession.ledger))},
+                    decisions_total=len(port.intents),decisions_by_kind=dict(port.decisions),
+                    restart_awarded=total,restart_released=released,restart_closed=total-pending,
+                    restart_completion_ratio=(total-pending)/total if total else 1.,restart_release_ratio=released/total if total else 1.,
+                    restart_statuses=dict(Counter(e.restart_results.values())),invariants='passed',
+                    restart_metric=port.restart_metric.summary(e.restart_results),contact_intents=dict(Counter(i.contact for i in port.intents if i.contact)),
+                    foul_reasons=dict(Counter(row['data'].get('reason') for row in e.log if row['event']=='foul')),
+                    engine_events=dict(Counter(row['event'] for row in e.log)),team_stats={t:dict(c) for t,c in e.native_stats.items()},
+                    release_distances={t:{str(d):{'attempts':n,'goals':e.release_successes[t].get(d,0),'success_rate':e.release_successes[t].get(d,0)/n} for d,n in e.release_attempts[t].items()} for t in ('A','B')},
+                    rules_ledger=dict(Counter(row['row'] for row in e.possession_history+e.possession.ledger)),
+                    runtime_s=round(runtime_s,3))
+        if port.individuation:
+            result['prism_agents'] = dict(port.prism_agents)
+            result['prism_sources'] = port.prism_sources
+            result['prism_commits'] = port.prism_commits
+        return result
+
+
+def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None,rosters=None):
+    started = time.perf_counter()
+    factory = port_factory or NativePort
+    port = factory(seed,config,policies,plumbing,rosters=rosters) if rosters is not None else factory(seed,config,policies,plumbing)
+    driver = MatchDriver(port)
+    driver.play(max_steps, progress)
+    return driver.result(time.perf_counter()-started), port
 
 
 def main():

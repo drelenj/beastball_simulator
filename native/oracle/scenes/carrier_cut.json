@@ -1,0 +1,13 @@
+{
+  "schema": "oracle-scene/1",
+  "seed": 1,
+  "phase": "live",
+  "state": {"now": 1000, "owner": "A", "possession_ms": 22000},
+  "players": {
+    "A:0": {"x": 75, "y": 50, "vx": 5, "vy": 0, "facing": [1, 0]},
+    "A:1": {"x": 82, "y": 56, "vx": 4, "vy": -5, "facing": [0.6, -0.8]},
+    "B:0": {"x": 73, "y": 51.5, "vx": 5, "vy": 0, "facing": [1, 0]}
+  },
+  "ball": {"mode": "carried", "carrier": "A:0", "last_touch": "A", "control_time": 200},
+  "beliefs": {"mode": "authored", "athletes": {"A:0": {"tracks": {"B:0": {"x": 71}}}}}
+}
