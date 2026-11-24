@@ -38,6 +38,8 @@
 
  g) Firewall: live true state never reaches cognition; learned artifacts enter only as versioned files loaded before a match; the purity test covers the new loader.
 
+The full suite reported `767 passed, 1 warning, 23 subtests passed in 652.72s (0:10:52)`. The warning was the pytest dependency's `CallSpec2` deprecation.
+
 The focused tests cover a defensive intervention during the opponent's possession, separate reporting of the action outcome, rejection of a changed table, decisions after removal of the loaded file, an information-boundary poison test, and independent 0.422 roster selection.
 
 ## Implemented measurement
@@ -48,6 +50,6 @@ The neutral sample retains the original 150 selections from seeds 1–3 and adds
 
 The live configuration stores the artifact SHA-256. Startup validates the schema, feature version and checksum and builds immutable table cells. Normal decisions do no file I/O. Carrier options and committed Finishing aims use the same available information and seeded error as CORE. Their learned values displace the hand-set values, including the carrier's flat shot offset. No value artifact is required when the switch is off.
 
-The rates 0.4 workbook is pinned in the reproduction note. The named ratings supply the simulator's inputs. The calculated Overall for this experiment supplies the selection order. The readback independently checks top IDs by position group, the 22 entry shape, the underlying rating columns and role-specific attributes for the 12 franchises in the match sample.
+The ratings 0.4 workbook is pinned in the reproduction note. The named ratings supply the simulator's inputs. The calculated Overall for this experiment supplies the selection order. The readback independently checks top IDs by position group, the 22 entry shape, the underlying rating columns and role-specific attributes for the 12 franchises in the match sample.
 
 Reproduction commands and evidence locations are in [rb327/README.md](rb327/README.md).
