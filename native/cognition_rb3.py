@@ -913,7 +913,9 @@ def choose_carrier_move(view, belief, intent, record):
         facing_goal = view.attack_sign * view.body.vx > FACING_GOAL_COS * heading if heading > .3 else True
         if closing_ms <= 300 and own_speed > 0 and facing_goal and own_mass * own_speed * strength > mass * max(0., opp_speed) * .70:
             choice = ('truck', opponent.entity, (opponent.x, opponent.y))
-        elif opp_speed > 0 and distance <= view.body.reach + radius(mass):
+        elif opp_speed > 0 and distance <= view.body.reach + radius(mass) and (
+                not view.registry_ratings or closing_ms / 1000 <= C.PRISM.reflex_seconds(
+                    C.registry_rating(view, 'reflex'))):
             choice = ('stiff_arm', opponent.entity, None)
         else:
             return intent, record
@@ -978,6 +980,7 @@ def flight_horizon(course):
 
 
 FINISH_CLOSE_DEPTH_M = 10.
+FINISH_DY_M = (-2.8, -2.65, *SHOT_DY_M, 2.65, 2.8)
 FINISH_LONG_RESERVE_M = .34
 FINISH_CLOSE_RESERVE_M = .18
 
@@ -999,7 +1002,7 @@ def finishing_aim(view, fresh, intent):
     reserve = FINISH_CLOSE_RESERVE_M if abs(view.x - gx) < FINISH_CLOSE_DEPTH_M else FINISH_LONG_RESERVE_M
     rim = view.goal_radius - SHOT_BALL_R_M - reserve * (1 - C.registry_rating(view, 'finishing'))
     candidates = sorted(((hypot(50 + dy - ky, z - kz), dy, z)
-                         for dy in SHOT_DY_M for z in SHOT_Z_M if hypot(dy, z) < rim),
+                         for dy in FINISH_DY_M for z in SHOT_Z_M if hypot(dy, z) < rim),
                         reverse=True)
     for _, dy, z in candidates:
         aim = type('Aim', (), {'x': gx, 'y': 50. + dy})()
