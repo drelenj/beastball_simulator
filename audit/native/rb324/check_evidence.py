@@ -33,6 +33,13 @@ for suite in ('phase1', 'final'):
     assert reference == (path / (suite + '-legacy.txt')).read_bytes()
     print(suite, 'six legacy rows match.')
 
+parent = json.loads(Path('audit/native/rb323/evidence/benchmark.json').read_text())
+for fixture in parent['runs']['individuation/1']:
+    replay = load(f"bench-schema-{fixture['seed']}")
+    for key in ('trace_hash', 'state_hash', 'config_digest'):
+        assert replay[key] == fixture[key], (fixture['seed'], key)
+print('Schema windows preserve RB-3.23 enabled replay.')
+
 base = median(load(f'bench-baseline-{seed}')['cpu_ms_per_step'] for seed in (1, 3))
 print('RB-3.22 median CPU ms/step', round(base, 3))
 for mode in ('schema', 'final'):
