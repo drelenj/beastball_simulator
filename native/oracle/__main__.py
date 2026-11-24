@@ -59,7 +59,9 @@ def main():
     resume = subs.add_parser('resume')
     resume.add_argument('snapshot',type=Path)
     prepare = subs.add_parser('prepare')
-    prepare.add_argument('--scene',type=Path,required=True)
+    prepare_source = prepare.add_mutually_exclusive_group(required=True)
+    prepare_source.add_argument('--scene',type=Path)
+    prepare_source.add_argument('--from-snapshot',type=Path)
     prepare.add_argument('--athlete',required=True)
     prepare.add_argument('--stage',required=True)
     prepare.add_argument('--turn',type=int,default=1)
@@ -97,9 +99,18 @@ def main():
         driver.play()
         result = {'fingerprint':fingerprint(driver.result()),'cpu_s':process_time()-start}
     elif args.command == 'prepare':
-        build,driver = scene(args.scene)
+        initial = None
+        if args.scene:
+            build,driver = scene(args.scene)
+        else:
+            source = Snapshot.load(args.from_snapshot)
+            if source.compact:
+                raise ValueError('preparing a resumable turn needs a full source snapshot')
+            build = source.build
+            driver,initial = restore(source)
         seen = 0
         prepared = None
+        first_step = driver.steps
 
         def select(view,belief,remaining):
             nonlocal seen,prepared
@@ -110,8 +121,9 @@ def main():
                     prepared = capture(build,driver,prepared=(view,belief,remaining))
             return intent,record
 
-        while prepared is None and not driver.final and driver.steps < args.max_steps:
-            driver.advance(select)
+        while prepared is None and not driver.final and driver.steps-first_step < args.max_steps:
+            driver.advance(select,prepared=initial)
+            initial = None
         if prepared is None:
             raise ValueError('requested menu was not reached')
         prepared.save(args.snapshot)
