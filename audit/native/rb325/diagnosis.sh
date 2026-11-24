@@ -42,8 +42,8 @@ where=Path(sys.argv[1])
 def shots(case):
     return sum(sum(json.loads((where/f'{case}-{seed}.json').read_text())['shots'].values()) for seed in (1,3))
 base=shots('off')
-hooks={'perception':'vision radar clarity recognition_error', 'recognition':'focus reaction',
-       'inference':'instinct anticipation', 'strategy':'strategy', 'motor':'reflex_save reflex_cadence steering',
+hooks={'recognition':'focus reaction', 'motor':'reflex_save reflex_cadence steering',
+       'perception':'vision radar clarity recognition_error', 'inference':'instinct anticipation', 'strategy':'strategy',
        'execution':'fatigue touch archery'}
 print(' '.join(hs for layer,hs in hooks.items() if abs(shots(layer)-base)/base>=.10))
 PY
