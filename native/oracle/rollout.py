@@ -40,7 +40,8 @@ def describe(snapshot, stage, prefix=()):
     return next((options for name,options in candidates if name == stage),())
 
 
-def grade(snapshot, moment, stage, *, prefix=None, samples=20, driver=None):
+def grade(snapshot, moment, stage, *, prefix=None, samples=20, driver=None,
+          possession_returns=False):
     """Return matched option data and each deterministic rollout result."""
     if samples < 1:
         raise ValueError('samples must be positive')
@@ -61,8 +62,9 @@ def grade(snapshot, moment, stage, *, prefix=None, samples=20, driver=None):
                 break
             index = max(range(len(row['options'])),key=lambda i:(row['options'][i][3],-i))
             prefix.append((row['stage'],index))
-    stop = SUBAGENTS.get(stage,'possession')
-    max_ms = 65_000 if stop == 'possession' else 5_000
+    action = SUBAGENTS.get(stage)
+    stop = 'possession' if possession_returns else action or 'possession'
+    max_ms = 120_000 if possession_returns else 65_000 if stop == 'possession' else 5_000
     scored = []
     for option_index, option in enumerate(options):
         runs = []
@@ -71,7 +73,8 @@ def grade(snapshot, moment, stage, *, prefix=None, samples=20, driver=None):
             driver,prepared = restore(snapshot,driver,record=False)
             seed = branch_seed(moment,option_index,index)
             result = run(driver, prepared=prepared,force=Force(actor,stage,option_index,prefix=prefix),
-                         team=view.team,stop=stop,max_ms=max_ms,seed=seed)
+                         team=view.team,stop=stop,max_ms=max_ms,seed=seed,
+                         diagnostic=action if possession_returns else None)
             row = {key:value for key,value in result.items() if key != 'events'}
             row['event_counts'] = dict(Counter(event['event'] for event in result['events']))
             row['grounded'] = any(event['event'] == 'c3_grounding' and event['data'].get('counted')

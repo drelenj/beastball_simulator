@@ -54,6 +54,7 @@ class MatchDriver:
             view, belief, remaining = prepared
             ids = (view.athlete, *remaining)
         next_dec, reaction_due = self.next_dec, self.reaction_due
+        learned_values = getattr(port,'learned_values',None)
         for index, pid in enumerate(ids):
             if prepared is not None and index == 0:
                 view, belief, _ = prepared
@@ -64,7 +65,10 @@ class MatchDriver:
                 if view is None:
                     continue
             if select is None:
-                intent, record = cognition.decide(view, belief)
+                if learned_values is None or not view.holds_ball:
+                    intent, record = cognition.decide(view, belief)
+                else:
+                    intent, record = cognition.decide(view, belief, learned_values=learned_values)
             else:
                 intent, record = select(view, belief, tuple(ids[index + 1:]))
             admission = port.submit(intent)

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import math
 from native.config import NativeConfig,POCKET
 
@@ -81,9 +81,20 @@ class RulebookConfigV3(RulebookConfig):
     rb322_physical_source: str = 'roster'     # 'roster' | 'neutral' (league mean of each of the nine physical ratings)
 
     individuation: str = 'off'
+    drill_values_path: str | None = None
+    drill_values_sha256: str | None = None
+
+    def with_drill_values(self, path):
+        from native.learned_values import read_model
+
+        values = read_model(path)
+        return replace(self,drill_values_path=str(path),drill_values_sha256=values.digest)
 
     def record(self):
         record = super().record()
+        record.pop('drill_values_path')
+        if self.drill_values_sha256 is None:
+            record.pop('drill_values_sha256')
         if self.individuation == 'off':
             record.pop('individuation')
         if not self.rb3_handoff_block_enabled:
@@ -107,6 +118,10 @@ class RulebookConfigV3(RulebookConfig):
         return record
 
     def __post_init__(self):
+        if (self.drill_values_path is None) != (self.drill_values_sha256 is None):
+            raise ValueError('DRILL path and fingerprint must be provided together')
+        if self.drill_values_path is not None and self.individuation != 'individuation/2':
+            raise ValueError('DRILL values require PRISM CORE')
         if self.individuation not in ('off', 'individuation/1', 'individuation/2'):
             raise ValueError('unknown individuation mapping')
         if self.individuation in ('individuation/1', 'individuation/2'):

@@ -89,6 +89,7 @@ class EventHorizon:
         self.team = team
         self.stop = stop
         self.actor = actor
+        self.possession_team = port.m.e.possession.pp or port.m.s.owner or team
         ball = port.m.s.ball
         self.flight = ({'passed':'pass','shot':'shot'}.get(ball.mode.value)
                        if actor is None or actor == ball.last_releaser else None)
@@ -126,7 +127,7 @@ class EventHorizon:
                     return 'score'
                 if self.stop == 'finishing' and intent and intent.kind == 'stretch':
                     return 'stretch_scored'
-            if self.stop == 'possession' and kind == 'restart_awarded' and data.get('team') != team:
+            if self.stop == 'possession' and kind == 'restart_awarded' and data.get('team') != self.possession_team:
                 return 'turnover'
             if self.stop == 'possession' and kind == 'period_end':
                 return 'end_period'
@@ -161,7 +162,7 @@ class EventHorizon:
                 return 'pass_missed'
             if flight == 'shot' and self.stop == 'finishing':
                 return 'shot_missed'
-        if self.stop == 'possession' and port.m.e.possession.pp not in (None, self.team):
+        if self.stop == 'possession' and port.m.e.possession.pp not in (None, self.possession_team):
             return 'turnover'
         if self.stop == 'takedown_action' and intent is not None:
             if (self.actor, intent.target) not in port.m.c3_holds:
@@ -184,7 +185,8 @@ class EventHorizon:
             return 'match_final'
 
 
-def run(driver, *, prepared=None, force=None, team=None, stop='possession', max_ms=30_000, seed=None):
+def run(driver, *, prepared=None, force=None, team=None, stop='possession', max_ms=30_000,
+        seed=None, diagnostic=None):
     if max_ms <= 0:
         raise ValueError('max_ms must be positive')
     if stop not in ('possession','time','passing','finishing','takedown_action','evasion_action','pass_caught',
@@ -208,14 +210,23 @@ def run(driver, *, prepared=None, force=None, team=None, stop='possession', max_
     start_ms, start_score = state.now, dict(state.score)
     log_start, outcome_start, command_start = len(engine.log), len(port.outcomes), len(port.command_log)
     observer = EventHorizon(port, team, stop, actor)
+    action = EventHorizon(port, team, diagnostic, actor) if diagnostic else None
+    action_reason = action_ms = None
     decision = Decision(force)
     initial_log = log_start
     reason = None
     while state.now - start_ms < max_ms and not driver.final:
         driver.advance(decision if force and not decision.applied else None, prepared=prepared)
         prepared = None
-        reason = observer.consume(engine.log[log_start:], decision.intent)
+        new_events = engine.log[log_start:]
+        reason = observer.consume(new_events, decision.intent)
         log_start = len(engine.log)
+        if action is not None and action_reason is None:
+            action_reason = (action.consume(new_events, decision.intent)
+                             or action.after_step(decision.intent, port.outcomes[outcome_start:],
+                                                  port.command_log[command_start:]))
+            if action_reason is not None:
+                action_ms = state.now - start_ms
         if reason is None:
             reason = observer.after_step(decision.intent, port.outcomes[outcome_start:],
                                          port.command_log[command_start:])
@@ -227,7 +238,7 @@ def run(driver, *, prepared=None, force=None, team=None, stop='possession', max_
     trace = port.trace.copy()
     trace.update(digest(events).encode())
     other = state.other(team)
-    return {'end_reason': reason or ('match_final' if driver.final else 'time_limit'),
+    result = {'end_reason': reason or ('match_final' if driver.final else 'time_limit'),
             'points_for': state.score[team] - start_score[team],
             'points_against': state.score[other] - start_score[other],
             'events': events, 'steps': driver.steps - first_step, 'elapsed_ms': state.now - start_ms,
@@ -235,3 +246,8 @@ def run(driver, *, prepared=None, force=None, team=None, stop='possession', max_
             'pass_result': observer.pass_result, 'shot_result': observer.shot_result,
             'tackle_result': observer.tackle_result,
             'forced_intent': decision.intent.kind if decision.intent else None}
+    if action is not None:
+        result['action_outcome'] = {'reason':action_reason or 'unresolved_at_possession_end',
+                                    'elapsed_ms':action_ms,'pass':action.pass_result,
+                                    'shot':action.shot_result,'tackle':action.tackle_result}
+    return result

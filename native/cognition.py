@@ -594,12 +594,12 @@ def view_from_json(d):
     return AthleteView(**v), BeliefState(**b)
 
 
-def decide(view, belief):
+def decide(view, belief, *, learned_values=None):
     """All Native semantic commands. The view names its own decision set."""
     if view.cognition == 'native-rb/3':
         if view.core_entropy is not None:
             from . import prism_core
-            return prism_core.decide(view, belief)
+            return prism_core.decide(view, belief, learned_values=learned_values)
         from . import cognition_v3, cognition_rb3
         if view.registry_ratings:
             view = replace(view, prism_agent=PRISM.select_agent(view, belief, registry_rating))

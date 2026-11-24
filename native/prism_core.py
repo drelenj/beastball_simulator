@@ -55,15 +55,19 @@ class Option:
 class Menu:
     """Fresh deterministic draws of symmetric error for each valued option."""
 
-    def __init__(self, view, selector=None):
+    def __init__(self, view, selector=None, valuation=None):
         self.ratings = dict(view.registry_ratings)
         self.seed = view.core_entropy
         self.records = []
         self.selector = selector
+        self.valuation = valuation
 
     def choose(self, name, options):
         if not options:
             raise ValueError(f'{name}: no feasible option')
+        if self.valuation is not None and name in ('carrier','finishing'):
+            values = self.valuation(name,options)
+            options = [replace(option,value=value) for option,value in zip(options,values,strict=True)]
         # Define the stream by the decision stage. Option enumeration comes
         # from sorted athlete tracks and fixed candidate grids.
         if len(options) == 1:
@@ -331,7 +335,7 @@ def future_course(belief, rating):
     return replace(belief, ball_course=replace(course, vy=course.vy * factor, vz=course.vz * factor))
 
 
-def decide(view, belief, *, selector=None):
+def decide(view, belief, *, selector=None, learned_values=None):
     if view.observation_id != belief.observation_id:
         raise ValueError('belief/view provenance mismatch')
     baseline = displayed(view)
@@ -339,7 +343,9 @@ def decide(view, belief, *, selector=None):
             view.signals.phase != 'live' or getattr(view, 'snap_hold', False)):
         from . import cognition_v3
         return RB.adjust(baseline, belief, *cognition_v3.decide(baseline, belief))
-    menu = Menu(view, selector)
+    valuation = (None if learned_values is None else
+                 lambda stage,options: learned_values.score(stage,view,belief,options))
+    menu = Menu(view, selector, valuation)
     if view.pending_command_id or view.role == 'keeper' and not view.holds_ball:
         forecast = belief
         course = belief.ball_course

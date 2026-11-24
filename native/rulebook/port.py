@@ -30,6 +30,12 @@ from .config import RulebookConfig
 
 class RulebookPort(NativePort):
     def __init__(self,seed=1,config=None,policies=None,plumbing=True,rosters=None):
+        self.learned_values = None
+        path = getattr(config,'drill_values_path',None)
+        if path is not None:
+            from native.learned_values import read_model
+
+            self.learned_values = read_model(path,config.drill_values_sha256)
         super().__init__(seed,config or RulebookConfig(),policies,plumbing,rosters=rosters)
         self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values()}
         self.last_reset_period=1

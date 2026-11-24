@@ -36,6 +36,8 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     book=load_workbook(source,read_only=True,data_only=True)
     sheet=book['All 712 Players'];lines=sheet.values
     columns={name:i for i,name in enumerate(next(lines))}
+    rated_04 = technical == 'explicit' and 'OVR 0.422' in columns
+    selection_column = 'OVR 0.422' if rated_04 else 'Opening-day OVR'
     registry_columns = {key: key.replace('_', ' ').title() + ' (rating)' for key in (*NEW_RATINGS, *MANEUVERS)}
     registry_present = any(header in columns for header in registry_columns.values())
     candidates={team:[] for team in franchises}
@@ -54,7 +56,7 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
         for code,count,role in (('KPR',2,'keeper'),('ARC',2,'archer'),('field',18,'field')):
             pool=[(number,row) for number,row in candidates[franchise]
                   if (row[columns['Position']]==code if code!='field' else row[columns['Position']] not in ('KPR','ARC'))]
-            pool.sort(key=lambda item:-item[1][columns['Opening-day OVR']])
+            pool.sort(key=lambda item:-item[1][columns[selection_column]])
             if len(pool)<count:raise RosterError(f'franchise {franchise}: fewer than {count} {code} players')
             for number,row in pool[:count]:
                 rating=lambda field:float(row[columns[field]])/100.
@@ -63,12 +65,15 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                            reach_m=float(row[columns['Arm span (m)']]) / 2.,
                            standing_reach_m=float(row[columns['Standing reach (m)']]))
                 entry.update({key:(league_mean[key] if physical=='neutral' else rating(header)) for key,header in PHYSICAL.items()})
-                entry.update({key:(NEUTRAL_TECHNICAL if technical=='neutral' else rating('Opening-day OVR')) for key in TECHNICAL_OVR})
+                entry.update({key:(NEUTRAL_TECHNICAL if technical=='neutral' or rated_04 else rating('Opening-day OVR'))
+                              for key in TECHNICAL_OVR})
                 entry['contact_resistance']=entry['balance'] # PLACEHOLDER
                 if technical == 'explicit' or registry_present:
                     sources = {}
                     for key in (*TECHNICAL_OVR, 'contact_resistance', *INERT_RATINGS):
                         header = key.replace('_', ' ').title() + ' (rating)'
+                        if rated_04 and key == 'keeper_skill':
+                            header = 'Goalkeeping (rating)'
                         value = row[columns[header]] if header in columns else None
                         if technical == 'explicit' and value is not None and value != '':
                             if isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 <= value <= 100:
@@ -80,7 +85,9 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                                 entry[key] = NEUTRAL_TECHNICAL
                             sources[key] = 'neutral fallback' if technical == 'explicit' else 'Balance fallback'
                         else:
-                            sources[key] = '0.70 default' if key in INERT_RATINGS else ('neutral fallback' if technical == 'neutral' else 'Opening-day OVR fallback')
+                            sources[key] = ('0.70 default' if key in INERT_RATINGS else
+                                            'neutral fallback' if technical == 'neutral' or rated_04 else
+                                            'Opening-day OVR fallback')
                     for key, header in registry_columns.items():
                         value = row[columns[header]] if header in columns else None
                         if value is not None and value != '':

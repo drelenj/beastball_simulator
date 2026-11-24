@@ -8,6 +8,7 @@ import json
 from math import hypot
 from pathlib import Path
 from time import process_time
+from contextlib import nullcontext
 
 from native import cognition, cognition_rb3 as rb
 from native.prism_core import Aim
@@ -69,16 +70,18 @@ def winner(menu):
     return max(range(len(menu['options'])), key=lambda index: (menu['options'][index][3],-index))
 
 
-def mine(seed, directory):
+def mine(seed, directory, *, quotas=None, journal=True):
     directory.mkdir(parents=True,exist_ok=True)
     snapshots = directory/'moments'
     snapshots.mkdir(exist_ok=True)
     build = match_build(seed)
     driver = build.create()
     counts = Counter()
-    reservoirs = {group:[] for group in QUOTAS}
+    quotas = QUOTAS if quotas is None else quotas
+    reservoirs = {group:[] for group in quotas}
     start = process_time()
-    with gzip.open(directory/f'decisions-{seed}.jsonl.gz','wt',compresslevel=3) as log:
+    with (gzip.open(directory/f'decisions-{seed}.jsonl.gz','wt',compresslevel=3)
+          if journal else nullcontext()) as log:
         def observer(view,belief,remaining):
             if view.holds_ball or view.own_hold_target:
                 intent,record,options = menus(view,belief)
@@ -86,16 +89,16 @@ def mine(seed, directory):
                 intent,record = cognition.decide(view,belief)
                 options = ()
             stages = record.get('core_menus',[])
-            info = knowledge(view,belief)
-            ratings = dict(view.registry_ratings)
-            used_ratings = {option[1]:ratings.get(option[1],.70)
-                            for stage in stages for option in stage['options']}
-            log.write(dump_json({'decision':intent.decision_id,'athlete':view.athlete,'step':driver.steps,
-                                 'team':view.team,'at_ms':view.delivered_ms,
-                                 'agent':record.get('prism_agent'),'menus':stages,
-                                 'ratings':used_ratings,'belief':info,
-                                 'procedural_options':record.get('options',[]) if not stages else [],
-                                 'chosen_kind':intent.kind})+'\n')
+            if log is not None:
+                ratings = dict(view.registry_ratings)
+                used_ratings = {option[1]:ratings.get(option[1],.70)
+                                for stage in stages for option in stage['options']}
+                log.write(dump_json({'decision':intent.decision_id,'athlete':view.athlete,'step':driver.steps,
+                                     'team':view.team,'at_ms':view.delivered_ms,
+                                     'agent':record.get('prism_agent'),'menus':stages,
+                                     'ratings':used_ratings,'belief':knowledge(view,belief),
+                                     'procedural_options':record.get('options',[]) if not stages else [],
+                                     'chosen_kind':intent.kind})+'\n')
             prefix = []
             for stage, (name,opts) in zip(stages,options):
                 index = winner(stage)
@@ -108,16 +111,16 @@ def mine(seed, directory):
                         group = name
                     counts[group] += 1
                     kept = reservoirs[group]
-                    if len(kept) < QUOTAS[group] or rank < kept[-1]['rank']:
+                    if len(kept) < quotas[group] or rank < kept[-1]['rank']:
                         _,measured = features(view,belief,opts,name)
                         filename = f'{rank}.snapshot.gz'
                         capture(build,driver,prepared=(view,belief,remaining),compact=True).save(snapshots/filename)
                         row = {'moment':ident,'rank':rank,'seed':seed,'step':driver.steps,'team':view.team,
                                'actor':view.athlete,'stage':name,'group':group,'prefix':list(prefix),
-                               'menu':stage,'features':measured,'belief':info,'snapshot':f'moments/{filename}'}
+                               'menu':stage,'features':measured,'belief':knowledge(view,belief),'snapshot':f'moments/{filename}'}
                         kept.append(row)
                         kept.sort(key=lambda row:row['rank'])
-                        if len(kept) > QUOTAS[group]:
+                        if len(kept) > quotas[group]:
                             (directory/kept.pop()['snapshot']).unlink()
                 prefix.append((name,index))
             return intent,record
