@@ -12,6 +12,8 @@
 - Task 0 clock correction `d7ab3eb`
 - Snapshot, scene and force harness `1c5f563`
 - Rollout, mining, fitting and gauge code `c0f8970`
+- Captured-match preparation `ee6104c`
+- Final implementation and tests `0879f85`
 
 | Task | Status | Evidence |
 |---|---|---|
@@ -34,6 +36,13 @@
  e) CORE identity: individuation on, all ratings 0.70, real bodies (neutral-real), seed 1 = 87-79, trace 317d40ba3cbfd5409bec2f39075ced1122e73c7e1fd1ce4ff0dd7a65c2af7b01, state 26d9d339aa4c80c2956731948d25c7dbe93e9bb8ed152af124d706bd75ee85ef - EXCEPT after Task 0, which changes CORE on purpose: report the new CORE hashes from then on.
 
  f) Speed: individuation-on at most 15% slower per step than RB-3.22; ORACLE code must add nothing to a normal match run.
+
+The final full suite reported `762 passed, 1 warning, 23 subtests passed in 648.21s (0:10:48)`. The warning was the pytest dependency's `CallSpec2` deprecation. The focused suite reported 18 passing tests. All six legacy trace, state and config rows matched. The full regulation continuation results confirm the post-Task-0 CORE fingerprints below.
+
+The paired 1,500-step real-roster timing used RB-3.22 `eb30f605f24b906777b88d6cb3a552b3584639ef`. CPU times per step were 3.702 and 3.585 ms on the reference and 3.985 and 4.069 ms on CORE. The median was **3.643 vs. 4.027 ms**, an increase of **10.53%**. Two full-code seed-1 windows had matching trace and state.
+
+- Timed CORE trace `94a78267864f0a08dbf9feeaa368f21cd089174ba00ce9b72f869bf78760afc4`
+- Timed CORE state `20c56e1cfc539a4ddb7c11c8e0ce4e18cd941f672eaf4fcbdc5254309713fe`
 
 ## Task 0 Reaction timing
 
