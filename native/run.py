@@ -10,11 +10,21 @@ from .port import NativePort, digest
 from . import cognition
 
 
+def reaction_deadline(now, previous, interval):
+    """Keep the deliberate clock's phase across physics ticks.
+
+    Restart the clock after a missed interval, for example after a freeze.
+    """
+    if previous is None or now - previous >= interval:
+        return now + interval
+    return previous + interval
+
+
 def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None,rosters=None):
     started=time.perf_counter();factory=port_factory or NativePort
     port=factory(seed,config,policies,plumbing,rosters=rosters) if rosters is not None else factory(seed,config,policies,plumbing)
     m,s,e=port.m,port.m.s,port.m.e
-    next_dec={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
+    next_dec={};reaction_due={};next_sense=0;steps=0;last_progress=0;last_live_ms=0;last_live_at=0
     while s.phase!=port.types.Phase.FINAL:
         if getattr(port,"intermission_pending",False):
             port.advance_intermission();last_live_at=s.now
@@ -37,7 +47,14 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 if child and (child != 'takedown' or view.own_hold_target is None) and admission['status'] == 'accepted':
                     port.prism_commits.append(dict(athlete=pid, action=intent.kind, parent=parent,
                                                   commit_ms=now, subagent=child, intent_id=intent.intent_id))
-            next_dec[pid]=now+port.prism_decision_interval_ms(pid, intent)
+            if port.prism_core and child not in ('evasion', 'takedown'):
+                reaction = dict(view.individual_ratings).get('reaction', .70)
+                interval = port.config.decision_ms * (1 + .4 * (.70 - reaction))
+                due = reaction_deadline(now, reaction_due.get(pid), interval)
+                reaction_due[pid] = next_dec[pid] = due
+            else:
+                reaction_due.pop(pid, None)
+                next_dec[pid]=now+port.prism_decision_interval_ms(pid, intent)
         m.pending_break=[] # breaks/timeouts deferred; no legacy intermission injection
         port.step();steps+=1
         if max_steps and steps>=max_steps:break
