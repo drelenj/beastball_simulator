@@ -11,6 +11,7 @@ diff -u native/evidence/rb3-reach/legacy-hashes.txt /tmp/rb325-review/legacy.txt
 python -m native.rulebook.individuation_run --compatibility --seed 1 --out /tmp/rb325-review/off.json
 python audit/native/rb325/run_core.py --seed 1 --out /tmp/rb325-review/core.json
 python audit/native/rb325/sweep.py /tmp/rb325-review/sweep.json /tmp/rb325-review/sweep.csv
+python audit/native/rb325/strategy_scenarios.py /tmp/rb325-review/strategy-scenarios.json
 ```
 
 Use `run_core.py --seed N` for the all-0.70 real bodies anchor and `--roster control` for the uniform anchor. Pass `--roster real --steps 1500` for the timed window on the unmodified roster. Use `audit/native/rb324/bench.py --mode off` from the exact RB-3.22 worktree for the matched comparison. Run the seed order baseline 1, CORE 1, CORE 3, baseline 3, CORE 1 repeat.
