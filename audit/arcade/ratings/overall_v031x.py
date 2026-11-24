@@ -14,7 +14,7 @@ Weights:
   Clarity, Reaction, Vision, Awareness, Focus, Instinct, Catching, Throw Accuracy, Touch, Passing, Jumping,
   Agility, Acceleration, Strength; Archers Archery Accuracy x3, Disruption x3 plus Vision, Awareness, Clarity,
   Focus, Reaction, Instinct, Anticipation, Reflex.
-Usage: python overall_v031x.py <ratings-0.3.xlsx> <out.xlsx>
+Usage: python overall_v031x.py <ratings.xlsx> <out.xlsx>
 """
 import copy, statistics as st, sys
 import openpyxl

@@ -17,9 +17,12 @@ import openpyxl
 from openpyxl.styles import Alignment, PatternFill
 
 VERSION = "ratings-0.2"          # seed key: unchanged so every other player keeps his draws
-LABEL = "ratings-0.3"
+LABEL = "ratings-0.4"
 AVG, T_SD, NOISE_SD, LO, HI = 70.0, 6.0, 2.0, 40, 99
 FLOOR_90 = {"Kamasi Sinella"}
+WIDEN = {"KPR": None, "TRK": None}   # owner 24 Nov: talent spread widened to the other field positions' (None = auto);
+                                    # a number forces that stretch factor (used to give Keepers at least one 95)
+TOP_KEEPER_BONUS = 5.0   # owner 24 Nov: at least one 95 Keeper; talent added to the best Keeper only
 DRAW_CLAMP_OVR = 5   # owner 24 Nov: every fresh draw held within +/-5 of the player's OVR
 
 # key -> header the engine loader reads (key.replace('_',' ').title() + ' (rating)')
@@ -134,15 +137,39 @@ def main(src, out):
     ovr = [float(r[col["Opening-day OVR"]]) for r in rows]
     om, osd = st.mean(ovr), st.pstdev(ovr)
 
-    gen = {}
-    for r in rows:
-        pid, name, pos = r[col["Player ID"]], r[col["Player"]], r[col["Position"]]
-        rng = random.Random(int(hashlib.sha256(f"{VERSION}|{pid}".encode()).hexdigest()[:16], 16))
+    def talent(r, rng):
         z_ovr = (float(r[col["Opening-day OVR"]]) - om) / osd
         z_draw = rng.gauss(0, 1)
         o = float(r[col["Opening-day OVR"]])
         z_draw = min((o + DRAW_CLAMP_OVR - om) / osd, max((o - DRAW_CLAMP_OVR - om) / osd, z_draw))
-        T = AVG + T_SD * (math.sqrt(.5) * z_ovr + math.sqrt(.5) * z_draw)
+        return AVG + T_SD * (math.sqrt(.5) * z_ovr + math.sqrt(.5) * z_draw)
+
+    seed = lambda pid: int(hashlib.sha256(f"{VERSION}|{pid}".encode()).hexdigest()[:16], 16)
+    # Pass 1: talent levels, to widen the narrow positions around their own mean (draws are repeated
+    # identically in pass 2, so every other player's random stream is unchanged).
+    t0 = {r[col["Player ID"]]: talent(r, random.Random(seed(r[col["Player ID"]]))) for r in rows}
+    by_pos = defaultdict(list)
+    for r in rows:
+        by_pos[r[col["Position"]]].append(t0[r[col["Player ID"]]])
+    target = st.mean(st.pstdev(by_pos[p]) for p in FIELD if p not in WIDEN)
+    stretch = {p: (WIDEN[p] or target / st.pstdev(by_pos[p])) for p in WIDEN}
+    pos_mean = {p: st.mean(by_pos[p]) for p in WIDEN}
+    global LAST_STRETCH
+    LAST_STRETCH = stretch
+
+    top_keeper = max((r for r in rows if r[col["Position"]] == "KPR"), key=lambda r: t0[r[col["Player ID"]]])[col["Player ID"]]
+    global TOP_KEEPER
+    TOP_KEEPER = top_keeper
+
+    gen = {}
+    for r in rows:
+        pid, name, pos = r[col["Player ID"]], r[col["Player"]], r[col["Position"]]
+        rng = random.Random(seed(pid))
+        T = talent(r, rng)
+        if pos in stretch:
+            T = pos_mean[pos] + (T - pos_mean[pos]) * stretch[pos]
+        if pid == top_keeper:
+            T += TOP_KEEPER_BONUS
         if pos in SPEC_ARCH:
             cands = SPEC_ARCH[pos]
             a = rng.choices(cands, weights=[c[1] for c in cands])[0]
@@ -160,7 +187,7 @@ def main(src, out):
         vals["goalkeeping"] = T + SPECIAL_OFFSET + off.get("goalkeeping", 0) + g if pos == "KPR" else None
         vals["disruption"] = T + SPECIAL_OFFSET + off.get("disruption", 0) + d if pos == "ARC" else None
         vals[ARCHERY] = T + SPECIAL_OFFSET + ar if pos == "ARC" else None
-        gen[pid] = dict(arch=aname, T=round(T, 1), vals=vals, pos=pos, name=name,
+        gen[pid] = dict(arch=aname, T=round(T, 1), vals=vals, pos=pos, name=name, pid=pid,
                         note="generated; floored at 90 (owner)" if name in FLOOR_90 else "generated")
 
     # Re-centre: league average exactly 70 per rating (field players for field ratings; Keepers for
@@ -169,7 +196,7 @@ def main(src, out):
     for k in ALL:
         grp = "KPR" if k == "goalkeeping" else "ARC" if k in ("disruption", ARCHERY) else None
         v = [g["vals"][k] for g in gen.values() if g["vals"][k] is not None and
-             g["name"] not in FLOOR_90 and   # owner-adjusted players excluded
+             g["name"] not in FLOOR_90 and g.get("pid") != TOP_KEEPER and   # owner-adjusted players excluded
              (g["pos"] == grp if grp else g["pos"] in FIELD)]
         shift[k] = AVG - st.mean(v)
     for g in gen.values():
@@ -246,6 +273,7 @@ def main(src, out):
     table("Ratings Audit 0.2", ["Rating", "Players", "Mean", "SD", "Min", "Max", "At 99", "At 40"], audit, {0: 22})
     mc = wb["Method & Canon"]
     for line in [
+        ("Talent spread", "Keepers and Trackers: talent spread around their position mean stretched x%.2f / x%.2f to match the other field positions; best Keeper given +%.1f talent so at least one Keeper reaches 95 (owner)" % (stretch["KPR"], stretch["TRK"], TOP_KEEPER_BONUS)),
         ("PRISM and technique ratings", f"{VERSION} DRAFT: names per PRISM Ratings Registry (v0); scale 0-100, league average 70"),
         ("Talent level", "T = 70 + 6 x (0.707 z(Opening-day OVR) + 0.707 z(fresh draw)); every draw held within +/-5 of the player's OVR (owner)"),
         ("Rating formula", "T + position shape + cognitive archetype (zero-sum) + noise sd 2; each rating re-centred to a league average of 70; clamped 40-99"),
