@@ -81,7 +81,9 @@ def select_agent(view, belief, rating):
     return 'zone_coverage' if rating(view, 'zone_coverage') > rating(view, 'defending') else 'defending'
 
 
-def commit_owner(intent):
+def commit_owner(intent, *, core=False):
+    if core and intent.kind == 'stretch':
+        return 'finishing'
     if intent.kind in SUBAGENTS:
         return SUBAGENTS[intent.kind]
     if intent.contact in ('wrap', 'takedown'):

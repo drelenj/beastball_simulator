@@ -104,6 +104,9 @@ class RulebookPort(NativePort):
 
     def capture(self,now):
         super().capture(now)
+        if self.prism_core:
+            self.capture_core_metadata(now)
+            return
         if not hasattr(self,'indicator_frames'):self.indicator_frames={}
         if self.individuation and not hasattr(self, 'visible_bodies'):
             self.visible_bodies = {}
@@ -121,6 +124,30 @@ class RulebookPort(NativePort):
         self.indicator_frames={i:v for i,v in self.indicator_frames.items() if i in keep}
         if self.individuation:
             self.visible_bodies = {i:v for i,v in self.visible_bodies.items() if i in keep}
+
+    def capture_core_metadata(self, now):
+        """Read each public size and status once per sensing tick."""
+        if not hasattr(self, 'indicator_frames'):
+            self.indicator_frames = {}
+            self.visible_bodies = {}
+        metadata = {
+            q.id: ('red' if q.frozen(now) else 'amber' if now <= q.immune_until else 'off',
+                   round(q.a.reach, 4), round(q.a.height, 4))
+            for q in self.m.s.players.values() if q.active
+        }
+        for pid, frames in self.frames.items():
+            f = frames[-1]
+            if f.captured_ms != now:
+                continue
+            ids = sorted({t.entity for t in f.tracks if t.entity in metadata} | {pid})
+            self.indicator_frames[f.frame_id] = tuple((who,metadata[who][0]) for who in ids)
+            self.visible_bodies[f.frame_id] = tuple((who,*metadata[who][1:]) for who in ids)
+        cutoff = now - 21*self.config.sense_ms
+        for store in (self.indicator_frames, self.visible_bodies):
+            if len(store) > 500:
+                for frame_id in tuple(store):
+                    if int(frame_id.split('/',2)[1]) < cutoff:
+                        del store[frame_id]
 
     def view(self,pid,now,bench_role=None):
         v,b=super().view(pid,now,bench_role)

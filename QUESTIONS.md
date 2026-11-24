@@ -1,4 +1,5 @@
-# RB-3.24 owner questions
+# Owner questions
 
-- Stretch remains pending owner approval as a separately rated maneuver. The existing Stretch action is available under the established carrier move settings.
-- Passing owns timing after the start of release motion and Ball Handling owns the release clock. Can Passing delay a committed release beyond the Ball Handling wind-up, or should its timing authority be limited to an earlier commit decision?
+RB-3.25 resolves the RB-3.24 Stretch and Passing questions. Stretch remains a scoring technique owned by Finishing. Passing can defer the start of release motion by at most one Reaction interval. Ball Handling governs the fixed wind-up once that motion begins.
+
+No new canon question arose. The fit of provisional option values and the scoring calibration remain engineering work.

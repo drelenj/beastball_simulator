@@ -38,6 +38,7 @@ STRETCH_VALUE = 13.
 GRIP_VALUE = .3
 GRIP_SPEED_WEIGHT = .06
 LATE_REFLEX_CLOSE_M = 2.5
+LATE_REFLEX_MAX_AGE_S = .6
 DODGE_RANGE_M = 1.6
 WRAP_TACKLE_DISTANCE_M = 2.2
 WRAP_TACKLE_VALUE = .35
@@ -97,8 +98,17 @@ def proposed(base, kind, target=None, aim=None, **kwargs):
     return replace(base, kind=kind, target=target, aim=aim, contact=None, **kwargs)
 
 
-def finish(menu, view, base, tracks, kind):
-    if kind == 'stretch':
+def finish(menu, view, base, tracks):
+    goal_x = 100. - view.own_goal_x
+    stretch = (view.role == 'field' and view.body and getattr(view, 'rb3_carrier_moves_enabled', False) and
+               abs(goal_x-view.x) <= view.body.reach + STRETCH_BELIEVED_RANGE_MARGIN and abs(view.y-50.) < view.goal_radius)
+    if stretch:
+        hands = proposed(base, 'stretch', aim=(goal_x, view.y))
+        alternatives = [Option(hands, STRETCH_VALUE, 'finishing', 'stretch')]
+        if base.kind == 'shoot':
+            alternatives.append(Option(base, STRETCH_VALUE-1., 'finishing', 'throw'))
+        base = menu.choose('scoring_technique', alternatives).intent
+    if base.kind == 'stretch':
         # Aim inside the existing goal mouth. The motor limits hand reach.
         options = [Option(replace(base, aim=(base.aim[0], y)), -abs(y-view.y), 'finishing', f'stretch:{y:.2f}')
                    for y in (50., max(48., min(52., view.y)))]
@@ -194,7 +204,10 @@ def evade(menu, view, base, threat, near_held):
         _, technique, old_aim, started = old_motion
         reflex = menu.ratings.get('reflex', .7)
         age = (view.delivered_ms - started) / 1000.
-        if (old_aim and old_aim != aim and d <= LATE_REFLEX_CLOSE_M and 0 < age <= .55 - .35 * reflex):
+        own_vx, own_vy = (view.body.vx,view.body.vy) if view.body else (0.,0.)
+        closing = ((own_vx-threat.vx)*(threat.x-view.x) + (own_vy-threat.vy)*(threat.y-view.y))/max(.01,d)
+        if (old_aim and old_aim != aim and 0 < age <= LATE_REFLEX_MAX_AGE_S
+                and d <= LATE_REFLEX_CLOSE_M and closing > 0. and d/closing >= .55-.35*reflex):
             blended = tuple(old + reflex * (new - old) for old, new in zip(old_aim, aim))
             options.append(Option(replace(base, aim=blended, contact='dodge', technique=technique),
                                   1.15, owner, 'late_dodge_adjustment'))
@@ -230,10 +243,11 @@ def carrier(menu, view, belief, tracks, base, record):
             choices.append(Option(replace(intent, technique='evade'), value + EVADE_PRESSURE_VALUE * max(0.,1-gap/4.),
                                   'playmaking', 'evade'))
     goal = 100. - view.own_goal_x
-    if view.role == 'field' and view.body and getattr(view, 'rb3_carrier_moves_enabled', False):
-        if abs(goal-view.x) <= view.body.reach + STRETCH_BELIEVED_RANGE_MARGIN and abs(view.y-50.) < view.goal_radius:
-            choices.append(Option(proposed(base, 'stretch', aim=(goal, view.y)), STRETCH_VALUE,
-                                  'finishing', 'stretch'))
+    if (view.role == 'field' and view.body and getattr(view,'rb3_carrier_moves_enabled',False)
+            and abs(goal-view.x) <= view.body.reach + STRETCH_BELIEVED_RANGE_MARGIN and abs(view.y-50.) < view.goal_radius
+            and not any(choice.intent.kind == 'shoot' for choice in choices)):
+        choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),STRETCH_VALUE,
+                              'playmaking','commit_scoring_attempt'))
     if not choices:
         choices.append(Option(proposed(base, 'retain'), 0., 'playmaking', 'retain'))
     picked = menu.choose('carrier', choices).intent
@@ -242,7 +256,7 @@ def carrier(menu, view, belief, tracks, base, record):
     if picked.kind == 'pass':
         return passing(menu, view, picked, tracks)
     if picked.kind in ('shoot', 'stretch'):
-        return finish(menu, view, picked, tracks, picked.kind)
+        return finish(menu, view, picked, tracks)
     if picked.kind == 'carry' and (picked.technique == 'evade' or view.own_held):
         return evade(menu, view, picked, near if gap < 4. else None, bool(view.own_held))
     return picked

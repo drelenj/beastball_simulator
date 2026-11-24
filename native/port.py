@@ -241,7 +241,7 @@ class NativePort:
         return IND.cognitive_interval_ms(self.config.decision_ms, p.native_individual['reaction'])
 
     def prism_decision_interval_ms(self, pid, intent):
-        if self.individuation and PRISM.commit_owner(intent) in ('evasion', 'takedown'):
+        if self.individuation and PRISM.commit_owner(intent, core=self.prism_core) in ('evasion', 'takedown'):
             return round(1000 * PRISM.reflex_seconds(self.m.s.players[pid].native_registry['reflex']))
         return self.decision_interval_ms(pid)
 
@@ -324,7 +324,9 @@ class NativePort:
             f=ObservationFrame(f'native/{now}/{pid}/bench',now,pid,(),None,sig,None,None,False,self.m.e.hunt_cleared)
         mem=self.memory.setdefault(pid,{})
         mem.update({t.entity:t for t in f.tracks})
-        if self.prism_core:
+        if self.prism_core and (p.role != 'archer' and pid in self.pending):
+            track_age, tracks = 2000, f.tracks
+        elif self.prism_core:
             track_age, tracks = self.core_tracks(p, now, f, mem, bench_role)
         elif self.individuation:
             focus = p.native_individual['focus']

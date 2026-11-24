@@ -158,6 +158,23 @@ def test_defending_compares_man_with_area_by_observed_situation():
     rival = replace(t,x=27.,y=50.)
     ball = replace(b.tracks[-1],x=27.,y=50.)
     belief = replace(b, tracks=(rival,ball))
-    result, record = C.decide(v,belief)
-    assert record['prism_agent'] == 'zone_coverage'
+    _, record = C.decide(v,belief)
     assert {row[1] for row in record['core_menus'][0]['options']} == {'zone_coverage','defending'}
+    inside = next(o[2] for o in record['core_menus'][0]['options'] if o[0]=='area')
+    _, outside = C.decide(replace(v,x=47.),belief)
+    outside_area = next(o[2] for o in outside['core_menus'][0]['options'] if o[0]=='area')
+    assert inside - outside_area == pytest.approx(CORE.AREA_INSIDE_VALUE)
+
+
+def test_reflex_can_revise_a_committed_dodge_from_newly_believed_pressure():
+    view, belief, threat, _ = prism_lab.scene(1,'reflex',.4)
+    view = replace(view,core_entropy='paired',core_motion=('carry','juke',(87.,51.),750))
+    threat = replace(threat,x=view.x+2.3,y=view.y,vx=-3.,vy=0.)
+    base = C.ActionIntent('i','d',view.athlete,'carry',None,(90.,50.),None,None,view.delivered_ms)
+    labels = []
+    for reflex in (.4,1.):
+        menu = CORE.Menu(replace(view,registry_ratings=(('reflex',reflex),)))
+        CORE.evade(menu,view,base,threat,False)
+        labels.append({option[0] for option in menu.records[0]['options']})
+    assert 'late_dodge_adjustment' not in labels[0]
+    assert 'late_dodge_adjustment' in labels[1]

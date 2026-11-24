@@ -33,7 +33,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 from .prism_registry import commit_owner
                 parent = record.get('prism_agent', view.role)
                 port.prism_agents[parent] += 1
-                child = commit_owner(intent)
+                child = commit_owner(intent, core=port.prism_core)
                 if child and (child != 'takedown' or view.own_hold_target is None) and admission['status'] == 'accepted':
                     port.prism_commits.append(dict(athlete=pid, action=intent.kind, parent=parent,
                                                   commit_ms=now, subagent=child, intent_id=intent.intent_id))
