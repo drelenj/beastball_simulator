@@ -11,7 +11,7 @@ from native import cognition as C
 from native import prism_core as CORE
 from native import prism_lab
 from native.prism_motion import maneuver, stretch_maximum
-from native.roster import rb3_control_rosters
+from native.roster import load_rows, rb3_control_rosters
 from .config import RulebookConfigV3
 from .port import RulebookPort
 
@@ -69,6 +69,21 @@ def test_core_view_round_trips_and_contains_menu_record():
     _, record = C.decide(v,b)
     assert record['core_menus'][0]['stage'] == 'carrier'
     assert len({row[0] for row in record['core_menus'][0]['options']}) >= 3
+
+
+def test_evasion_and_radar_do_not_change_physical_resistance_or_preparation():
+    control = rb3_control_rosters()
+    for value in (.4,1.):
+        rosters = {team: load_rows([
+            dict(athlete.values) | {'id':athlete.source_id,'role':athlete.role,
+                                    'evasion':value,'awareness':value}
+            for athlete in roster.athletes],team) for team,roster in control.items()}
+        config = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A','B')),
+                                  individuation=CORE.VERSION)
+        port = RulebookPort(1,config,rosters=rosters)
+        actor = next(iter(port.m.s.players.values()))
+        assert actor.native_registry['evasion'] == actor.native_registry['awareness'] == value
+        assert actor.a.contact_resistance == actor.a.awareness == .7
 
 
 def test_passing_wait_keeps_windup_duration_and_releases_at_due(core_port):

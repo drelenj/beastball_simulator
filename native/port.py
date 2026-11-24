@@ -98,8 +98,13 @@ class NativePort:
                         old.native_registry = old.native_individual | ratings
                         if self.prism_core:
                             old.native_registry.update({key: raw.get(key, PRISM.AVERAGE) for key in PRISM.MANEUVERS})
+                            # The frozen kernel's awareness and resistance slots are
+                            # physical coefficients. CORE's Awareness governs radar,
+                            # and Evasion evaluates choices after a commitment.
+                            old.a.awareness = old.a.contact_resistance = PRISM.AVERAGE
+                        else:
+                            old.a.contact_resistance = ratings['evasion']
                         self.prism_sources[old.id] = sources
-                        old.a.contact_resistance = ratings['evasion']
                     old.native_source_id=record.source_id
                     old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
                     old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
