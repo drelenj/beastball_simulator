@@ -44,6 +44,21 @@ The six legacy trace, state and config rows matched exactly. The full compatibil
 
 The focused tests cover a defensive intervention during the opponent's possession, separate reporting of the action outcome, rejection of a changed table, decisions after removal of the loaded file, an information-boundary poison test, and independent 0.422 roster selection.
 
+## Timing and fixed-window replay
+
+Two paired 1,500-step windows on the archived real roster, seeds 1 and 3, measured process CPU. RB-3.22 was `eb30f605f24b906777b88d6cb3a552b3584639ef`.
+
+| Mode | Seed 1 ms/step | Seed 3 ms/step | Median ms/step |
+|---|---:|---:|---:|
+| RB-3.22 | 3.686 | 4.123 | 3.904 |
+| CORE, learned off | 4.038 | 4.751 | 4.394 |
+| CORE, learned on | 3.921 | 3.970 | 3.946 |
+
+CORE off was +12.55% versus RB-3.22, and CORE on was +1.05%. Learned on was -10.22% versus CORE off. These net comparisons include the work resulting from different decisions and do not isolate lookup CPU. Both thresholds in gate f passed. The independent learned-on seed-1 window matched score, steps, config and both hashes.
+
+- Window trace `93451cd0c928a751d289078a4784d8827a8dcf50f14ebae6b8d534fd09f71e15`
+- Window state `b67e8378233afe7fee07ffb232b8387bf2a8aa8bc374ce3c0aa4229a19843103`
+
 ## Original sample regrade
 
 | Stage | Multi-option menus | All options tied, action horizon | All options tied, possession horizon | Best options tied, possession horizon |
