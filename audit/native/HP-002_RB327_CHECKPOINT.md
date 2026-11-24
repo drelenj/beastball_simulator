@@ -2,8 +2,8 @@
 
 1. **IMPLEMENTED**. RB-3.27 extends offline grading through the end of each possession, adds an opt-in expected-points policy and reads the ratings 0.4 workbook using its named ratings.
 2. PRISM can load a versioned table before kickoff. Athletes still pick from their existing options using their observations, beliefs and decision error. The hand-set policy remains the default.
-3. The fitted shot-conversion table underperformed the pooled holdout baseline. The Gauge criterion was missed in both stages. The learned anchor and learned-on roster block are still being measured.
-4. The versioned fit is complete and the learned-on checks are running. No canon question is pending.
+3. The fitted shot-conversion table underperformed the pooled holdout baseline. The Gauge criterion was missed in both stages. The learned-on neutral anchor missed both owner ranges.
+4. The versioned fit and six neutral matches are complete. The learned-on roster block is running. No canon question is pending.
 5. Use the completed fit and paired match evidence to judge the opt-in policy when those results are available.
 
 ## Revisions and status
@@ -18,7 +18,7 @@
 |---|---|---|
 | 1. Possession scoring | DESIGN COMPLETE, IMPLEMENTED, TESTED | All 150 original decisions regraded. 11,880 rollouts. |
 | 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED, TESTED | Ten neutral seeds, 384 decisions, 29,780 rollouts and six held-out comparisons. |
-| 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED | Opt-in integration and focused firewall tests passed. Regulation anchor and performance checks pending. |
+| 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED, TESTED | Gate f and reproducibility passed. The six-game anchor missed both owner ranges. |
 | 4. Gauge | DESIGN COMPLETE, IMPLEMENTED, TESTED | Neither held-out test met the 2-standard-error criterion. |
 | 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED | Twenty learned-off games completed. Learned-on games depend on the fitted artifact. |
 
@@ -104,6 +104,27 @@ The held-out sample contained 36 carrier and eight Finishing moments. Each ratin
 | Finishing | −0.09469 | 0.05368 | FAIL. Regret fell by 1.76 standard errors. |
 
 Both decisions followed their learned estimates more consistently as ratings rose. The holdout covers two matches, with eight Finishing moments. The raw sample, all option returns and each Gauge draw are in `rb327/evidence/{moments,grades,gauge}.jsonl.gz`.
+
+## Neutral learned-on anchor
+
+All athletes used 0.70 ratings. The real group used the archived roster's physical bodies.
+
+| Match | Score A–B | Possessions A / B | Possessions ending in an attempt A / B |
+|---|---:|---:|---:|
+| real-1 | 61–75 | 153 / 155 | 18.3% / 20.6% |
+| real-2 | 68–49 | 156 / 156 | 18.6% / 13.5% |
+| real-3 | 64–58 | 157 / 157 | 19.1% / 15.9% |
+| real-4 | 70–100 | 149 / 148 | 16.8% / 19.6% |
+| real-5 | 50–92 | 144 / 145 | 18.8% / 24.1% |
+| control-1 | 61–76 | 159 / 159 | 17.0% / 23.3% |
+
+The pooled median team score was **66.0** against the owner range **75–90**. Mean possessions were **153.17** and the median was **155.5** against the range **100–150 per team**. The range was 144–159 observed possessions per team. The mean share ending with an attempt was **18.80%**. Real bodies alone had a median team score of 66.0, mean possessions of 152.0 and an 18.53% attempt-ending share. Control had a median team score of 68.5, 159 possessions per team and a 20.13% attempt-ending share. No policy re-tuning followed these runs.
+
+The full learned-on neutral-real seed 1 repeated **61–75** in **31,976** steps from a second process. Both runs matched all three digests.
+
+- Config `5f311cb7c76fe771df547c41badf24a743994c2569f56eca7eda63b3cda20225`
+- Trace `4da6c2add2e910d6c6edd1862a5c4710d3abbad42474b3da9e5a2c7ee37e642d`
+- State `4f5c1f65c4977a68de1abfedea91cb09703b3d6984bde8a1d0e62ad847219b67`
 
 ## Real ratings, learned off
 
