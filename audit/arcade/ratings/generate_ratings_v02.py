@@ -15,9 +15,11 @@ from collections import Counter, defaultdict
 import openpyxl
 from openpyxl.styles import Alignment, PatternFill
 
-VERSION = "ratings-0.2"
+VERSION = "ratings-0.2"          # seed key: unchanged so every other player keeps his draws
+LABEL = "ratings-0.2.1"
 AVG, T_SD, NOISE_SD, LO, HI = 70.0, 6.0, 2.0, 40, 99
 FLOOR_90 = {"Kamasi Sinella"}
+DRAW_CLAMP = {"Kamasi Sinella": 5}   # owner 24 Nov: fresh draw within +/-5 of his OVR
 
 # key -> header the engine loader reads (key.replace('_',' ').title() + ' (rating)')
 COG = ["vision", "awareness", "clarity", "focus", "reaction", "instinct", "anticipation",
@@ -136,7 +138,11 @@ def main(src, out):
         pid, name, pos = r[col["Player ID"]], r[col["Player"]], r[col["Position"]]
         rng = random.Random(int(hashlib.sha256(f"{VERSION}|{pid}".encode()).hexdigest()[:16], 16))
         z_ovr = (float(r[col["Opening-day OVR"]]) - om) / osd
-        T = AVG + T_SD * (math.sqrt(.5) * z_ovr + math.sqrt(.5) * rng.gauss(0, 1))
+        z_draw = rng.gauss(0, 1)
+        if name in DRAW_CLAMP:
+            o, w = float(r[col["Opening-day OVR"]]), DRAW_CLAMP[name]
+            z_draw = min((o + w - om) / osd, max((o - w - om) / osd, z_draw))
+        T = AVG + T_SD * (math.sqrt(.5) * z_ovr + math.sqrt(.5) * z_draw)
         if pos in SPEC_ARCH:
             cands = SPEC_ARCH[pos]
             a = rng.choices(cands, weights=[c[1] for c in cands])[0]
@@ -155,7 +161,7 @@ def main(src, out):
         vals["disruption"] = T + SPECIAL_OFFSET + off.get("disruption", 0) + d if pos == "ARC" else None
         vals[ARCHERY] = T + SPECIAL_OFFSET + ar if pos == "ARC" else None
         gen[pid] = dict(arch=aname, T=round(T, 1), vals=vals, pos=pos, name=name,
-                        note="generated; floored at 90 (owner)" if name in FLOOR_90 else "generated")
+                        note="generated; draw within OVR +/-5, floored at 90 (owner)" if name in FLOOR_90 else "generated")
 
     # Re-centre: league average exactly 70 per rating (field players for field ratings; Keepers for
     # Goalkeeping; Archers for Disruption and Archery Accuracy), then clamp and apply the owner floor.
@@ -163,6 +169,7 @@ def main(src, out):
     for k in ALL:
         grp = "KPR" if k == "goalkeeping" else "ARC" if k in ("disruption", ARCHERY) else None
         v = [g["vals"][k] for g in gen.values() if g["vals"][k] is not None and
+             g["name"] not in FLOOR_90 and g["name"] not in DRAW_CLAMP and   # owner-adjusted players excluded
              (g["pos"] == grp if grp else g["pos"] in FIELD)]
         shift[k] = AVG - st.mean(v)
     for g in gen.values():
@@ -187,7 +194,7 @@ def main(src, out):
             if pid in gen:
                 g = gen[pid]
                 vals = [g["arch"], g["T"]] + [g["vals"][k] for k in ALL] + \
-                       [g["note"], f"sha256({VERSION}|{pid})", VERSION]
+                       [g["note"], f"sha256({VERSION}|{pid})", LABEL]
                 for j, v in enumerate(vals):
                     sheet.cell(i, start + j, v)
         if sheet.auto_filter.ref:
@@ -243,7 +250,7 @@ def main(src, out):
         ("Talent level", "T = 70 + 6 x (0.707 z(Opening-day OVR) + 0.707 z(fresh draw)) (owner: half OVR, half draw)"),
         ("Rating formula", "T + position shape + cognitive archetype (zero-sum) + noise sd 2; each rating re-centred to a league average of 70; clamped 40-99"),
         ("Specialists", "Goalkeeping only KPR; Disruption and Archery Accuracy only ARC; each averages 70 within its own group"),
-        ("Owner-locked", "Kamasi Sinella: generated, floored at 90 in every generated rating"),
+        ("Owner-locked", "Kamasi Sinella: fresh draw clamped within +/-5 of his OVR, then floored at 90 in every generated rating"),
         ("Engine use", "Read by the loader with technical='explicit'; physical ratings unchanged"),
     ]:
         mc.append(list(line))
