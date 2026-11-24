@@ -17,6 +17,7 @@ for roster in neutral-real control; do
 done
 python -m native.prism_lab --out "$EVIDENCE/lab.json"
 python audit/native/rb324/summarize_lab.py "$EVIDENCE/lab.json" "$EVIDENCE/sweep.csv"
+python audit/native/rb324/execution_trials.py --out "$EVIDENCE/execution-trials.json"
 python audit/native/rb324/playmaking_threshold.py --out "$EVIDENCE/playmaking-threshold.json"
 ```
 
