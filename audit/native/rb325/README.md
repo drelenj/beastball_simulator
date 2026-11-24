@@ -15,11 +15,21 @@ python audit/native/rb325/strategy_scenarios.py /tmp/rb325-review/strategy-scena
 python audit/native/rb325/check_evidence.py audit/native/rb325/evidence --require-anchor
 ```
 
-Use `run_core.py --seed N` for the all-0.70 real bodies anchor and `--roster control` for the uniform anchor. Pass `--roster real --steps 1500` for the timed window on the unmodified roster. Use `audit/native/rb324/bench.py --mode off` from the exact RB-3.22 worktree for the matched comparison. Run the seed order baseline 1, CORE 1, CORE 3, baseline 3, CORE 1 repeat.
+Use `run_core.py --seed N` for the all-0.70 real bodies anchor and `--roster control` for the uniform anchor. Pass `--roster real --steps 1500` for the timed window on the unmodified roster. Run `audit/native/rb324/bench.py --mode off` from the exact RB-3.22 worktree at `eb30f605f24b906777b88d6cb3a552b3584639ef` for the matched comparison. The order was baseline 1, CORE 1, CORE 3, baseline 3, baseline 1 repeat, CORE 1 repeat.
 
 The neutral anchor uses both teams from the real-body roster in seeds 1 through 5 and both teams from the control in seed 1. A second control seed 1 match is an exact replay check. Use the final Git revision rather than setting a one-off environment flag. The score anchor compares the median of the ten real-body team scores and the median of the two control team scores independently. Every team possession count is compared individually.
 
 Use the exact RB-3.24 checkout at `3edfaad1ae5d50407c16e22dceca6ad92f9d9ae6` as current and import directory for `ablate.py`. The evidence script lives in RB-3.25 and receives a case, seed, and output path. Cases are declared in its `LAYERS` map. The `off` and `on` controls use the original profiles. Isolated cases enable the named switch in the original module, with spectator instrumentation for possession and passes. The source anchor checks reject a different engine layout. `without-<hook>` drops that hook from the union of layer switches. A combined switch can require signals produced by another layer, so a leave-one-out run may reveal dependencies that a one-layer-only run misses.
+
+```bash
+rb325_audit="$PWD/audit/native/rb325"
+rb325_python="$(command -v python)"
+git worktree add --detach /tmp/rb325-diagnosis-parent 3edfaad1ae5d50407c16e22dceca6ad92f9d9ae6
+(
+    cd /tmp/rb325-diagnosis-parent
+    "$rb325_audit/diagnosis.sh" "$rb325_python" "$rb325_audit" /tmp/rb325-review/diagnosis
+)
+```
 
 `report_metrics.py FILE...` prints the per-team stats. Pass completion counts a same-team first control after an open-play pass. The next release, restart, boundary, period or goal closes the witness. A completed bounce counts as a pass in that report. Terminal attempt share is measured with the official RB-3.1 possession convention and carries observed at their scoring-attempt witness.
 
