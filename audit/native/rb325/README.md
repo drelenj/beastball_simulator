@@ -1,6 +1,6 @@
 # RB-3.25 reproduction
 
-Use the pinned WB roster in Git and the project Python 3.12 environment. Run from the repository root. Write new outputs outside the committed evidence directory.
+Use the pinned roster workbook in Git and the project Python 3.12 environment. Run from the repository root. Write new outputs outside the committed evidence directory.
 
 ```bash
 export PYTHONPATH=.
