@@ -57,3 +57,28 @@ python audit/native/rb327/report.py "$work" --out "$work/report"
 ```
 
 For single-game use, pass `--drill-values path/to/drill-v1.json` to `python -m native.rulebook.individuation_run`. The value file must accompany the opt-in configuration at match construction. Its SHA-256 is checked at construction and is recorded in the match fingerprint. Later decisions evaluate the loaded numeric tables against the athlete's view and beliefs.
+
+## Timing and evidence checks
+
+The 1,500-step timing pairs use the same archived roster input and the same seeds on both revisions. The reference worktree is RB-3.22 at `eb30f605f24b906777b88d6cb3a552b3584639ef`. Use the same Python executable for both worktrees, put the reference checkout first on its `PYTHONPATH`, and run the timings sequentially. The two seed pairs reverse the timing order.
+
+```bash
+repo=$PWD
+ref=/path/to/rb322-worktree
+for job in '1 rb322' '1 off' '1 on' '3 on' '3 off' '3 rb322'; do
+    read -r seed mode <<< "$job"
+    if [[ $mode == rb322 ]]; then
+        (cd "$ref" && PYTHONPATH="$PWD" python "$repo/audit/native/rb324/bench.py" \
+            --mode off --seed "$seed" --out "$work/bench-rb322-$seed.json")
+    else
+        opt=()
+        if [[ $mode == on ]]; then opt=(--values "$work/drill/drill-v1.json"); fi
+        python audit/native/rb327/match.py "${opt[@]}" --roster real --steps 1500 \
+            --seed "$seed" --out "$work/bench-$mode-$seed.json"
+    fi
+done
+python audit/native/rb327/match.py --values "$work/drill/drill-v1.json" --roster real \
+    --steps 1500 --seed 1 --out "$work/bench-on-1-repeat.json"
+python audit/native/rb327/verify.py "$work" --workbook "$work/ratings-0.4.xlsx" \
+    --artifact "$work/drill/drill-v1.json"
+```
