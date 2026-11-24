@@ -56,7 +56,7 @@ Use `individuation/2` or the experimental runner's default for CORE. The explici
 | Seed 1 repeat | 3.588 | 4.035 |
 | Median of paired seeds | 3.694 | 4.013 |
 
-The matched benchmark passed at **8.64%** slower. Both modes ran under the same concurrent compatibility workload. An earlier comparison used baseline and CORE windows taken under different background loads and measured 16.80%; those records are in `rb325/evidence/timing-unmatched/`. Keep the paired sample and its repeated fingerprint as the speed gate evidence.
+The matched benchmark passed at **8.64%** slower. Both modes ran under the same concurrent compatibility workload. An earlier comparison used baseline and CORE windows taken under different background loads and measured 16.80%. Those records are in `rb325/evidence/timing-unmatched/`. Keep the paired sample and its repeated fingerprint as the speed gate evidence.
 
 The 1,500-step profiles show 3.82 cumulative seconds in CORE RulebookPort capture, 1.78 in CORE decisions, and 3.67 in native physical stepping. The corresponding baseline costs were 3.44, 1.53 and 3.34 seconds. CORE ran 1,279 live physical steps in that profile, compared with 1,125 for RB-3.22. Instinct projected 27,342 remembered sightings. The profiles and raw function timings are in `rb325/evidence/`.
 
@@ -94,7 +94,7 @@ The following menu parameters are new. Each is **PROVISIONAL - TO BE REPLACED BY
 |---|---|---|
 | Carrier | Carry-to-goal increment `1.0`, evade-under-pressure increment up to `2.5` | Compare running through space with evading a nearby opponent |
 | Scoring commit | Stretch option `13`, believed reach allowance `0.45 m` | Offer hand extension near the scoring plane within the actor's believed reach |
-| Defending | Block range `3 m`, option `0.8`; takedown range `2.2 m`, increment `0.35` | Offer nearby defensive contact alternatives |
+| Defending | Block range `3 m`, option `0.8`, and takedown range `2.2 m`, increment `0.35` | Offer nearby defensive contact alternatives |
 | Passing | Wait cost `0.22`, fast/loft cost `0.25`, bounce cost `0.65`, lane gain weight `0.12`, waiting receiver speed floor `1.6 m/s` | Compare launch adjustments with the direct release |
 | Goalkeeping | Setting value `1.0`, saving base `1.15`, course window weight `0.6`, shift cost `0.3` | Evaluate a position change or commitment against staying ready |
 | Disruption | Wait value `0.65` | Compare holding a prepared draw with releasing it |
@@ -146,7 +146,36 @@ The old Reflex catch gate alone produced 102 shots across seeds 1 and 3. Open-pl
 
 Dropping only that gate from the full stack raised completion from 139/350 (39.7%) to 212/383 (55.4%). Total shots rose from 66 to 92 and the pooled team-score median rose from 37 to 50. This confirms an effect on both sides of the intervention. The remaining gap depends on other hooks and how their match paths interact.
 
-Focus alone reduced shots to 127; its neutral capacity was 10 and its retention was 1,820 ms. The combined Recognition layer reduced shots to 114. Reaction alone reduced deliberate decisions from 309,042 to 275,041, while producing 147 shots. Within Motor Control, Reflex save alone produced 160, Reflex cadence 155, and steering 145. The field catch gate is the isolated Motor Control change that reproduced a shooting decrease in this sample.
+Focus alone reduced shots to 127. Its neutral capacity was 10 and its retention was 1,820 ms. The combined Recognition layer reduced shots to 114. Reaction alone reduced deliberate decisions from 309,042 to 275,041, while producing 147 shots. Within Motor Control, Reflex save alone produced 160, Reflex cadence 155, and steering 145. The field catch gate is the isolated Motor Control change that reproduced a shooting decrease in this sample.
+
+### Single-hook results
+
+| Run | Score A–B | Possessions A/B | Terminal attempts A/B | Shots A/B | Open pass completion A/B |
+|---|---:|---:|---:|---:|---:|
+| reflex_catch-1 | 69–54 | 127/129 | 27.6%/21.7% | 28/26 | 44.7%/46.4% |
+| reflex_catch-3 | 54–81 | 130/131 | 28.5%/28.2% | 26/22 | 45.3%/47.6% |
+| without-reflex_catch-1 | 54–46 | 115/114 | 24.3%/26.3% | 24/23 | 57.7%/53.6% |
+| without-reflex_catch-3 | 43–69 | 116/116 | 24.1%/27.6% | 22/23 | 50.0%/60.0% |
+| focus-1 | 51–54 | 138/138 | 29.0%/26.1% | 28/25 | 59.3%/63.8% |
+| focus-3 | 74–79 | 144/144 | 27.8%/32.6% | 34/40 | 55.5%/66.2% |
+| reaction-1 | 67–73 | 141/142 | 28.4%/28.9% | 27/37 | 65.6%/62.2% |
+| reaction-3 | 94–60 | 138/138 | 42.0%/31.2% | 47/36 | 68.4%/63.0% |
+| reflex_save-1 | 94–51 | 138/139 | 31.2%/30.9% | 42/39 | 64.0%/68.1% |
+| reflex_save-3 | 68–85 | 135/133 | 29.6%/37.6% | 42/37 | 67.1%/68.7% |
+| reflex_cadence-1 | 68–79 | 141/140 | 33.3%/29.3% | 42/34 | 62.6%/57.9% |
+| reflex_cadence-3 | 70–87 | 133/133 | 33.8%/30.1% | 41/38 | 68.5%/65.1% |
+| steering-1 | 55–81 | 135/135 | 33.3%/34.1% | 43/37 | 66.2%/64.5% |
+| steering-3 | 51–97 | 137/137 | 30.7%/35.8% | 32/33 | 66.9%/61.6% |
+| vision-1 | 73–99 | 150/149 | 23.3%/34.9% | 29/40 | 59.1%/58.4% |
+| vision-3 | 83–107 | 138/140 | 37.0%/30.0% | 36/28 | 67.3%/67.5% |
+| radar-1 | 57–75 | 129/129 | 31.8%/34.1% | 29/37 | 71.2%/66.7% |
+| radar-3 | 58–50 | 139/138 | 22.3%/31.9% | 29/31 | 62.0%/66.9% |
+| clarity-1 | 63–104 | 135/135 | 27.4%/40.0% | 30/42 | 63.1%/67.3% |
+| clarity-3 | 72–63 | 142/142 | 30.3%/33.8% | 36/40 | 64.8%/68.5% |
+| recognition_error-1 | 66–89 | 142/143 | 33.1%/32.9% | 40/32 | 65.9%/64.8% |
+| recognition_error-3 | 77–79 | 133/134 | 31.6%/30.6% | 37/34 | 66.2%/67.4% |
+
+Within Perception, the isolated shot totals were 133 for Vision, 126 for Awareness's radar radius, 148 for Clarity, and 143 for the recognition switch. The radar result is 23.6 shots per 100 possessions, close to the 24.3 in compatibility. In the recognition-only case the Strategy layer's classifier consumer is disabled. The recognition switch can still advance the sensor random stream. That row measures the isolated switch, and a lane or shot decision effect from consuming those labels remains unmeasured separately.
 
 ## Neutral calibration
 
