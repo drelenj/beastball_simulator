@@ -104,6 +104,30 @@ def main(src, out):
             lines.append(line)
     for i, w in enumerate([8, 12, 12, 7, 8, 7, 6, 6, 5, 5, 9, 12, 90]):
         s.column_dimensions[s.cell(1, i + 1).column_letter].width = w
+    # Default view: one sortable Excel table of every player and rating, opened first.
+    from openpyxl.worksheet.table import Table, TableStyleInfo
+    tcols = ["Player", "Player ID", "Franchise", "Position", "Opening-day OVR"] + [f"OVR {v}" for v, _, _ in VERSIONS] + \
+            ["Cognitive archetype", "Talent level T"] + [p + " (rating)" for p in PHYS + ["Durability"]] + \
+            [HDR[k] for k in COG + TECH + ["goalkeeping", "disruption", "archery_accuracy"]]
+    t = wb.create_sheet("Player Ratings", 0)
+    t.append([h.replace(" (rating)", "") for h in tcols])
+    for r in rows:
+        pid = r[col["Player ID"]]
+        t.append([res[pid][h[4:]] if h.startswith("OVR 0.") else r[col[h]] for h in tcols])
+    last = t.cell(1, len(tcols)).column_letter
+    tab = Table(displayName="PlayerRatings", ref=f"A1:{last}{len(rows) + 1}")
+    tab.tableStyleInfo = TableStyleInfo(name="TableStyleMedium2", showRowStripes=True)
+    t.add_table(tab)
+    t.freeze_panes = "B2"
+    t.column_dimensions["A"].width = 22
+    t.column_dimensions["C"].width = 20
+    t.column_dimensions["L"].width = 16
+    for i in range(4, len(tcols) + 1):
+        if t.cell(1, i).column_letter not in ("C", "L"):
+            t.column_dimensions[t.cell(1, i).column_letter].width = 11
+    wb.active = 0
+    for sh in wb.worksheets:
+        sh.sheet_view.tabSelected = sh.title == "Player Ratings"
     wb["Method & Canon"].append(["Overall trials", "OVR 0.311-0.323 columns: see sheet Overall Trials and overall_v031x.py; trials only, not adopted"])
     wb.save(out)
     for l in lines:
