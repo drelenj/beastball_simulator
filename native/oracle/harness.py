@@ -13,6 +13,7 @@ class Force:
     index: int
     decision: str | None = None
     turn: int = 1
+    prefix: tuple[tuple[str, int], ...] = ()
 
 
 class Decision:
@@ -39,7 +40,17 @@ class Decision:
         if view.core_entropy is None:
             raise ValueError('forcing requires a CORE menu')
 
+        prefix = iter(force.prefix)
+        committed = next(prefix, None)
+
         def choose(stage, options):
+            nonlocal committed
+            if committed is not None:
+                name, index = committed
+                if name != stage or not 0 <= index < len(options):
+                    raise ValueError('captured commitment no longer matches its menu')
+                committed = next(prefix, None)
+                return index
             if stage == force.stage and not self.applied:
                 if not 0 <= force.index < len(options):
                     raise ValueError('option outside the surfaced menu')
@@ -78,7 +89,9 @@ class EventHorizon:
         self.team = team
         self.stop = stop
         self.actor = actor
-        self.flight = None
+        ball = port.m.s.ball
+        self.flight = ({'passed':'pass','shot':'shot'}.get(ball.mode.value)
+                       if actor is None or actor == ball.last_releaser else None)
         self.pass_result = self.shot_result = self.tackle_result = None
 
     def consume(self, events, intent):
@@ -89,7 +102,9 @@ class EventHorizon:
                 release_kind = data.get('kind')
                 if self.flight is not None:
                     self.end_flight('missed')
-                if (actor is None or actor == data.get('player')) and release_kind in ('pass', 'shot'):
+                pending = (release_kind == 'pass' and self.pass_result is None
+                           or release_kind == 'shot' and self.shot_result is None)
+                if (actor is None or actor == data.get('player')) and pending:
                     self.flight = release_kind
                     if release_kind == 'shot' and self.stop == 'shot_taken':
                         return 'shot_taken'
@@ -102,7 +117,7 @@ class EventHorizon:
                 elif kind in ('boundary', 'restart_awarded', 'period_end'):
                     self.end_flight('missed')
             if kind == 'c3_grounding' and data.get('counted'):
-                if intent is None or data.get('holder') == intent.target or data.get('actor') == actor:
+                if intent is None or data.get('player') == intent.target or data.get('credited') == actor:
                     self.tackle_result = 'grounded'
                     if self.stop in ('takedown','takedown_action'):
                         return 'takedown'
@@ -113,6 +128,8 @@ class EventHorizon:
                     return 'stretch_scored'
             if self.stop == 'possession' and kind == 'restart_awarded' and data.get('team') != team:
                 return 'turnover'
+            if self.stop == 'possession' and kind == 'period_end':
+                return 'end_period'
             if self.stop == 'finishing' and intent and intent.kind == 'stretch' and kind == 'stretch_end':
                 if data.get('carrier') == actor:
                     return 'stretch_ended'
@@ -141,6 +158,11 @@ class EventHorizon:
             if (self.actor, intent.target) not in port.m.c3_holds:
                 self.tackle_result = self.tackle_result or 'hold_ended'
                 return 'hold_ended'
+        if self.stop == 'evasion_action' and intent is not None:
+            if state.ball.carrier != self.actor:
+                return 'control_lost'
+            if state.now >= intent.decided_ms + port.prism_decision_interval_ms(self.actor,intent):
+                return 'maneuver_complete'
         if self.stop in ('passing','finishing') and intent is not None:
             command = intent.intent_id + '/command'
             failed = next((o.status for o in outcomes if o.command_id == command and o.status != 'released'), None)
@@ -156,7 +178,7 @@ class EventHorizon:
 def run(driver, *, prepared=None, force=None, team=None, stop='possession', max_ms=30_000, seed=None):
     if max_ms <= 0:
         raise ValueError('max_ms must be positive')
-    if stop not in ('possession','time','passing','finishing','takedown_action','pass_caught',
+    if stop not in ('possession','time','passing','finishing','takedown_action','evasion_action','pass_caught',
                     'pass_missed','shot_taken','takedown','score'):
         raise ValueError(f'unknown stop condition {stop}')
     port, first_step = driver.port, driver.steps

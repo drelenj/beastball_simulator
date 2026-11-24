@@ -9,5 +9,5 @@
     "B:0": {"x": 73, "y": 51.5, "vx": 5, "vy": 0, "facing": [1, 0]}
   },
   "ball": {"mode": "carried", "carrier": "A:0", "last_touch": "A", "control_time": 200},
-  "beliefs": {"mode": "authored", "athletes": {"A:0": {"tracks": {"B:0": {"x": 71}}}}}
+  "beliefs": {"mode": "authored", "athletes": {"A:0": {"tracks": {"B:0": {"x": 71}, "A:1": {"vx": 4, "vy": -5}}}}}
 }

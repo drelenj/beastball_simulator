@@ -8,6 +8,7 @@ from time import process_time
 
 from .harness import Force, run
 from .matches import match_build
+from .rollout import grade, menus
 from .scenes import scene
 from .snapshot import Snapshot, capture, restore
 
@@ -57,6 +58,19 @@ def main():
     replay.add_argument('--out',type=Path)
     resume = subs.add_parser('resume')
     resume.add_argument('snapshot',type=Path)
+    prepare = subs.add_parser('prepare')
+    prepare.add_argument('--scene',type=Path,required=True)
+    prepare.add_argument('--athlete',required=True)
+    prepare.add_argument('--stage',required=True)
+    prepare.add_argument('--turn',type=int,default=1)
+    prepare.add_argument('--max-steps',type=int,default=300)
+    prepare.add_argument('--snapshot',type=Path,required=True)
+    rollout = subs.add_parser('grade')
+    rollout.add_argument('snapshot',type=Path)
+    rollout.add_argument('--stage',required=True)
+    rollout.add_argument('--samples',type=int,default=20)
+    rollout.add_argument('--moment')
+    rollout.add_argument('--out',type=Path)
     scenario = subs.add_parser('run')
     source = scenario.add_mutually_exclusive_group(required=True)
     source.add_argument('--scene',type=Path)
@@ -82,6 +96,29 @@ def main():
             driver.advance(prepared=prepared)
         driver.play()
         result = {'fingerprint':fingerprint(driver.result()),'cpu_s':process_time()-start}
+    elif args.command == 'prepare':
+        build,driver = scene(args.scene)
+        seen = 0
+        prepared = None
+
+        def select(view,belief,remaining):
+            nonlocal seen,prepared
+            intent,record,candidates = menus(view,belief)
+            if view.athlete == args.athlete and any(name == args.stage for name,_ in candidates):
+                seen += 1
+                if seen == args.turn:
+                    prepared = capture(build,driver,prepared=(view,belief,remaining))
+            return intent,record
+
+        while prepared is None and not driver.final and driver.steps < args.max_steps:
+            driver.advance(select)
+        if prepared is None:
+            raise ValueError('requested menu was not reached')
+        prepared.save(args.snapshot)
+        result = {'snapshot':str(args.snapshot),'stage':args.stage,'athlete':args.athlete,'turn':args.turn}
+    elif args.command == 'grade':
+        snapshot = Snapshot.load(args.snapshot)
+        result = grade(snapshot,args.moment or snapshot.prefix_hash,args.stage,samples=args.samples)
     else:
         if args.scene:
             _,driver = scene(args.scene)
