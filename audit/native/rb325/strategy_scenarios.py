@@ -47,7 +47,7 @@ def evaluate(owner, level, seed):
         v=replace(v,holds_ball=False,x=17.,y=50.,own_balance_load=.5+rng.uniform(-.10,.10),
                   own_hold_target='B1' if owner=='takedown' else None,
                   signals=replace(v.signals,passive_team='B'))
-        rival=replace(rival,x=19.2,y=50.,vx=5.+rng.uniform(-1.,1.))
+        rival=replace(rival,x=50. if owner=='zone_coverage' else 19.2,y=50.,vx=5.+rng.uniform(-1.,1.))
         ball=replace(b.tracks[-1],x=rival.x,y=rival.y)
         belief=replace(b,tracks=(rival,ball))
         if owner == 'zone_coverage':
