@@ -59,7 +59,7 @@ def evaluate(owner, level, seed):
                 _, result=C.decide(replace(neutral,x=float(x)),belief)
                 options=result['core_menus'][0]['options']
                 area=next((o[2] for o in options if o[1]=='zone_coverage'),100.)
-                man=max((o[2] for o in options if o[1]=='defending'),-100.)
+                man=max((o[2] for o in options if o[1]=='defending'),default=-100.)
                 return abs(area-man),x
             v=replace(v,x=float(min(distances,key=closeness)))
         _, record=C.decide(v,belief)
