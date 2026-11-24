@@ -13,10 +13,10 @@ def sweep():
         for _ in range(10_000):
             clock = reaction_deadline(now, clock, interval)
             now = 100 * ceil((clock - 1e-6) / 100)
-        yield rating, interval, 100 * ceil(interval / 100), now / 10_000
+        yield rating, round(interval,10), 100 * ceil(interval / 100), now / 10_000
 
 
 if __name__ == '__main__':
-    writer = csv.writer(sys.stdout)
+    writer = csv.writer(sys.stdout, lineterminator='\n')
     writer.writerow(('reaction','target_ms','before_ms','after_ms'))
     writer.writerows(sweep())

@@ -1,0 +1,73 @@
+{
+  "fresh_processes": [
+    {
+      "capture_step": 4000,
+      "cpu_s": 122.19962642200001,
+      "fingerprint": {
+        "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550",
+        "live_ms": 2400000,
+        "score": {
+          "A": 57,
+          "B": 76
+        },
+        "seed": 1,
+        "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+        "status": "final",
+        "steps": 32528,
+        "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072"
+      },
+      "snapshot_bytes": 2683332
+    },
+    {
+      "capture_step": 14000,
+      "cpu_s": 82.979224818,
+      "fingerprint": {
+        "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550",
+        "live_ms": 2400000,
+        "score": {
+          "A": 57,
+          "B": 76
+        },
+        "seed": 1,
+        "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+        "status": "final",
+        "steps": 32528,
+        "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072"
+      },
+      "snapshot_bytes": 8245697
+    },
+    {
+      "capture_step": 25000,
+      "cpu_s": 34.206859276,
+      "fingerprint": {
+        "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550",
+        "live_ms": 2400000,
+        "score": {
+          "A": 57,
+          "B": 76
+        },
+        "seed": 1,
+        "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+        "status": "final",
+        "steps": 32528,
+        "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072"
+      },
+      "snapshot_bytes": 14385714
+    }
+  ],
+  "mode": "off",
+  "uninterrupted": {
+    "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550",
+    "live_ms": 2400000,
+    "score": {
+      "A": 57,
+      "B": 76
+    },
+    "seed": 1,
+    "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+    "status": "final",
+    "steps": 32528,
+    "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072"
+  },
+  "uninterrupted_capture_cpu_s": 144.655961521
+}
