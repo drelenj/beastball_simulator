@@ -1,0 +1,16 @@
+Pinned RB-3.24 neutral enabled witness matches.
+Suite: 744 passed, 1 warning, 23 subtests passed in 640.03s (0:10:40)
+All six legacy rows match.
+Compatibility 57–76, trace and state exact.
+CORE 1,500-step repeat: ef0c1d0d56729b8716167ae6e6748e6fa8dea59b2332ef43b6a6c3d832d0a0ab 6f0ec784b835839a4ddb7c11c8e0ce80aaa2537c7eaedf2aadddec724f7ce3bf
+CORE speed 4.013 ms/step vs 3.694 ms/step RB-3.22, +8.64%.
+CORE full control repeat: b09944083bea5cc9ce2bb290dd4428840c7cbef93c41823d66910ceb799fd130 ed5df2b1636522c4a10f293c8fa5250e5dd3293b4f884d68eb2a332e622f894d
+Anchor 1 {'A': 87, 'B': 79} [147, 147] within possession range: True
+Anchor 2 {'A': 99, 'B': 63} [143, 144] within possession range: True
+Anchor 3 {'A': 68, 'B': 116} [144, 143] within possession range: True
+Anchor 4 {'A': 71, 'B': 123} [140, 139] within possession range: True
+Anchor 5 {'A': 70, 'B': 88} [137, 138] within possession range: True
+Anchor 1 {'A': 72, 'B': 78} [143, 141] within possession range: True
+Real roster median team score: 83.0
+Control median team score: 75.0
+Calibration anchor: PASS
