@@ -164,9 +164,7 @@ class NativePort:
                         (i.contact in ('wrap','takedown') and (i.target!=target or m.s.ball.carrier!=target))):return None
                 return i.contact
             if self.individuation:
-                m.native_catch_ready_at = lambda p: (
-                    p.native_course_delivered_ms + 1000 * PRISM.reflex_seconds(p.native_registry['reflex'])
-                    if getattr(p, 'native_course_captured_ms', -1) >= m.seen_from else math.inf)
+                m.native_catch_ready_at = self.reflex_catch_ready_at
             m.native_wrap_authorized=lambda p,q:bool(contact(p,q.id) in ('wrap','takedown') and p.native_intent.target==q.id)
             m.c3_contain=lambda d,car:contact(d,car.id)!='takedown'
             m.c3_escape_effort=lambda car,windup:1. if windup is None and car.id not in m.c3_descent and contact(car)=='run_through' and car.native_intent.kind=='carry' else 0.
@@ -220,6 +218,17 @@ class NativePort:
         if self.individuation and PRISM.commit_owner(intent) in ('evasion', 'takedown'):
             return round(1000 * PRISM.reflex_seconds(self.m.s.players[pid].native_registry['reflex']))
         return self.decision_interval_ms(pid)
+
+    def reflex_catch_ready_at(self, player):
+        # Motor readiness comes from delivered observations, independently of
+        # the deliberate decision scheduler. The clearance/witness is physical.
+        first = next((frame.ball_course for frame in self.frames.get(player.id, ())
+                      if frame.ball_course is not None
+                      and frame.ball_course.captured_ms >= self.m.seen_from
+                      and frame.ball_course.delivered_ms <= self.m.s.now), None)
+        if first is None:
+            return math.inf
+        return first.delivered_ms + 1000 * PRISM.reflex_seconds(player.native_registry['reflex'])
 
     def capture(self,now):
         s=self.m.s;e=self.m.e;e.native_sync();rs=e.possession.public();r=s.restart
@@ -303,9 +312,6 @@ class NativePort:
         course=f.ball_course
         # No sensor fallback: own old course can go stale, or be absent.
         self.course_beliefs[pid]=course
-        if self.individuation:
-            p.native_course_captured_ms = course.captured_ms if course else -1
-            p.native_course_delivered_ms = course.delivered_ms if course else None
         self.observation_count+=1;oid=f'native/{now}/{pid}/obs/{self.observation_count}'
         pend=self.pending.get(pid);rs=f.signals
         holds=self.m.s.ball.carrier==pid # exact own proprioception, SELF-1
@@ -518,7 +524,7 @@ class NativePort:
                     previous = timing[1] if timing else -math.inf
                     started = max((t for t in marks
                                    if previous < t <= s.now and t >= 0), default=s.now)
-                    reaction = (PRISM.reflex_seconds(p.native_registry['reflex']) if self.individuation else
+                    reaction = (0. if self.individuation else
                                 m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness))
                     if p.speed > m.assume['keeper_set_mps']:
                         reaction += m.assume['keeper_unset_s']
@@ -538,7 +544,8 @@ class NativePort:
                 observed_ms = getattr(p, 'native_keeper_course_ms', None)
                 if (s.ball.carrier is not None or observed_ms is None or
                         observed_ms < p.native_keeper_flight[1] or
-                        s.now+1e-9 < p.native_keeper_flight[2]):
+                        s.now+1e-9 < p.native_keeper_flight[2] or
+                        (self.individuation and self.reflex_catch_ready_at(p) > s.now)):
                     targets[p.id] = (p.x, p.y)
                     continue
                 # The forecast starts at capture, including both delivery
