@@ -142,7 +142,7 @@ def test_determinism_and_self_only_view():
     assert before.body_height == after.body_height
 
 
-def test_clarity_changes_only_vertical_sample_error():
+def test_clarity_reduces_sample_error_on_each_axis():
     from random import Random
     rosters = rb3_control_rosters()
     p = RulebookPort(1, config(rosters), rosters=rosters)
@@ -160,8 +160,8 @@ def test_clarity_changes_only_vertical_sample_error():
         p.capture(0)
         samples.append(p.frames[me.id][-1].ball_course)
     low, high = samples
-    assert (low.x, low.y) == (high.x, high.y)
-    assert abs(high.z - 2.) < abs(low.z - 2.)
+    for axis, truth in zip(('x', 'y', 'z'), (60., 50., 2.)):
+        assert abs(getattr(high, axis) - truth) < abs(getattr(low, axis) - truth)
 
 
 @pytest.mark.parametrize('z,name', [(2., 'in_air_ball_pursuit'), (.11, 'live_ball_pursuit')])

@@ -12,6 +12,7 @@ class RulebookView(C.AthleteView):
     handed_by: tuple | None = None            # RB-3.20b own memory: (teammate who handed me the ball I hold, ms ago)
     rb319: str = ''                           # RB-3.19 public team instruction: enabled ball-in-play steps ('' = off)
     status_indicators: tuple = ()
+    freezes_left: int | None = None
     officials: tuple = CREW
     # RB-3.6 (native-rb/3 only; None elsewhere): public team instruction and own-body memory
     defender_baseline: tuple | None = None   # (enabled, mark_distance_m, ball_leash_m)
@@ -104,14 +105,22 @@ class RulebookPort(NativePort):
     def capture(self,now):
         super().capture(now)
         if not hasattr(self,'indicator_frames'):self.indicator_frames={}
+        if self.individuation and not hasattr(self, 'visible_bodies'):
+            self.visible_bodies = {}
         for pid,frames in self.frames.items():
             f=frames[-1]
             if f.captured_ms!=now:continue
             visible={t.entity for t in f.tracks}|{pid}
             self.indicator_frames[f.frame_id]=tuple((q.id,'red' if q.frozen(now) else 'amber' if now<=q.immune_until else 'off') for q in self.m.s.players.values() if q.id in visible)
 
+            if self.individuation:
+                self.visible_bodies[f.frame_id] = tuple(
+                    (q.id, round(q.a.reach, 4), round(q.a.height, 4))
+                    for q in self.m.s.players.values() if q.id in visible)
         keep={f.frame_id for frames in self.frames.values() for f in frames}
         self.indicator_frames={i:v for i,v in self.indicator_frames.items() if i in keep}
+        if self.individuation:
+            self.visible_bodies = {i:v for i,v in self.visible_bodies.items() if i in keep}
 
     def view(self,pid,now,bench_role=None):
         v,b=super().view(pid,now,bench_role)
@@ -136,15 +145,20 @@ class RulebookPort(NativePort):
             me_=self.m.s.players[pid];e_=self.m.e;res=getattr(e_,'residence',{});covered=self.m.s.own_zone(self.m.s.other(me_.team)) if e_.possession.pp==me_.team else None
             extra['mate_zone_ms']=tuple(sorted((q.id,self.m.s.live_ms-res[q.id]) for q in self.m.s.players.values()
                                                if covered is not None and q.active and q.team==me_.team and q.id!=pid and q.role=='field'
-                                               and q.id in res and e_.zone(q.x,q.y)==covered)) if covered is not None else ()
+                                               and q.id in res and e_.zone(q.x,q.y)==covered)) if not self.individuation and covered is not None else ()
             hold=getattr(self.m.e,'rb310_hold',None);extra['snap_hold']=bool(hold)
             extra['own_release_ms'] = extra['pass_release_ms'] = self.own_release_ms(me_)
-            extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
-            extra['body_height']=tuple(sorted((q.id,round(q.a.height,4)) for q in self.m.s.players.values() if q.active))
             if self.individuation:
-                known = {t.entity for t in v.tracks} | {pid}
-                for key in ('body_reach', 'body_height', 'mate_zone_ms'):
-                    extra[key] = tuple(row for row in extra[key] if row[0] in known)
+                sizes = getattr(self, 'visible_bodies', {}).get(f.frame_id, ()) if f else ()
+                kept = {t.entity for t in v.tracks} | {pid}
+                extra['body_reach'] = tuple(sorted((who, reach) for who, reach, _ in sizes if who in kept))
+                extra['body_height'] = tuple(sorted((who, height) for who, _, height in sizes if who in kept))
+                states = tuple(row for row in states if row[0] in kept)
+                if v.role == 'archer':
+                    extra['freezes_left'] = max(0, 5 - self.m.e.rb.quotas[v.team]['freezes'])
+            else:
+                extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
+                extra['body_height']=tuple(sorted((q.id,round(q.a.height,4)) for q in self.m.s.players.values() if q.active))
             if fm is None and hold:   # RB-3.11: the designated receiver stays public during the snap hold (until the catch)
                 extra['formation']=(hold['snapper'],hold['receiver'],hold['receiver_xy'][0],hold['receiver_xy'][1],None,None)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=states,**extra),b
@@ -186,7 +200,8 @@ class RulebookPort(NativePort):
         r319 = data['view'].pop('rb319', '')
         hby = data['view'].pop('handed_by', None)
         bmat = data['view'].pop('ball_material', None)
+        freezes_left = data['view'].pop('freezes_left', None)
         v,b=C.view_from_json(data)
-        return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),officials=tuple(officials),
+        return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),freezes_left=freezes_left,officials=tuple(officials),
                             defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions,
                             rb3_carrier_moves_enabled=moves,rb319=r319,handed_by=tuple(hby) if hby is not None else None,ball_material=tuple(bmat) if bmat is not None else None),b

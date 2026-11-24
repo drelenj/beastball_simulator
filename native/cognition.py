@@ -8,6 +8,19 @@ from math import hypot
 from .emergence.params import PolicyParams
 from .emergence.positioning import choose_position
 from .individuation import effect as rating_effect
+from . import prism_registry as PRISM
+
+
+def registry_rating(view, name):
+    return next((r for key, r in view.registry_ratings if key == name), PRISM.AVERAGE)
+
+
+def owned_effect(view, name, scale, legacy=None, agent=None):
+    if not view.registry_ratings:
+        return rating_effect(view, legacy or name, scale)
+    if agent and view.prism_agent != agent:
+        return 0.
+    return (registry_rating(view, name) - PRISM.AVERAGE) * scale
 
 from b1 import communication as COM
 from b1 import emergence_intents as E
@@ -99,6 +112,9 @@ class AthleteView:
     own_hold_target: str | None = None   # own action: whom my own hands hold
     own_mass_kg: float | None = None     # ATTR-1: exact own-body knowledge only
     individual_ratings: tuple[tuple[str, float], ...] = ()
+    registry_ratings: tuple[tuple[str, float], ...] = ()
+    recognized_ball: str | None = None
+    prism_agent: str | None = None
     own_skills: tuple = ()               # ATTR-1: self only; never teammate/opponent ratings
 
 
@@ -284,7 +300,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
     elif ball is not None:
         best = min((t for t in mates + opps if t.role != 'archer'),
                    key=lambda t: (hypot(t.x - ball.x, t.y - ball.y), t.entity), default=None)
-        if best is not None and hypot(best.x - ball.x, best.y - ball.y) < 1.8:
+        read_held = not view.registry_ratings or view.recognized_ball in (None, 'held')
+        if read_held and best is not None and hypot(best.x - ball.x, best.y - ball.y) < 1.8:
             carrier = (best.entity, best.team)
     bx, by = ((view.x, view.y) if view.holds_ball else (ball.x, ball.y) if ball
               else belief.last_ball[:2] if belief.last_ball else (None, None))
@@ -307,7 +324,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
         # his own zone is protected; R-01: no target before the first passive possession.
         ready = (view.arrows_loaded or 0) > 0 and (
             view.last_release_ms is None or now - view.last_release_ms >= 2600) and not getattr(view, 'snap_hold', False)   # RB-3.13: no arrow during the snap hold
-        if ready and sig.phase == 'live' and sig.passive_team is not None and banned != 'draw_release':
+        if (ready and sig.phase == 'live' and sig.passive_team is not None and banned != 'draw_release'
+                and (not view.registry_ratings or getattr(view, 'freezes_left', None) != 0)):
             for t in sorted(opps, key=lambda t: t.entity):
                 if not archer_target_legal(t, view, now):
                     continue
@@ -316,6 +334,12 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                 # PRIMITIVE: carrier preferred; otherwise the opponent nearest the ball
                 near_ball = hypot(t.x - bx, t.y - by) if bx is not None else 40.
                 value = (3. if is_carrier else 1.6 - .04 * near_ball) - .02 * d
+                if view.registry_ratings:
+                    value += owned_effect(view, 'disruption',
+                                          PRISM.DISRUPTION_CARRIER_WEIGHT if is_carrier else .5,
+                                          agent='disruption')
+                    value += owned_effect(view, 'disruption', PRISM.DISRUPTION_HOLD_WEIGHT,
+                                          agent='disruption')
                 options.append(('draw_release', t.entity, (round(t.x, 3), round(t.y, 3)), round(value, 6)))
     elif sig.phase not in ('live', 'opening', 'penalty', 'award'):
         if sig.i_am_taker:
@@ -345,7 +369,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                         plan = R3.shot_plan(view, fresh)
                         if plan is not None:
                             options.append(('shoot', None, plan['aim'],
-                                            round(value + (R3.SHOT_MARGIN_W + rating_effect(view, 'finishing', .8)) * min(plan['margin'], R3.SHOT_MARGIN_CAP), 6)))
+                                            round(value + (R3.SHOT_MARGIN_W + owned_effect(view, 'playmaking', .8, 'finishing', 'playmaking')) * min(plan['margin'], R3.SHOT_MARGIN_CAP), 6)))
                     else:
                         options.append(('shoot', None, (goal[0], 50. + side * 1.), round(value, 6)))
                 # carry toward goal, drifting away from the nearest believed opponent ahead
@@ -375,8 +399,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                     # (cognition's choice; Motor never leads the receiver).
                     rt = next(x for x in fresh if x.entity == t)
                     if view.cognition == 'native-rb/3':
-                        a = rb3_lead(view.x, view.y, a, (rt.vx * (1 + rating_effect(view, 'anticipation', .5)),
-                                                        rt.vy * (1 + rating_effect(view, 'anticipation', .5))), view.max_throw_speed)[0]
+                        a = rb3_lead(view.x, view.y, a, (rt.vx * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking')),
+                                                        rt.vy * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking'))), view.max_throw_speed)[0]
                     else:
                         tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
                         a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
@@ -411,7 +435,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                 # ball seen in flight: go to the nearest point of its believed path
                 v2 = ball.vx * ball.vx + ball.vy * ball.vy
                 t = _clamp(((view.x - ball.x) * ball.vx + (view.y - ball.y) * ball.vy) / v2, 0., 1.5)
-                aim = (round(_clamp(ball.x + ball.vx * t, 1, 99), 3), round(_clamp(ball.y + ball.vy * t, 1, 99), 3))
+                trust = PRISM.forecast_factor(registry_rating(view, 'anticipation')) if view.registry_ratings else 1.
+                aim = (round(_clamp(ball.x + ball.vx * t * trust, 1, 99), 3), round(_clamp(ball.y + ball.vy * t * trust, 1, 99), 3))
             options.append(('receive', sig.pass_call[0], aim, 5.))
         if bx is None:
             # hold position while looking for the ball (running to a slot abandoned pass targets)
@@ -420,19 +445,30 @@ def _base_decide(view: AthleteView, belief: BeliefState):
             options.append(('search', None, (round(bx, 3), round(by, 3)), 1.))
         elif carrier is None:           # loose or in flight
             t_lead = min(1., hypot(ball.x - view.x, ball.y - view.y) / 9.)
+            if view.registry_ratings:
+                t_lead *= PRISM.forecast_factor(registry_rating(view, 'anticipation'))
+                course = belief.ball_course
+                if course and view.prism_agent == 'in_air_ball_pursuit':
+                    from .cognition_rb3 import flight_horizon
+                    t_lead = min(t_lead, flight_horizon(course))
             px = _clamp(ball.x + ball.vx * t_lead, 1, 99)
             py = _clamp(ball.y + ball.vy * t_lead, 1, 99)
             mine = hypot(px - view.x, py - view.y)
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(px - t.x, py - t.y) < mine)
             options.append(('position', None, position_from_belief(view, ball.x, False), 1.))
-            airborne = belief.ball_course is not None and belief.ball_course.z > .45
+            airborne = (view.prism_agent == 'in_air_ball_pursuit' if view.registry_ratings else
+                        belief.ball_course is not None and belief.ball_course.z > .45)
             pursuit = 'in_air_ball_pursuit' if airborne else 'live_ball_pursuit'
-            if closer <= 1 or mine < 7. + rating_effect(view, pursuit, 6.):
+            if closer <= 1 or mine < 7. + owned_effect(view, pursuit, 6., agent=pursuit):
                 options.append(('pursue', BALL, (round(px, 3), round(py, 3)),
-                                round(4. - .05 * mine + rating_effect(view, pursuit, 1.), 6)))
+                                round(4. - .05 * mine + owned_effect(view, pursuit, 1., agent=pursuit), 6)))
         elif carrier[1] == view.team:
-            options.append(('support', carrier[0], position_from_belief(view, ball.x, False), 1.))
+            aim = position_from_belief(view, ball.x, False)
+            lead = owned_effect(view, 'playmaking', 5., agent='playmaking') if view.registry_ratings else 0.
+            if lead:
+                aim = (_clamp(aim[0] + lead * sg, 1., 99.), aim[1])
+            options.append(('support', carrier[0], aim, 1.))
         else:
             c = next(o for o in opps if o.entity == carrier[0])
             mine = hypot(c.x - view.x, c.y - view.y)
@@ -440,16 +476,17 @@ def _base_decide(view: AthleteView, belief: BeliefState):
                          and hypot(c.x - t.x, c.y - t.y) < mine)
             mark_aim = position_from_belief(view, ball.x, True)
             if view.individual_ratings:
-                mix = .4 + rating_effect(view, 'marking', .5)
+                mix = .4 + owned_effect(view, 'defending', .5, 'marking', 'defending')
                 mark_aim = tuple(round((1 - mix) * a + mix * b, 3)
                                  for a, b in zip(mark_aim, (c.x - sg * 4., c.y)))
                 mark_aim = tuple(_clamp(a, 1., 99.) for a in mark_aim)
             options.append(('mark', None, mark_aim, 1.))
             # KP (R-15): no opponent-initiated contact on a protected Keeper
-            if closer <= 1 and banned != 'press' and not keeper_protected(c, view):
+            if (closer <= 1 and banned != 'press' and not keeper_protected(c, view)
+                    and (not view.registry_ratings or view.prism_agent == 'defending')):
                 # Base A (M1) defender decision: pursuit or the continuous lane option
                 for k, t, a, v in _m1_options(view, fresh, carrier, 'defender',
-                                              enable_lane_option=True, defender_judgment=.7 + rating_effect(view, 'judgment', .35)):
+                                              enable_lane_option=True, defender_judgment=.7 + owned_effect(view, 'defending', .35, 'judgment', 'defending')):
                     if k == 'move':
                         options.append(('press', t, (round(_clamp(a[0], 1, 99), 3), round(_clamp(a[1], 1, 99), 3)),
                                         round(v - 7., 6)))
@@ -466,7 +503,7 @@ def _base_decide(view: AthleteView, belief: BeliefState):
     bias = {'pass':view.policy.bias_pass,'shoot':view.policy.bias_shoot,
             'press':view.policy.bias_press,'pursue':view.policy.bias_pursue,
             'draw_release':view.policy.archer_eager}
-    if 0 < sig.possession_ms < 3000 and view.holds_ball:
+    if not view.registry_ratings and 0 < sig.possession_ms < 3000 and view.holds_ball:
         bias['shoot'] += rating_effect(view, 'instinct', 2.)
     options = [(k,t,a,round(v+bias.get(k,0.),6)) for k,t,a,v in options
                if not(k=='pass' and view.policy.pass_min_clearance>0 and
@@ -497,6 +534,10 @@ def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
     if not view.individual_ratings:
         result['view'].pop('individual_ratings')
+    if not view.registry_ratings:
+        for key in ('registry_ratings', 'recognized_ball', 'prism_agent'):
+            result['view'].pop(key)
+        result['view'].pop('freezes_left', None)
     for d in result.values():
         for message in d['messages']:
             e = message['envelope']
@@ -511,6 +552,8 @@ def view_from_json(d):
     v['tracks'] = tr(v['tracks'])
     if 'individual_ratings' in v:
         v['individual_ratings'] = tuple(tuple(row) for row in v['individual_ratings'])
+    if 'registry_ratings' in v:
+        v['registry_ratings'] = tuple(tuple(row) for row in v['registry_ratings'])
     v['policy'] = PolicyParams.from_dict(v['policy']) if isinstance(v.get('policy'),dict) else PolicyParams()
     if isinstance(v.get('body'),dict):v['body']=E.AthleteBody(**v['body'])
     if v.get('restart') is not None:v['restart']=tuple(v['restart'])
@@ -541,7 +584,14 @@ def decide(view, belief):
     """All Native semantic commands. The view names its own decision set."""
     if view.cognition == 'native-rb/3':
         from . import cognition_v3, cognition_rb3
-        return cognition_rb3.adjust(view, belief, *cognition_v3.decide(view, belief))
+        if view.registry_ratings:
+            view = replace(view, prism_agent=PRISM.select_agent(view, belief, registry_rating))
+        intent, record = cognition_rb3.adjust(view, belief, *cognition_v3.decide(view, belief))
+        if view.registry_ratings:
+            intent = cognition_rb3.committed_delivery(view, belief, intent)
+            record = dict(record, prism_agent=view.prism_agent,
+                          final_selection=[intent.kind, intent.target, intent.aim, intent.contact])
+        return intent, record
     if view.cognition == 'native-v0/3':
         from . import cognition_v3
         return cognition_v3.decide(view, belief)
@@ -607,7 +657,9 @@ def decide_v2(view, belief):
                                           max(.6,min(99.4,50+uy*(view.zone_radius+1.)))))
     if view.role=='archer' and view.pending_command_id and view.pending_release_ms is not None and view.delivered_ms>=view.pending_release_ms:
         target=next((t for t in belief.tracks if t.entity==view.pending_target),None)
-        if target is None or view.signals.phase!='live' or getattr(view,'snap_hold',False) or not archer_target_legal(target,view,view.delivered_ms):
+        if (target is None or view.signals.phase!='live' or getattr(view,'snap_hold',False)
+                or not archer_target_legal(target,view,view.delivered_ms)
+                or (view.registry_ratings and getattr(view,'freezes_left',None) == 0)):
             intent,rec=choice('abort_draw',target=view.pending_target)
         else:
             intent,rec=choice('release_arrow',(target.x,target.y),view.pending_target)
@@ -615,6 +667,9 @@ def decide_v2(view, belief):
         return replace(intent,related_command_id=view.pending_command_id),rec
     if view.role=='keeper' and not view.holds_ball:
         course=belief.ball_course
+        if view.registry_ratings and course:
+            trust = PRISM.forecast_factor(registry_rating(view, 'anticipation'))
+            course = replace(course, vy=course.vy * trust, vz=course.vz * trust)
         position=None
         if course and course.fresh(view.delivered_ms):
             d=hypot(course.x-view.own_goal_x,course.y-50);depth=max(1.,min(4.,d*.25))

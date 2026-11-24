@@ -45,6 +45,15 @@ def build_core(config):
                  "self.c3_add(a,('shock',b.id),0. if truck and a is car else sa,lawful[b.id],now_ms);"
                  "self.c3_add(b,('shock',a.id),0. if truck and b is car else sb,lawful[a.id],now_ms)"),
             ])
+    if getattr(config, 'individuation', 'off') == 'individuation/1':
+        patches['match'].append((
+            "   if state is not True and tau>1e-9:",
+            "   if state is not True:\n"
+            "    ready=max(self.seen_from,self.native_catch_ready_at(p))\n"
+            "    if ready>s.now+hi*ms:continue\n"
+            "    fset=max(lo,(ready-s.now)/ms);self.hands_set[p.id]=True;state=True\n"
+            "   if state is not True and tau>1e-9:",
+        ))
     from .rulebook.ball_ground import enabled as _rb320_enabled, PATCHES as _RB320, GEOMETRY_PATCHES as _RB320G
     from .rulebook import ball_material as _rb321
     if _rb321.enabled(config):            # RB-3.21: Beastball ball material everywhere (engine step and every forecast)

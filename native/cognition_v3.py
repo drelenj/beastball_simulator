@@ -69,9 +69,13 @@ def defender_contact(view, belief, intent, record):
     meet = (round(_clamp(c.x + c.vx * lead, .6, 99.4), 3), round(_clamp(c.y + c.vy * lead, .6, 99.4), 3))
     # values: a takedown is worth more than staying with him once the believed gap is inside the commit range
     options = [('press', c.entity, intent.aim, 1., 'wrap'),
-               ('tackle', c.entity, meet, round(1. + (TACKLE_COMMIT_M + C.rating_effect(view, 'defender_duel', 1.) - gap), 6), 'takedown')]
+               ('tackle', c.entity, meet, round(1. + (TACKLE_COMMIT_M + C.owned_effect(view, 'defending', 1., 'defender_duel', 'defending') - gap), 6), 'takedown')]
     if view.own_hold_target == c.entity:          # own hands are on him (own action knowledge)
         options[1] = ('tackle', c.entity, meet, round(2. + TACKLE_COMMIT_M, 6), 'takedown')
+        if view.registry_ratings:
+            threshold = C.PRISM.TAKEDOWN_LOAD_THRESHOLD - C.owned_effect(
+                view, 'takedown', C.PRISM.TAKEDOWN_LOAD_RANGE)
+            options[1] = ('tackle', c.entity, meet, round(1. + view.own_balance_load - threshold, 6), 'takedown')
     kind, target, aim, value, contact = max(options, key=lambda o: (o[3], o[0]))
     record = dict(record, contact_options=[list(o) for o in options], contact_selected=contact,
                   believed_gap=round(gap, 3), cognition='native-v0/3')
@@ -99,13 +103,13 @@ def carrier_contact(view, belief, intent, record):
     options = []
     if view.own_held > 0:
         # held: fight the grip while balance allows, otherwise protect the ball and accept the tackle
-        options.append(('carry', None, intent.aim, round(1. - view.own_balance_load + C.rating_effect(view, 'carrier_duel', .5), 6), 'run_through'))
+        options.append(('carry', None, intent.aim, round(1. - view.own_balance_load + C.owned_effect(view, 'evasion', .5, 'carrier_duel'), 6), 'run_through'))
         options.append(('carry', None, (round(view.x, 3), round(view.y, 3)), round(1. - BRACE_LOAD, 6), 'brace'))
     else:
         eta, who, dx, dy = threats[0]
         imminent = [t for t in threats if t[0] < DODGE_MIN_S]
         options.append(('carry', None, intent.aim, 1., 'run_through'))
-        if eta >= DODGE_MIN_S - C.rating_effect(view, 'carrier_duel', .15) and intent.aim:
+        if eta >= DODGE_MIN_S - C.owned_effect(view, 'evasion', .15, 'carrier_duel') and intent.aim:
             ax, ay = intent.aim[0] - view.x, intent.aim[1] - view.y
             n = hypot(ax, ay) or 1.
             ux, uy = ax / n, ay / n
@@ -316,7 +320,8 @@ def decide(view, belief):
     if view.restart is not None and view.role != 'archer' and not view.bench_role:
         return restart_decide(view, belief)
     intent, record = C.decide_v2(view, belief)
-    if intent.kind == 'press':
+    if intent.kind == 'press' and (not view.registry_ratings or view.prism_agent in
+                                   ('defending', 'zone_coverage') or view.own_hold_target is not None):
         return defender_contact(view, belief, intent, record)
     if intent.kind == 'carry' and view.holds_ball and view.role == 'field' and view.pending_command_id is None:
         return carrier_contact(view, belief, intent, record)

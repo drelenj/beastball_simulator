@@ -5,7 +5,7 @@ canonical columns.  Their values are deliberately discarded.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import csv
 import hashlib
 import json
@@ -87,6 +87,8 @@ class AthleteAttributes:
     values: tuple
     defaults: tuple = ()
     sources: tuple[tuple[str, str], ...] = ()
+    # Adapter provenance used by the new mapping. Historical record/digest stays stable.
+    prism_sources: tuple[tuple[str, str], ...] = field(default=(), compare=False)
 
     def get(self,name):
         return dict(self.values)[name]
@@ -145,6 +147,11 @@ def load_rows(rows,team,alias_map=None):
             if target in row:
                 raise RosterError(f"row {row_number} column {supplied}: duplicate alias for {target}")
             row[target]=value
+        # Compatibility substrate fields may be filled by their registry owner.
+        for old, new in (('keeper_skill','goalkeeping'), ('contact_resistance','evasion'),
+                         ('agility','motor_control')):
+            if old not in row and new in row:
+                row[old] = row[new]
         for column in REQUIRED:
             if column not in row or str(row[column]).strip()=='':
                 raise RosterError(f"row {row_number} column {column}: missing required column")

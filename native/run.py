@@ -30,15 +30,14 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
             if admission['status']=='rejected':
                 port.feedback.setdefault(pid,[]).append((intent.intent_id+'/rejected','rejected_'+admission.get('reason','unknown')+':'+intent.kind,now))
             if port.individuation:
-                from .individuation import rating
-                from .prism_registry import select_agent, commit_owner
-                parent = select_agent(view, belief, rating)
+                from .prism_registry import commit_owner
+                parent = record.get('prism_agent', view.role)
                 port.prism_agents[parent] += 1
                 child = commit_owner(intent)
-                if child and admission['status'] == 'accepted':
+                if child and (child != 'takedown' or view.own_hold_target is None) and admission['status'] == 'accepted':
                     port.prism_commits.append(dict(athlete=pid, action=intent.kind, parent=parent,
                                                   commit_ms=now, subagent=child, intent_id=intent.intent_id))
-            next_dec[pid]=now+port.decision_interval_ms(pid)
+            next_dec[pid]=now+port.prism_decision_interval_ms(pid, intent)
         m.pending_break=[] # breaks/timeouts deferred; no legacy intermission injection
         port.step();steps+=1
         if max_steps and steps>=max_steps:break
@@ -83,6 +82,7 @@ def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,prog
                 runtime_s=round(time.perf_counter()-started,3))
     if port.individuation:
         result['prism_agents'] = dict(port.prism_agents)
+        result['prism_sources'] = port.prism_sources
         result['prism_commits'] = port.prism_commits
     return result,port
 

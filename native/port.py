@@ -13,6 +13,7 @@ from . import cognition as C
 from .config import NativeConfig, is_v3, is_attr
 from . import individuation as IND
 from .roster import INERT_RATINGS, engine_order, mapped_values, max_throw_speed, throw_error_base_deg, sensor_noise_scale
+from . import prism_registry as PRISM
 from .prism_registry import NEW_RATINGS
 from .perception import visibility
 from .substrate import build_core
@@ -34,6 +35,7 @@ class ObservationFrame:
     contestant: str | None
     hunt: bool
     hunt_cleared: bool
+    recognized_ball: str | None = None
 
 
 def body(p):
@@ -50,6 +52,7 @@ class NativePort:
         self.attr=is_attr(cfg)
         self.individuation = getattr(cfg, "individuation", "off") == IND.VERSION
         self.behavior_digest=cfg.digest
+        self.prism_sources = {}
         if self.individuation:
             self.prism_agents = Counter()
             self.prism_commits = []
@@ -61,6 +64,14 @@ class NativePort:
                 # use only consumed ratings, so changing stored inert fields has no effect.
                 active={t:[(a.source_id,a.role,tuple((k,v) for k,v in a.values if (k not in ('injury', 'durability') if self.individuation else k not in (*INERT_RATINGS, *NEW_RATINGS))))
                            for a in rosters[t].athletes] for t in ('A','B')}
+                if self.individuation:
+                    def active_record(athlete):
+                        raw = dict(athlete.values)
+                        ratings, _ = PRISM.roster_ratings(raw, athlete.defaults, athlete.prism_sources, athlete.sources)
+                        for key in (*PRISM.ALIASES, 'injury', 'durability'):
+                            raw.pop(key, None)
+                        return athlete.source_id, athlete.role, sorted((raw | ratings).items())
+                    active = {t: [active_record(a) for a in rosters[t].athletes] for t in ('A', 'B')}
                 config_record=cfg.record();config_record['roster_digests']=('behavior-only','behavior-only')
                 self.behavior_digest=digest((config_record,active))
             def attr_validate(a):
@@ -81,6 +92,10 @@ class NativePort:
                         old.a.standing_reach_m = raw.get('standing_reach_m')
                     if self.individuation:
                         old.native_individual = {key: raw[key] for key in IND.DRAFT_RATINGS}
+                        ratings, sources = PRISM.roster_ratings(raw, record.defaults, record.prism_sources, record.sources)
+                        old.native_registry = old.native_individual | ratings
+                        self.prism_sources[old.id] = sources
+                        old.a.contact_resistance = ratings['evasion']
                     old.native_source_id=record.source_id
                     old.native_max_throw_speed=max_throw_speed(raw['throw_power'])
                     old.native_throw_error_base_deg=throw_error_base_deg(raw['throw_accuracy'])
@@ -145,9 +160,13 @@ class NativePort:
             def contact(p,target=None):
                 i=getattr(p,'native_intent',None)
                 if i is None:return None
-                if cfg.version=='native-rb/3' and (m.s.now-i.decided_ms>=cfg.decision_ms or i.period!=m.s.period or
+                if cfg.version=='native-rb/3' and (m.s.now-i.decided_ms>=(self.prism_decision_interval_ms(p.id, i) if self.individuation else cfg.decision_ms) or i.period!=m.s.period or
                         (i.contact in ('wrap','takedown') and (i.target!=target or m.s.ball.carrier!=target))):return None
                 return i.contact
+            if self.individuation:
+                m.native_catch_ready_at = lambda p: (
+                    p.native_course_delivered_ms + 1000 * PRISM.reflex_seconds(p.native_registry['reflex'])
+                    if getattr(p, 'native_course_captured_ms', -1) >= m.seen_from else math.inf)
             m.native_wrap_authorized=lambda p,q:bool(contact(p,q.id) in ('wrap','takedown') and p.native_intent.target==q.id)
             m.c3_contain=lambda d,car:contact(d,car.id)!='takedown'
             m.c3_escape_effort=lambda car,windup:1. if windup is None and car.id not in m.c3_descent and contact(car)=='run_through' and car.native_intent.kind=='carry' else 0.
@@ -194,8 +213,13 @@ class NativePort:
     def decision_interval_ms(self, pid):
         if not self.individuation:
             return self.config.decision_ms
-        return IND.cognitive_interval_ms(self.config.decision_ms,
-                                         self.m.s.players[pid].native_individual['reaction'])
+        p = self.m.s.players[pid]
+        return IND.cognitive_interval_ms(self.config.decision_ms, p.native_individual['reaction'])
+
+    def prism_decision_interval_ms(self, pid, intent):
+        if self.individuation and PRISM.commit_owner(intent) in ('evasion', 'takedown'):
+            return round(1000 * PRISM.reflex_seconds(self.m.s.players[pid].native_registry['reflex']))
+        return self.decision_interval_ms(pid)
 
     def capture(self,now):
         s=self.m.s;e=self.m.e;e.native_sync();rs=e.possession.public();r=s.restart
@@ -216,28 +240,35 @@ class NativePort:
             # platform vision has no occlusion; positions noisy, velocities from own reads.
             individual = p.native_individual if self.individuation else None
             half_angle = IND.visual_half_angle(individual['vision']) if individual else math.radians(120)
-            z_noise = .04 * (1.4 - .6 * individual['clarity']) if individual else .04
+            z_noise = PRISM.clarity_sd(individual['clarity']) if individual else .04
+            cone_exception = PRISM.radar_radius(p.native_registry['awareness']) if individual else 2.
             for ei,(eid,team,role,x,y,z) in enumerate(entities):
                 if eid==pid:continue
                 dx,dy=x-p.x,y-p.y;d=math.hypot(dx,dy)
                 off=(math.atan2(dy,dx)-facing+math.pi)%(2*math.pi)-math.pi
-                if p.role!='archer' and abs(off)>half_angle and d>2:continue
+                if p.role!='archer' and abs(off)>half_angle and d>cone_exception:continue
                 if not mask[vi,ei]:continue
-                sigma=(.04+.002*d)*(p.native_sensor_noise_scale if self.attr else 1.)
+                sigma=z_noise if individual else (.04+.002*d)*(p.native_sensor_noise_scale if self.attr else 1.)
                 ox,oy,oz=x+rng.gauss(0,sigma),y+rng.gauss(0,sigma),max(.1075,z+rng.gauss(0,z_noise))
                 old=self.history.get((pid,eid));vx=vy=vz=0.
                 if old and now>old[0]:
                     dt=(now-old[0])/1000;vx,vy,vz=((ox-old[1])/dt,(oy-old[2])/dt,(oz-old[3])/dt)
-                self.history[pid,eid]=(now,ox,oy,oz)
+                if individual:
+                    if old and len(old) == 7:
+                        vx,vy,vz = PRISM.filter_velocity(old[4:], (vx,vy,vz), individual['instinct'])
+                    self.history[pid,eid]=(now,ox,oy,oz,vx,vy,vz)
+                else:
+                    self.history[pid,eid]=(now,ox,oy,oz)
                 tracks.append(C.Track(eid,team,role,round(ox,3),round(oy,3),round(vx,3),round(vy,3),now))
                 if eid==C.BALL:course=BallCourseBelief(f'course/{pid}/{now}',now,now+self.config.latency_ms,ox,oy,oz,vx,vy,vz)
+            recognized = PRISM.recognize(course, individual['clarity'], rng.random(), tracks) if course and individual else None
             call=self.calls.get(p.team)
             sig=C.Signals(s.phase.value,s.period,s.game_ms,s.possession_ms,s.score[p.team],s.score[s.other(p.team)],
                           r.team if r else None,(r.x,r.y) if r else None,bool(r and r.taker==pid),
                           rs.passive_team,rs.direct_team,rs.direct_holder,rs.contested,rs.ball_status,
                           tuple(q.id for q in ps if q.frozen(now) or now<=q.immune_until),call[:4] if call and call[4]>=now and call[0]!=pid else None,
                           tackle_count=s.tackle_count)
-            frame=ObservationFrame(f'native/{now}/{pid}',now,pid,tuple(tracks),course,sig,restart,e.hunt_claims.get(p.team),s.phase==self.types.Phase.OPENING and not e.hunt_cleared,e.hunt_cleared)
+            frame=ObservationFrame(f'native/{now}/{pid}',now,pid,tuple(tracks),course,sig,restart,e.hunt_claims.get(p.team),s.phase==self.types.Phase.OPENING and not e.hunt_cleared,e.hunt_cleared,recognized)
             self.frames.setdefault(pid,deque()).append(frame)
             while len(self.frames[pid])>20:self.frames[pid].popleft()
 
@@ -256,11 +287,25 @@ class NativePort:
             f=ObservationFrame(f'native/{now}/{pid}/bench',now,pid,(),None,sig,None,None,False,self.m.e.hunt_cleared)
         mem=self.memory.setdefault(pid,{})
         mem.update({t.entity:t for t in f.tracks})
-        track_age = round(1400 + 600 * p.native_individual['focus']) if self.individuation else 2000
-        tracks=tuple(t for t in sorted(mem.values(),key=lambda t:t.entity) if now-t.captured_ms<=track_age)
+        if self.individuation:
+            focus = p.native_individual['focus']
+            track_age = PRISM.retention_ms(focus)
+            candidates = (t for t in mem.values() if now - t.captured_ms <= track_age)
+            kept = sorted(candidates, key=lambda t: (t.entity != C.BALL,
+                         math.hypot(t.x-p.x,t.y-p.y), -t.captured_ms, t.entity))[:PRISM.memory_limit(focus)]
+            self.memory[pid] = {t.entity: t for t in kept}
+            tracks = tuple(replace(t, x=xy[0], y=xy[1]) if t.captured_ms < f.captured_ms else t
+                           for t in sorted(kept, key=lambda t: t.entity)
+                           for xy in (PRISM.remembered_position(t, now, focus, p.native_individual['instinct'], f.captured_ms),))
+        else:
+            track_age = 2000
+            tracks=tuple(t for t in sorted(mem.values(),key=lambda t:t.entity) if now-t.captured_ms<=track_age)
         course=f.ball_course
         # No sensor fallback: own old course can go stale, or be absent.
         self.course_beliefs[pid]=course
+        if self.individuation:
+            p.native_course_captured_ms = course.captured_ms if course else -1
+            p.native_course_delivered_ms = course.delivered_ms if course else None
         self.observation_count+=1;oid=f'native/{now}/{pid}/obs/{self.observation_count}'
         pend=self.pending.get(pid);rs=f.signals
         holds=self.m.s.ball.carrier==pid # exact own proprioception, SELF-1
@@ -277,6 +322,8 @@ class NativePort:
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
                            own_skills=tuple((key,getattr(p.a,key)) for key in ('strength','agility','endurance','balance','contact_resistance','tackling','blocking','ball_handling','passing','catching','awareness','archery_accuracy','keeper_skill')) if self.attr else (),
                            individual_ratings=tuple(p.native_individual.items()) if self.individuation else (),
+                           registry_ratings=tuple(p.native_registry.items()) if self.individuation else (),
+                           recognized_ball=f.recognized_ball if self.individuation else None,
                            hunt_cleared=f.hunt_cleared,messages=messages,ownership_enabled=True,ball_course=course,
                            own_restraint=self.m.c3_rho(p,'pass'),tuck_fraction=self.m.assume['tuck_after_delay_frac'],zone_radius=self.config.zone_radius,
                            **(self.own_contact(p) if self.v3 else {}))
@@ -359,7 +406,7 @@ class NativePort:
             if intent.aim is None:return {'status':'rejected','reason':'missing_aim'}
             self.move[p.id]=intent.aim
             if self.individuation and kind != 'restart_position' and not getattr(e, 'rb310_hold', None):
-                self.move[p.id] = IND.movement_aim(p.x, p.y, intent.aim, p.native_individual['motor_control'])
+                self.move[p.id] = IND.movement_aim(p.x, p.y, intent.aim, p.native_registry['agility'])
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'locomotion')
             self.command_log.append(cmd);return {'status':'accepted','command':cmd}
         if kind in ('pass','shoot','restart_pass','draw_release','dribble','bounce'):
@@ -471,7 +518,8 @@ class NativePort:
                     previous = timing[1] if timing else -math.inf
                     started = max((t for t in marks
                                    if previous < t <= s.now and t >= 0), default=s.now)
-                    reaction = m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness)
+                    reaction = (PRISM.reflex_seconds(p.native_registry['reflex']) if self.individuation else
+                                m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness))
                     if p.speed > m.assume['keeper_set_mps']:
                         reaction += m.assume['keeper_unset_s']
                     p.native_keeper_flight = (flight, started, started+1000*reaction)
@@ -501,7 +549,7 @@ class NativePort:
                 cmd = plan_keeper_motor(
                     intent, body(p), now_ms=s.now, gravity=m.assume['gravity'],
                     pushoff_fraction=m.assume['keeper_pushoff_frac'] * (
-                        .75 + .25 * p.a.keeper_skill if self.individuation else 1.),
+                        .75 + .25 * p.native_registry['goalkeeping'] if self.individuation else 1.),
                     extension_fraction=m.assume['keeper_extension_frac'],
                     launch_min_s=m.assume['keeper_launch_min_s'],
                     dive_time_s=m.assume['keeper_dive_time_s'],

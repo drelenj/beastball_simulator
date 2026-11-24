@@ -110,6 +110,8 @@ def defender_baseline(view, belief, intent, record):
         return intent, record
     _, mark, leash = conf
     sig = view.signals
+    if view.registry_ratings and view.prism_agent not in ('defending', 'zone_coverage'):
+        return intent, record
     if sig.passive_team is None or sig.passive_team == view.team:
         return intent, record                     # attackers: existing 3 s zone exit applies (< 4 s)
     if view.zone_elapsed_ms >= 3000 and intent.kind == 'position':
@@ -321,7 +323,6 @@ def zone_clock_penalty(view, c, max_age_ms):
 
 def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     """(value, gain, margin) for a pass to believed teammate track `c`; None outside the range or on an unsafe lane."""
-    from .individuation import effect
     from .throw_speed import release_speed
     sg = view.attack_sign
     dx, dy = c.x - view.x, c.y - view.y
@@ -336,7 +337,7 @@ def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
     space = min([hypot(o.x - c.x, o.y - c.y) for o in opps] + [10.])
     v = (PASS_BASE + PASS_GAIN_W * gain + PASS_CLEAR_W * (min(margin, 10.) - PASS_CLEAR_BASE)
-         + (PASS_SPACE_W + effect(view, 'playmaking', .10)) * (space - PASS_SPACE_BASE) - PASS_DIST_W * dist
+         + (PASS_SPACE_W + C.owned_effect(view, 'playmaking', .10, agent='playmaking')) * (space - PASS_SPACE_BASE) - PASS_DIST_W * dist
          + (PRESSURED_BONUS if pressured and space >= PRESSURED_SPACE_M else 0.)
          - (BACKWARD_W * abs(gain) if gain < 0 and not pressured else 0.)
          - zone_clock_penalty(view, c, max_age_ms))
@@ -474,12 +475,17 @@ def missed_ball_pursuit(view, belief, intent, record):
             or sig.ball_status != 'loose' or sig.passive_team != view.team or view.pending_command_id is not None
             or view.body is None or getattr(view, 'snap_hold', False)):
         return intent, record
+    if view.registry_ratings and view.prism_agent not in ('in_air_ball_pursuit', 'live_ball_pursuit'):
+        return intent, record
     fresh = _fresh(view, belief, 700)
     ball = next((t for t in fresh if t.entity == C.BALL), None)
     if ball is None:
         return intent, record
     frozen = {pid for pid, light in getattr(view, 'status_indicators', ()) if light == 'red'}
     mates = [t for t in fresh if t.team == view.team and t.role == 'field' and t.entity != view.athlete and t.entity not in frozen]
+    if view.registry_ratings:
+        trust = C.PRISM.forecast_factor(C.registry_rating(view, 'anticipation'))
+        ball = replace(ball, vx=ball.vx * trust, vy=ball.vy * trust)
     sp = hypot(ball.vx, ball.vy)
     t_line = 6.
     if sp > 1e-6:
@@ -496,7 +502,9 @@ def missed_ball_pursuit(view, belief, intent, record):
 
     me_t, me_pt = plan(lambda pt: time_to_cover(view, hypot(pt[0] - view.x, pt[1] - view.y), _unit(view.x, view.y, *pt)))
     keys = [(me_t, view.athlete)] + [(plan(lambda pt, m=m: typical_time_to(m, pt[0], pt[1], 0.))[0], m.entity) for m in mates]
-    if (me_t, view.athlete) not in sorted(keys)[:PURSUERS]:
+    allowance = C.owned_effect(view, view.prism_agent, 1.5) if view.registry_ratings else 0.
+    order = sorted((t - allowance if who == view.athlete else t, who) for t, who in keys)
+    if view.athlete not in [who for _, who in order[:PURSUERS]]:
         return intent, record
     aim = (round(_clamp(me_pt[0]), 3), round(_clamp(me_pt[1]), 3))
     return (replace(intent, kind='pursue', aim=aim, target=C.BALL, contact=None),
@@ -733,9 +741,8 @@ def _attacker_zone(view, belief, intent, record):
             return (replace(intent, aim=_arc_point(view, gx, intent.aim[0], intent.aim[1])),
                     dict(record, rb311=dict(rule='Z-3_stay_out', aim_was=list(intent.aim))))
         return intent, record
-    from .individuation import effect
     time_left = (ZONE_LIMIT_MS_RULE - view.zone_elapsed_ms) / 1000.
-    exit_margin = EXIT_MARGIN_S + effect(view, 'zone_reads', .65)
+    exit_margin = EXIT_MARGIN_S + C.owned_effect(view, 'playmaking', .65, 'zone_reads', 'playmaking')
     out_dir = _unit(gx, 50., view.x, view.y)                       # outward from the goal centre: toward the arc
     t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d, out_dir)
     if view.holds_ball:
@@ -785,7 +792,8 @@ def _defender_zone(view, belief, intent, record):
               and t_mark is not None and t_mark < time_left)
     if not reason:
         return _leave(view, gx, intent, record, 'Z-4_no_reason_leave', t_arc_s=round(t_arc, 2), time_left_s=round(time_left, 2))
-    if min(t_arc, t_mark) + EXIT_MARGIN_S < time_left:
+    area_margin = EXIT_MARGIN_S + C.owned_effect(view, 'zone_coverage', .65, agent='zone_coverage')
+    if min(t_arc, t_mark) + area_margin < time_left:
         return intent, record
     diff = t_mark - t_arc
     if abs(diff) <= CLOSE_LEAVE_TIE_S:                  # tie: leave if the mark is moving away from me
@@ -816,6 +824,8 @@ def ttc_at(view, o, cx, cy):
 def choose_block(view, belief, intent, record):
     """B2: up to BLOCKERS off-ball attackers within BLOCK_NEAR_M of the carrier and ahead of him block the defenders whose
     time-to-contact with him is under BLOCK_THREAT_S; each takes the threat he can reach first; none beyond BLOCK_FAR_M."""
+    if (view.registry_ratings and view.prism_agent != 'playmaking'):
+        return intent, record
     if (view.cognition != 'native-rb/3' or not getattr(view, 'rb3_handoff_block_enabled', False)
             or view.role != 'field' or view.holds_ball or view.pending_command_id
             or view.signals.phase != 'live' or getattr(view, 'snap_hold', False)
@@ -832,7 +842,8 @@ def choose_block(view, belief, intent, record):
     for t in fresh:
         if t.role != 'field' or t.team in (view.team, 'ball') or t.entity in frozen:
             continue
-        if hypot(t.x - carrier.x, t.y - carrier.y) <= BLOCK_FAR_M and ttc_at(view, t, carrier.x, carrier.y) < BLOCK_THREAT_S:
+        if hypot(t.x - carrier.x, t.y - carrier.y) <= BLOCK_FAR_M and ttc_at(view, t, carrier.x, carrier.y) < (
+                    BLOCK_THREAT_S + C.owned_effect(view, 'playmaking', .35, agent='playmaking')):
             threats.append(t)
     if not threats:
         return intent, record
@@ -957,3 +968,60 @@ def keeper_decide(view, belief, material):
     return E.KeeperIntent(iid, view.body.athlete, 'save', view.now_ms, belief.revision,
                           intercept_window_ms=(view.now_ms, view.now_ms + int(math.ceil(cross[0] * 1000))),
                           course=usable, reason='believed_goal_crossing')
+
+
+def flight_horizon(course):
+    """Time to floor on the delivered course, bounded by the caller's horizon."""
+    from math import sqrt
+    gravity = 9.81
+    return (course.vz + sqrt(course.vz ** 2 + 2 * gravity * max(0., course.z - course.radius))) / gravity
+
+
+FINISH_CLOSE_DEPTH_M = 10.
+FINISH_LONG_RESERVE_M = .34
+FINISH_CLOSE_RESERVE_M = .18
+
+
+def finishing_aim(view, fresh, intent):
+    """Choose the farthest reachable mouth sample after the shot is selected."""
+    gx = intent.aim[0]
+    speed = intent.speed
+    if speed <= 0.:
+        return intent
+    keeper = next((t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'keeper'), None)
+    if keeper is None:
+        return intent
+    field = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
+    horizon = release_time_s(view) + abs(gx - view.x) / speed
+    ky = keeper.y + keeper.vy * horizon
+    height = dict(getattr(view, 'body_height', ())).get(keeper.entity, 2.39)
+    kz = KEEPER_CENTRE_FRAC * height
+    reserve = FINISH_CLOSE_RESERVE_M if abs(view.x - gx) < FINISH_CLOSE_DEPTH_M else FINISH_LONG_RESERVE_M
+    rim = view.goal_radius - SHOT_BALL_R_M - reserve * (1 - C.registry_rating(view, 'finishing'))
+    candidates = sorted(((hypot(50 + dy - ky, z - kz), dy, z)
+                         for dy in SHOT_DY_M for z in SHOT_Z_M if hypot(dy, z) < rim),
+                        reverse=True)
+    for _, dy, z in candidates:
+        aim = type('Aim', (), {'x': gx, 'y': 50. + dy})()
+        if not field or lane_margin(view, aim, field, speed) >= 0:
+            return replace(intent, aim=(aim.x, aim.y), height=z)
+    return intent
+
+
+def committed_delivery(view, belief, intent):
+    """Pure sub-agent choice from the same frozen belief used by its parent."""
+    if intent.aim is None or intent.kind not in ('pass', 'shoot'):
+        return intent
+    fresh = _fresh(view, belief, belief.max_track_age_ms)
+    if intent.kind == 'shoot':
+        return finishing_aim(view, fresh, intent)
+    from .throw_speed import release_speed
+    distance = hypot(intent.aim[0] - view.x, intent.aim[1] - view.y)
+    speed, height = C.PRISM.pass_delivery(distance, view.max_throw_speed,
+                                          release_speed(distance, view.max_throw_speed),
+                                          C.registry_rating(view, 'passing'))
+    opponents = tuple(t for t in fresh if t.role == 'field' and t.team != view.team)
+    lane = type('Aim', (), {'x': intent.aim[0], 'y': intent.aim[1]})()
+    if opponents and lane_margin(view, lane, opponents, speed) < 0:
+        return intent
+    return replace(intent, speed=speed, height=height)

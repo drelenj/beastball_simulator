@@ -100,7 +100,18 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
             fingerprint = hashlib.sha256(json.dumps(roster.record(), sort_keys=True,
                                                     separators=(',', ':')).encode()).hexdigest()
             roster = replace(roster, digest=fingerprint)
-        out[side] = roster
+        athletes = []
+        for athlete in roster.athletes:
+            sources = dict(athlete.sources)
+            values = dict(athlete.values)
+            sources.setdefault('awareness', f'{technical} fallback')
+            for key in NEW_RATINGS:
+                if key not in sources:
+                    alias = next((name for name in LEGACY_SOURCES.get(key, ())
+                                  if name in values and name not in athlete.defaults), None)
+                    sources[key] = 'alias:' + alias if alias else f'{AVERAGE:.2f} default'
+            athletes.append(replace(athlete, prism_sources=tuple(sorted(sources.items()))))
+        out[side] = replace(roster, athletes=tuple(athletes))
     return out
 
 
