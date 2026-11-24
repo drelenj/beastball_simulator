@@ -43,7 +43,7 @@
 
  g) Firewall: live true state never reaches cognition; learned artifacts enter only as versioned files loaded before a match; the purity test covers the new loader.
 
-The full suite reported `767 passed, 1 warning, 23 subtests passed in 670.14s (0:11:10)`. An earlier repeat ran out of scratch space while unpacking legacy engines. The final run used an isolated temporary directory in memory. The warning was the pytest dependency's `CallSpec2` deprecation.
+The full suite, rerun with the final artifact checked in, reported `767 passed, 1 warning, 23 subtests passed in 627.29s (0:10:27)`. An earlier repeat ran out of scratch space while unpacking legacy engines. The final run used an isolated temporary directory in memory. The warning was the pytest dependency's `CallSpec2` deprecation.
 
 The six legacy trace, state and config rows matched exactly. The full compatibility and CORE learned-off runs reproduced gates d and e. Their raw results are in `rb327/evidence/compatibility.json` and `rb327/evidence/core.json`.
 
@@ -142,7 +142,7 @@ The primary pairing was Garvian Guardians (A) and Ala Apex (B), seeds 1–10. Ea
 
 The median team score in the primary pairing alone was 90.5 off and 76.0 on. Its mean team possessions were 152.55 off and 159.05 on. The mean attempt-ending share was 35.49% off and 18.28% on.
 
-The [per-match CSV](rb327/evidence/matches.csv) contains every score, both possession totals, terminal-attempt share, shot releases, carry attempts, score margin and fingerprints. The ability to follow through on an attempt and the result of that attempt are separate measures. The CSV keeps shot releases distinct from carried scoring attempts. The [raw runs](rb327/evidence) include exact per-match results and a completeness check for 49 regulation results, counting the two identity runs, six anchors, one replay and 40 paired games.
+The [per-match CSV](rb327/evidence/matches.csv) contains every score, both possession totals, terminal-attempt share, shot releases, carry attempts, score margin and fingerprints. The CSV keeps shot releases distinct from carried scoring attempts. The [raw runs](rb327/evidence) include exact per-match results and a completeness check for 49 regulation results, counting the two identity runs, six anchors, one replay and 40 paired games.
 
 ## Implemented measurement
 
