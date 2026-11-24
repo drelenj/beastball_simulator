@@ -33,7 +33,7 @@ for layer in off on perception recognition inference strategy motor execution; d
     paired_case "$layer"
 done
 
-# Shot count is the primary endpoint. A change of at least 15% between
+# Shot count is the primary endpoint. A change of at least 10% between
 # paired layer totals and the off totals gets a follow-up for each hook.
 follow=$("$python_run" - "$evidence" <<'PY'
 import json,sys
@@ -45,7 +45,7 @@ base=shots('off')
 hooks={'perception':'vision radar clarity recognition_error', 'recognition':'focus reaction',
        'inference':'instinct anticipation', 'strategy':'strategy', 'motor':'reflex_save reflex_cadence steering',
        'execution':'fatigue touch archery'}
-print(' '.join(hs for layer,hs in hooks.items() if abs(shots(layer)-base)/base>=.15))
+print(' '.join(hs for layer,hs in hooks.items() if abs(shots(layer)-base)/base>=.10))
 PY
 )
 for hook in reflex_catch without-reflex_catch $follow; do
