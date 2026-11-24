@@ -146,6 +146,8 @@ The old Reflex catch gate alone produced 102 shots across seeds 1 and 3. Open-pl
 
 Dropping only that gate from the full stack raised completion from 139/350 (39.7%) to 212/383 (55.4%). Total shots rose from 66 to 92 and the pooled team-score median rose from 37 to 50. This confirms an effect on both sides of the intervention. The remaining gap depends on other hooks and how their match paths interact.
 
+Focus alone reduced shots to 127; its neutral capacity was 10 and its retention was 1,820 ms. The combined Recognition layer reduced shots to 114. Reaction alone reduced deliberate decisions from 309,042 to 275,041, while producing 147 shots. Within Motor Control, Reflex save alone produced 160, Reflex cadence 155, and steering 145. The field catch gate is the isolated Motor Control change that reproduced a shooting decrease in this sample.
+
 ## Neutral calibration
 
 Both teams use 0.70 for every rated attribute. A is Garvian Guardians and B is Ala Apex in the real-body runs. The control uses the standard uniform body for both teams. Every match reached the final and closed every recorded restart.
