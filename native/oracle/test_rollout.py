@@ -2,7 +2,7 @@ from pathlib import Path
 
 from native import cognition
 from native.oracle.analysis import agreement, fit, gauge, gauge_summary
-from native.oracle.harness import Force, branch_seed, run
+from native.oracle.harness import EventHorizon, Force, branch_seed, run
 from native.oracle.mine import features
 from native.oracle.rollout import grade, menus
 from native.oracle.scenes import scene
@@ -33,6 +33,14 @@ def test_compact_branch_has_same_physical_result_after_reseed():
                      stop='possession',seed=branch_seed('compact',0,0))
         outcomes.append({k:v for k,v in result.items() if k!='trace_hash'})
     assert outcomes[0] == outcomes[1]
+
+
+def test_award_points_can_leave_the_possession_live():
+    _, driver = scene(EXAMPLE)
+    events = [{'event':'foul_award','data':{'team':'A','points':1}},
+              {'event':'restart_awarded','data':{'team':'A'}}]
+    assert EventHorizon(driver.port,'A','possession').consume(events,None) is None
+    assert EventHorizon(driver.port,'A','score').consume(events,None) == 'score'
 
 
 def test_options_use_distinct_repeatable_branch_seeds_and_cover_gauge():

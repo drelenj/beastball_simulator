@@ -122,7 +122,7 @@ class EventHorizon:
                     if self.stop in ('takedown','takedown_action'):
                         return 'takedown'
             if kind in ('goal','foul_award'):
-                if self.stop in ('score','possession'):
+                if self.stop == 'score' or self.stop == 'possession' and kind == 'goal':
                     return 'score'
                 if self.stop == 'finishing' and intent and intent.kind == 'stretch':
                     return 'stretch_scored'
@@ -152,6 +152,15 @@ class EventHorizon:
     def after_step(self, intent, outcomes, commands):
         port = self.port
         state = port.m.s
+        ball = state.ball
+        if (self.flight is not None and ball.mode == port.types.BallMode.LOOSE
+                and ball.z <= ball.radius and not (ball.vx or ball.vy or ball.vz)):
+            flight = self.flight
+            self.end_flight('missed')
+            if flight == 'pass' and self.stop in ('passing','pass_missed'):
+                return 'pass_missed'
+            if flight == 'shot' and self.stop == 'finishing':
+                return 'shot_missed'
         if self.stop == 'possession' and port.m.e.possession.pp not in (None, self.team):
             return 'turnover'
         if self.stop == 'takedown_action' and intent is not None:

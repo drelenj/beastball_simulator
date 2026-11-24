@@ -73,6 +73,9 @@ def scene(source):
         holder = state.players[state.ball.carrier]
         state.owner = state.owner or holder.team
         engine.follow_carrier()
+        for coordinate in ('x','y','z'):
+            if coordinate in spec.get('ball', {}):
+                setattr(state.ball, coordinate, spec['ball'][coordinate])
     tracker = engine.possession
     engine.native_seen = len(engine.log)
     tracker.live = state.phase in (port.types.Phase.LIVE, port.types.Phase.OPENING, port.types.Phase.FLIGHT)

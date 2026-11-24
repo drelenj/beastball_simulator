@@ -4,10 +4,10 @@
   "phase": "live",
   "state": {"now": 1000, "owner": "A", "possession_ms": 18000},
   "players": {
-    "A:0": {"x": 55, "y": 55, "vx": 3, "vy": -2, "facing": [-1, 0]},
+    "A:0": {"x": 55, "y": 55, "vx": 0, "vy": -2, "facing": [-1, 0]},
     "A:1": {"x": 40, "y": 54, "facing": [1, 0]}
   },
-  "ball": {"mode": "passed", "x": 46, "y": 55, "z": 1.4, "vx": 30, "vy": 0, "vz": 1.2,
+  "ball": {"mode": "passed", "x": 46, "y": 55, "z": 1.4, "vx": 30, "vy": -2, "vz": 1.2,
            "last_releaser": "A:1", "last_touch": "A", "release_time": 750,
            "intended": "A:0"},
   "possession": {"pp": "A", "tc": "A", "ball_status": "pass_in_flight"},
