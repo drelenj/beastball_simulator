@@ -1,0 +1,239 @@
+rating,level,paired_seeds,engine_quantity_mean,changes_from_0.70,outcomes_compared,evidence_scope
+acceleration,0.4,20,17.52462674,20,20,physical running speed
+acceleration,0.5,20,18.15576756,20,20,physical running speed
+acceleration,0.6,20,18.7869016,20,20,physical running speed
+acceleration,0.7,20,19.41802863,0,20,physical running speed
+acceleration,0.8,20,20.04914844,20,20,physical running speed
+acceleration,0.9,20,20.68026081,20,20,physical running speed
+acceleration,1.0,20,21.31136551,20,20,physical running speed
+agility,0.4,20,6.75,16,20,motor aim
+agility,0.5,20,8.4375,20,20,motor aim
+agility,0.6,20,10.125,20,20,motor aim
+agility,0.7,20,11.8125,0,20,motor aim
+agility,0.8,20,13.5,17,20,motor aim
+agility,0.9,20,15.1875,15,20,motor aim
+agility,1.0,20,16.875,20,20,motor aim
+anticipation,0.4,20,3.80791655,20,20,selected command
+anticipation,0.5,20,3.80636745,20,20,selected command
+anticipation,0.6,20,3.8048182,20,20,selected command
+anticipation,0.7,20,3.8033485,0,20,selected command
+anticipation,0.8,20,3.80191765,19,20,selected command
+anticipation,0.9,20,3.8004868,19,20,selected command
+anticipation,1.0,20,3.79905595,19,20,selected command
+archery_accuracy,0.4,20,0.29169301,20,20,arrow release vector
+archery_accuracy,0.5,20,0.24307751,20,20,arrow release vector
+archery_accuracy,0.6,20,0.19446201,20,20,arrow release vector
+archery_accuracy,0.7,20,0.14584651,0,20,arrow release vector
+archery_accuracy,0.8,20,0.097231,20,20,arrow release vector
+archery_accuracy,0.9,20,0.0486155,20,20,arrow release vector
+archery_accuracy,1.0,20,0.0,20,20,arrow release vector
+awareness,0.4,20,9.2,5,20,radar threshold
+awareness,0.5,20,10.0,3,20,radar threshold
+awareness,0.6,20,10.8,3,20,radar threshold
+awareness,0.7,20,11.6,0,20,radar threshold
+awareness,0.8,20,12.4,4,20,radar threshold
+awareness,0.9,20,13.2,11,20,radar threshold
+awareness,1.0,20,14.0,14,20,radar threshold
+balance,0.4,20,0.41803586,12,20,physical balance recovery
+balance,0.5,20,0.40171385,8,20,physical balance recovery
+balance,0.6,20,0.38605471,2,20,physical balance recovery
+balance,0.7,20,0.37103068,0,20,physical balance recovery
+balance,0.8,20,0.35661523,2,20,physical balance recovery
+balance,0.9,20,0.34278294,3,20,physical balance recovery
+balance,1.0,20,0.32950949,3,20,physical balance recovery
+ball_handling,0.4,20,288,,0,mapped quantity only
+ball_handling,0.5,20,275,,0,mapped quantity only
+ball_handling,0.6,20,262,,0,mapped quantity only
+ball_handling,0.7,20,250,,0,mapped quantity only
+ball_handling,0.8,20,238,,0,mapped quantity only
+ball_handling,0.9,20,225,,0,mapped quantity only
+ball_handling,1.0,20,213,,0,mapped quantity only
+blocking,0.4,20,0.31246161,20,20,block impulse fraction
+blocking,0.5,20,0.35802893,20,20,block impulse fraction
+blocking,0.6,20,0.39658589,20,20,block impulse fraction
+blocking,0.7,20,0.42963472,0,20,block impulse fraction
+blocking,0.8,20,0.45827703,20,20,block impulse fraction
+blocking,0.9,20,0.48333906,20,20,block impulse fraction
+blocking,1.0,20,0.50545261,20,20,block impulse fraction
+catching,0.4,20,305.83833225,18,20,catch arrest capacity threshold
+catching,0.5,20,316.21723915,18,20,catch arrest capacity threshold
+catching,0.6,20,431.69018129,18,20,catch arrest capacity threshold
+catching,0.7,20,847.5748768,0,20,catch arrest capacity threshold
+catching,0.8,20,1831.88419243,2,20,catch arrest capacity threshold
+catching,0.9,20,3713.39927626,2,20,catch arrest capacity threshold
+catching,1.0,20,6874.79077439,2,20,catch arrest capacity threshold
+clarity,0.4,20,0.0464,1,20,recognition outcome
+clarity,0.5,20,0.044,0,20,recognition outcome
+clarity,0.6,20,0.0416,0,20,recognition outcome
+clarity,0.7,20,0.0392,0,20,recognition outcome
+clarity,0.8,20,0.0368,0,20,recognition outcome
+clarity,0.9,20,0.0344,0,20,recognition outcome
+clarity,1.0,20,0.032,1,20,recognition outcome
+defending,0.4,20,0.67342325,8,20,selected contact
+defending,0.5,20,0.77342325,7,20,selected contact
+defending,0.6,20,0.87342325,5,20,selected contact
+defending,0.7,20,0.97342325,0,20,selected contact
+defending,0.8,20,1.07342325,6,20,selected contact
+defending,0.9,20,1.17342325,10,20,selected contact
+defending,1.0,20,1.27342325,12,20,selected contact
+disruption,0.4,20,0.0,8,20,selected action
+disruption,0.5,20,0.0,8,20,selected action
+disruption,0.6,20,0.0,8,20,selected action
+disruption,0.7,20,0.0084167,0,20,selected action
+disruption,0.8,20,0.21323155,12,20,selected action
+disruption,0.9,20,0.46323155,12,20,selected action
+disruption,1.0,20,0.71323155,12,20,selected action
+evasion,0.4,20,0.3304175,6,20,selected contact
+evasion,0.5,20,0.3804175,0,20,selected contact
+evasion,0.6,20,0.4304175,0,20,selected contact
+evasion,0.7,20,0.4804175,0,20,selected contact
+evasion,0.8,20,0.5304175,0,20,selected contact
+evasion,0.9,20,0.5804175,0,20,selected contact
+evasion,1.0,20,0.6304175,0,20,selected contact
+finishing,0.4,20,0.4,0,20,committed delivery
+finishing,0.5,20,0.4,0,20,committed delivery
+finishing,0.6,20,0.4,0,20,committed delivery
+finishing,0.7,20,0.4,0,20,committed delivery
+finishing,0.8,20,0.4,0,20,committed delivery
+finishing,0.9,20,0.4,20,20,committed delivery
+finishing,1.0,20,0.4,20,20,committed delivery
+focus,0.4,20,7,9,20,retained track
+focus,0.5,20,8,5,20,retained track
+focus,0.6,20,9,1,20,retained track
+focus,0.7,20,10,0,20,retained track
+focus,0.8,20,10,4,20,retained track
+focus,0.9,20,11,8,20,retained track
+focus,1.0,20,12,11,20,retained track
+goalkeeping,0.4,20,50.66694337,20,20,selected positioning
+goalkeeping,0.5,20,50.70617533,20,20,selected positioning
+goalkeeping,0.6,20,50.7454073,20,20,selected positioning
+goalkeeping,0.7,20,50.78463926,0,20,selected positioning
+goalkeeping,0.8,20,50.82387122,20,20,selected positioning
+goalkeeping,0.9,20,50.86310319,20,20,selected positioning
+goalkeeping,1.0,20,50.90233515,20,20,selected positioning
+in_air_ball_pursuit,0.4,20,0.0,15,20,selected command
+in_air_ball_pursuit,0.5,20,0.0,15,20,selected command
+in_air_ball_pursuit,0.6,20,0.8971653,10,20,selected command
+in_air_ball_pursuit,0.7,20,2.75533445,0,20,selected command
+in_air_ball_pursuit,0.8,20,3.39031235,3,20,selected command
+in_air_ball_pursuit,0.9,20,3.6712241,4,20,selected command
+in_air_ball_pursuit,1.0,20,3.9605845,5,20,selected command
+instinct,0.4,20,1.80129913,20,20,estimated position
+instinct,0.5,20,1.80110216,20,20,estimated position
+instinct,0.6,20,1.80092136,20,20,estimated position
+instinct,0.7,20,1.80075674,0,20,estimated position
+instinct,0.8,20,1.8006083,20,20,estimated position
+instinct,0.9,20,1.80047604,20,20,estimated position
+instinct,1.0,20,1.80035996,20,20,estimated position
+jump,0.4,20,0.52,,0,mapped quantity only
+jump,0.5,20,0.65,,0,mapped quantity only
+jump,0.6,20,0.78,,0,mapped quantity only
+jump,0.7,20,0.91,,0,mapped quantity only
+jump,0.8,20,1.04,,0,mapped quantity only
+jump,0.9,20,1.17,,0,mapped quantity only
+jump,1.0,20,1.3,,0,mapped quantity only
+live_ball_pursuit,0.4,20,0.0,15,20,selected command
+live_ball_pursuit,0.5,20,0.0,15,20,selected command
+live_ball_pursuit,0.6,20,0.8971653,10,20,selected command
+live_ball_pursuit,0.7,20,2.75533445,0,20,selected command
+live_ball_pursuit,0.8,20,3.39031235,3,20,selected command
+live_ball_pursuit,0.9,20,3.6712241,4,20,selected command
+live_ball_pursuit,1.0,20,3.9605845,5,20,selected command
+passing,0.4,20,33.6473,20,20,committed delivery
+passing,0.5,20,34.3632,20,20,committed delivery
+passing,0.6,20,35.0791,20,20,committed delivery
+passing,0.7,20,35.795,0,20,committed delivery
+passing,0.8,20,36.5109,20,20,committed delivery
+passing,0.9,20,37.2268,20,20,committed delivery
+passing,1.0,20,37.9427,20,20,committed delivery
+playmaking,0.4,20,9.12078925,0,20,selected command
+playmaking,0.5,20,9.27482405,0,20,selected command
+playmaking,0.6,20,9.42885895,0,20,selected command
+playmaking,0.7,20,9.5828938,0,20,selected command
+playmaking,0.8,20,9.7369287,0,20,selected command
+playmaking,0.9,20,9.8909635,0,20,selected command
+playmaking,1.0,20,10.04499845,0,20,selected command
+reaction,0.4,20,570,6,20,decision opportunity
+reaction,0.5,20,550,4,20,decision opportunity
+reaction,0.6,20,530,1,20,decision opportunity
+reaction,0.7,20,510,0,20,decision opportunity
+reaction,0.8,20,490,1,20,decision opportunity
+reaction,0.9,20,470,5,20,decision opportunity
+reaction,1.0,20,450,8,20,decision opportunity
+reflex,0.4,20,0.41,14,20,preparation deadline
+reflex,0.5,20,0.375,10,20,preparation deadline
+reflex,0.6,20,0.34,3,20,preparation deadline
+reflex,0.7,20,0.305,0,20,preparation deadline
+reflex,0.8,20,0.27,2,20,preparation deadline
+reflex,0.9,20,0.235,2,20,preparation deadline
+reflex,1.0,20,0.2,5,20,preparation deadline
+speed,0.4,20,17.85358321,20,20,physical running speed
+speed,0.5,20,20.99238674,20,20,physical running speed
+speed,0.6,20,21.03650685,20,20,physical running speed
+speed,0.7,20,21.03806702,0,20,physical running speed
+speed,0.8,20,21.03907969,20,20,physical running speed
+speed,0.9,20,21.03977402,20,20,physical running speed
+speed,1.0,20,21.04027068,20,20,physical running speed
+stamina,0.4,20,0.99892024,20,20,physical fatigue
+stamina,0.5,20,0.99898438,20,20,physical fatigue
+stamina,0.6,20,0.99904853,20,20,physical fatigue
+stamina,0.7,20,0.99911267,0,20,physical fatigue
+stamina,0.8,20,0.99917681,20,20,physical fatigue
+stamina,0.9,20,0.99924095,20,20,physical fatigue
+stamina,1.0,20,0.9993051,20,20,physical fatigue
+strength,0.4,20,0.31246161,20,20,block impulse fraction
+strength,0.5,20,0.35802893,20,20,block impulse fraction
+strength,0.6,20,0.39658589,20,20,block impulse fraction
+strength,0.7,20,0.42963472,0,20,block impulse fraction
+strength,0.8,20,0.45827703,20,20,block impulse fraction
+strength,0.9,20,0.48333906,20,20,block impulse fraction
+strength,1.0,20,0.50545261,20,20,block impulse fraction
+tackling,0.4,20,0.52691324,2,20,grip model threshold
+tackling,0.5,20,0.56058716,1,20,grip model threshold
+tackling,0.6,20,0.59110104,0,20,grip model threshold
+tackling,0.7,20,0.61878907,0,20,grip model threshold
+tackling,0.8,20,0.64394777,0,20,grip model threshold
+tackling,0.9,20,0.66684039,0,20,grip model threshold
+tackling,1.0,20,0.68770081,1,20,grip model threshold
+takedown,0.4,20,0.7795825,14,20,selected contact
+takedown,0.5,20,0.8595825,14,20,selected contact
+takedown,0.6,20,0.9395825,12,20,selected contact
+takedown,0.7,20,1.0195825,0,20,selected contact
+takedown,0.8,20,1.0995825,5,20,selected contact
+takedown,0.9,20,1.1795825,6,20,selected contact
+takedown,1.0,20,1.2595825,6,20,selected contact
+throw_accuracy,0.4,20,3.0,,0,mapped quantity only
+throw_accuracy,0.5,20,2.5,,0,mapped quantity only
+throw_accuracy,0.6,20,2.0,,0,mapped quantity only
+throw_accuracy,0.7,20,1.5,,0,mapped quantity only
+throw_accuracy,0.8,20,1.0,,0,mapped quantity only
+throw_accuracy,0.9,20,0.5,,0,mapped quantity only
+throw_accuracy,1.0,20,0.15,,0,mapped quantity only
+throw_power,0.4,20,67.05,,0,mapped quantity only
+throw_power,0.5,20,78.225,,0,mapped quantity only
+throw_power,0.6,20,89.4,,0,mapped quantity only
+throw_power,0.7,20,100.575,,0,mapped quantity only
+throw_power,0.8,20,111.75,,0,mapped quantity only
+throw_power,0.9,20,122.925,,0,mapped quantity only
+throw_power,1.0,20,134.1,,0,mapped quantity only
+touch,0.4,20,3.11462798,20,20,release vector
+touch,0.5,20,3.09555275,20,20,release vector
+touch,0.6,20,3.07646566,20,20,release vector
+touch,0.7,20,3.05736678,0,20,release vector
+touch,0.8,20,3.03825616,20,20,release vector
+touch,0.9,20,3.01913388,20,20,release vector
+touch,1.0,20,3.0,20,20,release vector
+vision,0.4,20,102.0,9,20,detection threshold
+vision,0.5,20,105.0,7,20,detection threshold
+vision,0.6,20,108.0,4,20,detection threshold
+vision,0.7,20,111.0,0,20,detection threshold
+vision,0.8,20,114.0,5,20,detection threshold
+vision,0.9,20,117.0,7,20,detection threshold
+vision,1.0,20,120.0,8,20,detection threshold
+zone_coverage,0.4,20,0.4,0,20,selected agent
+zone_coverage,0.5,20,0.5,0,20,selected agent
+zone_coverage,0.6,20,0.6,0,20,selected agent
+zone_coverage,0.7,20,0.7,0,20,selected agent
+zone_coverage,0.8,20,0.8,20,20,selected agent
+zone_coverage,0.9,20,0.9,20,20,selected agent
+zone_coverage,1.0,20,1.0,20,20,selected agent

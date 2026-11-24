@@ -3,6 +3,7 @@ import argparse
 from dataclasses import fields
 from pathlib import Path
 import json
+import hashlib
 from time import process_time
 
 from native.nbl_roster import load_canon_nbl
@@ -25,5 +26,8 @@ cfg = RulebookConfigV3(**params)
 before = process_time()
 result, _ = run_match(args.seed, cfg, rosters=rosters, max_steps=1500, port_factory=RulebookPort)
 result['cpu_ms_per_step'] = (process_time() - before) * 1000 / result['steps']
-result.pop('prism_commits', None)
+commits = result.pop('prism_commits', None)
+if commits is not None:
+    result['commit_log_sha256'] = hashlib.sha256(json.dumps(commits, sort_keys=True).encode()).hexdigest()
+    result['commit_log_sample'] = commits[:20]
 args.out.write_text(json.dumps(result, sort_keys=True, indent=2) + '\n')

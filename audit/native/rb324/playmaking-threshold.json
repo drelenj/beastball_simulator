@@ -1,0 +1,300 @@
+{
+  "counts": {
+    "0.4": {
+      "carry": 20
+    },
+    "0.5": {
+      "carry": 20
+    },
+    "0.6": {
+      "shoot": 6,
+      "carry": 14
+    },
+    "0.7": {
+      "shoot": 14,
+      "carry": 6
+    },
+    "0.8": {
+      "shoot": 17,
+      "carry": 3
+    },
+    "0.9": {
+      "shoot": 19,
+      "carry": 1
+    },
+    "1.0": {
+      "shoot": 20
+    }
+  },
+  "changes_from_0_70": {
+    "0.4": 14,
+    "0.5": 14,
+    "0.6": 8,
+    "0.7": 0,
+    "0.8": 3,
+    "0.9": 5,
+    "1.0": 6
+  },
+  "cases": [
+    {
+      "seed": 1,
+      "offset": -1.3001771073151498,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "shoot",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 2,
+      "offset": -0.8036336072467651,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "shoot",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 3,
+      "offset": -1.4699716338342672,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 4,
+      "offset": -1.7169670208307994,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "carry",
+        "0.8": "carry",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 5,
+      "offset": -1.1976752860139916,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 6,
+      "offset": -1.0098657363009536,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "shoot",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 7,
+      "offset": -1.6902644626022791,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "carry",
+        "0.8": "carry",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 8,
+      "offset": -1.2358547799327457,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "shoot",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 9,
+      "offset": -1.5387003184187769,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "carry",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 10,
+      "offset": -1.416215129381936,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "carry",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 11,
+      "offset": -1.4432544637949225,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 12,
+      "offset": -1.3698123985119377,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 13,
+      "offset": -1.3909955239398595,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 14,
+      "offset": -1.3812921065673611,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 15,
+      "offset": -1.320228371476402,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "carry",
+        "0.8": "carry",
+        "0.9": "carry",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 16,
+      "offset": -1.5056708272632755,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "carry",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 17,
+      "offset": -1.24626816481354,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "shoot",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 18,
+      "offset": -1.4043388928426632,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 19,
+      "offset": -1.1279826405912194,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "shoot",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    },
+    {
+      "seed": 20,
+      "offset": -0.9920856720650476,
+      "decisions": {
+        "0.4": "carry",
+        "0.5": "carry",
+        "0.6": "carry",
+        "0.7": "shoot",
+        "0.8": "shoot",
+        "0.9": "shoot",
+        "1.0": "shoot"
+      }
+    }
+  ]
+}
