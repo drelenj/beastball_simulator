@@ -43,7 +43,9 @@ def grade_moment(spec):
         gauge_rows = gauge(view,belief,result)
     result['cpu_total_s'] = process_time()-start
     target = output/'grade-parts'/f"{row['rank']}.json.gz"
-    target.write_bytes(gzip.compress(dump_json({'grade':result,'gauge':gauge_rows}).encode(),mtime=0))
+    temporary = target.with_suffix('.tmp')
+    temporary.write_bytes(gzip.compress(dump_json({'grade':result,'gauge':gauge_rows}).encode(),mtime=0))
+    temporary.replace(target)
     return row['group'],row['moment'],result['rollouts'],result['cpu_total_s']
 
 
@@ -86,19 +88,30 @@ def main():
     parser.add_argument('--workers',type=int,choices=(1,2),default=2)
     parser.add_argument('--samples',type=int,default=20)
     parser.add_argument('--aggregate-only',action='store_true')
+    parser.add_argument('--grade-only',action='store_true')
+    parser.add_argument('--limit',type=int,help='maximum number of new moments to grade before returning')
     args = parser.parse_args()
     args.out.mkdir(parents=True,exist_ok=True)
     parts = args.out/'grade-parts'
     parts.mkdir(exist_ok=True)
+    parameter_file = args.out/'parameters.json'
+    parameters = {'samples':args.samples}
+    if parameter_file.exists() and json.loads(parameter_file.read_text()) != parameters:
+        parser.error('the output directory contains a different rollout sample count')
+    parameter_file.write_text(json.dumps(parameters)+'\n')
     moments,strata,_ = select_moments(args.mined)
     print(dump_json(strata),flush=True)
     start = perf_counter()
     if not args.aggregate_only:
         specs = [(args.mined,args.out,row,args.samples) for row in moments
                  if not (parts/f"{row['rank']}.json.gz").exists()]
+        if args.limit is not None:
+            specs = specs[:args.limit]
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
             for group,moment,count,cpu in pool.map(grade_moment,specs,chunksize=1):
                 print(dump_json({'group':group,'moment':moment,'rollouts':count,'cpu_s':cpu}),flush=True)
+    if args.grade_only:
+        return
     summary = collect(args.mined,args.out,args.artifact)
     print(dump_json({'wall_s_this_invocation':perf_counter()-start,
                      'moments':len(moments),'rollouts':summary['rollouts']}),flush=True)
