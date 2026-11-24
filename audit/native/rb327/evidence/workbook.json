@@ -1,0 +1,1379 @@
+{
+  "franchises_on_sheet": 26,
+  "pairings": [
+    [
+      "Garvian Guardians",
+      "Ala Apex"
+    ],
+    [
+      "Ala Marauders",
+      "Kasuf Bloodravens"
+    ],
+    [
+      "D\u014dmyu Dominators",
+      "G\u00fcunlekia Serpents"
+    ],
+    [
+      "Hina\u2019sola Hunters",
+      "Isu\u2019Kari Sirenwings"
+    ],
+    [
+      "Kalundu Shockwave",
+      "Khemara Sunscourge"
+    ],
+    [
+      "Ndomiri Sentinels",
+      "Zafiren Tidewings"
+    ]
+  ],
+  "players_on_sheet": 712,
+  "selection": {
+    "Ala Apex": [
+      {
+        "id": "NBL24-01-11",
+        "role": "keeper",
+        "selection_overall": 85
+      },
+      {
+        "id": "UFA26-BB-43",
+        "role": "keeper",
+        "selection_overall": 74
+      },
+      {
+        "id": "NBL24-01-12",
+        "role": "archer",
+        "selection_overall": 89
+      },
+      {
+        "id": "UFA26-BB-04",
+        "role": "archer",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-01-07",
+        "role": "field",
+        "selection_overall": 96
+      },
+      {
+        "id": "NBL24-01-21",
+        "role": "field",
+        "selection_overall": 90
+      },
+      {
+        "id": "NBL24-01-09",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-01-04",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-01-22",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-01-05",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-01-08",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-01-10",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-01-03",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "NBL24-01-01",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "NBL24-01-14",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-01-13",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-01-06",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-01-19",
+        "role": "field",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-01-20",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "UFA26-BB-45",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-01-17",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "UFA26-BB-05",
+        "role": "field",
+        "selection_overall": 79
+      }
+    ],
+    "Ala Marauders": [
+      {
+        "id": "NBL24-02-13",
+        "role": "keeper",
+        "selection_overall": 90
+      },
+      {
+        "id": "MID25_Jabari_Ironveil",
+        "role": "keeper",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-02-12",
+        "role": "archer",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-21-12",
+        "role": "archer",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-02-04",
+        "role": "field",
+        "selection_overall": 97
+      },
+      {
+        "id": "NBL24-13-09",
+        "role": "field",
+        "selection_overall": 92
+      },
+      {
+        "id": "NBL24-01-02",
+        "role": "field",
+        "selection_overall": 90
+      },
+      {
+        "id": "NBL24-02-01",
+        "role": "field",
+        "selection_overall": 90
+      },
+      {
+        "id": "NBL24-02-05",
+        "role": "field",
+        "selection_overall": 89
+      },
+      {
+        "id": "NBL24-02-06",
+        "role": "field",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-19-10",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "NBL24-09-19",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-02-02",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-08-04",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-02-08",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-02-10",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-02-09",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-02-17",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-02-03",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-02-20",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-02-18",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "UFA26-BB-09",
+        "role": "field",
+        "selection_overall": 77
+      }
+    ],
+    "D\u014dmyu Dominators": [
+      {
+        "id": "NBL24-05-11",
+        "role": "keeper",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-05-15",
+        "role": "keeper",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-07-12",
+        "role": "archer",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-05-16",
+        "role": "archer",
+        "selection_overall": 72
+      },
+      {
+        "id": "NBL24-05-02",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-05-13",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-05-04",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-05-06",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-05-10",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-03-01",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-05-08",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "UFA26-BB-02",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-05-03",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "UFA26-BB-25",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-05-05",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-BB-30",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-05-21",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-05-18",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-05-22",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "DRAFT26-45",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-05-07",
+        "role": "field",
+        "selection_overall": 74
+      },
+      {
+        "id": "DRAFT26-19",
+        "role": "field",
+        "selection_overall": 74
+      }
+    ],
+    "Garvian Guardians": [
+      {
+        "id": "NBL24-07-11",
+        "role": "keeper",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-07-14",
+        "role": "keeper",
+        "selection_overall": 77
+      },
+      {
+        "id": "DRAFT26-09",
+        "role": "archer",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL25-D32",
+        "role": "archer",
+        "selection_overall": 73
+      },
+      {
+        "id": "NBL24-07-09",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-07-08",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-07-03",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL25-D06",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-07-18",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-07-02",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-07-06",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-07-17",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-15-03",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-07-01",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-07-13",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL24-07-20",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL24-07-10",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-07-04",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-07-07",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-07-16",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-07-22",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL25-D28",
+        "role": "field",
+        "selection_overall": 75
+      }
+    ],
+    "G\u00fcunlekia Serpents": [
+      {
+        "id": "NBL24-09-11",
+        "role": "keeper",
+        "selection_overall": 90
+      },
+      {
+        "id": "NBL24-09-16",
+        "role": "keeper",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-09-12",
+        "role": "archer",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-16-12",
+        "role": "archer",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-09-04",
+        "role": "field",
+        "selection_overall": 91
+      },
+      {
+        "id": "NBL24-09-10",
+        "role": "field",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-09-05",
+        "role": "field",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-09-09",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "NBL24-09-01",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "NBL24-09-02",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-09-08",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-09-06",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-09-07",
+        "role": "field",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-09-14",
+        "role": "field",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-09-21",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-09-18",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "UFA26-GEN-605",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "UFA26-BB-56",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-09-20",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "MID25_Darius_Windwalker",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-09-03",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL25-D21",
+        "role": "field",
+        "selection_overall": 76
+      }
+    ],
+    "Hina\u2019sola Hunters": [
+      {
+        "id": "NBL24-10-15",
+        "role": "keeper",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-10-11",
+        "role": "keeper",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-10-12",
+        "role": "archer",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-10-16",
+        "role": "archer",
+        "selection_overall": 78
+      },
+      {
+        "id": "MID25_Obasi_Blackriver",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-10-05",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "UFA26-GEN-613",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-10-02",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "2026-KNOWN-070",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-12-06",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-10-07",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-10-01",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-10-10",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-10-09",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "UFA26-GEN-610",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL25-D02",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-GEN-614",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-10-14",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "UFA26-GEN-612",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-10-03",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-10-19",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-10-08",
+        "role": "field",
+        "selection_overall": 75
+      }
+    ],
+    "Isu\u2019Kari Sirenwings": [
+      {
+        "id": "NBL24-22-11",
+        "role": "keeper",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-22-16",
+        "role": "keeper",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-22-12",
+        "role": "archer",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-22-13",
+        "role": "archer",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-22-05",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-22-09",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-22-01",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-22-04",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-17-17",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-22-08",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-22-10",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-22-22",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-22-02",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-22-14",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-22-21",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-BB-66",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL24-22-18",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "UFA26-BB-47",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-22-07",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-22-17",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-22-20",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-22-06",
+        "role": "field",
+        "selection_overall": 75
+      }
+    ],
+    "Kalundu Shockwave": [
+      {
+        "id": "NBL24-14-15",
+        "role": "keeper",
+        "selection_overall": 76
+      },
+      {
+        "id": "UFA26-GEN-694",
+        "role": "keeper",
+        "selection_overall": 73
+      },
+      {
+        "id": "NBL24-13-16",
+        "role": "archer",
+        "selection_overall": 84
+      },
+      {
+        "id": "UFA26-GEN-695",
+        "role": "archer",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-13-18",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "NBL24-11-17",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-11-07",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "UFA26-GEN-700",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-06-15",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "UFA26-GEN-697",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-18-21",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "2026-KNOWN-056",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "DRAFT26-32",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-14-03",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-GEN-692",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-GEN-690",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-22-19",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL25-D09",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "UFA26-GEN-693",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "UFA26-GEN-698",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-699",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-689",
+        "role": "field",
+        "selection_overall": 74
+      }
+    ],
+    "Kasuf Bloodravens": [
+      {
+        "id": "NBL24-11-11",
+        "role": "keeper",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-11-14",
+        "role": "keeper",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-11-12",
+        "role": "archer",
+        "selection_overall": 99
+      },
+      {
+        "id": "NBL24-17-12",
+        "role": "archer",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-11-08",
+        "role": "field",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-11-04",
+        "role": "field",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-11-09",
+        "role": "field",
+        "selection_overall": 86
+      },
+      {
+        "id": "NBL24-11-05",
+        "role": "field",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-11-02",
+        "role": "field",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-11-06",
+        "role": "field",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-11-18",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-11-03",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-11-13",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-11-01",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "MID25_Sefu_Nightguard",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "UFA26-GEN-619",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-11-19",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-11-16",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL25-D19",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-11-20",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-GEN-622",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-GEN-621",
+        "role": "field",
+        "selection_overall": 77
+      }
+    ],
+    "Khemara Sunscourge": [
+      {
+        "id": "UFA26-BB-74",
+        "role": "keeper",
+        "selection_overall": 85
+      },
+      {
+        "id": "NBL24-06-16",
+        "role": "keeper",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-01-16",
+        "role": "archer",
+        "selection_overall": 83
+      },
+      {
+        "id": "UFA26-BB-51",
+        "role": "archer",
+        "selection_overall": 74
+      },
+      {
+        "id": "NBL24-13-19",
+        "role": "field",
+        "selection_overall": 88
+      },
+      {
+        "id": "NBL24-19-22",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "UFA26-GEN-678",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-02-19",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-09-13",
+        "role": "field",
+        "selection_overall": 81
+      },
+      {
+        "id": "UFA26-BB-72",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "UFA26-BB-40",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL25-D10",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-16-18",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-21-07",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "2026-KNOWN-055",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL24-21-21",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "UFA26-GEN-675",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL25-D14",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-10-20",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-676",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-685",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-681",
+        "role": "field",
+        "selection_overall": 74
+      }
+    ],
+    "Ndomiri Sentinels": [
+      {
+        "id": "NBL24-16-11",
+        "role": "keeper",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-16-14",
+        "role": "keeper",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-16-15",
+        "role": "archer",
+        "selection_overall": 83
+      },
+      {
+        "id": "DRAFT26-27",
+        "role": "archer",
+        "selection_overall": 81
+      },
+      {
+        "id": "NBL24-16-09",
+        "role": "field",
+        "selection_overall": 83
+      },
+      {
+        "id": "NBL24-16-02",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL24-05-01",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-16-05",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-16-08",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-16-06",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-16-07",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-16-10",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "DRAFT26-01",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-16-20",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-16-13",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL24-16-21",
+        "role": "field",
+        "selection_overall": 76
+      },
+      {
+        "id": "NBL24-16-01",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-16-03",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-16-17",
+        "role": "field",
+        "selection_overall": 74
+      },
+      {
+        "id": "NBL24-16-04",
+        "role": "field",
+        "selection_overall": 74
+      },
+      {
+        "id": "NBL24-16-16",
+        "role": "field",
+        "selection_overall": 74
+      },
+      {
+        "id": "NBL25-D29",
+        "role": "field",
+        "selection_overall": 72
+      }
+    ],
+    "Zafiren Tidewings": [
+      {
+        "id": "NBL24-09-15",
+        "role": "keeper",
+        "selection_overall": 79
+      },
+      {
+        "id": "2026-KNOWN-058",
+        "role": "keeper",
+        "selection_overall": 76
+      },
+      {
+        "id": "UFA26-GEN-707",
+        "role": "archer",
+        "selection_overall": 84
+      },
+      {
+        "id": "NBL24-11-15",
+        "role": "archer",
+        "selection_overall": 75
+      },
+      {
+        "id": "NBL24-09-17",
+        "role": "field",
+        "selection_overall": 87
+      },
+      {
+        "id": "UFA26-GEN-706",
+        "role": "field",
+        "selection_overall": 82
+      },
+      {
+        "id": "NBL24-02-07",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "NBL25-D11",
+        "role": "field",
+        "selection_overall": 80
+      },
+      {
+        "id": "UFA26-GEN-705",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-19-17",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-06-07",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL25-D15",
+        "role": "field",
+        "selection_overall": 79
+      },
+      {
+        "id": "NBL24-02-21",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "UFA26-GEN-701",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-20-22",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-20-19",
+        "role": "field",
+        "selection_overall": 78
+      },
+      {
+        "id": "NBL24-20-21",
+        "role": "field",
+        "selection_overall": 77
+      },
+      {
+        "id": "NBL25-D26",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-702",
+        "role": "field",
+        "selection_overall": 75
+      },
+      {
+        "id": "UFA26-GEN-703",
+        "role": "field",
+        "selection_overall": 74
+      },
+      {
+        "id": "UFA26-GEN-711",
+        "role": "field",
+        "selection_overall": 74
+      },
+      {
+        "id": "UFA26-GEN-710",
+        "role": "field",
+        "selection_overall": 74
+      }
+    ]
+  },
+  "sha256": "47b48af7a19035428d517582370fa1782b542980c783edf3dfb20619cf437fba",
+  "source_commit": "b284e822fa2f23c820987c795a2d780f16334fc3",
+  "source_path": "audit/arcade/ratings/NBL_2026-27_Opening_Night_Rosters_ratings-0.4_overall-trials.xlsx"
+}
