@@ -1741,7 +1741,7 @@
     "R-07": 34,
     "R-12": 2
   },
-  "runtime_s": 136.491,
+  "runtime_s": 139.415,
   "prism_agents": {
     "disruption": 9275,
     "live_ball_pursuit": 29679,
@@ -1799,15 +1799,15 @@
   "possessions": {
     "A": {
       "count": 105,
-      "with_attempt": 12,
-      "ending_in_attempt": 8,
-      "share_ending_in_attempt": 0.0761904761904762
+      "with_attempt": 19,
+      "ending_in_attempt": 12,
+      "share_ending_in_attempt": 0.11428571428571428
     },
     "B": {
       "count": 104,
-      "with_attempt": 15,
-      "ending_in_attempt": 12,
-      "share_ending_in_attempt": 0.11538461538461539
+      "with_attempt": 21,
+      "ending_in_attempt": 19,
+      "share_ending_in_attempt": 0.18269230769230768
     }
   },
   "points": {

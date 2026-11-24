@@ -26,6 +26,20 @@ assert old['trace_hash']=='1678fcb5ef42277063942f0c43f1d5c23d6d54be33d05a62b2658
 assert old['state_hash']=='46c878761fe963eac42c50322e58a088d51d4415c79e71e6314ec45f5de6bf6e'
 print('Pinned RB-3.24 neutral enabled witness matches.')
 
+cases = ('off','on','perception','recognition','inference','strategy','motor','execution',
+         'reflex_catch','without-reflex_catch','focus','reaction','reflex_save','reflex_cadence',
+         'steering','vision','radar','clarity','recognition_error')
+for case in cases:
+    for seed in (1,3):
+        result = run(f'{case}-{seed}')
+        assert result['status'] == 'final' and result['seed'] == seed, (case,seed)
+        for team in ('A','B'):
+            possession = result['possessions'][team]
+            assert 0 <= possession['ending_in_attempt'] <= possession['with_attempt'] <= possession['count']
+            passes = result['open_passes'][team]
+            assert 0 <= passes['completed'] <= passes['released']
+print(f'Diagnosis: {len(cases)*2} full matches with both teams measured.')
+
 suite=(root/'pytest.txt').read_text()
 assert ' failed' not in suite
 print('Suite:',next(line for line in suite.splitlines() if 'subtests passed' in line))

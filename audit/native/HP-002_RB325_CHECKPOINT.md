@@ -3,8 +3,8 @@
 1. RB-3.25 adds PRISM CORE as an opt-in profile with seeded option evaluation, athlete-specific decision uncertainty, and committed action stages.
 2. CORE can choose scoring, possession, defense, interception and specialist options from the athlete's observations. Passing can delay wind-up within one Reaction interval. Takedown can select a grip, and the five maneuver ratings feed their physical execution.
 3. The supplied calibration meets the score and possession targets. The real-body scores span 63–123. Option values and decision accuracy still need ORACLE DRILL.
-4. The single-hook diagnosis is in progress. There is no pending canon question.
-5. Review the verified replay, the neutral results and the weak or abrupt lab effects before expanding the build.
+4. All five standing gates pass. There is no pending canon question.
+5. Review the replay, the score spread and the weak or abrupt lab effects before beginning ORACLE DRILL.
 
 ## Source
 
@@ -23,7 +23,7 @@ Use `individuation/2` or the experimental runner's default for CORE. The explici
 
 | Task | Status | Evidence |
 |---|---|---|
-| 1. Shooting decomposition | DESIGN COMPLETE, IMPLEMENTED | Pinned RB-3.24 layer and single-hook runs, see the table |
+| 1. Shooting decomposition | DESIGN COMPLETE, IMPLEMENTED, TESTED | Pinned RB-3.24 layer and single-hook runs, see the table |
 | 2. Decision structure | DESIGN COMPLETE, IMPLEMENTED, TESTED in scenarios | Production menu records, choice distributions and paired noise tests |
 | 3. Neutral calibration | DESIGN COMPLETE, IMPLEMENTED, TESTED across six matches | All-0.70 match table |
 | 4. Remaining hooks | DESIGN COMPLETE, IMPLEMENTED, TESTED in scenarios | Wind-up, legal grip, movement and reflex scenarios |
@@ -110,12 +110,12 @@ The primary endpoint is shot count. Follow-up switches are run for layers shifti
 
 | Run | Score A–B | Possessions A/B | Terminal attempts A/B | Shots A/B | Open pass completion A/B |
 |---|---:|---:|---:|---:|---:|
-| off-1 | 96–57 | 147/145 | 22.4%/15.2% | 49/28 | 66.7%/58.6% |
-| off-3 | 52–98 | 143/142 | 13.3%/16.9% | 27/36 | 58.2%/67.9% |
-| on-1 | 35–29 | 105/104 | 7.6%/11.5% | 15/19 | 43.8%/41.2% |
-| on-3 | 42–39 | 120/119 | 12.5%/10.1% | 17/15 | 36.4%/37.6% |
-| perception-1 | 56–100 | 131/130 | 15.3%/22.3% | 26/32 | 69.6%/70.1% |
-| perception-3 | 49–71 | 131/132 | 19.1%/22.0% | 32/33 | 68.3%/68.4% |
+| off-1 | 96–57 | 147/145 | 38.1%/24.8% | 49/28 | 66.7%/58.6% |
+| off-3 | 52–98 | 143/142 | 26.6%/40.8% | 27/36 | 58.2%/67.9% |
+| on-1 | 35–29 | 105/104 | 11.4%/18.3% | 15/19 | 43.8%/41.2% |
+| on-3 | 42–39 | 120/119 | 18.3%/16.8% | 17/15 | 36.4%/37.6% |
+| perception-1 | 56–100 | 131/130 | 32.1%/34.6% | 26/32 | 69.6%/70.1% |
+| perception-3 | 49–71 | 131/132 | 30.5%/33.3% | 32/33 | 68.3%/68.4% |
 | recognition-1 | 61–52 | 133/132 | 30.1%/22.7% | 32/24 | 63.1%/57.0% |
 | recognition-3 | 70–55 | 135/135 | 31.1%/25.2% | 34/24 | 68.3%/57.1% |
 | inference-1 | 45–102 | 137/137 | 29.2%/35.0% | 31/36 | 60.4%/62.0% |
@@ -127,7 +127,7 @@ The primary endpoint is shot count. Follow-up switches are run for layers shifti
 | execution-1 | 68–57 | 135/134 | 33.3%/28.4% | 29/26 | 69.9%/68.3% |
 | execution-3 | 99–92 | 139/139 | 39.6%/37.4% | 44/36 | 67.3%/60.3% |
 
-The early `off`, `on` and `perception` rows count shots as terminal attempts. The remaining rows include carries recorded by the scoring-attempt witness. The early terminal percentages are lower bounds and should be compared within that scope.
+Terminal-attempt percentages include shots and recorded carries. All six early off, on and Perception runs were replayed with the carry witness. Every trace, state and configuration hash matched its original, as did scores, shots and open pass counts. The original shot-only files remain in `rb325/evidence/shot-only-witness/`.
 
 | Switch | Shots | Shots per 100 possessions | Median team score |
 |---|---:|---:|---:|

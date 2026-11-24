@@ -1848,7 +1848,7 @@
     "R-11": 1,
     "R-13": 1
   },
-  "runtime_s": 142.201,
+  "runtime_s": 139.496,
   "prism_agents": {
     "archer": 11695,
     "field": 129083,
@@ -1903,15 +1903,15 @@
   "possessions": {
     "A": {
       "count": 131,
-      "with_attempt": 27,
-      "ending_in_attempt": 25,
-      "share_ending_in_attempt": 0.19083969465648856
+      "with_attempt": 43,
+      "ending_in_attempt": 40,
+      "share_ending_in_attempt": 0.3053435114503817
     },
     "B": {
       "count": 132,
-      "with_attempt": 30,
-      "ending_in_attempt": 29,
-      "share_ending_in_attempt": 0.2196969696969697
+      "with_attempt": 47,
+      "ending_in_attempt": 44,
+      "share_ending_in_attempt": 0.3333333333333333
     }
   },
   "points": {

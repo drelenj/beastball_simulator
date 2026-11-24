@@ -1816,19 +1816,19 @@
     "R-19": 3,
     "R-13": 2
   },
-  "runtime_s": 141.88,
+  "runtime_s": 137.269,
   "possessions": {
     "A": {
       "count": 143,
-      "with_attempt": 23,
-      "ending_in_attempt": 19,
-      "share_ending_in_attempt": 0.13286713286713286
+      "with_attempt": 44,
+      "ending_in_attempt": 38,
+      "share_ending_in_attempt": 0.26573426573426573
     },
     "B": {
       "count": 142,
-      "with_attempt": 29,
-      "ending_in_attempt": 24,
-      "share_ending_in_attempt": 0.16901408450704225
+      "with_attempt": 60,
+      "ending_in_attempt": 58,
+      "share_ending_in_attempt": 0.4084507042253521
     }
   },
   "points": {

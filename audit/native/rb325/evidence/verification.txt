@@ -1,4 +1,5 @@
 Pinned RB-3.24 neutral enabled witness matches.
+Diagnosis: 38 full matches with both teams measured.
 Suite: 744 passed, 1 warning, 23 subtests passed in 640.03s (0:10:40)
 All six legacy rows match.
 Compatibility 57–76, trace and state exact.
