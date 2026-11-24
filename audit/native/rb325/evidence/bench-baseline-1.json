@@ -648,7 +648,7 @@
     "takedown": 166,
     "wrap": 194
   },
-  "cpu_ms_per_step": 3.567451371333333,
+  "cpu_ms_per_step": 3.8019678086666664,
   "decisions_by_kind": {
     "abort_draw": 8,
     "archer_hold": 459,
@@ -1132,7 +1132,7 @@
     "R-18": 18,
     "R-20": 14
   },
-  "runtime_s": 5.367,
+  "runtime_s": 5.713,
   "score": {
     "A": 0,
     "B": 4
