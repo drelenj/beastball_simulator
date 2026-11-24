@@ -1,0 +1,1329 @@
+{
+  "commit_log_sample": [
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-13",
+      "commit_ms": 1400,
+      "intent_id": "native/1400/A:NBL24-07-13/obs/62/decision/intent",
+      "parent": "defending",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-18",
+      "commit_ms": 1400,
+      "intent_id": "native/1400/A:NBL24-07-18/obs/64/decision/intent",
+      "parent": "defending",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-10",
+      "commit_ms": 2002,
+      "intent_id": "native/2002/A:NBL24-07-10/obs/86/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-13",
+      "commit_ms": 2002,
+      "intent_id": "native/2002/A:NBL24-07-13/obs/88/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-18",
+      "commit_ms": 2002,
+      "intent_id": "native/2002/A:NBL24-07-18/obs/90/decision/intent",
+      "parent": "defending",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-10",
+      "commit_ms": 2602,
+      "intent_id": "native/2602/A:NBL24-07-10/obs/112/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "A:NBL24-07-13",
+      "commit_ms": 2602,
+      "intent_id": "native/2602/A:NBL24-07-13/obs/114/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "carry",
+      "athlete": "A:NBL24-07-10",
+      "commit_ms": 6642,
+      "intent_id": "native/6642/A:NBL24-07-10/obs/288/decision/intent",
+      "parent": "playmaking",
+      "subagent": "evasion"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-06",
+      "commit_ms": 6642,
+      "intent_id": "native/6642/B:NBL24-01-06/obs/298/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "press",
+      "athlete": "B:NBL24-01-01",
+      "commit_ms": 7242,
+      "intent_id": "native/7242/B:NBL24-01-01/obs/319/decision/intent",
+      "parent": "defending",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-06",
+      "commit_ms": 7242,
+      "intent_id": "native/7242/B:NBL24-01-06/obs/323/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "A:NBL24-07-10",
+      "commit_ms": 7828,
+      "intent_id": "native/7828/A:NBL24-07-10/obs/338/decision/intent",
+      "parent": "playmaking",
+      "subagent": "takedown"
+    },
+    {
+      "action": "truck",
+      "athlete": "A:NBL25-D06",
+      "commit_ms": 7828,
+      "intent_id": "native/7828/A:NBL25-D06/obs/343/decision/intent",
+      "parent": "playmaking",
+      "subagent": "evasion"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-01",
+      "commit_ms": 7828,
+      "intent_id": "native/7828/B:NBL24-01-01/obs/344/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-06",
+      "commit_ms": 7828,
+      "intent_id": "native/7828/B:NBL24-01-06/obs/348/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-06",
+      "commit_ms": 8394,
+      "intent_id": "native/8394/B:NBL24-01-06/obs/374/decision/intent",
+      "parent": "defending",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-06",
+      "commit_ms": 8938,
+      "intent_id": "native/8938/B:NBL24-01-06/obs/400/decision/intent",
+      "parent": "defending",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-08",
+      "commit_ms": 8938,
+      "intent_id": "native/8938/B:NBL24-01-08/obs/402/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "B:NBL24-01-08",
+      "commit_ms": 9482,
+      "intent_id": "native/9482/B:NBL24-01-08/obs/428/decision/intent",
+      "parent": "in_air_ball_pursuit",
+      "subagent": "takedown"
+    },
+    {
+      "action": "tackle",
+      "athlete": "A:NBL24-07-10",
+      "commit_ms": 10026,
+      "intent_id": "native/10026/A:NBL24-07-10/obs/442/decision/intent",
+      "parent": "playmaking",
+      "subagent": "takedown"
+    }
+  ],
+  "commit_log_sha256": "d1619080406fddb686e903aca7e0ee3e4150c042a82b920ff0c942e82b0347d9",
+  "config": {
+    "arrow_speed": 250.0,
+    "arrows": 15,
+    "automatic_containment": false,
+    "automatic_descent": false,
+    "body_standards": [],
+    "breaks_ms": [
+      120000,
+      600000,
+      120000,
+      180000
+    ],
+    "carry_points": 5,
+    "carry_release_radius_m": 3.0,
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "dead_stall_limit_ms": 120000,
+    "decision_ms": 500,
+    "defender_ball_leash_m": 25.0,
+    "defender_baseline": true,
+    "defender_mark_distance_m": 5.0,
+    "direct_ms": 500,
+    "dt_ms": 100,
+    "fatigue": false,
+    "field_roster_limit": 12,
+    "freeze_ms": 5000,
+    "freezes": 5,
+    "full_award_points": 3,
+    "goal_depth": 3.0,
+    "goal_radius": 3.0,
+    "hand_fight": "intent-gated-placeholder",
+    "immunity_ms": 10000,
+    "individuation": "individuation/1",
+    "injury": false,
+    "latency_ms": 200,
+    "legacy_layers": [],
+    "m2": "null",
+    "mapping_version": "attr-map/2",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "own_goal_points": 2,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": [
+      [
+        "arm_pin_grip",
+        0.5
+      ],
+      [
+        "arrow_drag",
+        0.06
+      ],
+      [
+        "arrow_error_scale",
+        1.0
+      ],
+      [
+        "balance_recovery_per_s",
+        1.5
+      ],
+      [
+        "ball_drag",
+        0.015
+      ],
+      [
+        "ball_mass_kg",
+        0.4
+      ],
+      [
+        "ball_restitution",
+        0.7745966692
+      ],
+      [
+        "base_half_width_frac",
+        0.2
+      ],
+      [
+        "blindside_rear_half_angle_deg",
+        15.0
+      ],
+      [
+        "block_force",
+        1.0
+      ],
+      [
+        "body_radius_scale",
+        1.0
+      ],
+      [
+        "bow_draw_ms",
+        600
+      ],
+      [
+        "brace_speed_mps",
+        2.0
+      ],
+      [
+        "c1_catch_model",
+        1
+      ],
+      [
+        "c1_chasers_read_flight",
+        0
+      ],
+      [
+        "c1_pass_planning",
+        1
+      ],
+      [
+        "c1_receiver_routing",
+        0
+      ],
+      [
+        "c3_contact",
+        1
+      ],
+      [
+        "c3_follow_distance",
+        1
+      ],
+      [
+        "c3_prep_round_ms",
+        0
+      ],
+      [
+        "c3_region_policy",
+        0
+      ],
+      [
+        "c3_substep_ms",
+        10
+      ],
+      [
+        "c3b",
+        1
+      ],
+      [
+        "c3c",
+        1
+      ],
+      [
+        "c4_zone",
+        1
+      ],
+      [
+        "c4b",
+        1
+      ],
+      [
+        "c4c",
+        1
+      ],
+      [
+        "c4c2",
+        1
+      ],
+      [
+        "catch_arrest_force_N",
+        1100.0
+      ],
+      [
+        "catch_hand_travel_m",
+        0.6
+      ],
+      [
+        "catch_noise",
+        0.15
+      ],
+      [
+        "catch_reaction_s",
+        0.12
+      ],
+      [
+        "collision_risk_tolerance",
+        0.5
+      ],
+      [
+        "contact_foul_min_shock",
+        0.05
+      ],
+      [
+        "contact_restitution",
+        0.1
+      ],
+      [
+        "contact_roster",
+        0
+      ],
+      [
+        "contact_time_s",
+        0.15
+      ],
+      [
+        "containment_window_s",
+        2.0
+      ],
+      [
+        "controller",
+        0
+      ],
+      [
+        "ctrl_keeper",
+        1
+      ],
+      [
+        "ctrl_lookahead_s",
+        0.6
+      ],
+      [
+        "ctrl_receivers",
+        2
+      ],
+      [
+        "ctrl_short_inbound",
+        1
+      ],
+      [
+        "ctrl_style_A",
+        0
+      ],
+      [
+        "ctrl_style_B",
+        0
+      ],
+      [
+        "ctrl_style_band",
+        0.1
+      ],
+      [
+        "deflection_speed_kept",
+        0.2
+      ],
+      [
+        "descent_time_s",
+        0.5
+      ],
+      [
+        "descent_window_s",
+        2.0
+      ],
+      [
+        "escape_allocation",
+        1
+      ],
+      [
+        "escape_force_N",
+        2500.0
+      ],
+      [
+        "exit_protection",
+        1
+      ],
+      [
+        "fatigue_rate",
+        1.0
+      ],
+      [
+        "frame_thickness",
+        0.2
+      ],
+      [
+        "gait_duty_min",
+        0.22
+      ],
+      [
+        "gait_duty_per_mps",
+        0.03
+      ],
+      [
+        "gait_duty_rest",
+        0.62
+      ],
+      [
+        "gait_half_width_frac",
+        0.09
+      ],
+      [
+        "gait_reset_frac",
+        0.75
+      ],
+      [
+        "gait_step_base_frac",
+        0.25
+      ],
+      [
+        "gait_step_max_frac",
+        1.1
+      ],
+      [
+        "gait_step_per_mps_frac",
+        0.035
+      ],
+      [
+        "gait_still_mps",
+        0.5
+      ],
+      [
+        "get_up_max_slide_mps",
+        1.0
+      ],
+      [
+        "get_up_time_s",
+        0.8
+      ],
+      [
+        "gravity",
+        9.81
+      ],
+      [
+        "grip_delay_ms",
+        300
+      ],
+      [
+        "grip_force_N",
+        2500.0
+      ],
+      [
+        "grip_gain_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_time_s",
+        0.15
+      ],
+      [
+        "grip_resist_per_s",
+        1.0
+      ],
+      [
+        "grip_slip_per_s",
+        2.0
+      ],
+      [
+        "grip_slip_ref_mps",
+        4.0
+      ],
+      [
+        "hold_height_lower_frac",
+        0.45
+      ],
+      [
+        "hold_height_upper_frac",
+        0.7
+      ],
+      [
+        "holder_load_factor",
+        0.35
+      ],
+      [
+        "keeper_aim_frac",
+        0.5
+      ],
+      [
+        "keeper_attempt_margin_m",
+        1.5
+      ],
+      [
+        "keeper_body_restitution",
+        0.3
+      ],
+      [
+        "keeper_confront",
+        1
+      ],
+      [
+        "keeper_confront_m",
+        7.0
+      ],
+      [
+        "keeper_depth_frac",
+        0.25
+      ],
+      [
+        "keeper_depth_max_m",
+        4.0
+      ],
+      [
+        "keeper_depth_min_m",
+        1.0
+      ],
+      [
+        "keeper_dive_hand_frac",
+        0.3
+      ],
+      [
+        "keeper_dive_lean",
+        0.35
+      ],
+      [
+        "keeper_dive_time_s",
+        0.25
+      ],
+      [
+        "keeper_extension_frac",
+        0.3
+      ],
+      [
+        "keeper_gather_m",
+        6.0
+      ],
+      [
+        "keeper_height_m",
+        0.0
+      ],
+      [
+        "keeper_launch_min_s",
+        0.1
+      ],
+      [
+        "keeper_parry_restitution",
+        0.35
+      ],
+      [
+        "keeper_parry_swing_mps",
+        5.0
+      ],
+      [
+        "keeper_pushoff_frac",
+        0.4
+      ],
+      [
+        "keeper_reaction_s",
+        0.2
+      ],
+      [
+        "keeper_set_mps",
+        1.5
+      ],
+      [
+        "keeper_unset_s",
+        0.1
+      ],
+      [
+        "keeper_windup_set",
+        1
+      ],
+      [
+        "lower_hold_leg_factor",
+        0.6
+      ],
+      [
+        "pass_aim_error_deg",
+        3.0
+      ],
+      [
+        "pass_release_ms",
+        250
+      ],
+      [
+        "rearm_gap_m",
+        0.3
+      ],
+      [
+        "recovery_react",
+        1
+      ],
+      [
+        "restraint_error_deg",
+        8.0
+      ],
+      [
+        "restraint_speed_loss",
+        0.5
+      ],
+      [
+        "restraint_weight_matched",
+        1.0
+      ],
+      [
+        "restraint_weight_other",
+        0.3
+      ],
+      [
+        "reversal_rule",
+        0
+      ],
+      [
+        "shock_speed_mps",
+        6.0
+      ],
+      [
+        "slide_friction",
+        0.8
+      ],
+      [
+        "strip_in_motion_factor",
+        4.0
+      ],
+      [
+        "tackle_grip_threshold",
+        0.3
+      ],
+      [
+        "tackle_rate",
+        1.25
+      ],
+      [
+        "tackle_source_majority",
+        0.5
+      ],
+      [
+        "topple_time_s",
+        1.0
+      ],
+      [
+        "traction_coefficient",
+        0.8
+      ],
+      [
+        "tuck_after_delay_frac",
+        1.0
+      ],
+      [
+        "zone_direct_penalty",
+        0
+      ]
+    ],
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": [
+      [
+        "acceleration",
+        10.0
+      ],
+      [
+        "arrow_limit",
+        null
+      ],
+      [
+        "arrow_speed",
+        250.0
+      ],
+      [
+        "ball_limit",
+        134.1
+      ],
+      [
+        "braking",
+        13.5
+      ],
+      [
+        "carry_value",
+        5
+      ],
+      [
+        "inner_points",
+        2
+      ],
+      [
+        "inner_zone_radius",
+        10.0
+      ],
+      [
+        "keeper_zone_radius",
+        20.0
+      ],
+      [
+        "marking_distance",
+        5.0
+      ],
+      [
+        "outside_points",
+        4
+      ],
+      [
+        "player_speed",
+        44.704
+      ],
+      [
+        "release_points",
+        3
+      ],
+      [
+        "release_territories",
+        true
+      ],
+      [
+        "tackles_per_possession",
+        2
+      ],
+      [
+        "turning",
+        13.0
+      ],
+      [
+        "zone_inbound",
+        false
+      ],
+      [
+        "zone_marking",
+        false
+      ],
+      [
+        "zone_only",
+        false
+      ]
+    ],
+    "profile": "native-rb",
+    "ratings": 0.7,
+    "rb319_ball_in_play_enabled": true,
+    "rb319_parts": "A1A2A3A4",
+    "rb320_exact_bounce": true,
+    "rb321_ball_bounce_h": 0.44,
+    "rb321_ball_drag_k": 0.0005,
+    "rb321_ball_material_enabled": true,
+    "rb321_ball_restitution": 0.6,
+    "rb321_ball_roll_decel": 3.0,
+    "rb3_carrier_moves_enabled": true,
+    "rb3_handoff_block_enabled": true,
+    "release_bands": [
+      [
+        10.0,
+        2
+      ],
+      [
+        20.0,
+        3
+      ],
+      [
+        null,
+        4
+      ]
+    ],
+    "review_tolerance_m": 0.05,
+    "roster_digests": [
+      "3281abde11a34ad4aa291c987af92a111a13d525a72bfeb024a267a885d1099e",
+      "944046fad5d0a7f3862ee45d01c20895e833a916367bf7cf231890647965e186"
+    ],
+    "scoring": "banded",
+    "sense_ms": 200,
+    "sudden_break_ms": 60000,
+    "thaw_contact_buffer_ms": 1000,
+    "throw_model": "THROW_SPLIT-primitive",
+    "timeout_ms": 45000,
+    "version": "native-rb/3",
+    "zone_marked_distance_m": 5.0,
+    "zone_radius": 20.0,
+    "zone_residence_ms": 5000
+  },
+  "config_digest": "51362523dadf2ddcfd41a2af08b3e7da9f579f2819511df309dd00436ab44c4b",
+  "contact_intents": {
+    "dodge": 3,
+    "run_through": 3,
+    "takedown": 110,
+    "wrap": 202
+  },
+  "cpu_ms_per_step": 3.3657584240000005,
+  "decisions_by_kind": {
+    "abort_draw": 6,
+    "archer_hold": 414,
+    "block": 37,
+    "carry": 53,
+    "continue_current": 13,
+    "draw_release": 32,
+    "dribble": 4,
+    "handoff": 14,
+    "keeper_control": 342,
+    "mark": 606,
+    "pass": 10,
+    "position": 648,
+    "press": 202,
+    "pursue": 259,
+    "receive": 35,
+    "release_arrow": 26,
+    "restart_claim": 25,
+    "restart_pass": 15,
+    "restart_position": 1743,
+    "restart_wait": 5,
+    "retain": 6,
+    "scan": 1075,
+    "shoot": 3,
+    "stiff_arm": 3,
+    "support": 638,
+    "tackle": 110,
+    "truck": 3
+  },
+  "decisions_total": 6327,
+  "effective": {
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "goal_radius": 3.0,
+    "m2": "null",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": {
+      "arm_pin_grip": 0.5,
+      "arrow_drag": 0.06,
+      "arrow_error_scale": 1.0,
+      "balance_recovery_per_s": 1.5,
+      "ball_drag": 0.015,
+      "ball_mass_kg": 0.4,
+      "ball_restitution": 0.7745966692,
+      "base_half_width_frac": 0.2,
+      "blindside_rear_half_angle_deg": 15.0,
+      "block_force": 1.0,
+      "body_radius_scale": 1.0,
+      "bow_draw_ms": 600,
+      "brace_speed_mps": 2.0,
+      "c1_catch_model": 1,
+      "c1_chasers_read_flight": 0,
+      "c1_pass_planning": 1,
+      "c1_receiver_routing": 0,
+      "c3_contact": 1,
+      "c3_follow_distance": 1,
+      "c3_prep_round_ms": 0,
+      "c3_region_policy": 0,
+      "c3_substep_ms": 10,
+      "c3b": 1,
+      "c3c": 1,
+      "c4_zone": 1,
+      "c4b": 1,
+      "c4c": 1,
+      "c4c2": 1,
+      "catch_arrest_force_N": 1100.0,
+      "catch_hand_travel_m": 0.6,
+      "catch_noise": 0.15,
+      "catch_reaction_s": 0.12,
+      "collision_risk_tolerance": 0.5,
+      "contact_foul_min_shock": 0.05,
+      "contact_restitution": 0.1,
+      "contact_roster": 0,
+      "contact_time_s": 0.15,
+      "containment_window_s": 2.0,
+      "controller": 0,
+      "ctrl_keeper": 1,
+      "ctrl_lookahead_s": 0.6,
+      "ctrl_receivers": 2,
+      "ctrl_short_inbound": 1,
+      "ctrl_style_A": 0,
+      "ctrl_style_B": 0,
+      "ctrl_style_band": 0.1,
+      "deflection_speed_kept": 0.2,
+      "descent_time_s": 0.5,
+      "descent_window_s": 2.0,
+      "escape_allocation": 1,
+      "escape_force_N": 2500.0,
+      "exit_protection": 1,
+      "fatigue_rate": 1.0,
+      "frame_thickness": 0.2,
+      "gait_duty_min": 0.22,
+      "gait_duty_per_mps": 0.03,
+      "gait_duty_rest": 0.62,
+      "gait_half_width_frac": 0.09,
+      "gait_reset_frac": 0.75,
+      "gait_step_base_frac": 0.25,
+      "gait_step_max_frac": 1.1,
+      "gait_step_per_mps_frac": 0.035,
+      "gait_still_mps": 0.5,
+      "get_up_max_slide_mps": 1.0,
+      "get_up_time_s": 0.8,
+      "gravity": 9.81,
+      "grip_delay_ms": 300,
+      "grip_force_N": 2500.0,
+      "grip_gain_per_s": 4.0,
+      "grip_overload_per_s": 4.0,
+      "grip_overload_time_s": 0.15,
+      "grip_resist_per_s": 1.0,
+      "grip_slip_per_s": 2.0,
+      "grip_slip_ref_mps": 4.0,
+      "hold_height_lower_frac": 0.45,
+      "hold_height_upper_frac": 0.7,
+      "holder_load_factor": 0.35,
+      "keeper_aim_frac": 0.5,
+      "keeper_attempt_margin_m": 1.5,
+      "keeper_body_restitution": 0.3,
+      "keeper_confront": 1,
+      "keeper_confront_m": 7.0,
+      "keeper_depth_frac": 0.25,
+      "keeper_depth_max_m": 4.0,
+      "keeper_depth_min_m": 1.0,
+      "keeper_dive_hand_frac": 0.3,
+      "keeper_dive_lean": 0.35,
+      "keeper_dive_time_s": 0.25,
+      "keeper_extension_frac": 0.3,
+      "keeper_gather_m": 6.0,
+      "keeper_height_m": 0.0,
+      "keeper_launch_min_s": 0.1,
+      "keeper_parry_restitution": 0.35,
+      "keeper_parry_swing_mps": 5.0,
+      "keeper_pushoff_frac": 0.4,
+      "keeper_reaction_s": 0.2,
+      "keeper_set_mps": 1.5,
+      "keeper_unset_s": 0.1,
+      "keeper_windup_set": 1,
+      "lower_hold_leg_factor": 0.6,
+      "pass_aim_error_deg": 3.0,
+      "pass_release_ms": 250,
+      "rearm_gap_m": 0.3,
+      "recovery_react": 1,
+      "restraint_error_deg": 8.0,
+      "restraint_speed_loss": 0.5,
+      "restraint_weight_matched": 1.0,
+      "restraint_weight_other": 0.3,
+      "reversal_rule": 0,
+      "shock_speed_mps": 6.0,
+      "slide_friction": 0.8,
+      "strip_in_motion_factor": 4.0,
+      "tackle_grip_threshold": 0.3,
+      "tackle_rate": 1.25,
+      "tackle_source_majority": 0.5,
+      "topple_time_s": 1.0,
+      "traction_coefficient": 0.8,
+      "tuck_after_delay_frac": 1.0,
+      "zone_direct_penalty": 0
+    },
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": {
+      "acceleration": 10.0,
+      "arrow_limit": null,
+      "arrow_speed": 250.0,
+      "ball_limit": 134.1,
+      "braking": 13.5,
+      "carry_value": 5,
+      "inner_points": 2,
+      "inner_zone_radius": 10.0,
+      "keeper_zone_radius": 20.0,
+      "marking_distance": 5.0,
+      "outside_points": 4,
+      "player_speed": 44.704,
+      "release_points": 3,
+      "release_territories": true,
+      "tackles_per_possession": 2,
+      "turning": 13.0,
+      "zone_inbound": false,
+      "zone_marking": false,
+      "zone_only": false
+    },
+    "zone_radius": 20.0
+  },
+  "end_ms": 144083,
+  "engine_events": {
+    "arrow_geometry_impact": 14,
+    "arrow_miss": 12,
+    "arrow_outcome": 26,
+    "arrow_release": 26,
+    "boundary": 5,
+    "c3_collision": 60,
+    "c3_containment": 1,
+    "c3_down": 7,
+    "c3_grip_broken": 1,
+    "c3_grounding": 7,
+    "c3_hold_end": 33,
+    "c3_hold_start": 33,
+    "c3_upright": 7,
+    "c3b_rules": 1,
+    "c3c_rules": 1,
+    "c4_rules": 1,
+    "c4a_rules": 1,
+    "c4b_rules": 1,
+    "c4c2_rules": 1,
+    "c4c_rules": 1,
+    "carry_outcome": 2,
+    "coin_flip": 1,
+    "contact_rejected": 2,
+    "control": 40,
+    "engagement": 87,
+    "freeze": 7,
+    "goal": 2,
+    "grounded": 1,
+    "handoff_complete": 13,
+    "handoff_start": 14,
+    "hunt_cleared": 1,
+    "inert_impact": 5,
+    "lineup_check": 1,
+    "period_start": 1,
+    "possession": 5,
+    "rb_arrow_release": 26,
+    "rb_boundary": 5,
+    "rb_freeze": 7,
+    "rb_goal": 2,
+    "rb_quota_reset": 15,
+    "rb_substitution": 2,
+    "release": 19,
+    "restart_awarded": 15,
+    "restart_claim": 15,
+    "restart_closed": 15,
+    "restart_ready": 15,
+    "restart_release": 15,
+    "scrimmage_formation": 10,
+    "snap_hold_released": 10,
+    "stiff_arm": 2,
+    "stiff_arm_effect": 2,
+    "strip": 1,
+    "tackle_count": 6,
+    "truck": 2
+  },
+  "foul_reasons": {},
+  "invariants": "passed",
+  "live_ms": 97038,
+  "outcomes_by_status": {
+    "arrow_released": 26,
+    "handoff_complete": 13,
+    "rejected_out_of_reach": 1,
+    "released": 32
+  },
+  "period": 1,
+  "policy_params": {
+    "A": {
+      "archer_eager": 0.0,
+      "bias_pass": 0.0,
+      "bias_press": 0.0,
+      "bias_pursue": 0.0,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 1.2,
+      "pos_edge_zone": 1.0,
+      "pos_goal_att": 1.0,
+      "pos_goal_def": 1.0,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 0.6,
+      "pos_spread": 1.0,
+      "shot_range": 32.0
+    },
+    "B": {
+      "archer_eager": 0.0,
+      "bias_pass": 0.0,
+      "bias_press": 0.0,
+      "bias_pursue": 0.0,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 1.2,
+      "pos_edge_zone": 1.0,
+      "pos_goal_att": 1.0,
+      "pos_goal_def": 1.0,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 0.6,
+      "pos_spread": 1.0,
+      "shot_range": 32.0
+    }
+  },
+  "prism_agents": {
+    "defending": 1460,
+    "disruption": 490,
+    "goalkeeping": 490,
+    "in_air_ball_pursuit": 1359,
+    "live_ball_pursuit": 1044,
+    "playmaking": 1484
+  },
+  "release_distances": {
+    "A": {
+      "23": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "27": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "37": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "38": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "43": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "71": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "83": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      }
+    },
+    "B": {
+      "12": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "26": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "42": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "45": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "48": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "65": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "75": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "78": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      }
+    }
+  },
+  "restart_awarded": 15,
+  "restart_closed": 15,
+  "restart_completion_ratio": 1.0,
+  "restart_metric": {
+    "all": {
+      "awarded": 15,
+      "eligible": 15,
+      "eligible_released": 15,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 15,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "scrim": {
+      "awarded": 7,
+      "eligible": 7,
+      "eligible_released": 7,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 7,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "snap40": {
+      "awarded": 3,
+      "eligible": 3,
+      "eligible_released": 3,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 3,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "toss": {
+      "awarded": 5,
+      "eligible": 5,
+      "eligible_released": 5,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 5,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "unobserved": 0
+  },
+  "restart_release_ratio": 1.0,
+  "restart_released": 15,
+  "restart_statuses": {
+    "released": 15
+  },
+  "result": null,
+  "rules": {
+    "ledger_by_row": {
+      "R-02": 27,
+      "R-03": 26,
+      "R-06": 14,
+      "R-07": 3,
+      "R-08": 4,
+      "R-09": 3,
+      "R-10": 5,
+      "R-11": 1,
+      "R-14": 18,
+      "R-18": 19,
+      "R-19": 1,
+      "R-20": 17
+    }
+  },
+  "rules_ledger": {
+    "R-02": 27,
+    "R-03": 26,
+    "R-06": 14,
+    "R-07": 3,
+    "R-08": 4,
+    "R-09": 3,
+    "R-10": 5,
+    "R-11": 1,
+    "R-14": 18,
+    "R-18": 19,
+    "R-19": 1,
+    "R-20": 17
+  },
+  "runtime_s": 5.085,
+  "score": {
+    "A": 4,
+    "B": 3
+  },
+  "seed": 1,
+  "state_hash": "216c903b8f86365b31975a1f167e7303a4536fa9a5adc615e1cbd84b32be1860",
+  "status": "partial",
+  "steps": 1500,
+  "team_stats": {
+    "A": {
+      "distance_progressed": 106.28815334371525,
+      "goals": 1,
+      "shots": 2,
+      "turnovers": 7
+    },
+    "B": {
+      "distance_progressed": 114.84197234451305,
+      "goals": 1,
+      "shots": 1,
+      "turnovers": 7
+    }
+  },
+  "trace_hash": "358229d409421dd224e84d1206dde4c1cda57cd79a380a0d154e790d03a50757"
+}

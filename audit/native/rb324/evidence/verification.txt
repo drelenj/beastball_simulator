@@ -1,0 +1,15 @@
+Compatibility replay exact.
+phase1 699 passed, 1 warning, 23 subtests passed in 620.05s (0:10:20)
+phase1 six legacy rows match.
+final 731 passed, 1 warning, 23 subtests passed in 646.80s (0:10:46)
+final six legacy rows match.
+Schema windows preserve RB-3.23 enabled replay.
+RB-3.22 median CPU ms/step 3.543
+schema seed-1 deterministic: 358229d409421dd224e84d1206dde4c1cda57cd79a380a0d154e790d03a50757 216c903b8f86365b31975a1f167e7303a4536fa9a5adc615e1cbd84b32be1860
+schema median CPU ms/step 3.573 ratio to baseline 1.0082 speed gate PASS
+final seed-1 deterministic: 6214745f70234fa41a117f6a71c637a6086384001e166deeab340d5fc7675256 2ff2c5253aadf519845a8296783c46a5c930675fa9408c48c0e6b3088a702800
+final median CPU ms/step 4.221 ratio to baseline 1.1913 speed gate OVER BUDGET
+neutral-real-off {'A': 96, 'B': 57} {'A': 147, 'B': 145} steps 32582 restarts 265 CPU ms/step 4.302 trace f249543ea140610439e109f4ddda6d9b0c1217c5729b3b1e97d6fe83fdedddab state 2eb431c35abe9d226f6f935dbe49c29258077a1772ed12efd0a5676bdce6f5b8
+neutral-real-final-on {'A': 35, 'B': 29} {'A': 105, 'B': 104} steps 30189 restarts 161 CPU ms/step 5.003 trace 1678fcb5ef42277063942f0c43f1d5c23d6d54be33d05a62b2658a7fe31f5c51 state 46c878761fe963eac42c50322e58a088d51d4415c79e71e6314ec45f5de6bf6e
+control-off {'A': 55, 'B': 79} {'A': 144, 'B': 144} steps 33097 restarts 287 CPU ms/step 4.099 trace 6b1b7cadd3d20c4bdafce50025b1e29619402a358fd50ebebdb953933960d67f state 0b3ff90b73c50ab39e784fb0d255fed29d38c16f257ba97ab622801e404950ac
+control-on {'A': 42, 'B': 28} {'A': 115, 'B': 116} steps 30201 restarts 161 CPU ms/step 4.616 trace 4183a79b9d80ebd75a5409d4f0b6796c7b7c34d3e9dfd9afb81f0607811fba34 state f64cc6b48c27ab0849de0b1dfbae1d3c63fe758e508b001c3c787eecb79c5e00

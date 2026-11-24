@@ -1,0 +1,1886 @@
+{
+  "config": {
+    "arrow_speed": 250.0,
+    "arrows": 15,
+    "automatic_containment": false,
+    "automatic_descent": false,
+    "body_standards": [],
+    "breaks_ms": [
+      120000,
+      600000,
+      120000,
+      180000
+    ],
+    "carry_points": 5,
+    "carry_release_radius_m": 3.0,
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "dead_stall_limit_ms": 120000,
+    "decision_ms": 500,
+    "defender_ball_leash_m": 25.0,
+    "defender_baseline": true,
+    "defender_mark_distance_m": 5.0,
+    "direct_ms": 500,
+    "dt_ms": 100,
+    "fatigue": false,
+    "field_roster_limit": 12,
+    "freeze_ms": 5000,
+    "freezes": 5,
+    "full_award_points": 3,
+    "goal_depth": 3.0,
+    "goal_radius": 3.0,
+    "hand_fight": "intent-gated-placeholder",
+    "immunity_ms": 10000,
+    "injury": false,
+    "latency_ms": 200,
+    "legacy_layers": [],
+    "m2": "null",
+    "mapping_version": "attr-map/2",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "own_goal_points": 2,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": [
+      [
+        "arm_pin_grip",
+        0.5
+      ],
+      [
+        "arrow_drag",
+        0.06
+      ],
+      [
+        "arrow_error_scale",
+        1.0
+      ],
+      [
+        "balance_recovery_per_s",
+        1.5
+      ],
+      [
+        "ball_drag",
+        0.015
+      ],
+      [
+        "ball_mass_kg",
+        0.4
+      ],
+      [
+        "ball_restitution",
+        0.7745966692
+      ],
+      [
+        "base_half_width_frac",
+        0.2
+      ],
+      [
+        "blindside_rear_half_angle_deg",
+        15.0
+      ],
+      [
+        "block_force",
+        1.0
+      ],
+      [
+        "body_radius_scale",
+        1.0
+      ],
+      [
+        "bow_draw_ms",
+        600
+      ],
+      [
+        "brace_speed_mps",
+        2.0
+      ],
+      [
+        "c1_catch_model",
+        1
+      ],
+      [
+        "c1_chasers_read_flight",
+        0
+      ],
+      [
+        "c1_pass_planning",
+        1
+      ],
+      [
+        "c1_receiver_routing",
+        0
+      ],
+      [
+        "c3_contact",
+        1
+      ],
+      [
+        "c3_follow_distance",
+        1
+      ],
+      [
+        "c3_prep_round_ms",
+        0
+      ],
+      [
+        "c3_region_policy",
+        0
+      ],
+      [
+        "c3_substep_ms",
+        10
+      ],
+      [
+        "c3b",
+        1
+      ],
+      [
+        "c3c",
+        1
+      ],
+      [
+        "c4_zone",
+        1
+      ],
+      [
+        "c4b",
+        1
+      ],
+      [
+        "c4c",
+        1
+      ],
+      [
+        "c4c2",
+        1
+      ],
+      [
+        "catch_arrest_force_N",
+        1100.0
+      ],
+      [
+        "catch_hand_travel_m",
+        0.6
+      ],
+      [
+        "catch_noise",
+        0.15
+      ],
+      [
+        "catch_reaction_s",
+        0.12
+      ],
+      [
+        "collision_risk_tolerance",
+        0.5
+      ],
+      [
+        "contact_foul_min_shock",
+        0.05
+      ],
+      [
+        "contact_restitution",
+        0.1
+      ],
+      [
+        "contact_roster",
+        0
+      ],
+      [
+        "contact_time_s",
+        0.15
+      ],
+      [
+        "containment_window_s",
+        2.0
+      ],
+      [
+        "controller",
+        0
+      ],
+      [
+        "ctrl_keeper",
+        1
+      ],
+      [
+        "ctrl_lookahead_s",
+        0.6
+      ],
+      [
+        "ctrl_receivers",
+        2
+      ],
+      [
+        "ctrl_short_inbound",
+        1
+      ],
+      [
+        "ctrl_style_A",
+        0
+      ],
+      [
+        "ctrl_style_B",
+        0
+      ],
+      [
+        "ctrl_style_band",
+        0.1
+      ],
+      [
+        "deflection_speed_kept",
+        0.2
+      ],
+      [
+        "descent_time_s",
+        0.5
+      ],
+      [
+        "descent_window_s",
+        2.0
+      ],
+      [
+        "escape_allocation",
+        1
+      ],
+      [
+        "escape_force_N",
+        2500.0
+      ],
+      [
+        "exit_protection",
+        1
+      ],
+      [
+        "fatigue_rate",
+        0.0
+      ],
+      [
+        "frame_thickness",
+        0.2
+      ],
+      [
+        "gait_duty_min",
+        0.22
+      ],
+      [
+        "gait_duty_per_mps",
+        0.03
+      ],
+      [
+        "gait_duty_rest",
+        0.62
+      ],
+      [
+        "gait_half_width_frac",
+        0.09
+      ],
+      [
+        "gait_reset_frac",
+        0.75
+      ],
+      [
+        "gait_step_base_frac",
+        0.25
+      ],
+      [
+        "gait_step_max_frac",
+        1.1
+      ],
+      [
+        "gait_step_per_mps_frac",
+        0.035
+      ],
+      [
+        "gait_still_mps",
+        0.5
+      ],
+      [
+        "get_up_max_slide_mps",
+        1.0
+      ],
+      [
+        "get_up_time_s",
+        0.8
+      ],
+      [
+        "gravity",
+        9.81
+      ],
+      [
+        "grip_delay_ms",
+        300
+      ],
+      [
+        "grip_force_N",
+        2500.0
+      ],
+      [
+        "grip_gain_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_time_s",
+        0.15
+      ],
+      [
+        "grip_resist_per_s",
+        1.0
+      ],
+      [
+        "grip_slip_per_s",
+        2.0
+      ],
+      [
+        "grip_slip_ref_mps",
+        4.0
+      ],
+      [
+        "hold_height_lower_frac",
+        0.45
+      ],
+      [
+        "hold_height_upper_frac",
+        0.7
+      ],
+      [
+        "holder_load_factor",
+        0.35
+      ],
+      [
+        "keeper_aim_frac",
+        0.5
+      ],
+      [
+        "keeper_attempt_margin_m",
+        1.5
+      ],
+      [
+        "keeper_body_restitution",
+        0.3
+      ],
+      [
+        "keeper_confront",
+        1
+      ],
+      [
+        "keeper_confront_m",
+        7.0
+      ],
+      [
+        "keeper_depth_frac",
+        0.25
+      ],
+      [
+        "keeper_depth_max_m",
+        4.0
+      ],
+      [
+        "keeper_depth_min_m",
+        1.0
+      ],
+      [
+        "keeper_dive_hand_frac",
+        0.3
+      ],
+      [
+        "keeper_dive_lean",
+        0.35
+      ],
+      [
+        "keeper_dive_time_s",
+        0.25
+      ],
+      [
+        "keeper_extension_frac",
+        0.3
+      ],
+      [
+        "keeper_gather_m",
+        6.0
+      ],
+      [
+        "keeper_height_m",
+        0.0
+      ],
+      [
+        "keeper_launch_min_s",
+        0.1
+      ],
+      [
+        "keeper_parry_restitution",
+        0.35
+      ],
+      [
+        "keeper_parry_swing_mps",
+        5.0
+      ],
+      [
+        "keeper_pushoff_frac",
+        0.4
+      ],
+      [
+        "keeper_reaction_s",
+        0.2
+      ],
+      [
+        "keeper_set_mps",
+        1.5
+      ],
+      [
+        "keeper_unset_s",
+        0.1
+      ],
+      [
+        "keeper_windup_set",
+        1
+      ],
+      [
+        "lower_hold_leg_factor",
+        0.6
+      ],
+      [
+        "pass_aim_error_deg",
+        3.0
+      ],
+      [
+        "pass_release_ms",
+        250
+      ],
+      [
+        "rearm_gap_m",
+        0.3
+      ],
+      [
+        "recovery_react",
+        1
+      ],
+      [
+        "restraint_error_deg",
+        8.0
+      ],
+      [
+        "restraint_speed_loss",
+        0.5
+      ],
+      [
+        "restraint_weight_matched",
+        1.0
+      ],
+      [
+        "restraint_weight_other",
+        0.3
+      ],
+      [
+        "reversal_rule",
+        0
+      ],
+      [
+        "shock_speed_mps",
+        6.0
+      ],
+      [
+        "slide_friction",
+        0.8
+      ],
+      [
+        "strip_in_motion_factor",
+        4.0
+      ],
+      [
+        "tackle_grip_threshold",
+        0.3
+      ],
+      [
+        "tackle_rate",
+        1.25
+      ],
+      [
+        "tackle_source_majority",
+        0.5
+      ],
+      [
+        "topple_time_s",
+        1.0
+      ],
+      [
+        "traction_coefficient",
+        0.8
+      ],
+      [
+        "tuck_after_delay_frac",
+        1.0
+      ],
+      [
+        "zone_direct_penalty",
+        0
+      ]
+    ],
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": [
+      [
+        "acceleration",
+        10.0
+      ],
+      [
+        "arrow_limit",
+        null
+      ],
+      [
+        "arrow_speed",
+        250.0
+      ],
+      [
+        "ball_limit",
+        134.1
+      ],
+      [
+        "braking",
+        13.5
+      ],
+      [
+        "carry_value",
+        5
+      ],
+      [
+        "inner_points",
+        2
+      ],
+      [
+        "inner_zone_radius",
+        10.0
+      ],
+      [
+        "keeper_zone_radius",
+        20.0
+      ],
+      [
+        "marking_distance",
+        5.0
+      ],
+      [
+        "outside_points",
+        4
+      ],
+      [
+        "player_speed",
+        44.704
+      ],
+      [
+        "release_points",
+        3
+      ],
+      [
+        "release_territories",
+        true
+      ],
+      [
+        "tackles_per_possession",
+        2
+      ],
+      [
+        "turning",
+        13.0
+      ],
+      [
+        "zone_inbound",
+        false
+      ],
+      [
+        "zone_marking",
+        false
+      ],
+      [
+        "zone_only",
+        false
+      ]
+    ],
+    "profile": "native-rb",
+    "ratings": 0.7,
+    "rb319_ball_in_play_enabled": true,
+    "rb319_parts": "A1A2A3A4",
+    "rb320_exact_bounce": true,
+    "rb321_ball_bounce_h": 0.44,
+    "rb321_ball_drag_k": 0.0005,
+    "rb321_ball_material_enabled": true,
+    "rb321_ball_restitution": 0.6,
+    "rb321_ball_roll_decel": 3.0,
+    "rb3_carrier_moves_enabled": true,
+    "rb3_handoff_block_enabled": true,
+    "release_bands": [
+      [
+        10.0,
+        2
+      ],
+      [
+        20.0,
+        3
+      ],
+      [
+        null,
+        4
+      ]
+    ],
+    "review_tolerance_m": 0.05,
+    "roster_digests": [
+      "51ceaf3a858da15f87ec735e05991d2524e47c0dabd05be3076c04126e791d45",
+      "db0d28b72a0180ade206481ce290e986775d466555c174bafc4c4c5f85fbcf93"
+    ],
+    "scoring": "banded",
+    "sense_ms": 200,
+    "sudden_break_ms": 60000,
+    "thaw_contact_buffer_ms": 1000,
+    "throw_model": "THROW_SPLIT-primitive",
+    "timeout_ms": 45000,
+    "version": "native-rb/3",
+    "zone_marked_distance_m": 5.0,
+    "zone_radius": 20.0,
+    "zone_residence_ms": 5000
+  },
+  "config_digest": "1e65fb1b6952ecf9b2907b575bef2eb7a7011656a4ecd16d16fca1156f2878d4",
+  "contact_intents": {
+    "brace": 13,
+    "dodge": 131,
+    "run_through": 74,
+    "takedown": 4702,
+    "wrap": 4727
+  },
+  "cpu_ms_per_step": 4.301679190626727,
+  "decisions_by_kind": {
+    "abort_draw": 148,
+    "archer_hold": 9068,
+    "block": 1195,
+    "carry": 1667,
+    "continue_current": 611,
+    "draw_release": 651,
+    "dribble": 20,
+    "handoff": 333,
+    "keeper_control": 9190,
+    "mark": 19543,
+    "pass": 285,
+    "position": 15339,
+    "press": 4727,
+    "pursue": 6503,
+    "receive": 941,
+    "release_arrow": 503,
+    "restart_claim": 342,
+    "restart_pass": 403,
+    "restart_position": 31747,
+    "restart_wait": 127,
+    "retain": 410,
+    "scan": 24655,
+    "shoot": 79,
+    "stiff_arm": 210,
+    "stretch": 5,
+    "support": 19797,
+    "tackle": 4702,
+    "truck": 62
+  },
+  "decisions_total": 153263,
+  "effective": {
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "goal_radius": 3.0,
+    "m2": "null",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": {
+      "arm_pin_grip": 0.5,
+      "arrow_drag": 0.06,
+      "arrow_error_scale": 1.0,
+      "balance_recovery_per_s": 1.5,
+      "ball_drag": 0.015,
+      "ball_mass_kg": 0.4,
+      "ball_restitution": 0.7745966692,
+      "base_half_width_frac": 0.2,
+      "blindside_rear_half_angle_deg": 15.0,
+      "block_force": 1.0,
+      "body_radius_scale": 1.0,
+      "bow_draw_ms": 600,
+      "brace_speed_mps": 2.0,
+      "c1_catch_model": 1,
+      "c1_chasers_read_flight": 0,
+      "c1_pass_planning": 1,
+      "c1_receiver_routing": 0,
+      "c3_contact": 1,
+      "c3_follow_distance": 1,
+      "c3_prep_round_ms": 0,
+      "c3_region_policy": 0,
+      "c3_substep_ms": 10,
+      "c3b": 1,
+      "c3c": 1,
+      "c4_zone": 1,
+      "c4b": 1,
+      "c4c": 1,
+      "c4c2": 1,
+      "catch_arrest_force_N": 1100.0,
+      "catch_hand_travel_m": 0.6,
+      "catch_noise": 0.15,
+      "catch_reaction_s": 0.12,
+      "collision_risk_tolerance": 0.5,
+      "contact_foul_min_shock": 0.05,
+      "contact_restitution": 0.1,
+      "contact_roster": 0,
+      "contact_time_s": 0.15,
+      "containment_window_s": 2.0,
+      "controller": 0,
+      "ctrl_keeper": 1,
+      "ctrl_lookahead_s": 0.6,
+      "ctrl_receivers": 2,
+      "ctrl_short_inbound": 1,
+      "ctrl_style_A": 0,
+      "ctrl_style_B": 0,
+      "ctrl_style_band": 0.1,
+      "deflection_speed_kept": 0.2,
+      "descent_time_s": 0.5,
+      "descent_window_s": 2.0,
+      "escape_allocation": 1,
+      "escape_force_N": 2500.0,
+      "exit_protection": 1,
+      "fatigue_rate": 0.0,
+      "frame_thickness": 0.2,
+      "gait_duty_min": 0.22,
+      "gait_duty_per_mps": 0.03,
+      "gait_duty_rest": 0.62,
+      "gait_half_width_frac": 0.09,
+      "gait_reset_frac": 0.75,
+      "gait_step_base_frac": 0.25,
+      "gait_step_max_frac": 1.1,
+      "gait_step_per_mps_frac": 0.035,
+      "gait_still_mps": 0.5,
+      "get_up_max_slide_mps": 1.0,
+      "get_up_time_s": 0.8,
+      "gravity": 9.81,
+      "grip_delay_ms": 300,
+      "grip_force_N": 2500.0,
+      "grip_gain_per_s": 4.0,
+      "grip_overload_per_s": 4.0,
+      "grip_overload_time_s": 0.15,
+      "grip_resist_per_s": 1.0,
+      "grip_slip_per_s": 2.0,
+      "grip_slip_ref_mps": 4.0,
+      "hold_height_lower_frac": 0.45,
+      "hold_height_upper_frac": 0.7,
+      "holder_load_factor": 0.35,
+      "keeper_aim_frac": 0.5,
+      "keeper_attempt_margin_m": 1.5,
+      "keeper_body_restitution": 0.3,
+      "keeper_confront": 1,
+      "keeper_confront_m": 7.0,
+      "keeper_depth_frac": 0.25,
+      "keeper_depth_max_m": 4.0,
+      "keeper_depth_min_m": 1.0,
+      "keeper_dive_hand_frac": 0.3,
+      "keeper_dive_lean": 0.35,
+      "keeper_dive_time_s": 0.25,
+      "keeper_extension_frac": 0.3,
+      "keeper_gather_m": 6.0,
+      "keeper_height_m": 0.0,
+      "keeper_launch_min_s": 0.1,
+      "keeper_parry_restitution": 0.35,
+      "keeper_parry_swing_mps": 5.0,
+      "keeper_pushoff_frac": 0.4,
+      "keeper_reaction_s": 0.2,
+      "keeper_set_mps": 1.5,
+      "keeper_unset_s": 0.1,
+      "keeper_windup_set": 1,
+      "lower_hold_leg_factor": 0.6,
+      "pass_aim_error_deg": 3.0,
+      "pass_release_ms": 250,
+      "rearm_gap_m": 0.3,
+      "recovery_react": 1,
+      "restraint_error_deg": 8.0,
+      "restraint_speed_loss": 0.5,
+      "restraint_weight_matched": 1.0,
+      "restraint_weight_other": 0.3,
+      "reversal_rule": 0,
+      "shock_speed_mps": 6.0,
+      "slide_friction": 0.8,
+      "strip_in_motion_factor": 4.0,
+      "tackle_grip_threshold": 0.3,
+      "tackle_rate": 1.25,
+      "tackle_source_majority": 0.5,
+      "topple_time_s": 1.0,
+      "traction_coefficient": 0.8,
+      "tuck_after_delay_frac": 1.0,
+      "zone_direct_penalty": 0
+    },
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": {
+      "acceleration": 10.0,
+      "arrow_limit": null,
+      "arrow_speed": 250.0,
+      "ball_limit": 134.1,
+      "braking": 13.5,
+      "carry_value": 5,
+      "inner_points": 2,
+      "inner_zone_radius": 10.0,
+      "keeper_zone_radius": 20.0,
+      "marking_distance": 5.0,
+      "outside_points": 4,
+      "player_speed": 44.704,
+      "release_points": 3,
+      "release_territories": true,
+      "tackles_per_possession": 2,
+      "turning": 13.0,
+      "zone_inbound": false,
+      "zone_marking": false,
+      "zone_only": false
+    },
+    "zone_radius": 20.0
+  },
+  "end_ms": 4254753,
+  "engine_events": {
+    "archery_target_diagnosis": 15,
+    "arrow_geometry_impact": 323,
+    "arrow_inert": 26,
+    "arrow_miss": 138,
+    "arrow_outcome": 461,
+    "arrow_release": 478,
+    "block_engaged": 51,
+    "block_shed": 51,
+    "boundary": 61,
+    "c3_collision": 2483,
+    "c3_containment": 3,
+    "c3_down": 139,
+    "c3_grip_broken": 5,
+    "c3_grounding": 139,
+    "c3_hold_end": 795,
+    "c3_hold_start": 795,
+    "c3_upright": 139,
+    "c3b_rules": 1,
+    "c3c_rules": 1,
+    "c4_rules": 1,
+    "c4a_rules": 1,
+    "c4b_rules": 1,
+    "c4c2_rules": 1,
+    "c4c_rules": 1,
+    "carry_outcome": 105,
+    "coin_flip": 1,
+    "contact_rejected": 8,
+    "control": 867,
+    "ends_exchanged": 3,
+    "engagement": 3217,
+    "foul": 15,
+    "foul_award": 10,
+    "frame_contact": 4,
+    "freeze": 127,
+    "goal": 40,
+    "grounded": 8,
+    "handoff_complete": 237,
+    "handoff_start": 324,
+    "handoff_zone_entry": 1,
+    "hunt_cleared": 4,
+    "inert_impact": 125,
+    "keeper_contact": 48,
+    "lineup_check": 1,
+    "match_complete": 1,
+    "period_end": 4,
+    "period_start": 4,
+    "possession": 163,
+    "rb_arrow_forfeited": 15,
+    "rb_arrow_release": 478,
+    "rb_boundary": 61,
+    "rb_break": 3,
+    "rb_discipline": 15,
+    "rb_freeze": 127,
+    "rb_goal": 40,
+    "rb_pause_end": 10,
+    "rb_quota_reset": 290,
+    "rb_substitution": 8,
+    "rb_timeout": 7,
+    "release": 434,
+    "restart_awarded": 265,
+    "restart_claim": 265,
+    "restart_closed": 265,
+    "restart_ready": 265,
+    "restart_release": 262,
+    "scrimmage_formation": 204,
+    "scrimmage_penalty": 2,
+    "snap_hold_released": 202,
+    "stiff_arm": 128,
+    "stiff_arm_effect": 128,
+    "stretch_end": 5,
+    "stretch_goal": 3,
+    "stretch_start": 5,
+    "strip": 25,
+    "tackle_count": 131,
+    "touch": 64,
+    "truck": 59,
+    "truck_broken": 6,
+    "zone_foul_diagnosis": 6,
+    "zone_time_summary": 4
+  },
+  "foul_reasons": {
+    "archery_target": 15
+  },
+  "invariants": "passed",
+  "live_ms": 2400000,
+  "outcomes_by_status": {
+    "arrow_released": 478,
+    "handoff_complete": 237,
+    "interrupted": 22,
+    "rejected_by_engine": 24,
+    "rejected_out_of_reach": 76,
+    "rejected_taker_or_record": 3,
+    "released": 634
+  },
+  "period": 4,
+  "policy_params": {
+    "A": {
+      "archer_eager": 0.0,
+      "bias_pass": 0.0,
+      "bias_press": 0.0,
+      "bias_pursue": 0.0,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 1.2,
+      "pos_edge_zone": 1.0,
+      "pos_goal_att": 1.0,
+      "pos_goal_def": 1.0,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 0.6,
+      "pos_spread": 1.0,
+      "shot_range": 32.0
+    },
+    "B": {
+      "archer_eager": 0.0,
+      "bias_pass": 0.0,
+      "bias_press": 0.0,
+      "bias_pursue": 0.0,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 1.2,
+      "pos_edge_zone": 1.0,
+      "pos_goal_att": 1.0,
+      "pos_goal_def": 1.0,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 0.6,
+      "pos_spread": 1.0,
+      "shot_range": 32.0
+    }
+  },
+  "possessions": {
+    "A": {
+      "count": 147,
+      "ending_in_attempt": 33,
+      "share_ending_in_attempt": 0.22448979591836735,
+      "with_attempt": 45
+    },
+    "B": {
+      "count": 145,
+      "ending_in_attempt": 22,
+      "share_ending_in_attempt": 0.15172413793103448,
+      "with_attempt": 25
+    }
+  },
+  "prism_commits": {},
+  "release_distances": {
+    "A": {
+      "10": {
+        "attempts": 3,
+        "goals": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "12": {
+        "attempts": 7,
+        "goals": 3,
+        "success_rate": 0.42857142857142855
+      },
+      "13": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "14": {
+        "attempts": 4,
+        "goals": 2,
+        "success_rate": 0.5
+      },
+      "15": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "17": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "18": {
+        "attempts": 2,
+        "goals": 2,
+        "success_rate": 1.0
+      },
+      "19": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "20": {
+        "attempts": 3,
+        "goals": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "21": {
+        "attempts": 3,
+        "goals": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "22": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "23": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "24": {
+        "attempts": 6,
+        "goals": 5,
+        "success_rate": 0.8333333333333334
+      },
+      "25": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "26": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "27": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "28": {
+        "attempts": 4,
+        "goals": 1,
+        "success_rate": 0.25
+      },
+      "29": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "30": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "31": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "32": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "33": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "35": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "36": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "37": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "38": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "39": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "40": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "42": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "44": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "45": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "46": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "47": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "48": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "49": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "51": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "52": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "53": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "54": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "55": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "56": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "57": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "58": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "59": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "60": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "61": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "62": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "63": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "64": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "65": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "66": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "67": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "68": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "69": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "70": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "71": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "72": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "73": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "74": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "75": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "76": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "77": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "78": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "79": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "8": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "81": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "82": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "83": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "84": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "85": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "86": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "87": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "88": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "89": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "9": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "90": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "92": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "93": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "95": {
+        "attempts": 10,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "97": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "99": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      }
+    },
+    "B": {
+      "10": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "11": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "12": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "13": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "14": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "15": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "17": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "18": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "21": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "22": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "24": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "26": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "27": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "28": {
+        "attempts": 4,
+        "goals": 2,
+        "success_rate": 0.5
+      },
+      "30": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "36": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "39": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "40": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "41": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "42": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "43": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "48": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "50": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "51": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "52": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "53": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "54": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "55": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "56": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "57": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "58": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "59": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "60": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "61": {
+        "attempts": 8,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "62": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "63": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "64": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "65": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "66": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "67": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "68": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "69": {
+        "attempts": 11,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "70": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "71": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "72": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "73": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "75": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "76": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "77": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "78": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "79": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "8": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "80": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "81": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "82": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "83": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "84": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "85": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "86": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "87": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "9": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "91": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "92": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "93": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "95": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "97": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "99": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      }
+    }
+  },
+  "restart_awarded": 265,
+  "restart_closed": 265,
+  "restart_completion_ratio": 1.0,
+  "restart_metric": {
+    "all": {
+      "awarded": 265,
+      "eligible": 265,
+      "eligible_released": 262,
+      "eligible_timeout": 3,
+      "eligible_timeout_rate": 0.011320754716981131,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 0.9886792452830189,
+      "released": 262,
+      "superseded": 0,
+      "timeout": 3,
+      "timeout_rate": 0.011320754716981131
+    },
+    "scrim": {
+      "awarded": 160,
+      "eligible": 160,
+      "eligible_released": 158,
+      "eligible_timeout": 2,
+      "eligible_timeout_rate": 0.0125,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 0.9875,
+      "released": 158,
+      "superseded": 0,
+      "timeout": 2,
+      "timeout_rate": 0.0125
+    },
+    "snap40": {
+      "awarded": 44,
+      "eligible": 44,
+      "eligible_released": 44,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 44,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "toss": {
+      "awarded": 61,
+      "eligible": 61,
+      "eligible_released": 60,
+      "eligible_timeout": 1,
+      "eligible_timeout_rate": 0.01639344262295082,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 0.9836065573770492,
+      "released": 60,
+      "superseded": 0,
+      "timeout": 1,
+      "timeout_rate": 0.01639344262295082
+    },
+    "unobserved": 0
+  },
+  "restart_release_ratio": 0.9886792452830189,
+  "restart_released": 262,
+  "restart_statuses": {
+    "released": 262,
+    "snap_timeout": 2,
+    "toss_timeout": 1
+  },
+  "result": {
+    "method": "regulation",
+    "score": {
+      "A": 96,
+      "B": 57
+    },
+    "shootout": null,
+    "winner": "A"
+  },
+  "rules": {
+    "ledger_by_row": {
+      "R-02": 630,
+      "R-03": 601,
+      "R-06": 295,
+      "R-07": 77,
+      "R-08": 99,
+      "R-09": 87,
+      "R-10": 154,
+      "R-11": 2,
+      "R-13": 2,
+      "R-14": 329,
+      "R-18": 321,
+      "R-19": 5,
+      "R-20": 310
+    }
+  },
+  "rules_ledger": {
+    "R-02": 630,
+    "R-03": 601,
+    "R-06": 295,
+    "R-07": 77,
+    "R-08": 99,
+    "R-09": 87,
+    "R-10": 154,
+    "R-11": 2,
+    "R-13": 2,
+    "R-14": 329,
+    "R-18": 321,
+    "R-19": 5,
+    "R-20": 310
+  },
+  "runtime_s": 148.03,
+  "score": {
+    "A": 96,
+    "B": 57
+  },
+  "seed": 1,
+  "state_hash": "2eb431c35abe9d226f6f935dbe49c29258077a1772ed12efd0a5676bdce6f5b8",
+  "status": "final",
+  "steps": 32582,
+  "team_stats": {
+    "A": {
+      "distance_progressed": 2919.592463704146,
+      "goals": 27,
+      "half_goal_awards": 5,
+      "minor_fouls": 5,
+      "shots": 49,
+      "turnovers": 143
+    },
+    "B": {
+      "carries": 3,
+      "distance_progressed": 2734.129200092532,
+      "goals": 14,
+      "half_goal_awards": 4,
+      "minor_fouls": 10,
+      "shots": 28,
+      "turnovers": 145
+    }
+  },
+  "trace_hash": "f249543ea140610439e109f4ddda6d9b0c1217c5729b3b1e97d6fe83fdedddab"
+}
