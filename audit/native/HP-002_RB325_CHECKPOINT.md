@@ -3,7 +3,7 @@
 1. RB-3.25 adds PRISM CORE as an opt-in profile with seeded option evaluation, athlete-specific decision uncertainty, and committed action stages.
 2. CORE can choose scoring, possession, defense, interception and specialist options from the athlete's observations. Passing can delay wind-up within one Reaction interval. Takedown can select a grip, and the five maneuver ratings feed their physical execution.
 3. The supplied calibration meets the score and possession targets. The real-body scores span 63–123. Option values and decision accuracy still need ORACLE DRILL.
-4. The final paired performance recheck and single-hook diagnosis are in progress. There is no pending canon question.
+4. The single-hook diagnosis is in progress. There is no pending canon question.
 5. Review the verified replay, the neutral results and the weak or abrupt lab effects before expanding the build.
 
 ## Source
@@ -41,6 +41,24 @@ Use `individuation/2` or the experimental runner's default for CORE. The explici
  d) Compatibility (individuation off): real seed 1 reproduces 57-76, trace 44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072, state 046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d.
 
  e) Speed: individuation-on at most 15% slower per step than RB-3.22 (paired 1,500-step benchmark).
+
+### Gate evidence
+
+- The full suite after the final simulator change reported `744 passed, 1 warning, 23 subtests passed in 640.03s (0:10:40)`. The warning is the pytest dependency's `CallSpec2` deprecation.
+- All six legacy trace, state and config rows match the recorded guard. The raw results are in `rb325/evidence/legacy.txt`.
+- Two full CORE control seed-1 runs finished 72–78 in 33,041 steps. The trace was `b09944083bea5cc9ce2bb290dd4428840c7cbef93c41823d66910ceb799fd130` and the state was `ed5df2b1636522c4a10f293c8fa5250e5dd3293b4f884d68eb2a332e622f894d` in both. The real-roster 1,500-step seed-1 repeat also matched exactly.
+- The compatibility fixture is 57–76 with the full trace and state listed under gate d.
+
+| 1,500-step window | RB-3.22 CPU ms/step | CORE CPU ms/step |
+|---|---:|---:|
+| Real seed 1 | 3.802 | 3.990 |
+| Real seed 3 | 3.586 | 4.036 |
+| Seed 1 repeat | 3.588 | 4.035 |
+| Median of paired seeds | 3.694 | 4.013 |
+
+The matched benchmark passed at **8.64%** slower. Both modes ran under the same concurrent compatibility workload. An earlier comparison used baseline and CORE windows taken under different background loads and measured 16.80%; those records are in `rb325/evidence/timing-unmatched/`. Keep the paired sample and its repeated fingerprint as the speed gate evidence.
+
+The 1,500-step profiles show 3.82 cumulative seconds in CORE RulebookPort capture, 1.78 in CORE decisions, and 3.67 in native physical stepping. The corresponding baseline costs were 3.44, 1.53 and 3.34 seconds. CORE ran 1,279 live physical steps in that profile, compared with 1,125 for RB-3.22. Instinct projected 27,342 remembered sightings. The profiles and raw function timings are in `rb325/evidence/`.
 
 ## Decision boundaries
 
@@ -126,6 +144,8 @@ The full stack fell from 140 to 66 shots and from 76.5 to 37.0 median team point
 
 The old Reflex catch gate alone produced 102 shots across seeds 1 and 3. Open-play pass completion fell from 355/567 (62.6%) to 170/370 (45.9%). The old implementation added a fixed `0.55 − 0.35 × Reflex` seconds after delivered ball evidence. At 0.70 that adds 305 ms after delivery, compared with a stochastic catch-preparation scale of about 106 ms in compatibility. The added gate blocks preparation for part of the short-pass window. This observation motivates the CORE change to ordinary preparation with a graded late adjustment.
 
+Dropping only that gate from the full stack raised completion from 139/350 (39.7%) to 212/383 (55.4%). Total shots rose from 66 to 92 and the pooled team-score median rose from 37 to 50. This confirms an effect on both sides of the intervention. The remaining gap depends on other hooks and how their match paths interact.
+
 ## Neutral calibration
 
 Both teams use 0.70 for every rated attribute. A is Garvian Guardians and B is Ala Apex in the real-body runs. The control uses the standard uniform body for both teams. Every match reached the final and closed every recorded restart.
@@ -150,6 +170,8 @@ The executable table is `rb325/sweep.csv`. It reports the engine quantity, effec
 Instinct and Stamina measured under 2% total effect for the selected quantity. Speed had an adjacent-level jump above half its total measured effect in the acceleration-limited scenario. In the 20-seed near-tie choice samples, Defending, Disruption, Evasion, Finishing, Goalkeeping, both Pursuits, Passing, Playmaking and Takedown had at least one such distribution jump. Each decision rating enters continuously through error spread. The discrete choices can flip at close option boundaries. The event thresholds in the physical probes are lab cutoffs. The throw probes exercise actual release speed, release heading and wind-up. Selection frequency cannot establish correctness.
 
 The additional `rb325/strategy-scenarios.json.gz` samples the role and commitment code with fixed actor observations. At `1.00` compared with the paired `0.70`, the selected Playmaking action changed in 6 of 20 trials, Passing in 3 of 20, Finishing in 13 of 20, and Takedown in 11 of 20. The raw records show all levels and counts. The running-speed jump is between `0.40` and `0.50`. Higher top speeds have little effect in this particular acceleration-limited window. The scenarios do not establish match-level effect size for a single rating.
+
+Reaction's deadline is graded. On a steady 100 ms tick grid a 520 ms deadline at 0.60 is reached at 600 ms, while the 500 ms deadline at 0.70 is reached at 500 ms. That grid case produces an adjacent jump greater than half the realized cadence range. The sweep records the requested deadline. Regulation also contains sub-step events, so realized decision intervals depend on the event timeline.
 
 ## Needs ORACLE DRILL
 
