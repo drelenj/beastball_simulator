@@ -1,4 +1,52 @@
 {
+  "anchor": {
+    "control": {
+      "match_nonfinal": 0,
+      "matches": 1,
+      "mean_team_possessions": 159,
+      "mean_terminal_attempt_share": 0.20125786163522014,
+      "median_team_possessions": 159.0,
+      "median_team_score": 68.5,
+      "possessions_range": [
+        159,
+        159
+      ],
+      "restart_completion": 1.0
+    },
+    "match_nonfinal": 0,
+    "matches": 6,
+    "mean_team_possessions": 153.16666666666666,
+    "mean_terminal_attempt_share": 0.1879513045968234,
+    "median_team_possessions": 155.5,
+    "median_team_score": 66.0,
+    "possessions_range": [
+      144,
+      159
+    ],
+    "real": {
+      "match_nonfinal": 0,
+      "matches": 5,
+      "mean_team_possessions": 152,
+      "mean_terminal_attempt_share": 0.18528999318914408,
+      "median_team_possessions": 154.0,
+      "median_team_score": 66.0,
+      "possessions_range": [
+        144,
+        157
+      ],
+      "restart_completion": 1.0
+    },
+    "restart_completion": 1.0
+  },
+  "performance": {
+    "core_off": 4.394423507666666,
+    "core_on": 3.945524469333334,
+    "learned_repeat_matches": true,
+    "off_vs_rb322": 0.1254949458286716,
+    "on_vs_off": -0.10215197455369673,
+    "on_vs_rb322": 0.010523414762066974,
+    "rb322": 3.9044364650000003
+  },
   "soak-off": {
     "ala_vs_garvian": {
       "ala_wins": 9,
@@ -27,6 +75,37 @@
     "possessions_range": [
       138,
       164
+    ],
+    "restart_completion": 1.0
+  },
+  "soak-on": {
+    "ala_vs_garvian": {
+      "ala_wins": 10,
+      "garvian_wins": 0,
+      "margin_se": 8.23198369504918,
+      "match_nonfinal": 0,
+      "matches": 10,
+      "mean_margin": 34.9,
+      "mean_team_possessions": 159.05,
+      "mean_terminal_attempt_share": 0.18277508408433613,
+      "median_team_possessions": 160.0,
+      "median_team_score": 76.0,
+      "possessions_range": [
+        146,
+        167
+      ],
+      "restart_completion": 1.0,
+      "ties": 0
+    },
+    "match_nonfinal": 0,
+    "matches": 20,
+    "mean_team_possessions": 161.6,
+    "mean_terminal_attempt_share": 0.19005553132215988,
+    "median_team_possessions": 163.0,
+    "median_team_score": 81.5,
+    "possessions_range": [
+      146,
+      172
     ],
     "restart_completion": 1.0
   }

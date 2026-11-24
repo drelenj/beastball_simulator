@@ -1,0 +1,1 @@
+{"artifact_sha256": "a19e9c04431309c1ea779ab077a8dd65eefdcbb616f25481a591d5847f49753e", "branches": 29780, "full_regulation_runs_verified": 49, "strata": {"carrier/20to40/open": 34, "carrier/20to40/pressured": 34, "carrier/over40/open": 34, "carrier/over40/pressured": 34, "carrier/under20/open": 34, "carrier/under20/pressured": 34, "finishing": 60, "passing": 60, "takedown": 60}}

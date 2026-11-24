@@ -1,10 +1,10 @@
 # OWNER BRIEFING
 
-1. **IMPLEMENTED**. RB-3.27 extends offline grading through the end of each possession, adds an opt-in expected-points policy and reads the ratings 0.4 workbook using its named ratings.
-2. PRISM can load a versioned table before kickoff. Athletes still pick from their existing options using their observations, beliefs and decision error. The hand-set policy remains the default.
-3. The fitted shot-conversion table underperformed the pooled holdout baseline. The Gauge criterion was missed in both stages. The learned-on neutral anchor missed both owner ranges.
-4. The versioned fit and six neutral matches are complete. The learned-on roster block is running. No canon question is pending.
-5. Use the completed fit and paired match evidence to judge the opt-in policy when those results are available.
+1. **IMPLEMENTED and TESTED**. RB-3.27 regraded the original sample, completed 29,780 possession rollouts, fitted DRILL v1 and measured both policies in 40 real-roster games.
+2. PRISM can load a versioned expected-points table before kickoff and use it for carrier choices and shot aim. The ratings 0.4 workbook supplies each athlete’s explicit ratings. The hand-set policy remains the default.
+3. Neither Gauge met its regret criterion. The neutral anchor scored a median of 66 points per team and averaged 153.2 possessions per team. Both missed the owner ranges.
+4. The evidence does not support promoting learned values to the default. The held-out shot-conversion fit also scored worse than the pooled prediction. No canon question is pending.
+5. Keep hand-set values as the default. Use the committed rollout and match records to review the carrier choice and shot-aim estimates before another promotion decision.
 
 ## Revisions and status
 
@@ -13,6 +13,11 @@
 - Scoring, fitting, runtime opt-in and tests `2264f1f`
 - Regulation evidence runners `d5400ae`
 - Roster source and reproduction instructions `1b7b206`
+- Deterministic artifact provenance `e67bb3d`
+- Original sample scoreboard regrade `460b982`
+- DRILL v1 and Gauge raw data `5bde37a`
+- Paired CPU benchmark `7fa1c9b`
+- Neutral anchor and full replay `698e723`
 
 | Task | Status | Evidence |
 |---|---|---|
@@ -20,7 +25,7 @@
 | 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED, TESTED | Ten neutral seeds, 384 decisions, 29,780 rollouts and six held-out comparisons. |
 | 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED, TESTED | Gate f and reproducibility passed. The six-game anchor missed both owner ranges. |
 | 4. Gauge | DESIGN COMPLETE, IMPLEMENTED, TESTED | Neither held-out test met the 2-standard-error criterion. |
-| 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED | Twenty learned-off games completed. Learned-on games depend on the fitted artifact. |
+| 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED, TESTED | Twenty games per mode across six franchise pairs. All finished. |
 
 ## Standing gates
 
@@ -126,9 +131,18 @@ The full learned-on neutral-real seed 1 repeated **61–75** in **31,976** steps
 - Trace `4da6c2add2e910d6c6edd1862a5c4710d3abbad42474b3da9e5a2c7ee37e642d`
 - State `4f5c1f65c4977a68de1abfedea91cb09703b3d6984bde8a1d0e62ad847219b67`
 
-## Real ratings, learned off
+## Ratings 0.4 paired soak
 
-All 20 scheduled learned-off matches finished with every restart resolved. The median team score was 89.5 and the mean was 153.2 possessions per team. Across the ten primary seeds, Ala's mean margin was +27.0 with standard error 6.14. Ala won 9 of 10. The raw matches and per-seed totals are under `rb327/evidence`.
+The primary pairing was Garvian Guardians (A) and Ala Apex (B), seeds 1–10. Each of the other five fixed pairings used seeds 1 and 2. All 40 games finished with every restart resolved and reported their invariants passed. The 20 learned-off matches took 3,216.5 CPU seconds, and the 20 learned-on matches took 3,003.7 CPU seconds. The six neutral anchor runs took 912.3 CPU seconds.
+
+| Mode | Games | Median team score | Mean / median team possessions | Possessions ending in an attempt | Ala mean margin ± SE | Ala wins |
+|---|---:|---:|---:|---:|---:|---:|
+| Learned off | 20 | 89.5 | 153.15 / 152 | 35.41% | +27.0 ± 6.14 | 9/10 |
+| Learned on | 20 | 81.5 | 161.60 / 163 | 19.01% | +34.9 ± 8.23 | 10/10 |
+
+The median team score in the primary pairing alone was 90.5 off and 76.0 on. Its mean team possessions were 152.55 off and 159.05 on. The mean attempt-ending share was 35.49% off and 18.28% on.
+
+The [per-match CSV](rb327/evidence/matches.csv) contains every score, both possession totals, terminal-attempt share, shot releases, carry attempts, score margin and fingerprints. The ability to follow through on an attempt and the result of that attempt are separate measures. The CSV keeps shot releases distinct from carried scoring attempts. The [raw runs](rb327/evidence) include exact per-match results and a completeness check for 49 regulation results, counting the two identity runs, six anchors, one replay and 40 paired games.
 
 ## Implemented measurement
 
@@ -138,6 +152,10 @@ The neutral sample retains the original 150 selections from seeds 1–3 and adds
 
 The live configuration stores the artifact SHA-256. Startup validates the schema, feature version and checksum and builds immutable table cells. Normal decisions do no file I/O. Carrier options and committed Finishing aims use the same available information and seeded error as CORE. Their learned values displace the hand-set values, including the carrier's flat shot offset. No value artifact is required when the switch is off.
 
-The ratings 0.4 workbook is pinned in the reproduction note. The named ratings supply the simulator's inputs. The calculated Overall for this experiment supplies the selection order. The readback independently checks top IDs by position group, the 22 entry shape, the underlying rating columns and role-specific attributes for the 12 franchises in the match sample.
+The ratings 0.4 workbook is pinned in the reproduction note. Its source commit is `b284e822fa2f23c820987c795a2d780f16334fc3` and its SHA-256 is `47b48af7a19035428d517582370fa1782b542980c783edf3dfb20619cf437fba`. The named ratings supply the simulator's inputs. The calculated Overall for this experiment supplies the selection order. The readback independently checks top IDs by position group, the 22 entry shape, the underlying rating columns and role-specific attributes for the 12 franchises in the match sample.
+
+## Open questions
+
+No canon decision was required. The main empirical question is whether a different set of belief-only features can rank choices well enough that reducing decision error improves possession returns. This checkpoint measures DRILL v1 as fitted and records the failed Gauge and anchor.
 
 Reproduction commands and evidence locations are in [rb327/README.md](rb327/README.md).

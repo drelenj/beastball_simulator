@@ -1,0 +1,4024 @@
+{
+  "arrows": {
+    "A": {
+      "illegal": 5,
+      "legal": 257,
+      "legal_rate": 0.9809160305343512
+    },
+    "B": {
+      "illegal": 5,
+      "legal": 255,
+      "legal_rate": 0.9807692307692307
+    }
+  },
+  "carry_attempts": {
+    "A": {
+      "attempts": 26,
+      "goals": 0
+    },
+    "B": {
+      "attempts": 14,
+      "goals": 0
+    }
+  },
+  "config": {
+    "arrow_speed": 250.0,
+    "arrows": 15,
+    "automatic_containment": false,
+    "automatic_descent": false,
+    "body_standards": [],
+    "breaks_ms": [
+      120000,
+      600000,
+      120000,
+      180000
+    ],
+    "carry_points": 5,
+    "carry_release_radius_m": 3.0,
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "dead_stall_limit_ms": 120000,
+    "decision_ms": 500,
+    "defender_ball_leash_m": 25.0,
+    "defender_baseline": true,
+    "defender_mark_distance_m": 5.0,
+    "direct_ms": 500,
+    "drill_values_sha256": "a19e9c04431309c1ea779ab077a8dd65eefdcbb616f25481a591d5847f49753e",
+    "dt_ms": 100,
+    "fatigue": false,
+    "field_roster_limit": 12,
+    "freeze_ms": 5000,
+    "freezes": 5,
+    "full_award_points": 3,
+    "goal_depth": 3.0,
+    "goal_radius": 3.0,
+    "hand_fight": "intent-gated-placeholder",
+    "immunity_ms": 10000,
+    "individuation": "individuation/2",
+    "injury": false,
+    "latency_ms": 200,
+    "legacy_layers": [],
+    "m2": "null",
+    "mapping_version": "attr-map/2",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "own_goal_points": 2,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": [
+      [
+        "arm_pin_grip",
+        0.5
+      ],
+      [
+        "arrow_drag",
+        0.06
+      ],
+      [
+        "arrow_error_scale",
+        1.0
+      ],
+      [
+        "balance_recovery_per_s",
+        1.5
+      ],
+      [
+        "ball_drag",
+        0.015
+      ],
+      [
+        "ball_mass_kg",
+        0.4
+      ],
+      [
+        "ball_restitution",
+        0.7745966692
+      ],
+      [
+        "base_half_width_frac",
+        0.2
+      ],
+      [
+        "blindside_rear_half_angle_deg",
+        15.0
+      ],
+      [
+        "block_force",
+        1.0
+      ],
+      [
+        "body_radius_scale",
+        1.0
+      ],
+      [
+        "bow_draw_ms",
+        600
+      ],
+      [
+        "brace_speed_mps",
+        2.0
+      ],
+      [
+        "c1_catch_model",
+        1
+      ],
+      [
+        "c1_chasers_read_flight",
+        0
+      ],
+      [
+        "c1_pass_planning",
+        1
+      ],
+      [
+        "c1_receiver_routing",
+        0
+      ],
+      [
+        "c3_contact",
+        1
+      ],
+      [
+        "c3_follow_distance",
+        1
+      ],
+      [
+        "c3_prep_round_ms",
+        0
+      ],
+      [
+        "c3_region_policy",
+        0
+      ],
+      [
+        "c3_substep_ms",
+        10
+      ],
+      [
+        "c3b",
+        1
+      ],
+      [
+        "c3c",
+        1
+      ],
+      [
+        "c4_zone",
+        1
+      ],
+      [
+        "c4b",
+        1
+      ],
+      [
+        "c4c",
+        1
+      ],
+      [
+        "c4c2",
+        1
+      ],
+      [
+        "catch_arrest_force_N",
+        1100.0
+      ],
+      [
+        "catch_hand_travel_m",
+        0.6
+      ],
+      [
+        "catch_noise",
+        0.15
+      ],
+      [
+        "catch_reaction_s",
+        0.12
+      ],
+      [
+        "collision_risk_tolerance",
+        0.5
+      ],
+      [
+        "contact_foul_min_shock",
+        0.05
+      ],
+      [
+        "contact_restitution",
+        0.1
+      ],
+      [
+        "contact_roster",
+        0
+      ],
+      [
+        "contact_time_s",
+        0.15
+      ],
+      [
+        "containment_window_s",
+        2.0
+      ],
+      [
+        "controller",
+        0
+      ],
+      [
+        "ctrl_keeper",
+        1
+      ],
+      [
+        "ctrl_lookahead_s",
+        0.6
+      ],
+      [
+        "ctrl_receivers",
+        2
+      ],
+      [
+        "ctrl_short_inbound",
+        1
+      ],
+      [
+        "ctrl_style_A",
+        0
+      ],
+      [
+        "ctrl_style_B",
+        0
+      ],
+      [
+        "ctrl_style_band",
+        0.1
+      ],
+      [
+        "deflection_speed_kept",
+        0.2
+      ],
+      [
+        "descent_time_s",
+        0.5
+      ],
+      [
+        "descent_window_s",
+        2.0
+      ],
+      [
+        "escape_allocation",
+        1
+      ],
+      [
+        "escape_force_N",
+        2500.0
+      ],
+      [
+        "exit_protection",
+        1
+      ],
+      [
+        "fatigue_rate",
+        1.0
+      ],
+      [
+        "frame_thickness",
+        0.2
+      ],
+      [
+        "gait_duty_min",
+        0.22
+      ],
+      [
+        "gait_duty_per_mps",
+        0.03
+      ],
+      [
+        "gait_duty_rest",
+        0.62
+      ],
+      [
+        "gait_half_width_frac",
+        0.09
+      ],
+      [
+        "gait_reset_frac",
+        0.75
+      ],
+      [
+        "gait_step_base_frac",
+        0.25
+      ],
+      [
+        "gait_step_max_frac",
+        1.1
+      ],
+      [
+        "gait_step_per_mps_frac",
+        0.035
+      ],
+      [
+        "gait_still_mps",
+        0.5
+      ],
+      [
+        "get_up_max_slide_mps",
+        1.0
+      ],
+      [
+        "get_up_time_s",
+        0.8
+      ],
+      [
+        "gravity",
+        9.81
+      ],
+      [
+        "grip_delay_ms",
+        300
+      ],
+      [
+        "grip_force_N",
+        2500.0
+      ],
+      [
+        "grip_gain_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_per_s",
+        4.0
+      ],
+      [
+        "grip_overload_time_s",
+        0.15
+      ],
+      [
+        "grip_resist_per_s",
+        1.0
+      ],
+      [
+        "grip_slip_per_s",
+        2.0
+      ],
+      [
+        "grip_slip_ref_mps",
+        4.0
+      ],
+      [
+        "hold_height_lower_frac",
+        0.45
+      ],
+      [
+        "hold_height_upper_frac",
+        0.7
+      ],
+      [
+        "holder_load_factor",
+        0.35
+      ],
+      [
+        "keeper_aim_frac",
+        0.5
+      ],
+      [
+        "keeper_attempt_margin_m",
+        1.5
+      ],
+      [
+        "keeper_body_restitution",
+        0.3
+      ],
+      [
+        "keeper_confront",
+        1
+      ],
+      [
+        "keeper_confront_m",
+        7.0
+      ],
+      [
+        "keeper_depth_frac",
+        0.25
+      ],
+      [
+        "keeper_depth_max_m",
+        4.0
+      ],
+      [
+        "keeper_depth_min_m",
+        1.0
+      ],
+      [
+        "keeper_dive_hand_frac",
+        0.3
+      ],
+      [
+        "keeper_dive_lean",
+        0.35
+      ],
+      [
+        "keeper_dive_time_s",
+        0.25
+      ],
+      [
+        "keeper_extension_frac",
+        0.3
+      ],
+      [
+        "keeper_gather_m",
+        6.0
+      ],
+      [
+        "keeper_height_m",
+        0.0
+      ],
+      [
+        "keeper_launch_min_s",
+        0.1
+      ],
+      [
+        "keeper_parry_restitution",
+        0.35
+      ],
+      [
+        "keeper_parry_swing_mps",
+        5.0
+      ],
+      [
+        "keeper_pushoff_frac",
+        0.4
+      ],
+      [
+        "keeper_reaction_s",
+        0.2
+      ],
+      [
+        "keeper_set_mps",
+        1.5
+      ],
+      [
+        "keeper_unset_s",
+        0.1
+      ],
+      [
+        "keeper_windup_set",
+        1
+      ],
+      [
+        "lower_hold_leg_factor",
+        0.6
+      ],
+      [
+        "pass_aim_error_deg",
+        3.0
+      ],
+      [
+        "pass_release_ms",
+        250
+      ],
+      [
+        "rearm_gap_m",
+        0.3
+      ],
+      [
+        "recovery_react",
+        1
+      ],
+      [
+        "restraint_error_deg",
+        8.0
+      ],
+      [
+        "restraint_speed_loss",
+        0.5
+      ],
+      [
+        "restraint_weight_matched",
+        1.0
+      ],
+      [
+        "restraint_weight_other",
+        0.3
+      ],
+      [
+        "reversal_rule",
+        0
+      ],
+      [
+        "shock_speed_mps",
+        6.0
+      ],
+      [
+        "slide_friction",
+        0.8
+      ],
+      [
+        "strip_in_motion_factor",
+        4.0
+      ],
+      [
+        "tackle_grip_threshold",
+        0.3
+      ],
+      [
+        "tackle_rate",
+        1.25
+      ],
+      [
+        "tackle_source_majority",
+        0.5
+      ],
+      [
+        "topple_time_s",
+        1.0
+      ],
+      [
+        "traction_coefficient",
+        0.8
+      ],
+      [
+        "tuck_after_delay_frac",
+        1.0
+      ],
+      [
+        "zone_direct_penalty",
+        0
+      ]
+    ],
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": [
+      [
+        "acceleration",
+        10.0
+      ],
+      [
+        "arrow_limit",
+        null
+      ],
+      [
+        "arrow_speed",
+        250.0
+      ],
+      [
+        "ball_limit",
+        134.1
+      ],
+      [
+        "braking",
+        13.5
+      ],
+      [
+        "carry_value",
+        5
+      ],
+      [
+        "inner_points",
+        2
+      ],
+      [
+        "inner_zone_radius",
+        10.0
+      ],
+      [
+        "keeper_zone_radius",
+        20.0
+      ],
+      [
+        "marking_distance",
+        5.0
+      ],
+      [
+        "outside_points",
+        4
+      ],
+      [
+        "player_speed",
+        44.704
+      ],
+      [
+        "release_points",
+        3
+      ],
+      [
+        "release_territories",
+        true
+      ],
+      [
+        "tackles_per_possession",
+        2
+      ],
+      [
+        "turning",
+        13.0
+      ],
+      [
+        "zone_inbound",
+        false
+      ],
+      [
+        "zone_marking",
+        false
+      ],
+      [
+        "zone_only",
+        false
+      ]
+    ],
+    "profile": "native-rb",
+    "ratings": 0.7,
+    "rb319_ball_in_play_enabled": true,
+    "rb319_parts": "A1A2A3A4",
+    "rb320_exact_bounce": true,
+    "rb321_ball_bounce_h": 0.44,
+    "rb321_ball_drag_k": 0.0005,
+    "rb321_ball_material_enabled": true,
+    "rb321_ball_restitution": 0.6,
+    "rb321_ball_roll_decel": 3.0,
+    "rb322_technical_source": "explicit",
+    "rb3_carrier_moves_enabled": true,
+    "rb3_handoff_block_enabled": true,
+    "release_bands": [
+      [
+        10.0,
+        2
+      ],
+      [
+        20.0,
+        3
+      ],
+      [
+        null,
+        4
+      ]
+    ],
+    "review_tolerance_m": 0.05,
+    "roster_digests": [
+      "92563d4d847348b9946b7cf2a8b294822a5fbb39ed05e65ec2322b3721838c2a",
+      "8ef48ae7380f55df0a537e89888d6ab9d87795396aecc4ad6e9a476a298763af"
+    ],
+    "scoring": "banded",
+    "sense_ms": 200,
+    "sudden_break_ms": 60000,
+    "thaw_contact_buffer_ms": 1000,
+    "throw_model": "THROW_SPLIT-primitive",
+    "timeout_ms": 45000,
+    "version": "native-rb/3",
+    "zone_marked_distance_m": 5.0,
+    "zone_radius": 20.0,
+    "zone_residence_ms": 5000
+  },
+  "config_digest": "21cd5161a45999abeced791aeade475ab1480b4d36e11c1121ed3e2fb349f03d",
+  "contact_intents": {
+    "brace": 6,
+    "dodge": 293,
+    "run_through": 62,
+    "takedown": 1232,
+    "wrap": 8048
+  },
+  "cpu_ms_per_step": 4.769272595803931,
+  "decisions_by_kind": {
+    "abort_draw": 130,
+    "archer_hold": 9801,
+    "block": 2077,
+    "carry": 1277,
+    "continue_current": 663,
+    "draw_release": 663,
+    "handoff": 25,
+    "keeper_control": 10083,
+    "mark": 12233,
+    "pass": 494,
+    "position": 28769,
+    "press": 9233,
+    "pursue": 8166,
+    "receive": 1732,
+    "release_arrow": 532,
+    "restart_claim": 230,
+    "restart_pass": 327,
+    "restart_position": 27625,
+    "restart_wait": 155,
+    "retain": 1234,
+    "scan": 28744,
+    "shoot": 78,
+    "stiff_arm": 89,
+    "support": 15737,
+    "tackle": 1265,
+    "truck": 48
+  },
+  "decisions_total": 161410,
+  "dqs": {
+    "A": 1,
+    "B": 1
+  },
+  "effective": {
+    "catch_model": "CATCH_V2-energy-placeholder",
+    "goal_radius": 3.0,
+    "m2": "null",
+    "marking_distance": 5.0,
+    "overtime_seconds": 300,
+    "period_seconds": 600,
+    "periods": 4,
+    "physical_assumptions": {
+      "arm_pin_grip": 0.5,
+      "arrow_drag": 0.06,
+      "arrow_error_scale": 1.0,
+      "balance_recovery_per_s": 1.5,
+      "ball_drag": 0.015,
+      "ball_mass_kg": 0.4,
+      "ball_restitution": 0.7745966692,
+      "base_half_width_frac": 0.2,
+      "blindside_rear_half_angle_deg": 15.0,
+      "block_force": 1.0,
+      "body_radius_scale": 1.0,
+      "bow_draw_ms": 600,
+      "brace_speed_mps": 2.0,
+      "c1_catch_model": 1,
+      "c1_chasers_read_flight": 0,
+      "c1_pass_planning": 1,
+      "c1_receiver_routing": 0,
+      "c3_contact": 1,
+      "c3_follow_distance": 1,
+      "c3_prep_round_ms": 0,
+      "c3_region_policy": 0,
+      "c3_substep_ms": 10,
+      "c3b": 1,
+      "c3c": 1,
+      "c4_zone": 1,
+      "c4b": 1,
+      "c4c": 1,
+      "c4c2": 1,
+      "catch_arrest_force_N": 1100.0,
+      "catch_hand_travel_m": 0.6,
+      "catch_noise": 0.15,
+      "catch_reaction_s": 0.12,
+      "collision_risk_tolerance": 0.5,
+      "contact_foul_min_shock": 0.05,
+      "contact_restitution": 0.1,
+      "contact_roster": 0,
+      "contact_time_s": 0.15,
+      "containment_window_s": 2.0,
+      "controller": 0,
+      "ctrl_keeper": 1,
+      "ctrl_lookahead_s": 0.6,
+      "ctrl_receivers": 2,
+      "ctrl_short_inbound": 1,
+      "ctrl_style_A": 0,
+      "ctrl_style_B": 0,
+      "ctrl_style_band": 0.1,
+      "deflection_speed_kept": 0.2,
+      "descent_time_s": 0.5,
+      "descent_window_s": 2.0,
+      "escape_allocation": 1,
+      "escape_force_N": 2500.0,
+      "exit_protection": 1,
+      "fatigue_rate": 1.0,
+      "frame_thickness": 0.2,
+      "gait_duty_min": 0.22,
+      "gait_duty_per_mps": 0.03,
+      "gait_duty_rest": 0.62,
+      "gait_half_width_frac": 0.09,
+      "gait_reset_frac": 0.75,
+      "gait_step_base_frac": 0.25,
+      "gait_step_max_frac": 1.1,
+      "gait_step_per_mps_frac": 0.035,
+      "gait_still_mps": 0.5,
+      "get_up_max_slide_mps": 1.0,
+      "get_up_time_s": 0.8,
+      "gravity": 9.81,
+      "grip_delay_ms": 300,
+      "grip_force_N": 2500.0,
+      "grip_gain_per_s": 4.0,
+      "grip_overload_per_s": 4.0,
+      "grip_overload_time_s": 0.15,
+      "grip_resist_per_s": 1.0,
+      "grip_slip_per_s": 2.0,
+      "grip_slip_ref_mps": 4.0,
+      "hold_height_lower_frac": 0.45,
+      "hold_height_upper_frac": 0.7,
+      "holder_load_factor": 0.35,
+      "keeper_aim_frac": 0.5,
+      "keeper_attempt_margin_m": 1.5,
+      "keeper_body_restitution": 0.3,
+      "keeper_confront": 1,
+      "keeper_confront_m": 7.0,
+      "keeper_depth_frac": 0.25,
+      "keeper_depth_max_m": 4.0,
+      "keeper_depth_min_m": 1.0,
+      "keeper_dive_hand_frac": 0.3,
+      "keeper_dive_lean": 0.35,
+      "keeper_dive_time_s": 0.25,
+      "keeper_extension_frac": 0.3,
+      "keeper_gather_m": 6.0,
+      "keeper_height_m": 0.0,
+      "keeper_launch_min_s": 0.1,
+      "keeper_parry_restitution": 0.35,
+      "keeper_parry_swing_mps": 5.0,
+      "keeper_pushoff_frac": 0.4,
+      "keeper_reaction_s": 0.2,
+      "keeper_set_mps": 1.5,
+      "keeper_unset_s": 0.1,
+      "keeper_windup_set": 1,
+      "lower_hold_leg_factor": 0.6,
+      "pass_aim_error_deg": 3.0,
+      "pass_release_ms": 250,
+      "rearm_gap_m": 0.3,
+      "recovery_react": 1,
+      "restraint_error_deg": 8.0,
+      "restraint_speed_loss": 0.5,
+      "restraint_weight_matched": 1.0,
+      "restraint_weight_other": 0.3,
+      "reversal_rule": 0,
+      "shock_speed_mps": 6.0,
+      "slide_friction": 0.8,
+      "strip_in_motion_factor": 4.0,
+      "tackle_grip_threshold": 0.3,
+      "tackle_rate": 1.25,
+      "tackle_source_majority": 0.5,
+      "topple_time_s": 1.0,
+      "traction_coefficient": 0.8,
+      "tuck_after_delay_frac": 1.0,
+      "zone_direct_penalty": 0
+    },
+    "platform_height": 5.0,
+    "platform_setback": 5.0,
+    "play_clock_ms": 30000,
+    "pocket_settings": {
+      "acceleration": 10.0,
+      "arrow_limit": null,
+      "arrow_speed": 250.0,
+      "ball_limit": 134.1,
+      "braking": 13.5,
+      "carry_value": 5,
+      "inner_points": 2,
+      "inner_zone_radius": 10.0,
+      "keeper_zone_radius": 20.0,
+      "marking_distance": 5.0,
+      "outside_points": 4,
+      "player_speed": 44.704,
+      "release_points": 3,
+      "release_territories": true,
+      "tackles_per_possession": 2,
+      "turning": 13.0,
+      "zone_inbound": false,
+      "zone_marking": false,
+      "zone_only": false
+    },
+    "zone_radius": 20.0
+  },
+  "end_ms": 4188780,
+  "engine_events": {
+    "archery_target_diagnosis": 10,
+    "arrow_ball": 1,
+    "arrow_geometry_impact": 323,
+    "arrow_inert": 23,
+    "arrow_miss": 176,
+    "arrow_outcome": 499,
+    "arrow_release": 512,
+    "block_engaged": 31,
+    "block_shed": 31,
+    "boundary": 27,
+    "c3_collision": 1812,
+    "c3_containment": 71,
+    "c3_down": 121,
+    "c3_grip_broken": 4,
+    "c3_grounding": 116,
+    "c3_hold_end": 418,
+    "c3_hold_start": 419,
+    "c3_upright": 117,
+    "c3b_rules": 1,
+    "c3c_rules": 1,
+    "c4_rules": 1,
+    "c4a_rules": 1,
+    "c4b_rules": 1,
+    "c4c2_rules": 1,
+    "c4c_rules": 1,
+    "carry_outcome": 40,
+    "coin_flip": 1,
+    "control": 767,
+    "ends_exchanged": 3,
+    "engagement": 2362,
+    "foul": 11,
+    "foul_award": 3,
+    "frame_contact": 1,
+    "freeze": 165,
+    "goal": 44,
+    "grounded": 17,
+    "handoff_complete": 12,
+    "handoff_start": 25,
+    "held_ball": 1,
+    "hunt_cleared": 4,
+    "inert_impact": 112,
+    "joint_control": 1,
+    "keeper_contact": 17,
+    "keeper_landed": 5,
+    "lineup_check": 1,
+    "match_complete": 1,
+    "period_end": 4,
+    "period_start": 4,
+    "possession": 219,
+    "prism_delivery": 50,
+    "prism_windup": 19,
+    "rb_arrow_forfeited": 10,
+    "rb_arrow_release": 512,
+    "rb_boundary": 27,
+    "rb_break": 3,
+    "rb_discipline": 11,
+    "rb_freeze": 165,
+    "rb_goal": 44,
+    "rb_pause_end": 11,
+    "rb_quota_reset": 314,
+    "rb_substitution": 5,
+    "rb_timeout": 8,
+    "release": 616,
+    "restart_awarded": 204,
+    "restart_claim": 204,
+    "restart_closed": 204,
+    "restart_ready": 204,
+    "restart_release": 203,
+    "scrimmage_formation": 177,
+    "scrimmage_penalty": 1,
+    "simultaneous_contact": 1,
+    "snap_hold_released": 176,
+    "stiff_arm": 30,
+    "stiff_arm_effect": 30,
+    "strip": 13,
+    "tackle_count": 99,
+    "touch": 31,
+    "truck": 19,
+    "truck_stopped": 1,
+    "zone_foul_diagnosis": 2,
+    "zone_time_summary": 4,
+    "zone_unmarked_diagnosis": 1
+  },
+  "foul_reasons": {
+    "archery_target": 10,
+    "zone_unmarked": 1
+  },
+  "groundings": 116,
+  "invariants": "passed",
+  "live_ms": 2400000,
+  "outcomes_by_status": {
+    "arrow_released": 512,
+    "handoff_complete": 12,
+    "interrupted": 8,
+    "rejected_by_engine": 20,
+    "rejected_out_of_reach": 11,
+    "rejected_taker_or_record": 1,
+    "released": 769
+  },
+  "period": 4,
+  "points": {
+    "A": {
+      "penalty_awards": 5,
+      "play": 71
+    },
+    "B": {
+      "penalty_awards": 0,
+      "play": 86
+    }
+  },
+  "policy_params": {
+    "A": {
+      "archer_eager": 0.0,
+      "bias_pass": 0.0,
+      "bias_press": 0.0,
+      "bias_pursue": 0.0,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 1.2,
+      "pos_edge_zone": 1.0,
+      "pos_goal_att": 1.0,
+      "pos_goal_def": 1.0,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 0.6,
+      "pos_spread": 1.0,
+      "shot_range": 32.0
+    },
+    "B": {
+      "archer_eager": 0.0,
+      "bias_pass": 0.0,
+      "bias_press": 0.0,
+      "bias_pursue": 0.0,
+      "bias_shoot": 0.0,
+      "pass_min_clearance": 0.0,
+      "pos_ball_att": 0.6,
+      "pos_ball_def": 1.2,
+      "pos_edge_zone": 1.0,
+      "pos_goal_att": 1.0,
+      "pos_goal_def": 1.0,
+      "pos_lane": 0.8,
+      "pos_opp_att": 0.6,
+      "pos_opp_def": 0.6,
+      "pos_spread": 1.0,
+      "shot_range": 32.0
+    }
+  },
+  "possessions": {
+    "A": {
+      "count": 158,
+      "ending_in_attempt": 38,
+      "share_ending_in_attempt": 0.24050632911392406,
+      "with_attempt": 41
+    },
+    "B": {
+      "count": 159,
+      "ending_in_attempt": 31,
+      "share_ending_in_attempt": 0.1949685534591195,
+      "with_attempt": 32
+    }
+  },
+  "prism_agents": {
+    "archer": 2375,
+    "defending": 20047,
+    "disruption": 9357,
+    "field": 27739,
+    "goalkeeping": 9924,
+    "in_air_ball_pursuit": 10758,
+    "keeper": 2560,
+    "live_ball_pursuit": 49980,
+    "playmaking": 23447,
+    "zone_coverage": 5301
+  },
+  "prism_sources": {
+    "A:DRAFT26-09": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "explicit:Archery Accuracy (rating)",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "explicit:Disruption (rating)",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-01": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-02": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-03": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-04": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-06": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-07": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-08": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-09": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-10": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-11": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "explicit:Goalkeeping (rating)",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "explicit:Goalkeeping (rating)",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-13": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-14": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "explicit:Goalkeeping (rating)",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "explicit:Goalkeeping (rating)",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-16": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-17": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-18": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-20": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-07-22": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL24-15-03": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL25-D06": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL25-D28": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "A:NBL25-D32": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "explicit:Archery Accuracy (rating)",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "explicit:Disruption (rating)",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-01": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-03": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-04": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-05": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-06": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-07": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-08": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-09": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-10": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-11": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "explicit:Goalkeeping (rating)",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "explicit:Goalkeeping (rating)",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-12": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "explicit:Archery Accuracy (rating)",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "explicit:Disruption (rating)",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-13": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-14": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-17": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-19": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-20": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-21": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:NBL24-01-22": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:UFA26-BB-04": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "explicit:Archery Accuracy (rating)",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "explicit:Disruption (rating)",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:UFA26-BB-05": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:UFA26-BB-43": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "explicit:Goalkeeping (rating)",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "explicit:Goalkeeping (rating)",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    },
+    "B:UFA26-BB-45": {
+      "anticipation": "explicit:Anticipation (rating)",
+      "archery_accuracy": "neutral fallback",
+      "awareness": "explicit:Awareness (rating)",
+      "ball_handling": "explicit:Ball Handling (rating)",
+      "blocking": "explicit:Blocking (rating)",
+      "carrier_duel": "0.70 default",
+      "catching": "explicit:Catching (rating)",
+      "clarity": "explicit:Clarity (rating)",
+      "contact_resistance": "neutral fallback",
+      "defender_duel": "0.70 default",
+      "defending": "explicit:Defending (rating)",
+      "disruption": "0.70 default",
+      "evasion": "explicit:Evasion (rating)",
+      "finishing": "explicit:Finishing (rating)",
+      "focus": "explicit:Focus (rating)",
+      "goalkeeping": "0.70 default",
+      "hurdle": "explicit:Hurdle (rating)",
+      "in_air_ball_pursuit": "explicit:In Air Ball Pursuit (rating)",
+      "instinct": "explicit:Instinct (rating)",
+      "judgment": "0.70 default",
+      "juke": "explicit:Juke (rating)",
+      "keeper_skill": "neutral fallback",
+      "live_ball_pursuit": "explicit:Live Ball Pursuit (rating)",
+      "marking": "0.70 default",
+      "motor_control": "0.70 default",
+      "passing": "explicit:Passing (rating)",
+      "playmaking": "explicit:Playmaking (rating)",
+      "reaction": "explicit:Reaction (rating)",
+      "reflex": "explicit:Reflex (rating)",
+      "spin": "explicit:Spin (rating)",
+      "stiff_arm": "explicit:Stiff Arm (rating)",
+      "tackling": "explicit:Tackling (rating)",
+      "takedown": "explicit:Takedown (rating)",
+      "throw_accuracy": "explicit:Throw Accuracy (rating)",
+      "touch": "explicit:Touch (rating)",
+      "truck": "explicit:Truck (rating)",
+      "vision": "explicit:Vision (rating)",
+      "zone_coverage": "explicit:Zone Coverage (rating)",
+      "zone_reads": "0.70 default"
+    }
+  },
+  "release_distances": {
+    "A": {
+      "103": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "108": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "12": {
+        "attempts": 3,
+        "goals": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "13": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "14": {
+        "attempts": 6,
+        "goals": 2,
+        "success_rate": 0.3333333333333333
+      },
+      "15": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "16": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "17": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "19": {
+        "attempts": 4,
+        "goals": 3,
+        "success_rate": 0.75
+      },
+      "20": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "21": {
+        "attempts": 8,
+        "goals": 4,
+        "success_rate": 0.5
+      },
+      "22": {
+        "attempts": 2,
+        "goals": 1,
+        "success_rate": 0.5
+      },
+      "23": {
+        "attempts": 4,
+        "goals": 1,
+        "success_rate": 0.25
+      },
+      "25": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "26": {
+        "attempts": 4,
+        "goals": 1,
+        "success_rate": 0.25
+      },
+      "27": {
+        "attempts": 4,
+        "goals": 1,
+        "success_rate": 0.25
+      },
+      "28": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "29": {
+        "attempts": 3,
+        "goals": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "30": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "31": {
+        "attempts": 4,
+        "goals": 1,
+        "success_rate": 0.25
+      },
+      "32": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "33": {
+        "attempts": 8,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "34": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "35": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "36": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "37": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "38": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "39": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "40": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "41": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "42": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "43": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "44": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "45": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "46": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "47": {
+        "attempts": 8,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "48": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "49": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "50": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "51": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "52": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "53": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "54": {
+        "attempts": 7,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "55": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "56": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "57": {
+        "attempts": 9,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "58": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "59": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "60": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "61": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "62": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "63": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "64": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "65": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "66": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "67": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "68": {
+        "attempts": 10,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "69": {
+        "attempts": 14,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "70": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "71": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "72": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "73": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "74": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "75": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "76": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "77": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "78": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "79": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "80": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "81": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "82": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "83": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "84": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "85": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "86": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "89": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "91": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "92": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "93": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "94": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "95": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "96": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "97": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      }
+    },
+    "B": {
+      "10": {
+        "attempts": 2,
+        "goals": 2,
+        "success_rate": 1.0
+      },
+      "100": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "106": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "107": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "12": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "14": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "15": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "16": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "17": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "18": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "20": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "21": {
+        "attempts": 4,
+        "goals": 3,
+        "success_rate": 0.75
+      },
+      "22": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "23": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "24": {
+        "attempts": 4,
+        "goals": 1,
+        "success_rate": 0.25
+      },
+      "25": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "26": {
+        "attempts": 2,
+        "goals": 2,
+        "success_rate": 1.0
+      },
+      "27": {
+        "attempts": 4,
+        "goals": 2,
+        "success_rate": 0.5
+      },
+      "28": {
+        "attempts": 3,
+        "goals": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "29": {
+        "attempts": 3,
+        "goals": 1,
+        "success_rate": 0.3333333333333333
+      },
+      "30": {
+        "attempts": 5,
+        "goals": 1,
+        "success_rate": 0.2
+      },
+      "31": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "32": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "33": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "34": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "35": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "36": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "37": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "38": {
+        "attempts": 10,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "39": {
+        "attempts": 7,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "40": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "41": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "42": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "43": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "45": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "46": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "47": {
+        "attempts": 6,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "48": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "49": {
+        "attempts": 8,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "50": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "51": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "52": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "53": {
+        "attempts": 7,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "54": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "55": {
+        "attempts": 7,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "56": {
+        "attempts": 10,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "57": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "58": {
+        "attempts": 8,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "59": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "6": {
+        "attempts": 1,
+        "goals": 1,
+        "success_rate": 1.0
+      },
+      "60": {
+        "attempts": 7,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "61": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "62": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "63": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "64": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "65": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "66": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "68": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "69": {
+        "attempts": 16,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "7": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "70": {
+        "attempts": 8,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "71": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "72": {
+        "attempts": 4,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "73": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "74": {
+        "attempts": 3,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "75": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "76": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "77": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "78": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "79": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "80": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "81": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "82": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "83": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "84": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "85": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "9": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "90": {
+        "attempts": 2,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "92": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "94": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "95": {
+        "attempts": 5,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "96": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      },
+      "98": {
+        "attempts": 1,
+        "goals": 0,
+        "success_rate": 0.0
+      }
+    }
+  },
+  "restart_awarded": 204,
+  "restart_closed": 204,
+  "restart_completion_ratio": 1.0,
+  "restart_metric": {
+    "all": {
+      "awarded": 204,
+      "eligible": 204,
+      "eligible_released": 203,
+      "eligible_timeout": 1,
+      "eligible_timeout_rate": 0.004901960784313725,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 0.9950980392156863,
+      "released": 203,
+      "superseded": 0,
+      "timeout": 1,
+      "timeout_rate": 0.004901960784313725
+    },
+    "scrim": {
+      "awarded": 129,
+      "eligible": 129,
+      "eligible_released": 128,
+      "eligible_timeout": 1,
+      "eligible_timeout_rate": 0.007751937984496124,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 0.9922480620155039,
+      "released": 128,
+      "superseded": 0,
+      "timeout": 1,
+      "timeout_rate": 0.007751937984496124
+    },
+    "snap40": {
+      "awarded": 48,
+      "eligible": 48,
+      "eligible_released": 48,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 48,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "toss": {
+      "awarded": 27,
+      "eligible": 27,
+      "eligible_released": 27,
+      "eligible_timeout": 0,
+      "eligible_timeout_rate": 0.0,
+      "ended_by_period": 0,
+      "no_target": 0,
+      "not_reachable": 0,
+      "pending": 0,
+      "play_clock_expiry": 0,
+      "release_rate": 1.0,
+      "released": 27,
+      "superseded": 0,
+      "timeout": 0,
+      "timeout_rate": 0.0
+    },
+    "unobserved": 0
+  },
+  "restart_release_ratio": 0.9950980392156863,
+  "restart_released": 203,
+  "restart_statuses": {
+    "released": 203,
+    "snap_timeout": 1
+  },
+  "restart_timeouts": 1,
+  "result": {
+    "method": "regulation",
+    "score": {
+      "A": 76,
+      "B": 86
+    },
+    "shootout": null,
+    "winner": "B"
+  },
+  "rules": {
+    "ledger_by_row": {
+      "R-02": 755,
+      "R-03": 679,
+      "R-04": 1,
+      "R-06": 488,
+      "R-07": 78,
+      "R-08": 169,
+      "R-09": 63,
+      "R-10": 209,
+      "R-11": 3,
+      "R-12": 6,
+      "R-13": 4,
+      "R-14": 259,
+      "R-18": 218,
+      "R-19": 13,
+      "R-20": 255
+    }
+  },
+  "rules_ledger": {
+    "R-02": 755,
+    "R-03": 679,
+    "R-04": 1,
+    "R-06": 488,
+    "R-07": 78,
+    "R-08": 169,
+    "R-09": 63,
+    "R-10": 209,
+    "R-11": 3,
+    "R-12": 6,
+    "R-13": 4,
+    "R-14": 259,
+    "R-18": 218,
+    "R-19": 13,
+    "R-20": 255
+  },
+  "runtime_s": 0.0,
+  "score": {
+    "A": 76,
+    "B": 86
+  },
+  "seed": 10,
+  "selected": {
+    "A": [
+      {
+        "id": "NBL24-07-11",
+        "role": "keeper"
+      },
+      {
+        "id": "NBL24-07-14",
+        "role": "keeper"
+      },
+      {
+        "id": "DRAFT26-09",
+        "role": "archer"
+      },
+      {
+        "id": "NBL25-D32",
+        "role": "archer"
+      },
+      {
+        "id": "NBL24-07-09",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-08",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-03",
+        "role": "field"
+      },
+      {
+        "id": "NBL25-D06",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-18",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-02",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-06",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-17",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-15-03",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-01",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-13",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-20",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-10",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-04",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-07",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-16",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-07-22",
+        "role": "field"
+      },
+      {
+        "id": "NBL25-D28",
+        "role": "field"
+      }
+    ],
+    "B": [
+      {
+        "id": "NBL24-01-11",
+        "role": "keeper"
+      },
+      {
+        "id": "UFA26-BB-43",
+        "role": "keeper"
+      },
+      {
+        "id": "NBL24-01-12",
+        "role": "archer"
+      },
+      {
+        "id": "UFA26-BB-04",
+        "role": "archer"
+      },
+      {
+        "id": "NBL24-01-07",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-21",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-09",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-04",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-22",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-05",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-08",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-10",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-03",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-01",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-14",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-13",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-06",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-19",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-20",
+        "role": "field"
+      },
+      {
+        "id": "UFA26-BB-45",
+        "role": "field"
+      },
+      {
+        "id": "NBL24-01-17",
+        "role": "field"
+      },
+      {
+        "id": "UFA26-BB-05",
+        "role": "field"
+      }
+    ]
+  },
+  "state_hash": "8dd2b735657c21ef1ec77299da91e0df484f82bae131099e45260e1b7d9cabf1",
+  "status": "final",
+  "steps": 31601,
+  "team_stats": {
+    "A": {
+      "distance_progressed": 1755.9955613393954,
+      "goals": 21,
+      "half_goal_awards": 2,
+      "minor_fouls": 5,
+      "shots": 44,
+      "turnovers": 156
+    },
+    "B": {
+      "distance_progressed": 1792.551045662755,
+      "goals": 24,
+      "minor_fouls": 6,
+      "shots": 34,
+      "turnovers": 156
+    }
+  },
+  "teams": [
+    "Garvian Guardians",
+    "Ala Apex"
+  ],
+  "trace_hash": "f26e05d8b8f078192a9b1053bd735c276f152d37219474eac7cabe26a731ad90",
+  "workbook_sha256": "47b48af7a19035428d517582370fa1782b542980c783edf3dfb20619cf437fba"
+}
