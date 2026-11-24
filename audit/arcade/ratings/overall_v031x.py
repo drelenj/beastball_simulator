@@ -54,6 +54,11 @@ def main(src, out):
                     [(g(r, k), w(TECH_SHAPE, i)) for i, k in enumerate(TECH)] + [(ph(r, p), 1) for p in PHYS]
         return sum(v * wt for v, wt in items) / sum(wt for _, wt in items)
 
+    # Labels follow the ratings version: ratings 0.4 -> 0.411 ... 0.423 (owner naming, 24 Nov).
+    rv = str(rows[0][col["Ratings version"]]).replace("ratings-", "")
+    major = rv.split(".")[0] + "." + rv.split(".")[1][0]
+    global VERSIONS
+    VERSIONS = [(major + v[3:].rjust(2, "0") if False else major + v[-2:], w, m) for v, w, m in VERSIONS]
     res = {}
     for r in rows:
         pid = r[col["Player ID"]]
@@ -128,7 +133,7 @@ def main(src, out):
     wb.active = 0
     for sh in wb.worksheets:
         sh.sheet_view.tabSelected = sh.title == "Player Ratings"
-    wb["Method & Canon"].append(["Overall trials", "OVR 0.311-0.323 columns: see sheet Overall Trials and overall_v031x.py; trials only, not adopted"])
+    wb["Method & Canon"].append(["Overall", f"Interim Overall = OVR {major}22 (legacy role weights, 78 average; owner adopted 24 Nov). Other OVR columns are trials; see sheet Overall Trials and overall_v031x.py"])
     wb.save(out)
     for l in lines:
         print(l)
