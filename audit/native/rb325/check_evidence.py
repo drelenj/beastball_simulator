@@ -48,6 +48,8 @@ assert candidate/base <= 1.15
 
 real=[run(f'final-real-{seed}') for seed in range(1,6)]
 control=run('final-control-1')
+assert fingerprint(control) == fingerprint(run('final-control-1-repeat'))
+print('CORE full control repeat:',control['trace_hash'],control['state_hash'])
 possessions_in_range = True
 for match in (*real,control):
     assert match['status']=='final' and match['restart_completion_ratio']==1.
