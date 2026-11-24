@@ -41,6 +41,21 @@ def decision_probe(name, value, seed):
     return magnitude, selected.label, 'near-tie selector using production menu'
 
 
+def reset_motor_fixture():
+    port, player = L.physical_lab()
+    player.z = player.vz = 0.
+    player.posture = 'upright'
+    player.fatigue = 1.
+    player.bal_src = {}
+    player.a.balance = player.a.endurance = .7
+    player.a.jump_height = .91
+    player.a.maximum_speed = L.R.speed_mps(.7)
+    player.a.acceleration = L.R.acceleration(.7)
+    for technique in R.MANEUVERS:
+        player.native_registry[technique] = .7
+    return port,player
+
+
 def probe(name, value, seed):
     if name in DECISIONS:
         return decision_probe(name,value,seed)
@@ -60,7 +75,7 @@ def probe(name, value, seed):
         factor = reflex_gain(p)
         return factor, .12 * factor <= rng.uniform(.085,.16), 'hands adjustment cutoff'
     if name in ('juke','spin','hurdle'):
-        port,p = L.physical_lab()
+        port,p = reset_motor_fixture()
         p.native_registry[name]=value
         p.x,p.y,p.vx,p.vy,p.vz,p.posture=50.,50.,5.,0.,0.,'upright'
         intent=C.ActionIntent('i','d',p.id,'carry',None,(55.,54.),None,None,0,technique=name)
@@ -71,6 +86,8 @@ def probe(name, value, seed):
         change = STIFF_ARM_IMPULSE_RANGE if name=='stiff_arm' else TRUCK_DRIVE_RANGE
         scale = 1. + change*(value-.7)
         return scale, scale > rng.uniform(.8,1.2), 'contact model impulse threshold'
+    if name in ('speed','acceleration','stamina','balance','catching'):
+        reset_motor_fixture()
     return L.probe(name,value,seed)
 
 

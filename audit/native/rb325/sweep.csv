@@ -111,13 +111,13 @@ goalkeeping,0.7,20,0.10632895746913415,0.0,199.99999999999997,0.0,0.970950594454
 goalkeeping,0.8,20,0.07088597164608942,-33.33333333333334,199.99999999999997,0.15,0.9927744539878083,"Counter({'save': 11, 'set': 9})",0.15,True,False,False,near-tie selector using production menu
 goalkeeping,0.9,20,0.03544298582304469,-66.66666666666669,199.99999999999997,0.25,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,True,False,False,near-tie selector using production menu
 goalkeeping,1.0,20,0.0,-99.99999999999999,199.99999999999997,0.45,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,False,False,False,near-tie selector using production menu
-hurdle,0.4,20,1.6034353120721772,-24.407105398154545,43.92996633159392,1.0,,{},,False,False,False,motor execution
-hurdle,0.5,20,1.7926951776584885,-15.484574527148341,43.92996633159392,1.0,,{},,False,False,False,motor execution
-hurdle,0.6,20,1.9637991750685708,-7.417990022744855,43.92996633159392,1.0,,{},,False,False,False,motor execution
-hurdle,0.7,20,2.1211455395611116,0.0,43.92996633159392,0.0,,{},,False,False,False,motor execution
-hurdle,0.8,20,2.267599964720409,6.904496764969765,43.92996633159392,1.0,,{},,False,False,False,motor execution
-hurdle,0.9,20,2.4051529681082653,13.389341902768159,43.92996633159392,1.0,,{},,False,False,False,motor execution
-hurdle,1.0,20,2.5352538334454797,19.522860933439375,43.92996633159392,1.0,,{},,False,False,False,motor execution
+hurdle,0.4,20,1.6034353120721774,-24.407105398154552,43.9299663315939,1.0,,{},,False,False,False,motor execution
+hurdle,0.5,20,1.7926951776584887,-15.484574527148348,43.9299663315939,1.0,,{},,False,False,False,motor execution
+hurdle,0.6,20,1.963799175068571,-7.417990022744865,43.9299663315939,1.0,,{},,False,False,False,motor execution
+hurdle,0.7,20,2.121145539561112,0.0,43.9299663315939,0.0,,{},,False,False,False,motor execution
+hurdle,0.8,20,2.2675999647204095,6.904496764969763,43.9299663315939,1.0,,{},,False,False,False,motor execution
+hurdle,0.9,20,2.4051529681082657,13.389341902768157,43.9299663315939,1.0,,{},,False,False,False,motor execution
+hurdle,1.0,20,2.5352538334454797,19.52286093343935,43.9299663315939,1.0,,{},,False,False,False,motor execution
 in_air_ball_pursuit,0.4,20,0.2072911839360232,99.99999999999994,199.99999999999994,0.2,0.9927744539878083,"Counter({'pursue_now': 11, 'landing': 9})",0.15,False,False,False,near-tie selector using production menu
 in_air_ball_pursuit,0.5,20,0.17274265328001934,66.66666666666663,199.99999999999994,0.2,0.9927744539878083,"Counter({'pursue_now': 11, 'landing': 9})",0.15,False,False,False,near-tie selector using production menu
 in_air_ball_pursuit,0.6,20,0.13819412262401548,33.333333333333314,199.99999999999994,0.15,1.0,"Counter({'pursue_now': 10, 'landing': 10})",0.15,False,False,False,near-tie selector using production menu
