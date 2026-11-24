@@ -1,0 +1,433 @@
+{
+  "holdout_seed": 3,
+  "provenance": {
+    "applied_in_match": false,
+    "grade_timings": "process CPU seconds",
+    "match_fingerprints": [
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "cpu_s": 258.56061820900004,
+        "decisions": 160374,
+        "groups": {
+          "carrier/20to40/open": 344,
+          "carrier/20to40/pressured": 299,
+          "carrier/over40/open": 1182,
+          "carrier/over40/pressured": 1168,
+          "carrier/under20/open": 161,
+          "carrier/under20/pressured": 74,
+          "finishing": 76,
+          "passing": 344,
+          "takedown": 649
+        },
+        "score": {
+          "A": 61,
+          "B": 80
+        },
+        "seed": 1,
+        "state_hash": "c517e00f864f1438705cdd1d9768d61523ee1aaac69746f57a2e9f1f4adf2745",
+        "steps": 32509,
+        "trace_hash": "c1a578db3f2754d3f69b47ba81a1f9d5b9336e1d87f496de2fa8dc3daee7a256"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "cpu_s": 260.850902054,
+        "decisions": 158414,
+        "groups": {
+          "carrier/20to40/open": 435,
+          "carrier/20to40/pressured": 365,
+          "carrier/over40/open": 1247,
+          "carrier/over40/pressured": 990,
+          "carrier/under20/open": 208,
+          "carrier/under20/pressured": 120,
+          "finishing": 89,
+          "passing": 299,
+          "takedown": 532
+        },
+        "score": {
+          "A": 79,
+          "B": 71
+        },
+        "seed": 2,
+        "state_hash": "38eef443498fc00087ccbfb83153a4eb524325cbce9ced0493735deb4e0d4b16",
+        "steps": 32299,
+        "trace_hash": "5b3d52674f118a5e11fc22afa0d3ba401d1de9a197b925944a6272ff660e964d"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "cpu_s": 265.252165103,
+        "decisions": 162154,
+        "groups": {
+          "carrier/20to40/open": 425,
+          "carrier/20to40/pressured": 479,
+          "carrier/over40/open": 1111,
+          "carrier/over40/pressured": 975,
+          "carrier/under20/open": 227,
+          "carrier/under20/pressured": 136,
+          "finishing": 97,
+          "passing": 282,
+          "takedown": 571
+        },
+        "score": {
+          "A": 78,
+          "B": 84
+        },
+        "seed": 3,
+        "state_hash": "19abfc87d2d50ec2be179e8a60135ca6a7b940d385840ceb81d1465e0b1d90c1",
+        "steps": 32979,
+        "trace_hash": "2e3ca26532f6c6b712479699eb60adf9da265b3ea0417099bbb940cd8eabdd5f"
+      }
+    ],
+    "rollouts_per_option": 20,
+    "strata": {
+      "carrier/20to40/open": {
+        "eligible": 1204,
+        "selected": 10
+      },
+      "carrier/20to40/pressured": {
+        "eligible": 1143,
+        "selected": 10
+      },
+      "carrier/over40/open": {
+        "eligible": 3540,
+        "selected": 10
+      },
+      "carrier/over40/pressured": {
+        "eligible": 3133,
+        "selected": 10
+      },
+      "carrier/under20/open": {
+        "eligible": 596,
+        "selected": 10
+      },
+      "carrier/under20/pressured": {
+        "eligible": 330,
+        "selected": 10
+      },
+      "finishing": {
+        "eligible": 262,
+        "selected": 30
+      },
+      "passing": {
+        "eligible": 925,
+        "selected": 30
+      },
+      "takedown": {
+        "eligible": 1752,
+        "selected": 30
+      }
+    }
+  },
+  "schema": "oracle-drill-v0/1",
+  "smoothing_prior_trials": 5,
+  "tables": {
+    "pass_completion": {
+      "axes": [
+        [
+          "lane_margin_m",
+          [
+            0.0,
+            1.5,
+            4.0
+          ]
+        ],
+        [
+          "attempt_distance_m",
+          [
+            10.0,
+            20.0
+          ]
+        ],
+        [
+          "pressured",
+          [
+            0.5
+          ]
+        ]
+      ],
+      "bins": {
+        "0/1/0": {
+          "n": 20,
+          "prediction": 0.10206106870229008
+        },
+        "1/0/0": {
+          "n": 140,
+          "prediction": 0.7762174256383259
+        },
+        "1/0/1": {
+          "n": 540,
+          "prediction": 0.5092688563624903
+        },
+        "1/1/0": {
+          "n": 60,
+          "prediction": 0.03925425719318849
+        },
+        "1/1/1": {
+          "n": 520,
+          "prediction": 0.5343838604143948
+        },
+        "1/2/1": {
+          "n": 140,
+          "prediction": 0.28656225322453277
+        },
+        "2/0/0": {
+          "n": 60,
+          "prediction": 0.4392542571931885
+        },
+        "2/0/1": {
+          "n": 200,
+          "prediction": 0.4222025693539378
+        },
+        "2/1/0": {
+          "n": 100,
+          "prediction": 0.5576335877862595
+        },
+        "2/1/1": {
+          "n": 40,
+          "prediction": 0.25670059372349446
+        },
+        "3/0/0": {
+          "n": 400,
+          "prediction": 0.5297568560927339
+        },
+        "3/1/0": {
+          "n": 300,
+          "prediction": 0.6641033662870729
+        },
+        "3/1/1": {
+          "n": 20,
+          "prediction": 0.10206106870229008
+        },
+        "3/2/0": {
+          "n": 80,
+          "prediction": 0.5947238437359676
+        }
+      },
+      "global_prior": 0.5103053435114504,
+      "held_out": 1020,
+      "held_out_mse": 0.25312296587065714,
+      "held_out_prior_mse": 0.251136734456034,
+      "status": "fit",
+      "train": 2620,
+      "unseen_held_out": 40
+    },
+    "points_by_field_position": {
+      "axes": [
+        [
+          "field_x_m",
+          [
+            20.0,
+            40.0,
+            60.0,
+            80.0
+          ]
+        ],
+        [
+          "field_y_m",
+          [
+            25.0,
+            75.0
+          ]
+        ]
+      ],
+      "bins": {
+        "0/0": {
+          "n": 40,
+          "prediction": 0.2394017094017094
+        },
+        "0/1": {
+          "n": 100,
+          "prediction": 0.5502197802197802
+        },
+        "1/0": {
+          "n": 120,
+          "prediction": 0.09418461538461538
+        },
+        "1/1": {
+          "n": 200,
+          "prediction": 0.5452345215759851
+        },
+        "2/1": {
+          "n": 540,
+          "prediction": 0.3738955539872971
+        },
+        "3/0": {
+          "n": 100,
+          "prediction": 1.035934065934066
+        },
+        "3/1": {
+          "n": 440,
+          "prediction": 0.8219619706136561
+        },
+        "3/2": {
+          "n": 60,
+          "prediction": 0.9965088757396451
+        },
+        "4/1": {
+          "n": 880,
+          "prediction": 1.1590656236418948
+        },
+        "4/2": {
+          "n": 120,
+          "prediction": 0.3101846153846154
+        }
+      },
+      "global_prior": 0.7546153846153846,
+      "held_out": 1940,
+      "held_out_mse": 2.4053833983807493,
+      "held_out_prior_mse": 2.378458653083633,
+      "status": "fit",
+      "train": 2600,
+      "unseen_held_out": 0
+    },
+    "shot_conversion": {
+      "axes": [
+        [
+          "goal_distance_m",
+          [
+            10.0,
+            20.0,
+            30.0
+          ]
+        ],
+        [
+          "lane_margin_m",
+          [
+            0.0,
+            1.5,
+            4.0
+          ]
+        ],
+        [
+          "keeper_offset_m",
+          [
+            1.0,
+            2.0
+          ]
+        ]
+      ],
+      "bins": {
+        "0/1/2": {
+          "n": 20,
+          "prediction": 0.09164556962025315
+        },
+        "0/3/1": {
+          "n": 160,
+          "prediction": 0.7229766014576141
+        },
+        "0/3/2": {
+          "n": 80,
+          "prediction": 0.9563663440059568
+        },
+        "1/1/0": {
+          "n": 40,
+          "prediction": 0.7842475386779183
+        },
+        "1/1/1": {
+          "n": 80,
+          "prediction": 0.5210722263588979
+        },
+        "1/1/2": {
+          "n": 80,
+          "prediction": 0.06224869694713328
+        },
+        "1/3/0": {
+          "n": 160,
+          "prediction": 0.49267357115458377
+        },
+        "1/3/1": {
+          "n": 100,
+          "prediction": 0.3646775165762507
+        },
+        "1/3/2": {
+          "n": 240,
+          "prediction": 0.4256781193490054
+        },
+        "2/0/2": {
+          "n": 20,
+          "prediction": 0.37164556962025314
+        },
+        "2/1/0": {
+          "n": 80,
+          "prediction": 0.5210722263588979
+        },
+        "2/1/1": {
+          "n": 80,
+          "prediction": 0.3916604616530156
+        },
+        "2/1/2": {
+          "n": 20,
+          "prediction": 0.49164556962025313
+        },
+        "2/2/0": {
+          "n": 80,
+          "prediction": 0.6269545793000744
+        },
+        "2/2/2": {
+          "n": 80,
+          "prediction": 0.5681310498883098
+        },
+        "2/3/0": {
+          "n": 100,
+          "prediction": 0.28848704038577455
+        },
+        "2/3/1": {
+          "n": 20,
+          "prediction": 0.6116455696202532
+        },
+        "2/3/2": {
+          "n": 40,
+          "prediction": 0.11758087201125175
+        },
+        "3/1/None": {
+          "n": 100,
+          "prediction": 0.040867992766726945
+        }
+      },
+      "global_prior": 0.4582278481012658,
+      "held_out": 1060,
+      "held_out_mse": 0.25682095848423664,
+      "held_out_prior_mse": 0.25978408153023375,
+      "status": "fit",
+      "train": 1580,
+      "unseen_held_out": 460
+    },
+    "tackle_risk": {
+      "axes": [
+        [
+          "free_run_m",
+          [
+            3.0,
+            8.0,
+            12.0
+          ]
+        ]
+      ],
+      "bins": {
+        "0": {
+          "n": 880,
+          "prediction": 0.21795298627925747
+        },
+        "1": {
+          "n": 140,
+          "prediction": 0.054402709359605915
+        },
+        "2": {
+          "n": 100,
+          "prediction": 0.008460884353741498
+        }
+      },
+      "global_prior": 0.17767857142857144,
+      "held_out": 700,
+      "held_out_mse": 0.13648722831647225,
+      "held_out_prior_mse": 0.13747528698979591,
+      "status": "fit",
+      "train": 1120,
+      "unseen_held_out": 0
+    }
+  },
+  "target": "offline observed outcome",
+  "train_seeds": [
+    1,
+    2
+  ]
+}

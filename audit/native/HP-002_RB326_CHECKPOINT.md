@@ -1,10 +1,10 @@
 # OWNER BRIEFING
 
-1. RB-3.26 fixes Reaction timing and adds a separate ORACLE package for replay, physical rollouts and grading.
-2. An offline scenario can resume a saved match or start from an authored field state. It can expose a selected athlete's menu and grade a forced choice without changing the other players' decision logic.
-3. The value tables and Gauge results below measure this sample. Calibration across other teams and match conditions remains unproven.
-4. No canon question is pending.
-5. Review the replay and grading evidence before using any learned value in PRISM.
+1. RB-3.26 fixes Reaction timing and adds a separate ORACLE package for replay, physical rollouts and grading. The drill completed 11,880 rollouts across 150 captured decisions.
+2. ORACLE can resume a saved match in a fresh process or start from an authored field state. It can grade each option on one athlete's menu while the rest of the match uses the normal decision logic.
+3. Higher Playmaking followed the hand-set values more closely and incurred more rollout regret in this pilot. Two of the four fitted tables improved over the pooled baseline on held-out seed 3. Transfer to other teams remains unproven.
+4. All standing gates passed. The Gauge missed its true-regret criterion. No canon question is pending.
+5. Review the largest disagreements and the many points-only ties in the commitment stages before using any learned value in PRISM.
 
 ## Revisions and status
 
@@ -19,9 +19,9 @@
 |---|---|---|
 | 0. Reaction | DESIGN COMPLETE, IMPLEMENTED, TESTED | 10,000-decision sweep at each level, compatibility and new seed-1 fingerprints |
 | 1. Harness | DESIGN COMPLETE, IMPLEMENTED, TESTED | Full and prepared snapshots, true-state scenes, firewall test |
-| 2. Rollouts | DESIGN COMPLETE, IMPLEMENTED | One forced option, independent branch seeds and stage horizons |
-| 3. Drill | DESIGN COMPLETE, IMPLEMENTED | Sampled carrier and commitment decisions, held-out table fit |
-| 4. Gauge | DESIGN COMPLETE, IMPLEMENTED | Three paired Playmaking levels with belief and rollout regret |
+| 2. Rollouts | DESIGN COMPLETE, IMPLEMENTED, TESTED | One forced option, independent branch seeds, stage horizons and 11,880 branch outcomes |
+| 3. Drill | DESIGN COMPLETE, IMPLEMENTED, TESTED | 150 sampled decisions, four fitted tables with held-out scores |
+| 4. Gauge | DESIGN COMPLETE, IMPLEMENTED, TESTED | Belief regret decreased. Rollout regret increased across the tested levels |
 
 ## Standing gates
 
@@ -79,6 +79,8 @@ Every continuation reproduced the uninterrupted final score, steps, config, trac
 | 14,000 | 87.9 | 83.0 |
 | 25,000 | 35.9 | 34.2 |
 
+The authored carrier scene resolved its forced first choice in 13 steps through a score. The receiver scene supplies its first observation with 300 ms of nominal horizontal travel to the receiver's initial x-coordinate. The engine registered the catch 279 ms after delivery. Both event traces are saved in the evidence directory.
+
 ## Drill sample
 
 The three neutral-real CORE matches recorded every delivered decision. Each journal includes the observed tracks and ball course, the owning ratings, the menu values, and the selected action. Procedural turns may have a procedural menu in place of a rated Strategy menu.
@@ -105,5 +107,61 @@ The carrier sample assigned ten decisions to each distance and pressure stratum.
 | Takedown | 1,752 | 30 |
 
 The complete compressed journals and captured source moments live in `/workspace/rb326-evidence/mined/`. The committed journal manifest lists the byte counts and SHA-256 fingerprints. The selected beliefs and individual rollout and Gauge rows are the review dataset.
+
+## Rollout scoring and timing
+
+Each feasible option received 20 branch seeds derived from the captured moment, option index and replicate. At a sub-agent decision the branch replays the commitments that already led to that menu. The intervention changes only the designated choice. The return is the scoreboard change for the choosing athlete's team minus its opponent's change, measured at the stopping tick.
+
+| Stage | Branches | CPU s | CPU s per branch | Time caps |
+|---|---:|---:|---:|---:|
+| Playmaking carrier | 4,540 | 1,465.1 | 0.323 | 1 |
+| Passing | 2,640 | 292.2 | 0.111 | 3 |
+| Finishing | 2,300 | 182.4 | 0.079 | 15 |
+| Takedown | 2,400 | 192.0 | 0.080 | 77 |
+| Total | 11,880 | 2,131.6 | 0.179 | 96 |
+
+The mean cost per graded decision was 14.21 CPU seconds. Each option has its own mean, standard error and reason counts in `rb326/evidence/grades.jsonl.gz`. The 96 capped branches contributed accrued points and any events observed by the cap. The Passing branches include 1,301 completions and 1,131 misses. Takedown recorded 1,181 counted groundings and 1,142 ended holds.
+
+## Hand-set values against rollout returns
+
+Best-option agreement includes ties. Rank agreement is mean Kendall tau-b over menus where it is defined. Each row's regret averages across menus with at least two options.
+
+| Stage | Multi-option menus | Defined ranks | Mean tau-b | Hand-set best in rollout-best set | Unique rollout bests | Mean points lost |
+|---|---:|---:|---:|---:|---:|---:|
+| Playmaking carrier | 60 | 56 | −0.00374 | 33.3% | 54 | 0.56750 |
+| Passing | 29 | 2 | 0.08333 | 93.1% | 2 | 0.00862 |
+| Finishing | 28 | 28 | 0.01607 | 25.0% | 15 | 0.82857 |
+| Takedown | 30 | 0 | Undefined | 100% | 0 | 0 |
+
+The hand-set best matched 15 of 54 unique carrier winners, neither of the two unique Passing winners, and one of 15 unique Finishing winners. Every Takedown option scored zero at the immediate action horizon. Passing was also usually tied on points, even when the options had different completion outcomes.
+
+In 23 moments the hand-set best lost at least one estimated point. The largest gaps were 3.15 points for a carry compared with a shot, 2.80 for a carry compared with a pass, and 2.55 for the selected finishing lane compared with two alternative aims. The summary lists each moment and the corresponding options. The per-option standard errors describe finite rollout uncertainty.
+
+The `−1.40` shot offset was relevant to 17 menus containing shots. Removing it in an offline re-ranking changed the hand-set winner in one menu and reduced mean regret in that subset from 1.044 to 0.903 points. The result describes the sampled menus under the existing continuation policy.
+
+## Held-out value tables
+
+`native/oracle/artifacts/drill-v0.json` contains the versioned fit. Seeds 1 and 2 supplied training outcomes and seed 3 supplied held-out outcomes. Populated cells shrink toward the training mean with the weight of five trials. Unseen cells predict the training mean. The pass and shot labels record success within the rollout horizon. Tackle risk records a counted grounding of the original carrier. Field-position points average the sampled intervention options equally.
+
+| Table | Train | Held out | Held-out MSE | Pooled baseline MSE | Unseen held-out rows |
+|---|---:|---:|---:|---:|---:|
+| Pass completion by lane, distance and pressure | 2,620 | 1,020 | 0.25312 | 0.25114 | 40 |
+| Tackle risk by free run | 1,120 | 700 | 0.13649 | 0.13748 | 0 |
+| Shot conversion by distance, lane and believed Keeper offset | 1,580 | 1,060 | 0.25682 | 0.25978 | 460 |
+| Points by field position | 2,600 | 1,940 | 2.40538 | 2.37846 | 0 |
+
+The shot and tackle tables improved on the pooled prediction in this holdout. The pass and field-position tables increased error. About 43% of held-out shot rows landed in unseen cells. The fit measures new matches of the same teams under the existing CORE continuation policy.
+
+## Gauge pilot
+
+Each level used the same 60 carrier moments and the same 20 decision seeds per moment. Ratings other than Playmaking stayed at 0.70. The decision seed was paired across levels. Scores compare the normal selected option against the best option under the stated value source.
+
+| Playmaking | Trials | Rollout regret, points | Belief regret, hand-set units | Regret after belief error |
+|---:|---:|---:|---:|---:|
+| 0.40 | 1,200 | 0.54242 | 0.01376 | 0 |
+| 0.70 | 1,200 | 0.55088 | 0.00210 | 0 |
+| 1.00 | 1,200 | 0.56750 | 0 | 0 |
+
+The true-regret criterion was **unmet**. Playmaking 1.00 incurred 0.02508 more points of rollout regret than 0.40 in this pilot. Higher Playmaking followed the underlying hand-set values more closely. The chooser maximizes the perturbed believed value by construction, so regret against that value is zero at all levels. The pilot measures the recorded moments and the finite rollout estimates for each option.
 
 See `rb326/README.md` for commands and `rb326/evidence/` for raw results.

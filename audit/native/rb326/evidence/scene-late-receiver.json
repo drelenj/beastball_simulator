@@ -1,0 +1,46 @@
+{
+  "elapsed_ms": 279,
+  "end_reason": "pass_caught",
+  "events": [
+    {
+      "ball": [
+        55.168,
+        54.906,
+        1.482
+      ],
+      "ball_mode": "carried",
+      "carrier": "A:0",
+      "cause": {
+        "actor": "A:0",
+        "at": 1278,
+        "kind": "acquire",
+        "target": null
+      },
+      "data": {
+        "player": "A:0"
+      },
+      "event": "control",
+      "g_ms": 599722,
+      "id": 15,
+      "live_ms": 278,
+      "owner": "A",
+      "p_ms": 17722,
+      "period": 1,
+      "phase": "live",
+      "rule": "1.5;5.2",
+      "score": {
+        "A": 0,
+        "B": 0
+      },
+      "t_ms": 1278
+    }
+  ],
+  "forced_intent": null,
+  "pass_result": "caught",
+  "points_against": 0,
+  "points_for": 0,
+  "shot_result": null,
+  "steps": 4,
+  "tackle_result": null,
+  "trace_hash": "ad0d8febdee27cf1e8dfb75a671bf2f10ffc240b0d44be3d5ec8a3d9ad309e18"
+}

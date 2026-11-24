@@ -1,0 +1,273 @@
+{
+  "elapsed_ms": 1213,
+  "end_reason": "score",
+  "events": [
+    {
+      "ball": [
+        77.545,
+        47.529,
+        1.482
+      ],
+      "ball_mode": "shot",
+      "carrier": null,
+      "cause": null,
+      "data": {
+        "forced": false,
+        "kind": "shot",
+        "origin": {
+          "feet": {
+            "L": [
+              76.716,
+              48.471,
+              false
+            ],
+            "R": [
+              76.57,
+              47.381,
+              true
+            ]
+          },
+          "foot": "R",
+          "origin": [
+            76.57,
+            47.381
+          ],
+          "pelvis": [
+            76.752,
+            47.529
+          ],
+          "pelvis_territory": "outside_release",
+          "rule": "one_planted",
+          "territory": "outside_release"
+        },
+        "player": "A:0",
+        "target": null,
+        "velocity": [
+          49.05681526273141,
+          11.046792518833731,
+          -0.47948678196671396
+        ]
+      },
+      "event": "release",
+      "g_ms": 599250,
+      "id": 15,
+      "live_ms": 750,
+      "owner": "A",
+      "p_ms": 21250,
+      "period": 1,
+      "phase": "live",
+      "rule": "4.4\u20134.5;3.1",
+      "score": {
+        "A": 0,
+        "B": 0
+      },
+      "t_ms": 1750
+    },
+    {
+      "ball": [
+        100.127,
+        52.614,
+        0.214
+      ],
+      "ball_mode": "shot",
+      "carrier": null,
+      "cause": {
+        "actor": null,
+        "at": 2212,
+        "kind": "goal",
+        "target": null
+      },
+      "data": {
+        "band": "20plus",
+        "method": "release",
+        "points": 4,
+        "release_distance": 22.59076042784939,
+        "team": "A"
+      },
+      "event": "goal",
+      "g_ms": 598788,
+      "id": 16,
+      "live_ms": 1212,
+      "owner": "A",
+      "p_ms": 20788,
+      "period": 1,
+      "phase": "live",
+      "rule": "native",
+      "score": {
+        "A": 4,
+        "B": 0
+      },
+      "t_ms": 2212
+    },
+    {
+      "ball": [
+        60,
+        50.0,
+        0.107
+      ],
+      "ball_mode": "dead",
+      "carrier": null,
+      "cause": {
+        "actor": null,
+        "at": 2212,
+        "kind": "goal",
+        "target": null
+      },
+      "data": {
+        "kind": "snap40",
+        "reason": "goal",
+        "restart_id": "1/2",
+        "spot": [
+          60,
+          50.0
+        ],
+        "team": "B"
+      },
+      "event": "restart_awarded",
+      "g_ms": 598788,
+      "id": 17,
+      "live_ms": 1212,
+      "owner": "B",
+      "p_ms": 30000,
+      "period": 1,
+      "phase": "dead",
+      "rule": "native",
+      "score": {
+        "A": 4,
+        "B": 0
+      },
+      "t_ms": 2212
+    },
+    {
+      "ball": [
+        60,
+        50.0,
+        0.107
+      ],
+      "ball_mode": "dead",
+      "carrier": null,
+      "cause": {
+        "actor": null,
+        "at": 2212,
+        "kind": "goal",
+        "target": null
+      },
+      "data": {
+        "ruling": {
+          "archer_team": "A",
+          "authority": "referee",
+          "id": 4,
+          "kind": "quota_reset",
+          "period": 1,
+          "team": "B"
+        }
+      },
+      "event": "rb_quota_reset",
+      "g_ms": 598788,
+      "id": 18,
+      "live_ms": 1212,
+      "owner": "B",
+      "p_ms": 30000,
+      "period": 1,
+      "phase": "dead",
+      "rule": "RB-1",
+      "score": {
+        "A": 4,
+        "B": 0
+      },
+      "t_ms": 2212
+    },
+    {
+      "ball": [
+        60,
+        50.0,
+        0.107
+      ],
+      "ball_mode": "dead",
+      "carrier": null,
+      "cause": {
+        "actor": null,
+        "at": 2212,
+        "kind": "goal",
+        "target": null
+      },
+      "data": {
+        "ruling": {
+          "authority": "goal_judge_B",
+          "called": true,
+          "defending": "B",
+          "id": 5,
+          "kind": "goal",
+          "period": 1
+        }
+      },
+      "event": "rb_goal",
+      "g_ms": 598788,
+      "id": 19,
+      "live_ms": 1212,
+      "owner": "B",
+      "p_ms": 30000,
+      "period": 1,
+      "phase": "dead",
+      "rule": "RB-1",
+      "score": {
+        "A": 4,
+        "B": 0
+      },
+      "t_ms": 2212
+    },
+    {
+      "ball": [
+        60,
+        50.0,
+        0.107
+      ],
+      "ball_mode": "dead",
+      "carrier": null,
+      "cause": null,
+      "data": {
+        "auto_unfrozen": [],
+        "kind": "snap40",
+        "neutral_zone_m": 20.0,
+        "nose": null,
+        "reason": "goal",
+        "receiver": "B:10",
+        "receiver_source": "default_nearest",
+        "receiver_spot": [
+          70.0,
+          50.0
+        ],
+        "restart_id": "1/2",
+        "snapper": "B:7",
+        "spot": [
+          60,
+          50.0
+        ],
+        "tackler": null,
+        "team": "B"
+      },
+      "event": "scrimmage_formation",
+      "g_ms": 598788,
+      "id": 20,
+      "live_ms": 1212,
+      "owner": "B",
+      "p_ms": 30000,
+      "period": 1,
+      "phase": "dead",
+      "rule": "RB-3.10",
+      "score": {
+        "A": 4,
+        "B": 0
+      },
+      "t_ms": 2213
+    }
+  ],
+  "forced_intent": "retain",
+  "pass_result": null,
+  "points_against": 0,
+  "points_for": 4,
+  "shot_result": "scored",
+  "steps": 13,
+  "tackle_result": null,
+  "trace_hash": "da0d8b55f0f77fb86b4733cff938811ab4b9e89876d351027b42aa773c1cbaa8"
+}

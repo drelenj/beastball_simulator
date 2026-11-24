@@ -1,0 +1,5 @@
+762 passed, 1 warning, 23 subtests passed in 648.21s (0:10:48)
+CORE 4.027 ms/step against RB-3.22 3.643, +10.53%
+off {'A': 57, 'B': 76} 44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072 046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d
+core {'A': 61, 'B': 80} c1a578db3f2754d3f69b47ba81a1f9d5b9336e1d87f496de2fa8dc3daee7a256 c517e00f864f1438705cdd1d9768d61523ee1aaac69746f57a2e9f1f4adf2745
+Drill 150 moments, 11880 rollouts, 3600 Gauge trials.
