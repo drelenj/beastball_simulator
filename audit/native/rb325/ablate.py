@@ -88,7 +88,9 @@ def install(active):
     patch(C, '_base_decide', [
         ("if view.registry_ratings else 1.\n                aim", "if 'anticipation' in RB325 else 1.\n                aim"),
         ("if view.registry_ratings:\n                t_lead *=", "if 'anticipation' in RB325:\n                t_lead *="),
-        ("if course and view.prism_agent == 'in_air_ball_pursuit':", "if course and course.z > .45:"),
+        ("if course and view.prism_agent == 'in_air_ball_pursuit':",
+         "if course and (view.prism_agent == 'in_air_ball_pursuit' or "
+         "('strategy' not in RB325 and course.z > .45)):"),
     ])
     patch(R, 'missed_ball_pursuit', [
         ("if view.registry_ratings:\n        trust", "if 'anticipation' in RB325:\n        trust"),
@@ -106,8 +108,8 @@ def main():
     if args.case.startswith('without-'):
         missing = args.case.removeprefix('without-')
         active = {hook for hooks in LAYERS.values() for hook in hooks} - set(LAYERS.get(missing, (missing,)))
-    if args.case == 'inference':
-        active.add('remembered')
+    if args.case == 'all-switches':
+        active = {hook for hooks in LAYERS.values() for hook in hooks}
     if args.case not in ('off', 'on'):
         install(active)
     rosters = neutral_rosters(True)
