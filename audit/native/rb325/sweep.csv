@@ -41,13 +41,13 @@ balance,0.7,20,0.37103068098644565,0.0,23.859581029891125,0.0,,{},,False,False,F
 balance,0.8,20,0.3566152296572845,-3.8852450937036624,23.859581029891125,0.1,,{},,False,False,False,physical balance recovery
 balance,0.9,20,0.34278294133430776,-7.6133163912581745,23.859581029891125,0.15,,{},,False,False,False,physical balance recovery
 balance,1.0,20,0.32950949024570386,-11.190770162281707,23.859581029891125,0.15,,{},,False,False,False,physical balance recovery
-ball_handling,0.4,20,288,15.2,30.0,,,{},,False,False,False,mapped quantity only
-ball_handling,0.5,20,275,10.0,30.0,,,{},,False,False,False,mapped quantity only
-ball_handling,0.6,20,262,4.8,30.0,,,{},,False,False,False,mapped quantity only
-ball_handling,0.7,20,250,0.0,30.0,,,{},,False,False,False,mapped quantity only
-ball_handling,0.8,20,238,-4.8,30.0,,,{},,False,False,False,mapped quantity only
-ball_handling,0.9,20,225,-10.0,30.0,,,{},,False,False,False,mapped quantity only
-ball_handling,1.0,20,213,-14.8,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,0.4,20,288,15.2,30.0,0.65,,{},,False,False,False,actual pass wind-up
+ball_handling,0.5,20,275,10.0,30.0,0.45,,{},,False,False,False,actual pass wind-up
+ball_handling,0.6,20,262,4.8,30.0,0.15,,{},,False,False,False,actual pass wind-up
+ball_handling,0.7,20,250,0.0,30.0,0.0,,{},,False,False,False,actual pass wind-up
+ball_handling,0.8,20,238,-4.8,30.0,0.1,,{},,False,False,False,actual pass wind-up
+ball_handling,0.9,20,225,-10.0,30.0,0.15,,{},,False,False,False,actual pass wind-up
+ball_handling,1.0,20,213,-14.8,30.0,0.25,,{},,False,False,False,actual pass wind-up
 blocking,0.4,20,0.3124616120029104,-27.272727272727277,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
 blocking,0.5,20,0.3580289304200015,-16.666666666666668,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
 blocking,0.6,20,0.39658589215754014,-7.692307692307691,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
@@ -139,13 +139,13 @@ juke,0.7,20,4.0,0.0,30.00000000000007,0.0,,{},,False,False,False,motor execution
 juke,0.8,20,4.200000000000003,5.000000000000071,30.00000000000007,1.0,,{},,False,False,False,motor execution
 juke,0.9,20,4.399999999999999,9.999999999999964,30.00000000000007,1.0,,{},,False,False,False,motor execution
 juke,1.0,20,4.600000000000001,15.000000000000036,30.00000000000007,1.0,,{},,False,False,False,motor execution
-jump,0.4,20,0.52,-42.857142857142854,85.71428571428572,,,{},,False,False,False,mapped quantity only
-jump,0.5,20,0.65,-28.571428571428562,85.71428571428572,,,{},,False,False,False,mapped quantity only
-jump,0.6,20,0.78,-14.285714285714276,85.71428571428572,,,{},,False,False,False,mapped quantity only
-jump,0.7,20,0.9099999999999999,0.0,85.71428571428572,,,{},,False,False,False,mapped quantity only
-jump,0.8,20,1.04,14.285714285714299,85.71428571428572,,,{},,False,False,False,mapped quantity only
-jump,0.9,20,1.1700000000000002,28.571428571428598,85.71428571428572,,,{},,False,False,False,mapped quantity only
-jump,1.0,20,1.3,42.857142857142875,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,0.4,20,0.13104000000000002,-42.85714285714285,85.71428571428572,0.4,,{},,False,False,False,physical hurdle clearance
+jump,0.5,20,0.16380000000000003,-28.57142857142855,85.71428571428572,0.25,,{},,False,False,False,physical hurdle clearance
+jump,0.6,20,0.19656,-14.285714285714267,85.71428571428572,0.2,,{},,False,False,False,physical hurdle clearance
+jump,0.7,20,0.22931999999999997,0.0,85.71428571428572,0.0,,{},,False,False,False,physical hurdle clearance
+jump,0.8,20,0.26208000000000004,14.285714285714318,85.71428571428572,0.3,,{},,False,False,False,physical hurdle clearance
+jump,0.9,20,0.29484,28.571428571428584,85.71428571428572,0.6,,{},,False,False,False,physical hurdle clearance
+jump,1.0,20,0.3276,42.857142857142875,85.71428571428572,0.6,,{},,False,False,False,physical hurdle clearance
 live_ball_pursuit,0.4,20,0.233220765729734,99.99999999999993,199.99999999999991,0.15,1.0,"Counter({'intercept': 10, 'approach': 10})",0.15,False,False,False,near-tie selector using production menu
 live_ball_pursuit,0.5,20,0.19435063810811168,66.66666666666661,199.99999999999991,0.15,1.0,"Counter({'intercept': 10, 'approach': 10})",0.15,False,False,False,near-tie selector using production menu
 live_ball_pursuit,0.6,20,0.15548051048648937,33.33333333333332,199.99999999999991,0.05,0.9709505944546686,"Counter({'approach': 12, 'intercept': 8})",0.15,True,False,False,near-tie selector using production menu
@@ -230,20 +230,20 @@ takedown,0.7,20,0.11362057399029411,0.0,199.99999999999997,0.0,0.970950594454668
 takedown,0.8,20,0.07574704932686273,-33.33333333333335,199.99999999999997,0.0,0.9709505944546686,"Counter({'drive': 12, 'contain': 8})",0.05,False,False,False,near-tie selector using production menu
 takedown,0.9,20,0.03787352466343136,-66.66666666666667,199.99999999999997,0.05,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,True,False,False,near-tie selector using production menu
 takedown,1.0,20,0.0,-99.99999999999999,199.99999999999997,0.15,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,False,False,False,near-tie selector using production menu
-throw_accuracy,0.4,20,3.0,99.99999999999993,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_accuracy,0.5,20,2.5,66.66666666666661,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_accuracy,0.6,20,2.0,33.33333333333329,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_accuracy,0.7,20,1.5000000000000004,0.0,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_accuracy,0.8,20,0.9999999999999998,-33.333333333333364,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_accuracy,0.9,20,0.4999999999999999,-66.66666666666667,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_accuracy,1.0,20,0.15,-90.00000000000001,189.99999999999994,,,{},,False,False,False,mapped quantity only
-throw_power,0.4,20,67.05,-33.33333333333333,66.66666666666667,,,{},,False,False,False,mapped quantity only
-throw_power,0.5,20,78.22499999999998,-22.222222222222232,66.66666666666667,,,{},,False,False,False,mapped quantity only
-throw_power,0.6,20,89.39999999999999,-11.11111111111111,66.66666666666667,,,{},,False,False,False,mapped quantity only
-throw_power,0.7,20,100.57499999999999,0.0,66.66666666666667,,,{},,False,False,False,mapped quantity only
-throw_power,0.8,20,111.75,11.111111111111123,66.66666666666667,,,{},,False,False,False,mapped quantity only
-throw_power,0.9,20,122.92500000000001,22.222222222222246,66.66666666666667,,,{},,False,False,False,mapped quantity only
-throw_power,1.0,20,134.1,33.33333333333334,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_accuracy,0.4,20,1.8851758125999507,99.99999999999993,189.99999999999991,0.55,,{},,False,False,False,actual ball release heading
+throw_accuracy,0.5,20,1.5709798438332925,66.66666666666663,189.99999999999991,0.35,,{},,False,False,False,actual ball release heading
+throw_accuracy,0.6,20,1.256783875066634,33.333333333333314,189.99999999999991,0.15,,{},,False,False,False,actual ball release heading
+throw_accuracy,0.7,20,0.9425879062999757,0.0,189.99999999999991,0.0,,{},,False,False,False,actual ball release heading
+throw_accuracy,0.8,20,0.6283919375333168,-33.33333333333337,189.99999999999991,0.0,,{},,False,False,False,actual ball release heading
+throw_accuracy,0.9,20,0.3141959687666584,-66.66666666666669,189.99999999999991,0.05,,{},,False,False,False,actual ball release heading
+throw_accuracy,1.0,20,0.09425879062999755,-90.0,189.99999999999991,0.15,,{},,False,False,False,actual ball release heading
+throw_power,0.4,20,67.05,-33.33333333333333,66.6666666666667,0.25,,{},,False,False,False,actual ball release speed
+throw_power,0.5,20,78.22499999999998,-22.222222222222232,66.6666666666667,0.2,,{},,False,False,False,actual ball release speed
+throw_power,0.6,20,89.39999999999999,-11.11111111111111,66.6666666666667,0.1,,{},,False,False,False,actual ball release speed
+throw_power,0.7,20,100.57499999999999,0.0,66.6666666666667,0.0,,{},,False,False,False,actual ball release speed
+throw_power,0.8,20,111.75,11.111111111111123,66.6666666666667,0.15,,{},,False,False,False,actual ball release speed
+throw_power,0.9,20,122.925,22.222222222222232,66.6666666666667,0.65,,{},,False,False,False,actual ball release speed
+throw_power,1.0,20,134.10000000000002,33.33333333333337,66.6666666666667,0.75,,{},,False,False,False,actual ball release speed
 touch,0.4,20,3.1146279785179147,1.872892754629367,3.7492387029131415,1.0,,{},,False,False,False,release vector
 touch,0.5,20,3.0955527495400497,1.2489823649022656,3.7492387029131415,1.0,,{},,False,False,False,release vector
 touch,0.6,20,3.0764656611700607,0.6246840795451547,3.7492387029131415,1.0,,{},,False,False,False,release vector

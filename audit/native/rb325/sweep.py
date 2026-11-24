@@ -4,7 +4,7 @@ from collections import Counter
 from dataclasses import replace
 import csv
 import json
-from math import log2
+from math import atan2, degrees, hypot, log2
 from pathlib import Path
 from statistics import mean
 
@@ -56,6 +56,38 @@ def reset_motor_fixture():
     return port,player
 
 
+def throw_probe(name, value, seed, rng):
+    port, player = reset_motor_fixture()
+    state = port.m.s
+    state.now += 1_000
+    state.owner = player.team
+    state.restart = None
+    player.x, player.y = 50., 50.
+    state.ball = port.types.Ball(mode=port.types.BallMode.CONTROLLED,
+                                 x=player.x, y=player.y, z=player.hand_height,
+                                 last_touch=player.team, carrier=player.id)
+    port.pending.clear()
+    port.m.rng['ball'].seed(seed)
+    player.a.ball_handling = value if name == 'ball_handling' else .7
+    player.native_max_throw_speed = L.R.max_throw_speed(value if name == 'throw_power' else .7)
+    player.native_throw_error_base_deg = L.R.throw_error_base_deg(value if name == 'throw_accuracy' else .7)
+    speed = player.native_max_throw_speed if name == 'throw_power' else 50.
+    attempt = C.ActionIntent('i','d',player.id,'pass',None,(75.,50.),None,None,state.now,
+                             speed=speed,height=1.6,period=state.period)
+    command = port.submit(attempt)['command']
+    state.now = command.release_ms
+    port.ball_motor()
+    assert port.outcomes[-1].status == 'released'
+    if name == 'throw_power':
+        speed = hypot(state.ball.vx,state.ball.vy,state.ball.vz)
+        return speed, speed >= rng.uniform(77.,130.), 'actual ball release speed'
+    if name == 'throw_accuracy':
+        yaw = abs(degrees(atan2(state.ball.vy,state.ball.vx)))
+        return yaw, yaw <= rng.uniform(.2,2.0), 'actual ball release heading'
+    elapsed = command.release_ms - command.start_ms
+    return elapsed, elapsed <= rng.uniform(215.,293.), 'actual pass wind-up'
+
+
 def probe(name, value, seed):
     if name in DECISIONS:
         return decision_probe(name,value,seed)
@@ -86,6 +118,15 @@ def probe(name, value, seed):
         change = STIFF_ARM_IMPULSE_RANGE if name=='stiff_arm' else TRUCK_DRIVE_RANGE
         scale = 1. + change*(value-.7)
         return scale, scale > rng.uniform(.8,1.2), 'contact model impulse threshold'
+    if name in ('ball_handling','throw_power','throw_accuracy'):
+        return throw_probe(name,value,seed,rng)
+    if name == 'jump':
+        port,p = reset_motor_fixture()
+        p.a.jump_height = 1.3 * value
+        aim = C.ActionIntent('i','d',p.id,'carry',None,(25.,55.),None,None,0,technique='hurdle')
+        maneuver(p,aim,port.m.assume['gravity'])
+        height = p.vz**2 / (2 * port.m.assume['gravity'])
+        return height, height >= rng.uniform(.13,.30), 'physical hurdle clearance'
     if name in ('speed','acceleration','stamina','balance','catching'):
         reset_motor_fixture()
     return L.probe(name,value,seed)

@@ -6,6 +6,8 @@ import json
 
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('directory',type=Path)
+parser.add_argument('--require-anchor', action='store_true',
+                    help='Exit unsuccessfully unless both body sets meet the calibration ranges.')
 args=parser.parse_args()
 root=args.directory
 
@@ -46,9 +48,18 @@ assert candidate/base <= 1.15
 
 real=[run(f'final-real-{seed}') for seed in range(1,6)]
 control=run('final-control-1')
+possessions_in_range = True
 for match in (*real,control):
     assert match['status']=='final' and match['restart_completion_ratio']==1.
     poss=[row['count'] for row in match['possessions'].values()]
-    print('Anchor',match['seed'],match['score'],poss,'within possession range:',all(100<=p<=150 for p in poss))
-print('Real roster median team score:',median(score for r in real for score in r['score'].values()))
-print('Control median team score:',median(control['score'].values()))
+    in_range = all(100<=p<=150 for p in poss)
+    possessions_in_range &= in_range
+    print('Anchor',match['seed'],match['score'],poss,'within possession range:',in_range)
+real_score = median(score for r in real for score in r['score'].values())
+control_score = median(control['score'].values())
+print('Real roster median team score:',real_score)
+print('Control median team score:',control_score)
+anchor_pass = possessions_in_range and all(75<=score<=90 for score in (real_score,control_score))
+print('Calibration anchor:', 'PASS' if anchor_pass else 'OUTSIDE RANGE')
+if args.require_anchor and not anchor_pass:
+    raise SystemExit(1)
