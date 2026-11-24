@@ -1,0 +1,33 @@
+{
+  "soak-off": {
+    "ala_vs_garvian": {
+      "ala_wins": 9,
+      "garvian_wins": 1,
+      "margin_se": 6.139127697718046,
+      "match_nonfinal": 0,
+      "matches": 10,
+      "mean_margin": 27,
+      "mean_team_possessions": 152.55,
+      "mean_terminal_attempt_share": 0.3548814485891329,
+      "median_team_possessions": 153.0,
+      "median_team_score": 90.5,
+      "possessions_range": [
+        140,
+        164
+      ],
+      "restart_completion": 1.0,
+      "ties": 0
+    },
+    "match_nonfinal": 0,
+    "matches": 20,
+    "mean_team_possessions": 153.15,
+    "mean_terminal_attempt_share": 0.35405665881150666,
+    "median_team_possessions": 152.0,
+    "median_team_score": 89.5,
+    "possessions_range": [
+      138,
+      164
+    ],
+    "restart_completion": 1.0
+  }
+}

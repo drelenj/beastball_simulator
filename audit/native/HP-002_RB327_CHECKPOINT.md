@@ -20,7 +20,7 @@
 | 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED | Ten neutral seeds completed with 1,599,060 delivered decisions. Stratified grading and fit in progress. |
 | 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED | Opt-in integration and focused firewall tests passed. Regulation anchor and performance checks pending. |
 | 4. Gauge | DESIGN COMPLETE, IMPLEMENTED | Paired-seed script ready. Held-out result depends on the fit. |
-| 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED | Pinned workbook and selection readback in evidence. Soak in progress. |
+| 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED | Twenty learned-off games completed. Learned-on games depend on the fitted artifact. |
 
 ## Standing gates
 
@@ -52,6 +52,10 @@ The focused tests cover a defensive intervention during the opponent's possessio
 | Takedown | 30 | 30 | 5 | 14 |
 
 Passing also had one single-option menu. Including it in the all-equal count reproduces the lead's original 28 of 30, compared with 3 of 30 through possession end. With the longer horizon, the hand-set best fell in the best-return group in 9 of 29 Passing and 9 of 30 Takedown menus. The mean gaps to the best observed return were 0.321 and 0.260 points respectively. The 11,880 original-sample rollouts took 4,083.3 CPU seconds. Option-level evidence is summarised in `rb327/evidence/original.json`.
+
+## Real ratings, learned off
+
+All 20 scheduled learned-off matches finished with every restart resolved. The median team score was 89.5 and the mean was 153.2 possessions per team. Across the ten primary seeds, Ala's mean margin was +27.0 with standard error 6.14. Ala won 9 of 10. The raw matches and per-seed totals are under `rb327/evidence`.
 
 ## Implemented measurement
 
