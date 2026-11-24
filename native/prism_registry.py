@@ -72,8 +72,8 @@ def select_agent(view, belief, rating):
         read = getattr(view, 'recognized_ball', None)
         if read in ('pass', 'shot') or (read is None and course is not None and course.z > .45):
             return 'in_air_ball_pursuit'
-        if read != 'held' and not any(t.role != 'ball' and hypot(t.x - ball.x, t.y - ball.y) < 1.8
-                   for t in belief.tracks):
+        if read == 'loose' or (read != 'held' and not any(t.role != 'ball' and hypot(t.x - ball.x, t.y - ball.y) < 1.8
+                   for t in belief.tracks)):
             return 'live_ball_pursuit'
     if view.signals.passive_team == view.team:
         return 'playmaking'

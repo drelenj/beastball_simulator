@@ -674,7 +674,7 @@ def decide_v2(view, belief):
         if course and course.fresh(view.delivered_ms):
             d=hypot(course.x-view.own_goal_x,course.y-50);depth=max(1.,min(4.,d*.25))
             lateral = (course.y-50)*depth/max(d,.01)
-            position=(view.own_goal_x+view.attack_sign*depth,50+lateral*(1+rating_effect(view, 'goalkeeping', .5)))
+            position=(view.own_goal_x+view.attack_sign*depth,50+lateral*(1+owned_effect(view, 'goalkeeping', .5, agent='goalkeeping')))
         kv=E.KeeperView(view.observation_id,view.delivered_ms,view.body,view.own_goal_x,
                         goal_radius=view.goal_radius,position_belief=position)
         if getattr(view,'ball_material',None) is not None:   # RB-3.21: the Keeper forecasts the ball the material produces

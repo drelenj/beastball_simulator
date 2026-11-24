@@ -3,8 +3,10 @@ import argparse
 from collections import Counter
 from dataclasses import replace
 import json
-from math import degrees, hypot
+from math import degrees, exp, hypot
 from pathlib import Path
+from functools import cache
+from types import SimpleNamespace
 from random import Random
 from statistics import mean
 from time import process_time
@@ -19,6 +21,7 @@ from . import roster as R
 from .nbl_roster import load_canon_nbl
 from .rulebook.config import RulebookConfigV3
 from .rulebook.port import RulebookPort
+from .rulebook.handoff_block import block_impedance
 from .rulebook.rb31_soak import measure
 from .run import run_match
 
@@ -70,6 +73,20 @@ def signature(intent):
             round(intent.speed, 5), round(intent.height, 5))
 
 
+@cache
+def physical_lab():
+    rosters = R.rb3_control_rosters()
+    cfg = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A', 'B')),
+                           individuation=IND.VERSION)
+    port = RulebookPort(1, cfg, rosters=rosters)
+    player = next(p for p in port.m.s.players.values() if p.active and p.role == 'field')
+    for p in port.m.s.players.values():
+        p.active = p is player
+    port.m.s.phase = port.types.Phase.LIVE
+    port.m.s.ball.carrier = None
+    return port, player
+
+
 def probe(name, value, seed):
     v, b, contact, rng = scene(seed, name, value)
     if name == 'vision':
@@ -98,7 +115,7 @@ def probe(name, value, seed):
     if name in ('anticipation', 'in_air_ball_pursuit', 'live_ball_pursuit'):
         read = 'loose' if name == 'live_ball_pursuit' else 'pass'
         vx = 4. if name == 'anticipation' else 0.
-        v = replace(v, holds_ball=False, x=63. + rng.uniform(-1.0, 1.0), y=48., recognized_ball=read)
+        v = replace(v, holds_ball=False, x=(67. if name == 'anticipation' else 63.) + rng.uniform(-1.0, 1.0), y=48., recognized_ball=read)
         mates = (C.Track('A1', 'A', 'field', 71., 48., 0., 0., 1000),
                  C.Track('A2', 'A', 'field', 70., 49., 0., 0., 1000))
         b = replace(b, tracks=(*mates, replace(b.tracks[-1], vx=vx, vy=0.)))
@@ -151,8 +168,56 @@ def probe(name, value, seed):
     if name == 'agility':
         aim = IND.movement_aim(v.x, v.y, (92., 58. + rng.random()), value)
         return R.braking(value), aim, 'motor aim'
+    if name in ('speed', 'acceleration', 'stamina', 'balance', 'catching'):
+        port, player = physical_lab()
+        m = port.m
+        if name == 'catching':
+            miss = rng.uniform(.1, .7)
+            capacity = m.native_catch_capacity(value, miss)
+            # Same fixed ball-energy fixture at every level. This checks
+            # capacity and feasibility, not the engine's sampled secure result.
+            energy = .5 * m.assume['ball_mass_kg'] * 58 ** 2
+            return capacity, capacity >= energy, 'catch arrest capacity threshold'
+        if name == 'balance':
+            player.a.balance = value
+            player.bal_src = {('fixture', '', True): .6}
+            m.c3_recover(player, .15 + rng.random() * .2)
+            return sum(player.bal_src.values()), sum(player.bal_src.values()) < .38, 'physical balance recovery'
+        player.x, player.y, player.vx, player.vy = 20., 50., 15., 0.
+        player.bal_src = {}
+        player.fatigue = 1.
+        player.a.maximum_speed = R.speed_mps(value if name == 'speed' else .70)
+        player.a.acceleration = R.acceleration(value if name == 'acceleration' else .70)
+        player.a.endurance = value if name == 'stamina' else .70
+        target = (95., 50.)
+        player.target = target
+        steps = 3 + rng.randrange(5)
+        if name == 'speed':
+            player.vx = 0.
+            steps = 22 + rng.randrange(5)
+        for _ in range(steps):
+            m.c3_move(100, {player.id: target})
+        result = player.fatigue if name == 'stamina' else player.speed
+        return result, round(result, 5), 'physical fatigue' if name == 'stamina' else 'physical running speed'
+    if name in ('strength', 'blocking'):
+        def athlete(strength, blocking):
+            return SimpleNamespace(fatigue=1., a=SimpleNamespace(strength=strength, blocking=blocking, mass=226.))
+        share = block_impedance(athlete(value if name == 'strength' else .7, value if name == 'blocking' else .7),
+                                athlete(.7, .7), rng.uniform(.65, 1.))
+        return share, round(share, 5), 'block impulse fraction'
+    if name == 'archery_accuracy':
+        yaw = rng.uniform(-1., 1.) * (1 - value)
+        vector = IND.yaw_velocity((250., 0., 0.), yaw)
+        return abs(yaw), vector, 'arrow release vector'
+    if name == 'tackling':
+        # Same hold alignment, baseline fatigue and opposing resistance.
+        # First-order grip integration from c3_holds_kick.
+        gain, loss = 4 * (.5 + value), 1.2
+        elapsed = rng.uniform(.08, .4)
+        grip = gain / (gain + loss) * (1 - exp(-(gain + loss) * elapsed))
+        return grip, grip >= .5, 'grip model threshold'
     maps = {
-        'speed': R.speed_mps, 'acceleration': R.acceleration, 'jump': lambda r: 1.3*r,
+        'jump': lambda r: 1.3*r,
         'throw_power': R.max_throw_speed, 'throw_accuracy': R.throw_error_base_deg,
         'ball_handling': lambda r: round(250 * (1.35 - .5*r)),
     }
