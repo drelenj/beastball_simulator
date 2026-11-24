@@ -1,0 +1,1517 @@
+{
+  "expected_points": {
+    "carrier": {
+      "bins": {
+        "carry": {
+          "n": 3360,
+          "prediction": 0.7683733686400606
+        },
+        "carry/0/0": {
+          "n": 60,
+          "prediction": 0.9646945337620579
+        },
+        "carry/0/0/0": {
+          "n": 60,
+          "prediction": 1.0358778135048232
+        },
+        "carry/0/1": {
+          "n": 140,
+          "prediction": 1.2526080743122543
+        },
+        "carry/0/1/0": {
+          "n": 140,
+          "prediction": 1.3561351276249454
+        },
+        "carry/1/0": {
+          "n": 500,
+          "prediction": 0.923091580326307
+        },
+        "carry/1/0/0": {
+          "n": 180,
+          "prediction": 0.7451075600593287
+        },
+        "carry/1/0/1": {
+          "n": 300,
+          "prediction": 1.0821284212148596
+        },
+        "carry/1/0/2": {
+          "n": 20,
+          "prediction": 0.7653943868842047
+        },
+        "carry/1/1": {
+          "n": 420,
+          "prediction": 1.0684118551656647
+        },
+        "carry/1/1/0": {
+          "n": 420,
+          "prediction": 1.0929053787100578
+        },
+        "carry/2/0": {
+          "n": 560,
+          "prediction": 0.6341157556270096
+        },
+        "carry/2/0/0": {
+          "n": 220,
+          "prediction": 0.7629408854810784
+        },
+        "carry/2/0/1": {
+          "n": 280,
+          "prediction": 0.5917644694533762
+        },
+        "carry/2/0/2": {
+          "n": 60,
+          "prediction": 0.3736463022508038
+        },
+        "carry/2/1": {
+          "n": 560,
+          "prediction": 0.8241157556270096
+        },
+        "carry/2/1/0": {
+          "n": 560,
+          "prediction": 0.8266077170418007
+        },
+        "carry/3/0": {
+          "n": 560,
+          "prediction": 0.48744908896034295
+        },
+        "carry/3/0/0": {
+          "n": 220,
+          "prediction": 0.6442229367631297
+        },
+        "carry/3/0/1": {
+          "n": 200,
+          "prediction": 0.26457484816005716
+        },
+        "carry/3/0/2": {
+          "n": 140,
+          "prediction": 0.4916553531022984
+        },
+        "carry/3/1": {
+          "n": 560,
+          "prediction": 0.5891157556270096
+        },
+        "carry/3/1/0": {
+          "n": 540,
+          "prediction": 0.569939017629449
+        },
+        "carry/3/1/2": {
+          "n": 20,
+          "prediction": 0.642743837084673
+        },
+        "carry_goal": {
+          "n": 460,
+          "prediction": 0.4969389067524116
+        },
+        "carry_goal/0/0": {
+          "n": 20,
+          "prediction": 0.5244908896034298
+        },
+        "carry_goal/0/0/0": {
+          "n": 20,
+          "prediction": 0.3496605930689532
+        },
+        "carry_goal/0/1": {
+          "n": 20,
+          "prediction": 0.5244908896034298
+        },
+        "carry_goal/0/1/0": {
+          "n": 20,
+          "prediction": 0.3496605930689532
+        },
+        "carry_goal/1/0": {
+          "n": 180,
+          "prediction": 0.5339520608009354
+        },
+        "carry_goal/1/0/0": {
+          "n": 80,
+          "prediction": 0.3279840202669784
+        },
+        "carry_goal/1/0/1": {
+          "n": 100,
+          "prediction": 0.6382720173716958
+        },
+        "carry_goal/1/1": {
+          "n": 40,
+          "prediction": 0.8558681672025724
+        },
+        "carry_goal/1/1/0": {
+          "n": 40,
+          "prediction": 0.8904340836012862
+        },
+        "carry_goal/2/0": {
+          "n": 140,
+          "prediction": 0.5692747409789211
+        },
+        "carry_goal/2/0/0": {
+          "n": 100,
+          "prediction": 0.45550706885112024
+        },
+        "carry_goal/2/0/1": {
+          "n": 40,
+          "prediction": 0.6596373704894605
+        },
+        "carry_goal/2/1": {
+          "n": 60,
+          "prediction": 0.5446945337620579
+        },
+        "carry_goal/2/1/0": {
+          "n": 60,
+          "prediction": 0.4478778135048232
+        },
+        "evade": {
+          "n": 1220,
+          "prediction": 0.7892614709334966
+        },
+        "evade/0/1": {
+          "n": 80,
+          "prediction": 0.6289121114683816
+        },
+        "evade/0/1/0": {
+          "n": 80,
+          "prediction": 0.5763040371561272
+        },
+        "evade/1/0": {
+          "n": 20,
+          "prediction": 1.0911575562700966
+        },
+        "evade/1/0/0": {
+          "n": 20,
+          "prediction": 1.2941050375133978
+        },
+        "evade/1/1": {
+          "n": 260,
+          "prediction": 1.1682315112540191
+        },
+        "evade/1/1/0": {
+          "n": 260,
+          "prediction": 1.2190975348338693
+        },
+        "evade/2/0": {
+          "n": 60,
+          "prediction": 0.9546945337620579
+        },
+        "evade/2/0/0": {
+          "n": 60,
+          "prediction": 1.0218778135048232
+        },
+        "evade/2/1": {
+          "n": 360,
+          "prediction": 0.9236736334405145
+        },
+        "evade/2/1/0": {
+          "n": 360,
+          "prediction": 0.9373673633440515
+        },
+        "evade/3/0": {
+          "n": 40,
+          "prediction": 0.5058681672025724
+        },
+        "evade/3/0/0": {
+          "n": 40,
+          "prediction": 0.3654340836012862
+        },
+        "evade/3/1": {
+          "n": 400,
+          "prediction": 0.42379421221864955
+        },
+        "evade/3/1/0": {
+          "n": 400,
+          "prediction": 0.3907994738380591
+        },
+        "handoff": {
+          "n": 280,
+          "prediction": 0.5577170418006431
+        },
+        "handoff/0/1": {
+          "n": 20,
+          "prediction": 0.5244908896034298
+        },
+        "handoff/1/1": {
+          "n": 80,
+          "prediction": 0.7872454448017149
+        },
+        "handoff/2/1": {
+          "n": 80,
+          "prediction": 0.7872454448017149
+        },
+        "handoff/3/1": {
+          "n": 100,
+          "prediction": 0.3747818098300414
+        },
+        "pass": {
+          "n": 2940,
+          "prediction": 0.6545199507973845
+        },
+        "pass/0/0": {
+          "n": 60,
+          "prediction": 1.054694533762058
+        },
+        "pass/0/0/0/1": {
+          "n": 20,
+          "prediction": 0.8244908896034299
+        },
+        "pass/0/0/0/2": {
+          "n": 40,
+          "prediction": 1.0933681672025723
+        },
+        "pass/0/1": {
+          "n": 40,
+          "prediction": 1.6308681672025724
+        },
+        "pass/0/1/0/1": {
+          "n": 20,
+          "prediction": 0.5911575562700965
+        },
+        "pass/0/1/0/2": {
+          "n": 20,
+          "prediction": 2.107824222936763
+        },
+        "pass/1/0": {
+          "n": 1040,
+          "prediction": 0.46339764201500533
+        },
+        "pass/1/0/0/0": {
+          "n": 40,
+          "prediction": 0.8183681672025724
+        },
+        "pass/1/0/0/1": {
+          "n": 40,
+          "prediction": 0.49336816720257237
+        },
+        "pass/1/0/0/2": {
+          "n": 340,
+          "prediction": 0.5643932983584363
+        },
+        "pass/1/0/0/3": {
+          "n": 440,
+          "prediction": 0.4384780278670954
+        },
+        "pass/1/0/1/1": {
+          "n": 60,
+          "prediction": 0.34469453376205794
+        },
+        "pass/1/0/1/2": {
+          "n": 80,
+          "prediction": 0.5372454448017149
+        },
+        "pass/1/0/1/3": {
+          "n": 40,
+          "prediction": 0.7558681672025724
+        },
+        "pass/1/1": {
+          "n": 340,
+          "prediction": 1.0854459299373835
+        },
+        "pass/1/1/0/0": {
+          "n": 20,
+          "prediction": 0.8078242229367631
+        },
+        "pass/1/1/0/1": {
+          "n": 200,
+          "prediction": 1.272789389067524
+        },
+        "pass/1/1/0/2": {
+          "n": 80,
+          "prediction": 0.8372454448017149
+        },
+        "pass/1/1/1/1": {
+          "n": 40,
+          "prediction": 0.6558681672025723
+        },
+        "pass/2/0": {
+          "n": 500,
+          "prediction": 0.9082767655114922
+        },
+        "pass/2/0/0/1": {
+          "n": 140,
+          "prediction": 0.8359414076455878
+        },
+        "pass/2/0/0/2": {
+          "n": 180,
+          "prediction": 0.8794066062554808
+        },
+        "pass/2/0/0/3": {
+          "n": 40,
+          "prediction": 0.5808681672025724
+        },
+        "pass/2/0/1/1": {
+          "n": 40,
+          "prediction": 0.7558681672025724
+        },
+        "pass/2/0/1/2": {
+          "n": 60,
+          "prediction": 0.8446945337620579
+        },
+        "pass/2/0/2/1": {
+          "n": 20,
+          "prediction": 1.6578242229367632
+        },
+        "pass/2/0/2/2": {
+          "n": 20,
+          "prediction": 0.7411575562700965
+        },
+        "pass/2/1": {
+          "n": 240,
+          "prediction": 0.8552480477721636
+        },
+        "pass/2/1/0/0": {
+          "n": 20,
+          "prediction": 1.52449088960343
+        },
+        "pass/2/1/0/1": {
+          "n": 180,
+          "prediction": 0.6612247880736627
+        },
+        "pass/2/1/1/0": {
+          "n": 20,
+          "prediction": 0.8744908896034299
+        },
+        "pass/2/1/1/1": {
+          "n": 20,
+          "prediction": 0.7411575562700965
+        },
+        "pass/3/0": {
+          "n": 520,
+          "prediction": 0.26869545245751036
+        },
+        "pass/3/0/0/0": {
+          "n": 40,
+          "prediction": 0.39336816720257234
+        },
+        "pass/3/0/0/1": {
+          "n": 80,
+          "prediction": 0.36224544480171494
+        },
+        "pass/3/0/0/2": {
+          "n": 120,
+          "prediction": 0.4154340836012862
+        },
+        "pass/3/0/0/3": {
+          "n": 120,
+          "prediction": 0.4029340836012862
+        },
+        "pass/3/0/1/0": {
+          "n": 20,
+          "prediction": 0.6744908896034298
+        },
+        "pass/3/0/1/1": {
+          "n": 20,
+          "prediction": 0.5244908896034298
+        },
+        "pass/3/0/1/2": {
+          "n": 60,
+          "prediction": 0.33469453376205793
+        },
+        "pass/3/0/1/3": {
+          "n": 20,
+          "prediction": 0.5911575562700965
+        },
+        "pass/3/0/2/1": {
+          "n": 20,
+          "prediction": 0.5744908896034299
+        },
+        "pass/3/0/2/3": {
+          "n": 20,
+          "prediction": 0.8744908896034299
+        },
+        "pass/3/1": {
+          "n": 200,
+          "prediction": 0.5894560557341908
+        },
+        "pass/3/1/0/1": {
+          "n": 80,
+          "prediction": 0.48724544480171494
+        },
+        "pass/3/1/1/1": {
+          "n": 40,
+          "prediction": 0.8433681672025723
+        },
+        "pass/3/1/1/2": {
+          "n": 20,
+          "prediction": 0.9078242229367632
+        },
+        "pass/3/1/2/1": {
+          "n": 20,
+          "prediction": 0.5744908896034299
+        },
+        "pass/3/1/3/1": {
+          "n": 40,
+          "prediction": 0.6558681672025723
+        },
+        "retain": {
+          "n": 3360,
+          "prediction": 0.8016086627577076
+        },
+        "retain/0/0": {
+          "n": 60,
+          "prediction": 0.7546945337620579
+        },
+        "retain/0/1": {
+          "n": 140,
+          "prediction": 0.9914969632011433
+        },
+        "retain/1/0": {
+          "n": 500,
+          "prediction": 1.0508693581040849
+        },
+        "retain/1/1": {
+          "n": 420,
+          "prediction": 1.0662379421221864
+        },
+        "retain/2/0": {
+          "n": 560,
+          "prediction": 0.7707824222936762
+        },
+        "retain/2/1": {
+          "n": 560,
+          "prediction": 0.972449088960343
+        },
+        "retain/3/0": {
+          "n": 560,
+          "prediction": 0.6091157556270096
+        },
+        "retain/3/1": {
+          "n": 560,
+          "prediction": 0.3707824222936763
+        },
+        "shoot": {
+          "n": 820,
+          "prediction": 1.508685410902565
+        },
+        "shoot/0/0": {
+          "n": 60,
+          "prediction": 1.294694533762058
+        },
+        "shoot/0/1": {
+          "n": 80,
+          "prediction": 1.312245444801715
+        },
+        "shoot/1/0": {
+          "n": 360,
+          "prediction": 1.3336736334405146
+        },
+        "shoot/1/1": {
+          "n": 20,
+          "prediction": 1.52449088960343
+        },
+        "shoot/2/0": {
+          "n": 260,
+          "prediction": 1.5848981779206859
+        },
+        "shoot/2/1": {
+          "n": 40,
+          "prediction": 0.8433681672025723
+        }
+      },
+      "global_prior": 0.7867363344051447,
+      "held_out": 2840,
+      "held_out_mse": 2.0192980282623267,
+      "held_out_prior_mse": 2.0573563061483218,
+      "train": 12440,
+      "unseen_held_out": 80
+    },
+    "finishing": {
+      "bins": {
+        "shoot": {
+          "n": 4060,
+          "prediction": 1.8334975369458129
+        },
+        "shoot/0/0": {
+          "n": 400,
+          "prediction": 1.7348634124496194
+        },
+        "shoot/0/0/0/1": {
+          "n": 20,
+          "prediction": 1.8889983579638752
+        },
+        "shoot/0/0/0/2": {
+          "n": 20,
+          "prediction": 1.8889983579638752
+        },
+        "shoot/0/0/1/0": {
+          "n": 80,
+          "prediction": 1.9111658456486043
+        },
+        "shoot/0/0/1/1": {
+          "n": 40,
+          "prediction": 1.7167487684729064
+        },
+        "shoot/0/0/1/2": {
+          "n": 40,
+          "prediction": 1.6917487684729065
+        },
+        "shoot/0/0/2/0": {
+          "n": 20,
+          "prediction": 1.8889983579638752
+        },
+        "shoot/0/0/2/1": {
+          "n": 40,
+          "prediction": 1.9167487684729063
+        },
+        "shoot/0/0/2/2": {
+          "n": 40,
+          "prediction": 1.8917487684729064
+        },
+        "shoot/0/0/3/0": {
+          "n": 40,
+          "prediction": 1.5917487684729064
+        },
+        "shoot/0/0/4/0": {
+          "n": 60,
+          "prediction": 1.4933990147783252
+        },
+        "shoot/0/1": {
+          "n": 80,
+          "prediction": 1.8861658456486043
+        },
+        "shoot/0/1/1/0": {
+          "n": 20,
+          "prediction": 1.8889983579638752
+        },
+        "shoot/0/1/1/1": {
+          "n": 20,
+          "prediction": 1.8889983579638752
+        },
+        "shoot/0/1/1/2": {
+          "n": 20,
+          "prediction": 1.8889983579638752
+        },
+        "shoot/0/1/3/0": {
+          "n": 20,
+          "prediction": 1.7723316912972085
+        },
+        "shoot/1/0": {
+          "n": 1220,
+          "prediction": 1.749476112283994
+        },
+        "shoot/1/0/0/1": {
+          "n": 60,
+          "prediction": 1.0033990147783252
+        },
+        "shoot/1/0/0/2": {
+          "n": 60,
+          "prediction": 0.9533990147783251
+        },
+        "shoot/1/0/1/0": {
+          "n": 240,
+          "prediction": 2.3904996481351164
+        },
+        "shoot/1/0/1/1": {
+          "n": 140,
+          "prediction": 1.4185550082101805
+        },
+        "shoot/1/0/1/2": {
+          "n": 140,
+          "prediction": 1.362999452654625
+        },
+        "shoot/1/0/2/0": {
+          "n": 80,
+          "prediction": 2.2278325123152714
+        },
+        "shoot/1/0/2/1": {
+          "n": 80,
+          "prediction": 1.6444991789819376
+        },
+        "shoot/1/0/2/2": {
+          "n": 80,
+          "prediction": 1.477832512315271
+        },
+        "shoot/1/0/3/0": {
+          "n": 140,
+          "prediction": 1.8629994526546252
+        },
+        "shoot/1/0/3/1": {
+          "n": 20,
+          "prediction": 2.2223316912972084
+        },
+        "shoot/1/0/3/2": {
+          "n": 20,
+          "prediction": 2.2223316912972084
+        },
+        "shoot/1/0/4/0": {
+          "n": 160,
+          "prediction": 2.006699507389163
+        },
+        "shoot/1/1": {
+          "n": 700,
+          "prediction": 1.9855944614565304
+        },
+        "shoot/1/1/0/1": {
+          "n": 20,
+          "prediction": 1.4223316912972086
+        },
+        "shoot/1/1/0/2": {
+          "n": 20,
+          "prediction": 1.5223316912972085
+        },
+        "shoot/1/1/1/0": {
+          "n": 140,
+          "prediction": 2.3574438970990697
+        },
+        "shoot/1/1/1/1": {
+          "n": 40,
+          "prediction": 1.7042487684729064
+        },
+        "shoot/1/1/1/2": {
+          "n": 40,
+          "prediction": 2.0042487684729062
+        },
+        "shoot/1/1/2/0": {
+          "n": 40,
+          "prediction": 2.4167487684729063
+        },
+        "shoot/1/1/2/1": {
+          "n": 40,
+          "prediction": 2.4167487684729063
+        },
+        "shoot/1/1/2/2": {
+          "n": 40,
+          "prediction": 2.3792487684729062
+        },
+        "shoot/1/1/3/0": {
+          "n": 40,
+          "prediction": 2.1542487684729066
+        },
+        "shoot/1/1/3/1": {
+          "n": 60,
+          "prediction": 1.5733990147783252
+        },
+        "shoot/1/1/3/2": {
+          "n": 80,
+          "prediction": 1.5611658456486042
+        },
+        "shoot/1/1/4/0": {
+          "n": 120,
+          "prediction": 1.6458743842364534
+        },
+        "shoot/1/1/4/1": {
+          "n": 20,
+          "prediction": 1.5723316912972085
+        },
+        "shoot/2/0": {
+          "n": 1160,
+          "prediction": 1.810283251231527
+        },
+        "shoot/2/0/0/1": {
+          "n": 60,
+          "prediction": 1.173399014778325
+        },
+        "shoot/2/0/0/2": {
+          "n": 60,
+          "prediction": 1.7033990147783251
+        },
+        "shoot/2/0/1/0": {
+          "n": 180,
+          "prediction": 2.646999552171966
+        },
+        "shoot/2/0/1/1": {
+          "n": 60,
+          "prediction": 1.633399014778325
+        },
+        "shoot/2/0/1/2": {
+          "n": 60,
+          "prediction": 2.1433990147783253
+        },
+        "shoot/2/0/2/0": {
+          "n": 120,
+          "prediction": 1.4583743842364532
+        },
+        "shoot/2/0/2/1": {
+          "n": 60,
+          "prediction": 2.3333990147783252
+        },
+        "shoot/2/0/2/2": {
+          "n": 60,
+          "prediction": 2.493399014778325
+        },
+        "shoot/2/0/3/0": {
+          "n": 60,
+          "prediction": 2.2033990147783253
+        },
+        "shoot/2/0/3/1": {
+          "n": 60,
+          "prediction": 1.933399014778325
+        },
+        "shoot/2/0/3/2": {
+          "n": 60,
+          "prediction": 1.903399014778325
+        },
+        "shoot/2/0/4/0": {
+          "n": 180,
+          "prediction": 1.869726824899239
+        },
+        "shoot/2/0/4/1": {
+          "n": 20,
+          "prediction": 1.2223316912972086
+        },
+        "shoot/2/0/4/2": {
+          "n": 20,
+          "prediction": 1.2223316912972086
+        },
+        "shoot/2/0/?/0": {
+          "n": 60,
+          "prediction": 0.7333990147783251
+        },
+        "shoot/2/0/?/1": {
+          "n": 20,
+          "prediction": 1.2223316912972086
+        },
+        "shoot/2/0/?/2": {
+          "n": 20,
+          "prediction": 1.2223316912972086
+        },
+        "shoot/2/1": {
+          "n": 500,
+          "prediction": 1.9413701879219118
+        },
+        "shoot/2/1/0/1": {
+          "n": 40,
+          "prediction": 1.6167487684729065
+        },
+        "shoot/2/1/0/2": {
+          "n": 20,
+          "prediction": 1.8223316912972085
+        },
+        "shoot/2/1/1/0": {
+          "n": 40,
+          "prediction": 1.2292487684729063
+        },
+        "shoot/2/1/1/1": {
+          "n": 20,
+          "prediction": 2.555665024630542
+        },
+        "shoot/2/1/1/2": {
+          "n": 40,
+          "prediction": 2.3792487684729062
+        },
+        "shoot/2/1/2/0": {
+          "n": 40,
+          "prediction": 2.3542487684729063
+        },
+        "shoot/2/1/3/0": {
+          "n": 20,
+          "prediction": 1.555665024630542
+        },
+        "shoot/2/1/3/1": {
+          "n": 20,
+          "prediction": 1.7556650246305419
+        },
+        "shoot/2/1/3/2": {
+          "n": 20,
+          "prediction": 1.555665024630542
+        },
+        "shoot/2/1/4/0": {
+          "n": 40,
+          "prediction": 2.0042487684729062
+        },
+        "shoot/2/1/?/0": {
+          "n": 120,
+          "prediction": 1.8708743842364535
+        },
+        "shoot/2/1/?/1": {
+          "n": 40,
+          "prediction": 1.8417487684729064
+        },
+        "shoot/2/1/?/2": {
+          "n": 40,
+          "prediction": 2.0042487684729062
+        }
+      },
+      "global_prior": 1.8334975369458129,
+      "held_out": 520,
+      "held_out_mse": 2.4651524294855625,
+      "held_out_prior_mse": 2.4829106412527513,
+      "train": 4060,
+      "unseen_held_out": 0
+    }
+  },
+  "feature_version": "prism-possession-features/1",
+  "holdout_seeds": [
+    9,
+    10
+  ],
+  "provenance": {
+    "match_fingerprints": [
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 160374,
+        "groups": {
+          "carrier/20to40/open": 344,
+          "carrier/20to40/pressured": 299,
+          "carrier/over40/open": 1182,
+          "carrier/over40/pressured": 1168,
+          "carrier/under20/open": 161,
+          "carrier/under20/pressured": 74,
+          "finishing": 76,
+          "passing": 344,
+          "takedown": 649
+        },
+        "score": {
+          "A": 61,
+          "B": 80
+        },
+        "seed": 1,
+        "state_hash": "c517e00f864f1438705cdd1d9768d61523ee1aaac69746f57a2e9f1f4adf2745",
+        "steps": 32509,
+        "trace_hash": "c1a578db3f2754d3f69b47ba81a1f9d5b9336e1d87f496de2fa8dc3daee7a256"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 158414,
+        "groups": {
+          "carrier/20to40/open": 435,
+          "carrier/20to40/pressured": 365,
+          "carrier/over40/open": 1247,
+          "carrier/over40/pressured": 990,
+          "carrier/under20/open": 208,
+          "carrier/under20/pressured": 120,
+          "finishing": 89,
+          "passing": 299,
+          "takedown": 532
+        },
+        "score": {
+          "A": 79,
+          "B": 71
+        },
+        "seed": 2,
+        "state_hash": "38eef443498fc00087ccbfb83153a4eb524325cbce9ced0493735deb4e0d4b16",
+        "steps": 32299,
+        "trace_hash": "5b3d52674f118a5e11fc22afa0d3ba401d1de9a197b925944a6272ff660e964d"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 162154,
+        "groups": {
+          "carrier/20to40/open": 425,
+          "carrier/20to40/pressured": 479,
+          "carrier/over40/open": 1111,
+          "carrier/over40/pressured": 975,
+          "carrier/under20/open": 227,
+          "carrier/under20/pressured": 136,
+          "finishing": 97,
+          "passing": 282,
+          "takedown": 571
+        },
+        "score": {
+          "A": 78,
+          "B": 84
+        },
+        "seed": 3,
+        "state_hash": "19abfc87d2d50ec2be179e8a60135ca6a7b940d385840ceb81d1465e0b1d90c1",
+        "steps": 32979,
+        "trace_hash": "2e3ca26532f6c6b712479699eb60adf9da265b3ea0417099bbb940cd8eabdd5f"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 158766,
+        "groups": {
+          "carrier/20to40/open": 344,
+          "carrier/20to40/pressured": 321,
+          "carrier/over40/open": 1138,
+          "carrier/over40/pressured": 1241,
+          "carrier/under20/open": 179,
+          "carrier/under20/pressured": 68,
+          "finishing": 83,
+          "passing": 315,
+          "takedown": 759
+        },
+        "score": {
+          "A": 83,
+          "B": 53
+        },
+        "seed": 4,
+        "state_hash": "c077a42b10b7751cc2217c9eff14ed074a73f1e2664b015ca544d8cc9143bbdc",
+        "steps": 32220,
+        "trace_hash": "86891ab372dc3e8eed7974c20eb17278729d5a92917c8b7f63fdcc84d7dfde70"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 158578,
+        "groups": {
+          "carrier/20to40/open": 394,
+          "carrier/20to40/pressured": 357,
+          "carrier/over40/open": 1194,
+          "carrier/over40/pressured": 1119,
+          "carrier/under20/open": 170,
+          "carrier/under20/pressured": 88,
+          "finishing": 75,
+          "passing": 316,
+          "takedown": 679
+        },
+        "score": {
+          "A": 70,
+          "B": 89
+        },
+        "seed": 5,
+        "state_hash": "e994981a6dd15fa29f7d305201d62f66d5fd16217b5ee4b65e008da2c66c0536",
+        "steps": 32145,
+        "trace_hash": "9ed01006251b43e0342938067847dc53baeb6382160ce7f3968448926d1c82e9"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 158986,
+        "groups": {
+          "carrier/20to40/open": 408,
+          "carrier/20to40/pressured": 325,
+          "carrier/over40/open": 1178,
+          "carrier/over40/pressured": 1159,
+          "carrier/under20/open": 206,
+          "carrier/under20/pressured": 103,
+          "finishing": 107,
+          "passing": 321,
+          "takedown": 644
+        },
+        "score": {
+          "A": 86,
+          "B": 82
+        },
+        "seed": 6,
+        "state_hash": "39cf75e5d9685ea06656315f374c8753f2478c1c629a72baa0363d0dbc7fb893",
+        "steps": 32546,
+        "trace_hash": "4f93bc510142e7f3be13a39a99d756b4043fd5a9817d57cda496c34820471e90"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 158724,
+        "groups": {
+          "carrier/20to40/open": 384,
+          "carrier/20to40/pressured": 279,
+          "carrier/over40/open": 1228,
+          "carrier/over40/pressured": 1039,
+          "carrier/under20/open": 161,
+          "carrier/under20/pressured": 91,
+          "finishing": 99,
+          "passing": 331,
+          "takedown": 508
+        },
+        "score": {
+          "A": 87,
+          "B": 88
+        },
+        "seed": 7,
+        "state_hash": "c9cf19d52ce9c97242fe3da89ff05be3dd69ab9204d39a525220000c61308c1c",
+        "steps": 32344,
+        "trace_hash": "8f66626caf7f13f6eaab6b0c2a8dd54b814a874990c73bf02a4dc79073ecd2e9"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 162955,
+        "groups": {
+          "carrier/20to40/open": 435,
+          "carrier/20to40/pressured": 290,
+          "carrier/over40/open": 1198,
+          "carrier/over40/pressured": 1150,
+          "carrier/under20/open": 215,
+          "carrier/under20/pressured": 86,
+          "finishing": 98,
+          "passing": 309,
+          "takedown": 619
+        },
+        "score": {
+          "A": 86,
+          "B": 76
+        },
+        "seed": 8,
+        "state_hash": "1bf5d0f26bfa0156a0b54266bd33485adaeae2ed94c4ac4b045891f81e9794de",
+        "steps": 33265,
+        "trace_hash": "71de18228246c291b94b380d579c9f443508f11fc4ff671295ee3253a9e4e179"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 161860,
+        "groups": {
+          "carrier/20to40/open": 380,
+          "carrier/20to40/pressured": 307,
+          "carrier/over40/open": 1160,
+          "carrier/over40/pressured": 1212,
+          "carrier/under20/open": 208,
+          "carrier/under20/pressured": 91,
+          "finishing": 84,
+          "passing": 292,
+          "takedown": 749
+        },
+        "score": {
+          "A": 88,
+          "B": 63
+        },
+        "seed": 9,
+        "state_hash": "9f35c2e83d94595c766fda7c98ef78b34241408137dd277a990e3a5ae8f165aa",
+        "steps": 33113,
+        "trace_hash": "fd5366eff5314d1f226f9b8819639c310bb9ed627f9e854fc4af8e53618f02fa"
+      },
+      {
+        "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+        "decisions": 158249,
+        "groups": {
+          "carrier/20to40/open": 410,
+          "carrier/20to40/pressured": 307,
+          "carrier/over40/open": 1149,
+          "carrier/over40/pressured": 1231,
+          "carrier/under20/open": 223,
+          "carrier/under20/pressured": 71,
+          "finishing": 89,
+          "passing": 320,
+          "takedown": 716
+        },
+        "score": {
+          "A": 89,
+          "B": 78
+        },
+        "seed": 10,
+        "state_hash": "789b2dbe065d4b394b7ff26586359a5de1df78b7de7e78b428e6768574c1bbcf",
+        "steps": 32220,
+        "trace_hash": "80ed34c7a085fbf7fbd98e1b4ce7490469d5e53f65583c2c47fd7cb3d7dbe14f"
+      }
+    ],
+    "rollouts_per_option": 20,
+    "strata": {
+      "carrier/20to40/open": {
+        "eligible": 3959,
+        "selected": 34
+      },
+      "carrier/20to40/pressured": {
+        "eligible": 3329,
+        "selected": 34
+      },
+      "carrier/over40/open": {
+        "eligible": 11785,
+        "selected": 34
+      },
+      "carrier/over40/pressured": {
+        "eligible": 11284,
+        "selected": 34
+      },
+      "carrier/under20/open": {
+        "eligible": 1958,
+        "selected": 34
+      },
+      "carrier/under20/pressured": {
+        "eligible": 928,
+        "selected": 34
+      },
+      "finishing": {
+        "eligible": 897,
+        "selected": 60
+      },
+      "passing": {
+        "eligible": 3129,
+        "selected": 60
+      },
+      "takedown": {
+        "eligible": 6426,
+        "selected": 60
+      }
+    }
+  },
+  "schema": "oracle-drill-v1/1",
+  "smoothing_prior_trials": 40,
+  "tables": {
+    "pass_completion": {
+      "axes": [
+        [
+          "lane_margin_m",
+          [
+            0.0,
+            1.5,
+            4.0
+          ]
+        ],
+        [
+          "attempt_distance_m",
+          [
+            10.0,
+            20.0
+          ]
+        ],
+        [
+          "pressured",
+          [
+            0.5
+          ]
+        ]
+      ],
+      "bins": {
+        "0/0/0": {
+          "n": 20,
+          "prediction": 0.4319073083778966
+        },
+        "0/0/1": {
+          "n": 60,
+          "prediction": 0.6491443850267379
+        },
+        "0/1/0": {
+          "n": 80,
+          "prediction": 0.2409536541889483
+        },
+        "0/1/1": {
+          "n": 20,
+          "prediction": 0.3319073083778966
+        },
+        "0/2/0": {
+          "n": 20,
+          "prediction": 0.6152406417112299
+        },
+        "1/0/0": {
+          "n": 240,
+          "prediction": 0.5461229946524064
+        },
+        "1/0/1": {
+          "n": 1120,
+          "prediction": 0.4335469297436843
+        },
+        "1/1/0": {
+          "n": 320,
+          "prediction": 0.47198455139631607
+        },
+        "1/1/1": {
+          "n": 980,
+          "prediction": 0.4616808220614449
+        },
+        "1/2/0": {
+          "n": 20,
+          "prediction": 0.36524064171122994
+        },
+        "1/2/1": {
+          "n": 340,
+          "prediction": 0.32872220658598367
+        },
+        "2/0/0": {
+          "n": 360,
+          "prediction": 0.43728609625668446
+        },
+        "2/0/1": {
+          "n": 540,
+          "prediction": 0.40847316983219617
+        },
+        "2/1/0": {
+          "n": 320,
+          "prediction": 0.5608734402852049
+        },
+        "2/1/1": {
+          "n": 400,
+          "prediction": 0.5679873602333495
+        },
+        "2/2/0": {
+          "n": 60,
+          "prediction": 0.5891443850267379
+        },
+        "3/0/0": {
+          "n": 1040,
+          "prediction": 0.4989948504654387
+        },
+        "3/1/0": {
+          "n": 1360,
+          "prediction": 0.6292245989304812
+        },
+        "3/1/1": {
+          "n": 20,
+          "prediction": 0.3319073083778966
+        },
+        "3/2/0": {
+          "n": 160,
+          "prediction": 0.699572192513369
+        }
+      },
+      "global_prior": 0.4978609625668449,
+      "held_out": 1300,
+      "held_out_mse": 0.23756969925877852,
+      "held_out_prior_mse": 0.2503665664313667,
+      "train": 7480,
+      "unseen_held_out": 0
+    },
+    "points_by_field_position": {
+      "axes": [
+        [
+          "field_x_m",
+          [
+            20.0,
+            40.0,
+            60.0,
+            80.0
+          ]
+        ],
+        [
+          "field_y_m",
+          [
+            25.0,
+            75.0
+          ]
+        ]
+      ],
+      "bins": {
+        "0/0": {
+          "n": 40,
+          "prediction": 0.4808681672025724
+        },
+        "0/1": {
+          "n": 420,
+          "prediction": 0.20102055081783868
+        },
+        "0/2": {
+          "n": 120,
+          "prediction": 0.5404340836012862
+        },
+        "1/0": {
+          "n": 200,
+          "prediction": 0.3644560557341908
+        },
+        "1/1": {
+          "n": 360,
+          "prediction": 0.5786736334405145
+        },
+        "1/2": {
+          "n": 60,
+          "prediction": 0.7546945337620579
+        },
+        "2/0": {
+          "n": 240,
+          "prediction": 0.44810519062930637
+        },
+        "2/1": {
+          "n": 1360,
+          "prediction": 0.5046210381258613
+        },
+        "2/2": {
+          "n": 140,
+          "prediction": 0.1748302965344766
+        },
+        "3/0": {
+          "n": 240,
+          "prediction": 0.5802480477721635
+        },
+        "3/1": {
+          "n": 2000,
+          "prediction": 0.9384654183216695
+        },
+        "3/2": {
+          "n": 140,
+          "prediction": 1.1526080743122544
+        },
+        "4/0": {
+          "n": 420,
+          "prediction": 0.7118901160352299
+        },
+        "4/1": {
+          "n": 6440,
+          "prediction": 0.9193625699654638
+        },
+        "4/2": {
+          "n": 260,
+          "prediction": 0.714898177920686
+        }
+      },
+      "global_prior": 0.7867363344051447,
+      "held_out": 2840,
+      "held_out_mse": 2.011512032260423,
+      "held_out_prior_mse": 2.0573563061483218,
+      "train": 12440,
+      "unseen_held_out": 0
+    },
+    "shot_conversion": {
+      "axes": [
+        [
+          "goal_distance_m",
+          [
+            10.0,
+            20.0,
+            30.0
+          ]
+        ],
+        [
+          "lane_margin_m",
+          [
+            0.0,
+            1.5,
+            4.0
+          ]
+        ],
+        [
+          "keeper_offset_m",
+          [
+            1.0,
+            2.0
+          ]
+        ]
+      ],
+      "bins": {
+        "0/1/0": {
+          "n": 20,
+          "prediction": 0.33319672131147543
+        },
+        "0/1/1": {
+          "n": 20,
+          "prediction": 0.36653005464480876
+        },
+        "0/1/2": {
+          "n": 20,
+          "prediction": 0.33319672131147543
+        },
+        "0/2/1": {
+          "n": 80,
+          "prediction": 0.7915983606557376
+        },
+        "0/3/0": {
+          "n": 60,
+          "prediction": 0.4799180327868852
+        },
+        "0/3/1": {
+          "n": 260,
+          "prediction": 0.7766393442622951
+        },
+        "0/3/2": {
+          "n": 160,
+          "prediction": 0.8399590163934427
+        },
+        "1/1/0": {
+          "n": 60,
+          "prediction": 0.6099180327868852
+        },
+        "1/1/1": {
+          "n": 260,
+          "prediction": 0.7533060109289618
+        },
+        "1/1/2": {
+          "n": 300,
+          "prediction": 0.191152362584378
+        },
+        "1/1/None": {
+          "n": 20,
+          "prediction": 0.4331967213114754
+        },
+        "1/2/0": {
+          "n": 60,
+          "prediction": 0.30991803278688523
+        },
+        "1/2/1": {
+          "n": 100,
+          "prediction": 0.5927985948477752
+        },
+        "1/2/2": {
+          "n": 40,
+          "prediction": 0.2873975409836066
+        },
+        "1/3/0": {
+          "n": 720,
+          "prediction": 0.5381471095772217
+        },
+        "1/3/1": {
+          "n": 240,
+          "prediction": 0.3963992974238876
+        },
+        "1/3/2": {
+          "n": 500,
+          "prediction": 0.49813296903460835
+        },
+        "2/0/2": {
+          "n": 20,
+          "prediction": 0.44986338797814207
+        },
+        "2/1/0": {
+          "n": 80,
+          "prediction": 0.5165983606557377
+        },
+        "2/1/1": {
+          "n": 140,
+          "prediction": 0.5999544626593807
+        },
+        "2/1/2": {
+          "n": 440,
+          "prediction": 0.4562329234972678
+        },
+        "2/1/None": {
+          "n": 200,
+          "prediction": 0.4874658469945355
+        },
+        "2/2/0": {
+          "n": 240,
+          "prediction": 0.39997072599531613
+        },
+        "2/2/1": {
+          "n": 80,
+          "prediction": 0.724931693989071
+        },
+        "2/2/2": {
+          "n": 240,
+          "prediction": 0.5285421545667448
+        },
+        "2/3/0": {
+          "n": 100,
+          "prediction": 0.34279859484777514
+        },
+        "2/3/1": {
+          "n": 80,
+          "prediction": 0.499931693989071
+        },
+        "2/3/2": {
+          "n": 60,
+          "prediction": 0.31991803278688524
+        },
+        "2/3/None": {
+          "n": 20,
+          "prediction": 0.3498633879781421
+        },
+        "3/1/2": {
+          "n": 80,
+          "prediction": 0.4165983606557377
+        },
+        "3/1/None": {
+          "n": 100,
+          "prediction": 0.15708430913348947
+        },
+        "3/2/1": {
+          "n": 80,
+          "prediction": 0.4665983606557377
+        }
+      },
+      "global_prior": 0.4997950819672131,
+      "held_out": 680,
+      "held_out_mse": 0.28740418201367723,
+      "held_out_prior_mse": 0.250019328394486,
+      "train": 4880,
+      "unseen_held_out": 20
+    },
+    "tackle_risk": {
+      "axes": [
+        [
+          "free_run_m",
+          [
+            3.0,
+            8.0,
+            12.0
+          ]
+        ]
+      ],
+      "bins": {
+        "0": {
+          "n": 3880,
+          "prediction": 0.257015306122449
+        },
+        "1": {
+          "n": 920,
+          "prediction": 0.08177083333333333
+        },
+        "2": {
+          "n": 240,
+          "prediction": 0.0375
+        }
+      },
+      "global_prior": 0.2125,
+      "held_out": 1080,
+      "held_out_mse": 0.16653558474756747,
+      "held_out_prior_mse": 0.17825810185185184,
+      "train": 5040,
+      "unseen_held_out": 0
+    }
+  },
+  "target": "net points through the end of the current possession",
+  "train_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ]
+}

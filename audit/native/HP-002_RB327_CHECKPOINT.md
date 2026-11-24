@@ -2,8 +2,8 @@
 
 1. **IMPLEMENTED**. RB-3.27 extends offline grading through the end of each possession, adds an opt-in expected-points policy and reads the ratings 0.4 workbook using its named ratings.
 2. PRISM can load a versioned table before kickoff. Athletes still pick from their existing options using their observations, beliefs and decision error. The hand-set policy remains the default.
-3. The complete rollout fit, held-out Gauge, learned anchor and paired roster soak are being measured. This checkpoint will be updated from the raw results.
-4. The learned regulation runs depend on the fit finishing. No canon question is pending.
+3. The fitted shot-conversion table underperformed the pooled holdout baseline. The Gauge criterion was missed in both stages. The learned anchor and learned-on roster block are still being measured.
+4. The versioned fit is complete and the learned-on checks are running. No canon question is pending.
 5. Use the completed fit and paired match evidence to judge the opt-in policy when those results are available.
 
 ## Revisions and status
@@ -17,9 +17,9 @@
 | Task | Status | Evidence |
 |---|---|---|
 | 1. Possession scoring | DESIGN COMPLETE, IMPLEMENTED, TESTED | All 150 original decisions regraded. 11,880 rollouts. |
-| 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED | Ten neutral seeds completed with 1,599,060 delivered decisions. Stratified grading and fit in progress. |
+| 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED, TESTED | Ten neutral seeds, 384 decisions, 29,780 rollouts and six held-out comparisons. |
 | 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED | Opt-in integration and focused firewall tests passed. Regulation anchor and performance checks pending. |
-| 4. Gauge | DESIGN COMPLETE, IMPLEMENTED | Paired-seed script ready. Held-out result depends on the fit. |
+| 4. Gauge | DESIGN COMPLETE, IMPLEMENTED, TESTED | Neither held-out test met the 2-standard-error criterion. |
 | 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED | Twenty learned-off games completed. Learned-on games depend on the fitted artifact. |
 
 ## Standing gates
@@ -52,6 +52,43 @@ The focused tests cover a defensive intervention during the opponent's possessio
 | Takedown | 30 | 30 | 5 | 14 |
 
 Passing also had one single-option menu. Including it in the all-equal count reproduces the lead's original 28 of 30, compared with 3 of 30 through possession end. With the longer horizon, the hand-set best fell in the best-return group in 9 of 29 Passing and 9 of 30 Takedown menus. The mean gaps to the best observed return were 0.321 and 0.260 points respectively. The 11,880 original-sample rollouts took 4,083.3 CPU seconds. Option-level evidence is summarised in `rb327/evidence/original.json`.
+
+## Expanded fit and holdout
+
+The ten neutral-real matches delivered 1,599,060 decisions. The sample used 204 carrier decisions, 34 per distance-by-pressure stratum, and 60 each for Passing, Finishing and Takedown. The 29,780 rollouts took 10,247.9 CPU seconds, or 0.344 seconds per rollout and 26.69 seconds per decision. The branches ended in 21,757 turnovers, 7,516 scores and 507 period ends. The safety cap was never reached. The separate action diagnostic records 282 outcomes unresolved when the possession ended.
+
+The fitted artifact is `native/oracle/artifacts/drill-v1.json`, schema `oracle-drill-v1/1`, SHA-256 `a19e9c04431309c1ea779ab077a8dd65eefdcbb616f25481a591d5847f49753e`.
+
+| Table | Training rollouts | Held-out rollouts | Pooled MSE | Fit MSE | Relative change |
+|---|---:|---:|---:|---:|---:|
+| Pass completion | 7,480 | 1,300 | 0.250367 | 0.237570 | −5.11% |
+| Tackle risk | 5,040 | 1,080 | 0.178258 | 0.166536 | −6.58% |
+| Shot conversion | 4,880 | 680 | 0.250019 | 0.287404 | +14.95% |
+| Points by field position | 12,440 | 2,840 | 2.057356 | 2.011512 | −2.23% |
+| Carrier expected points | 12,440 | 2,840 | 2.057356 | 2.019298 | −1.85% |
+| Finishing expected points | 4,060 | 520 | 2.482911 | 2.465152 | −0.72% |
+
+The binary outcome MSEs score predicted probabilities against binary results. The point tables measure squared points. Of the held-out predictions, 20 shot-conversion and 80 carrier rows reached a previously unseen most-specific bucket and used the fallback. The four outcome tables are audit diagnostics. The two expected-points tables drive the opt-in decisions.
+
+## Held-out Gauge
+
+The held-out sample contained 36 carrier and eight Finishing moments. Each rating level used 20 identical decision seeds per moment. True regret uses the forced possession-return estimates. Belief regret uses the athlete's expected-point estimates before applying decision error. The paired uncertainty averages the 20 within-moment differences and uses the moments as the sampling unit.
+
+| Stage | Rating | Trials | Mean true regret | Mean belief regret |
+|---|---:|---:|---:|---:|
+| Playmaking | 0.40 | 720 | 0.48333 | 0.06669 |
+| Playmaking | 0.70 | 720 | 0.47986 | 0.02948 |
+| Playmaking | 1.00 | 720 | 0.57639 | 0.00000 |
+| Finishing | 0.40 | 160 | 0.44469 | 0.06616 |
+| Finishing | 0.70 | 160 | 0.36656 | 0.02590 |
+| Finishing | 1.00 | 160 | 0.35000 | 0.00000 |
+
+| Stage | True regret at 1.00 minus 0.40 | Paired SE | Verdict |
+|---|---:|---:|---|
+| Playmaking | +0.09306 | 0.06473 | FAIL. Regret rose at 1.00. |
+| Finishing | −0.09469 | 0.05368 | FAIL. Regret fell by 1.76 standard errors. |
+
+Both decisions followed their learned estimates more consistently as ratings rose. The holdout covers two matches, with eight Finishing moments. The raw sample, all option returns and each Gauge draw are in `rb327/evidence/{moments,grades,gauge}.jsonl.gz`.
 
 ## Real ratings, learned off
 

@@ -1,0 +1,1207 @@
+{
+  "action_diagnostic": {
+    "hold_ended": 2768,
+    "interrupted": 290,
+    "pass_caught": 2592,
+    "pass_missed": 2298,
+    "pass_scored": 2,
+    "shot_missed": 1808,
+    "shot_scored": 2430,
+    "takedown": 2030,
+    "unresolved_at_possession_end": 282
+  },
+  "agreement": {
+    "by_stage": {
+      "carrier": {
+        "hand_best_in_rollout_best": 0.3431372549019608,
+        "hand_best_in_unique_rollout_best": 0.26136363636363635,
+        "mean_kendall_tau_b": -0.03384238593034414,
+        "mean_points_lost": 0.5740196078431372,
+        "multi_option_moments": 204,
+        "rank_defined": 184,
+        "unique_rollout_best": 176
+      },
+      "finishing": {
+        "hand_best_in_rollout_best": 0.2857142857142857,
+        "hand_best_in_unique_rollout_best": 0.18181818181818182,
+        "mean_kendall_tau_b": -0.04176377894272944,
+        "mean_points_lost": 0.7330357142857142,
+        "multi_option_moments": 56,
+        "rank_defined": 52,
+        "unique_rollout_best": 33
+      },
+      "passing": {
+        "hand_best_in_rollout_best": 0.32142857142857145,
+        "hand_best_in_unique_rollout_best": 0.2857142857142857,
+        "mean_kendall_tau_b": 0.14066242920918645,
+        "mean_points_lost": 0.2794642857142857,
+        "multi_option_moments": 56,
+        "rank_defined": 53,
+        "unique_rollout_best": 49
+      },
+      "takedown": {
+        "hand_best_in_rollout_best": 0.38333333333333336,
+        "hand_best_in_unique_rollout_best": 0.22857142857142856,
+        "mean_kendall_tau_b": -0.12461393122302077,
+        "mean_points_lost": 0.25416666666666665,
+        "multi_option_moments": 60,
+        "rank_defined": 51,
+        "unique_rollout_best": 35
+      }
+    },
+    "flagged": [
+      {
+        "hand_best": "shoot:",
+        "moment": "3/native/2693892/B:NBL24-01-03/obs/91197/decision/carrier",
+        "points_lost": 1.15,
+        "rollout_best": [
+          "pass:B:NBL24-01-04"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "3/native/1665158/B:NBL24-01-14/obs/73529/decision/carrier",
+        "points_lost": 2.4,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "1/native/76983/A:NBL24-07-02/obs/4019/decision/carrier",
+        "points_lost": 1.65,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "pass:A:NBL24-07-02",
+        "moment": "1/native/573436/A:NBL24-07-01/obs/25217/decision/carrier",
+        "points_lost": 1.4499999999999997,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "1/native/2670256/B:NBL24-01-01/obs/91900/decision/carrier",
+        "points_lost": 1.0000000000000002,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "1/native/3198840/B:NBL24-01-07/obs/116925/decision/carrier",
+        "points_lost": 2.8,
+        "rollout_best": [
+          "pass:B:NBL24-01-01"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "3/native/3353833/A:NBL24-07-02/obs/120521/decision/carrier",
+        "points_lost": 1.8,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "3/native/3368418/A:NBL24-07-02/obs/121278/decision/carrier",
+        "points_lost": 1.15,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "1/native/3521543/A:NBL24-07-01/obs/127330/decision/carrier",
+        "points_lost": 3.15,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "3/native/3961885/B:NBL24-01-06/obs/145734/decision/carrier",
+        "points_lost": 2.1,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "1/native/3007399/A:NBL24-07-09/obs/106978/decision/carrier",
+        "points_lost": 2.0500000000000003,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "1/native/2726886/A:NBL24-07-03/obs/94843/decision/carrier",
+        "points_lost": 1.05,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "direct",
+        "moment": "2/native/3356090/A:NBL24-07-10/obs/117745/decision/passing",
+        "points_lost": 1.65,
+        "rollout_best": [
+          "bounce"
+        ],
+        "stage": "passing"
+      },
+      {
+        "hand_best": "wait",
+        "moment": "3/native/2683454/B:NBL24-01-08/obs/90655/decision/passing",
+        "points_lost": 1,
+        "rollout_best": [
+          "bounce"
+        ],
+        "stage": "passing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "3/native/3898608/A:NBL24-07-01/obs/142568/decision/finishing",
+        "points_lost": 2.4,
+        "rollout_best": [
+          "shot:0.0:2.0",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "2/native/1481006/B:NBL24-01-07/obs/60931/decision/finishing",
+        "points_lost": 1.2,
+        "rollout_best": [
+          "shot:-2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "3/native/4244721/A:NBL24-07-10/obs/160438/decision/finishing",
+        "points_lost": 1.9,
+        "rollout_best": [
+          "shot:-2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "2/native/1723892/A:NBL24-07-02/obs/73373/decision/finishing",
+        "points_lost": 1.1500000000000001,
+        "rollout_best": [
+          "shot:2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "3/native/3837492/B:NBL24-01-06/obs/139512/decision/finishing",
+        "points_lost": 1,
+        "rollout_best": [
+          "shot:2.4:0.4",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "3/native/987825/B:NBL24-01-05/obs/42990/decision/finishing",
+        "points_lost": 1.6,
+        "rollout_best": [
+          "shot:0.0:2.0",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "2/native/210767/B:DRAFT26-44/obs/10638/decision/finishing",
+        "points_lost": 1.2,
+        "rollout_best": [
+          "shot:2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "1/native/3246942/A:NBL24-07-02/obs/119420/decision/finishing",
+        "points_lost": 1.75,
+        "rollout_best": [
+          "shot:-2.4:0.4",
+          "shot:0.0:2.0",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "3/native/1081225/B:NBL24-01-01/obs/47851/decision/finishing",
+        "points_lost": 1.6999999999999997,
+        "rollout_best": [
+          "shot:-2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "3/native/3079010/A:NBL24-07-06/obs/106437/decision/finishing",
+        "points_lost": 2.1,
+        "rollout_best": [
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "2/native/2866769/B:NBL24-01-05/obs/97039/decision/finishing",
+        "points_lost": 2.0,
+        "rollout_best": [
+          "shot:-2.4:0.4",
+          "shot:0.0:2.0"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "takedown:upper",
+        "moment": "1/native/1663587/A:NBL24-07-08/obs/73283/decision/takedown",
+        "points_lost": 1.6,
+        "rollout_best": [
+          "wrap:upper"
+        ],
+        "stage": "takedown"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "4/native/594504/A:NBL24-07-08/obs/28589/decision/carrier",
+        "points_lost": 1.6,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "shoot:",
+        "moment": "4/native/3716951/A:NBL24-07-09/obs/135457/decision/carrier",
+        "points_lost": 2.35,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "4/native/3268466/B:NBL24-01-14/obs/118383/decision/carrier",
+        "points_lost": 2.4,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "4/native/3048077/A:NBL24-07-06/obs/106982/decision/carrier",
+        "points_lost": 1,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "pass:A:NBL25-D06",
+        "moment": "4/native/335182/A:NBL24-07-06/obs/15083/decision/carrier",
+        "points_lost": 1.9000000000000001,
+        "rollout_best": [
+          "evade"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "4/native/479070/B:NBL24-01-01/obs/22566/decision/carrier",
+        "points_lost": 1.2,
+        "rollout_best": [
+          "evade"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "4/native/3607989/A:NBL24-07-13/obs/129767/decision/finishing",
+        "points_lost": 1.65,
+        "rollout_best": [
+          "shot:2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "takedown:upper",
+        "moment": "4/native/567832/B:NBL24-01-03/obs/27193/decision/takedown",
+        "points_lost": 1.4000000000000001,
+        "rollout_best": [
+          "takedown:lower"
+        ],
+        "stage": "takedown"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "5/native/1768053/A:NBL24-07-02/obs/76341/decision/carrier",
+        "points_lost": 1.15,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "5/native/4167610/A:NBL24-07-06/obs/154021/decision/carrier",
+        "points_lost": 1.2000000000000002,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "5/native/115159/A:NBL24-07-06/obs/5982/decision/carrier",
+        "points_lost": 1.2000000000000002,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "pass:B:NBL24-01-04",
+        "moment": "5/native/2894340/B:NBL24-01-05/obs/101147/decision/carrier",
+        "points_lost": 1.7000000000000002,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "5/native/3567555/B:NBL24-01-09/obs/125181/decision/finishing",
+        "points_lost": 1.6,
+        "rollout_best": [
+          "shot:0.0:2.0",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "6/native/3679229/B:NBL24-01-09/obs/131189/decision/carrier",
+        "points_lost": 1.5,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "6/native/3672931/B:NBL24-01-07/obs/130860/decision/carrier",
+        "points_lost": 1.4500000000000002,
+        "rollout_best": [
+          "evade"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "6/native/1498583/A:NBL25-D06/obs/64638/decision/carrier",
+        "points_lost": 1.5999999999999999,
+        "rollout_best": [
+          "pass:A:NBL24-07-03"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "6/native/3689150/A:NBL24-07-02/obs/131706/decision/carrier",
+        "points_lost": 2.8,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "evade",
+        "moment": "6/native/165650/A:NBL24-07-02/obs/8612/decision/carrier",
+        "points_lost": 1.0499999999999998,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "6/native/1136747/A:NBL24-07-18/obs/45915/decision/carrier",
+        "points_lost": 1.0,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "handoff:A:NBL24-07-02",
+        "moment": "6/native/3200343/A:NBL24-07-13/obs/112409/decision/carrier",
+        "points_lost": 1.05,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "6/native/2807262/B:NBL24-01-01/obs/99045/decision/carrier",
+        "points_lost": 1.5,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "6/native/3815115/A:NBL24-07-18/obs/138132/decision/finishing",
+        "points_lost": 1.0499999999999998,
+        "rollout_best": [
+          "shot:-2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "6/native/3490315/B:NBL24-01-04/obs/121279/decision/finishing",
+        "points_lost": 2.25,
+        "rollout_best": [
+          "shot:2.4:0.4",
+          "shot:0.0:2.0",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "7/native/2573237/A:NBL24-07-18/obs/86720/decision/carrier",
+        "points_lost": 3,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "handoff:A:NBL24-07-01",
+        "moment": "7/native/3246571/A:NBL24-07-09/obs/116968/decision/carrier",
+        "points_lost": 1.4,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "pass:A:NBL24-07-18",
+        "moment": "7/native/2744562/A:NBL24-07-06/obs/93280/decision/carrier",
+        "points_lost": 1.25,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "8/native/3213108/A:NBL24-07-09/obs/115644/decision/carrier",
+        "points_lost": 1.15,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "8/native/4163481/A:NBL24-07-13/obs/156275/decision/carrier",
+        "points_lost": 1.55,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "8/native/1135005/A:NBL24-07-01/obs/43581/decision/carrier",
+        "points_lost": 2.65,
+        "rollout_best": [
+          "pass:A:NBL24-07-10"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "8/native/2633323/A:NBL24-07-01/obs/87936/decision/finishing",
+        "points_lost": 1.6,
+        "rollout_best": [
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "8/native/3518374/B:NBL24-01-10/obs/125140/decision/finishing",
+        "points_lost": 2.1,
+        "rollout_best": [
+          "shot:0.0:2.0",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "9/native/3971041/A:NBL24-07-02/obs/144143/decision/carrier",
+        "points_lost": 1.8,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "9/native/2964636/B:NBL24-01-22/obs/97945/decision/carrier",
+        "points_lost": 1.5,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "evade",
+        "moment": "9/native/727247/B:NBL24-01-03/obs/30999/decision/carrier",
+        "points_lost": 1.0,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "9/native/3588784/A:NBL25-D06/obs/124243/decision/carrier",
+        "points_lost": 1.05,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "pass:B:NBL24-01-05",
+        "moment": "9/native/3107650/B:NBL24-01-03/obs/105398/decision/carrier",
+        "points_lost": 2.15,
+        "rollout_best": [
+          "retain:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "9/native/2895476/B:NBL24-01-08/obs/96645/decision/carrier",
+        "points_lost": 1.2,
+        "rollout_best": [
+          "evade"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "9/native/880680/A:NBL24-07-02/obs/39020/decision/finishing",
+        "points_lost": 2.4,
+        "rollout_best": [
+          "shot:-2.4:0.4"
+        ],
+        "stage": "finishing"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "10/native/2843400/A:NBL24-07-10/obs/98430/decision/carrier",
+        "points_lost": 1.65,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry_goal",
+        "moment": "10/native/3496152/A:NBL24-07-03/obs/121424/decision/carrier",
+        "points_lost": 1.05,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "10/native/3480155/B:NBL24-01-08/obs/120588/decision/carrier",
+        "points_lost": 1.1,
+        "rollout_best": [
+          "pass:B:NBL24-01-03"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "carry:",
+        "moment": "10/native/3038527/A:NBL24-07-13/obs/106191/decision/carrier",
+        "points_lost": 1.5,
+        "rollout_best": [
+          "shoot:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "retain:",
+        "moment": "10/native/3020709/B:NBL24-01-22/obs/105307/decision/carrier",
+        "points_lost": 2.65,
+        "rollout_best": [
+          "carry:"
+        ],
+        "stage": "carrier"
+      },
+      {
+        "hand_best": "selected_lane",
+        "moment": "10/native/312404/B:NBL24-01-09/obs/16229/decision/finishing",
+        "points_lost": 1.5,
+        "rollout_best": [
+          "shot:-2.4:0.4",
+          "shot:0.0:1.2"
+        ],
+        "stage": "finishing"
+      }
+    ],
+    "shot_offset": {
+      "mean_regret_with": 0.9346938775510204,
+      "mean_regret_without": 0.7357142857142857,
+      "moments_with_shots": 49,
+      "per_moment": [
+        {
+          "moment": "3/native/2693892/B:NBL24-01-03/obs/91197/decision/carrier",
+          "regret_with": 1.15,
+          "regret_without": 1.15,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "3/native/2673447/B:NBL24-01-03/obs/90142/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "3/native/3337931/A:NBL24-07-03/obs/119696/decision/carrier",
+          "regret_with": 0.6999999999999997,
+          "regret_without": 0.6999999999999997,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "3/native/1665158/B:NBL24-01-14/obs/73529/decision/carrier",
+          "regret_with": 2.4,
+          "regret_without": 0.0,
+          "with": "carry:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "3/native/475061/A:NBL24-07-02/obs/22507/decision/carrier",
+          "regret_with": 0.1499999999999999,
+          "regret_without": 0.1499999999999999,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "1/native/76983/A:NBL24-07-02/obs/4019/decision/carrier",
+          "regret_with": 1.65,
+          "regret_without": 1.65,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "3/native/1500103/B:NBL24-01-09/obs/64950/decision/carrier",
+          "regret_with": 0.55,
+          "regret_without": 0.55,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "2/native/2839753/B:NBL24-01-01/obs/95621/decision/carrier",
+          "regret_with": 0,
+          "regret_without": 0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "1/native/3263939/B:NBL24-01-22/obs/120303/decision/carrier",
+          "regret_with": 0,
+          "regret_without": 0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "1/native/2670256/B:NBL24-01-01/obs/91900/decision/carrier",
+          "regret_with": 1.0000000000000002,
+          "regret_without": 1.0000000000000002,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "1/native/3639332/B:NBL24-01-01/obs/133494/decision/carrier",
+          "regret_with": 0.3,
+          "regret_without": 0.3,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "1/native/3198840/B:NBL24-01-07/obs/116925/decision/carrier",
+          "regret_with": 2.8,
+          "regret_without": 2.8,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "3/native/3898608/A:NBL24-07-01/obs/142568/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "3/native/3353833/A:NBL24-07-02/obs/120521/decision/carrier",
+          "regret_with": 1.8,
+          "regret_without": 1.8,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "3/native/3368418/A:NBL24-07-02/obs/121278/decision/carrier",
+          "regret_with": 1.15,
+          "regret_without": 1.15,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "1/native/3521543/A:NBL24-07-01/obs/127330/decision/carrier",
+          "regret_with": 3.15,
+          "regret_without": 3.15,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "1/native/1294992/B:NBL24-01-10/obs/54224/decision/carrier",
+          "regret_with": 0.95,
+          "regret_without": 0.95,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "4/native/4018382/B:NBL24-01-22/obs/151020/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "4/native/594504/A:NBL24-07-08/obs/28589/decision/carrier",
+          "regret_with": 1.6,
+          "regret_without": 1.6,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "4/native/3716951/A:NBL24-07-09/obs/135457/decision/carrier",
+          "regret_with": 2.35,
+          "regret_without": 2.35,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "4/native/3268466/B:NBL24-01-14/obs/118383/decision/carrier",
+          "regret_with": 2.4,
+          "regret_without": 2.4,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "4/native/3048077/A:NBL24-07-06/obs/106982/decision/carrier",
+          "regret_with": 1,
+          "regret_without": 1,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "4/native/4126357/A:NBL24-07-18/obs/154325/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "5/native/4201366/B:NBL24-01-22/obs/155731/decision/carrier",
+          "regret_with": 0.6,
+          "regret_without": 0.4,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "5/native/2535759/A:NBL24-07-17/obs/82524/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "5/native/1638223/B:NBL24-01-03/obs/69610/decision/carrier",
+          "regret_with": 0.8500000000000001,
+          "regret_without": 0.8500000000000001,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "5/native/115159/A:NBL24-07-06/obs/5982/decision/carrier",
+          "regret_with": 1.2000000000000002,
+          "regret_without": 1.2000000000000002,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "6/native/2578055/B:NBL24-01-09/obs/89614/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "6/native/2515567/B:NBL24-01-07/obs/86355/decision/carrier",
+          "regret_with": 0.95,
+          "regret_without": 0.95,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "6/native/3235595/B:NBL24-01-03/obs/114252/decision/carrier",
+          "regret_with": 0.7000000000000002,
+          "regret_without": 0.0,
+          "with": "carry:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "6/native/712254/B:NBL24-01-05/obs/32436/decision/carrier",
+          "regret_with": 0.7999999999999998,
+          "regret_without": 0.7999999999999998,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "6/native/2711018/B:NBL24-01-07/obs/94195/decision/carrier",
+          "regret_with": 0.44999999999999996,
+          "regret_without": 0.44999999999999996,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "6/native/3689150/A:NBL24-07-02/obs/131706/decision/carrier",
+          "regret_with": 2.8,
+          "regret_without": 2.8,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "7/native/2918807/B:NBL24-01-03/obs/102352/decision/carrier",
+          "regret_with": 0.7,
+          "regret_without": 0.0,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "7/native/744455/A:NBL24-07-13/obs/31779/decision/carrier",
+          "regret_with": 0.6499999999999999,
+          "regret_without": 0.6499999999999999,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "7/native/610025/A:NBL24-07-06/obs/27113/decision/carrier",
+          "regret_with": 0.20000000000000018,
+          "regret_without": 0.20000000000000018,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "8/native/3213108/A:NBL24-07-09/obs/115644/decision/carrier",
+          "regret_with": 1.15,
+          "regret_without": 0.0,
+          "with": "carry:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "8/native/850345/A:NBL24-07-03/obs/37324/decision/carrier",
+          "regret_with": 0.35,
+          "regret_without": 0.7,
+          "with": "carry:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "8/native/2982782/B:NBL24-01-08/obs/103653/decision/carrier",
+          "regret_with": 0.25,
+          "regret_without": 0.25,
+          "with": "carry_goal",
+          "without": "carry_goal"
+        },
+        {
+          "moment": "8/native/3974667/B:NBL24-01-22/obs/146416/decision/carrier",
+          "regret_with": 0.9500000000000002,
+          "regret_without": 0.9500000000000002,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "8/native/2637450/A:NBL24-07-02/obs/88142/decision/carrier",
+          "regret_with": 0.6,
+          "regret_without": 0.0,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "9/native/1785185/A:NBL24-07-01/obs/77008/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "carry:",
+          "without": "carry:"
+        },
+        {
+          "moment": "9/native/3971041/A:NBL24-07-02/obs/144143/decision/carrier",
+          "regret_with": 1.8,
+          "regret_without": 0.0,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "9/native/2964636/B:NBL24-01-22/obs/97945/decision/carrier",
+          "regret_with": 1.5,
+          "regret_without": 1.65,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "9/native/1169426/B:NBL24-01-04/obs/45391/decision/carrier",
+          "regret_with": 0,
+          "regret_without": 0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "10/native/2843400/A:NBL24-07-10/obs/98430/decision/carrier",
+          "regret_with": 1.65,
+          "regret_without": 0,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "10/native/3496152/A:NBL24-07-03/obs/121424/decision/carrier",
+          "regret_with": 1.05,
+          "regret_without": 0.0,
+          "with": "carry_goal",
+          "without": "shoot:"
+        },
+        {
+          "moment": "10/native/1368017/B:NBL24-01-07/obs/58009/decision/carrier",
+          "regret_with": 0.0,
+          "regret_without": 0.0,
+          "with": "shoot:",
+          "without": "shoot:"
+        },
+        {
+          "moment": "10/native/3038527/A:NBL24-07-13/obs/106191/decision/carrier",
+          "regret_with": 1.5,
+          "regret_without": 1.5,
+          "with": "carry:",
+          "without": "carry:"
+        }
+      ],
+      "selection_changes": 11,
+      "value": -1.4
+    }
+  },
+  "artifact_sha256": "a19e9c04431309c1ea779ab077a8dd65eefdcbb616f25481a591d5847f49753e",
+  "counts": {
+    "carrier": 204,
+    "finishing": 60,
+    "passing": 60,
+    "takedown": 60
+  },
+  "cpu_s": 10247.916892413003,
+  "gauge": {
+    "carrier": {
+      "levels": {
+        "0.4": {
+          "actions": {
+            "carry": 189,
+            "evade": 81,
+            "handoff": 20,
+            "pass": 97,
+            "retain": 217,
+            "shoot": 116
+          },
+          "mean_belief_regret": 0.06668902025318724,
+          "mean_perceived_regret": 0.0,
+          "mean_true_regret": 0.48333333333333334,
+          "moments": 36,
+          "trials": 720
+        },
+        "0.7": {
+          "actions": {
+            "carry": 180,
+            "evade": 73,
+            "handoff": 9,
+            "pass": 96,
+            "retain": 223,
+            "shoot": 139
+          },
+          "mean_belief_regret": 0.02947678644455967,
+          "mean_perceived_regret": 0.0,
+          "mean_true_regret": 0.4798611111111111,
+          "moments": 36,
+          "trials": 720
+        },
+        "1.0": {
+          "actions": {
+            "carry": 180,
+            "evade": 40,
+            "pass": 80,
+            "retain": 280,
+            "shoot": 140
+          },
+          "mean_belief_regret": 0.0,
+          "mean_perceived_regret": 0.0,
+          "mean_true_regret": 0.5763888888888888,
+          "moments": 36,
+          "trials": 720
+        }
+      },
+      "paired_high_minus_low": 0.09305555555555556,
+      "paired_standard_error": 0.06473435576707691,
+      "pairing_unit": "mean of 20 seed pairs within a moment",
+      "pass": false
+    },
+    "finishing": {
+      "levels": {
+        "0.4": {
+          "actions": {
+            "selected_lane": 74,
+            "shot": 86
+          },
+          "mean_belief_regret": 0.06615700015638443,
+          "mean_perceived_regret": 0.0,
+          "mean_true_regret": 0.4446875,
+          "moments": 8,
+          "trials": 160
+        },
+        "0.7": {
+          "actions": {
+            "selected_lane": 77,
+            "shot": 83
+          },
+          "mean_belief_regret": 0.025895929851825813,
+          "mean_perceived_regret": 0.0,
+          "mean_true_regret": 0.3665625,
+          "moments": 8,
+          "trials": 160
+        },
+        "1.0": {
+          "actions": {
+            "selected_lane": 80,
+            "shot": 80
+          },
+          "mean_belief_regret": 0.0,
+          "mean_perceived_regret": 0.0,
+          "mean_true_regret": 0.35,
+          "moments": 8,
+          "trials": 160
+        }
+      },
+      "paired_high_minus_low": -0.09468750000000002,
+      "paired_standard_error": 0.05367818603725353,
+      "pairing_unit": "mean of 20 seed pairs within a moment",
+      "pass": false
+    }
+  },
+  "mining_cpu_s": {
+    "1": 258.56061820900004,
+    "2": 260.850902054,
+    "3": 265.252165103,
+    "4": 179.953676521,
+    "5": 181.445827565,
+    "6": 186.423287819,
+    "7": 174.656938467,
+    "8": 181.481331441,
+    "9": 180.031368175,
+    "10": 179.411092481
+  },
+  "possession_ends": {
+    "end_period": 507,
+    "score": 7516,
+    "turnover": 21757
+  },
+  "rollouts": 29780,
+  "strata": {
+    "carrier/20to40/open": {
+      "eligible": 3959,
+      "selected": 34
+    },
+    "carrier/20to40/pressured": {
+      "eligible": 3329,
+      "selected": 34
+    },
+    "carrier/over40/open": {
+      "eligible": 11785,
+      "selected": 34
+    },
+    "carrier/over40/pressured": {
+      "eligible": 11284,
+      "selected": 34
+    },
+    "carrier/under20/open": {
+      "eligible": 1958,
+      "selected": 34
+    },
+    "carrier/under20/pressured": {
+      "eligible": 928,
+      "selected": 34
+    },
+    "finishing": {
+      "eligible": 897,
+      "selected": 60
+    },
+    "passing": {
+      "eligible": 3129,
+      "selected": 60
+    },
+    "takedown": {
+      "eligible": 6426,
+      "selected": 60
+    }
+  }
+}
