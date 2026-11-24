@@ -2,6 +2,7 @@
 import argparse
 import json
 from pathlib import Path
+from subprocess import check_output
 from time import process_time
 
 from native.prism_lab import neutral_rosters
@@ -26,6 +27,7 @@ port=RulebookPort(args.seed,config,rosters=rosters)
 carries=observe_carries(port)
 result, port=run_match(args.seed,config,rosters=rosters,port_factory=lambda *a,**k:port,
                        max_steps=args.steps)
+result['build'] = check_output(['git','rev-parse','HEAD'],text=True).strip()
 result['cpu_ms_per_step']=(process_time()-start)*1000/result['steps']
 result.pop('prism_commits',None)
 add_metrics(result,port,carries)
