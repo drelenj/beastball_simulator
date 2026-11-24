@@ -17,7 +17,7 @@
 | Task | Status | Evidence |
 |---|---|---|
 | 1. Possession scoring | DESIGN COMPLETE, IMPLEMENTED | Focused scenario checks passed. Original-sample regrade in progress. |
-| 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED | Ten seed sources, stratified carrier sampling, two held-out matches. Fit in progress. |
+| 2. More moments and refit | DESIGN COMPLETE, IMPLEMENTED | Ten neutral seeds completed with 1,599,060 delivered decisions. Stratified grading and fit in progress. |
 | 3. Learned PRISM values | DESIGN COMPLETE, IMPLEMENTED | Opt-in integration and focused firewall tests passed. Regulation anchor and performance checks pending. |
 | 4. Gauge | DESIGN COMPLETE, IMPLEMENTED | Paired-seed script ready. Held-out result depends on the fit. |
 | 5. Real ratings | DESIGN COMPLETE, IMPLEMENTED | Pinned workbook and selection readback in evidence. Soak in progress. |
@@ -39,6 +39,8 @@
  g) Firewall: live true state never reaches cognition; learned artifacts enter only as versioned files loaded before a match; the purity test covers the new loader.
 
 The full suite reported `767 passed, 1 warning, 23 subtests passed in 652.72s (0:10:52)`. The warning was the pytest dependency's `CallSpec2` deprecation.
+
+The six legacy trace, state and config rows matched exactly. The full compatibility and CORE learned-off runs reproduced gates d and e. Their raw results are in `rb327/evidence/compatibility.json` and `rb327/evidence/core.json`.
 
 The focused tests cover a defensive intervention during the opponent's possession, separate reporting of the action outcome, rejection of a changed table, decisions after removal of the loaded file, an information-boundary poison test, and independent 0.422 roster selection.
 
