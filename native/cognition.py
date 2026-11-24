@@ -115,6 +115,9 @@ class AthleteView:
     registry_ratings: tuple[tuple[str, float], ...] = ()
     recognized_ball: str | None = None
     prism_agent: str | None = None
+    core_entropy: str | None = None
+    core_decision_ms: int = 500
+    core_motion: tuple | None = None
     own_skills: tuple = ()               # ATTR-1: self only; never teammate/opponent ratings
 
 
@@ -148,6 +151,8 @@ class ActionIntent:
     contact: str | None = None
     record_id: str | None = None
     period: int | None = None
+    wait_ms: int = 0
+    technique: str | None = None
 
 
 @dataclass(frozen=True)
@@ -532,6 +537,10 @@ def _base_decide(view: AthleteView, belief: BeliefState):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    if view.core_entropy is None:
+        result['view'].pop('core_entropy')
+        result['view'].pop('core_decision_ms')
+        result['view'].pop('core_motion')
     if not view.individual_ratings:
         result['view'].pop('individual_ratings')
     if not view.registry_ratings:
@@ -552,6 +561,9 @@ def view_from_json(d):
     v['tracks'] = tr(v['tracks'])
     if 'individual_ratings' in v:
         v['individual_ratings'] = tuple(tuple(row) for row in v['individual_ratings'])
+    if v.get('core_motion'):
+        kind, technique, aim, started = v['core_motion']
+        v['core_motion'] = (kind, technique, tuple(aim) if aim else None, started)
     if 'registry_ratings' in v:
         v['registry_ratings'] = tuple(tuple(row) for row in v['registry_ratings'])
     v['policy'] = PolicyParams.from_dict(v['policy']) if isinstance(v.get('policy'),dict) else PolicyParams()
@@ -583,6 +595,9 @@ def view_from_json(d):
 def decide(view, belief):
     """All Native semantic commands. The view names its own decision set."""
     if view.cognition == 'native-rb/3':
+        if view.core_entropy is not None:
+            from . import prism_core
+            return prism_core.decide(view, belief)
         from . import cognition_v3, cognition_rb3
         if view.registry_ratings:
             view = replace(view, prism_agent=PRISM.select_agent(view, belief, registry_rating))

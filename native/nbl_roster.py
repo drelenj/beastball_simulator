@@ -3,7 +3,7 @@ from dataclasses import replace
 import hashlib
 import json
 
-from .prism_registry import NEW_RATINGS, LEGACY_SOURCES, AVERAGE
+from .prism_registry import NEW_RATINGS, MANEUVERS, LEGACY_SOURCES, AVERAGE
 from .roster import INERT_RATINGS, load_rows, RosterError
 
 PHYSICAL = {
@@ -36,7 +36,7 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
     book=load_workbook(source,read_only=True,data_only=True)
     sheet=book['All 712 Players'];lines=sheet.values
     columns={name:i for i,name in enumerate(next(lines))}
-    registry_columns = {key: key.replace('_', ' ').title() + ' (rating)' for key in NEW_RATINGS}
+    registry_columns = {key: key.replace('_', ' ').title() + ' (rating)' for key in (*NEW_RATINGS, *MANEUVERS)}
     registry_present = any(header in columns for header in registry_columns.values())
     candidates={team:[] for team in franchises}
     league={key:[] for key in PHYSICAL}

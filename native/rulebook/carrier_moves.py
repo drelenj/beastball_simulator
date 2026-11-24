@@ -117,12 +117,19 @@ class CarrierMoves:
         duration = round(STRETCH_MS * (1.35 - .5 * carrier.a.ball_handling))
         fraction = min(1., max(0., (now - intent.decided_ms) / duration))
         normal_offset = .35 + .35 * carrier.a.reach
-        return max(0., REACH_FRACTION * carrier.a.reach - normal_offset) * fraction
+        maximum = REACH_FRACTION * carrier.a.reach
+        if self.port.prism_core:
+            from native.prism_motion import stretch_maximum
+            maximum = stretch_maximum(carrier, REACH_FRACTION)
+        return max(0., maximum - normal_offset) * fraction
 
     def strip_multiplier(self, carrier, now):
         maximum = max(0., REACH_FRACTION * carrier.a.reach - (.35 + .35 * carrier.a.reach))
         fraction = self.extension(carrier, now) / maximum if maximum else 0.
-        return 1. + (self.match.assume['strip_in_motion_factor'] - 1.) * fraction
+        multiplier = self.match.assume['strip_in_motion_factor']
+        if self.port.prism_core:
+            multiplier = 1. + (multiplier - 1.) * (1 - carrier.a.ball_handling)
+        return 1. + (multiplier - 1.) * fraction
 
     def follow_stretched(self):
         result = self.follow()
@@ -130,7 +137,15 @@ class CarrierMoves:
         if ball.carrier:
             carrier = self.state.players[ball.carrier]
             now = self.state.now if self.follow_ms is None else self.follow_ms
-            ball.x += self.state.attack_sign(carrier.team) * self.extension(carrier, now)
+            extra = self.extension(carrier, now)
+            intent = self.current(carrier, now, 'stretch') if extra and self.port.prism_core else None
+            if intent and intent.aim:
+                attack = self.state.attack_sign(carrier.team)
+                ux, uy = unit(intent.aim[0] - carrier.x, (intent.aim[1] - carrier.y) * carrier.a.ball_handling)
+                ball.x += ux * extra if ux * attack > 0 else attack * extra
+                ball.y += uy * extra if ux * attack > 0 else 0.
+            else:
+                ball.x += self.state.attack_sign(carrier.team) * extra
         return result
 
     def advance_stretched(self, ms, old_positions):
@@ -165,6 +180,9 @@ class CarrierMoves:
         a = m.assume
         impulse = a['traction_coefficient'] * actor.a.mass * a['gravity'] * a['contact_time_s']
         impulse *= p / (p + q) if p + q else 0.
+        if self.port.prism_core:
+            from native.prism_motion import STIFF_ARM_IMPULSE_RANGE
+            impulse *= 1. + STIFF_ARM_IMPULSE_RANGE * (actor.native_registry['stiff_arm'] - .7)
         if impulse <= 0:
             return
         nx, ny = unit(target.x - actor.x, target.y - actor.y)
@@ -201,6 +219,9 @@ class CarrierMoves:
         grip = m.c3_holds.get(key, {}).get('g', 0.)
         drive, defence, forward = truck_advantage(carrier, target, ua if carrier is a else ub,
                                                    ub if carrier is a else ua, grip, m.assume)
+        if self.port.prism_core:
+            from native.prism_motion import TRUCK_DRIVE_RANGE
+            drive *= 1. + TRUCK_DRIVE_RANGE * (carrier.native_registry['truck'] - .7)
         won = drive > defence and forward > 0.
         if won:
             m.c3_end_hold(key, 'truck', at, tick)

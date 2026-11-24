@@ -107,9 +107,9 @@ class RulebookConfigV3(RulebookConfig):
         return record
 
     def __post_init__(self):
-        if self.individuation not in ('off', 'individuation/1'):
+        if self.individuation not in ('off', 'individuation/1', 'individuation/2'):
             raise ValueError('unknown individuation mapping')
-        if self.individuation == 'individuation/1':
+        if self.individuation in ('individuation/1', 'individuation/2'):
             object.__setattr__(self, 'physical_assumptions', tuple(
                 (key, 1. if key == 'fatigue_rate' else value)
                 for key, value in self.physical_assumptions))

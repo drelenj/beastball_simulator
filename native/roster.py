@@ -11,7 +11,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from .prism_registry import NEW_RATINGS
+from .prism_registry import NEW_RATINGS, MANEUVERS
 
 MAPPING_VERSION = 'attr-map/1'
 RATINGS = (
@@ -22,7 +22,7 @@ RATINGS = (
 INERT_RATINGS = ('touch','vision','clarity','reaction','anticipation','focus','instinct','judgment','motor_control',
                  'playmaking','finishing','marking','zone_reads','goalkeeping','in_air_ball_pursuit',
                  'live_ball_pursuit','carrier_duel','defender_duel')
-OPTIONAL_RATINGS = ('durability','injury','acceleration',*INERT_RATINGS,*NEW_RATINGS)
+OPTIONAL_RATINGS = ('durability','injury','acceleration',*INERT_RATINGS,*NEW_RATINGS,*MANEUVERS)
 REQUIRED = ('id','role',*RATINGS,'height_m','mass_kg')
 IGNORED_LABELS = ('name','position','archetype','overall')
 

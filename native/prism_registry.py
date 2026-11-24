@@ -20,6 +20,7 @@ LEGACY_SOURCES = {
     'takedown': ('defender_duel',),
     'agility': ('motor_control',),
 }
+MANEUVERS = ('juke', 'spin', 'hurdle', 'stiff_arm', 'truck')
 NEW_RATINGS = ('defending', 'zone_coverage', 'disruption', 'passing',
                'evasion', 'takedown', 'reflex')
 AGENTS = ('playmaking', 'defending', 'zone_coverage', 'goalkeeping',
