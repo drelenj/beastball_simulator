@@ -15,11 +15,11 @@ FOCUS_BASE_CAPACITY = 20
 FOCUS_BASE_RETENTION_MS = 2000
 # PROVISIONAL - TO BE REPLACED BY ORACLE DRILL.
 ERROR_WIDTH = .75
-SHOT_VALUE_OFFSET = 0.
+SHOT_VALUE_OFFSET = -.55
 EVADE_PRESSURE_VALUE = 2.5
 GOAL_CARRY_VALUE = 1.0
-AREA_DISTANCE_WEIGHT = .07
-AREA_INSIDE_VALUE = 1.5
+AREA_DISTANCE_WEIGHT = .045
+AREA_INSIDE_VALUE = .85
 BLOCK_DISTANCE_M = 3.
 BLOCK_VALUE = .8
 PASS_WAIT_COST = .22
@@ -27,7 +27,12 @@ PASS_ARC_COST = .25
 PASS_BOUNCE_COST = .65
 PASS_LANE_GAIN = .12
 PASS_WAIT_VELOCITY_MPS = 1.6
-KEEPER_SET_VALUE, KEEPER_SAVE_VALUE = 1., 3.
+KEEPER_SET_VALUE, KEEPER_SAVE_VALUE = 1., 1.15
+KEEPER_SAVE_TIME_VALUE = .6
+KEEPER_SHIFT_COST = .3
+ARCHER_WAIT_VALUE = .65
+PURSUIT_INTERCEPT_COST = .12
+ANTICIPATION_RANGE = .25
 STRETCH_BELIEVED_RANGE_MARGIN = .45
 STRETCH_VALUE = 13.
 GRIP_VALUE = .3
@@ -108,7 +113,8 @@ def finish(menu, view, base, tracks, kind):
     if plan is None:
         return base
     field = [t for t in tracks if t.role == 'field' and t.team != view.team]
-    options = [Option(replace(base, speed=speed, height=plan['z']), plan['margin'], 'finishing', 'selected_lane')]
+    margin = plan['margin'] if keeper else -abs(base.aim[1]-50.) * .05
+    options = [Option(replace(base, speed=speed, height=plan['z']), margin, 'finishing', 'selected_lane')]
     # Reuse the historical radial envelope. Reach is a common offset for all
     # candidates and cannot bias their rank by athlete rating.
     reach = RB.keeper_lateral_reach(view, keeper) if keeper else 0.
@@ -277,8 +283,34 @@ def defender(menu, view, belief, tracks, base, record):
         return menu.choose('takedown',options).intent, 'defending'
     selected = menu.choose('defense',options)
     result, _ = RB.defender_baseline(displayed(view),belief,selected.intent,{})
-    result, _ = RB.zone_behavior(displayed(view),belief,result,{})
     return result, selected.owner
+
+
+def keeper_options(menu, view, base):
+    original = base.auxiliary
+    center = (view.own_goal_x + view.attack_sign * 2., 50.)
+    if original.kind == 'save':
+        window = (original.intercept_window_ms[1]-view.delivered_ms)/1000.
+        poised = replace(original, kind='position', target=center, course=())
+        options = [Option(base, KEEPER_SAVE_VALUE + KEEPER_SAVE_TIME_VALUE * min(window,.6), 'goalkeeping','save'),
+                   Option(replace(base, auxiliary=poised), KEEPER_SET_VALUE,'goalkeeping','set')]
+    elif original.kind == 'position':
+        resting = replace(original, kind='hold', target=(view.x,view.y))
+        gap = hypot(original.target[0]-view.x,original.target[1]-view.y)
+        options = [Option(base, KEEPER_SET_VALUE, 'goalkeeping','position'),
+                   Option(replace(base, auxiliary=resting),KEEPER_SET_VALUE-KEEPER_SHIFT_COST*min(3.,gap),
+                          'goalkeeping','hold')]
+    else:
+        options = [Option(base,KEEPER_SET_VALUE,'goalkeeping','hold')]
+    return menu.choose('keeper', options).intent
+
+
+def future_course(belief, rating):
+    course = belief.ball_course
+    if course is None:
+        return belief
+    factor = 1. - ANTICIPATION_RANGE * (.70-rating)
+    return replace(belief, ball_course=replace(course, vy=course.vy * factor, vz=course.vz * factor))
 
 
 def decide(view, belief):
@@ -291,18 +323,19 @@ def decide(view, belief):
         return RB.adjust(baseline, belief, *cognition_v3.decide(baseline, belief))
     menu = Menu(view)
     if view.pending_command_id or view.role == 'keeper' and not view.holds_ball:
-        base, record = C.decide_v2(baseline,belief)
-        if view.role == 'keeper' and base.auxiliary and base.auxiliary.kind == 'save':
-            aux = replace(base.auxiliary,kind='position',target=(view.own_goal_x+view.attack_sign*2.,50.),course=())
-            base = menu.choose('keeper', [
-                Option(base,KEEPER_SAVE_VALUE,'goalkeeping','save'),
-                Option(replace(base,auxiliary=aux),KEEPER_SET_VALUE,'goalkeeping','set')]).intent
+        forecast = belief
+        course = belief.ball_course
+        if view.role == 'keeper' and course and course.vx * view.attack_sign < 0:
+            forecast = future_course(belief, menu.ratings.get('anticipation',.7))
+        base, record = C.decide_v2(baseline,forecast)
+        if view.role == 'keeper' and base.auxiliary:
+            base = keeper_options(menu,view,base)
         if view.role == 'archer' and base.kind == 'release_arrow':
             base = menu.choose('archer_release', [
                 Option(base,1.,'disruption','release'),
-                Option(replace(base,kind='continue_current'),.3,'disruption','wait')]).intent
+                Option(replace(base,kind='continue_current'),ARCHER_WAIT_VALUE,'disruption','wait')]).intent
         return base, dict(record, core_menus=menu.records, prism_agent={'keeper':'goalkeeping','archer':'disruption'}.get(view.role,'playmaking'))
-    base, record = C._base_decide(baseline,belief)
+    base, record = C._base_decide(baseline,belief,compact=True)
     base = replace(base,period=view.signals.period)
     tracks = tuple(t for t in belief.tracks if 0 <= view.delivered_ms-t.captured_ms <= belief.max_track_age_ms)
     if view.holds_ball:
@@ -321,10 +354,16 @@ def decide(view, belief):
         options = []
         for k,t,a,v in record['options']:
             if k == 'pursue' and a and belief.ball_course:
-                trust = 1. - .25 * (1. - menu.ratings.get('anticipation',.7))
+                trust = 1. - ANTICIPATION_RANGE * (.7 - menu.ratings.get('anticipation',.7))
                 course = belief.ball_course
                 a = (course.x + (a[0]-course.x)*trust, course.y + (a[1]-course.y)*trust)
             options.append(Option(proposed(base,k,t,a),v,agent,k))
+            if k == 'pursue' and a and belief.ball_course and agent == 'in_air_ball_pursuit':
+                course = future_course(belief,menu.ratings.get('anticipation',.7)).ball_course
+                flight = min(.8, RB.flight_horizon(course))
+                landing = (max(1.,min(99.,course.x + flight * course.vx)),
+                           max(1.,min(99.,course.y + flight * course.vy)))
+                options.append(Option(proposed(base,k,t,landing),v-PURSUIT_INTERCEPT_COST,agent,'landing'))
         improved = base
         if base.kind not in ('pursue', 'receive'):
             improved, _ = RB.missed_ball_pursuit(baseline,belief,base,{})
@@ -340,6 +379,8 @@ def decide(view, belief):
         if blocked != base:
             choices.append(Option(blocked,1.3,agent,'block'))
         intent = menu.choose('support',choices).intent
+    if not view.holds_ball and view.role == 'field':
+        # Transit and pursuit still obey the same existing zone exit policy.
         intent, _ = RB.zone_behavior(baseline,belief,intent,{})
     return intent, dict(record, core_menus=menu.records, prism_agent=agent,
                         final_selection=[intent.kind,intent.target,intent.aim,intent.contact])

@@ -1,0 +1,274 @@
+rating,level,seeds,mean,delta_pct,total_effect_pct,changed_share,decision_entropy_bits,decision_counts,decision_total_variation,decision_jump_over_half,under_two_pct,jump_over_half,scope
+acceleration,0.4,20,17.524626737749823,-9.750742111230261,19.50114939933054,1.0,,{},,False,False,False,physical running speed
+acceleration,0.5,20,18.155767560418774,-6.500459424952966,19.50114939933054,1.0,,{},,False,False,False,physical running speed
+acceleration,0.6,20,18.786901598716575,-3.2502116771922283,19.50114939933054,1.0,,{},,False,False,False,physical running speed
+acceleration,0.7,20,19.418028632821056,0.0,19.50114939933054,0.0,,{},,False,False,False,physical running speed
+acceleration,0.8,20,20.049148442915833,3.2501744746015846,19.50114939933054,1.0,,{},,False,False,False,physical running speed
+acceleration,0.9,20,20.680260809190546,6.500310614621404,19.50114939933054,1.0,,{},,False,False,False,physical running speed
+acceleration,1.0,20,21.31136551184104,9.75040728810028,19.50114939933054,1.0,,{},,False,False,False,physical running speed
+agility,0.4,20,6.75,-42.857142857142854,85.71428571428571,0.8,,{},,False,False,False,motor aim
+agility,0.5,20,8.4375,-28.571428571428573,85.71428571428571,1.0,,{},,False,False,False,motor aim
+agility,0.6,20,10.125,-14.285714285714286,85.71428571428571,1.0,,{},,False,False,False,motor aim
+agility,0.7,20,11.8125,0.0,85.71428571428571,0.0,,{},,False,False,False,motor aim
+agility,0.8,20,13.5,14.285714285714286,85.71428571428571,0.85,,{},,False,False,False,motor aim
+agility,0.9,20,15.1875,28.571428571428573,85.71428571428571,0.75,,{},,False,False,False,motor aim
+agility,1.0,20,16.875,42.857142857142854,85.71428571428571,1.0,,{},,False,False,False,motor aim
+anticipation,0.4,20,0.925,-7.499999999999996,14.999999999999991,1.0,,{},,False,False,False,forecast displacement
+anticipation,0.5,20,0.95,-5.000000000000004,14.999999999999991,1.0,,{},,False,False,False,forecast displacement
+anticipation,0.6,20,0.975,-2.500000000000002,14.999999999999991,1.0,,{},,False,False,False,forecast displacement
+anticipation,0.7,20,1.0,0.0,14.999999999999991,0.0,,{},,False,False,False,forecast displacement
+anticipation,0.8,20,1.025,2.499999999999991,14.999999999999991,1.0,,{},,False,False,False,forecast displacement
+anticipation,0.9,20,1.05,5.000000000000004,14.999999999999991,1.0,,{},,False,False,False,forecast displacement
+anticipation,1.0,20,1.075,7.499999999999996,14.999999999999991,1.0,,{},,False,False,False,forecast displacement
+archery_accuracy,0.4,20,0.29169301245032664,99.99999999999997,199.99999999999997,1.0,,{},,False,False,False,arrow release vector
+archery_accuracy,0.5,20,0.2430775103752722,66.66666666666663,199.99999999999997,1.0,,{},,False,False,False,arrow release vector
+archery_accuracy,0.6,20,0.19446200830021776,33.33333333333331,199.99999999999997,1.0,,{},,False,False,False,arrow release vector
+archery_accuracy,0.7,20,0.14584650622516335,0.0,199.99999999999997,0.0,,{},,False,False,False,arrow release vector
+archery_accuracy,0.8,20,0.09723100415010885,-33.333333333333364,199.99999999999997,1.0,,{},,False,False,False,arrow release vector
+archery_accuracy,0.9,20,0.048615502075054426,-66.66666666666669,199.99999999999997,1.0,,{},,False,False,False,arrow release vector
+archery_accuracy,1.0,20,0.0,-100.0,199.99999999999997,1.0,,{},,False,False,False,arrow release vector
+awareness,0.4,20,9.2,-20.689655172413797,41.379310344827594,0.25,,{},,False,False,False,radar threshold
+awareness,0.5,20,10.0,-13.79310344827586,41.379310344827594,0.15,,{},,False,False,False,radar threshold
+awareness,0.6,20,10.8,-6.896551724137922,41.379310344827594,0.15,,{},,False,False,False,radar threshold
+awareness,0.7,20,11.6,0.0,41.379310344827594,0.0,,{},,False,False,False,radar threshold
+awareness,0.8,20,12.4,6.896551724137938,41.379310344827594,0.2,,{},,False,False,False,radar threshold
+awareness,0.9,20,13.2,13.79310344827586,41.379310344827594,0.55,,{},,False,False,False,radar threshold
+awareness,1.0,20,14.0,20.689655172413797,41.379310344827594,0.7,,{},,False,False,False,radar threshold
+balance,0.4,20,0.4180358562214217,12.668810867609416,23.859581029891125,0.6,,{},,False,False,False,physical balance recovery
+balance,0.5,20,0.40171385408124877,8.269713171219937,23.859581029891125,0.4,,{},,False,False,False,physical balance recovery
+balance,0.6,20,0.3860547068785642,4.049267799680263,23.859581029891125,0.1,,{},,False,False,False,physical balance recovery
+balance,0.7,20,0.37103068098644565,0.0,23.859581029891125,0.0,,{},,False,False,False,physical balance recovery
+balance,0.8,20,0.3566152296572845,-3.8852450937036624,23.859581029891125,0.1,,{},,False,False,False,physical balance recovery
+balance,0.9,20,0.34278294133430776,-7.6133163912581745,23.859581029891125,0.15,,{},,False,False,False,physical balance recovery
+balance,1.0,20,0.32950949024570386,-11.190770162281707,23.859581029891125,0.15,,{},,False,False,False,physical balance recovery
+ball_handling,0.4,20,288,15.2,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,0.5,20,275,10.0,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,0.6,20,262,4.8,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,0.7,20,250,0.0,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,0.8,20,238,-4.8,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,0.9,20,225,-10.0,30.0,,,{},,False,False,False,mapped quantity only
+ball_handling,1.0,20,213,-14.8,30.0,,,{},,False,False,False,mapped quantity only
+blocking,0.4,20,0.3124616120029104,-27.272727272727277,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+blocking,0.5,20,0.3580289304200015,-16.666666666666668,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+blocking,0.6,20,0.39658589215754014,-7.692307692307691,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+blocking,0.7,20,0.4296347165040018,0.0,44.9197860962567,0.0,,{},,False,False,False,block impulse fraction
+blocking,0.8,20,0.45827703093760197,6.666666666666675,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+blocking,0.9,20,0.48333905606700206,12.500000000000004,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+blocking,1.0,20,0.5054526076517669,17.64705882352943,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+catching,0.4,20,305.8383322467413,-63.91606917368232,775.0291593021996,0.9,,{},,False,False,False,catch arrest capacity threshold
+catching,0.5,20,316.2172391467092,-62.69152758048173,775.0291593021996,0.9,,{},,False,False,False,catch arrest capacity threshold
+catching,0.6,20,431.6901812911445,-49.067605340121084,775.0291593021996,0.9,,{},,False,False,False,catch arrest capacity threshold
+catching,0.7,20,847.5748768027213,0.0,775.0291593021996,0.0,,{},,False,False,False,catch arrest capacity threshold
+catching,0.8,20,1831.8841924272856,116.13243178439194,775.0291593021996,0.1,,{},,False,False,False,catch arrest capacity threshold
+catching,0.9,20,3713.3992762572148,338.120498600094,775.0291593021996,0.1,,{},,False,False,False,catch arrest capacity threshold
+catching,1.0,20,6874.790774387526,711.1130901285172,775.0291593021996,0.1,,{},,False,False,False,catch arrest capacity threshold
+clarity,0.4,20,0.0464,18.367346938775505,36.73469387755101,0.05,,{},,False,False,False,recognition outcome
+clarity,0.5,20,0.044,12.244897959183671,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
+clarity,0.6,20,0.041600000000000005,6.122448979591853,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
+clarity,0.7,20,0.0392,0.0,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
+clarity,0.8,20,0.0368,-6.1224489795918355,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
+clarity,0.9,20,0.03439999999999999,-12.244897959183687,36.73469387755101,0.0,,{},,False,False,False,recognition outcome
+clarity,1.0,20,0.032,-18.367346938775505,36.73469387755101,0.05,,{},,False,False,False,recognition outcome
+defending,0.4,20,0.20670234200601478,99.99999999999997,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
+defending,0.5,20,0.17225195167167898,66.66666666666663,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
+defending,0.6,20,0.1378015613373432,33.33333333333333,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
+defending,0.7,20,0.1033511710030074,0.0,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
+defending,0.8,20,0.06890078066867159,-33.33333333333335,199.99999999999997,0.0,0.9709505944546686,"Counter({'mark': 12, 'chase': 8})",0.05,False,False,False,near-tie selector using production menu
+defending,0.9,20,0.0344503903343358,-66.66666666666667,199.99999999999997,0.05,0.9927744539878083,"Counter({'mark': 11, 'chase': 9})",0.05,True,False,False,near-tie selector using production menu
+defending,1.0,20,0.0,-100.0,199.99999999999997,0.35,0.9927744539878083,"Counter({'mark': 11, 'chase': 9})",0.05,False,False,False,near-tie selector using production menu
+disruption,0.4,20,0.25199499800622616,100.0,200.0,0.05,0.9927744539878083,"Counter({'draw': 11, 'hold': 9})",0.1,False,False,False,near-tie selector using production menu
+disruption,0.5,20,0.20999583167185515,66.66666666666669,200.0,0.05,0.9927744539878083,"Counter({'draw': 11, 'hold': 9})",0.1,False,False,False,near-tie selector using production menu
+disruption,0.6,20,0.16799666533748414,33.333333333333364,200.0,0.05,0.9927744539878083,"Counter({'draw': 11, 'hold': 9})",0.1,False,False,False,near-tie selector using production menu
+disruption,0.7,20,0.12599749900311308,0.0,200.0,0.0,1.0,"Counter({'hold': 10, 'draw': 10})",0.1,False,False,False,near-tie selector using production menu
+disruption,0.8,20,0.08399833266874204,-33.33333333333334,200.0,0.0,1.0,"Counter({'hold': 10, 'draw': 10})",0.1,False,False,False,near-tie selector using production menu
+disruption,0.9,20,0.041999166334371014,-66.66666666666669,200.0,0.15,0.9927744539878083,"Counter({'draw': 11, 'hold': 9})",0.1,False,False,False,near-tie selector using production menu
+disruption,1.0,20,0.0,-100.0,200.0,0.35,0.9927744539878083,"Counter({'hold': 11, 'draw': 9})",0.1,True,False,False,near-tie selector using production menu
+evasion,0.4,20,0.17956762383253808,99.99999999999996,199.99999999999997,0.05,1.0,"Counter({'dodge': 10, 'run_through': 10})",0.05,False,False,False,near-tie selector using production menu
+evasion,0.5,20,0.14963968652711507,66.66666666666664,199.99999999999997,0.05,1.0,"Counter({'dodge': 10, 'run_through': 10})",0.05,False,False,False,near-tie selector using production menu
+evasion,0.6,20,0.11971174922169209,33.33333333333336,199.99999999999997,0.05,1.0,"Counter({'dodge': 10, 'run_through': 10})",0.05,False,False,False,near-tie selector using production menu
+evasion,0.7,20,0.08978381191626905,0.0,199.99999999999997,0.0,0.9927744539878083,"Counter({'dodge': 11, 'run_through': 9})",0.05,True,False,False,near-tie selector using production menu
+evasion,0.8,20,0.059855874610846016,-33.33333333333336,199.99999999999997,0.0,0.9927744539878083,"Counter({'dodge': 11, 'run_through': 9})",0.05,False,False,False,near-tie selector using production menu
+evasion,0.9,20,0.029927937305423,-66.66666666666669,199.99999999999997,0.1,0.9927744539878083,"Counter({'dodge': 11, 'run_through': 9})",0.05,False,False,False,near-tie selector using production menu
+evasion,1.0,20,0.0,-100.0,199.99999999999997,0.3,0.9927744539878083,"Counter({'dodge': 11, 'run_through': 9})",0.05,False,False,False,near-tie selector using production menu
+finishing,0.4,20,0.2506000935620822,99.99999999999996,199.99999999999997,0.0,1.0,"Counter({'near_post': 10, 'high': 10})",0.1,False,False,False,near-tie selector using production menu
+finishing,0.5,20,0.20883341130173516,66.66666666666664,199.99999999999997,0.0,1.0,"Counter({'near_post': 10, 'high': 10})",0.1,False,False,False,near-tie selector using production menu
+finishing,0.6,20,0.16706672904138814,33.33333333333332,199.99999999999997,0.0,1.0,"Counter({'near_post': 10, 'high': 10})",0.1,False,False,False,near-tie selector using production menu
+finishing,0.7,20,0.12530004678104112,0.0,199.99999999999997,0.0,1.0,"Counter({'near_post': 10, 'high': 10})",0.1,False,False,False,near-tie selector using production menu
+finishing,0.8,20,0.08353336452069406,-33.33333333333335,199.99999999999997,0.1,0.9709505944546686,"Counter({'high': 12, 'near_post': 8})",0.1,True,False,False,near-tie selector using production menu
+finishing,0.9,20,0.04176668226034703,-66.66666666666669,199.99999999999997,0.1,0.9709505944546686,"Counter({'high': 12, 'near_post': 8})",0.1,False,False,False,near-tie selector using production menu
+finishing,1.0,20,0.0,-100.0,199.99999999999997,0.45,0.9927744539878083,"Counter({'high': 11, 'near_post': 9})",0.1,False,False,False,near-tie selector using production menu
+focus,0.4,20,1820,-9.0,18.0,0.7,,{},,False,False,False,track age and capacity
+focus,0.5,20,1880,-6.0,18.0,0.7,,{},,False,False,False,track age and capacity
+focus,0.6,20,1940,-3.0,18.0,0.5,,{},,False,False,False,track age and capacity
+focus,0.7,20,2000,0.0,18.0,0.0,,{},,False,False,False,track age and capacity
+focus,0.8,20,2060,3.0,18.0,0.45,,{},,False,False,False,track age and capacity
+focus,0.9,20,2120,6.0,18.0,0.45,,{},,False,False,False,track age and capacity
+focus,1.0,20,2180,9.0,18.0,0.45,,{},,False,False,False,track age and capacity
+goalkeeping,0.4,20,0.21265791493826827,99.99999999999997,199.99999999999997,0.05,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,False,False,False,near-tie selector using production menu
+goalkeeping,0.5,20,0.17721492911522357,66.66666666666666,199.99999999999997,0.05,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,False,False,False,near-tie selector using production menu
+goalkeeping,0.6,20,0.14177194329217885,33.333333333333314,199.99999999999997,0.05,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,False,False,False,near-tie selector using production menu
+goalkeeping,0.7,20,0.10632895746913415,0.0,199.99999999999997,0.0,0.9709505944546686,"Counter({'set': 12, 'save': 8})",0.15,False,False,False,near-tie selector using production menu
+goalkeeping,0.8,20,0.07088597164608942,-33.33333333333334,199.99999999999997,0.15,0.9927744539878083,"Counter({'save': 11, 'set': 9})",0.15,True,False,False,near-tie selector using production menu
+goalkeeping,0.9,20,0.03544298582304469,-66.66666666666669,199.99999999999997,0.25,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,True,False,False,near-tie selector using production menu
+goalkeeping,1.0,20,0.0,-99.99999999999999,199.99999999999997,0.45,0.9927744539878083,"Counter({'set': 11, 'save': 9})",0.15,False,False,False,near-tie selector using production menu
+hurdle,0.4,20,1.6034353120721772,-24.407105398154545,43.92996633159392,1.0,,{},,False,False,False,motor execution
+hurdle,0.5,20,1.7926951776584885,-15.484574527148341,43.92996633159392,1.0,,{},,False,False,False,motor execution
+hurdle,0.6,20,1.9637991750685708,-7.417990022744855,43.92996633159392,1.0,,{},,False,False,False,motor execution
+hurdle,0.7,20,2.1211455395611116,0.0,43.92996633159392,0.0,,{},,False,False,False,motor execution
+hurdle,0.8,20,2.267599964720409,6.904496764969765,43.92996633159392,1.0,,{},,False,False,False,motor execution
+hurdle,0.9,20,2.4051529681082653,13.389341902768159,43.92996633159392,1.0,,{},,False,False,False,motor execution
+hurdle,1.0,20,2.5352538334454797,19.522860933439375,43.92996633159392,1.0,,{},,False,False,False,motor execution
+in_air_ball_pursuit,0.4,20,0.2072911839360232,99.99999999999994,199.99999999999994,0.2,0.9927744539878083,"Counter({'pursue_now': 11, 'landing': 9})",0.15,False,False,False,near-tie selector using production menu
+in_air_ball_pursuit,0.5,20,0.17274265328001934,66.66666666666663,199.99999999999994,0.2,0.9927744539878083,"Counter({'pursue_now': 11, 'landing': 9})",0.15,False,False,False,near-tie selector using production menu
+in_air_ball_pursuit,0.6,20,0.13819412262401548,33.333333333333314,199.99999999999994,0.15,1.0,"Counter({'pursue_now': 10, 'landing': 10})",0.15,False,False,False,near-tie selector using production menu
+in_air_ball_pursuit,0.7,20,0.10364559196801162,0.0,199.99999999999994,0.0,0.934068055375491,"Counter({'pursue_now': 13, 'landing': 7})",0.15,True,False,False,near-tie selector using production menu
+in_air_ball_pursuit,0.8,20,0.06909706131200773,-33.33333333333336,199.99999999999994,0.05,0.9709505944546686,"Counter({'pursue_now': 12, 'landing': 8})",0.15,False,False,False,near-tie selector using production menu
+in_air_ball_pursuit,0.9,20,0.034548530656003856,-66.66666666666669,199.99999999999994,0.1,0.9927744539878083,"Counter({'pursue_now': 11, 'landing': 9})",0.15,False,False,False,near-tie selector using production menu
+in_air_ball_pursuit,1.0,20,0.0,-100.0,199.99999999999994,0.2,0.9927744539878083,"Counter({'pursue_now': 11, 'landing': 9})",0.15,False,False,False,near-tie selector using production menu
+instinct,0.4,20,1.801299131182822,0.030120129045721884,0.052154028041685715,1.0,,{},,False,True,False,estimated position
+instinct,0.5,20,1.8011021625660188,0.019182026617656257,0.052154028041685715,1.0,,{},,False,True,False,estimated position
+instinct,0.6,20,1.800921364191116,0.009141893445105373,0.052154028041685715,1.0,,{},,False,True,False,estimated position
+instinct,0.7,20,1.8007567409286547,0.0,0.052154028041685715,0.0,,{},,False,True,False,estimated position
+instinct,0.8,20,1.8006082972151354,-0.008243407348998429,0.052154028041685715,1.0,,{},,False,True,False,estimated position
+instinct,0.9,20,1.8004760370524207,-0.015588106369617884,0.052154028041685715,1.0,,{},,False,True,False,estimated position
+instinct,1.0,20,1.8003599640071954,-0.02203389899596383,0.052154028041685715,1.0,,{},,False,True,False,estimated position
+juke,0.4,20,3.3999999999999986,-15.000000000000036,30.00000000000007,1.0,,{},,False,False,False,motor execution
+juke,0.5,20,3.6000000000000014,-9.999999999999964,30.00000000000007,1.0,,{},,False,False,False,motor execution
+juke,0.6,20,3.799999999999997,-5.000000000000071,30.00000000000007,1.0,,{},,False,False,False,motor execution
+juke,0.7,20,4.0,0.0,30.00000000000007,0.0,,{},,False,False,False,motor execution
+juke,0.8,20,4.200000000000003,5.000000000000071,30.00000000000007,1.0,,{},,False,False,False,motor execution
+juke,0.9,20,4.399999999999999,9.999999999999964,30.00000000000007,1.0,,{},,False,False,False,motor execution
+juke,1.0,20,4.600000000000001,15.000000000000036,30.00000000000007,1.0,,{},,False,False,False,motor execution
+jump,0.4,20,0.52,-42.857142857142854,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,0.5,20,0.65,-28.571428571428562,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,0.6,20,0.78,-14.285714285714276,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,0.7,20,0.9099999999999999,0.0,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,0.8,20,1.04,14.285714285714299,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,0.9,20,1.1700000000000002,28.571428571428598,85.71428571428572,,,{},,False,False,False,mapped quantity only
+jump,1.0,20,1.3,42.857142857142875,85.71428571428572,,,{},,False,False,False,mapped quantity only
+live_ball_pursuit,0.4,20,0.233220765729734,99.99999999999993,199.99999999999991,0.15,1.0,"Counter({'intercept': 10, 'approach': 10})",0.15,False,False,False,near-tie selector using production menu
+live_ball_pursuit,0.5,20,0.19435063810811168,66.66666666666661,199.99999999999991,0.15,1.0,"Counter({'intercept': 10, 'approach': 10})",0.15,False,False,False,near-tie selector using production menu
+live_ball_pursuit,0.6,20,0.15548051048648937,33.33333333333332,199.99999999999991,0.05,0.9709505944546686,"Counter({'approach': 12, 'intercept': 8})",0.15,True,False,False,near-tie selector using production menu
+live_ball_pursuit,0.7,20,0.11661038286486704,0.0,199.99999999999991,0.0,0.9927744539878083,"Counter({'approach': 11, 'intercept': 9})",0.15,False,False,False,near-tie selector using production menu
+live_ball_pursuit,0.8,20,0.07774025524324467,-33.33333333333335,199.99999999999991,0.05,0.9709505944546686,"Counter({'approach': 12, 'intercept': 8})",0.15,False,False,False,near-tie selector using production menu
+live_ball_pursuit,0.9,20,0.03887012762162233,-66.66666666666669,199.99999999999991,0.1,0.934068055375491,"Counter({'approach': 13, 'intercept': 7})",0.15,False,False,False,near-tie selector using production menu
+live_ball_pursuit,1.0,20,0.0,-100.0,199.99999999999991,0.3,0.9927744539878083,"Counter({'approach': 11, 'intercept': 9})",0.15,True,False,False,near-tie selector using production menu
+passing,0.4,20,0.25684699173890274,99.99999999999996,199.99999999999994,0.05,1.0,"Counter({'loft': 10, 'direct': 10})",0.1,False,False,False,near-tie selector using production menu
+passing,0.5,20,0.21403915978241894,66.66666666666663,199.99999999999994,0.05,1.0,"Counter({'loft': 10, 'direct': 10})",0.1,False,False,False,near-tie selector using production menu
+passing,0.6,20,0.1712313278259352,33.33333333333333,199.99999999999994,0.05,1.0,"Counter({'loft': 10, 'direct': 10})",0.1,False,False,False,near-tie selector using production menu
+passing,0.7,20,0.1284234958694514,0.0,199.99999999999994,0.0,0.9927744539878083,"Counter({'loft': 11, 'direct': 9})",0.1,False,False,False,near-tie selector using production menu
+passing,0.8,20,0.08561566391296757,-33.33333333333335,199.99999999999994,0.0,0.9927744539878083,"Counter({'loft': 11, 'direct': 9})",0.1,False,False,False,near-tie selector using production menu
+passing,0.9,20,0.04280783195648378,-66.66666666666669,199.99999999999994,0.1,0.9927744539878083,"Counter({'loft': 11, 'direct': 9})",0.1,False,False,False,near-tie selector using production menu
+passing,1.0,20,0.0,-100.0,199.99999999999994,0.3,0.9927744539878083,"Counter({'direct': 11, 'loft': 9})",0.1,True,False,False,near-tie selector using production menu
+playmaking,0.4,20,0.20451301013713385,99.99999999999991,199.99999999999994,0.05,0.9709505944546686,"Counter({'shoot': 12, 'carry': 8})",0.15,False,False,False,near-tie selector using production menu
+playmaking,0.5,20,0.1704275084476116,66.66666666666664,199.99999999999994,0.05,0.9709505944546686,"Counter({'shoot': 12, 'carry': 8})",0.15,False,False,False,near-tie selector using production menu
+playmaking,0.6,20,0.13634200675808927,33.333333333333314,199.99999999999994,0.0,0.9927744539878083,"Counter({'shoot': 11, 'carry': 9})",0.15,False,False,False,near-tie selector using production menu
+playmaking,0.7,20,0.10225650506856697,0.0,199.99999999999994,0.0,0.9927744539878083,"Counter({'shoot': 11, 'carry': 9})",0.15,False,False,False,near-tie selector using production menu
+playmaking,0.8,20,0.06817100337904461,-33.33333333333337,199.99999999999994,0.05,1.0,"Counter({'carry': 10, 'shoot': 10})",0.15,False,False,False,near-tie selector using production menu
+playmaking,0.9,20,0.03408550168952232,-66.66666666666667,199.99999999999994,0.15,0.9709505944546686,"Counter({'shoot': 12, 'carry': 8})",0.15,True,False,False,near-tie selector using production menu
+playmaking,1.0,20,0.0,-100.0,199.99999999999994,0.3,0.9927744539878083,"Counter({'carry': 11, 'shoot': 9})",0.15,True,False,False,near-tie selector using production menu
+reaction,0.4,20,560,12.0,24.0,0.45,,{},,False,False,False,deliberate decision deadline
+reaction,0.5,20,540,8.0,24.0,0.3,,{},,False,False,False,deliberate decision deadline
+reaction,0.6,20,520,4.0,24.0,0.1,,{},,False,False,False,deliberate decision deadline
+reaction,0.7,20,500,0.0,24.0,0.0,,{},,False,False,False,deliberate decision deadline
+reaction,0.8,20,480,-4.0,24.0,0.05,,{},,False,False,False,deliberate decision deadline
+reaction,0.9,20,460,-8.0,24.0,0.35,,{},,False,False,False,deliberate decision deadline
+reaction,1.0,20,440,-12.0,24.0,0.5,,{},,False,False,False,deliberate decision deadline
+reflex,0.4,20,1.1949999999999998,19.499999999999986,38.99999999999999,0.45,,{},,False,False,False,hands adjustment cutoff
+reflex,0.5,20,1.13,12.99999999999999,38.99999999999999,0.25,,{},,False,False,False,hands adjustment cutoff
+reflex,0.6,20,1.065,6.499999999999995,38.99999999999999,0.15,,{},,False,False,False,hands adjustment cutoff
+reflex,0.7,20,1.0,0.0,38.99999999999999,0.0,,{},,False,False,False,hands adjustment cutoff
+reflex,0.8,20,0.9349999999999999,-6.500000000000005,38.99999999999999,0.1,,{},,False,False,False,hands adjustment cutoff
+reflex,0.9,20,0.8699999999999999,-13.00000000000001,38.99999999999999,0.1,,{},,False,False,False,hands adjustment cutoff
+reflex,1.0,20,0.8049999999999999,-19.500000000000007,38.99999999999999,0.1,,{},,False,False,False,hands adjustment cutoff
+speed,0.4,20,17.85358321368983,-15.136769930104585,15.147244569241398,1.0,,{},,False,False,False,physical running speed
+speed,0.5,20,20.992386735978222,-0.21713154334586615,15.147244569241398,1.0,,{},,False,False,True,physical running speed
+speed,0.6,20,21.03650685025631,-0.007415915738944234,15.147244569241398,1.0,,{},,False,False,False,physical running speed
+speed,0.7,20,21.038067015579287,0.0,15.147244569241398,0.0,,{},,False,False,False,physical running speed
+speed,0.8,20,21.039079694540646,0.0048135551645949815,15.147244569241398,1.0,,{},,False,False,False,physical running speed
+speed,0.9,20,21.039774016499496,0.008113867680644255,15.147244569241398,1.0,,{},,False,False,False,physical running speed
+speed,1.0,20,21.04027067718053,0.010474639136813199,15.147244569241398,1.0,,{},,False,False,False,physical running speed
+spin,0.4,20,4.4,-6.382978723404234,12.765957446808505,1.0,,{},,False,False,False,motor execution
+spin,0.5,20,4.5,-4.255319148936156,12.765957446808505,1.0,,{},,False,False,False,motor execution
+spin,0.6,20,4.6,-2.127659574468078,12.765957446808505,1.0,,{},,False,False,False,motor execution
+spin,0.7,20,4.699999999999999,0.0,12.765957446808505,0.0,,{},,False,False,False,motor execution
+spin,0.8,20,4.8,2.1276595744680966,12.765957446808505,1.0,,{},,False,False,False,motor execution
+spin,0.9,20,4.9,4.255319148936193,12.765957446808505,1.0,,{},,False,False,False,motor execution
+spin,1.0,20,5.0,6.382978723404271,12.765957446808505,1.0,,{},,False,False,False,motor execution
+stamina,0.4,20,0.9989202429254053,-0.019259581198274343,0.03851946793839671,1.0,,{},,False,True,False,physical fatigue
+stamina,0.5,20,0.9989843842247279,-0.012839754747544988,0.03851946793839671,1.0,,{},,False,True,False,physical fatigue
+stamina,0.6,20,0.9990485258632354,-0.006419894348201695,0.03851946793839671,1.0,,{},,False,True,False,physical fatigue
+stamina,0.7,20,0.9991126678409303,0.0,0.03851946793839671,0.0,,{},,False,True,False,physical fatigue
+stamina,0.8,20,0.9991768101578151,0.006419928297315674,0.03851946793839671,1.0,,{},,False,True,False,physical fatigue
+stamina,0.9,20,0.9992409528138918,0.012839890543945345,0.03851946793839671,1.0,,{},,False,True,False,physical fatigue
+stamina,1.0,20,0.9993050958091627,0.019259886740122367,0.03851946793839671,1.0,,{},,False,True,False,physical fatigue
+stiff_arm,0.4,20,0.8500000000000001,-14.999999999999991,29.999999999999982,0.2,,{},,False,False,False,contact model impulse threshold
+stiff_arm,0.5,20,0.9,-9.999999999999998,29.999999999999982,0.15,,{},,False,False,False,contact model impulse threshold
+stiff_arm,0.6,20,0.95,-5.000000000000004,29.999999999999982,0.1,,{},,False,False,False,contact model impulse threshold
+stiff_arm,0.7,20,1.0,0.0,29.999999999999982,0.0,,{},,False,False,False,contact model impulse threshold
+stiff_arm,0.8,20,1.05,5.000000000000004,29.999999999999982,0.1,,{},,False,False,False,contact model impulse threshold
+stiff_arm,0.9,20,1.1,10.000000000000009,29.999999999999982,0.4,,{},,False,False,False,contact model impulse threshold
+stiff_arm,1.0,20,1.15,14.999999999999991,29.999999999999982,0.6,,{},,False,False,False,contact model impulse threshold
+strength,0.4,20,0.3124616120029104,-27.272727272727277,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+strength,0.5,20,0.3580289304200015,-16.666666666666668,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+strength,0.6,20,0.39658589215754014,-7.692307692307691,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+strength,0.7,20,0.4296347165040018,0.0,44.9197860962567,0.0,,{},,False,False,False,block impulse fraction
+strength,0.8,20,0.45827703093760197,6.666666666666675,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+strength,0.9,20,0.48333905606700206,12.500000000000004,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+strength,1.0,20,0.5054526076517669,17.64705882352943,44.9197860962567,1.0,,{},,False,False,False,block impulse fraction
+tackling,0.4,20,0.526913244508322,-14.847681099367085,25.98422828453098,0.1,,{},,False,False,False,grip model threshold
+tackling,0.5,20,0.5605871643826367,-9.405775067098586,25.98422828453098,0.05,,{},,False,False,False,grip model threshold
+tackling,0.6,20,0.5911010420947137,-4.474550671214833,25.98422828453098,0.0,,{},,False,False,False,grip model threshold
+tackling,0.7,20,0.6187890727006444,0.0,25.98422828453098,0.0,,{},,False,False,False,grip model threshold
+tackling,0.8,20,0.643947770509813,4.065795425146391,25.98422828453098,0.0,,{},,False,False,False,grip model threshold
+tackling,0.9,20,0.6668403893644919,7.765378993221738,25.98422828453098,0.0,,{},,False,False,False,grip model threshold
+tackling,1.0,20,0.6877008097585898,11.136547185163897,25.98422828453098,0.05,,{},,False,False,False,grip model threshold
+takedown,0.4,20,0.2272411479805882,99.99999999999997,199.99999999999997,0.05,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,False,False,False,near-tie selector using production menu
+takedown,0.5,20,0.18936762331715684,66.66666666666666,199.99999999999997,0.05,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,False,False,False,near-tie selector using production menu
+takedown,0.6,20,0.15149409865372548,33.333333333333336,199.99999999999997,0.05,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,False,False,False,near-tie selector using production menu
+takedown,0.7,20,0.11362057399029411,0.0,199.99999999999997,0.0,0.9709505944546686,"Counter({'drive': 12, 'contain': 8})",0.05,True,False,False,near-tie selector using production menu
+takedown,0.8,20,0.07574704932686273,-33.33333333333335,199.99999999999997,0.0,0.9709505944546686,"Counter({'drive': 12, 'contain': 8})",0.05,False,False,False,near-tie selector using production menu
+takedown,0.9,20,0.03787352466343136,-66.66666666666667,199.99999999999997,0.05,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,True,False,False,near-tie selector using production menu
+takedown,1.0,20,0.0,-99.99999999999999,199.99999999999997,0.15,0.9927744539878083,"Counter({'drive': 11, 'contain': 9})",0.05,False,False,False,near-tie selector using production menu
+throw_accuracy,0.4,20,3.0,99.99999999999993,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_accuracy,0.5,20,2.5,66.66666666666661,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_accuracy,0.6,20,2.0,33.33333333333329,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_accuracy,0.7,20,1.5000000000000004,0.0,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_accuracy,0.8,20,0.9999999999999998,-33.333333333333364,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_accuracy,0.9,20,0.4999999999999999,-66.66666666666667,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_accuracy,1.0,20,0.15,-90.00000000000001,189.99999999999994,,,{},,False,False,False,mapped quantity only
+throw_power,0.4,20,67.05,-33.33333333333333,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_power,0.5,20,78.22499999999998,-22.222222222222232,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_power,0.6,20,89.39999999999999,-11.11111111111111,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_power,0.7,20,100.57499999999999,0.0,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_power,0.8,20,111.75,11.111111111111123,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_power,0.9,20,122.92500000000001,22.222222222222246,66.66666666666667,,,{},,False,False,False,mapped quantity only
+throw_power,1.0,20,134.1,33.33333333333334,66.66666666666667,,,{},,False,False,False,mapped quantity only
+touch,0.4,20,3.1146279785179147,1.872892754629367,3.7492387029131415,1.0,,{},,False,False,False,release vector
+touch,0.5,20,3.0955527495400497,1.2489823649022656,3.7492387029131415,1.0,,{},,False,False,False,release vector
+touch,0.6,20,3.0764656611700607,0.6246840795451547,3.7492387029131415,1.0,,{},,False,False,False,release vector
+touch,0.7,20,3.0573667776567364,0.0,3.7492387029131415,0.0,,{},,False,False,False,release vector
+touch,0.8,20,3.038256163332659,-0.6250677695505128,3.7492387029131415,1.0,,{},,False,False,False,release vector
+touch,0.9,20,3.019133882613948,-1.2505171221913736,3.7492387029131415,1.0,,{},,False,False,False,release vector
+touch,1.0,20,3.0,-1.8763459482837743,3.7492387029131415,1.0,,{},,False,False,False,release vector
+truck,0.4,20,0.8500000000000001,-14.999999999999991,29.999999999999982,0.2,,{},,False,False,False,contact model impulse threshold
+truck,0.5,20,0.9,-9.999999999999998,29.999999999999982,0.15,,{},,False,False,False,contact model impulse threshold
+truck,0.6,20,0.95,-5.000000000000004,29.999999999999982,0.1,,{},,False,False,False,contact model impulse threshold
+truck,0.7,20,1.0,0.0,29.999999999999982,0.0,,{},,False,False,False,contact model impulse threshold
+truck,0.8,20,1.05,5.000000000000004,29.999999999999982,0.1,,{},,False,False,False,contact model impulse threshold
+truck,0.9,20,1.1,10.000000000000009,29.999999999999982,0.4,,{},,False,False,False,contact model impulse threshold
+truck,1.0,20,1.15,14.999999999999991,29.999999999999982,0.6,,{},,False,False,False,contact model impulse threshold
+vision,0.4,20,102.0,-8.108108108108109,16.216216216216203,0.45,,{},,False,False,False,detection threshold
+vision,0.5,20,105.00000000000001,-5.405405405405393,16.216216216216203,0.35,,{},,False,False,False,detection threshold
+vision,0.6,20,108.0,-2.7027027027027026,16.216216216216203,0.2,,{},,False,False,False,detection threshold
+vision,0.7,20,111.0,0.0,16.216216216216203,0.0,,{},,False,False,False,detection threshold
+vision,0.8,20,114.00000000000001,2.7027027027027155,16.216216216216203,0.25,,{},,False,False,False,detection threshold
+vision,0.9,20,117.0,5.405405405405405,16.216216216216203,0.35,,{},,False,False,False,detection threshold
+vision,1.0,20,119.99999999999999,8.108108108108096,16.216216216216203,0.4,,{},,False,False,False,detection threshold
+zone_coverage,0.4,20,0.2151391205224486,99.99999999999996,199.99999999999994,0.1,0.9709505944546686,"Counter({'near_post': 12, 'far_post': 8})",0.1,False,False,False,near-tie selector using production menu
+zone_coverage,0.5,20,0.17928260043537383,66.66666666666663,199.99999999999994,0.05,0.9927744539878083,"Counter({'near_post': 11, 'far_post': 9})",0.1,False,False,False,near-tie selector using production menu
+zone_coverage,0.6,20,0.1434260803482991,33.33333333333332,199.99999999999994,0.0,1.0,"Counter({'near_post': 10, 'far_post': 10})",0.1,False,False,False,near-tie selector using production menu
+zone_coverage,0.7,20,0.10756956026122433,0.0,199.99999999999994,0.0,1.0,"Counter({'near_post': 10, 'far_post': 10})",0.1,False,False,False,near-tie selector using production menu
+zone_coverage,0.8,20,0.07171304017414952,-33.333333333333364,199.99999999999994,0.0,1.0,"Counter({'near_post': 10, 'far_post': 10})",0.1,False,False,False,near-tie selector using production menu
+zone_coverage,0.9,20,0.03585652008707476,-66.66666666666667,199.99999999999994,0.0,1.0,"Counter({'near_post': 10, 'far_post': 10})",0.1,False,False,False,near-tie selector using production menu
+zone_coverage,1.0,20,0.0,-100.0,199.99999999999994,0.25,0.9927744539878083,"Counter({'near_post': 11, 'far_post': 9})",0.1,False,False,False,near-tie selector using production menu

@@ -270,6 +270,7 @@ def free_run_m(view, opps, aim):
         return CARRY_FREE_MAX_M
     ux, uy = dx / L, dy / L
     top = min(L, CARRY_FREE_MAX_M)
+    denials = tuple((o, opp_reach(view, o)) for o in opps)
     k = 0
     while True:
         sdist = k * CARRY_PATH_STEP_M
@@ -277,8 +278,8 @@ def free_run_m(view, opps, aim):
             return round(top, 6)
         px, py = view.x + ux * sdist, view.y + uy * sdist
         t_me = time_to_cover(view, sdist, (ux, uy))
-        for o in opps:
-            if typical_time_to(o, px, py, opp_reach(view, o)) <= t_me:
+        for o, radius in denials:
+            if typical_time_to(o, px, py, radius) <= t_me:
                 return round(max(0., min(CARRY_FREE_MAX_M, sdist - CARRY_CONTACT_BUFFER_M)), 6)
         k += 1
 
@@ -301,11 +302,12 @@ def lane_margin(view, c, opps, speed, t_release=None):
     dx, dy = c.x - view.x, c.y - view.y
     dist = hypot(dx, dy)
     margin = 99.
+    denials = tuple((o, opp_reach(view, o) + LANE_MARGIN_M) for o in opps)
     for k in range(LANE_SAMPLES + 1):
         f = k / LANE_SAMPLES
         px, py, tb = view.x + dx * f, view.y + dy * f, t_release + dist * f / speed
-        for o in opps:
-            margin = min(margin, hypot(o.x + o.vx * tb - px, o.y + o.vy * tb - py) - (opp_reach(view, o) + LANE_MARGIN_M))
+        for o, radius in denials:
+            margin = min(margin, hypot(o.x + o.vx * tb - px, o.y + o.vy * tb - py) - radius)
     return margin
 
 

@@ -276,7 +276,7 @@ def archer_target_legal(t, view, now):
             not in_own_zone(view.team,t.x,t.y,view) and now-t.captured_ms<=700)
 
 
-def _base_decide(view: AthleteView, belief: BeliefState):
+def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
     if belief.observation_id != view.observation_id:
         raise ValueError('belief/view provenance mismatch')
     COM.plan_hooks(view, belief)
@@ -522,6 +522,8 @@ def _base_decide(view: AthleteView, belief: BeliefState):
     intent = ActionIntent(did + '/intent', did, view.athlete, chosen[0], chosen[1], chosen[2],
                           aim_vel, (round(gaze[0], 3), round(gaze[1], 3)) if gaze else None, now,
                           view.pending_command_id if chosen[0] in ('continue_current', 'abort_draw') else None)
+    if compact:
+        return intent, {'options': options, 'believed_carrier': carrier}
     record = {'decision_id': did, 'owner': view.athlete, 'role': view.role,
               'observation_id': view.observation_id, 'belief_revision': belief.revision,
               'fresh_track_ids': [t.entity for t in fresh],
