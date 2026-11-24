@@ -60,3 +60,11 @@ for case in ('neutral-real-off', 'neutral-real-final-on', 'control-off', 'contro
           'steps', x['steps'], 'restarts', x['restart_closed'],
           'CPU ms/step', round(x['cpu_ms_per_step'], 3),
           'trace', x['trace_hash'], 'state', x['state_hash'])
+
+first = load('neutral-real-final-on')
+repeat = load('neutral-real-final-repeat')
+assert repeat['status'] == first['status'] == 'final'
+assert match_fingerprint(first) == match_fingerprint(repeat)
+assert first['prism_commits'] == repeat['prism_commits']
+assert first['restart_statuses'] == repeat['restart_statuses']
+print('Enabled neutral real-roster seed 1 repeated exactly through regulation.')

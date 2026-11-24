@@ -75,7 +75,7 @@ The serialized-view audit in `rb324/hook-replay.txt` covers 21 hook-related inpu
 |---|---|---|
 | a | 699 passed, 1 warning, 23 subtests passed in 620.05 s | 731 passed, 1 warning, 23 subtests passed in 646.80 s after the last simulator and test change |
 | b | All six lines match byte for byte | All six lines match byte for byte |
-| c | Enabled seed 1 repeated with exact trace, state and commit log over 1,500 steps. Seeds 1 and 3 also match the RB-3.23 enabled archive. | Enabled seed 1 repeated with exact trace, state and commit log over 1,500 steps |
+| c | Enabled seed 1 repeated with exact trace, state and commit log over 1,500 steps. Seeds 1 and 3 also match the RB-3.23 enabled archive. | Enabled seed 1 repeated with exact trace, state and commit log over 1,500 steps. The enabled neutral real-roster match also repeated exactly through all four quarters. |
 | d | Exact through `test_real_seed_1_with_no_overrides_reproduces_the_rb321_soak_gate` | Exact in the full suite and standalone 57–76 replay |
 | e | 3.573 ms/step, +0.82% versus RB-3.22 | 4.221 ms/step, **+19.13%**, above the 15% budget |
 
