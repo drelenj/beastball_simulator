@@ -38,7 +38,7 @@
 
  g) Firewall: live true state never reaches cognition; learned artifacts enter only as versioned files loaded before a match; the purity test covers the new loader.
 
-The full suite reported `767 passed, 1 warning, 23 subtests passed in 652.72s (0:10:52)`. The warning was the pytest dependency's `CallSpec2` deprecation.
+The full suite reported `767 passed, 1 warning, 23 subtests passed in 670.14s (0:11:10)`. An earlier repeat ran out of scratch space while unpacking legacy engines. The final run used an isolated temporary directory in memory. The warning was the pytest dependency's `CallSpec2` deprecation.
 
 The six legacy trace, state and config rows matched exactly. The full compatibility and CORE learned-off runs reproduced gates d and e. Their raw results are in `rb327/evidence/compatibility.json` and `rb327/evidence/core.json`.
 
