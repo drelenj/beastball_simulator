@@ -82,3 +82,5 @@ python audit/native/rb327/match.py --values "$work/drill/drill-v1.json" --roster
 python audit/native/rb327/verify.py "$work" --workbook "$work/ratings-0.4.xlsx" \
     --artifact "$work/drill/drill-v1.json"
 ```
+
+CPU timings are recorded with the audit results. The value artifact fingerprints only the sampled games and fitted data, so regenerating identical results on a different machine does not change the loaded artifact digest.

@@ -129,7 +129,11 @@ def fit(old, new, grades, out, artifact):
         'expected_points':points,'tables':tables,'train_seeds':list(range(1,9)),
         'holdout_seeds':HOLDOUT,'target':'net points through the end of the current possession',
         'smoothing_prior_trials':PRIOR_TRIALS,
-        'provenance':{'match_fingerprints':fingerprints,'strata':strata,'rollouts_per_option':20},
+        'provenance':{
+            'match_fingerprints':[{key:value for key,value in row.items() if key != 'cpu_s'}
+                                  for row in fingerprints],
+            'strata':strata,'rollouts_per_option':20,
+        },
     }
     artifact.parent.mkdir(parents=True,exist_ok=True)
     artifact.write_text(json.dumps(data,sort_keys=True,indent=2)+'\n')
@@ -141,6 +145,7 @@ def fit(old, new, grades, out, artifact):
                'strata':strata,'artifact_sha256':model.digest,
                'rollouts':sum(g['rollouts'] for g in all_grades),
                'cpu_s':sum(g['cpu_s_per_decision'] for g in all_grades),
+               'mining_cpu_s':{row['seed']:row['cpu_s'] for row in fingerprints},
                'possession_ends':dict(Counter(s['end_reason'] for g in all_grades
                                               for o in g['options'] for s in o['samples'])),
                'action_diagnostic':dict(Counter(s['action_outcome']['reason'] for g in all_grades
