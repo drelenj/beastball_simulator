@@ -1,0 +1,252 @@
+[
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 258.56061820900004,
+    "decisions": 160374,
+    "groups": {
+      "carrier/20to40/open": 344,
+      "carrier/20to40/pressured": 299,
+      "carrier/over40/open": 1182,
+      "carrier/over40/pressured": 1168,
+      "carrier/under20/open": 161,
+      "carrier/under20/pressured": 74,
+      "finishing": 76,
+      "passing": 344,
+      "takedown": 649
+    },
+    "score": {
+      "A": 61,
+      "B": 80
+    },
+    "seed": 1,
+    "state_hash": "c517e00f864f1438705cdd1d9768d61523ee1aaac69746f57a2e9f1f4adf2745",
+    "steps": 32509,
+    "stored_candidates": 150,
+    "trace_hash": "c1a578db3f2754d3f69b47ba81a1f9d5b9336e1d87f496de2fa8dc3daee7a256"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 260.850902054,
+    "decisions": 158414,
+    "groups": {
+      "carrier/20to40/open": 435,
+      "carrier/20to40/pressured": 365,
+      "carrier/over40/open": 1247,
+      "carrier/over40/pressured": 990,
+      "carrier/under20/open": 208,
+      "carrier/under20/pressured": 120,
+      "finishing": 89,
+      "passing": 299,
+      "takedown": 532
+    },
+    "score": {
+      "A": 79,
+      "B": 71
+    },
+    "seed": 2,
+    "state_hash": "38eef443498fc00087ccbfb83153a4eb524325cbce9ced0493735deb4e0d4b16",
+    "steps": 32299,
+    "stored_candidates": 150,
+    "trace_hash": "5b3d52674f118a5e11fc22afa0d3ba401d1de9a197b925944a6272ff660e964d"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 265.252165103,
+    "decisions": 162154,
+    "groups": {
+      "carrier/20to40/open": 425,
+      "carrier/20to40/pressured": 479,
+      "carrier/over40/open": 1111,
+      "carrier/over40/pressured": 975,
+      "carrier/under20/open": 227,
+      "carrier/under20/pressured": 136,
+      "finishing": 97,
+      "passing": 282,
+      "takedown": 571
+    },
+    "score": {
+      "A": 78,
+      "B": 84
+    },
+    "seed": 3,
+    "state_hash": "19abfc87d2d50ec2be179e8a60135ca6a7b940d385840ceb81d1465e0b1d90c1",
+    "steps": 32979,
+    "stored_candidates": 150,
+    "trace_hash": "2e3ca26532f6c6b712479699eb60adf9da265b3ea0417099bbb940cd8eabdd5f"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 179.953676521,
+    "decisions": 158766,
+    "groups": {
+      "carrier/20to40/open": 344,
+      "carrier/20to40/pressured": 321,
+      "carrier/over40/open": 1138,
+      "carrier/over40/pressured": 1241,
+      "carrier/under20/open": 179,
+      "carrier/under20/pressured": 68,
+      "finishing": 83,
+      "passing": 315,
+      "takedown": 759
+    },
+    "score": {
+      "A": 83,
+      "B": 53
+    },
+    "seed": 4,
+    "state_hash": "c077a42b10b7751cc2217c9eff14ed074a73f1e2664b015ca544d8cc9143bbdc",
+    "steps": 32220,
+    "stored_candidates": 39,
+    "trace_hash": "86891ab372dc3e8eed7974c20eb17278729d5a92917c8b7f63fdcc84d7dfde70"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 181.445827565,
+    "decisions": 158578,
+    "groups": {
+      "carrier/20to40/open": 394,
+      "carrier/20to40/pressured": 357,
+      "carrier/over40/open": 1194,
+      "carrier/over40/pressured": 1119,
+      "carrier/under20/open": 170,
+      "carrier/under20/pressured": 88,
+      "finishing": 75,
+      "passing": 316,
+      "takedown": 679
+    },
+    "score": {
+      "A": 70,
+      "B": 89
+    },
+    "seed": 5,
+    "state_hash": "e994981a6dd15fa29f7d305201d62f66d5fd16217b5ee4b65e008da2c66c0536",
+    "steps": 32145,
+    "stored_candidates": 39,
+    "trace_hash": "9ed01006251b43e0342938067847dc53baeb6382160ce7f3968448926d1c82e9"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 186.423287819,
+    "decisions": 158986,
+    "groups": {
+      "carrier/20to40/open": 408,
+      "carrier/20to40/pressured": 325,
+      "carrier/over40/open": 1178,
+      "carrier/over40/pressured": 1159,
+      "carrier/under20/open": 206,
+      "carrier/under20/pressured": 103,
+      "finishing": 107,
+      "passing": 321,
+      "takedown": 644
+    },
+    "score": {
+      "A": 86,
+      "B": 82
+    },
+    "seed": 6,
+    "state_hash": "39cf75e5d9685ea06656315f374c8753f2478c1c629a72baa0363d0dbc7fb893",
+    "steps": 32546,
+    "stored_candidates": 36,
+    "trace_hash": "4f93bc510142e7f3be13a39a99d756b4043fd5a9817d57cda496c34820471e90"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 174.656938467,
+    "decisions": 158724,
+    "groups": {
+      "carrier/20to40/open": 384,
+      "carrier/20to40/pressured": 279,
+      "carrier/over40/open": 1228,
+      "carrier/over40/pressured": 1039,
+      "carrier/under20/open": 161,
+      "carrier/under20/pressured": 91,
+      "finishing": 99,
+      "passing": 331,
+      "takedown": 508
+    },
+    "score": {
+      "A": 87,
+      "B": 88
+    },
+    "seed": 7,
+    "state_hash": "c9cf19d52ce9c97242fe3da89ff05be3dd69ab9204d39a525220000c61308c1c",
+    "steps": 32344,
+    "stored_candidates": 30,
+    "trace_hash": "8f66626caf7f13f6eaab6b0c2a8dd54b814a874990c73bf02a4dc79073ecd2e9"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 181.481331441,
+    "decisions": 162955,
+    "groups": {
+      "carrier/20to40/open": 435,
+      "carrier/20to40/pressured": 290,
+      "carrier/over40/open": 1198,
+      "carrier/over40/pressured": 1150,
+      "carrier/under20/open": 215,
+      "carrier/under20/pressured": 86,
+      "finishing": 98,
+      "passing": 309,
+      "takedown": 619
+    },
+    "score": {
+      "A": 86,
+      "B": 76
+    },
+    "seed": 8,
+    "state_hash": "1bf5d0f26bfa0156a0b54266bd33485adaeae2ed94c4ac4b045891f81e9794de",
+    "steps": 33265,
+    "stored_candidates": 30,
+    "trace_hash": "71de18228246c291b94b380d579c9f443508f11fc4ff671295ee3253a9e4e179"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 180.031368175,
+    "decisions": 161860,
+    "groups": {
+      "carrier/20to40/open": 380,
+      "carrier/20to40/pressured": 307,
+      "carrier/over40/open": 1160,
+      "carrier/over40/pressured": 1212,
+      "carrier/under20/open": 208,
+      "carrier/under20/pressured": 91,
+      "finishing": 84,
+      "passing": 292,
+      "takedown": 749
+    },
+    "score": {
+      "A": 88,
+      "B": 63
+    },
+    "seed": 9,
+    "state_hash": "9f35c2e83d94595c766fda7c98ef78b34241408137dd277a990e3a5ae8f165aa",
+    "steps": 33113,
+    "stored_candidates": 30,
+    "trace_hash": "fd5366eff5314d1f226f9b8819639c310bb9ed627f9e854fc4af8e53618f02fa"
+  },
+  {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "cpu_s": 179.411092481,
+    "decisions": 158249,
+    "groups": {
+      "carrier/20to40/open": 410,
+      "carrier/20to40/pressured": 307,
+      "carrier/over40/open": 1149,
+      "carrier/over40/pressured": 1231,
+      "carrier/under20/open": 223,
+      "carrier/under20/pressured": 71,
+      "finishing": 89,
+      "passing": 320,
+      "takedown": 716
+    },
+    "score": {
+      "A": 89,
+      "B": 78
+    },
+    "seed": 10,
+    "state_hash": "789b2dbe065d4b394b7ff26586359a5de1df78b7de7e78b428e6768574c1bbcf",
+    "steps": 32220,
+    "stored_candidates": 30,
+    "trace_hash": "80ed34c7a085fbf7fbd98e1b4ce7490469d5e53f65583c2c47fd7cb3d7dbe14f"
+  }
+]
