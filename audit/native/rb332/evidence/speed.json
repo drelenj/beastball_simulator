@@ -1,0 +1,65 @@
+{
+  "samples": [
+    {
+      "arm": "off",
+      "seed": 1,
+      "cpu_ms_per_step": 3.8318878606667113,
+      "trace_hash": "a10f13055a63e68cf34fe055799f90adcfb5d8467097a0666db081678172e82e",
+      "state_hash": "96aa4d925e50610feb30815dbaf0c9ab32b47ad4a029fedcf1f43bba55ba91b4"
+    },
+    {
+      "arm": "combined",
+      "seed": 1,
+      "cpu_ms_per_step": 4.055671947999978,
+      "trace_hash": "5666d4149b4ddca642eba1078ac3df01dd85cd9c855fd32cd69d1991a6284588",
+      "state_hash": "098deb21c72cf6ac46f069e52fce9d3edd07427e37fafa92676da694c34b92f9"
+    },
+    {
+      "arm": "combined",
+      "seed": 3,
+      "cpu_ms_per_step": 4.263672116000028,
+      "trace_hash": "51b571ece30eddc4da1898697f92f210e5588b4f92593af67543714892671b84",
+      "state_hash": "e510363ab3e4f6860d5b230dd76ed0e8a013e32ef94e0d25cbf17a46f1152988"
+    },
+    {
+      "arm": "off",
+      "seed": 3,
+      "cpu_ms_per_step": 4.423412317999994,
+      "trace_hash": "13221a35eddaf4fd960da0955ec2d6b107249e5c4c34e3950fc78f57de1bf119",
+      "state_hash": "ac1ff91bcf65983e49448f644ef0922219a9974ff789515ce49ea7b39854bfba"
+    },
+    {
+      "arm": "off",
+      "seed": 3,
+      "cpu_ms_per_step": 4.418945833333282,
+      "trace_hash": "13221a35eddaf4fd960da0955ec2d6b107249e5c4c34e3950fc78f57de1bf119",
+      "state_hash": "ac1ff91bcf65983e49448f644ef0922219a9974ff789515ce49ea7b39854bfba"
+    },
+    {
+      "arm": "combined",
+      "seed": 3,
+      "cpu_ms_per_step": 4.142453270000033,
+      "trace_hash": "51b571ece30eddc4da1898697f92f210e5588b4f92593af67543714892671b84",
+      "state_hash": "e510363ab3e4f6860d5b230dd76ed0e8a013e32ef94e0d25cbf17a46f1152988"
+    },
+    {
+      "arm": "combined",
+      "seed": 1,
+      "cpu_ms_per_step": 4.003502653333347,
+      "trace_hash": "5666d4149b4ddca642eba1078ac3df01dd85cd9c855fd32cd69d1991a6284588",
+      "state_hash": "098deb21c72cf6ac46f069e52fce9d3edd07427e37fafa92676da694c34b92f9"
+    },
+    {
+      "arm": "off",
+      "seed": 1,
+      "cpu_ms_per_step": 3.85845014866671,
+      "trace_hash": "a10f13055a63e68cf34fe055799f90adcfb5d8467097a0666db081678172e82e",
+      "state_hash": "96aa4d925e50610feb30815dbaf0c9ab32b47ad4a029fedcf1f43bba55ba91b4"
+    }
+  ],
+  "cost_ms_per_step": {
+    "off": 4.133174040166675,
+    "combined": 4.116324996833346
+  },
+  "overhead_pct": -0.40765385559832223
+}

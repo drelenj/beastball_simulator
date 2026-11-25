@@ -1,20 +1,24 @@
 {
   "completed": {
-    "off": 1,
+    "off": 3,
     "pass_clearance": 2,
-    "carry_finish": 1,
-    "fresh_takedown": 1,
-    "boundary_guard": 1,
-    "combined": 1,
-    "archive": 1
+    "carry_finish": 2,
+    "fresh_takedown": 2,
+    "boundary_guard": 2,
+    "combined": 2,
+    "archive": 2
   },
   "comparisons": {
     "pass_clearance": {
-      "n": 1,
+      "n": 2,
       "cases": [
         [
           0,
           1
+        ],
+        [
+          0,
+          2
         ]
       ],
       "metrics": {
@@ -22,1562 +26,1578 @@
           "off": 97.5,
           "on": 77.0,
           "delta": -20.5,
-          "se": null
+          "se": 2.2411878374921907
         },
         "possessions": {
-          "off": 144.0,
-          "on": 139.0,
-          "delta": -5.0,
-          "se": null
+          "off": 149.75,
+          "on": 145.75,
+          "delta": -4.0,
+          "se": 0.722795568216514
         },
         "attempt_share": {
-          "off": 0.3715277777777778,
-          "on": 0.34532374100719426,
-          "delta": -0.026204036770583528,
-          "se": null
+          "off": 0.37061769616026713,
+          "on": 0.3481989708404803,
+          "delta": -0.022418725319786836,
+          "se": 0.0026174216276601625
         },
         "pass_completion": {
-          "off": 0.7847222222222222,
-          "on": 0.7876447876447876,
-          "delta": 0.002922565422565415,
-          "se": null
+          "off": 0.7690941385435168,
+          "on": 0.779383429672447,
+          "delta": 0.010289291128930178,
+          "se": 0.005614808738329612
         },
         "passes_attempted_per_team": {
-          "off": 288.0,
-          "on": 259.0,
-          "delta": -29.0,
-          "se": null
+          "off": 281.5,
+          "on": 259.5,
+          "delta": -22.0,
+          "se": 5.059568977515599
         },
         "interceptions_per_team": {
-          "off": 47.5,
-          "on": 45.0,
-          "delta": -2.5,
-          "se": null
+          "off": 51.25,
+          "on": 47.0,
+          "delta": -4.25,
+          "se": 1.2648922443788997
         },
         "boundaries_per_team": {
-          "off": 28.5,
-          "on": 25.0,
-          "delta": -3.5,
-          "se": null
+          "off": 31.75,
+          "on": 29.25,
+          "delta": -2.5,
+          "se": 0.722795568216514
         },
         "carry_goals_per_team": {
+          "off": 0.25,
+          "on": 0.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
+        },
+        "tackle_commits_per_team": {
+          "off": 333.5,
+          "on": 368.25,
+          "delta": 34.75,
+          "se": 5.240267869569727
+        },
+        "tackle_wrong_target_share": {
+          "off": 0.37556221889055474,
+          "on": 0.39171758316361166,
+          "delta": 0.016155364273056916,
+          "se": 0.028199242149715927
+        },
+        "tackle_episode_success": {
+          "off": 0.10344827586206896,
+          "on": 0.11405295315682282,
+          "delta": 0.010604677294753853,
+          "se": 0.008990048801033292
+        },
+        "tackle_hold_success": {
+          "off": 0.23045822102425875,
+          "on": 0.24752475247524752,
+          "delta": 0.01706653145098877,
+          "se": 0.012758053344207026
+        },
+        "keeper_save_rate": {
+          "off": 0.12021857923497267,
+          "on": 0.15757575757575756,
+          "delta": 0.03735717834078489,
+          "se": 0.023433674502492816
+        },
+        "keeper_save_on_target_rate": {
+          "off": 0.15942028985507245,
+          "on": 0.21311475409836064,
+          "delta": 0.05369446424328819,
+          "se": 0.016378859656327183
+        },
+        "four_point_share": {
+          "off": 0.5354330708661418,
+          "on": 0.46601941747572817,
+          "delta": -0.06941365339041361,
+          "se": 0.013218852719147746
+        },
+        "median_absolute_margin": {
+          "off": 22.5,
+          "on": 29.5,
+          "delta": 7.0,
+          "se": 8.673546818598169
+        },
+        "within_five": {
           "off": 0.5,
           "on": 0.0,
           "delta": -0.5,
-          "se": null
-        },
-        "tackle_commits_per_team": {
-          "off": 354.0,
-          "on": 396.0,
-          "delta": 42.0,
-          "se": null
-        },
-        "tackle_wrong_target_share": {
-          "off": 0.3502824858757062,
-          "on": 0.4027777777777778,
-          "delta": 0.052495291902071584,
-          "se": null
-        },
-        "tackle_episode_success": {
-          "off": 0.1172316384180791,
-          "on": 0.11616161616161616,
-          "delta": -0.001070022256462938,
-          "se": null
-        },
-        "tackle_hold_success": {
-          "off": 0.24815724815724816,
-          "on": 0.24942263279445728,
-          "delta": 0.001265384637209127,
-          "se": null
-        },
-        "keeper_save_rate": {
-          "off": 0.08791208791208792,
-          "on": 0.15789473684210525,
-          "delta": 0.06998264893001734,
-          "se": null
-        },
-        "keeper_save_on_target_rate": {
-          "off": 0.125,
-          "on": 0.2033898305084746,
-          "delta": 0.07838983050847459,
-          "se": null
-        },
-        "four_point_share": {
-          "off": 0.5948717948717949,
-          "on": 0.5454545454545454,
-          "delta": -0.049417249417249454,
-          "se": null
-        },
-        "median_absolute_margin": {
-          "off": 5,
-          "on": 24,
-          "delta": 19,
-          "se": null
-        },
-        "within_five": {
-          "off": 1.0,
-          "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "se": 0.361397784108257
         },
         "team_score_sd": {
-          "off": 3.5355339059327378,
-          "on": 16.97056274847714,
-          "delta": 13.435028842544401,
-          "se": null
+          "off": 16.660832312142553,
+          "on": 17.327723451163457,
+          "delta": 0.6668911390209047,
+          "se": 5.2138052167694475
         },
         "ala_minus_garvian_margin": {
-          "off": 5,
-          "on": -24,
-          "delta": -29,
-          "se": null
+          "off": 22.5,
+          "on": -29.5,
+          "delta": -52.0,
+          "se": 16.624298068979822
         },
         "ala_margin_se": {
-          "off": null,
-          "on": null,
-          "delta": null,
-          "se": null
+          "off": 17.5,
+          "on": 5.499999999999999,
+          "delta": -12.0,
+          "se": 5.9966477121625035
         },
         "ala_win_share": {
           "off": 1.0,
           "on": 0.0,
           "delta": -1.0,
-          "se": null
+          "se": 0.0
         },
         "planned_changes_per_team": {
           "off": 40.0,
-          "on": 41.0,
-          "delta": 1.0,
-          "se": null
+          "on": 42.0,
+          "delta": 2.0,
+          "se": 0.722795568216514
         },
         "override_exits_per_team": {
-          "off": 3.5,
-          "on": 4.0,
-          "delta": 0.5,
-          "se": null
+          "off": 3.25,
+          "on": 3.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
         },
         "turnovers.fumble": {
-          "off": 8.0,
-          "on": 16.5,
-          "delta": 8.5,
-          "se": null
+          "off": 10.25,
+          "on": 15.0,
+          "delta": 4.75,
+          "se": 2.7104833808119277
         },
         "turnovers.interception": {
-          "off": 47.5,
-          "on": 45.0,
-          "delta": -2.5,
-          "se": null
+          "off": 51.25,
+          "on": 47.0,
+          "delta": -4.25,
+          "se": 1.2648922443788997
         },
         "turnovers.opponent_control": {
-          "off": 11.0,
-          "on": 9.0,
-          "delta": -2.0,
-          "se": null
+          "off": 10.75,
+          "on": 10.75,
+          "delta": 0.0,
+          "se": 1.445591136433028
         },
         "turnovers.out_of_bounds": {
-          "off": 28.5,
-          "on": 25.0,
-          "delta": -3.5,
-          "se": null
+          "off": 31.75,
+          "on": 29.25,
+          "delta": -2.5,
+          "se": 0.722795568216514
         },
         "turnovers.play_clock": {
-          "off": 2.5,
-          "on": 2.5,
+          "off": 2.25,
+          "on": 2.25,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "turnovers.score_restart": {
-          "off": 27.5,
-          "on": 21.5,
-          "delta": -6.0,
-          "se": null
+          "off": 27.25,
+          "on": 22.25,
+          "delta": -5.0,
+          "se": 0.722795568216514
         },
         "turnovers.strip": {
-          "off": 2.5,
-          "on": 0.5,
-          "delta": -2.0,
-          "se": null
+          "off": 1.5,
+          "on": 1.0,
+          "delta": -0.5,
+          "se": 1.084193352324771
         },
         "turnovers.tackle": {
-          "off": 13.0,
-          "on": 12.5,
-          "delta": -0.5,
-          "se": null
+          "off": 11.0,
+          "on": 12.0,
+          "delta": 1.0,
+          "se": 1.084193352324771
         },
         "turnovers.toss_timeout": {
-          "off": 0.5,
-          "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "off": 0.25,
+          "on": 0.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
         },
         "turnovers.turnover": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 1.0,
-          "delta": 0.5,
-          "se": null
+          "delta": 0.75,
+          "se": 0.1806988920541285
         },
         "turnovers.zone_violation": {
-          "off": 0.5,
-          "on": 3.5,
-          "delta": 3.0,
-          "se": null
+          "off": 1.25,
+          "on": 2.75,
+          "delta": 1.5,
+          "se": 1.084193352324771
         },
         "carries.freeze": {
           "off": 0.0,
-          "on": 1.0,
-          "delta": 1.0,
-          "se": null
+          "on": 0.5,
+          "delta": 0.5,
+          "se": 0.361397784108257
         },
         "carries.goal": {
-          "off": 0.5,
-          "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "off": 0.25,
+          "on": 0.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
         },
         "carries.handoff": {
-          "off": 3.0,
-          "on": 2.5,
-          "delta": -0.5,
-          "se": null
+          "off": 2.75,
+          "on": 1.75,
+          "delta": -1.0,
+          "se": 0.361397784108257
         },
         "carries.out_of_bounds": {
-          "off": 11.5,
-          "on": 13.5,
-          "delta": 2.0,
-          "se": null
+          "off": 14.5,
+          "on": 14.25,
+          "delta": -0.25,
+          "se": 1.6262900284871566
         },
         "carries.pass": {
-          "off": 3.5,
-          "on": 5.5,
-          "delta": 2.0,
-          "se": null
+          "off": 3.0,
+          "on": 4.0,
+          "delta": 1.0,
+          "se": 0.722795568216514
         },
         "carries.shot": {
-          "off": 24.5,
-          "on": 21.5,
-          "delta": -3.0,
-          "se": null
+          "off": 25.5,
+          "on": 24.0,
+          "delta": -1.5,
+          "se": 1.084193352324771
         },
         "carries.stopped_short": {
-          "off": 5.0,
-          "on": 7.0,
-          "delta": 2.0,
-          "se": null
+          "off": 4.5,
+          "on": 6.75,
+          "delta": 2.25,
+          "se": 0.1806988920541285
         },
         "carries.strip": {
           "off": 1.0,
-          "on": 0.5,
-          "delta": -0.5,
-          "se": null
+          "on": 0.25,
+          "delta": -0.75,
+          "se": 0.1806988920541285
         },
         "carries.tackle": {
-          "off": 5.0,
-          "on": 5.0,
-          "delta": 0.0,
-          "se": null
+          "off": 3.25,
+          "on": 3.75,
+          "delta": 0.5,
+          "se": 0.361397784108257
         },
         "carries.zone_violation": {
-          "off": 0.0,
+          "off": 0.25,
           "on": 0.5,
-          "delta": 0.5,
-          "se": null
+          "delta": 0.25,
+          "se": 0.1806988920541285
         },
         "stretches.end.lost_control_or_expired": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.end.replaced": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_end": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_goal": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_start": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         }
       }
     },
     "carry_finish": {
-      "n": 1,
+      "n": 2,
       "cases": [
         [
           0,
           1
+        ],
+        [
+          0,
+          2
         ]
       ],
       "metrics": {
         "median_team_score": {
           "off": 97.5,
-          "on": 116.0,
-          "delta": 18.5,
-          "se": null
+          "on": 97.5,
+          "delta": 0.0,
+          "se": 7.636773799456421
         },
         "possessions": {
-          "off": 144.0,
-          "on": 145.5,
-          "delta": 1.5,
-          "se": null
+          "off": 149.75,
+          "on": 149.25,
+          "delta": -0.5,
+          "se": 1.445591136433028
         },
         "attempt_share": {
-          "off": 0.3715277777777778,
-          "on": 0.3711340206185567,
-          "delta": -0.00039375715922107535,
-          "se": null
+          "off": 0.37061769616026713,
+          "on": 0.37018425460636517,
+          "delta": -0.0004334415539019587,
+          "se": 3.677463263601711e-05
         },
         "pass_completion": {
-          "off": 0.7847222222222222,
-          "on": 0.7821428571428571,
-          "delta": -0.00257936507936507,
-          "se": null
+          "off": 0.7690941385435168,
+          "on": 0.7693006357856494,
+          "delta": 0.00020649724213261944,
+          "se": 0.0021219580016099645
         },
         "passes_attempted_per_team": {
-          "off": 288.0,
-          "on": 280.0,
-          "delta": -8.0,
-          "se": null
+          "off": 281.5,
+          "on": 275.25,
+          "delta": -6.25,
+          "se": 1.2648922443788997
         },
         "interceptions_per_team": {
-          "off": 47.5,
-          "on": 50.0,
-          "delta": 2.5,
-          "se": null
+          "off": 51.25,
+          "on": 50.5,
+          "delta": -0.75,
+          "se": 2.3490855967036706
         },
         "boundaries_per_team": {
-          "off": 28.5,
-          "on": 25.5,
-          "delta": -3.0,
-          "se": null
+          "off": 31.75,
+          "on": 31.5,
+          "delta": -0.25,
+          "se": 1.9876878125954136
         },
         "carry_goals_per_team": {
-          "off": 0.5,
-          "on": 4.0,
-          "delta": 3.5,
-          "se": null
+          "off": 0.25,
+          "on": 2.25,
+          "delta": 2.0,
+          "se": 1.084193352324771
         },
         "tackle_commits_per_team": {
-          "off": 354.0,
-          "on": 323.0,
-          "delta": -31.0,
-          "se": null
+          "off": 333.5,
+          "on": 315.0,
+          "delta": -18.5,
+          "se": 9.034944602706426
         },
         "tackle_wrong_target_share": {
-          "off": 0.3502824858757062,
-          "on": 0.39628482972136225,
-          "delta": 0.046002343845656046,
-          "se": null
+          "off": 0.37556221889055474,
+          "on": 0.40634920634920635,
+          "delta": 0.030786987458651605,
+          "se": 0.012055228201100061
         },
         "tackle_episode_success": {
-          "off": 0.1172316384180791,
-          "on": 0.10526315789473684,
-          "delta": -0.011968480523342262,
-          "se": null
+          "off": 0.10344827586206896,
+          "on": 0.1007936507936508,
+          "delta": -0.0026546250684181677,
+          "se": 0.007327991478157711
         },
         "tackle_hold_success": {
-          "off": 0.24815724815724816,
-          "on": 0.24853801169590642,
-          "delta": 0.00038076353865826307,
-          "se": null
+          "off": 0.23045822102425875,
+          "on": 0.23564954682779457,
+          "delta": 0.005191325803535818,
+          "se": 0.004621138780465805
         },
         "keeper_save_rate": {
-          "off": 0.08791208791208792,
-          "on": 0.12727272727272726,
-          "delta": 0.03936063936063934,
-          "se": null
+          "off": 0.12021857923497267,
+          "on": 0.15492957746478872,
+          "delta": 0.03471099822981605,
+          "se": 0.002590786980957216
         },
         "keeper_save_on_target_rate": {
-          "off": 0.125,
-          "on": 0.1794871794871795,
-          "delta": 0.05448717948717949,
-          "se": null
+          "off": 0.15942028985507245,
+          "on": 0.2129032258064516,
+          "delta": 0.05348293595137915,
+          "se": 0.0017246069405615996
         },
         "four_point_share": {
-          "off": 0.5948717948717949,
-          "on": 0.41379310344827586,
-          "delta": -0.181078691423519,
-          "se": null
+          "off": 0.5354330708661418,
+          "on": 0.4728132387706856,
+          "delta": -0.06261983209545618,
+          "se": 0.0914913501272607
         },
         "median_absolute_margin": {
-          "off": 5,
-          "on": 72,
-          "delta": 67,
-          "se": null
+          "off": 22.5,
+          "on": 55.5,
+          "delta": 33.0,
+          "se": 24.57504931936148
         },
         "within_five": {
-          "off": 1.0,
+          "off": 0.5,
           "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "delta": -0.5,
+          "se": 0.361397784108257
         },
         "team_score_sd": {
-          "off": 3.5355339059327378,
-          "on": 50.91168824543142,
-          "delta": 47.37615433949868,
-          "se": null
+          "off": 16.660832312142553,
+          "on": 35.46242142512738,
+          "delta": 18.80158911298483,
+          "se": 14.183493697130281
         },
         "ala_minus_garvian_margin": {
-          "off": 5,
-          "on": 72,
-          "delta": 67,
-          "se": null
+          "off": 22.5,
+          "on": 55.5,
+          "delta": 33.0,
+          "se": 24.57504931936148
         },
         "ala_margin_se": {
-          "off": null,
-          "on": null,
-          "delta": null,
-          "se": null
+          "off": 17.5,
+          "on": 16.5,
+          "delta": -1.0,
+          "se": 0.4997206426802086
         },
         "ala_win_share": {
           "off": 1.0,
           "on": 1.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "planned_changes_per_team": {
           "off": 40.0,
-          "on": 41.5,
-          "delta": 1.5,
-          "se": null
+          "on": 41.75,
+          "delta": 1.75,
+          "se": 0.1806988920541285
         },
         "override_exits_per_team": {
-          "off": 3.5,
+          "off": 3.25,
           "on": 3.0,
-          "delta": -0.5,
-          "se": null
+          "delta": -0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.fumble": {
-          "off": 8.0,
-          "on": 10.5,
-          "delta": 2.5,
-          "se": null
+          "off": 10.25,
+          "on": 9.75,
+          "delta": -0.5,
+          "se": 2.168386704649542
         },
         "turnovers.interception": {
-          "off": 47.5,
-          "on": 50.0,
-          "delta": 2.5,
-          "se": null
+          "off": 51.25,
+          "on": 50.5,
+          "delta": -0.75,
+          "se": 2.3490855967036706
         },
         "turnovers.opponent_control": {
-          "off": 11.0,
-          "on": 13.5,
-          "delta": 2.5,
-          "se": null
+          "off": 10.75,
+          "on": 14.25,
+          "delta": 3.5,
+          "se": 0.722795568216514
         },
         "turnovers.out_of_bounds": {
-          "off": 28.5,
-          "on": 25.5,
-          "delta": -3.0,
-          "se": null
+          "off": 31.75,
+          "on": 31.5,
+          "delta": -0.25,
+          "se": 1.9876878125954136
         },
         "turnovers.play_clock": {
-          "off": 2.5,
+          "off": 2.25,
           "on": 1.5,
-          "delta": -1.0,
-          "se": null
+          "delta": -0.75,
+          "se": 0.1806988920541285
         },
         "turnovers.score_restart": {
-          "off": 27.5,
-          "on": 30.5,
-          "delta": 3.0,
-          "se": null
+          "off": 27.25,
+          "on": 27.5,
+          "delta": 0.25,
+          "se": 1.9876878125954136
         },
         "turnovers.strip": {
-          "off": 2.5,
+          "off": 1.5,
           "on": 1.0,
-          "delta": -1.5,
-          "se": null
+          "delta": -0.5,
+          "se": 0.722795568216514
         },
         "turnovers.tackle": {
-          "off": 13.0,
-          "on": 8.0,
-          "delta": -5.0,
-          "se": null
+          "off": 11.0,
+          "on": 7.75,
+          "delta": -3.25,
+          "se": 1.2648922443788997
         },
         "turnovers.toss_timeout": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 0.5,
-          "delta": 0.0,
-          "se": null
+          "delta": 0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.turnover": {
-          "off": 0.5,
-          "on": 1.5,
-          "delta": 1.0,
-          "se": null
+          "off": 0.25,
+          "on": 0.75,
+          "delta": 0.5,
+          "se": 0.361397784108257
         },
         "turnovers.zone_violation": {
-          "off": 0.5,
-          "on": 1.0,
+          "off": 1.25,
+          "on": 1.75,
           "delta": 0.5,
-          "se": null
+          "se": 0.0
         },
         "carries.freeze": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "carries.goal": {
-          "off": 0.5,
-          "on": 4.0,
-          "delta": 3.5,
-          "se": null
+          "off": 0.25,
+          "on": 2.25,
+          "delta": 2.0,
+          "se": 1.084193352324771
         },
         "carries.handoff": {
-          "off": 3.0,
-          "on": 2.0,
-          "delta": -1.0,
-          "se": null
+          "off": 2.75,
+          "on": 1.5,
+          "delta": -1.25,
+          "se": 0.1806988920541285
         },
         "carries.out_of_bounds": {
-          "off": 11.5,
-          "on": 5.5,
+          "off": 14.5,
+          "on": 8.5,
           "delta": -6.0,
-          "se": null
+          "se": 0.0
         },
         "carries.pass": {
-          "off": 3.5,
-          "on": 2.5,
-          "delta": -1.0,
-          "se": null
+          "off": 3.0,
+          "on": 1.75,
+          "delta": -1.25,
+          "se": 0.1806988920541285
         },
         "carries.shot": {
-          "off": 24.5,
-          "on": 34.0,
-          "delta": 9.5,
-          "se": null
+          "off": 25.5,
+          "on": 31.0,
+          "delta": 5.5,
+          "se": 2.891182272866056
         },
         "carries.stopped_short": {
-          "off": 5.0,
-          "on": 3.5,
-          "delta": -1.5,
-          "se": null
+          "off": 4.5,
+          "on": 4.5,
+          "delta": 0.0,
+          "se": 1.084193352324771
         },
         "carries.strip": {
           "off": 1.0,
-          "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "on": 0.5,
+          "delta": -0.5,
+          "se": 0.361397784108257
         },
         "carries.tackle": {
-          "off": 5.0,
-          "on": 2.5,
-          "delta": -2.5,
-          "se": null
+          "off": 3.25,
+          "on": 2.75,
+          "delta": -0.5,
+          "se": 1.445591136433028
         },
         "carries.zone_violation": {
-          "off": 0.0,
+          "off": 0.25,
           "on": 0.0,
-          "delta": 0.0,
-          "se": null
+          "delta": -0.25,
+          "se": 0.1806988920541285
         },
         "stretches.end.lost_control_or_expired": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.end.replaced": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_end": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_goal": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_start": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         }
       }
     },
     "fresh_takedown": {
-      "n": 1,
+      "n": 2,
       "cases": [
         [
           0,
           1
+        ],
+        [
+          0,
+          2
         ]
       ],
       "metrics": {
         "median_team_score": {
           "off": 97.5,
-          "on": 92.0,
-          "delta": -5.5,
-          "se": null
+          "on": 80.5,
+          "delta": -17.0,
+          "se": 5.695349572831922
         },
         "possessions": {
-          "off": 144.0,
-          "on": 137.5,
-          "delta": -6.5,
-          "se": null
+          "off": 149.75,
+          "on": 142.75,
+          "delta": -7.0,
+          "se": 0.361397784108257
         },
         "attempt_share": {
-          "off": 0.3715277777777778,
-          "on": 0.3418181818181818,
-          "delta": -0.02970959595959599,
-          "se": null
+          "off": 0.37061769616026713,
+          "on": 0.318739054290718,
+          "delta": -0.0518786418695491,
+          "se": 0.01544413014241703
         },
         "pass_completion": {
-          "off": 0.7847222222222222,
-          "on": 0.8018867924528302,
-          "delta": 0.017164570230608023,
-          "se": null
+          "off": 0.7690941385435168,
+          "on": 0.7792329279700655,
+          "delta": 0.010138789426548667,
+          "se": 0.004670660089379709
         },
         "passes_attempted_per_team": {
-          "off": 288.0,
-          "on": 265.0,
-          "delta": -23.0,
-          "se": null
+          "off": 281.5,
+          "on": 267.25,
+          "delta": -14.25,
+          "se": 6.324461221894498
         },
         "interceptions_per_team": {
-          "off": 47.5,
-          "on": 44.0,
-          "delta": -3.5,
-          "se": null
+          "off": 51.25,
+          "on": 47.0,
+          "delta": -4.25,
+          "se": 0.5420966761623855
         },
         "boundaries_per_team": {
-          "off": 28.5,
-          "on": 28.5,
-          "delta": 0.0,
-          "se": null
+          "off": 31.75,
+          "on": 31.0,
+          "delta": -0.75,
+          "se": 0.5420966761623855
         },
         "carry_goals_per_team": {
-          "off": 0.5,
-          "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "off": 0.25,
+          "on": 0.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
         },
         "tackle_commits_per_team": {
-          "off": 354.0,
-          "on": 300.5,
-          "delta": -53.5,
-          "se": null
+          "off": 333.5,
+          "on": 318.0,
+          "delta": -15.5,
+          "se": 27.466231592227533
         },
         "tackle_wrong_target_share": {
-          "off": 0.3502824858757062,
-          "on": 0.26788685524126454,
-          "delta": -0.08239563063444166,
-          "se": null
+          "off": 0.37556221889055474,
+          "on": 0.26336477987421386,
+          "delta": -0.11219743901634088,
+          "se": 0.022608925114012596
         },
         "tackle_episode_success": {
-          "off": 0.1172316384180791,
-          "on": 0.10316139767054909,
-          "delta": -0.014070240747530008,
-          "se": null
+          "off": 0.10344827586206896,
+          "on": 0.11713836477987422,
+          "delta": 0.013690088917805252,
+          "se": 0.02019455987143156
         },
         "tackle_hold_success": {
-          "off": 0.24815724815724816,
-          "on": 0.20391061452513967,
-          "delta": -0.044246633632108484,
-          "se": null
+          "off": 0.23045822102425875,
+          "on": 0.2096177558569667,
+          "delta": -0.020840465167292044,
+          "se": 0.017900329257716435
         },
         "keeper_save_rate": {
-          "off": 0.08791208791208792,
-          "on": 0.10227272727272728,
-          "delta": 0.01436063936063936,
-          "se": null
+          "off": 0.12021857923497267,
+          "on": 0.10429447852760736,
+          "delta": -0.015924100707365316,
+          "se": 0.021629183005893882
         },
         "keeper_save_on_target_rate": {
-          "off": 0.125,
-          "on": 0.13636363636363635,
-          "delta": 0.011363636363636354,
-          "se": null
+          "off": 0.15942028985507245,
+          "on": 0.1452991452991453,
+          "delta": -0.01412114455592714,
+          "se": 0.01581489283392877
         },
         "four_point_share": {
-          "off": 0.5948717948717949,
-          "on": 0.43478260869565216,
-          "delta": -0.1600891861761427,
-          "se": null
+          "off": 0.5354330708661418,
+          "on": 0.44984802431610943,
+          "delta": -0.08558504655003235,
+          "se": 0.0564570883562132
         },
         "median_absolute_margin": {
-          "off": 5,
-          "on": 8,
-          "delta": 3,
-          "se": null
+          "off": 22.5,
+          "on": 4.5,
+          "delta": -18.0,
+          "se": 15.178706932546795
         },
         "within_five": {
-          "off": 1.0,
-          "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "off": 0.5,
+          "on": 0.5,
+          "delta": 0.0,
+          "se": 0.722795568216514
         },
         "team_score_sd": {
-          "off": 3.5355339059327378,
-          "on": 5.656854249492381,
-          "delta": 2.121320343559643,
-          "se": null
+          "off": 16.660832312142553,
+          "on": 11.729592206608606,
+          "delta": -4.931240105533947,
+          "se": 9.291488688841754
         },
         "ala_minus_garvian_margin": {
-          "off": 5,
-          "on": 8,
-          "delta": 3,
-          "se": null
+          "off": 22.5,
+          "on": 4.5,
+          "delta": -18.0,
+          "se": 15.178706932546795
         },
         "ala_margin_se": {
-          "off": null,
-          "on": null,
-          "delta": null,
-          "se": null
+          "off": 17.5,
+          "on": 3.4999999999999996,
+          "delta": -14.0,
+          "se": 6.996088997522921
         },
         "ala_win_share": {
           "off": 1.0,
           "on": 1.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "planned_changes_per_team": {
           "off": 40.0,
           "on": 42.0,
           "delta": 2.0,
-          "se": null
+          "se": 0.0
         },
         "override_exits_per_team": {
-          "off": 3.5,
+          "off": 3.25,
           "on": 2.5,
-          "delta": -1.0,
-          "se": null
+          "delta": -0.75,
+          "se": 0.1806988920541285
         },
         "turnovers.fumble": {
-          "off": 8.0,
-          "on": 12.0,
-          "delta": 4.0,
-          "se": null
+          "off": 10.25,
+          "on": 12.5,
+          "delta": 2.25,
+          "se": 1.2648922443788997
         },
         "turnovers.interception": {
-          "off": 47.5,
-          "on": 44.0,
-          "delta": -3.5,
-          "se": null
+          "off": 51.25,
+          "on": 47.0,
+          "delta": -4.25,
+          "se": 0.5420966761623855
         },
         "turnovers.opponent_control": {
-          "off": 11.0,
+          "off": 10.75,
           "on": 9.5,
-          "delta": -1.5,
-          "se": null
+          "delta": -1.25,
+          "se": 0.1806988920541285
         },
         "turnovers.out_of_bounds": {
-          "off": 28.5,
-          "on": 28.5,
-          "delta": 0.0,
-          "se": null
+          "off": 31.75,
+          "on": 31.0,
+          "delta": -0.75,
+          "se": 0.5420966761623855
         },
         "turnovers.play_clock": {
-          "off": 2.5,
+          "off": 2.25,
           "on": 2.0,
-          "delta": -0.5,
-          "se": null
+          "delta": -0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.score_restart": {
-          "off": 27.5,
-          "on": 26.5,
-          "delta": -1.0,
-          "se": null
+          "off": 27.25,
+          "on": 23.5,
+          "delta": -3.75,
+          "se": 1.9876878125954136
         },
         "turnovers.strip": {
-          "off": 2.5,
-          "on": 1.5,
-          "delta": -1.0,
-          "se": null
+          "off": 1.5,
+          "on": 2.0,
+          "delta": 0.5,
+          "se": 1.084193352324771
         },
         "turnovers.tackle": {
-          "off": 13.0,
-          "on": 8.5,
-          "delta": -4.5,
-          "se": null
+          "off": 11.0,
+          "on": 10.25,
+          "delta": -0.75,
+          "se": 2.7104833808119277
         },
         "turnovers.toss_timeout": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "delta": -0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.turnover": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 0.5,
-          "delta": 0.0,
-          "se": null
+          "delta": 0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.zone_violation": {
-          "off": 0.5,
+          "off": 1.25,
           "on": 2.5,
-          "delta": 2.0,
-          "se": null
+          "delta": 1.25,
+          "se": 0.5420966761623855
         },
         "carries.freeze": {
           "off": 0.0,
-          "on": 0.0,
-          "delta": 0.0,
-          "se": null
+          "on": 0.25,
+          "delta": 0.25,
+          "se": 0.1806988920541285
         },
         "carries.goal": {
-          "off": 0.5,
-          "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "off": 0.25,
+          "on": 0.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
         },
         "carries.handoff": {
-          "off": 3.0,
-          "on": 1.5,
-          "delta": -1.5,
-          "se": null
+          "off": 2.75,
+          "on": 1.0,
+          "delta": -1.75,
+          "se": 0.1806988920541285
         },
         "carries.out_of_bounds": {
-          "off": 11.5,
-          "on": 7.0,
-          "delta": -4.5,
-          "se": null
+          "off": 14.5,
+          "on": 9.25,
+          "delta": -5.25,
+          "se": 0.5420966761623855
         },
         "carries.pass": {
-          "off": 3.5,
-          "on": 2.0,
-          "delta": -1.5,
-          "se": null
+          "off": 3.0,
+          "on": 1.75,
+          "delta": -1.25,
+          "se": 0.1806988920541285
         },
         "carries.shot": {
-          "off": 24.5,
-          "on": 27.0,
-          "delta": 2.5,
-          "se": null
+          "off": 25.5,
+          "on": 23.5,
+          "delta": -2.0,
+          "se": 3.2525800569743133
         },
         "carries.stopped_short": {
-          "off": 5.0,
-          "on": 3.0,
-          "delta": -2.0,
-          "se": null
+          "off": 4.5,
+          "on": 3.25,
+          "delta": -1.25,
+          "se": 0.5420966761623855
         },
         "carries.strip": {
           "off": 1.0,
           "on": 0.0,
           "delta": -1.0,
-          "se": null
+          "se": 0.0
         },
         "carries.tackle": {
-          "off": 5.0,
-          "on": 2.5,
-          "delta": -2.5,
-          "se": null
+          "off": 3.25,
+          "on": 2.75,
+          "delta": -0.5,
+          "se": 1.445591136433028
         },
         "carries.zone_violation": {
-          "off": 0.0,
-          "on": 1.0,
-          "delta": 1.0,
-          "se": null
+          "off": 0.25,
+          "on": 0.75,
+          "delta": 0.5,
+          "se": 0.361397784108257
         },
         "stretches.end.lost_control_or_expired": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.end.replaced": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_end": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_goal": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_start": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         }
       }
     },
     "boundary_guard": {
-      "n": 1,
+      "n": 2,
       "cases": [
         [
           0,
           1
+        ],
+        [
+          0,
+          2
         ]
       ],
       "metrics": {
         "median_team_score": {
           "off": 97.5,
-          "on": 110.0,
-          "delta": 12.5,
-          "se": null
+          "on": 108.0,
+          "delta": 10.5,
+          "se": 1.892617499919358
         },
         "possessions": {
-          "off": 144.0,
-          "on": 142.5,
-          "delta": -1.5,
-          "se": null
+          "off": 149.75,
+          "on": 148.75,
+          "delta": -1.0,
+          "se": 0.361397784108257
         },
         "attempt_share": {
-          "off": 0.3715277777777778,
-          "on": 0.3824561403508772,
-          "delta": 0.010928362573099426,
-          "se": null
+          "off": 0.37061769616026713,
+          "on": 0.36134453781512604,
+          "delta": -0.009273158345141086,
+          "se": 0.013998725054247324
         },
         "pass_completion": {
-          "off": 0.7847222222222222,
-          "on": 0.7810077519379846,
-          "delta": -0.0037144702842376587,
-          "se": null
+          "off": 0.7690941385435168,
+          "on": 0.7788990825688074,
+          "delta": 0.00980494402529053,
+          "se": 0.010128932717636221
         },
         "passes_attempted_per_team": {
-          "off": 288.0,
-          "on": 258.0,
-          "delta": -30.0,
-          "se": null
+          "off": 281.5,
+          "on": 272.5,
+          "delta": -9.0,
+          "se": 15.178706932546795
         },
         "interceptions_per_team": {
-          "off": 47.5,
-          "on": 49.0,
-          "delta": 1.5,
-          "se": null
+          "off": 51.25,
+          "on": 51.25,
+          "delta": 0.0,
+          "se": 1.084193352324771
         },
         "boundaries_per_team": {
-          "off": 28.5,
-          "on": 18.5,
-          "delta": -10.0,
-          "se": null
+          "off": 31.75,
+          "on": 20.5,
+          "delta": -11.25,
+          "se": 0.9034944602706426
         },
         "carry_goals_per_team": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 2.5,
-          "delta": 2.0,
-          "se": null
+          "delta": 2.25,
+          "se": 0.1806988920541285
         },
         "tackle_commits_per_team": {
-          "off": 354.0,
-          "on": 331.5,
-          "delta": -22.5,
-          "se": null
+          "off": 333.5,
+          "on": 354.0,
+          "delta": 20.5,
+          "se": 31.080209433310106
         },
         "tackle_wrong_target_share": {
-          "off": 0.3502824858757062,
-          "on": 0.3695324283559578,
-          "delta": 0.01924994248025158,
-          "se": null
+          "off": 0.37556221889055474,
+          "on": 0.3912429378531073,
+          "delta": 0.015680718962552576,
+          "se": 0.005000979577320541
         },
         "tackle_episode_success": {
-          "off": 0.1172316384180791,
-          "on": 0.10105580693815988,
-          "delta": -0.016175831479919217,
-          "se": null
+          "off": 0.10344827586206896,
+          "on": 0.1094632768361582,
+          "delta": 0.006015000974089232,
+          "se": 0.016338723442565217
         },
         "tackle_hold_success": {
-          "off": 0.24815724815724816,
-          "on": 0.2225201072386059,
-          "delta": -0.02563714091864225,
-          "se": null
+          "off": 0.23045822102425875,
+          "on": 0.23969072164948454,
+          "delta": 0.009232500625225792,
+          "se": 0.02615155837324608
         },
         "keeper_save_rate": {
-          "off": 0.08791208791208792,
-          "on": 0.14150943396226415,
-          "delta": 0.05359734605017623,
-          "se": null
+          "off": 0.12021857923497267,
+          "on": 0.12437810945273632,
+          "delta": 0.004159530217763649,
+          "se": 0.036343483388647756
         },
         "keeper_save_on_target_rate": {
-          "off": 0.125,
-          "on": 0.18518518518518517,
-          "delta": 0.060185185185185175,
-          "se": null
+          "off": 0.15942028985507245,
+          "on": 0.16129032258064516,
+          "delta": 0.0018700327255727067,
+          "se": 0.041264062502946695
         },
         "four_point_share": {
-          "off": 0.5948717948717949,
-          "on": 0.36363636363636365,
-          "delta": -0.23123543123543122,
-          "se": null
+          "off": 0.5354330708661418,
+          "on": 0.3853211009174312,
+          "delta": -0.15011196994871057,
+          "se": 0.05986152621866072
         },
         "median_absolute_margin": {
-          "off": 5,
-          "on": 38,
-          "delta": 33,
-          "se": null
+          "off": 22.5,
+          "on": 26.0,
+          "delta": 3.5,
+          "se": 21.322469262387166
         },
         "within_five": {
-          "off": 1.0,
+          "off": 0.5,
           "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "delta": -0.5,
+          "se": 0.361397784108257
         },
         "team_score_sd": {
-          "off": 3.5355339059327378,
-          "on": 26.870057685088806,
-          "delta": 23.33452377915607,
-          "se": null
+          "off": 16.660832312142553,
+          "on": 16.57307052620807,
+          "delta": -0.08776178593448236,
+          "se": 12.309659849673665
         },
         "ala_minus_garvian_margin": {
-          "off": 5,
-          "on": 38,
-          "delta": 33,
-          "se": null
+          "off": 22.5,
+          "on": 26,
+          "delta": 3.5,
+          "se": 21.322469262387166
         },
         "ala_margin_se": {
-          "off": null,
-          "on": null,
-          "delta": null,
-          "se": null
+          "off": 17.5,
+          "on": 11.999999999999998,
+          "delta": -5.500000000000002,
+          "se": 2.7484635347411484
         },
         "ala_win_share": {
           "off": 1.0,
           "on": 1.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "planned_changes_per_team": {
           "off": 40.0,
-          "on": 42.0,
-          "delta": 2.0,
-          "se": null
+          "on": 42.5,
+          "delta": 2.5,
+          "se": 0.361397784108257
         },
         "override_exits_per_team": {
-          "off": 3.5,
-          "on": 1.0,
-          "delta": -2.5,
-          "se": null
+          "off": 3.25,
+          "on": 1.5,
+          "delta": -1.75,
+          "se": 0.5420966761623855
         },
         "turnovers.fumble": {
-          "off": 8.0,
-          "on": 12.5,
-          "delta": 4.5,
-          "se": null
+          "off": 10.25,
+          "on": 13.75,
+          "delta": 3.5,
+          "se": 0.722795568216514
         },
         "turnovers.interception": {
-          "off": 47.5,
-          "on": 49.0,
-          "delta": 1.5,
-          "se": null
+          "off": 51.25,
+          "on": 51.25,
+          "delta": 0.0,
+          "se": 1.084193352324771
         },
         "turnovers.opponent_control": {
-          "off": 11.0,
-          "on": 10.0,
-          "delta": -1.0,
-          "se": null
+          "off": 10.75,
+          "on": 10.75,
+          "delta": 0.0,
+          "se": 0.722795568216514
         },
         "turnovers.out_of_bounds": {
-          "off": 28.5,
-          "on": 18.5,
-          "delta": -10.0,
-          "se": null
+          "off": 31.75,
+          "on": 20.5,
+          "delta": -11.25,
+          "se": 0.9034944602706426
         },
         "turnovers.play_clock": {
-          "off": 2.5,
-          "on": 2.5,
-          "delta": 0.0,
-          "se": null
+          "off": 2.25,
+          "on": 2.0,
+          "delta": -0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.score_restart": {
-          "off": 27.5,
-          "on": 33.5,
-          "delta": 6.0,
-          "se": null
+          "off": 27.25,
+          "on": 32.25,
+          "delta": 5.0,
+          "se": 0.722795568216514
         },
         "turnovers.strip": {
-          "off": 2.5,
-          "on": 1.0,
-          "delta": -1.5,
-          "se": null
+          "off": 1.5,
+          "on": 0.75,
+          "delta": -0.75,
+          "se": 0.5420966761623855
         },
         "turnovers.tackle": {
-          "off": 13.0,
-          "on": 9.0,
-          "delta": -4.0,
-          "se": null
+          "off": 11.0,
+          "on": 11.25,
+          "delta": 0.25,
+          "se": 3.071881164920185
         },
         "turnovers.toss_timeout": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "delta": -0.25,
+          "se": 0.1806988920541285
         },
         "turnovers.turnover": {
-          "off": 0.5,
-          "on": 0.5,
-          "delta": 0.0,
-          "se": null
+          "off": 0.25,
+          "on": 0.75,
+          "delta": 0.5,
+          "se": 0.361397784108257
         },
         "turnovers.zone_violation": {
-          "off": 0.5,
-          "on": 4.0,
-          "delta": 3.5,
-          "se": null
+          "off": 1.25,
+          "on": 3.5,
+          "delta": 2.25,
+          "se": 0.9034944602706426
         },
         "carries.freeze": {
           "off": 0.0,
-          "on": 0.5,
-          "delta": 0.5,
-          "se": null
+          "on": 0.25,
+          "delta": 0.25,
+          "se": 0.1806988920541285
         },
         "carries.goal": {
-          "off": 0.5,
+          "off": 0.25,
           "on": 2.5,
-          "delta": 2.0,
-          "se": null
+          "delta": 2.25,
+          "se": 0.1806988920541285
         },
         "carries.handoff": {
-          "off": 3.0,
-          "on": 2.0,
-          "delta": -1.0,
-          "se": null
+          "off": 2.75,
+          "on": 2.5,
+          "delta": -0.25,
+          "se": 0.5420966761623855
         },
         "carries.out_of_bounds": {
-          "off": 11.5,
-          "on": 4.0,
-          "delta": -7.5,
-          "se": null
+          "off": 14.5,
+          "on": 5.75,
+          "delta": -8.75,
+          "se": 0.9034944602706426
         },
         "carries.pass": {
-          "off": 3.5,
-          "on": 4.0,
-          "delta": 0.5,
-          "se": null
+          "off": 3.0,
+          "on": 3.75,
+          "delta": 0.75,
+          "se": 0.1806988920541285
         },
         "carries.shot": {
-          "off": 24.5,
-          "on": 36.5,
-          "delta": 12.0,
-          "se": null
+          "off": 25.5,
+          "on": 34.0,
+          "delta": 8.5,
+          "se": 2.5297844887577994
         },
         "carries.stopped_short": {
-          "off": 5.0,
-          "on": 2.0,
-          "delta": -3.0,
-          "se": null
+          "off": 4.5,
+          "on": 3.0,
+          "delta": -1.5,
+          "se": 1.084193352324771
         },
         "carries.strip": {
           "off": 1.0,
           "on": 0.5,
           "delta": -0.5,
-          "se": null
+          "se": 0.0
         },
         "carries.tackle": {
-          "off": 5.0,
-          "on": 2.0,
-          "delta": -3.0,
-          "se": null
+          "off": 3.25,
+          "on": 3.75,
+          "delta": 0.5,
+          "se": 2.5297844887577994
         },
         "carries.zone_violation": {
-          "off": 0.0,
-          "on": 2.5,
-          "delta": 2.5,
-          "se": null
+          "off": 0.25,
+          "on": 1.5,
+          "delta": 1.25,
+          "se": 0.9034944602706426
         },
         "stretches.end.lost_control_or_expired": {
           "off": 0.0,
-          "on": 0.5,
-          "delta": 0.5,
-          "se": null
+          "on": 0.75,
+          "delta": 0.75,
+          "se": 0.1806988920541285
         },
         "stretches.end.replaced": {
           "off": 0.0,
-          "on": 0.5,
-          "delta": 0.5,
-          "se": null
+          "on": 0.25,
+          "delta": 0.25,
+          "se": 0.1806988920541285
         },
         "stretches.stretch_end": {
           "off": 0.0,
           "on": 1.0,
           "delta": 1.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_goal": {
           "off": 0.0,
-          "on": 0.5,
-          "delta": 0.5,
-          "se": null
+          "on": 0.75,
+          "delta": 0.75,
+          "se": 0.1806988920541285
         },
         "stretches.stretch_start": {
           "off": 0.0,
           "on": 1.0,
           "delta": 1.0,
-          "se": null
+          "se": 0.0
         }
       }
     },
     "combined": {
-      "n": 1,
+      "n": 2,
       "cases": [
         [
           0,
           1
+        ],
+        [
+          0,
+          2
         ]
       ],
       "metrics": {
         "median_team_score": {
           "off": 97.5,
-          "on": 86.5,
-          "delta": -11.0,
-          "se": null
+          "on": 102.0,
+          "delta": 4.5,
+          "se": 16.57552526431026
         },
         "possessions": {
-          "off": 144.0,
-          "on": 143.5,
-          "delta": -0.5,
-          "se": null
+          "off": 149.75,
+          "on": 143.0,
+          "delta": -6.75,
+          "se": 4.517472301353213
         },
         "attempt_share": {
-          "off": 0.3715277777777778,
-          "on": 0.3240418118466899,
-          "delta": -0.04748596593108789,
-          "se": null
+          "off": 0.37061769616026713,
+          "on": 0.36713286713286714,
+          "delta": -0.003484829027399994,
+          "se": 0.031891403564510874
         },
         "pass_completion": {
-          "off": 0.7847222222222222,
-          "on": 0.7988394584139265,
-          "delta": 0.014117236191704241,
-          "se": null
+          "off": 0.7690941385435168,
+          "on": 0.8026565464895635,
+          "delta": 0.0335624079460467,
+          "se": 0.014277780464902719
         },
         "passes_attempted_per_team": {
-          "off": 288.0,
-          "on": 258.5,
-          "delta": -29.5,
-          "se": null
+          "off": 281.5,
+          "on": 263.5,
+          "delta": -18.0,
+          "se": 8.312149034489911
         },
         "interceptions_per_team": {
-          "off": 47.5,
-          "on": 44.5,
-          "delta": -3.0,
-          "se": null
+          "off": 51.25,
+          "on": 43.5,
+          "delta": -7.75,
+          "se": 3.4332789490284417
         },
         "boundaries_per_team": {
-          "off": 28.5,
-          "on": 24.0,
-          "delta": -4.5,
-          "se": null
+          "off": 31.75,
+          "on": 22.0,
+          "delta": -9.75,
+          "se": 3.794676733136699
         },
         "carry_goals_per_team": {
+          "off": 0.25,
+          "on": 0.5,
+          "delta": 0.25,
+          "se": 0.5420966761623855
+        },
+        "tackle_commits_per_team": {
+          "off": 333.5,
+          "on": 308.0,
+          "delta": -25.5,
+          "se": 12.28752465968074
+        },
+        "tackle_wrong_target_share": {
+          "off": 0.37556221889055474,
+          "on": 0.26542207792207795,
+          "delta": -0.1101401409684768,
+          "se": 0.017929263944018687
+        },
+        "tackle_episode_success": {
+          "off": 0.10344827586206896,
+          "on": 0.12987012987012986,
+          "delta": 0.026421854008060894,
+          "se": 0.015231482644236422
+        },
+        "tackle_hold_success": {
+          "off": 0.23045822102425875,
+          "on": 0.24538258575197888,
+          "delta": 0.01492436472772013,
+          "se": 0.017954418830514646
+        },
+        "keeper_save_rate": {
+          "off": 0.12021857923497267,
+          "on": 0.13524590163934427,
+          "delta": 0.015027322404371601,
+          "se": 0.036122015022492356
+        },
+        "keeper_save_on_target_rate": {
+          "off": 0.15942028985507245,
+          "on": 0.19298245614035087,
+          "delta": 0.033562166285278416,
+          "se": 0.048264823799962865
+        },
+        "four_point_share": {
+          "off": 0.5354330708661418,
+          "on": 0.3474178403755869,
+          "delta": -0.1880152304905549,
+          "se": 0.016972986358487693
+        },
+        "median_absolute_margin": {
+          "off": 22.5,
+          "on": 34.0,
+          "delta": 11.5,
+          "se": 6.14376232984037
+        },
+        "within_five": {
           "off": 0.5,
           "on": 0.0,
           "delta": -0.5,
-          "se": null
-        },
-        "tackle_commits_per_team": {
-          "off": 354.0,
-          "on": 311.5,
-          "delta": -42.5,
-          "se": null
-        },
-        "tackle_wrong_target_share": {
-          "off": 0.3502824858757062,
-          "on": 0.26324237560192615,
-          "delta": -0.08704011027378006,
-          "se": null
-        },
-        "tackle_episode_success": {
-          "off": 0.1172316384180791,
-          "on": 0.12359550561797752,
-          "delta": 0.006363867199898426,
-          "se": null
-        },
-        "tackle_hold_success": {
-          "off": 0.24815724815724816,
-          "on": 0.24040920716112532,
-          "delta": -0.007748040996122835,
-          "se": null
-        },
-        "keeper_save_rate": {
-          "off": 0.08791208791208792,
-          "on": 0.15384615384615385,
-          "delta": 0.06593406593406594,
-          "se": null
-        },
-        "keeper_save_on_target_rate": {
-          "off": 0.125,
-          "on": 0.23076923076923078,
-          "delta": 0.10576923076923078,
-          "se": null
-        },
-        "four_point_share": {
-          "off": 0.5948717948717949,
-          "on": 0.3930635838150289,
-          "delta": -0.20180821105676594,
-          "se": null
-        },
-        "median_absolute_margin": {
-          "off": 5,
-          "on": 25,
-          "delta": 20,
-          "se": null
-        },
-        "within_five": {
-          "off": 1.0,
-          "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "se": 0.361397784108257
         },
         "team_score_sd": {
-          "off": 3.5355339059327378,
-          "on": 17.67766952966369,
-          "delta": 14.142135623730951,
-          "se": null
+          "off": 16.660832312142553,
+          "on": 30.75169372029233,
+          "delta": 14.090861408149777,
+          "se": 5.253511854340746
         },
         "ala_minus_garvian_margin": {
-          "off": 5,
-          "on": -25,
-          "delta": -30,
-          "se": null
+          "off": 22.5,
+          "on": 9,
+          "delta": -13.5,
+          "se": 11.926126875572482
         },
         "ala_margin_se": {
-          "off": null,
-          "on": null,
-          "delta": null,
-          "se": null
+          "off": 17.5,
+          "on": 33.99999999999999,
+          "delta": 16.499999999999993,
+          "se": 8.245390604223438
         },
         "ala_win_share": {
           "off": 1.0,
-          "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "on": 0.5,
+          "delta": -0.5,
+          "se": 0.361397784108257
         },
         "planned_changes_per_team": {
           "off": 40.0,
-          "on": 42.0,
-          "delta": 2.0,
-          "se": null
+          "on": 42.25,
+          "delta": 2.25,
+          "se": 0.1806988920541285
         },
         "override_exits_per_team": {
-          "off": 3.5,
-          "on": 2.0,
-          "delta": -1.5,
-          "se": null
+          "off": 3.25,
+          "on": 2.75,
+          "delta": -0.5,
+          "se": 0.722795568216514
         },
         "turnovers.fumble": {
-          "off": 8.0,
-          "on": 16.5,
-          "delta": 8.5,
-          "se": null
+          "off": 10.25,
+          "on": 14.0,
+          "delta": 3.75,
+          "se": 3.4332789490284417
         },
         "turnovers.interception": {
-          "off": 47.5,
-          "on": 44.5,
-          "delta": -3.0,
-          "se": null
+          "off": 51.25,
+          "on": 43.5,
+          "delta": -7.75,
+          "se": 3.4332789490284417
         },
         "turnovers.opponent_control": {
-          "off": 11.0,
-          "on": 8.5,
-          "delta": -2.5,
-          "se": null
+          "off": 10.75,
+          "on": 11.0,
+          "delta": 0.25,
+          "se": 1.9876878125954136
         },
         "turnovers.out_of_bounds": {
-          "off": 28.5,
-          "on": 24.0,
-          "delta": -4.5,
-          "se": null
+          "off": 31.75,
+          "on": 22.0,
+          "delta": -9.75,
+          "se": 3.794676733136699
         },
         "turnovers.play_clock": {
-          "off": 2.5,
-          "on": 0.5,
-          "delta": -2.0,
-          "se": null
+          "off": 2.25,
+          "on": 1.5,
+          "delta": -0.75,
+          "se": 0.9034944602706426
         },
         "turnovers.score_restart": {
-          "off": 27.5,
-          "on": 26.0,
-          "delta": -1.5,
-          "se": null
+          "off": 27.25,
+          "on": 31.0,
+          "delta": 3.75,
+          "se": 3.794676733136699
         },
         "turnovers.strip": {
-          "off": 2.5,
-          "on": 0.5,
-          "delta": -2.0,
-          "se": null
+          "off": 1.5,
+          "on": 0.75,
+          "delta": -0.75,
+          "se": 0.9034944602706426
         },
         "turnovers.tackle": {
-          "off": 13.0,
-          "on": 15.0,
-          "delta": 2.0,
-          "se": null
+          "off": 11.0,
+          "on": 12.25,
+          "delta": 1.25,
+          "se": 0.5420966761623855
         },
         "turnovers.toss_timeout": {
-          "off": 0.5,
-          "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "off": 0.25,
+          "on": 0.25,
+          "delta": 0.0,
+          "se": 0.361397784108257
         },
         "turnovers.turnover": {
-          "off": 0.5,
-          "on": 0.5,
-          "delta": 0.0,
-          "se": null
+          "off": 0.25,
+          "on": 0.75,
+          "delta": 0.5,
+          "se": 0.361397784108257
         },
         "turnovers.zone_violation": {
-          "off": 0.5,
-          "on": 5.5,
-          "delta": 5.0,
-          "se": null
+          "off": 1.25,
+          "on": 4.0,
+          "delta": 2.75,
+          "se": 1.6262900284871566
         },
         "carries.freeze": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "carries.goal": {
-          "off": 0.5,
-          "on": 0.0,
-          "delta": -0.5,
-          "se": null
+          "off": 0.25,
+          "on": 0.5,
+          "delta": 0.25,
+          "se": 0.5420966761623855
         },
         "carries.handoff": {
-          "off": 3.0,
-          "on": 2.0,
-          "delta": -1.0,
-          "se": null
+          "off": 2.75,
+          "on": 2.75,
+          "delta": 0.0,
+          "se": 0.722795568216514
         },
         "carries.out_of_bounds": {
-          "off": 11.5,
-          "on": 2.0,
-          "delta": -9.5,
-          "se": null
+          "off": 14.5,
+          "on": 1.75,
+          "delta": -12.75,
+          "se": 2.3490855967036706
         },
         "carries.pass": {
-          "off": 3.5,
-          "on": 1.0,
-          "delta": -2.5,
-          "se": null
+          "off": 3.0,
+          "on": 1.75,
+          "delta": -1.25,
+          "se": 0.9034944602706426
         },
         "carries.shot": {
-          "off": 24.5,
-          "on": 36.0,
-          "delta": 11.5,
-          "se": null
+          "off": 25.5,
+          "on": 39.5,
+          "delta": 14.0,
+          "se": 1.8069889205412852
         },
         "carries.stopped_short": {
-          "off": 5.0,
-          "on": 2.5,
-          "delta": -2.5,
-          "se": null
+          "off": 4.5,
+          "on": 6.5,
+          "delta": 2.0,
+          "se": 3.2525800569743133
         },
         "carries.strip": {
           "off": 1.0,
-          "on": 0.0,
-          "delta": -1.0,
-          "se": null
+          "on": 0.75,
+          "delta": -0.25,
+          "se": 0.5420966761623855
         },
         "carries.tackle": {
-          "off": 5.0,
-          "on": 1.5,
-          "delta": -3.5,
-          "se": null
+          "off": 3.25,
+          "on": 3.75,
+          "delta": 0.5,
+          "se": 2.891182272866056
         },
         "carries.zone_violation": {
-          "off": 0.0,
+          "off": 0.25,
           "on": 1.0,
-          "delta": 1.0,
-          "se": null
+          "delta": 0.75,
+          "se": 0.1806988920541285
         },
         "stretches.end.lost_control_or_expired": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.end.replaced": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_end": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_goal": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         },
         "stretches.stretch_start": {
           "off": 0.0,
           "on": 0.0,
           "delta": 0.0,
-          "se": null
+          "se": 0.0
         }
       }
     }
   },
   "archive_clearance": {
-    "n": 42,
-    "measured": 42,
-    "flagged": 27,
+    "n": 81,
+    "measured": 81,
+    "flagged": 47,
     "expected": 1020,
     "complete": false
   },
   "boundary": {
     "carrier": {
-      "n": 8,
+      "n": 33,
       "mean_abs_yaw": null,
       "inside_aim": 0,
       "outside_aim": 0,
-      "mean_believed_boundary_m": 2.141961473229913,
-      "pressured": 5,
-      "pressure_sample": 8,
+      "mean_believed_boundary_m": 1.574325613066287,
+      "pressured": 18,
+      "pressure_sample": 33,
       "loose_origins": {},
       "projected_landings": 0
     },
     "deflection": {
-      "n": 5,
-      "mean_abs_yaw": 0.640113169047896,
-      "inside_aim": 5,
+      "n": 9,
+      "mean_abs_yaw": 0.7107218018951884,
+      "inside_aim": 9,
       "outside_aim": 0,
       "mean_believed_boundary_m": null,
       "pressured": 0,
       "pressure_sample": 0,
       "loose_origins": {},
-      "projected_landings": 1
+      "projected_landings": 2
     },
     "held_ball": {
-      "n": 31,
+      "n": 106,
       "mean_abs_yaw": null,
       "inside_aim": 0,
       "outside_aim": 0,
-      "mean_believed_boundary_m": 1.9201416590814468,
-      "pressured": 4,
-      "pressure_sample": 31,
+      "mean_believed_boundary_m": 1.8068527078222905,
+      "pressured": 15,
+      "pressure_sample": 106,
       "loose_origins": {},
       "projected_landings": 0
     },
     "loose_ball": {
-      "n": 2,
+      "n": 4,
       "mean_abs_yaw": null,
       "inside_aim": 0,
       "outside_aim": 0,
@@ -1585,44 +1605,45 @@
       "pressured": 0,
       "pressure_sample": 0,
       "loose_origins": {
-        "forced_release": 2
+        "forced_release": 4
       },
       "projected_landings": 0
     },
     "pass": {
-      "n": 5,
-      "mean_abs_yaw": 0.6073870364642008,
-      "inside_aim": 5,
+      "n": 19,
+      "mean_abs_yaw": 0.49581272088869294,
+      "inside_aim": 19,
       "outside_aim": 0,
       "mean_believed_boundary_m": null,
       "pressured": 0,
       "pressure_sample": 0,
       "loose_origins": {},
-      "projected_landings": 3
+      "projected_landings": 6
     },
     "shot": {
-      "n": 13,
-      "mean_abs_yaw": 0.7894715376344305,
-      "inside_aim": 13,
+      "n": 33,
+      "mean_abs_yaw": 0.9612093307729878,
+      "inside_aim": 33,
       "outside_aim": 0,
       "mean_believed_boundary_m": null,
       "pressured": 0,
       "pressure_sample": 0,
       "loose_origins": {},
-      "projected_landings": 3
+      "projected_landings": 4
     }
   },
   "keeper_reach": {
-    "on_target": 64,
-    "measured": 64,
-    "reachable": 16,
-    "saves_reachable": 6,
+    "on_target": 208,
+    "measured": 205,
+    "reachable": 46,
+    "saves_reachable": 24,
     "causes": {
-      "save": 6,
-      "touch_without_save": 2,
-      "no_commit": 8
+      "save": 24,
+      "touch_without_save": 5,
+      "no_commit": 15,
+      "late_commit": 2
     },
-    "projection_mismatches": 0,
-    "mean_flight_s": 0.35141301011677484
+    "projection_mismatches": 3,
+    "mean_flight_s": 0.3371572310593937
   }
 }

@@ -1,0 +1,46 @@
+{
+  "compatibility": {
+    "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550",
+    "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072",
+    "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+    "score": {
+      "A": 57,
+      "B": 76
+    },
+    "steps": 32528,
+    "status": "final",
+    "live_ms": 2400000,
+    "runtime_s": 0.0
+  },
+  "core": {
+    "config_digest": "e3eb027d0506db1297def02bb74924cb9c3878fa17226ffb6a47e56722976835",
+    "trace_hash": "c1a578db3f2754d3f69b47ba81a1f9d5b9336e1d87f496de2fa8dc3daee7a256",
+    "state_hash": "c517e00f864f1438705cdd1d9768d61523ee1aaac69746f57a2e9f1f4adf2745",
+    "score": {
+      "A": 61,
+      "B": 80
+    },
+    "steps": 32509,
+    "status": "final",
+    "live_ms": 2400000,
+    "runtime_s": 0.0
+  },
+  "R1": {
+    "score": {
+      "A": 85,
+      "B": 86
+    },
+    "trace_hash": "a399f74f81d891c8a0cd4014fc5d10bc5623ad835c448932a94cd50ffac7ac4b",
+    "state_hash": "bc4898a8229d147bd60defdc623db55fac13a3845fb5f29f812198b4bf5f61d4",
+    "config_digest": "3af62b414b132cad51d1547dd1abb6bc735fef5a147d41aafebc3475b414df5e"
+  },
+  "PLANNED": {
+    "score": {
+      "A": 64,
+      "B": 96
+    },
+    "trace_hash": "ab86f8befcf2baca264ab87fabdd39af3e218cb80032eab52b356a089319a08a",
+    "state_hash": "e8318c85ba3ae5205861d138f8d4f63e16202dd6d84f4ab8b5df02066e141047",
+    "config_digest": "117f5525293e5a2a24476697e32278ca4fec2cb761a8e8df299e57e2d19410bc"
+  }
+}
