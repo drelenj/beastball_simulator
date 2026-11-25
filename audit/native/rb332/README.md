@@ -55,7 +55,9 @@ before evaluating any lane. It does not contribute to paired effects.
   from local evidence rather than the public possession signal or the
   engine carrier ID. When evidence is missing, pursuit and marking stay
   available. The rulebook still adjudicates contact.
-- **Boundary audit.** Carrier exits use the boundary event's carrier.
+- **Boundary audit.** Record the live carrier before dispatch clears it.
+  Separate the carrier's body crossing from a still-held ball crossing
+  while his body stays in bounds.
   Untouched trajectories attributable to a pass or shot are grouped by
   release type, with intended receiver, aim, release yaw, observed exit
   and projected first ground point when available. A subsequent touch

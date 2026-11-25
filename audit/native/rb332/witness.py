@@ -6,6 +6,7 @@ from audit.native.rb331.witness import Witness
 from b1.emergence_intents import KeeperIntent, plan_keeper_motor
 from native import paired_policy as policy, cognition_rb3 as rb
 from native.port import body
+from native.geometry import body_out
 from native.prism_motion import reflex_gain
 from native.rulebook.ball_material import params, path
 
@@ -42,11 +43,11 @@ class TrialWitness(Witness):
         self.motion = {}
         self.admitted_view = {}
         self.keeper = {}
-        self.carrier_boundaries = {}
+        self.boundary_states = {}
         self.details = details
         engine = port.m.e
         state = port.m.s
-        release, emit, submit = engine.release, engine.emit, port.submit
+        release, boundary, submit = engine.release, engine.boundary, port.submit
 
         def observed_submit(intent):
             result = submit(intent)
@@ -80,23 +81,31 @@ class TrialWitness(Witness):
                         break
             return result
 
-        def observed_emit(event, rule, **data):
+        def observed_boundary(x=None, y=None, carrier=None):
             before = len(engine.log)
-            result = emit(event, rule, **data)
-            if details and event=='boundary' and data.get('carrier') and len(engine.log)>before:
-                pid = data['carrier']
-                view = self.views.get(pid)
+            ball = state.ball
+            held = carrier or ball.carrier
+            probe = dict(mode_before=ball.mode.value, last_releaser=ball.last_releaser)
+            if held:
+                athlete = state.players[held]
+                view = self.views.get(held)
+                intent = getattr(athlete,'native_intent',None)
+                probe.update(held_by=held,body_out=bool(carrier) or body_out(athlete),
+                             body_xy=(athlete.x,athlete.y),
+                             actual_velocity=(athlete.vx,athlete.vy),admitted_aim=intent.aim if intent else None)
                 if view:
-                    threats = policy.opponents(view,view.tracks)
-                    athlete = state.players[pid]
-                    intent = getattr(athlete,'native_intent',None)
-                    self.carrier_boundaries[before+1] = dict(
-                        believed_boundary_m=min(view.x,100-view.x,view.y,100-view.y),
-                        believed_pressure=rb.is_pressured(view,threats),
-                        actual_velocity=(athlete.vx,athlete.vy),admitted_aim=intent.aim if intent else None)
+                    probe.update(believed_boundary_m=min(view.x,100-view.x,view.y,100-view.y),
+                                 believed_pressure=rb.is_pressured(view,policy.opponents(view,view.tracks)))
+            result = boundary(x,y,carrier)
+            for row in engine.log[before:]:
+                if row['event']=='boundary':
+                    self.boundary_states[row['id']] = probe
+                    break
             return result
 
-        engine.release,engine.emit = observed_release,observed_emit
+        engine.release = observed_release
+        if details:
+            engine.boundary = observed_boundary
         port.submit = observed_submit
 
     def interception(self, flight, player):
@@ -131,14 +140,16 @@ class TrialWitness(Witness):
                 if event=='touch' or data.get('target')=='ball':
                     deflected = True
             elif event=='boundary':
-                kind = 'carrier' if data.get('carrier') else 'deflection' if deflected else (
+                probe = self.boundary_states.get(row['id'],{})
+                kind = ('carrier' if data.get('carrier') or probe.get('body_out') else
+                        'held_ball' if probe.get('held_by') else 'deflection' if deflected else (
                     'pass' if flight and flight['data'].get('kind','pass')=='pass' else
-                    'shot' if flight and flight['data'].get('kind')=='shot' else 'loose_ball')
+                    'shot' if flight and flight['data'].get('kind')=='shot' else 'loose_ball'))
                 record = dict(kind=kind, crossing=data['crossing'],t_ms=row['t_ms'],
                               player=data.get('carrier'),event_id=row['id'])
                 if kind=='loose_ball':
                     record['loose_from'] = loose_from or 'unclassified'
-                record.update(self.carrier_boundaries.get(row['id'],{}))
+                record.update(probe)
                 if flight and flight['id'] in self.release:
                     (origin,_,_,_,_,_),aim,_,_ = self.release[flight['id']]
                     record.update(intended=flight['data'].get('target'), aim=aim)
