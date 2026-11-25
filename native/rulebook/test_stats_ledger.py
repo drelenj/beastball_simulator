@@ -62,3 +62,13 @@ def test_minimum_stint_blocks_starter_return_and_fatigue_swap():
     e.award('A',42.,50.,'after_score',fresh=True,normalize=False)
     port.rotation.rotate()
     assert starter.active and not reserve.active
+
+
+def test_score_restart_increment_is_not_an_individual_error():
+    d = match_build(1, roster='control').create(record=False)
+    d.enable_stats()
+    ledger = d.stats_ledger
+    pid = next(p.id for p in d.port.m.s.players.values() if p.team=='A')
+    ledger.turnover('A',pid,'goal')
+    assert ledger.players[pid].counts['turnovers']==0
+    assert ledger.team_only['A'].breakdown['turnovers_by_type']['score_restart']==1

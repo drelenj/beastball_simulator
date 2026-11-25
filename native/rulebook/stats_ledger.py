@@ -175,10 +175,13 @@ class StatsLedger:
         blame_at = {}
         award_contexts = sorted(self.awards,key=lambda row:row[4])
         award_index = 0
+        closed = None
         for row in e.log:
             event,d = row['event'],row['data']
             pid = d.get('player')
-            if event in ('release','restart_release'):
+            if event=='restart_closed':
+                closed = (row['t_ms'],d['status'])
+            elif event in ('release','restart_release'):
                 if saving_keeper:
                     self.add(saving_keeper,'saves')
                     saving_keeper = None
@@ -241,7 +244,8 @@ class StatsLedger:
                     t,team,reason,carrier,_=context
                     if t<=row['t_ms'] and event=='restart_awarded' and d['reason']==reason:
                         actor=carrier or (lost[0] if lost else None) or holder or last_release
-                        self.turnover(team,actor,reason)
+                        turnover_reason = 'toss_timeout' if reason=='turnover' and closed==(t,'toss_timeout') else reason
+                        self.turnover(team,actor,turnover_reason)
                         award_index+=1
                         break
                     if t<row['t_ms']:
@@ -330,7 +334,7 @@ class StatsLedger:
                 'goal':'score_restart'}.get(reason,reason)
         if reason.startswith('ZR-') or reason in ('zone_residence','zone_unmarked'):
             kind='zone_violation'
-        credit=self.credit(team,actor)
+        credit=self.credit(team,None if reason=='goal' else actor)
         credit.counts['turnovers']+=1
         credit.breakdown['turnovers_by_type'][kind]+=1
 
