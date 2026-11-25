@@ -2,7 +2,7 @@
 
 1. **IMPLEMENTED.** RB-3.29 adds a read-only player ledger, five individual rotation profiles and the possession-swing analysis.
 2. The simulator can emit reconciled JSON and CSV box scores. The R1 seed-1 check reproduced 85–86 and both RB-3.28 hashes with observation on.
-3. The 150-game soak and the full identity and regression checks are in progress.
+3. The 150-game soak is in progress. All regression and identity gates passed.
 4. Completion depends on the remaining match evidence. No canon question is pending.
 5. Review the measured rotation rhythms and swing drivers before choosing a profile.
 
@@ -31,7 +31,7 @@
 
 | Task | Status |
 |---|---|
-| 1. Player stats ledger | DESIGN COMPLETE, IMPLEMENTED. Focused checks and first full R1 identity passed. |
+| 1. Player stats ledger | DESIGN COMPLETE, IMPLEMENTED, TESTED. Identity and timing gates passed. |
 | 2. Rotation rhythm options | DESIGN COMPLETE, IMPLEMENTED. Variant rate and minimum-stint scenarios passed. Soak underway. |
 | 3. Possession swing diagnosis | DESIGN COMPLETE, IMPLEMENTED. Aggregate script is ready for the full soak. |
 
@@ -40,3 +40,12 @@ The workload uses the ratings 0.4 workbook and the established on-field selectio
 ## Regression evidence
 
 The maintained suite reported `779 passed, 1 warning, 23 subtests passed in 641.04s (0:10:41)`. The warning was the pytest dependency deprecation. The six legacy rows matched exactly.
+
+The compatibility and CORE identity matches used the ledger. Both reproduced the exact scores, configuration, trace and state in the parent evidence. The two full observed R1 seed-1 games also reproduced the parent fingerprints, covering gates c through f.
+
+| Seed | Ledger off, CPU ms/step | Ledger on, CPU ms/step |
+|---:|---:|---:|
+| 1 | 4.143 | 4.167 |
+| 3 | 3.815 | 3.912 |
+
+In the two paired 1,500-step windows, the score and all fingerprints matched. Ledger cost was **+1.52%**, within the 3% gate. The timings include box-score reconciliation at the end of the window.
