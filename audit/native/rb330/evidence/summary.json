@@ -1,0 +1,76 @@
+{
+  "matches": 30,
+  "starter_minutes": {
+    "count": 600,
+    "mean": 31.85765525,
+    "minimum": 28.064083333333333,
+    "maximum": 34.46395
+  },
+  "bench_minutes": {
+    "count": 420,
+    "mean": 12.052971349206349,
+    "minimum": 0.0,
+    "maximum": 24.390316666666667
+  },
+  "extra_field_minutes": {
+    "count": 60,
+    "mean": 37.32075527777778,
+    "minimum": 29.62285,
+    "maximum": 40.0
+  },
+  "keeper_minutes": {
+    "count": 60,
+    "mean": 40.0,
+    "minimum": 40.0,
+    "maximum": 40.0
+  },
+  "archer_minutes": {
+    "count": 60,
+    "mean": 25.772766666666666,
+    "minimum": 3.893683333333333,
+    "maximum": 40.0
+  },
+  "changes": {
+    "planned_out": 1170,
+    "planned_return": 1172,
+    "energy_override": 156,
+    "override_return": 122
+  },
+  "changes_per_team": {
+    "planned_out": 19.5,
+    "planned_return": 19.533333333333335,
+    "energy_override": 2.6,
+    "override_return": 2.033333333333333
+  },
+  "override_exits_by_stamina": {
+    "0.67": 3,
+    "0.68": 13,
+    "0.69": 1,
+    "0.7": 20,
+    "0.71": 3,
+    "0.72": 20,
+    "0.74": 6,
+    "0.75": 12,
+    "0.76": 25,
+    "0.78": 8,
+    "0.79": 25,
+    "0.8": 1,
+    "0.84": 9,
+    "0.86": 3,
+    "0.87": 7
+  },
+  "median_team_score": 90.5,
+  "team_score_sd": 17.36338116985622,
+  "mean_possessions": 151.01666666666668,
+  "attempt_share": 0.34764374793069197,
+  "close_share": 0.1,
+  "median_absolute_margin": 18.0,
+  "throw4_points_share": 0.4535232383808096,
+  "cpu_s": 4916.70739657,
+  "ala_margin": {
+    "mean": 16.8,
+    "se": 6.9630772252248105,
+    "wins": 8,
+    "matches": 10
+  }
+}

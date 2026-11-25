@@ -1,0 +1,73 @@
+{
+  "samples": [
+    {
+      "seed": 1,
+      "variant": "R1",
+      "cpu_ms_per_step": 4.237742388666666,
+      "steps": 1500,
+      "trace_hash": "b8c19ffdc49d1ce89565cf91a9da4ae74b58ec3216afeb172cb5c07cc46d1886",
+      "state_hash": "f5fa16d2342aa05b6252b2edce89cc10a2ec99ca69346b781f2d48f49d82419e"
+    },
+    {
+      "seed": 1,
+      "variant": "PLANNED",
+      "cpu_ms_per_step": 4.171668226666666,
+      "steps": 1500,
+      "trace_hash": "ab37d9199e8275cec9bf8a74620381b8b48019dec36752629f10a452d3ee5d38",
+      "state_hash": "a23f22f392de23624cb7984c9908d4b8b3808b2ef93105a8920eaf8ad8470fa6"
+    },
+    {
+      "seed": 3,
+      "variant": "PLANNED",
+      "cpu_ms_per_step": 4.509862285333334,
+      "steps": 1500,
+      "trace_hash": "b2070f37bf64e404168fe4a7a85a6c1d08f388a2935f48da6457b44bb454b111",
+      "state_hash": "f9e092eb082042d45284aa8c99553396b32e34d27a08b5e26b493b22a3b2ae43"
+    },
+    {
+      "seed": 3,
+      "variant": "R1",
+      "cpu_ms_per_step": 4.087776972,
+      "steps": 1500,
+      "trace_hash": "6d5e11cf7664fd2243ef16a0eb09026bd210ef2c23671a40cf8d8c505eb3c333",
+      "state_hash": "150555918f19b8835e8bf54d46a3ec474ced71866d5efcf3fc6ceddaa989e885"
+    },
+    {
+      "seed": 3,
+      "variant": "R1",
+      "cpu_ms_per_step": 4.508049705333332,
+      "steps": 1500,
+      "trace_hash": "6d5e11cf7664fd2243ef16a0eb09026bd210ef2c23671a40cf8d8c505eb3c333",
+      "state_hash": "150555918f19b8835e8bf54d46a3ec474ced71866d5efcf3fc6ceddaa989e885"
+    },
+    {
+      "seed": 3,
+      "variant": "PLANNED",
+      "cpu_ms_per_step": 4.624626107333333,
+      "steps": 1500,
+      "trace_hash": "b2070f37bf64e404168fe4a7a85a6c1d08f388a2935f48da6457b44bb454b111",
+      "state_hash": "f9e092eb082042d45284aa8c99553396b32e34d27a08b5e26b493b22a3b2ae43"
+    },
+    {
+      "seed": 1,
+      "variant": "PLANNED",
+      "cpu_ms_per_step": 4.016589333333333,
+      "steps": 1500,
+      "trace_hash": "ab37d9199e8275cec9bf8a74620381b8b48019dec36752629f10a452d3ee5d38",
+      "state_hash": "a23f22f392de23624cb7984c9908d4b8b3808b2ef93105a8920eaf8ad8470fa6"
+    },
+    {
+      "seed": 1,
+      "variant": "R1",
+      "cpu_ms_per_step": 4.336890581333336,
+      "steps": 1500,
+      "trace_hash": "b8c19ffdc49d1ce89565cf91a9da4ae74b58ec3216afeb172cb5c07cc46d1886",
+      "state_hash": "f5fa16d2342aa05b6252b2edce89cc10a2ec99ca69346b781f2d48f49d82419e"
+    }
+  ],
+  "means": {
+    "R1": 4.292614911833334,
+    "PLANNED": 4.330686488166666
+  },
+  "overhead_pct": 0.8869087284858024
+}

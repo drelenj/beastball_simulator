@@ -1,0 +1,3 @@
+44 JSON and CSV player rows matched the pinned workbook by ID.
+{'Garvian Guardians': 22, 'Ala Apex': 22}
+No duplicate workbook player IDs. 712 rows.
