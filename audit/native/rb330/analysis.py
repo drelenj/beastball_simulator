@@ -57,6 +57,8 @@ def summarize(root):
     possessions = total('possessions')
 
     def span(minutes):
+        if not minutes:
+            return dict(count=0, mean=None, minimum=None, maximum=None)
         return dict(count=len(minutes), mean=mean(minutes), minimum=min(minutes), maximum=max(minutes))
     summary = dict(matches=count, starter_minutes=span(starter_minutes), bench_minutes=span(bench_minutes),
                    extra_field_minutes=span(extra_minutes), keeper_minutes=span(keepers), archer_minutes=span(archers),
