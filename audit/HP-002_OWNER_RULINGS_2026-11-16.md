@@ -180,3 +180,6 @@ Owner: "You can throw in some magikal material science to make things realistic.
 ## 25 Nov 2026
 - Owner: build in-match fatigue and rotation only (wear and tear, injuries, season layer deferred).
 - Owner ruling: a substitute is chosen by the outgoing player's legacy position first, then his position group (Attackers PDR/STR/SCT; Rangers PFD/HNT/TRK/SEN; Defenders TRP/GRD), then best Overall (OVR 0.422). Legacy positions are used for this roster choice only; no athlete behaviour reads them.
+- Owner ruling: a tackle attempt counts only an engagement with the ball carrier with intent to take him down.
+- Owner: box scores show player names (joined from the roster).
+- Owner ruling: rotation = planned minutes (coach plan), with the 0.6 / 0.75 energy thresholds as the backup override. Default plan to be proposed by the lead.
