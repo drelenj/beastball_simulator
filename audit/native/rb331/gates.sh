@@ -17,3 +17,4 @@ done
     --no-diagnosis --out "$out/R1-replay.json.gz"
 "$pyrun" -m audit.native.rb331.benchmark run --workbook "$book" --out "$out/benchmark.json"
 "$pyrun" -m audit.native.rb331.match --workbook "$book" --seed 1 --out "$out/PLANNED-replay.json.gz"
+"$pyrun" -m audit.native.rb331.box_compare --workbook "$book" --out "$out/box-before-after.json"
