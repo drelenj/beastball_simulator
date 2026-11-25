@@ -184,3 +184,6 @@ Owner: "You can throw in some magikal material science to make things realistic.
 - Owner: box scores show player names (joined from the roster).
 - Owner ruling: rotation = planned minutes (coach plan), with the 0.6 / 0.75 energy thresholds as the backup override. Default plan to be proposed by the lead.
 - CANON (owner, 25 Nov): 11 field players per team on the field, plus 1 Keeper (and the Archer on his platform). Matches the Native engine since RB-1 (15 Nov); field_roster_limit 12 = Keeper + 11 field. Planned rotation must cover all 11 field starters.
+- CANON (owner, 25 Nov): possessions should be genuine, explosive drives (multi-scrimmage), not one-play bursts. Possession range moves from 100-150 to about 80-110 per team (lead's proposed band; to confirm by feel after measurement). Median team score range 75-90 unchanged.
+- Owner: the third reviewer's per-game numbers are REFERENCES, not targets (22-26 scores, 20-30 saves, 22-32 turnovers, 3-5 carry goals, 3-5 four-point throws per team). Scoring mix still emerges.
+- Owner: the carry may need a point-value change so it feels like the sport's touchdown (open; candidates to test after the clock and Keeper fixes).
