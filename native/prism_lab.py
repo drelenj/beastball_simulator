@@ -33,9 +33,10 @@ TEAMS = ('Garvian Guardians', 'Ala Apex')
 def neutral_rosters(real):
     rosters = load_canon_nbl(TEAMS) if real else R.rb3_control_rosters()
     keys = set(R.RATINGS) | set(R.OPTIONAL_RATINGS)
-    return {team: R.load_rows(
+    return {team: replace(R.load_rows(
         [dict(a.values) | dict.fromkeys(keys, .7) | {'id': a.source_id, 'role': a.role}
-         for a in roster.athletes], team) for team, roster in rosters.items()}
+         for a in roster.athletes], team), display_team=roster.display_team,
+        display_players=roster.display_players) for team, roster in rosters.items()}
 
 
 def match_case(seed, mode, roster, max_steps=None):
