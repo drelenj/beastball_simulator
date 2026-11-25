@@ -1,0 +1,13 @@
+R1: 30 completed cases, 4693.11 CPU seconds
+R2: 30 completed cases, 4619.34 CPU seconds
+R3: 30 completed cases, 4587.85 CPU seconds
+R2M: 30 completed cases, 4667.21 CPU seconds
+R3M: 30 completed cases, 4551.76 CPU seconds
+150 exact team reconciliations and 20 inherited full-match identity cases.
+R2 R2M 17 of 30 paired scores changed.
+R3 R3M 7 of 30 paired scores changed.
+R3M full fresh-process replay matches configuration, trace, state and the complete ledger record.
+score {'A': 48, 'B': 97}
+config_digest f4ed515117cff93db936b40892814e9f503c45b17dc1f3bc889b89d76a54b483
+trace_hash dc3a4a2482bf3ff114e4477016113ba95391ea2788cc1c7d427ac494cc9537fc
+state_hash 361cedff1c283719c1634e8e04f0addfdd805fdc234b167dde7a4697ae7fc942
