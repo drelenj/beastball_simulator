@@ -82,6 +82,7 @@ class RulebookConfigV3(RulebookConfig):
 
     individuation: str = 'off'
     fatigue_rotation: bool = False
+    rotation_rhythm: str = "R1"
     drill_values_path: str | None = None
     drill_values_sha256: str | None = None
 
@@ -94,10 +95,12 @@ class RulebookConfigV3(RulebookConfig):
     def record(self):
         record = super().record()
         record.pop('drill_values_path')
+        if self.rotation_rhythm == 'R1':
+            record.pop('rotation_rhythm')
         if self.fatigue_rotation:
             from .fatigue_rotation import parameters
 
-            record['fatigue_rotation_parameters'] = parameters()
+            record['fatigue_rotation_parameters'] = parameters(self.rotation_rhythm)
         else:
             record.pop('fatigue_rotation')
         if self.drill_values_sha256 is None:
@@ -125,6 +128,10 @@ class RulebookConfigV3(RulebookConfig):
         return record
 
     def __post_init__(self):
+        from .fatigue_rotation import RHYTHMS
+
+        if self.rotation_rhythm not in RHYTHMS or self.rotation_rhythm != 'R1' and not self.fatigue_rotation:
+            raise ValueError('a rotation rhythm requires the fatigue switch')
         if not isinstance(self.fatigue_rotation, bool):
             raise ValueError('fatigue_rotation must be a boolean')
         if (self.drill_values_path is None) != (self.drill_values_sha256 is None):

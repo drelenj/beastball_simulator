@@ -18,6 +18,8 @@ def main():
     parser.add_argument('--workbook', type=Path)
     parser.add_argument('--drill-values', type=Path)
     parser.add_argument('--fatigue-rotation', action='store_true')
+    parser.add_argument('--rotation-rhythm', choices=('R1','R2','R3','R2M','R3M'), default='R1')
+    parser.add_argument('--box-score', type=Path, help='write the optional box score at this file prefix')
     parser.add_argument('--technical', choices=('ovr', 'neutral', 'explicit'), default='ovr')
     parser.add_argument('--physical', choices=('roster', 'neutral'), default='roster')
     parser.add_argument('--home', default='Garvian Guardians')
@@ -34,12 +36,19 @@ def main():
         rosters = load_canon_nbl(teams, **source)
     cfg = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A', 'B')),
                           rb322_technical_source=args.technical, rb322_physical_source=args.physical,
-                          fatigue_rotation=args.fatigue_rotation,
+                          fatigue_rotation=args.fatigue_rotation, rotation_rhythm=args.rotation_rhythm,
                           individuation='off' if args.compatibility else VERSION if args.rb324 else 'individuation/2')
     if args.drill_values:
         cfg = cfg.with_drill_values(args.drill_values)
     result, _ = run_match(args.seed, cfg, max_steps=args.max_steps, rosters=rosters,
-                          port_factory=RulebookPort)
+                          port_factory=RulebookPort, stats=args.box_score is not None)
+    if args.box_score is not None:
+        from .stats_ledger import write_csv
+
+        box = result.pop('box_score')
+        args.box_score.with_suffix('.json').write_text(json.dumps(box, indent=2, ensure_ascii=False)+'\n')
+        with args.box_score.with_suffix('.csv').open('w', newline='') as stream:
+            write_csv(box, stream)
     args.out.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
 
 

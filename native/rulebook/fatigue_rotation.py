@@ -17,6 +17,14 @@ OUTPUT_UPDATE_MS = 500
 REST_THRESHOLD = .60
 RETURN_THRESHOLD = .75
 KEEPER_REGULATION_MIN_MS = 36 * 60_000
+RHYTHMS = {'R1': (1., 0), 'R2': (.5, 0), 'R3': (.33, 0),
+           'R2M': (.5, 2), 'R3M': (.33, 2)}
+
+
+def possession_start(event):
+    return (event['event'] == 'passive_possession'
+            or event['event'] == 'restart_awarded' and event['pp_changed'])
+
 
 POSITION_GROUPS = (
     frozenset(('PDR', 'STR', 'SCT')),
@@ -28,26 +36,30 @@ PHYSICAL = ('braking', 'turning', 'strength', 'jump_height', 'agility')
 TECHNIQUE = ('tackling', 'blocking', 'ball_handling', 'passing', 'catching', 'archery_accuracy')
 
 
-def parameters():
-    return dict(field_recovery=FIELD_RECOVERY, sprint_drain=SPRINT_DRAIN,
-                bench_recovery=BENCH_RECOVERY, neutral_effort=NEUTRAL_EFFORT,
+def parameters(rhythm="R1"):
+    scale, minimum = RHYTHMS[rhythm]
+    result = dict(field_recovery=FIELD_RECOVERY, sprint_drain=SPRINT_DRAIN * scale,
+                bench_recovery=BENCH_RECOVERY * scale, neutral_effort=NEUTRAL_EFFORT,
                 effort_exponent=EFFORT_EXPONENT, stamina_sensitivity=STAMINA_SENSITIVITY,
                 stamina_rate_range=STAMINA_RATE_RANGE, physical_loss=PHYSICAL_LOSS,
                 technique_loss=TECHNIQUE_LOSS, output_update_ms=OUTPUT_UPDATE_MS,
                 rest_threshold=REST_THRESHOLD, return_threshold=RETURN_THRESHOLD,
                 keeper_regulation_min_ms=KEEPER_REGULATION_MIN_MS)
+    if rhythm != 'R1':
+        result['min_complete_possessions'] = minimum
+    return result
 
 
-def reserve_after(reserve, stamina, effort, seconds, *, bench=False):
+def reserve_after(reserve, stamina, effort, seconds, *, bench=False, rate_scale=1.):
     if bench:
-        rate = BENCH_RECOVERY
+        rate = BENCH_RECOVERY * rate_scale
     else:
         # Preserve the exact standing and sprint endpoints. The midpoint is
         # neutral at average Stamina and shifts modestly for other athletes.
         effort -= STAMINA_SENSITIVITY * (stamina - .70) * (4 * effort * (1 - effort))
         relative = (effort - NEUTRAL_EFFORT) / NEUTRAL_EFFORT
         factor = 1 + STAMINA_RATE_RANGE * (stamina - .70)
-        rate = -relative * (FIELD_RECOVERY * factor if relative <= 0 else SPRINT_DRAIN / factor)
+        rate = -relative * (FIELD_RECOVERY * factor if relative <= 0 else SPRINT_DRAIN * rate_scale / factor)
     return min(1., max(0., reserve + rate * seconds))
 
 
@@ -86,6 +98,12 @@ class FatigueRotation:
         self.next_output_ms = 0
         self.last_restart = None
         self.due = set()
+        self.rate_scale, self.min_stint = RHYTHMS[port.config.rotation_rhythm]
+        self.stint_mark = {}
+        self.possessions = 0
+        self.ledger_offset = 0
+        self.history_offset = 0
+        self.possession_start_ms = None
 
     @staticmethod
     def execution_rating(player, name):
@@ -117,7 +135,7 @@ class FatigueRotation:
             previous = p.fatigue
             if p.id not in active:
                 if previous < 1:
-                    p.fatigue = reserve_after(previous, 0., 0., elapsed, bench=True)
+                    p.fatigue = reserve_after(previous, 0., 0., elapsed, bench=True, rate_scale=self.rate_scale)
             else:
                 self.played_ms[p.id] += live_delta
                 self.regulation_ms[p.id] += regulation_delta
@@ -131,7 +149,7 @@ class FatigueRotation:
                     effort = min(1., (work ** .5 / top) ** EFFORT_EXPONENT)
                 else:
                     effort = 0.
-                p.fatigue = reserve_after(previous, p.a.endurance, effort, live_seconds)
+                p.fatigue = reserve_after(previous, p.a.endurance, effort, live_seconds, rate_scale=self.rate_scale)
                 if live_delta and p.role == 'field' and p.fatigue <= REST_THRESHOLD:
                     self.due.add(p.id)
                 if elapsed > live_seconds:
@@ -143,6 +161,23 @@ class FatigueRotation:
         return select_substitute(outgoing, (p for p in candidates if p.fatigue >= RETURN_THRESHOLD),
                                  self.roster)
 
+    def update_possessions(self):
+        engine = self.port.m.e
+        if self.history_offset != len(engine.possession_history):
+            self.possessions += sum(possession_start(row)
+                                    for row in engine.possession_history[self.history_offset + self.ledger_offset:])
+            self.history_offset = len(engine.possession_history)
+            self.ledger_offset = 0
+        ledger = engine.possession.ledger
+        for row in ledger[self.ledger_offset:]:
+            if possession_start(row):
+                self.possessions += 1
+                self.possession_start_ms = row['t_ms']
+        self.ledger_offset = len(ledger)
+
+    def can_rest(self, athlete):
+        return self.possessions >= self.stint_mark.get(athlete.id, 0)
+
     def rotate(self):
         engine = self.port.m.e
         s = engine.s
@@ -151,17 +186,20 @@ class FatigueRotation:
                 or restart.native_id == self.last_restart or restart.rs.get('formation')):
             return
         self.last_restart = restart.native_id
+        if self.min_stint:
+            self.update_possessions()
         active = {(p.team, p.slot): p for p in s.players.values() if p.active}
         for slot, starter in self.starters.items():
             outgoing = active.get(slot)
             incoming = s.players[starter]
             if (outgoing is not None and outgoing.role == 'field' and incoming.role == 'field'
-                    and not incoming.active and incoming.fatigue >= RETURN_THRESHOLD):
+                    and not incoming.active and incoming.fatigue >= RETURN_THRESHOLD
+                    and self.can_rest(outgoing)):
                 if self.swap(outgoing, incoming, 'starter_return', 'starter_slot'):
                     active[slot] = incoming
 
         for slot, outgoing in active.items():
-            if outgoing.fatigue > REST_THRESHOLD and outgoing.id not in self.due:
+            if not self.can_rest(outgoing) or (outgoing.fatigue > REST_THRESHOLD and outgoing.id not in self.due):
                 continue
             if outgoing.role == 'keeper':
                 if (self.starters.get(slot) != outgoing.id
@@ -184,6 +222,15 @@ class FatigueRotation:
         e = self.port.m.e
         self.due.discard(outgoing.id)
         self.due.discard(incoming.id)
+        if self.min_stint:
+            self.update_possessions()
+            self.stint_mark.pop(outgoing.id, None)
+            # Exclude the in-progress possession unless admission is in its
+            # opening dead-ball window, before the ball is put back in play.
+            restart = e.s.restart
+            first = (restart is not None and self.possession_start_ms is not None
+                     and self.possession_start_ms >= restart.created_at)
+            self.stint_mark[incoming.id] = self.possessions + self.min_stint + (not first)
         event = 'rotation_substitution' if reason == 'required_cover' else 'fatigue_substitution'
         e.emit(event, 'RB-3.28', team=outgoing.team, role=outgoing.role,
                outgoing=outgoing.id, incoming=incoming.id, slot=incoming.slot,

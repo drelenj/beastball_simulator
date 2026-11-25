@@ -23,12 +23,29 @@ def reaction_deadline(now, previous, interval):
 class MatchDriver:
     """Resumable Native clock, with an optional caller-supplied decision observer."""
 
-    def __init__(self, port):
+    def __init__(self, port, *, stats=False):
         self.port = port
         self.next_dec = {}
         self.reaction_due = {}
         self.next_sense = self.steps = 0
         self.last_progress = self.last_live_ms = self.last_live_at = 0
+        if stats:
+            self.enable_stats()
+
+    def enable_stats(self):
+        from .rulebook.stats_ledger import StatsLedger
+
+        if self.steps or hasattr(self, 'stats_ledger') or not hasattr(self.port.m.e, 'rb_carry_attempt'):
+            raise ValueError('the box score requires a fresh Rulebook driver')
+        self.stats_ledger = ledger = StatsLedger(self.port)
+        step = self.port.step
+
+        def observed_step():
+            ledger.before()
+            step()
+            ledger.sample()
+
+        self.port.step = observed_step
 
     @property
     def final(self):
@@ -168,19 +185,25 @@ class MatchDriver:
             state['rotation_due'] = sorted(rotation.due)
             state['rotation_restart'] = rotation.last_restart
             state['rotation_update_ms'] = rotation.next_output_ms
+            if rotation.min_stint:
+                state['rotation_stint_marks'] = rotation.stint_mark
+                state['rotation_possessions'] = rotation.possessions
             result['state_hash'] = digest(state)
         if port.individuation:
             result['prism_agents'] = dict(port.prism_agents)
             result['prism_sources'] = port.prism_sources
             result['prism_commits'] = port.prism_commits
+        ledger = getattr(self, 'stats_ledger', None)
+        if ledger is not None:
+            result['box_score'] = ledger.build(result)
         return result
 
 
-def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None,rosters=None):
+def run_match(seed=1,config=None,policies=None,plumbing=True,max_steps=None,progress=None,port_factory=None,rosters=None,*,stats=False):
     started = time.perf_counter()
     factory = port_factory or NativePort
     port = factory(seed,config,policies,plumbing,rosters=rosters) if rosters is not None else factory(seed,config,policies,plumbing)
-    driver = MatchDriver(port)
+    driver = MatchDriver(port,stats=stats)
     driver.play(max_steps, progress)
     return driver.result(time.perf_counter()-started), port
 
