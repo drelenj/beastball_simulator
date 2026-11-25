@@ -20,7 +20,7 @@ def test_sprint_standing_and_bench_curves():
     for stamina in stamina_levels:
         sprint_threshold = .4 / (1 - reserve_after(1., stamina, 1., 1.))
         assert reserve_after(1., stamina, 1., sprint_threshold) == pytest.approx(.60)
-        assert reserve_after(.6, stamina, 0., 75., bench=True) == pytest.approx(.75)
+        assert reserve_after(.6, stamina, 0., 93.75, bench=True) == pytest.approx(.75)
         assert .60 < reserve_after(.6, stamina, 0., 50.) < .75
     assert reserve_after(.8, .70, .50, 50.) == .8
     assert reserve_after(.8, .85, .50, 50.) > .8

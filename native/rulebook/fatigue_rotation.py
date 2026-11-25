@@ -5,10 +5,10 @@ from native.roster import throw_error_base_deg
 
 # Behavioural calibration defaults. Rates are reserve units per simulated second.
 FIELD_RECOVERY = .00035
-SPRINT_DRAIN = .004
-BENCH_RECOVERY = .002
+SPRINT_DRAIN = .0054
+BENCH_RECOVERY = .0016
 NEUTRAL_EFFORT = .50
-EFFORT_EXPONENT = .40
+EFFORT_EXPONENT = .30
 STAMINA_SENSITIVITY = .30
 STAMINA_RATE_RANGE = .65
 PHYSICAL_LOSS = .40
@@ -26,6 +26,16 @@ POSITION_GROUPS = (
 GROUP = {position: index for index, members in enumerate(POSITION_GROUPS) for position in members}
 PHYSICAL = ('braking', 'turning', 'strength', 'jump_height', 'agility')
 TECHNIQUE = ('tackling', 'blocking', 'ball_handling', 'passing', 'catching', 'archery_accuracy')
+
+
+def parameters():
+    return dict(field_recovery=FIELD_RECOVERY, sprint_drain=SPRINT_DRAIN,
+                bench_recovery=BENCH_RECOVERY, neutral_effort=NEUTRAL_EFFORT,
+                effort_exponent=EFFORT_EXPONENT, stamina_sensitivity=STAMINA_SENSITIVITY,
+                stamina_rate_range=STAMINA_RATE_RANGE, physical_loss=PHYSICAL_LOSS,
+                technique_loss=TECHNIQUE_LOSS, output_update_ms=OUTPUT_UPDATE_MS,
+                rest_threshold=REST_THRESHOLD, return_threshold=RETURN_THRESHOLD,
+                keeper_regulation_min_ms=KEEPER_REGULATION_MIN_MS)
 
 
 def reserve_after(reserve, stamina, effort, seconds, *, bench=False):

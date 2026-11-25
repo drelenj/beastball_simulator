@@ -94,7 +94,11 @@ class RulebookConfigV3(RulebookConfig):
     def record(self):
         record = super().record()
         record.pop('drill_values_path')
-        if not self.fatigue_rotation:
+        if self.fatigue_rotation:
+            from .fatigue_rotation import parameters
+
+            record['fatigue_rotation_parameters'] = parameters()
+        else:
             record.pop('fatigue_rotation')
         if self.drill_values_sha256 is None:
             record.pop('drill_values_sha256')
@@ -121,6 +125,8 @@ class RulebookConfigV3(RulebookConfig):
         return record
 
     def __post_init__(self):
+        if not isinstance(self.fatigue_rotation, bool):
+            raise ValueError('fatigue_rotation must be a boolean')
         if (self.drill_values_path is None) != (self.drill_values_sha256 is None):
             raise ValueError('DRILL path and fingerprint must be provided together')
         if self.drill_values_path is not None and self.individuation != 'individuation/2':
