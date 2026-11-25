@@ -99,6 +99,14 @@ The paired 1,500-step windows passed gate f. Fatigue on was -6.34% in net CPU ti
 
 The final maintained suite reported `772 passed, 1 warning, 23 subtests passed in 632.94s (0:10:32)`. The warning was a pytest dependency deprecation. All six legacy trace, state and config rows matched. All twenty fatigue-off regulation runs also reproduced the RB-3.27 scores and configuration, trace and state hashes exactly.
 
+Gates d and e reproduced 57–76 and 61–80 with the exact trace and state hashes above. The fresh-process fatigue-on repeat reproduced Garvian–Ala seed 1 **85–86** in **32,761 steps**, including configuration, trace and state.
+
+- Config `3af62b414b132cad51d1547dd1abb6bc735fef5a147d41aafebc3475b414df5e`
+- Trace `a399f74f81d891c8a0cd4014fc5d10bc5623ad835c448932a94cd50ffac7ac4b`
+- State `bc4898a8229d147bd60defdc623db55fac13a3845fb5f29f812198b4bf5f61d4`
+
+The independent checker verified the 40 soak results, all fatigue-on admission thresholds in the substitution records, the two identity runs and the full fatigue-on repeat. The forced Keeper case verifies the 36-minute threshold before a substitution is admitted.
+
 ## Ratings 0.4 paired soak
 
 Garvian Guardians (A) and Ala Apex (B) played seeds 1–10. The other five RB-3.27 pairings played seeds 1 and 2. The same inputs and hand-set values were used in both modes. All 40 games finished with every restart resolved. No competition rule or hand-set decision value was tuned.

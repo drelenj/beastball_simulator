@@ -26,3 +26,10 @@ python audit/native/rb327/match.py --seed 1 --out "$work/core.json"
 ```
 
 The matched windows use `audit/native/rb328/match.py --benchmark --steps 1500` on the explicit ratings 0.4 roster. Use sequential runs and reverse the order across seed pairs. A fresh process with the same input reproduces the full match hashes. Minute summaries assign time to the admitted lineup and use regulation clock time. Raw records also include total playing time with overtime.
+
+The final evidence checker also compares the fatigue-off results with the RB-3.27 committed evidence. Preserve the result filenames used by the scripts.
+
+```bash
+python audit/native/rb328/match.py --workbook "$work/ratings-0.4.xlsx"     --on --seed 1 --out "$work/replay-1.json"
+python audit/native/rb328/verify.py "$work"
+```
