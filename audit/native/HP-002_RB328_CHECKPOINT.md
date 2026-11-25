@@ -97,7 +97,7 @@ The paired 1,500-step windows passed gate f. Fatigue on was -6.34% in net CPU ti
 
 ## Full suite and match guards
 
-The final maintained suite reported `772 passed, 1 warning, 23 subtests passed in 632.94s (0:10:32)`. The warning was a pytest dependency deprecation. All six legacy trace, state and config rows matched. All twenty fatigue-off regulation runs also reproduced the RB-3.27 scores and configuration, trace and state hashes exactly.
+The final maintained suite reported `772 passed, 1 warning, 23 subtests passed in 626.58s (0:10:26)`. The warning was a pytest dependency deprecation. All six legacy trace, state and config rows matched. All twenty fatigue-off regulation runs also reproduced the RB-3.27 scores and configuration, trace and state hashes exactly.
 
 Gates d and e reproduced 57–76 and 61–80 with the exact trace and state hashes above. The fresh-process fatigue-on repeat reproduced Garvian–Ala seed 1 **85–86** in **32,761 steps**, including configuration, trace and state.
 
@@ -105,7 +105,7 @@ Gates d and e reproduced 57–76 and 61–80 with the exact trace and state hash
 - Trace `a399f74f81d891c8a0cd4014fc5d10bc5623ad835c448932a94cd50ffac7ac4b`
 - State `bc4898a8229d147bd60defdc623db55fac13a3845fb5f29f812198b4bf5f61d4`
 
-The independent checker verified the 40 soak results, all fatigue-on admission thresholds in the substitution records, the two identity runs and the full fatigue-on repeat. The forced Keeper case verifies the 36-minute threshold before a substitution is admitted.
+The independent checker verified the 40 soak results, the logged minimum incoming reserve, Archer prohibition and Keeper playing-time floor, the two identity runs and the full fatigue-on repeat. The forced Keeper case verifies the 36-minute threshold before a substitution is admitted.
 
 ## Ratings 0.4 paired soak
 
@@ -139,7 +139,7 @@ The Keeper fatigue rule was verified in the forced dead-ball scenario. No Keeper
 | Starter returns to original slot | 2,637 | 65.93 |
 | Total | 5,421 | 135.53 |
 
-The engine also recorded 94 required substitutions in the off block and 83 in the on block. The existing admission rules handle those. Match setup admissions are excluded from the substitution counts.
+The existing admission rules produced 94 required substitutions in the off block (91 Archer and three field) and 83 in the on block (81 Archer and two field). Match setup admissions are excluded from the substitution counts.
 
 The twenty fatigue-off games took 3,060.3 process CPU seconds.
 
