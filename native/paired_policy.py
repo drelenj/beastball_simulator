@@ -145,3 +145,36 @@ def shot_points(view, plan):
 
 def continuation_points(utility):
     return 1.55 / (1+exp(-max(-20.,min(20.,(utility-3.)/2.))))
+
+
+def boundary_aim(view, aim):
+    """Steer a held ball away from an edge before the body reaches it.
+
+    Retain the carrier's lateral route. A finish near the attacked end is
+    exempt only when the observed body motion and aimed route meet the
+    whole-ball mouth. Braking distance is based on own motion and ability.
+    """
+    if view.body is None:
+        return aim
+    x,y = aim
+    body = view.body
+    brake = max(.1,body.braking)
+    sx = view.attack_sign
+    goal_x = 100.-view.own_goal_x
+    forward = max(0.,body.vx*sx)
+    ball_r = .1075
+    held_offset = .35+.35*body.reach
+    hand = .62*body.height
+    depth = abs(goal_x-view.x)
+    time_to_edge = max(0.,depth-held_offset+ball_r)/max(.5,forward)
+    crossings = (view.y, y, view.y+body.vy*min(.5,time_to_edge))
+    mouth = all(hypot(offset-50.,hand) <= view.goal_radius-ball_r for offset in crossings)
+    end_margin = min(20.,max(rb.BOUNDARY_MARGIN_M,held_offset+.2+forward*forward/(2*brake)))
+    if not mouth and (depth<=end_margin+1. or abs(goal_x-x)<end_margin):
+        x = min(x,100.-end_margin) if sx>0 else max(x,end_margin)
+    ownward = max(0.,-body.vx*sx)
+    own_margin = min(20.,max(rb.BOUNDARY_MARGIN_M,.5+ownward*ownward/(2*brake)))
+    x = max(x,own_margin) if sx>0 else min(x,100.-own_margin)
+    low = min(20.,max(rb.BOUNDARY_MARGIN_M,.5+max(0.,-body.vy)**2/(2*brake)))
+    high = min(20.,max(rb.BOUNDARY_MARGIN_M,.5+max(0.,body.vy)**2/(2*brake)))
+    return (round(x,3),round(max(low,min(100.-high,y)),3))

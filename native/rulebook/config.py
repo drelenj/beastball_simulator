@@ -89,6 +89,7 @@ class RulebookConfigV3(RulebookConfig):
     rb332_pass_clearance: bool = False
     rb332_carry_finish: bool = False
     rb332_fresh_takedown: bool = False
+    rb332_boundary_guard: bool = False
     drill_values_path: str | None = None
     drill_values_sha256: str | None = None
 
@@ -101,7 +102,7 @@ class RulebookConfigV3(RulebookConfig):
     def record(self):
         record = super().record()
         record.pop('drill_values_path')
-        for key in ('rb332_pass_clearance','rb332_carry_finish','rb332_fresh_takedown'):
+        for key in ('rb332_pass_clearance','rb332_carry_finish','rb332_fresh_takedown','rb332_boundary_guard'):
             if not record[key]:
                 record.pop(key)
         if self.rotation_rhythm != 'PLANNED':

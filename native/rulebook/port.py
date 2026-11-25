@@ -32,7 +32,7 @@ from .config import RulebookConfig
 class RulebookPort(NativePort):
     def __init__(self,seed=1,config=None,policies=None,plumbing=True,rosters=None):
         self.learned_values = None
-        self.paired_fixes = tuple(name for name in ('pass_clearance','carry_finish','fresh_takedown')
+        self.paired_fixes = tuple(name for name in ('pass_clearance','carry_finish','fresh_takedown','boundary_guard')
                                   if getattr(config, f'rb332_{name}', False))
         path = getattr(config,'drill_values_path',None)
         if path is not None:

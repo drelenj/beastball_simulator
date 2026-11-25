@@ -80,3 +80,14 @@ def test_trial_switches_survive_view_serialization(core_port):
     raw = json.loads(json.dumps(c.view_to_json(enabled,belief)))
     restored,_ = port.view_from_json(raw)
     assert restored.paired_fixes == enabled.paired_fixes
+
+
+def test_boundary_guard_protects_lateral_run_and_allows_mouth_finish(core_port):
+    _, view, _ = scene(core_port)
+    gx, sign = 100.-view.own_goal_x,view.attack_sign
+    moving = replace(view,x=gx-sign*3,y=32.,body=replace(view.body,vx=sign*8.,vy=12.))
+    aim = (gx-sign,50.)
+    x,y = p.boundary_aim(moving,aim)
+    assert abs(gx-x)>=3. and y==50.
+    mouth = replace(moving,y=50.,body=replace(moving.body,vy=0.))
+    assert p.boundary_aim(mouth,aim)==aim

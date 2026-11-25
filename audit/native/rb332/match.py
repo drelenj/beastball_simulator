@@ -19,7 +19,7 @@ from audit.native.rb330.check import load, assert_identity
 
 
 TRIAL_SCALE = .58
-FIXES = ('pass_clearance','carry_finish','fresh_takedown')
+FIXES = ('pass_clearance','carry_finish','fresh_takedown','boundary_guard')
 ARMS = {'off': (), **{name:(name,) for name in FIXES}, 'combined': FIXES, 'archive': ()}
 
 PAIRS = (RB327_PAIRS[0], ('Yukïma Cowhands','Isu’Kari Sirenwings'),

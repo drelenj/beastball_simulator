@@ -11,7 +11,7 @@ name='audit/arcade/ratings/NBL_2026-27_Opening_Night_Rosters_ratings-0.4_overall
 git show "b284e822fa2f23c820987c795a2d780f16334fc3:$name" > "$work/ratings.xlsx"
 bash audit/native/rb332/gates.sh "$work/ratings.xlsx" "$work"
 bash audit/native/rb332/batch.sh "$work/ratings.xlsx" "$work" \
-    off pass_clearance carry_finish fresh_takedown combined archive
+    off pass_clearance carry_finish fresh_takedown boundary_guard combined archive
 python -m audit.native.rb332.compare "$work" --out "$work/paired.json"
 ```
 
@@ -64,7 +64,11 @@ before evaluating any lane. It does not contribute to paired effects.
   puts the trajectory in the deflection group. Remaining outs use the
   loose-ball group. Carry exit pressure and boundary distance come from
   the last delivered carrier view. These are event groups. Compare
-  boundary turnover counts separately from the box score.
+  boundary turnover counts separately from the box score. The separately
+  switchable guard preserves the lateral route but holds depth for an off-mouth
+  end-line approach using own velocity, braking distance and held-ball offset.
+  A whole-ball mouth check exempts a safe finish. The guard runs exclusively
+  in carrier decisions and leaves ball-flight adjudication in place.
 - **Keeper audit.** The unobstructed shot must cross the goal plane within
   the ball-radius-adjusted opening. The reachable envelope uses the
   release-time body, jump and arm reach, the motor's actual reach factor

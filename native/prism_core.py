@@ -307,7 +307,10 @@ def carrier(menu, view, belief, tracks, base, record):
     if picked.kind in ('shoot', 'stretch'):
         return finish(menu, view, picked, tracks)
     if picked.kind == 'carry' and (picked.technique == 'evade' or view.own_held):
-        return evade(menu, view, picked, near if gap < 4. else None, bool(view.own_held))
+        picked = evade(menu, view, picked, near if gap < 4. else None, bool(view.own_held))
+    if (paired.enabled(view,'boundary_guard') and picked.aim is not None
+            and picked.kind in ('carry','truck','position','stiff_arm')):
+        picked = replace(picked,aim=paired.boundary_aim(view,picked.aim))
     return picked
 
 
