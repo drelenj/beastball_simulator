@@ -1,0 +1,7220 @@
+{
+  "schema": "native-box/1",
+  "players": [
+    {
+      "player": "A:NBL24-07-09",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2066811,
+      "regulation_ms": 2066811,
+      "minutes": 34.44685,
+      "stints_count": 3,
+      "stints_ms": [
+        997116,
+        898056,
+        171639
+      ],
+      "distance_m": 8609.899863049151,
+      "top_speed_mps": 24.62110821123352,
+      "above_80pct_ms": 3554,
+      "lowest_energy": 0.5817331463873907,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1507714,
+          "live_ms": 997116,
+          "other": "A:NBL24-07-16",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1723408,
+          "live_ms": 1176906,
+          "other": "A:NBL24-07-16",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3850367,
+          "live_ms": 2074962,
+          "other": "A:NBL24-07-16",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4061875,
+          "live_ms": 2228361,
+          "other": "A:NBL24-07-16",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 3,
+      "stretch_attempts": 0,
+      "passes_attempted": 21,
+      "passes_completed": 17,
+      "handoffs": 9,
+      "interceptions_thrown": 4,
+      "assists": 2,
+      "targets": 29,
+      "catches": 25,
+      "drops": 0,
+      "turnovers": 6,
+      "fumbles": 2,
+      "tackles_attempted": 44,
+      "tackles_made": 4,
+      "takedowns": 4,
+      "strips": 0,
+      "interceptions": 3,
+      "passes_defended": 1,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 58,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {
+        "10_to20": 2,
+        "20plus": 2
+      },
+      "turnovers_by_type": {
+        "tackle": 1,
+        "out_of_bounds": 2,
+        "interception": 2,
+        "fumble": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-01": 4,
+        "A:NBL24-07-17": 1,
+        "A:NBL24-07-13": 1,
+        "A:NBL24-07-08": 4,
+        "A:NBL24-07-06": 1,
+        "A:NBL24-07-02": 3,
+        "A:NBL24-07-03": 1,
+        "A:NBL25-D06": 2,
+        "A:NBL24-15-03": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-01": 4,
+        "A:NBL24-07-02": 4,
+        "A:NBL24-07-08": 2,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-04": 1,
+        "A:NBL24-15-03": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-08",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2374012,
+      "regulation_ms": 2374012,
+      "minutes": 39.56686666666667,
+      "stints_count": 1,
+      "stints_ms": [
+        2374012
+      ],
+      "distance_m": 11102.16052310223,
+      "top_speed_mps": 24.562330208462203,
+      "above_80pct_ms": 3800,
+      "lowest_energy": 0.5984608739930345,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 4253714,
+          "live_ms": 2374012,
+          "other": "A:NBL24-07-07",
+          "reason": "fatigue",
+          "tier": "position"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 5,
+      "stretch_attempts": 0,
+      "passes_attempted": 37,
+      "passes_completed": 30,
+      "handoffs": 13,
+      "interceptions_thrown": 7,
+      "assists": 0,
+      "targets": 35,
+      "catches": 44,
+      "drops": 1,
+      "turnovers": 11,
+      "fumbles": 2,
+      "tackles_attempted": 72,
+      "tackles_made": 2,
+      "takedowns": 2,
+      "strips": 0,
+      "interceptions": 11,
+      "passes_defended": 1,
+      "blocks_made": 4,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 107,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {
+        "20plus": 3
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 5,
+        "interception": 5,
+        "strip": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-17": 4,
+        "untargeted": 1,
+        "A:NBL24-07-18": 5,
+        "A:NBL24-07-06": 5,
+        "A:NBL24-07-09": 6,
+        "A:NBL24-15-03": 1,
+        "A:NBL24-07-02": 3,
+        "A:NBL24-07-16": 2,
+        "A:NBL24-07-20": 1,
+        "A:NBL24-07-13": 2,
+        "A:NBL24-07-01": 2,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-03": 2,
+        "A:NBL24-07-10": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-18": 4,
+        "A:NBL24-07-06": 4,
+        "A:NBL24-07-17": 3,
+        "A:NBL24-07-09": 6,
+        "A:NBL24-15-03": 1,
+        "A:NBL24-07-13": 3,
+        "A:NBL24-07-16": 2,
+        "A:NBL24-07-20": 1,
+        "A:NBL25-D06": 1,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-03": 2,
+        "A:NBL24-07-01": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-03",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 10998.599859989974,
+      "top_speed_mps": 26.103301377971977,
+      "above_80pct_ms": 2837,
+      "lowest_energy": 0.7789323513817997,
+      "substitutions": [],
+      "points": 2,
+      "carry_attempts": 4,
+      "stretch_attempts": 0,
+      "passes_attempted": 29,
+      "passes_completed": 20,
+      "handoffs": 7,
+      "interceptions_thrown": 8,
+      "assists": 1,
+      "targets": 32,
+      "catches": 28,
+      "drops": 1,
+      "turnovers": 14,
+      "fumbles": 2,
+      "tackles_attempted": 55,
+      "tackles_made": 4,
+      "takedowns": 4,
+      "strips": 0,
+      "interceptions": 3,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 79,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 1
+      },
+      "shot_attempts_by_band": {
+        "under10": 2,
+        "20plus": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 2,
+        "tackle": 1,
+        "zone_violation": 1,
+        "interception": 8,
+        "fumble": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-01": 3,
+        "A:NBL24-15-03": 4,
+        "A:NBL24-07-08": 3,
+        "untargeted": 2,
+        "A:NBL24-07-09": 2,
+        "A:NBL24-07-17": 7,
+        "A:NBL24-07-06": 4,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-18": 2
+      },
+      "completed_by_target": {
+        "A:NBL24-07-01": 1,
+        "A:NBL24-07-08": 3,
+        "A:NBL24-15-03": 5,
+        "A:NBL24-07-17": 4,
+        "A:NBL24-07-09": 2,
+        "A:NBL24-07-18": 1,
+        "A:NBL24-07-06": 2,
+        "A:NBL25-D06": 2
+      }
+    },
+    {
+      "player": "A:NBL25-D06",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2232763,
+      "regulation_ms": 2232763,
+      "minutes": 37.212716666666665,
+      "stints_count": 2,
+      "stints_ms": [
+        1025308,
+        1207455
+      ],
+      "distance_m": 8973.354848854466,
+      "top_speed_mps": 25.07678157800017,
+      "above_80pct_ms": 2600,
+      "lowest_energy": 0.592272952402831,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1543307,
+          "live_ms": 1025308,
+          "other": "A:NBL24-07-10",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1787248,
+          "live_ms": 1192545,
+          "other": "A:NBL24-07-10",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 4,
+      "stretch_attempts": 0,
+      "passes_attempted": 21,
+      "passes_completed": 18,
+      "handoffs": 6,
+      "interceptions_thrown": 3,
+      "assists": 0,
+      "targets": 23,
+      "catches": 22,
+      "drops": 0,
+      "turnovers": 10,
+      "fumbles": 3,
+      "tackles_attempted": 35,
+      "tackles_made": 3,
+      "takedowns": 3,
+      "strips": 0,
+      "interceptions": 5,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 98,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "tackle": 4,
+        "out_of_bounds": 3,
+        "fumble": 2,
+        "interception": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-01": 3,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-03": 2,
+        "A:NBL24-07-18": 5,
+        "A:NBL24-07-13": 1,
+        "A:NBL24-15-03": 2,
+        "A:NBL24-07-09": 3,
+        "A:NBL24-07-17": 1,
+        "A:NBL24-07-06": 1,
+        "A:NBL24-07-08": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-01": 4,
+        "A:NBL24-07-02": 3,
+        "A:NBL24-07-03": 2,
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-06": 2,
+        "A:NBL24-07-04": 1,
+        "A:NBL24-07-17": 1,
+        "A:NBL24-07-09": 1,
+        "A:NBL24-15-03": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-18",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 11190.922547026632,
+      "top_speed_mps": 24.323112893636708,
+      "above_80pct_ms": 4869,
+      "lowest_energy": 0.7043341578061066,
+      "substitutions": [],
+      "points": 3,
+      "carry_attempts": 8,
+      "stretch_attempts": 0,
+      "passes_attempted": 30,
+      "passes_completed": 19,
+      "handoffs": 12,
+      "interceptions_thrown": 8,
+      "assists": 0,
+      "targets": 32,
+      "catches": 36,
+      "drops": 0,
+      "turnovers": 14,
+      "fumbles": 3,
+      "tackles_attempted": 53,
+      "tackles_made": 3,
+      "takedowns": 3,
+      "strips": 0,
+      "interceptions": 8,
+      "passes_defended": 2,
+      "blocks_made": 2,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 86,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 4,
+        "10_to20": 3,
+        "under10": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 6,
+        "zone_violation": 1,
+        "tackle": 1,
+        "interception": 6
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-01": 4,
+        "A:NBL24-07-09": 3,
+        "A:NBL25-D06": 4,
+        "A:NBL24-07-08": 3,
+        "A:NBL24-07-02": 3,
+        "A:NBL24-15-03": 2,
+        "A:NBL24-07-06": 4,
+        "A:NBL24-07-03": 2,
+        "A:NBL24-07-17": 2,
+        "untargeted": 2,
+        "A:NBL24-07-13": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-01": 2,
+        "A:NBL25-D06": 4,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-09": 3,
+        "A:NBL24-15-03": 2,
+        "A:NBL24-07-06": 2,
+        "A:NBL24-07-13": 2,
+        "A:NBL24-07-17": 1,
+        "A:NBL24-07-03": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-02",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2106686,
+      "regulation_ms": 2106686,
+      "minutes": 35.11143333333333,
+      "stints_count": 3,
+      "stints_ms": [
+        878918,
+        912042,
+        315726
+      ],
+      "distance_m": 9474.231924551264,
+      "top_speed_mps": 21.78536143974486,
+      "above_80pct_ms": 10651,
+      "lowest_energy": 0.5893871216120419,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1359513,
+          "live_ms": 878918,
+          "other": "A:NBL24-07-04",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1565623,
+          "live_ms": 1042523,
+          "other": "A:NBL24-07-04",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3657949,
+          "live_ms": 1954565,
+          "other": "A:NBL24-07-04",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3861379,
+          "live_ms": 2084274,
+          "other": "A:NBL24-07-04",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 2,
+      "carry_attempts": 3,
+      "stretch_attempts": 0,
+      "passes_attempted": 33,
+      "passes_completed": 27,
+      "handoffs": 4,
+      "interceptions_thrown": 6,
+      "assists": 2,
+      "targets": 22,
+      "catches": 21,
+      "drops": 0,
+      "turnovers": 4,
+      "fumbles": 0,
+      "tackles_attempted": 46,
+      "tackles_made": 7,
+      "takedowns": 7,
+      "strips": 1,
+      "interceptions": 2,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 59,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 1
+      },
+      "shot_attempts_by_band": {
+        "under10": 1
+      },
+      "turnovers_by_type": {
+        "interception": 4
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-09": 1,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-17": 4,
+        "A:NBL24-07-08": 8,
+        "A:NBL24-07-18": 4,
+        "A:NBL24-07-01": 5,
+        "A:NBL24-07-03": 4,
+        "A:NBL24-07-06": 1,
+        "A:NBL24-15-03": 3,
+        "untargeted": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-09": 2,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-06": 2,
+        "A:NBL24-07-08": 10,
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-01": 1,
+        "A:NBL24-07-03": 4,
+        "A:NBL24-07-17": 3
+      }
+    },
+    {
+      "player": "A:NBL24-07-06",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 10974.819874798437,
+      "top_speed_mps": 21.48678410786273,
+      "above_80pct_ms": 9884,
+      "lowest_energy": 0.7920172966150737,
+      "substitutions": [],
+      "points": 10,
+      "carry_attempts": 4,
+      "stretch_attempts": 0,
+      "passes_attempted": 28,
+      "passes_completed": 20,
+      "handoffs": 3,
+      "interceptions_thrown": 7,
+      "assists": 1,
+      "targets": 26,
+      "catches": 21,
+      "drops": 0,
+      "turnovers": 12,
+      "fumbles": 0,
+      "tackles_attempted": 43,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 1,
+      "interceptions": 3,
+      "passes_defended": 0,
+      "blocks_made": 3,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 60,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 2,
+        "throw_2": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 2,
+        "under10": 2,
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 5,
+        "tackle": 2,
+        "interception": 5
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-18": 5,
+        "A:NBL24-15-03": 1,
+        "A:NBL25-D06": 3,
+        "A:NBL24-07-17": 3,
+        "A:NBL24-07-09": 3,
+        "A:NBL24-07-08": 4,
+        "A:NBL24-07-02": 3,
+        "A:NBL24-07-03": 2,
+        "untargeted": 2,
+        "A:NBL24-07-13": 1,
+        "A:NBL24-07-01": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-18": 4,
+        "A:NBL24-15-03": 1,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-17": 3,
+        "A:NBL24-07-09": 1,
+        "A:NBL24-07-08": 3,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-03": 1,
+        "A:NBL24-07-13": 2,
+        "A:NBL24-07-01": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-17",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2239979,
+      "regulation_ms": 2239979,
+      "minutes": 37.33298333333333,
+      "stints_count": 2,
+      "stints_ms": [
+        1113133,
+        1126846
+      ],
+      "distance_m": 10498.511159212165,
+      "top_speed_mps": 24.490772933868712,
+      "above_80pct_ms": 5823,
+      "lowest_energy": 0.5755049143118395,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1648834,
+          "live_ms": 1113133,
+          "other": "A:NBL24-07-20",
+          "reason": "fatigue",
+          "tier": "overall"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "A:NBL24-07-20",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4186164,
+          "live_ms": 2326846,
+          "other": "A:NBL24-07-10",
+          "reason": "fatigue",
+          "tier": "position"
+        }
+      ],
+      "points": 3,
+      "carry_attempts": 7,
+      "stretch_attempts": 0,
+      "passes_attempted": 25,
+      "passes_completed": 23,
+      "handoffs": 7,
+      "interceptions_thrown": 2,
+      "assists": 0,
+      "targets": 26,
+      "catches": 23,
+      "drops": 0,
+      "turnovers": 5,
+      "fumbles": 0,
+      "tackles_attempted": 42,
+      "tackles_made": 2,
+      "takedowns": 2,
+      "strips": 0,
+      "interceptions": 5,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 75,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 1,
+        "10_to20": 2
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 3,
+        "interception": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL25-D06": 2,
+        "A:NBL24-15-03": 3,
+        "A:NBL24-07-13": 3,
+        "A:NBL24-07-08": 3,
+        "A:NBL24-07-09": 2,
+        "A:NBL24-07-03": 5,
+        "A:NBL24-07-02": 3,
+        "A:NBL24-07-06": 2,
+        "A:NBL24-07-01": 1,
+        "untargeted": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-08": 6,
+        "A:NBL24-15-03": 3,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-03": 5,
+        "A:NBL24-07-09": 1,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-04": 1,
+        "A:NBL24-07-13": 2,
+        "A:NBL24-07-18": 1
+      }
+    },
+    {
+      "player": "A:NBL24-15-03",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 10346.649144663252,
+      "top_speed_mps": 25.692271633920825,
+      "above_80pct_ms": 2643,
+      "lowest_energy": 0.6384720766855239,
+      "substitutions": [],
+      "points": 2,
+      "carry_attempts": 3,
+      "stretch_attempts": 0,
+      "passes_attempted": 32,
+      "passes_completed": 21,
+      "handoffs": 10,
+      "interceptions_thrown": 11,
+      "assists": 0,
+      "targets": 24,
+      "catches": 28,
+      "drops": 1,
+      "turnovers": 11,
+      "fumbles": 2,
+      "tackles_attempted": 57,
+      "tackles_made": 4,
+      "takedowns": 4,
+      "strips": 0,
+      "interceptions": 6,
+      "passes_defended": 0,
+      "blocks_made": 2,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 82,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 1
+      },
+      "shot_attempts_by_band": {
+        "under10": 3
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 2,
+        "interception": 9
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL25-D06": 3,
+        "A:NBL24-07-01": 9,
+        "A:NBL24-07-13": 4,
+        "A:NBL24-07-03": 6,
+        "A:NBL24-07-06": 1,
+        "A:NBL24-07-08": 3,
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-16": 1,
+        "A:NBL24-07-02": 1,
+        "A:NBL24-07-09": 1
+      },
+      "completed_by_target": {
+        "A:NBL25-D06": 1,
+        "A:NBL24-07-13": 2,
+        "A:NBL24-07-01": 8,
+        "A:NBL24-07-08": 1,
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-03": 3,
+        "A:NBL24-07-02": 1,
+        "A:NBL24-07-09": 2
+      }
+    },
+    {
+      "player": "A:NBL24-07-01",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 10314.39422857226,
+      "top_speed_mps": 21.83692129056783,
+      "above_80pct_ms": 7564,
+      "lowest_energy": 0.7630167909788288,
+      "substitutions": [],
+      "points": 11,
+      "carry_attempts": 3,
+      "stretch_attempts": 0,
+      "passes_attempted": 29,
+      "passes_completed": 21,
+      "handoffs": 9,
+      "interceptions_thrown": 8,
+      "assists": 0,
+      "targets": 36,
+      "catches": 34,
+      "drops": 1,
+      "turnovers": 14,
+      "fumbles": 4,
+      "tackles_attempted": 55,
+      "tackles_made": 9,
+      "takedowns": 9,
+      "strips": 1,
+      "interceptions": 7,
+      "passes_defended": 1,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 103,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 1,
+        "throw_4": 2
+      },
+      "shot_attempts_by_band": {
+        "10_to20": 2,
+        "20plus": 3
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 2,
+        "zone_violation": 2,
+        "tackle": 1,
+        "interception": 6,
+        "fumble": 3
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-06": 3,
+        "A:NBL24-07-13": 2,
+        "A:NBL24-15-03": 6,
+        "A:NBL25-D06": 2,
+        "A:NBL24-07-08": 4,
+        "A:NBL24-07-03": 3,
+        "A:NBL24-07-17": 3,
+        "A:NBL24-07-18": 3,
+        "A:NBL24-07-02": 1,
+        "A:NBL24-07-09": 2
+      },
+      "completed_by_target": {
+        "A:NBL24-07-06": 2,
+        "A:NBL24-07-13": 1,
+        "A:NBL24-07-17": 3,
+        "A:NBL24-15-03": 4,
+        "A:NBL24-07-08": 4,
+        "A:NBL24-07-03": 2,
+        "A:NBL24-07-02": 1,
+        "A:NBL24-07-18": 2,
+        "A:NBL24-07-09": 2
+      }
+    },
+    {
+      "player": "A:NBL24-07-11",
+      "team": "A",
+      "role": "keeper",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 930.0100295154134,
+      "top_speed_mps": 9.574146232086072,
+      "above_80pct_ms": 1799,
+      "lowest_energy": 0.9990016931264823,
+      "substitutions": [],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 8,
+      "passes_completed": 5,
+      "handoffs": 0,
+      "interceptions_thrown": 3,
+      "assists": 0,
+      "targets": 0,
+      "catches": 8,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 55,
+      "saves": 12,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "interception": 1
+      },
+      "goals_against_by_band": {
+        "throw_4": 15,
+        "throw_3": 10,
+        "throw_2": 7
+      },
+      "attempted_by_target": {
+        "A:NBL24-07-03": 1,
+        "A:NBL24-07-18": 2,
+        "A:NBL24-07-01": 1,
+        "A:NBL24-07-09": 2,
+        "A:NBL24-07-08": 1,
+        "A:NBL25-D06": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-01": 2,
+        "A:NBL24-15-03": 1,
+        "A:NBL24-07-03": 1,
+        "A:NBL25-D06": 1
+      }
+    },
+    {
+      "player": "A:DRAFT26-09",
+      "team": "A",
+      "role": "archer",
+      "starter": true,
+      "live_ms": 1529737,
+      "regulation_ms": 1529737,
+      "minutes": 25.495616666666667,
+      "stints_count": 2,
+      "stints_ms": [
+        1520786,
+        8951
+      ],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 2999526,
+          "live_ms": 1582456,
+          "other": "A:DRAFT26-09",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2999526,
+          "live_ms": 1582456,
+          "other": "A:DRAFT26-09",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3097658,
+          "live_ms": 1652883,
+          "other": "A:NBL25-D32",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 156,
+      "hits": 81,
+      "freezes": 30,
+      "illegal_arrows": 5,
+      "minor_fouls": 5,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "A:NBL24-07-14",
+      "team": "A",
+      "role": "keeper",
+      "starter": false,
+      "live_ms": 0,
+      "regulation_ms": 0,
+      "minutes": 0.0,
+      "stints_count": 0,
+      "stints_ms": [],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "A:NBL25-D32",
+      "team": "A",
+      "role": "archer",
+      "starter": false,
+      "live_ms": 698680,
+      "regulation_ms": 698680,
+      "minutes": 11.644666666666666,
+      "stints_count": 1,
+      "stints_ms": [
+        698680
+      ],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 3097658,
+          "live_ms": 1652883,
+          "other": "A:DRAFT26-09",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 75,
+      "hits": 42,
+      "freezes": 20,
+      "illegal_arrows": 4,
+      "minor_fouls": 4,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "A:NBL24-07-13",
+      "team": "A",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2236412,
+      "regulation_ms": 2236412,
+      "minutes": 37.27353333333333,
+      "stints_count": 3,
+      "stints_ms": [
+        1798430,
+        364828,
+        73154
+      ],
+      "distance_m": 9258.239915739648,
+      "top_speed_mps": 22.46727125238172,
+      "above_80pct_ms": 4566,
+      "lowest_energy": 0.5929588060552434,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 3294109,
+          "live_ms": 1798430,
+          "other": "A:NBL24-07-07",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3488649,
+          "live_ms": 1821770,
+          "other": "A:NBL24-07-07",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3991110,
+          "live_ms": 2186598,
+          "other": "A:NBL24-07-07",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4186164,
+          "live_ms": 2326846,
+          "other": "A:NBL24-07-07",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 15,
+      "passes_completed": 13,
+      "handoffs": 9,
+      "interceptions_thrown": 2,
+      "assists": 0,
+      "targets": 15,
+      "catches": 16,
+      "drops": 0,
+      "turnovers": 7,
+      "fumbles": 2,
+      "tackles_attempted": 26,
+      "tackles_made": 1,
+      "takedowns": 1,
+      "strips": 1,
+      "interceptions": 2,
+      "passes_defended": 0,
+      "blocks_made": 5,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 77,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {
+        "20plus": 1
+      },
+      "turnovers_by_type": {
+        "tackle": 4,
+        "interception": 2,
+        "fumble": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-01": 2,
+        "A:NBL24-07-06": 3,
+        "A:NBL24-07-03": 1,
+        "A:NBL24-07-09": 3,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-10": 1,
+        "untargeted": 1,
+        "A:NBL24-07-17": 1,
+        "A:NBL24-07-08": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-06": 3,
+        "A:NBL24-07-03": 1,
+        "A:NBL24-07-09": 2,
+        "A:NBL24-07-02": 2,
+        "A:NBL24-07-10": 1,
+        "A:NBL24-15-03": 1,
+        "A:NBL24-07-01": 2,
+        "A:NBL24-07-08": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-20",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 86867,
+      "regulation_ms": 86867,
+      "minutes": 1.4477833333333334,
+      "stints_count": 1,
+      "stints_ms": [
+        86867
+      ],
+      "distance_m": 343.0530878784151,
+      "top_speed_mps": 13.783570894664228,
+      "above_80pct_ms": 2100,
+      "lowest_energy": 0.978963241808259,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1648834,
+          "live_ms": 1113133,
+          "other": "A:NBL24-07-17",
+          "reason": "fatigue",
+          "tier": "overall"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "A:NBL24-07-17",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 2,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 1,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 2,
+      "catches": 3,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 2,
+      "tackles_attempted": 2,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 1,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 3,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "fumble": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "A:NBL24-07-10",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 240391,
+      "regulation_ms": 240391,
+      "minutes": 4.006516666666666,
+      "stints_count": 2,
+      "stints_ms": [
+        167237,
+        73154
+      ],
+      "distance_m": 974.5854158112728,
+      "top_speed_mps": 20.699333596048568,
+      "above_80pct_ms": 730,
+      "lowest_energy": 0.9531279507781524,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1543307,
+          "live_ms": 1025308,
+          "other": "A:NBL25-D06",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1787248,
+          "live_ms": 1192545,
+          "other": "A:NBL25-D06",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4186164,
+          "live_ms": 2326846,
+          "other": "A:NBL24-07-17",
+          "reason": "fatigue",
+          "tier": "position"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 2,
+      "passes_completed": 2,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 2,
+      "catches": 1,
+      "drops": 1,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 1,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 11,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-20": 1,
+        "A:NBL24-07-03": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-20": 1,
+        "A:NBL24-07-03": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-04",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 293314,
+      "regulation_ms": 293314,
+      "minutes": 4.888566666666667,
+      "stints_count": 2,
+      "stints_ms": [
+        163605,
+        129709
+      ],
+      "distance_m": 1136.8736316328022,
+      "top_speed_mps": 18.50655358820597,
+      "above_80pct_ms": 1600,
+      "lowest_energy": 0.9642470797661784,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1359513,
+          "live_ms": 878918,
+          "other": "A:NBL24-07-02",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1565623,
+          "live_ms": 1042523,
+          "other": "A:NBL24-07-02",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3657949,
+          "live_ms": 1954565,
+          "other": "A:NBL24-07-02",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3861379,
+          "live_ms": 2084274,
+          "other": "A:NBL24-07-02",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 2,
+      "passes_completed": 1,
+      "handoffs": 1,
+      "interceptions_thrown": 1,
+      "assists": 0,
+      "targets": 0,
+      "catches": 3,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 13,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 9,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "interception": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-03": 1,
+        "A:NBL24-07-01": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-13": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-07",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 189576,
+      "regulation_ms": 189576,
+      "minutes": 3.1596,
+      "stints_count": 3,
+      "stints_ms": [
+        23340,
+        140248,
+        25988
+      ],
+      "distance_m": 612.8256645763303,
+      "top_speed_mps": 16.173910872552753,
+      "above_80pct_ms": 1403,
+      "lowest_energy": 0.9468428987073755,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 3294109,
+          "live_ms": 1798430,
+          "other": "A:NBL24-07-13",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3488649,
+          "live_ms": 1821770,
+          "other": "A:NBL24-07-13",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3991110,
+          "live_ms": 2186598,
+          "other": "A:NBL24-07-13",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4186164,
+          "live_ms": 2326846,
+          "other": "A:NBL24-07-13",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4253714,
+          "live_ms": 2374012,
+          "other": "A:NBL24-07-08",
+          "reason": "fatigue",
+          "tier": "position"
+        }
+      ],
+      "points": 3,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 1,
+      "passes_completed": 0,
+      "handoffs": 1,
+      "interceptions_thrown": 1,
+      "assists": 0,
+      "targets": 0,
+      "catches": 2,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 2,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 1,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 2,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 1
+      },
+      "shot_attempts_by_band": {
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "interception": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-09": 1
+      },
+      "completed_by_target": {}
+    },
+    {
+      "player": "A:NBL24-07-16",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 333189,
+      "regulation_ms": 333189,
+      "minutes": 5.55315,
+      "stints_count": 2,
+      "stints_ms": [
+        179790,
+        153399
+      ],
+      "distance_m": 1141.6874394355802,
+      "top_speed_mps": 21.665640022533342,
+      "above_80pct_ms": 1232,
+      "lowest_energy": 0.9315549221922722,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1507714,
+          "live_ms": 997116,
+          "other": "A:NBL24-07-09",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1723408,
+          "live_ms": 1176906,
+          "other": "A:NBL24-07-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3850367,
+          "live_ms": 2074962,
+          "other": "A:NBL24-07-09",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4061875,
+          "live_ms": 2228361,
+          "other": "A:NBL24-07-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 4,
+      "passes_completed": 3,
+      "handoffs": 3,
+      "interceptions_thrown": 1,
+      "assists": 0,
+      "targets": 3,
+      "catches": 5,
+      "drops": 0,
+      "turnovers": 3,
+      "fumbles": 1,
+      "tackles_attempted": 3,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 3,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 13,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {
+        "20plus": 1
+      },
+      "turnovers_by_type": {
+        "zone_violation": 1,
+        "fumble": 1,
+        "interception": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "A:NBL24-07-02": 1,
+        "A:NBL24-07-06": 1,
+        "A:NBL24-15-03": 1,
+        "A:NBL24-07-03": 1
+      },
+      "completed_by_target": {
+        "A:NBL24-07-06": 1,
+        "A:NBL24-15-03": 1,
+        "A:NBL24-07-03": 1
+      }
+    },
+    {
+      "player": "A:NBL24-07-22",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 0,
+      "regulation_ms": 0,
+      "minutes": 0.0,
+      "stints_count": 0,
+      "stints_ms": [],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "A:NBL25-D28",
+      "team": "A",
+      "role": "field",
+      "starter": false,
+      "live_ms": 0,
+      "regulation_ms": 0,
+      "minutes": 0.0,
+      "stints_count": 0,
+      "stints_ms": [],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "B:NBL24-01-07",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2366937,
+      "regulation_ms": 2366937,
+      "minutes": 39.44895,
+      "stints_count": 2,
+      "stints_ms": [
+        1166937,
+        1200000
+      ],
+      "distance_m": 11978.447933762274,
+      "top_speed_mps": 26.373440386495734,
+      "above_80pct_ms": 2733,
+      "lowest_energy": 0.5935690783984662,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-17",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-17",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 14,
+      "carry_attempts": 7,
+      "stretch_attempts": 0,
+      "passes_attempted": 23,
+      "passes_completed": 19,
+      "handoffs": 9,
+      "interceptions_thrown": 2,
+      "assists": 2,
+      "targets": 25,
+      "catches": 27,
+      "drops": 0,
+      "turnovers": 4,
+      "fumbles": 1,
+      "tackles_attempted": 85,
+      "tackles_made": 3,
+      "takedowns": 3,
+      "strips": 1,
+      "interceptions": 6,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 86,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 2,
+        "throw_2": 2,
+        "throw_4": 1
+      },
+      "shot_attempts_by_band": {
+        "10_to20": 2,
+        "under10": 2,
+        "20plus": 5
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 1,
+        "play_clock": 1,
+        "interception": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-21": 5,
+        "B:NBL24-01-10": 5,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-14": 1,
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-03": 3,
+        "B:NBL24-01-01": 2,
+        "untargeted": 1,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-09": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-10": 6,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-14": 1,
+        "B:NBL24-01-01": 2,
+        "B:NBL24-01-20": 1,
+        "B:NBL24-01-08": 2,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-03": 3,
+        "B:NBL24-01-04": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-21",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 11982.493682144377,
+      "top_speed_mps": 24.090181009531456,
+      "above_80pct_ms": 5851,
+      "lowest_energy": 0.6292278900632817,
+      "substitutions": [],
+      "points": 7,
+      "carry_attempts": 10,
+      "stretch_attempts": 0,
+      "passes_attempted": 18,
+      "passes_completed": 14,
+      "handoffs": 4,
+      "interceptions_thrown": 4,
+      "assists": 1,
+      "targets": 20,
+      "catches": 21,
+      "drops": 0,
+      "turnovers": 11,
+      "fumbles": 1,
+      "tackles_attempted": 78,
+      "tackles_made": 6,
+      "takedowns": 6,
+      "strips": 2,
+      "interceptions": 7,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 94,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 2,
+        "throw_3": 1
+      },
+      "shot_attempts_by_band": {
+        "under10": 4,
+        "10_to20": 2
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 7,
+        "fumble": 1,
+        "interception": 3
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-22": 3,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-10": 3,
+        "B:NBL24-01-13": 1,
+        "B:UFA26-BB-45": 1,
+        "B:NBL24-01-07": 6,
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-01": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-09": 1,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-08": 2,
+        "B:NBL24-01-13": 1,
+        "B:UFA26-BB-45": 1,
+        "B:NBL24-01-07": 3,
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-10": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-09",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 1915594,
+      "regulation_ms": 1915594,
+      "minutes": 31.926566666666666,
+      "stints_count": 6,
+      "stints_ms": [
+        557541,
+        211787,
+        169821,
+        525848,
+        327289,
+        123308
+      ],
+      "distance_m": 9917.406608186144,
+      "top_speed_mps": 27.175734515809616,
+      "above_80pct_ms": 1879,
+      "lowest_energy": 0.5826746621161515,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 789030,
+          "live_ms": 557541,
+          "other": "B:NBL24-01-19",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 991919,
+          "live_ms": 621327,
+          "other": "B:NBL24-01-19",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1296108,
+          "live_ms": 833114,
+          "other": "B:NBL24-01-19",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1507714,
+          "live_ms": 997116,
+          "other": "B:NBL24-01-19",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-06",
+          "reason": "fatigue",
+          "tier": "overall"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-06",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3192725,
+          "live_ms": 1725848,
+          "other": "B:NBL24-01-19",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3461979,
+          "live_ms": 1800000,
+          "other": "B:NBL24-01-19",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3913397,
+          "live_ms": 2127289,
+          "other": "B:NBL24-01-19",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4121508,
+          "live_ms": 2276692,
+          "other": "B:NBL24-01-19",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 14,
+      "carry_attempts": 6,
+      "stretch_attempts": 0,
+      "passes_attempted": 8,
+      "passes_completed": 7,
+      "handoffs": 10,
+      "interceptions_thrown": 1,
+      "assists": 3,
+      "targets": 16,
+      "catches": 16,
+      "drops": 0,
+      "turnovers": 4,
+      "fumbles": 1,
+      "tackles_attempted": 63,
+      "tackles_made": 4,
+      "takedowns": 4,
+      "strips": 1,
+      "interceptions": 4,
+      "passes_defended": 1,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 87,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 2,
+        "throw_3": 2
+      },
+      "shot_attempts_by_band": {
+        "20plus": 3,
+        "10_to20": 3
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 2,
+        "zone_violation": 1,
+        "fumble": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-14": 2,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-01": 2,
+        "B:NBL24-01-10": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-14": 1,
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-07": 1,
+        "B:NBL24-01-10": 1,
+        "B:NBL24-01-22": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-04",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2097250,
+      "regulation_ms": 2097250,
+      "minutes": 34.954166666666666,
+      "stints_count": 3,
+      "stints_ms": [
+        1005859,
+        947149,
+        144242
+      ],
+      "distance_m": 8910.713932647952,
+      "top_speed_mps": 23.527789244261694,
+      "above_80pct_ms": 1427,
+      "lowest_energy": 0.5969169379965668,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1519958,
+          "live_ms": 1005859,
+          "other": "B:NBL24-01-06",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-06",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3896093,
+          "live_ms": 2114086,
+          "other": "B:NBL24-01-06",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4095873,
+          "live_ms": 2255758,
+          "other": "B:NBL24-01-06",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 7,
+      "carry_attempts": 4,
+      "stretch_attempts": 0,
+      "passes_attempted": 21,
+      "passes_completed": 16,
+      "handoffs": 4,
+      "interceptions_thrown": 5,
+      "assists": 1,
+      "targets": 17,
+      "catches": 22,
+      "drops": 0,
+      "turnovers": 4,
+      "fumbles": 1,
+      "tackles_attempted": 67,
+      "tackles_made": 4,
+      "takedowns": 4,
+      "strips": 0,
+      "interceptions": 8,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 40,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 1,
+        "throw_4": 1
+      },
+      "shot_attempts_by_band": {
+        "10_to20": 3,
+        "20plus": 3
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 1,
+        "fumble": 1,
+        "interception": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-14": 2,
+        "B:NBL24-01-21": 3,
+        "B:NBL24-01-08": 3,
+        "B:NBL24-01-03": 3,
+        "B:NBL24-01-10": 1,
+        "B:NBL24-01-01": 3,
+        "untargeted": 1,
+        "B:NBL24-01-07": 3
+      },
+      "completed_by_target": {
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-14": 2,
+        "B:NBL24-01-09": 1,
+        "B:NBL24-01-08": 2,
+        "B:NBL24-01-03": 3,
+        "B:NBL24-01-07": 4,
+        "B:NBL24-01-20": 1,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-21": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-22",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2274106,
+      "regulation_ms": 2274106,
+      "minutes": 37.90176666666667,
+      "stints_count": 2,
+      "stints_ms": [
+        1113133,
+        1160973
+      ],
+      "distance_m": 10799.486524098167,
+      "top_speed_mps": 23.11566002401688,
+      "above_80pct_ms": 4443,
+      "lowest_energy": 0.5946012889431657,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1648834,
+          "live_ms": 1113133,
+          "other": "B:NBL24-01-20",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-20",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4235275,
+          "live_ms": 2360973,
+          "other": "B:NBL24-01-06",
+          "reason": "fatigue",
+          "tier": "group"
+        }
+      ],
+      "points": 7,
+      "carry_attempts": 5,
+      "stretch_attempts": 0,
+      "passes_attempted": 19,
+      "passes_completed": 15,
+      "handoffs": 12,
+      "interceptions_thrown": 4,
+      "assists": 3,
+      "targets": 17,
+      "catches": 25,
+      "drops": 0,
+      "turnovers": 9,
+      "fumbles": 0,
+      "tackles_attempted": 91,
+      "tackles_made": 3,
+      "takedowns": 3,
+      "strips": 0,
+      "interceptions": 9,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 75,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 1,
+        "throw_3": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 2,
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 4,
+        "tackle": 1,
+        "interception": 4
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-14": 2,
+        "B:NBL24-01-08": 2,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-07": 3,
+        "B:NBL24-01-05": 3,
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-06": 2,
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-10": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-08": 2,
+        "B:NBL24-01-14": 2,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-10": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-05",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2015822,
+      "regulation_ms": 2015822,
+      "minutes": 33.597033333333336,
+      "stints_count": 4,
+      "stints_ms": [
+        678773,
+        296166,
+        848173,
+        192710
+      ],
+      "distance_m": 10099.359597121034,
+      "top_speed_mps": 24.258401029776223,
+      "above_80pct_ms": 5299,
+      "lowest_energy": 0.5702052172695798,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1061766,
+          "live_ms": 678773,
+          "other": "B:NBL24-01-20",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1275864,
+          "live_ms": 816967,
+          "other": "B:NBL24-01-20",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1648834,
+          "live_ms": 1113133,
+          "other": "B:UFA26-BB-45",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:UFA26-BB-45",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3815377,
+          "live_ms": 2048173,
+          "other": "B:NBL24-01-20",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4022504,
+          "live_ms": 2207290,
+          "other": "B:NBL24-01-20",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 4,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 16,
+      "passes_completed": 10,
+      "handoffs": 11,
+      "interceptions_thrown": 6,
+      "assists": 1,
+      "targets": 20,
+      "catches": 21,
+      "drops": 0,
+      "turnovers": 11,
+      "fumbles": 4,
+      "tackles_attempted": 37,
+      "tackles_made": 5,
+      "takedowns": 5,
+      "strips": 1,
+      "interceptions": 9,
+      "passes_defended": 0,
+      "blocks_made": 2,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 92,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 1
+      },
+      "turnovers_by_type": {
+        "zone_violation": 1,
+        "out_of_bounds": 2,
+        "interception": 4,
+        "fumble": 4
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-09": 3,
+        "B:NBL24-01-14": 3,
+        "B:NBL24-01-06": 1,
+        "B:NBL24-01-10": 2,
+        "B:NBL24-01-08": 1,
+        "untargeted": 1,
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-19": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-10": 3,
+        "B:NBL24-01-14": 3,
+        "B:NBL24-01-22": 1,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-19": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-08",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2105550,
+      "regulation_ms": 2105550,
+      "minutes": 35.0925,
+      "stints_count": 3,
+      "stints_ms": [
+        768462,
+        247268,
+        1089820
+      ],
+      "distance_m": 9046.895631304807,
+      "top_speed_mps": 23.71666166005028,
+      "above_80pct_ms": 2906,
+      "lowest_energy": 0.5943369859700222,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1217858,
+          "live_ms": 768462,
+          "other": "B:NBL24-01-17",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1416364,
+          "live_ms": 919669,
+          "other": "B:NBL24-01-17",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:UFA26-BB-05",
+          "reason": "fatigue",
+          "tier": "overall"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:UFA26-BB-05",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4138036,
+          "live_ms": 2289820,
+          "other": "B:NBL24-01-17",
+          "reason": "fatigue",
+          "tier": "position"
+        }
+      ],
+      "points": 8,
+      "carry_attempts": 4,
+      "stretch_attempts": 0,
+      "passes_attempted": 18,
+      "passes_completed": 12,
+      "handoffs": 2,
+      "interceptions_thrown": 5,
+      "assists": 2,
+      "targets": 20,
+      "catches": 17,
+      "drops": 0,
+      "turnovers": 7,
+      "fumbles": 0,
+      "tackles_attempted": 72,
+      "tackles_made": 4,
+      "takedowns": 4,
+      "strips": 0,
+      "interceptions": 1,
+      "passes_defended": 0,
+      "blocks_made": 2,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 60,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 2
+      },
+      "shot_attempts_by_band": {
+        "20plus": 1
+      },
+      "turnovers_by_type": {
+        "tackle": 2,
+        "out_of_bounds": 2,
+        "interception": 3
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-14": 3,
+        "B:NBL24-01-10": 2,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-03": 2,
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-20": 2,
+        "B:UFA26-BB-45": 1,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-01": 2,
+        "B:NBL24-01-19": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-14": 4,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-07": 1,
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-10": 2,
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-19": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-10",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2347429,
+      "regulation_ms": 2347429,
+      "minutes": 39.12381666666667,
+      "stints_count": 2,
+      "stints_ms": [
+        1147429,
+        1200000
+      ],
+      "distance_m": 11190.729509507195,
+      "top_speed_mps": 23.599035783881614,
+      "above_80pct_ms": 5643,
+      "lowest_energy": 0.5983789400047879,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1688230,
+          "live_ms": 1147429,
+          "other": "B:NBL24-01-19",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-19",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 20,
+      "carry_attempts": 11,
+      "stretch_attempts": 0,
+      "passes_attempted": 25,
+      "passes_completed": 20,
+      "handoffs": 8,
+      "interceptions_thrown": 5,
+      "assists": 1,
+      "targets": 27,
+      "catches": 31,
+      "drops": 0,
+      "turnovers": 8,
+      "fumbles": 1,
+      "tackles_attempted": 56,
+      "tackles_made": 2,
+      "takedowns": 2,
+      "strips": 0,
+      "interceptions": 5,
+      "passes_defended": 0,
+      "blocks_made": 4,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 63,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 3,
+        "throw_2": 1,
+        "throw_3": 2
+      },
+      "shot_attempts_by_band": {
+        "20plus": 3,
+        "10_to20": 4,
+        "under10": 2
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 4,
+        "interception": 4
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-14": 5,
+        "B:NBL24-01-05": 3,
+        "B:NBL24-01-01": 3,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-04": 2,
+        "B:NBL24-01-03": 4,
+        "B:NBL24-01-17": 1,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-13": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-14": 6,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-03": 2,
+        "B:NBL24-01-17": 1,
+        "B:NBL24-01-07": 1,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-21": 2,
+        "B:NBL24-01-19": 1,
+        "B:NBL24-01-13": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-03",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2304982,
+      "regulation_ms": 2304982,
+      "minutes": 38.41636666666667,
+      "stints_count": 1,
+      "stints_ms": [
+        2304982
+      ],
+      "distance_m": 10909.835316731767,
+      "top_speed_mps": 24.21322452108701,
+      "above_80pct_ms": 6071,
+      "lowest_energy": 0.5988052944579393,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 4157799,
+          "live_ms": 2304982,
+          "other": "B:NBL24-01-13",
+          "reason": "fatigue",
+          "tier": "group"
+        }
+      ],
+      "points": 2,
+      "carry_attempts": 7,
+      "stretch_attempts": 0,
+      "passes_attempted": 30,
+      "passes_completed": 26,
+      "handoffs": 4,
+      "interceptions_thrown": 4,
+      "assists": 1,
+      "targets": 21,
+      "catches": 29,
+      "drops": 1,
+      "turnovers": 9,
+      "fumbles": 2,
+      "tackles_attempted": 98,
+      "tackles_made": 8,
+      "takedowns": 8,
+      "strips": 2,
+      "interceptions": 10,
+      "passes_defended": 1,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 118,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 1
+      },
+      "shot_attempts_by_band": {
+        "under10": 2,
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "tackle": 1,
+        "out_of_bounds": 2,
+        "zone_violation": 2,
+        "interception": 4
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-10": 5,
+        "B:NBL24-01-21": 2,
+        "B:NBL24-01-20": 1,
+        "B:NBL24-01-22": 3,
+        "B:NBL24-01-19": 1,
+        "B:NBL24-01-01": 6,
+        "B:NBL24-01-14": 2,
+        "B:NBL24-01-08": 3,
+        "B:NBL24-01-11": 1,
+        "B:NBL24-01-07": 2
+      },
+      "completed_by_target": {
+        "B:NBL24-01-09": 3,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-21": 4,
+        "B:NBL24-01-20": 1,
+        "B:NBL24-01-22": 3,
+        "B:NBL24-01-10": 3,
+        "B:NBL24-01-01": 4,
+        "B:NBL24-01-14": 1,
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-11": 1,
+        "B:NBL24-01-19": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-01",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 10483.717057255777,
+      "top_speed_mps": 24.16756054113995,
+      "above_80pct_ms": 3187,
+      "lowest_energy": 0.6939340710195834,
+      "substitutions": [],
+      "points": 8,
+      "carry_attempts": 9,
+      "stretch_attempts": 0,
+      "passes_attempted": 22,
+      "passes_completed": 18,
+      "handoffs": 8,
+      "interceptions_thrown": 4,
+      "assists": 1,
+      "targets": 23,
+      "catches": 21,
+      "drops": 1,
+      "turnovers": 7,
+      "fumbles": 1,
+      "tackles_attempted": 70,
+      "tackles_made": 3,
+      "takedowns": 3,
+      "strips": 2,
+      "interceptions": 7,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 64,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 2
+      },
+      "shot_attempts_by_band": {
+        "20plus": 2,
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 4,
+        "interception": 3
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-03": 3,
+        "B:NBL24-01-21": 2,
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-09": 1,
+        "B:NBL24-01-14": 3,
+        "B:NBL24-01-04": 3,
+        "B:NBL24-01-19": 1,
+        "B:NBL24-01-10": 1,
+        "B:NBL24-01-08": 1,
+        "untargeted": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-14": 3,
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-09": 1,
+        "B:NBL24-01-22": 1,
+        "B:NBL24-01-21": 2,
+        "B:NBL24-01-19": 1,
+        "B:NBL24-01-10": 2,
+        "B:NBL24-01-03": 2,
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-04": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-11",
+      "team": "B",
+      "role": "keeper",
+      "starter": true,
+      "live_ms": 2400000,
+      "regulation_ms": 2400000,
+      "minutes": 40.0,
+      "stints_count": 1,
+      "stints_ms": [
+        2400000
+      ],
+      "distance_m": 953.9339745093326,
+      "top_speed_mps": 7.8725222487557005,
+      "above_80pct_ms": 1500,
+      "lowest_energy": 0.9976543079773499,
+      "substitutions": [],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 11,
+      "passes_completed": 4,
+      "handoffs": 0,
+      "interceptions_thrown": 7,
+      "assists": 0,
+      "targets": 1,
+      "catches": 11,
+      "drops": 0,
+      "turnovers": 5,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 39,
+      "saves": 11,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 1,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "interception": 5
+      },
+      "goals_against_by_band": {
+        "throw_4": 4,
+        "throw_3": 4,
+        "throw_2": 4
+      },
+      "attempted_by_target": {
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-03": 1,
+        "B:NBL24-01-14": 1,
+        "B:UFA26-BB-45": 1,
+        "B:NBL24-01-22": 1,
+        "B:NBL24-01-07": 1,
+        "B:NBL24-01-21": 1,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-08": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-03": 3,
+        "B:NBL24-01-04": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-12",
+      "team": "B",
+      "role": "archer",
+      "starter": true,
+      "live_ms": 1929825,
+      "regulation_ms": 1929825,
+      "minutes": 32.16375,
+      "stints_count": 2,
+      "stints_ms": [
+        1636422,
+        293403
+      ],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 3162864,
+          "live_ms": 1701187,
+          "other": "B:NBL24-01-12",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3162864,
+          "live_ms": 1701187,
+          "other": "B:NBL24-01-12",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3850367,
+          "live_ms": 2074962,
+          "other": "B:UFA26-BB-04",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 229,
+      "hits": 134,
+      "freezes": 54,
+      "illegal_arrows": 5,
+      "minor_fouls": 5,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "B:UFA26-BB-43",
+      "team": "B",
+      "role": "keeper",
+      "starter": false,
+      "live_ms": 0,
+      "regulation_ms": 0,
+      "minutes": 0.0,
+      "stints_count": 0,
+      "stints_ms": [],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "B:UFA26-BB-04",
+      "team": "B",
+      "role": "archer",
+      "starter": false,
+      "live_ms": 325038,
+      "regulation_ms": 325038,
+      "minutes": 5.4173,
+      "stints_count": 1,
+      "stints_ms": [
+        325038
+      ],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 3850367,
+          "live_ms": 2074962,
+          "other": "B:NBL24-01-12",
+          "reason": "required_cover",
+          "tier": "designated_role"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 34,
+      "hits": 23,
+      "freezes": 10,
+      "illegal_arrows": 2,
+      "minor_fouls": 2,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "B:NBL24-01-14",
+      "team": "B",
+      "role": "field",
+      "starter": true,
+      "live_ms": 2232763,
+      "regulation_ms": 2232763,
+      "minutes": 37.212716666666665,
+      "stints_count": 2,
+      "stints_ms": [
+        1025308,
+        1207455
+      ],
+      "distance_m": 10158.50646440013,
+      "top_speed_mps": 26.255502450430615,
+      "above_80pct_ms": 2800,
+      "lowest_energy": 0.5958580606021919,
+      "substitutions": [
+        {
+          "direction": "outgoing",
+          "t_ms": 1543307,
+          "live_ms": 1025308,
+          "other": "B:NBL24-01-13",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1787248,
+          "live_ms": 1192545,
+          "other": "B:NBL24-01-13",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 7,
+      "carry_attempts": 2,
+      "stretch_attempts": 0,
+      "passes_attempted": 21,
+      "passes_completed": 14,
+      "handoffs": 4,
+      "interceptions_thrown": 7,
+      "assists": 2,
+      "targets": 24,
+      "catches": 27,
+      "drops": 0,
+      "turnovers": 9,
+      "fumbles": 2,
+      "tackles_attempted": 64,
+      "tackles_made": 6,
+      "takedowns": 6,
+      "strips": 0,
+      "interceptions": 3,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 86,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 1,
+        "throw_3": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 3,
+        "10_to20": 1
+      },
+      "turnovers_by_type": {
+        "zone_violation": 1,
+        "tackle": 1,
+        "interception": 5,
+        "fumble": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-10": 2,
+        "B:NBL24-01-03": 2,
+        "B:NBL24-01-08": 3,
+        "B:NBL24-01-21": 3,
+        "B:NBL24-01-05": 2,
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-07": 1,
+        "B:NBL24-01-04": 4
+      },
+      "completed_by_target": {
+        "B:NBL24-01-10": 2,
+        "B:NBL24-01-03": 2,
+        "B:NBL24-01-08": 2,
+        "B:NBL24-01-22": 2,
+        "B:NBL24-01-07": 3,
+        "B:NBL24-01-04": 3
+      }
+    },
+    {
+      "player": "B:NBL24-01-13",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 262255,
+      "regulation_ms": 262255,
+      "minutes": 4.370916666666667,
+      "stints_count": 2,
+      "stints_ms": [
+        167237,
+        95018
+      ],
+      "distance_m": 1158.5110770878262,
+      "top_speed_mps": 20.015302899631166,
+      "above_80pct_ms": 2041,
+      "lowest_energy": 0.9132487862231113,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1543307,
+          "live_ms": 1025308,
+          "other": "B:NBL24-01-14",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1787248,
+          "live_ms": 1192545,
+          "other": "B:NBL24-01-14",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4157799,
+          "live_ms": 2304982,
+          "other": "B:NBL24-01-03",
+          "reason": "fatigue",
+          "tier": "group"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 2,
+      "stretch_attempts": 0,
+      "passes_attempted": 4,
+      "passes_completed": 4,
+      "handoffs": 1,
+      "interceptions_thrown": 0,
+      "assists": 1,
+      "targets": 2,
+      "catches": 3,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 11,
+      "tackles_made": 1,
+      "takedowns": 1,
+      "strips": 0,
+      "interceptions": 1,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 12,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {
+        "under10": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-10": 3,
+        "B:NBL24-01-09": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-10": 3,
+        "B:NBL24-01-22": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-06",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 374840,
+      "regulation_ms": 374840,
+      "minutes": 6.247333333333334,
+      "stints_count": 3,
+      "stints_ms": [
+        194141,
+        141672,
+        39027
+      ],
+      "distance_m": 1546.369344569617,
+      "top_speed_mps": 20.781086778916162,
+      "above_80pct_ms": 2601,
+      "lowest_energy": 0.8979737714992253,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1519958,
+          "live_ms": 1005859,
+          "other": "B:NBL24-01-04",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-04",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-09",
+          "reason": "fatigue",
+          "tier": "overall"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3896093,
+          "live_ms": 2114086,
+          "other": "B:NBL24-01-04",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4095873,
+          "live_ms": 2255758,
+          "other": "B:NBL24-01-04",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4235275,
+          "live_ms": 2360973,
+          "other": "B:NBL24-01-22",
+          "reason": "fatigue",
+          "tier": "group"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 3,
+      "passes_completed": 1,
+      "handoffs": 1,
+      "interceptions_thrown": 2,
+      "assists": 0,
+      "targets": 4,
+      "catches": 1,
+      "drops": 0,
+      "turnovers": 2,
+      "fumbles": 0,
+      "tackles_attempted": 6,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 1,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 14,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "interception": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-10": 1,
+        "B:UFA26-BB-05": 1,
+        "untargeted": 1
+      },
+      "completed_by_target": {
+        "B:UFA26-BB-05": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-19",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 503914,
+      "regulation_ms": 503914,
+      "minutes": 8.398566666666667,
+      "stints_count": 5,
+      "stints_ms": [
+        63786,
+        164002,
+        52571,
+        74152,
+        149403
+      ],
+      "distance_m": 2135.6628948010284,
+      "top_speed_mps": 27.451733287220026,
+      "above_80pct_ms": 1400,
+      "lowest_energy": 0.9268249018755953,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 789030,
+          "live_ms": 557541,
+          "other": "B:NBL24-01-09",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 991919,
+          "live_ms": 621327,
+          "other": "B:NBL24-01-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1296108,
+          "live_ms": 833114,
+          "other": "B:NBL24-01-09",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1507714,
+          "live_ms": 997116,
+          "other": "B:NBL24-01-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1688230,
+          "live_ms": 1147429,
+          "other": "B:NBL24-01-10",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-10",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3192725,
+          "live_ms": 1725848,
+          "other": "B:NBL24-01-09",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 3461979,
+          "live_ms": 1800000,
+          "other": "B:NBL24-01-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3913397,
+          "live_ms": 2127289,
+          "other": "B:NBL24-01-09",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4121508,
+          "live_ms": 2276692,
+          "other": "B:NBL24-01-09",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 2,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 4,
+      "passes_completed": 4,
+      "handoffs": 2,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 4,
+      "catches": 6,
+      "drops": 1,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 34,
+      "tackles_made": 1,
+      "takedowns": 1,
+      "strips": 0,
+      "interceptions": 1,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 19,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 1
+      },
+      "shot_attempts_by_band": {
+        "under10": 1
+      },
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-01": 1,
+        "untargeted": 1,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-04": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-01": 1,
+        "B:NBL24-01-14": 1,
+        "B:NBL24-01-05": 1,
+        "B:NBL24-01-04": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-20",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 384178,
+      "regulation_ms": 384178,
+      "minutes": 6.402966666666667,
+      "stints_count": 3,
+      "stints_ms": [
+        138194,
+        86867,
+        159117
+      ],
+      "distance_m": 1915.1967901675994,
+      "top_speed_mps": 22.316536136692054,
+      "above_80pct_ms": 4118,
+      "lowest_energy": 0.9403363789261222,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1061766,
+          "live_ms": 678773,
+          "other": "B:NBL24-01-05",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1275864,
+          "live_ms": 816967,
+          "other": "B:NBL24-01-05",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1648834,
+          "live_ms": 1113133,
+          "other": "B:NBL24-01-22",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-22",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 3815377,
+          "live_ms": 2048173,
+          "other": "B:NBL24-01-05",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 4022504,
+          "live_ms": 2207290,
+          "other": "B:NBL24-01-05",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 8,
+      "passes_completed": 7,
+      "handoffs": 1,
+      "interceptions_thrown": 1,
+      "assists": 0,
+      "targets": 3,
+      "catches": 4,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 21,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 1,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 12,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "out_of_bounds": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-08": 3,
+        "B:NBL24-01-07": 2,
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-04": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-08": 1,
+        "B:NBL24-01-22": 1,
+        "B:NBL24-01-09": 2,
+        "B:NBL24-01-04": 1,
+        "B:NBL24-01-07": 2
+      }
+    },
+    {
+      "player": "B:UFA26-BB-45",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 86867,
+      "regulation_ms": 86867,
+      "minutes": 1.4477833333333334,
+      "stints_count": 1,
+      "stints_ms": [
+        86867
+      ],
+      "distance_m": 449.06276948547986,
+      "top_speed_mps": 14.060528758827562,
+      "above_80pct_ms": 2198,
+      "lowest_energy": 0.9576461786710524,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1648834,
+          "live_ms": 1113133,
+          "other": "B:NBL24-01-05",
+          "reason": "fatigue",
+          "tier": "group"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-05",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 1,
+      "passes_completed": 1,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 3,
+      "catches": 1,
+      "drops": 0,
+      "turnovers": 0,
+      "fumbles": 0,
+      "tackles_attempted": 1,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 4,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {},
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-08": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-08": 1
+      }
+    },
+    {
+      "player": "B:NBL24-01-17",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 294450,
+      "regulation_ms": 294450,
+      "minutes": 4.9075,
+      "stints_count": 3,
+      "stints_ms": [
+        151207,
+        33063,
+        110180
+      ],
+      "distance_m": 1284.1192273430997,
+      "top_speed_mps": 18.882358342811287,
+      "above_80pct_ms": 939,
+      "lowest_energy": 0.9415597432201193,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1217858,
+          "live_ms": 768462,
+          "other": "B:NBL24-01-08",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 1416364,
+          "live_ms": 919669,
+          "other": "B:NBL24-01-08",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-07",
+          "reason": "fatigue",
+          "tier": "position"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-07",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        },
+        {
+          "direction": "incoming",
+          "t_ms": 4138036,
+          "live_ms": 2289820,
+          "other": "B:NBL24-01-08",
+          "reason": "fatigue",
+          "tier": "position"
+        }
+      ],
+      "points": 4,
+      "carry_attempts": 1,
+      "stretch_attempts": 0,
+      "passes_attempted": 3,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 2,
+      "assists": 0,
+      "targets": 1,
+      "catches": 1,
+      "drops": 0,
+      "turnovers": 3,
+      "fumbles": 0,
+      "tackles_attempted": 24,
+      "tackles_made": 2,
+      "takedowns": 2,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 2,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 14,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_4": 1
+      },
+      "shot_attempts_by_band": {
+        "20plus": 1,
+        "under10": 1
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 1,
+        "interception": 2
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-07": 1,
+        "untargeted": 1,
+        "B:NBL24-01-21": 1
+      },
+      "completed_by_target": {}
+    },
+    {
+      "player": "B:UFA26-BB-05",
+      "team": "B",
+      "role": "field",
+      "starter": false,
+      "live_ms": 33063,
+      "regulation_ms": 33063,
+      "minutes": 0.55105,
+      "stints_count": 1,
+      "stints_ms": [
+        33063
+      ],
+      "distance_m": 173.23890755392247,
+      "top_speed_mps": 12.228905663138374,
+      "above_80pct_ms": 1000,
+      "lowest_energy": 0.9882229292442989,
+      "substitutions": [
+        {
+          "direction": "incoming",
+          "t_ms": 1710938,
+          "live_ms": 1166937,
+          "other": "B:NBL24-01-08",
+          "reason": "fatigue",
+          "tier": "overall"
+        },
+        {
+          "direction": "outgoing",
+          "t_ms": 2398003,
+          "live_ms": 1200000,
+          "other": "B:NBL24-01-08",
+          "reason": "starter_return",
+          "tier": "starter_slot"
+        }
+      ],
+      "points": 0,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 1,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 1,
+      "assists": 0,
+      "targets": 1,
+      "catches": 1,
+      "drops": 0,
+      "turnovers": 1,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 2,
+      "own_goals_conceded": 0,
+      "goals_by_method": {},
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "interception": 1
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {
+        "B:NBL24-01-06": 1
+      },
+      "completed_by_target": {}
+    }
+  ],
+  "unattributed": [
+    {
+      "player": "A",
+      "team": "A",
+      "role": "team",
+      "starter": false,
+      "live_ms": 0,
+      "regulation_ms": 0,
+      "minutes": 0.0,
+      "stints_count": 0,
+      "stints_ms": [],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [],
+      "points": 4,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 34,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "half_goal": 1,
+        "full_goal_award": 1
+      },
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "score_restart": 11,
+        "opponent_control": 23
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    },
+    {
+      "player": "B",
+      "team": "B",
+      "role": "team",
+      "starter": false,
+      "live_ms": 0,
+      "regulation_ms": 0,
+      "minutes": 0.0,
+      "stints_count": 0,
+      "stints_ms": [],
+      "distance_m": 0.0,
+      "top_speed_mps": 0.0,
+      "above_80pct_ms": 0,
+      "lowest_energy": 1.0,
+      "substitutions": [],
+      "points": 6,
+      "carry_attempts": 0,
+      "stretch_attempts": 0,
+      "passes_attempted": 0,
+      "passes_completed": 0,
+      "handoffs": 0,
+      "interceptions_thrown": 0,
+      "assists": 0,
+      "targets": 0,
+      "catches": 0,
+      "drops": 0,
+      "turnovers": 55,
+      "fumbles": 0,
+      "tackles_attempted": 0,
+      "tackles_made": 0,
+      "takedowns": 0,
+      "strips": 0,
+      "interceptions": 0,
+      "passes_defended": 0,
+      "blocks_made": 0,
+      "shots_faced": 0,
+      "saves": 0,
+      "arrows_fired": 0,
+      "hits": 0,
+      "freezes": 0,
+      "illegal_arrows": 0,
+      "minor_fouls": 0,
+      "physical_blocks": 0,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "half_goal": 3,
+        "full_goal_award": 1
+      },
+      "shot_attempts_by_band": {},
+      "turnovers_by_type": {
+        "score_restart": 32,
+        "turnover": 3,
+        "opponent_control": 20
+      },
+      "goals_against_by_band": {},
+      "attempted_by_target": {},
+      "completed_by_target": {}
+    }
+  ],
+  "teams": [
+    {
+      "team": "A",
+      "player": "TEAM TOTAL",
+      "possessions": 153,
+      "goals": 13,
+      "possessions_ending_in_attempt": 48,
+      "live_ms": 31028417,
+      "minutes": 517.1402833333333,
+      "stints_count": 33,
+      "distance_m": 116880.8191584093,
+      "above_80pct_ms": 67655,
+      "top_speed_mps": 26.103301377971977,
+      "lowest_energy": 0.5755049143118395,
+      "points_outside_own_possession": 4,
+      "scoring_points_by_method": {
+        "throw_4": 16,
+        "throw_3": 12,
+        "throw_2": 8,
+        "half_goal": 1,
+        "full_goal_award": 3
+      },
+      "points": 40,
+      "carry_attempts": 50,
+      "stretch_attempts": 0,
+      "passes_attempted": 317,
+      "passes_completed": 240,
+      "handoffs": 95,
+      "interceptions_thrown": 72,
+      "assists": 6,
+      "targets": 307,
+      "catches": 320,
+      "drops": 5,
+      "turnovers": 150,
+      "fumbles": 23,
+      "tackles_attempted": 549,
+      "tackles_made": 39,
+      "takedowns": 39,
+      "strips": 4,
+      "interceptions": 60,
+      "passes_defended": 5,
+      "blocks_made": 20,
+      "shots_faced": 55,
+      "saves": 12,
+      "arrows_fired": 231,
+      "hits": 123,
+      "freezes": 50,
+      "illegal_arrows": 9,
+      "minor_fouls": 9,
+      "physical_blocks": 922,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_2": 4,
+        "throw_3": 4,
+        "throw_4": 4,
+        "half_goal": 1,
+        "full_goal_award": 1
+      },
+      "shot_attempts_by_band": {
+        "10_to20": 12,
+        "20plus": 18,
+        "under10": 9
+      },
+      "turnovers_by_type": {
+        "tackle": 14,
+        "out_of_bounds": 31,
+        "interception": 54,
+        "fumble": 11,
+        "strip": 1,
+        "zone_violation": 5,
+        "score_restart": 11,
+        "opponent_control": 23
+      },
+      "goals_against_by_band": {
+        "throw_4": 15,
+        "throw_3": 10,
+        "throw_2": 7
+      },
+      "attempted_by_target": {
+        "A:NBL24-07-18": 32,
+        "A:NBL24-07-01": 36,
+        "A:NBL24-07-17": 26,
+        "A:NBL24-07-13": 15,
+        "A:NBL24-07-08": 35,
+        "A:NBL24-07-06": 26,
+        "A:NBL24-07-02": 22,
+        "A:NBL24-07-03": 32,
+        "A:NBL25-D06": 23,
+        "A:NBL24-15-03": 24,
+        "untargeted": 10,
+        "A:NBL24-07-09": 29,
+        "A:NBL24-07-16": 3,
+        "A:NBL24-07-20": 2,
+        "A:NBL24-07-10": 2
+      },
+      "completed_by_target": {
+        "A:NBL24-07-18": 24,
+        "A:NBL24-07-01": 26,
+        "A:NBL24-07-02": 19,
+        "A:NBL24-07-08": 30,
+        "A:NBL25-D06": 17,
+        "A:NBL24-07-04": 3,
+        "A:NBL24-15-03": 21,
+        "A:NBL24-07-06": 18,
+        "A:NBL24-07-17": 18,
+        "A:NBL24-07-09": 22,
+        "A:NBL24-07-13": 13,
+        "A:NBL24-07-16": 2,
+        "A:NBL24-07-20": 2,
+        "A:NBL24-07-03": 24,
+        "A:NBL24-07-10": 1
+      }
+    },
+    {
+      "team": "B",
+      "player": "TEAM TOTAL",
+      "possessions": 152,
+      "goals": 33,
+      "possessions_ending_in_attempt": 67,
+      "live_ms": 31054863,
+      "minutes": 517.58105,
+      "stints_count": 49,
+      "distance_m": 125093.68724267754,
+      "above_80pct_ms": 58036,
+      "top_speed_mps": 27.451733287220026,
+      "lowest_energy": 0.5702052172695798,
+      "points_outside_own_possession": 0,
+      "scoring_points_by_method": {
+        "throw_4": 60,
+        "throw_3": 30,
+        "throw_2": 14,
+        "half_goal": 3,
+        "full_goal_award": 3
+      },
+      "points": 110,
+      "carry_attempts": 70,
+      "stretch_attempts": 0,
+      "passes_attempted": 256,
+      "passes_completed": 192,
+      "handoffs": 81,
+      "interceptions_thrown": 60,
+      "assists": 19,
+      "targets": 249,
+      "catches": 285,
+      "drops": 3,
+      "turnovers": 151,
+      "fumbles": 14,
+      "tackles_attempted": 878,
+      "tackles_made": 52,
+      "takedowns": 52,
+      "strips": 9,
+      "interceptions": 72,
+      "passes_defended": 2,
+      "blocks_made": 17,
+      "shots_faced": 39,
+      "saves": 11,
+      "arrows_fired": 263,
+      "hits": 157,
+      "freezes": 64,
+      "illegal_arrows": 7,
+      "minor_fouls": 7,
+      "physical_blocks": 943,
+      "own_goals_conceded": 0,
+      "goals_by_method": {
+        "throw_3": 10,
+        "throw_2": 7,
+        "throw_4": 15,
+        "half_goal": 3,
+        "full_goal_award": 1
+      },
+      "shot_attempts_by_band": {
+        "10_to20": 18,
+        "under10": 13,
+        "20plus": 24
+      },
+      "turnovers_by_type": {
+        "out_of_bounds": 32,
+        "play_clock": 1,
+        "interception": 44,
+        "fumble": 9,
+        "zone_violation": 5,
+        "tackle": 5,
+        "score_restart": 32,
+        "turnover": 3,
+        "opponent_control": 20
+      },
+      "goals_against_by_band": {
+        "throw_4": 4,
+        "throw_3": 4,
+        "throw_2": 4
+      },
+      "attempted_by_target": {
+        "B:NBL24-01-21": 20,
+        "B:NBL24-01-10": 27,
+        "B:NBL24-01-05": 20,
+        "B:NBL24-01-14": 24,
+        "B:NBL24-01-08": 20,
+        "B:NBL24-01-22": 17,
+        "B:NBL24-01-03": 21,
+        "B:NBL24-01-01": 23,
+        "untargeted": 7,
+        "B:NBL24-01-04": 17,
+        "B:NBL24-01-09": 16,
+        "B:NBL24-01-13": 2,
+        "B:UFA26-BB-45": 3,
+        "B:NBL24-01-07": 25,
+        "B:NBL24-01-06": 4,
+        "B:NBL24-01-19": 4,
+        "B:NBL24-01-20": 3,
+        "B:NBL24-01-17": 1,
+        "B:NBL24-01-11": 1,
+        "B:UFA26-BB-05": 1
+      },
+      "completed_by_target": {
+        "B:NBL24-01-10": 24,
+        "B:NBL24-01-22": 16,
+        "B:NBL24-01-14": 24,
+        "B:NBL24-01-01": 12,
+        "B:NBL24-01-20": 3,
+        "B:NBL24-01-08": 16,
+        "B:NBL24-01-21": 13,
+        "B:NBL24-01-03": 18,
+        "B:NBL24-01-04": 12,
+        "B:NBL24-01-09": 10,
+        "B:NBL24-01-05": 12,
+        "B:NBL24-01-13": 2,
+        "B:UFA26-BB-45": 1,
+        "B:NBL24-01-07": 21,
+        "B:NBL24-01-19": 5,
+        "B:NBL24-01-17": 1,
+        "B:NBL24-01-11": 1,
+        "B:UFA26-BB-05": 1
+      }
+    }
+  ],
+  "possessions": [
+    {
+      "team": "B",
+      "start_ms": 0,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 11359,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 25881,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 39688,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 49270,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 52581,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 55748,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 82980,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 89840,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 99657,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 107885,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 112271,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 169206,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 178047,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 189899,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 199565,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 208272,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 215219,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 221164,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 239082,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 245990,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 261671,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 272321,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 287930,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 293897,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 300413,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 316089,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 325871,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 326592,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 326629,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 330187,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 336849,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 358194,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 364448,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 371876,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 386634,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 404038,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 414833,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 433855,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 446403,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 460630,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 474606,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 477987,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 495286,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 544917,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 547435,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 560606,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 572989,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 575519,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 584347,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 589748,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "turnover",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 614922,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 633306,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 642883,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 648526,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 649304,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 671840,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 684207,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 697377,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 699844,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 703139,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-1",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 710300,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 719560,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 733666,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 743612,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 772051,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 789029,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 802207,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 823070,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 836343,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "period_end",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 967891,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 991918,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 998477,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1019626,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1026202,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1043128,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 1054633,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1061765,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 1076491,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1095548,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1108764,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1119441,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1124740,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1125188,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 1185250,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1192150,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1208631,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1217857,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1229317,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1233732,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1254676,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1265534,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1271862,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1286054,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "possession_expiry",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1316054,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1321740,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1327942,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 1337629,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1345037,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "zone_residence",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1377135,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1388424,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 1401753,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1407560,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 1429857,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 1446976,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1452914,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1467588,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1487067,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 1490359,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1502860,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1507713,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1519957,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1526738,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1528921,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1533194,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1536296,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1540572,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "strip",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 1541697,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1543207,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1549255,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1555041,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 1561207,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1563102,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-1",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 1573623,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1591549,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1611731,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1619386,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": null
+    },
+    {
+      "team": "B",
+      "start_ms": 1621952,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1635113,
+      "points": 1,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1652116,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-1",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 1657116,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 1681648,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1697237,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1707429,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1710538,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 1723407,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 1774287,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": null
+    },
+    {
+      "team": "B",
+      "start_ms": 1778616,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 1787247,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "period_end",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2398003,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2413593,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2425152,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2430709,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2441449,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2451289,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2458224,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2463817,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2470868,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2479359,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2482727,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2548299,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2556996,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2563476,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2573342,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2580379,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 2583300,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2607278,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "turnover",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 2624210,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2628444,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2633364,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 2648611,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2665268,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2674927,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2688641,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2697829,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2707575,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 2716566,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2739267,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2743557,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 2743557,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2746464,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 2754589,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2770283,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2783499,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2786163,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2790974,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 2807198,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2808687,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 2811635,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 2825383,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2827703,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2848351,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2853389,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2855023,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2866606,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2870952,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2882167,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2887927,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2936313,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 2947237,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2953972,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2963750,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 2973608,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 2984587,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 2998625,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 2999525,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3006513,
+      "points": 1,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 3024847,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3030257,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3032043,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3053794,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3063020,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3070195,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3076972,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3087159,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3097657,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3116676,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3123988,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3134798,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3141311,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 3151324,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 3162764,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 3176504,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 3181842,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3185111,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3191025,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-C",
+      "terminal": null
+    },
+    {
+      "team": "B",
+      "start_ms": 3192725,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3199323,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3201029,
+      "points": 1,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3218122,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3238678,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3258158,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 3276331,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3287452,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3294108,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "period_end",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3461979,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3485008,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3496411,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3503369,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3512704,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 3514798,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3522889,
+      "points": 0,
+      "opponent_points": 4,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3543743,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 3553822,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3563385,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3575284,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "zone_residence",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3589082,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 3614522,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3626497,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3639357,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3657749,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3673912,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3679005,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3701196,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-T",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 3703114,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3755001,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3756027,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3760041,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3768487,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3778181,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 3794933,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3805772,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3815376,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3823709,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3824728,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3854382,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 3871612,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3875131,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3884749,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3896092,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3913396,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3921504,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3934461,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": null
+    },
+    {
+      "team": "B",
+      "start_ms": 3935961,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3942602,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3955396,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3964533,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3965393,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 3970206,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 3977003,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 3981227,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 3991109,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4003262,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 4012570,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": null
+    },
+    {
+      "team": "A",
+      "start_ms": 4013370,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 4022503,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 4026945,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "zone_residence",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 4032036,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-1",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 4038236,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "second_tackle",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 4046717,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "turnover",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 4061875,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 4066716,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "A",
+      "start_ms": 4075121,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 4080652,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 4089247,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 4095872,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4112473,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "ZR-C",
+      "terminal": null
+    },
+    {
+      "team": "B",
+      "start_ms": 4113173,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4121507,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "fumble",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 4129558,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 4131978,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 4137836,
+      "points": 3,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4151434,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 4169768,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "opponent_control",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4181845,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 4200587,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 4206566,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "B",
+      "start_ms": 4209277,
+      "points": 6,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4226429,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 4231392,
+      "points": 4,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4235274,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "boundary",
+      "terminal": "control"
+    },
+    {
+      "team": "B",
+      "start_ms": 4246317,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "A",
+      "start_ms": 4249050,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "interception",
+      "terminal": "pass"
+    },
+    {
+      "team": "B",
+      "start_ms": 4267317,
+      "points": 2,
+      "opponent_points": 0,
+      "end_reason": "score",
+      "terminal": "attempt"
+    },
+    {
+      "team": "A",
+      "start_ms": 4276932,
+      "points": 0,
+      "opponent_points": 0,
+      "end_reason": "period_end",
+      "terminal": "control"
+    }
+  ],
+  "scores": [
+    [
+      55748,
+      "A",
+      4,
+      "throw_4"
+    ],
+    [
+      99657,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      112271,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      239082,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      287930,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      300413,
+      "B",
+      2,
+      "throw_2"
+    ],
+    [
+      358194,
+      "A",
+      3,
+      "throw_3"
+    ],
+    [
+      414833,
+      "B",
+      2,
+      "throw_2"
+    ],
+    [
+      495286,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      547435,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      649304,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      772051,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      991918,
+      "A",
+      2,
+      "throw_2"
+    ],
+    [
+      1125188,
+      "A",
+      2,
+      "throw_2"
+    ],
+    [
+      1345037,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      1507713,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      1648734,
+      "A",
+      1,
+      "half_goal"
+    ],
+    [
+      1723407,
+      "A",
+      4,
+      "throw_4"
+    ],
+    [
+      2441449,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      2482727,
+      "B",
+      2,
+      "throw_2"
+    ],
+    [
+      2554026,
+      "B",
+      1,
+      "half_goal"
+    ],
+    [
+      2556996,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      2573342,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      2688641,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      2716566,
+      "A",
+      3,
+      "throw_3"
+    ],
+    [
+      2855023,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      2887927,
+      "B",
+      2,
+      "throw_2"
+    ],
+    [
+      2999525,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      3011977,
+      "B",
+      1,
+      "half_goal"
+    ],
+    [
+      3032043,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      3076972,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      3097657,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      3202559,
+      "B",
+      1,
+      "half_goal"
+    ],
+    [
+      3238678,
+      "A",
+      2,
+      "throw_2"
+    ],
+    [
+      3294108,
+      "A",
+      3,
+      "throw_3"
+    ],
+    [
+      3537649,
+      "A",
+      4,
+      "throw_4"
+    ],
+    [
+      3626497,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      3639357,
+      "A",
+      2,
+      "throw_2"
+    ],
+    [
+      3705992,
+      "A",
+      3,
+      "full_goal_award"
+    ],
+    [
+      3768487,
+      "B",
+      2,
+      "throw_2"
+    ],
+    [
+      3970206,
+      "B",
+      2,
+      "throw_2"
+    ],
+    [
+      4003262,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      4095872,
+      "A",
+      3,
+      "throw_3"
+    ],
+    [
+      4121507,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      4151434,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      4209277,
+      "A",
+      4,
+      "throw_4"
+    ],
+    [
+      4222863,
+      "B",
+      3,
+      "full_goal_award"
+    ],
+    [
+      4226429,
+      "B",
+      3,
+      "throw_3"
+    ],
+    [
+      4235274,
+      "B",
+      4,
+      "throw_4"
+    ],
+    [
+      4276932,
+      "B",
+      2,
+      "throw_2"
+    ]
+  ]
+}
