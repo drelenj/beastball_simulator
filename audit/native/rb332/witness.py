@@ -142,7 +142,9 @@ class TrialWitness(Witness):
             runner, standing, reaction, reflex, factor = self.keeper[rid]
             (origin,_,_,_,_,_),_,_,gx = self.release[rid]
             velocity = log[rid-1]['data']['velocity']
-            result = keeper_envelope(origin,velocity,gx,params(cfg),self.port.m.s.ball.radius,runner,reaction,physical | dict(reach_factor=factor))
+            trajectory = origin, velocity, gx, params(cfg), self.port.m.s.ball.radius, runner
+            limits = physical | dict(reach_factor=factor)
+            result = keeper_envelope(*trajectory,reaction,limits)
             if result is None:
                 reached.append(dict(release_id=rid,keeper=runner.athlete,status='unobstructed_projection_miss'))
                 continue
@@ -151,13 +153,29 @@ class TrialWitness(Witness):
             saves = [i for i in self.admissions[runner.athlete] if start<=i.decided_ms<=end and
                      i.auxiliary is not None and i.auxiliary.kind=='save']
             timing = saves[0].decided_ms-start if saves else None
-            selected_target = saves[0].auxiliary.target if saves else None
-            side = selected_target[1]-runner.y if selected_target is not None else None
-            cause = ('save' if shot['save'] else 'unreachable' if not result['reachable'] else
-                     'touch_without_save' if shot['keeper_touch'] else 'late_or_no_commit'
-                     if timing is None or timing/1000>=result['flight_s']-reaction else
-                     'wrong_side' if side is not None and side*(result['y']-runner.y)<0 else 'no_contact_after_commit')
+            target_y = None
+            if saves:
+                decision = saves[0].auxiliary
+                if decision.target:
+                    target_y = decision.target[1]
+                elif decision.course:
+                    target_y = min(decision.course,key=lambda point:abs(point[1]-runner.x))[2]
+            side = target_y-runner.y if target_y is not None else None
+            if shot['save']:
+                cause = 'save'
+            elif not result['reachable']:
+                cause = 'unreachable'
+            elif shot['keeper_touch']:
+                cause = 'touch_without_save'
+            elif timing is None:
+                cause = 'no_commit'
+            elif not keeper_envelope(*trajectory,max(reaction,timing/1000),limits)['reachable']:
+                cause = 'late_commit'
+            elif side is not None and side*(result['y']-runner.y)<0:
+                cause = 'wrong_side'
+            else:
+                cause = 'no_contact_after_commit'
             reached.append(result | dict(release_id=rid,keeper=runner.athlete,x=runner.x,y_at_release=runner.y,
                         arm_reach_m=runner.reach,standing_reach_m=standing,jump_m=runner.jump_height,
-                        reflex=reflex,reaction_s=reaction,commit_ms=timing,cause=cause))
+                        reflex=reflex,reaction_s=reaction,commit_ms=timing,believed_target_y=target_y,cause=cause))
         return boundary,reached
