@@ -80,13 +80,14 @@ def main():
     summary = {}
     args.out.mkdir(parents=True, exist_ok=True)
     with (args.out / 'matches.csv').open('w', newline='') as stream:
-        writer = csv.writer(stream)
+        writer = csv.writer(stream, lineterminator="\n")
         writer.writerow(('mode', 'case', 'seed', 'A', 'B', 'score_A', 'score_B',
                          'possessions_A', 'possessions_B', 'terminal_attempt_share_A',
                          'terminal_attempt_share_B', 'fatigue_subs_A', 'fatigue_subs_B',
                          'trace', 'state'))
         for mode in ('off', 'on'):
-            paths = sorted((args.runs / mode).glob('*.json'))
+            paths = sorted((args.runs / mode).glob('*.json'),
+                           key=lambda path: tuple(map(int, path.stem.split('-'))))
             if paths:
                 summary[mode], rows = summarize(paths)
                 writer.writerows((mode, *row) for row in rows)

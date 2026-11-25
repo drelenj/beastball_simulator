@@ -1,0 +1,128 @@
+{
+  "off": {
+    "ala_minus_garvian_mean": 27,
+    "ala_minus_garvian_se": 6.139127697718046,
+    "ala_wins": 9,
+    "fatigue_substitutions_per_team_game": 0.0,
+    "games": 20,
+    "garvian_wins": 1,
+    "mean_attempt_ending_share": 0.35405665881150666,
+    "mean_possessions": 153.15,
+    "median_abs_margin": 29.5,
+    "median_possessions": 152.0,
+    "median_team_score": 89.5,
+    "minutes": {
+      "archer_bench": {
+        "max": 27.22895,
+        "mean": 12.889779166666667,
+        "min": 0.0,
+        "n": 40
+      },
+      "archer_starter": {
+        "max": 40.0,
+        "mean": 23.55015875,
+        "min": 6.962416666666667,
+        "n": 40
+      },
+      "field_bench": {
+        "max": 10.36935,
+        "mean": 0.16688279761904762,
+        "min": 0.0,
+        "n": 280
+      },
+      "field_starter": {
+        "max": 40.0,
+        "mean": 39.95856651515152,
+        "min": 27.523033333333334,
+        "n": 440
+      },
+      "keeper_bench": {
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "n": 40
+      },
+      "keeper_starter": {
+        "max": 40.0,
+        "mean": 40.0,
+        "min": 40.0,
+        "n": 40
+      }
+    },
+    "other_substitutions": 94,
+    "required_substitutions_by_tier": {},
+    "share_decided_by_5_or_fewer": 0.1,
+    "substitutions_by_reason": {},
+    "substitutions_by_tier": {},
+    "substitutions_per_team_game": 2.35,
+    "team_score_sample_sd": 20.10789805281905
+  },
+  "on": {
+    "ala_minus_garvian_mean": 37.3,
+    "ala_minus_garvian_se": 7.217340230306452,
+    "ala_wins": 10,
+    "fatigue_substitutions_per_team_game": 135.525,
+    "games": 20,
+    "garvian_wins": 0,
+    "mean_attempt_ending_share": 0.3508320067826953,
+    "mean_possessions": 146.5,
+    "median_abs_margin": 23.0,
+    "median_possessions": 147.0,
+    "median_team_score": 85.5,
+    "minutes": {
+      "archer_bench": {
+        "max": 33.30211666666667,
+        "mean": 14.994972083333334,
+        "min": 0.0,
+        "n": 40
+      },
+      "archer_starter": {
+        "max": 40.0,
+        "mean": 22.036348750000002,
+        "min": 4.648266666666666,
+        "n": 40
+      },
+      "field_bench": {
+        "max": 24.3946,
+        "mean": 12.099643928571428,
+        "min": 1.25685,
+        "n": 280
+      },
+      "field_starter": {
+        "max": 37.95225,
+        "mean": 32.351718522727275,
+        "min": 25.8486,
+        "n": 440
+      },
+      "keeper_bench": {
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "n": 40
+      },
+      "keeper_starter": {
+        "max": 40.0,
+        "mean": 40.0,
+        "min": 40.0,
+        "n": 40
+      }
+    },
+    "other_substitutions": 83,
+    "required_substitutions_by_tier": {
+      "designated_role": 83
+    },
+    "share_decided_by_5_or_fewer": 0.1,
+    "substitutions_by_reason": {
+      "fatigue": 2784,
+      "starter_return": 2637
+    },
+    "substitutions_by_tier": {
+      "group": 1103,
+      "overall": 515,
+      "position": 1166,
+      "starter_slot": 2637
+    },
+    "substitutions_per_team_game": 137.6,
+    "team_score_sample_sd": 20.870157199658596
+  }
+}

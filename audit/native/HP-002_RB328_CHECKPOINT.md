@@ -1,10 +1,10 @@
 # OWNER BRIEFING
 
-1. **IMPLEMENTED.** RB-3.28 adds an optional energy reserve and dead-ball fatigue rotation.
+1. **IMPLEMENTED and TESTED.** RB-3.28 adds an optional energy reserve and dead-ball fatigue rotation. Both modes completed all 20 scheduled games.
 2. With the switch on, the engine reduces tired athletes’ physical and technical outputs and rests eligible field players. Rested starters return to their own slots. The match uses the ratings 0.4 workbook and hand-set decision values.
-3. The starter-minute target, speed gate and paired 40-match results are being measured.
-4. No canon question is pending. Calibration and verification are in progress.
-5. Review the measured minutes and existing competition benchmarks before making the fatigue switch a default.
+3. Fatigue on averaged 32.35 minutes per field starter, a median team score of 85.5 and 146.5 possessions per team. Score margins and spread remained above the season reference.
+4. Promotion warrants review of 135.53 fatigue substitutions per team per game and the results against the season reference.
+5. Keep the switch opt-in while reviewing the rotation frequency and score spread against the season reference.
 
 ## Revisions and status
 
@@ -14,13 +14,14 @@
 - Fixed constants and configuration fingerprints `66dfc2a`
 - Calibration pilots and sprint curves `ef17538`
 - Ratings 0.4 source `b284e822fa2f23c820987c795a2d780f16334fc3`
+- Workbook SHA-256 `47b48af7a19035428d517582370fa1782b542980c783edf3dfb20619cf437fba`
 - [Reproduction](rb328/README.md)
 
 | Task | Status |
 |---|---|
 | 1. Fatigue | DESIGN COMPLETE, IMPLEMENTED, TESTED |
 | 2. Rotation | DESIGN COMPLETE, IMPLEMENTED, TESTED |
-| 3. Calibration and soak | DESIGN COMPLETE, IMPLEMENTED |
+| 3. Calibration and soak | DESIGN COMPLETE, IMPLEMENTED, TESTED |
 
 ## Standing gates
 
@@ -93,3 +94,51 @@ The first two pilots predate the final motor and body-view integration. The last
 | Fatigue on | 4.309 | 3.989 | 4.149 |
 
 The paired 1,500-step windows passed gate f. Fatigue on was -6.34% in net CPU time per step, including the work from different match trajectories.
+
+## Full suite and match guards
+
+The final maintained suite reported `772 passed, 1 warning, 23 subtests passed in 632.94s (0:10:32)`. The warning was a pytest dependency deprecation. All six legacy trace, state and config rows matched. All twenty fatigue-off regulation runs also reproduced the RB-3.27 scores and configuration, trace and state hashes exactly.
+
+## Ratings 0.4 paired soak
+
+Garvian Guardians (A) and Ala Apex (B) played seeds 1–10. The other five RB-3.27 pairings played seeds 1 and 2. The same inputs and hand-set values were used in both modes. All 40 games finished with every restart resolved. No competition rule or hand-set decision value was tuned.
+
+| Measure | Fatigue off | Fatigue on | Owner reference |
+|---|---:|---:|---:|
+| Field starter regulation minutes, mean | 39.96 | 32.35 | About 32 |
+| Field starter minute range | 27.52–40.00 | 25.85–37.95 | |
+| Field bench regulation minutes, mean | 0.17 | 12.10 | |
+| Keeper starter / reserve minutes, mean | 40.00 / 0.00 | 40.00 / 0.00 | 36 minimum for fatigue removal |
+| Archer starter / reserve minutes, mean | 23.55 / 12.89 | 22.04 / 14.99 | No fatigue rotation |
+| All substitutions per team per game | 2.35 | 137.60 | |
+| Fatigue substitutions per team per game | 0.00 | 135.53 | |
+| Median team score | 89.5 | 85.5 | 75–90 |
+| Mean / median possessions per team | 153.15 / 152 | 146.50 / 147 | 100–150 |
+| Possessions ending in an attempt | 35.41% | 35.08% | |
+| Ala minus Garvian, mean margin ± SE | +27.0 ± 6.14 | +37.3 ± 7.22 | |
+| Ala wins, ten primary games | 9 | 10 | |
+| Median absolute game margin | 29.5 | 23.0 | 13 |
+| Games decided by five or fewer | 10% | 10% | 23% |
+| Team score sample SD | 20.11 | 20.87 | 12.7 |
+
+The Keeper fatigue rule was verified in the forced dead-ball scenario. No Keeper fatigue substitution was needed during the soak. The Archer time split reflects existing required substitutions and exclusion time. All Archer fatigue substitution counts were zero. Platform play uses standing recovery under the locomotion workload model.
+
+| Fatigue substitution priority | Count across 20 fatigue-on matches | Per team per game |
+|---|---:|---:|
+| Exact legacy position | 1,166 | 29.15 |
+| Position group | 1,103 | 27.58 |
+| Overall fallback | 515 | 12.88 |
+| Starter returns to original slot | 2,637 | 65.93 |
+| Total | 5,421 | 135.53 |
+
+The engine also recorded 94 required substitutions in the off block and 83 in the on block. The existing admission rules handle those. Match setup admissions are excluded from the substitution counts.
+
+The twenty fatigue-off games took 3,060.3 process CPU seconds.
+
+The twenty fatigue-on games took 3,112.8 process CPU seconds.
+
+[Per-match CSV](rb328/evidence/matches.csv) · [Numeric summary](rb328/evidence/summary.json) · [Raw match and calibration evidence](rb328/evidence)
+
+## Open questions
+
+No canon ruling was required. The measured swap frequency and wider margins and score spread than the season reference remain review items.
