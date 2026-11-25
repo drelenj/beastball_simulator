@@ -11,13 +11,15 @@
 - Branch `codex/rb-3-28-fatigue-rotation`
 - Lead-verified parent `b91440df56a8b3234d476630e6e949eb2c9f2202`
 - Core implementation `3bcc5cf`
+- Fixed constants and configuration fingerprints `66dfc2a`
+- Calibration pilots and sprint curves `ef17538`
 - Ratings 0.4 source `b284e822fa2f23c820987c795a2d780f16334fc3`
 - [Reproduction](rb328/README.md)
 
 | Task | Status |
 |---|---|
-| 1. Fatigue | DESIGN COMPLETE, IMPLEMENTED |
-| 2. Rotation | DESIGN COMPLETE, IMPLEMENTED |
+| 1. Fatigue | DESIGN COMPLETE, IMPLEMENTED, TESTED |
+| 2. Rotation | DESIGN COMPLETE, IMPLEMENTED, TESTED |
 | 3. Calibration and soak | DESIGN COMPLETE, IMPLEMENTED |
 
 ## Standing gates
@@ -41,3 +43,53 @@ The default-off switch is `fatigue_rotation`. Off retains the original CORE kern
 Effective speed and acceleration retain the kernel coefficients `0.70 + 0.30 × reserve` and `0.55 + 0.45 × reserve`. Braking, turning, strength, agility, jumping and maximum throwing speed use `1 − 0.40 × (1 − reserve)`. Technical execution uses `rating × (1 − 0.30 × (1 − reserve) × (1 − rating))`. This reduces poor form by a greater fraction. Under fatigue, release motion still follows the existing admission and timing path. The motor caps release speed at current throwing capacity and updates execution accuracy. The own-body view reflects available movement output. Strategy, perception and decision ratings retain their roster values.
 
 A field athlete crossing 0.60 is marked to leave at the next dead ball. If an eligible reserve is unavailable, the athlete remains eligible for removal at the next dead ball. Rested starters reclaim their original slots first at 0.75. Elective replacements use exact legacy position, position group, then Overall rank, in that order. Overall and legacy position stay in roster selection metadata. A Keeper can rotate from fatigue once his regulation participation reaches 36 minutes. Archers receive no elective fatigue substitutions. Existing disciplinary and injury-cover rules remain in force. Playing time is measured on the regulation clock, and required and elective substitutions have separate event records.
+
+## Named constants and controlled scenarios
+
+| Parameter | Value |
+|---|---:|
+| `bench_recovery` | 0.0016 |
+| `effort_exponent` | 0.3 |
+| `field_recovery` | 0.00035 |
+| `keeper_regulation_min_ms` | 2160000 |
+| `neutral_effort` | 0.5 |
+| `output_update_ms` | 500 |
+| `physical_loss` | 0.4 |
+| `rest_threshold` | 0.6 |
+| `return_threshold` | 0.75 |
+| `sprint_drain` | 0.0054 |
+| `stamina_rate_range` | 0.65 |
+| `stamina_sensitivity` | 0.3 |
+| `technique_loss` | 0.3 |
+
+Rates are reserve units per simulated second. The fatigue switch records these parameters in the effective match configuration.
+
+| Held sprint Stamina | Reserve at 0 s | 30 s | 60 s | 90 s | Seconds to 0.60 |
+|---:|---:|---:|---:|---:|---:|
+| 0.60 | 1.000 | 0.827 | 0.653 | 0.480 | 69.26 |
+| 0.70 | 1.000 | 0.838 | 0.676 | 0.514 | 74.07 |
+| 0.85 | 1.000 | 0.852 | 0.705 | 0.557 | 81.30 |
+| 1.00 | 1.000 | 0.864 | 0.729 | 0.593 | 88.52 |
+
+From 0.60, a standing 0.70-Stamina athlete has 0.621 after 60 seconds and 0.642 after 120 seconds. A standing 1.00-Stamina athlete has 0.650 after 120 seconds. The bench reaches 0.696 at 60 seconds, the return threshold after 93.75 seconds, and 0.792 at 120 seconds for every Stamina rating. At reserve 0.60, technique 0.50 falls to 0.4700 and technique 0.95 falls to 0.9443. The focused suite passed five tests.
+
+## Calibration trials
+
+| Garvian–Ala seed 1 | Effort exponent | Sprint drain | Bench recovery | Mean field starter minutes |
+|---|---:|---:|---:|---:|
+| First workload curve | 1.00 | 0.0040 | 0.0030 | 39.90 |
+| Concave workload | 0.40 | 0.0040 | 0.0020 | 39.30 |
+| Stronger workload and longer bench rest | 0.24 | 0.0060 | 0.0016 | 28.42 |
+| Reduced drain and workload | 0.28 | 0.0055 | 0.0016 | 30.86 |
+| Locked for soak | 0.30 | 0.0054 | 0.0016 | See the soak |
+
+The first two pilots predate the final motor and body-view integration. The last two pilots used the final implementation before the effective-configuration fingerprint was added. The paired soak uses one fixed set of fatigue constants. Prior pilots are available as raw records under `rb328/evidence/`.
+
+## Timing
+
+| Mode | Seed 1 CPU ms/step | Seed 3 CPU ms/step | Median CPU ms/step |
+|---|---:|---:|---:|
+| Fatigue off | 4.358 | 4.501 | 4.430 |
+| Fatigue on | 4.309 | 3.989 | 4.149 |
+
+The paired 1,500-step windows passed gate f. Fatigue on was -6.34% in net CPU time per step, including the work from different match trajectories.
