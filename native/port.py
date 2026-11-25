@@ -58,6 +58,8 @@ class NativePort:
         self.individuation = self.prism_core or getattr(cfg, 'individuation', 'off') == IND.VERSION
         self.behavior_digest=cfg.digest
         self.prism_sources = {}
+        self.roster_display = {team: (roster.display_team or team, roster.display_players)
+                               for team, roster in (rosters or {}).items()}
         if self.individuation:
             self.prism_agents = Counter()
             self.prism_commits = []

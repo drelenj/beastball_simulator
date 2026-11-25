@@ -106,6 +106,8 @@ class TeamRoster:
     athletes: tuple[AthleteAttributes,...]
     digest: str
     warning_counts: tuple
+    display_team: str | None = field(default=None, compare=False)
+    display_players: tuple[tuple[str, str, str], ...] = field(default=(), compare=False)
     rotation_candidates: tuple[tuple[str, str, float], ...] = field(default=(), compare=False)
 
     def record(self):

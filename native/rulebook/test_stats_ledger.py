@@ -1,5 +1,6 @@
 from dataclasses import replace
 from io import StringIO
+import csv
 
 import pytest
 
@@ -27,7 +28,8 @@ def test_observer_reconciles_and_preserves_hashes():
     assert sum(r['points'] for r in box['teams'])==sum(a['score'].values())
     output=StringIO()
     write_csv(box,output)
-    assert output.getvalue().count('TEAM TOTAL')==2
+    output.seek(0)
+    assert sum(row['player'] == 'TEAM TOTAL' for row in csv.DictReader(output)) == 2
 
 
 @pytest.mark.parametrize('profile,scale,minimum',[('R2',.5,0),('R3',.33,0),('R2M',.5,2),('R3M',.33,2)])

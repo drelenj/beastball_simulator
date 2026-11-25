@@ -6,6 +6,7 @@ import csv
 from math import hypot
 
 from .fatigue_rotation import possession_start
+from .tackle_stats import TackleWitness
 
 BANDS = ('under10', '10_to20', '20plus')
 COUNTS = (
@@ -21,7 +22,9 @@ GROUPS = ('goals_by_method', 'shot_attempts_by_band', 'turnovers_by_type',
 
 
 class PlayerLine:
-    def __init__(self, player):
+    def __init__(self, player, team_name, display=None):
+        self.player_name, self.legacy_position = display or (player.id, None)
+        self.team_name = team_name
         self.id, self.team, self.role = player.id, player.team, player.role
         self.starter = player.active
         self.live_ms = 0
@@ -39,7 +42,8 @@ class PlayerLine:
 
     def record(self):
         cutoff = .8 * self.peak
-        return dict(player=self.id, team=self.team, role=self.role, starter=self.starter,
+        return dict(player=self.id, player_name=self.player_name, team=self.team, team_name=self.team_name,
+                    legacy_position=self.legacy_position, role=self.role, starter=self.starter,
                     live_ms=self.live_ms, regulation_ms=self.regulation_ms, minutes=self.live_ms / 60_000,
                     stints_count=len(self.stints_ms) + (self.stint is not None),
                     stints_ms=self.stints_ms + ([] if self.stint is None else [self.stint]),
@@ -56,11 +60,15 @@ class StatsLedger:
         self.port = port
         self.state = s = port.m.s
         self.engine = e = port.m.e
-        self.players = {p.id: PlayerLine(p) for p in s.players.values()}
+        self.team_names = {team: port.roster_display.get(team, (team, ()))[0] for team in 'AB'}
+        display = {f'{team}:{pid}': (name, position)
+                   for team, (_, players) in port.roster_display.items() for pid, name, position in players}
+        self.players = {p.id: PlayerLine(p, self.team_names[p.team], display.get(p.id)) for p in s.players.values()}
+        self.tackles = TackleWitness(port.m)
         self.player_refs = tuple((p,self.players[p.id]) for p in s.players.values())
         self.active = tuple((p,l) for p,l in self.player_refs if p.active)
         self.regulation_limit = port.config.period_seconds * port.config.periods * 1000
-        self.team_only = {t: PlayerLine(type('Team',(),dict(id=t,team=t,role='team',active=False,fatigue=1.))) for t in 'AB'}
+        self.team_only = {t: PlayerLine(type('Team',(),dict(id=t,team=t,role='team',active=False,fatigue=1.)), self.team_names[t]) for t in 'AB'}
         self.live = s.live_ms
         self.keeper = {}
         self.carries = []
@@ -282,7 +290,6 @@ class StatsLedger:
                 scored.append((row['t_ms'],team,points,method))
                 self.team_credit[team][method]+=points
             elif event=='tackle_count':
-                self.add(d.get('actor'),'tackles_made')
                 lost=(d.get('target'),'tackle')
             elif event=='c3_grounding' and d.get('counted'):
                 self.add(d.get('credited'),'takedowns')
@@ -407,9 +414,10 @@ class StatsLedger:
                 counter.clear()
         for counter in self.team_credit.values():
             counter.clear()
-        for command in self.port.command_log:
-            if command.intent.kind=='tackle':
-                self.add(command.intent.athlete,'tackles_attempted')
+        for actor, made in self.tackles.totals(e.log):
+            self.add(actor, 'tackles_attempted')
+            if made:
+                self.add(actor, 'tackles_made')
         for _,pid,_ in self.carries:
             self.add(pid,'carry_attempts')
         for row in e.rb_attempts:
@@ -442,7 +450,8 @@ class StatsLedger:
             assert counts['carry_attempts']==e.rb_bands[team]['carry_attempts']
             assert counts['points']==sum(r['points'] for r in possessions if r['team']==team)+off_points[team]
             members=[row for row in lines if row['team']==team]
-            totals.append(dict(team=team,player='TEAM TOTAL',possessions=npos, goals=goals,
+            totals.append(dict(team=team,team_name=self.team_names[team],player='TEAM TOTAL',
+                               player_name='TEAM TOTAL',legacy_position=None,possessions=npos, goals=goals,
                                possessions_ending_in_attempt=terminal,
                                live_ms=sum(r['live_ms'] for r in members),
                                minutes=sum(r['minutes'] for r in members),
@@ -453,7 +462,7 @@ class StatsLedger:
                                lowest_energy=min(r['lowest_energy'] for r in members),
                                points_outside_own_possession=off_points[team],
                                scoring_points_by_method=self.team_credit[team],**counts,**groups))
-        return dict(schema='native-box/1', players=lines, unattributed=unattributed, teams=totals,
+        return dict(schema='native-box/2', players=lines, unattributed=unattributed, teams=totals,
                     possessions=possessions, scores=scored)
 
 
