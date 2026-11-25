@@ -182,7 +182,10 @@ class CarrierMoves:
         impulse *= p / (p + q) if p + q else 0.
         if self.port.prism_core:
             from native.prism_motion import STIFF_ARM_IMPULSE_RANGE
-            impulse *= 1. + STIFF_ARM_IMPULSE_RANGE * (actor.native_registry['stiff_arm'] - .7)
+            rotation = getattr(self.port, 'rotation', None)
+            skill = (rotation.execution_rating(actor, 'stiff_arm') if rotation
+                     else actor.native_registry['stiff_arm'])
+            impulse *= 1. + STIFF_ARM_IMPULSE_RANGE * (skill - .7)
         if impulse <= 0:
             return
         nx, ny = unit(target.x - actor.x, target.y - actor.y)
@@ -221,7 +224,10 @@ class CarrierMoves:
                                                    ub if carrier is a else ua, grip, m.assume)
         if self.port.prism_core:
             from native.prism_motion import TRUCK_DRIVE_RANGE
-            drive *= 1. + TRUCK_DRIVE_RANGE * (carrier.native_registry['truck'] - .7)
+            rotation = getattr(self.port, 'rotation', None)
+            skill = (rotation.execution_rating(carrier, 'truck') if rotation
+                     else carrier.native_registry['truck'])
+            drive *= 1. + TRUCK_DRIVE_RANGE * (skill - .7)
         won = drive > defence and forward > 0.
         if won:
             m.c3_end_hold(key, 'truck', at, tick)

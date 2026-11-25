@@ -38,9 +38,13 @@ class ObservationFrame:
     recognized_ball: str | None = None
 
 
-def body(p):
+def body(p, fatigue=False):
     a=p.a
-    return AthleteBody(p.id,p.team,p.x,p.y,p.z,p.vx,p.vy,p.vz,a.height,a.reach,a.acceleration,a.braking,a.maximum_speed,a.jump_height)
+    acceleration, speed = a.acceleration, a.maximum_speed
+    if fatigue:
+        acceleration *= .55 + .45 * p.fatigue
+        speed *= .70 + .30 * p.fatigue
+    return AthleteBody(p.id,p.team,p.x,p.y,p.z,p.vx,p.vy,p.vz,a.height,a.reach,acceleration,a.braking,speed,a.jump_height)
 
 
 class NativePort:
@@ -75,6 +79,8 @@ class NativePort:
                         return athlete.source_id, athlete.role, sorted((raw | ratings).items())
                     active = {t: [active_record(a) for a in rosters[t].athletes] for t in ('A', 'B')}
                 config_record=cfg.record();config_record['roster_digests']=('behavior-only','behavior-only')
+                if getattr(cfg, 'fatigue_rotation', False):
+                    active['rotation'] = {t: getattr(r, 'rotation_candidates', ()) for t, r in rosters.items()}
                 self.behavior_digest=digest((config_record,active))
             def attr_validate(a):
                 assert 1.4<=a.height<=3.6576 and 0<=a.maximum_speed<=44.704 and a.mass>0
@@ -359,7 +365,7 @@ class NativePort:
                            pending_kind=pend['cmd'].intent.kind if pend else None,pending_target=pend['cmd'].intent.target if pend else None,
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
-                           posture=p.posture,policy=self.policies[p.team],body=body(p),restart=f.restart,
+                           posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
@@ -526,7 +532,9 @@ class NativePort:
         from .prism_motion import maneuver
         if not getattr(self, 'rb318', None) or not self.rb318.ready(player):
             return None
-        return maneuver(player, intent, self.m.assume['gravity'])
+        rotation = getattr(self, 'rotation', None)
+        skill = rotation.execution_rating(player, intent.technique) if rotation else None
+        return maneuver(player, intent, self.m.assume['gravity'], skill=skill)
 
     def own_release_ms(self, player):
         """Unrestrained thrown-pass and shot wind-up on the integer clock."""
@@ -564,17 +572,23 @@ class NativePort:
                 # Release is solely the admitted aim; no true receiver lookup.
                 origin=(s.restart.x,s.restart.y,p.hand_height)
             else:origin=(s.ball.x,s.ball.y,s.ball.z)
-            ans=self.geom.launch_for(origin,(*i.aim,.1075 if i.kind in ('bounce','dribble') else i.height),i.speed,9.81,.015)
+            rotation = getattr(self, 'rotation', None)
+            release_speed = min(i.speed, p.native_max_throw_speed) if rotation else i.speed
+            ans=self.geom.launch_for(origin,(*i.aim,.1075 if i.kind in ('bounce','dribble') else i.height),release_speed,9.81,.015)
             if ans is None:self.resolve(pid,'rejected_geometry');continue
             old=pend['velocity'];new=ans[0]
             dot=sum(a*b for a,b in zip(old,new));sizes=math.sqrt(sum(x*x for x in old)*sum(x*x for x in new))
             angle=math.degrees(math.acos(max(-1,min(1,dot/max(sizes,1e-9)))))
             if angle>60:self.resolve(pid,'rejected_geometry');continue
-            self.release_log.append(dict(command_id=pend['cmd'].command_id,intent_id=i.intent_id,angle=angle,speed=i.speed,height=i.height,target=i.target))
+            self.release_log.append(dict(command_id=pend['cmd'].command_id,intent_id=i.intent_id,angle=angle,speed=release_speed,height=i.height,target=i.target))
             if self.prism_core and i.technique:
                 e.emit('prism_delivery','RB-3.25',player=pid,technique=i.technique,wait=i.wait_ms)
             if self.individuation and i.kind != 'restart_pass':
-                new = IND.delivery_velocity(new, p.native_individual['touch'], m.rng['ball'].uniform(-1., 1.))
+                touch = p.native_individual['touch']
+                if rotation:
+                    from .rulebook.fatigue_rotation import technique
+                    touch = technique(touch, p.fatigue)
+                new = IND.delivery_velocity(new, touch, m.rng['ball'].uniform(-1., 1.))
             if i.kind=='restart_pass':
                 ok=e.restart_release(pid,new,i.target)
                 if not ok and s.restart is not None and s.restart.taker==pid:
@@ -585,7 +599,7 @@ class NativePort:
                 # direction error: half-width = sqrt(3)*SD. Legacy replay keeps
                 # its historical Gaussian exactly.
                 if self.attr:
-                    sd=p.native_throw_error_base_deg*i.speed/67.
+                    sd=p.native_throw_error_base_deg*release_speed/67.
                     yaw=math.radians(m.rng['ball'].uniform(-math.sqrt(3)*sd,math.sqrt(3)*sd))
                 else:yaw=m.rng['ball'].gauss(0,math.radians((1-.7)*3))
                 vx,vy,vz=new;new=(vx*math.cos(yaw)-vy*math.sin(yaw),vx*math.sin(yaw)+vy*math.cos(yaw),vz)
@@ -656,7 +670,7 @@ class NativePort:
                 course = tuple((t-elapsed, x, y, z) for t,x,y,z in i.auxiliary.course if t >= elapsed)
                 intent = replace(i.auxiliary, course=course)
                 cmd = plan_keeper_motor(
-                    intent, body(p), now_ms=s.now, gravity=m.assume['gravity'],
+                    intent, body(p, getattr(self.config, 'fatigue_rotation', False)), now_ms=s.now, gravity=m.assume['gravity'],
                     pushoff_fraction=m.assume['keeper_pushoff_frac'] * (
                         .75 + .25 * p.native_registry['goalkeeping'] if self.individuation and not self.prism_core else 1.),
                     extension_fraction=m.assume['keeper_extension_frac'],

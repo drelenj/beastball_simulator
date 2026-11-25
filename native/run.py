@@ -159,6 +159,16 @@ class MatchDriver:
                     release_distances={t:{str(d):{'attempts':n,'goals':e.release_successes[t].get(d,0),'success_rate':e.release_successes[t].get(d,0)/n} for d,n in e.release_attempts[t].items()} for t in ('A','B')},
                     rules_ledger=dict(Counter(row['row'] for row in e.possession_history+e.possession.ledger)),
                     runtime_s=round(runtime_s,3))
+        rotation = getattr(port, 'rotation', None)
+        if rotation:
+            result['rotation'] = rotation.record()
+            result['fatigue_substitutions'] = [row for row in e.log if row['event'] == 'fatigue_substitution']
+            result['required_rotation_substitutions'] = [row for row in e.log if row['event'] == 'rotation_substitution']
+            state['rotation'] = result['rotation']
+            state['rotation_due'] = sorted(rotation.due)
+            state['rotation_restart'] = rotation.last_restart
+            state['rotation_update_ms'] = rotation.next_output_ms
+            result['state_hash'] = digest(state)
         if port.individuation:
             result['prism_agents'] = dict(port.prism_agents)
             result['prism_sources'] = port.prism_sources

@@ -81,6 +81,7 @@ class RulebookConfigV3(RulebookConfig):
     rb322_physical_source: str = 'roster'     # 'roster' | 'neutral' (league mean of each of the nine physical ratings)
 
     individuation: str = 'off'
+    fatigue_rotation: bool = False
     drill_values_path: str | None = None
     drill_values_sha256: str | None = None
 
@@ -93,6 +94,8 @@ class RulebookConfigV3(RulebookConfig):
     def record(self):
         record = super().record()
         record.pop('drill_values_path')
+        if not self.fatigue_rotation:
+            record.pop('fatigue_rotation')
         if self.drill_values_sha256 is None:
             record.pop('drill_values_sha256')
         if self.individuation == 'off':

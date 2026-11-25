@@ -60,7 +60,7 @@ def roots(driver):
     port = driver.port
     values = {'driver': driver, 'port': port, 'match': port.m, 'engine': port.m.e}
     values.update(('policy/' + team, policy) for team, policy in port.m.pol.items())
-    for name in ('rb317', 'rb318'):
+    for name in ('rb317', 'rb318', 'rotation'):
         if hasattr(port, name):
             values[name] = getattr(port, name)
     return values

@@ -53,6 +53,7 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
         if not candidates.get(franchise):raise RosterError(f'franchise {franchise}: no roster rows')
         selected=[]
         source_records = []
+        rotation_candidates = []
         for code,count,role in (('KPR',2,'keeper'),('ARC',2,'archer'),('field',18,'field')):
             pool=[(number,row) for number,row in candidates[franchise]
                   if (row[columns['Position']]==code if code!='field' else row[columns['Position']] not in ('KPR','ARC'))]
@@ -100,6 +101,8 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                             sources[key] = 'alias:' + alias if alias else f'{AVERAGE:.2f} default'
                     source_records.append(tuple(sorted(sources.items())))
                 selected.append(entry)
+                if rated_04:
+                    rotation_candidates.append((entry['id'],row[columns['Position']],row[columns[selection_column]]))
         roster = load_rows(selected, side)
         if source_records:
             athletes = tuple(replace(a, sources=sources) for a, sources in
@@ -119,7 +122,7 @@ def load_nbl_workbook(source, franchises, technical='ovr', physical='roster'):
                                   if name in values and name not in athlete.defaults), None)
                     sources[key] = 'alias:' + alias if alias else f'{AVERAGE:.2f} default'
             athletes.append(replace(athlete, prism_sources=tuple(sorted(sources.items()))))
-        out[side] = replace(roster, athletes=tuple(athletes))
+        out[side] = replace(roster, athletes=tuple(athletes), rotation_candidates=tuple(rotation_candidates))
     return out
 
 

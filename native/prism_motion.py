@@ -12,11 +12,12 @@ SPIN_SPEED_LOSS = .2
 HURDLE_JUMP_FRACTION = .36
 
 
-def maneuver(player, intent, gravity):
+def maneuver(player, intent, gravity, *, skill=None):
     if intent.aim is None:
         return None
     technique = intent.technique
-    skill = player.native_registry[technique]
+    if skill is None:
+        skill = player.native_registry[technique]
     dx, dy = intent.aim[0]-player.x, intent.aim[1]-player.y
     if technique == 'hurdle':
         player.vz = sqrt(2 * gravity * player.a.jump_height * HURDLE_JUMP_FRACTION * skill)

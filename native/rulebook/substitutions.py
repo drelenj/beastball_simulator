@@ -8,7 +8,7 @@ def install(co,cfg):
  def can_enter(self,p):
   return p.available and not p.injured and self.rb.can_enter(p,self.s.live_ms) and p.exclusion_ms<=0
  E.rb_can_enter=can_enter
- def substitute(self,outgoing,incoming,role=None,setup=False):
+ def substitute(self,outgoing,incoming,role=None,setup=False,*,rotation_reason=None,rotation_tier=None):
   s=self.s;p=s.players.get(outgoing);q=s.players.get(incoming)
   # RB-3.3: the match now opens with the period-start scrimmage, not the Hunt.
   opening=(s.phase==P.OPENING and not self.rb_hunt_running) or getattr(self,'rb_period_start_open',False)
@@ -38,6 +38,9 @@ def install(co,cfg):
   self.rb_publish(self.rb.ruling('substitution',outgoing=outgoing,incoming=incoming,role=target_role,injury_exempt=bool(p and (p.id in self.rb.injuries or self.rb.evaluated.get(p.id)==s.period))))
   port=getattr(self,'rb_port',None)
   if port:
+   rotation=getattr(port,'rotation',None)
+   if rotation and p:
+    rotation.log_swap(p,q,rotation_reason or 'required_cover',rotation_tier or 'designated_role')
    for pid in (outgoing,incoming):
     port.pending.pop(pid,None);port.move.pop(pid,None);port.keeper_intents.pop(pid,None)
    port.platform_motor(0)

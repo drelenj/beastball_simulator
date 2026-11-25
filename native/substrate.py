@@ -30,6 +30,9 @@ def build_core(config):
                   ('secure=1/(1+(energy/capacity)**2)if capacity>1e-9 else 0.', 'secure=1/(1+(energy/capacity)**8)if capacity>1e-9 else 0.')]
     }
     if config.version == 'native-rb/3':
+        if getattr(config, 'fatigue_rotation', False):
+            from .rulebook.fatigue_rotation import KERNEL_PATCHES
+            patches['match'].extend(KERNEL_PATCHES)
         patches['match'].append((
             "top=p.a.maximum_speed*(.70+.30*p.fatigue)*((policy.pace*.90)if s.ball.carrier==p.id else.88)",
             "top=p.a.maximum_speed*(.70+.30*p.fatigue)",

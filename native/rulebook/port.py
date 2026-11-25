@@ -56,12 +56,22 @@ class RulebookPort(NativePort):
         if self.config.version == 'native-rb/3' and self.config.rb3_carrier_moves_enabled:
             from .carrier_moves import CarrierMoves
             self.rb318 = CarrierMoves(self)
+        if getattr(self.config, 'fatigue_rotation', False):
+            from .fatigue_rotation import FatigueRotation
+            self.rotation = FatigueRotation(self, rosters)
 
     @property
     def intermission_pending(self):return self.m.e.rb_pause is not None
 
     def advance_intermission(self):
-        e=self.m.e;e.elapse(e.rb_pause['until']-self.m.s.now)
+        e=self.m.e
+        rotation = getattr(self, 'rotation', None)
+        if rotation:
+            s = e.s
+            now, live, active = s.now, s.live_ms, {p.id for p in s.players.values() if p.active}
+        e.elapse(e.rb_pause['until']-self.m.s.now)
+        if rotation:
+            rotation.advance(now, live, active)
         if self.last_reset_period!=self.m.s.period:
             # PLACEHOLDER procedural reset: reuse legal initial scatter, no formation.
             for p in self.m.s.players.values():
@@ -80,12 +90,19 @@ class RulebookPort(NativePort):
             self.advance_intermission()
             return
         e=self.m.e;s=self.m.s
+        rotation = getattr(self, 'rotation', None)
+        if rotation:
+            rotation.rotate()
+            now, live, active = s.now, s.live_ms, {p.id for p in s.players.values() if p.active}
         if s.phase==self.types.Phase.DEAD:
             for team in ('A','B'):
                 if e.rb_timeout(team):
                     # Yield a positive dead-time step; the driver then consumes
                     # the remaining official pause and resets only its watchdog.
-                    e.elapse(1);return
+                    e.elapse(1)
+                    if rotation:
+                        rotation.advance(now, live, active)
+                    return
         if s.phase==self.types.Phase.OPENING:e.rb_hunt_release()
         self.m.rb_previous_positions={p.id:(p.x,p.y,p.z) for p in s.players.values()}
         if self.config.version=='native-rb/3':e.rb_hold_step(self) # RB-3.10 snap hold
@@ -98,6 +115,9 @@ class RulebookPort(NativePort):
             actions.update_blocks(steer=False)
         if moves:
             moves.update(execute=False)
+        if rotation:
+            rotation.advance(now, live, active)
+            rotation.rotate()
         if self.config.version=='native-rb/3':e.rb_form_restart() # RB-3.9a scrimmage formation
 
     def fill_cover(self):
