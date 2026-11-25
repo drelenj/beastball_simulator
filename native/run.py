@@ -185,6 +185,9 @@ class MatchDriver:
             state['rotation_due'] = sorted(rotation.due)
             state['rotation_restart'] = rotation.last_restart
             state['rotation_update_ms'] = rotation.next_output_ms
+            if port.config.rotation_rhythm == 'PLANNED':
+                result['rotation_plan'] = rotation.plan_record()
+                state['rotation_override_benched'] = sorted(rotation.override_benched)
             if rotation.min_stint:
                 state['rotation_stint_marks'] = rotation.stint_mark
                 state['rotation_possessions'] = rotation.possessions

@@ -17,6 +17,7 @@ OUTPUT_UPDATE_MS = 500
 REST_THRESHOLD = .60
 RETURN_THRESHOLD = .75
 KEEPER_REGULATION_MIN_MS = 36 * 60_000
+PLANNED_RATE_SCALE = .52
 RHYTHMS = {'R1': (1., 0), 'R2': (.5, 0), 'R3': (.33, 0),
            'R2M': (.5, 2), 'R3M': (.33, 2)}
 
@@ -36,8 +37,8 @@ PHYSICAL = ('braking', 'turning', 'strength', 'jump_height', 'agility')
 TECHNIQUE = ('tackling', 'blocking', 'ball_handling', 'passing', 'catching', 'archery_accuracy')
 
 
-def parameters(rhythm="R1"):
-    scale, minimum = RHYTHMS[rhythm]
+def parameters(rhythm="R1", planned_scale=PLANNED_RATE_SCALE):
+    scale, minimum = (planned_scale, 0) if rhythm == 'PLANNED' else RHYTHMS[rhythm]
     result = dict(field_recovery=FIELD_RECOVERY, sprint_drain=SPRINT_DRAIN * scale,
                 bench_recovery=BENCH_RECOVERY * scale, neutral_effort=NEUTRAL_EFFORT,
                 effort_exponent=EFFORT_EXPONENT, stamina_sensitivity=STAMINA_SENSITIVITY,
@@ -98,7 +99,10 @@ class FatigueRotation:
         self.next_output_ms = 0
         self.last_restart = None
         self.due = set()
-        self.rate_scale, self.min_stint = RHYTHMS[port.config.rotation_rhythm]
+        self.rate_scale, self.min_stint = (
+            (port.config.planned_rate_scale, 0) if port.config.rotation_rhythm == 'PLANNED'
+            else RHYTHMS[port.config.rotation_rhythm]
+        )
         self.stint_mark = {}
         self.possessions = 0
         self.ledger_offset = 0
@@ -218,7 +222,7 @@ class FatigueRotation:
         return self.port.m.e.rb_substitute(outgoing.id, incoming.id,
                                            rotation_reason=reason, rotation_tier=tier)
 
-    def log_swap(self, outgoing, incoming, reason, tier):
+    def log_swap(self, outgoing, incoming, reason, tier, *, stamina=None):
         e = self.port.m.e
         self.due.discard(outgoing.id)
         self.due.discard(incoming.id)
@@ -235,7 +239,8 @@ class FatigueRotation:
         e.emit(event, 'RB-3.28', team=outgoing.team, role=outgoing.role,
                outgoing=outgoing.id, incoming=incoming.id, slot=incoming.slot,
                live_ms=e.s.live_ms, outgoing_energy=outgoing.fatigue,
-               incoming_energy=incoming.fatigue, reason=reason, tier=tier)
+               incoming_energy=incoming.fatigue, reason=reason, tier=tier,
+               **({} if stamina is None else {'outgoing_stamina': stamina}))
 
     def record(self):
         starters = self.starters.values()

@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--workbook', type=Path)
     parser.add_argument('--drill-values', type=Path)
     parser.add_argument('--fatigue-rotation', action='store_true')
-    parser.add_argument('--rotation-rhythm', choices=('R1','R2','R3','R2M','R3M'), default='R1')
+    parser.add_argument('--rotation-rhythm', choices=('R1','R2','R3','R2M','R3M','PLANNED'), default='R1')
     parser.add_argument('--box-score', type=Path, help='write the optional box score at this file prefix')
     parser.add_argument('--technical', choices=('ovr', 'neutral', 'explicit'), default='ovr')
     parser.add_argument('--physical', choices=('roster', 'neutral'), default='roster')

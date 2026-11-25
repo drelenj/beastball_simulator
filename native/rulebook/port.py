@@ -58,7 +58,12 @@ class RulebookPort(NativePort):
             self.rb318 = CarrierMoves(self)
         if getattr(self.config, 'fatigue_rotation', False):
             from .fatigue_rotation import FatigueRotation
-            self.rotation = FatigueRotation(self, rosters)
+            if self.config.rotation_rhythm == 'PLANNED':
+                from .planned_rotation import PlannedRotation
+
+                self.rotation = PlannedRotation(self, rosters)
+            else:
+                self.rotation = FatigueRotation(self, rosters)
 
     @property
     def intermission_pending(self):return self.m.e.rb_pause is not None

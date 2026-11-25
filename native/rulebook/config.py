@@ -2,6 +2,8 @@ from dataclasses import dataclass, replace
 import math
 from native.config import NativeConfig,POCKET
 
+from .fatigue_rotation import PLANNED_RATE_SCALE
+
 _RB_POCKET_OVERRIDES=dict(arrow_speed=250.,arrow_limit=None,player_speed=44.7,inner_zone_radius=10.,inner_points=2,release_points=3,outside_points=4,carry_value=5)
 RB_POCKET=tuple((k,_RB_POCKET_OVERRIDES.get(k,v)) for k,v in POCKET)
 RB_BODY=tuple((k,44.7 if k=="maximum_speed" else 250. if k=="archery_release_speed" else v) for k,v in NativeConfig().body_standards)
@@ -83,6 +85,7 @@ class RulebookConfigV3(RulebookConfig):
     individuation: str = 'off'
     fatigue_rotation: bool = False
     rotation_rhythm: str = "R1"
+    planned_rate_scale: float = PLANNED_RATE_SCALE
     drill_values_path: str | None = None
     drill_values_sha256: str | None = None
 
@@ -95,12 +98,14 @@ class RulebookConfigV3(RulebookConfig):
     def record(self):
         record = super().record()
         record.pop('drill_values_path')
+        if self.rotation_rhythm != 'PLANNED':
+            record.pop('planned_rate_scale')
         if self.rotation_rhythm == 'R1':
             record.pop('rotation_rhythm')
         if self.fatigue_rotation:
             from .fatigue_rotation import parameters
 
-            record['fatigue_rotation_parameters'] = parameters(self.rotation_rhythm)
+            record['fatigue_rotation_parameters'] = parameters(self.rotation_rhythm, self.planned_rate_scale)
         else:
             record.pop('fatigue_rotation')
         if self.drill_values_sha256 is None:
@@ -130,8 +135,11 @@ class RulebookConfigV3(RulebookConfig):
     def __post_init__(self):
         from .fatigue_rotation import RHYTHMS
 
-        if self.rotation_rhythm not in RHYTHMS or self.rotation_rhythm != 'R1' and not self.fatigue_rotation:
+        if (self.rotation_rhythm not in (*RHYTHMS, 'PLANNED')
+                or self.rotation_rhythm != 'R1' and not self.fatigue_rotation):
             raise ValueError('a rotation rhythm requires the fatigue switch')
+        if self.rotation_rhythm == 'PLANNED' and not 0 < self.planned_rate_scale <= 1:
+            raise ValueError('planned rotation rate scale must be in (0, 1]')
         if not isinstance(self.fatigue_rotation, bool):
             raise ValueError('fatigue_rotation must be a boolean')
         if (self.drill_values_path is None) != (self.drill_values_sha256 is None):
