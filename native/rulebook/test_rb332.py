@@ -56,3 +56,27 @@ def test_takedown_requires_recent_observer_ball_course(core_port):
         intent,_ = core.defender(menu,viewed,stale,(track,),base,record)
         assert intent.contact is None
         assert all(row[0]!='commit_takedown' for row in menu.records[-1]['options'])
+
+
+def test_keeper_envelope_uses_remaining_physical_time(core_port):
+    from audit.native.rb332.witness import keeper_envelope
+    from native.port import body
+    from native.rulebook.ball_material import params
+    port, _ = core_port
+    player = next(x for x in port.m.s.players.values() if x.active and x.role=='keeper')
+    own = replace(body(player),x=99.,y=50.,z=0.,vx=0.,vy=0.)
+    limits = port.m.assume | dict(goal_radius=port.config.goal_radius,
+                                  reach_factor=port.m.c4c_reach(player)/player.a.reach)
+    throw = ((90.,50.,1.5),(30.,0.,0.),100.,params(port.config),port.m.s.ball.radius,own)
+    assert keeper_envelope(*throw,.05,limits)['reachable']
+    assert not keeper_envelope(*throw,.50,limits)['reachable']
+
+
+def test_trial_switches_survive_view_serialization(core_port):
+    import json
+    port, view, belief = scene(core_port)
+    assert 'paired_fixes' not in c.view_to_json(view,belief)['view']
+    enabled = replace(view,paired_fixes=('carry_finish','pass_clearance'))
+    raw = json.loads(json.dumps(c.view_to_json(enabled,belief)))
+    restored,_ = port.view_from_json(raw)
+    assert restored.paired_fixes == enabled.paired_fixes
