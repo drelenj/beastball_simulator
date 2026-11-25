@@ -11,7 +11,7 @@ from .tackle_stats import TackleWitness
 BANDS = ('under10', '10_to20', '20plus')
 COUNTS = (
     'points', 'carry_attempts', 'stretch_attempts', 'passes_attempted', 'passes_completed',
-    'handoffs', 'interceptions_thrown', 'assists', 'targets', 'catches', 'drops',
+    'handoffs', 'interceptions_thrown', 'assists', 'targets', 'balls_secured', 'flight_balls_secured', 'receptions', 'loose_ball_recoveries', 'drops',
     'turnovers', 'fumbles', 'tackles_attempted', 'tackles_made', 'takedowns', 'strips',
     'interceptions', 'passes_defended', 'blocks_made', 'shots_faced', 'saves',
     'arrows_fired', 'hits', 'freezes', 'illegal_arrows', 'minor_fouls',
@@ -184,6 +184,13 @@ class StatsLedger:
         award_contexts = sorted(self.awards,key=lambda row:row[4])
         award_index = 0
         closed = None
+
+        def close_flight(secured_by=None):
+            nonlocal flight
+            if flight and flight[0] == 'pass' and secured_by != flight[2] and (flight[2], 'pass') in touches:
+                self.add(flight[2], 'drops')
+            flight = None
+
         for row in e.log:
             event,d = row['event'],row['data']
             pid = d.get('player')
@@ -195,6 +202,7 @@ class StatsLedger:
                     saving_keeper = None
                 pid = d.get('player',d.get('taker'))
                 kind = d.get('kind','pass' if event=='restart_release' else None)
+                close_flight()
                 flight = (kind,pid,d.get('target'))
                 last_release = pid
                 holder = None
@@ -216,22 +224,28 @@ class StatsLedger:
                 if last_pass and self.team(last_pass[1]) != self.team(pid):
                     last_pass = None
                 holder = pid
+                self.add(pid, 'balls_secured')
+                reception = interception = False
                 if flight:
                     kind,origin,target = flight
                     if kind in ('pass','shot') and origin!=pid:
-                        self.add(pid,'catches')
+                        self.add(pid,'flight_balls_secured')
                         if kind=='pass' and self.team(origin)==self.team(pid):
                             self.add(origin,'passes_completed')
                             self.group(origin,'completed_by_target',pid)
                             last_pass=(origin,pid)
+                            reception = pid == target
                         if self.team(origin)!=self.team(pid):
                             if kind=='pass':
+                                interception = True
                                 self.add(pid,'interceptions')
                                 self.add(origin,'interceptions_thrown')
                                 lost=(origin,'interception')
                             elif self.players[pid].role=='keeper':
                                 saving_keeper = pid
-                    flight = None
+                if not interception:
+                    self.add(pid, 'receptions' if reception else 'loose_ball_recoveries')
+                close_flight(pid)
                 if lost and self.team(lost[0])==self.team(pid):
                     lost = None
                 blame_at[row['t_ms']]=lost
@@ -242,8 +256,6 @@ class StatsLedger:
                     touches.add(key)
                     if kind=='pass' and self.team(origin)!=self.team(pid):
                         self.add(pid,'passes_defended')
-                    if kind=='pass' and pid==target:
-                        self.add(pid,'drops')
                     if kind=='shot' and self.team(origin)!=self.team(pid) and self.players[pid].role=='keeper':
                         saving_keeper=pid
             elif event in ('restart_awarded','period_end','boundary'):
@@ -270,7 +282,8 @@ class StatsLedger:
                     holder = last_release = None
                     lost = None
                     blame_at[row['t_ms']] = None
-                flight = last_pass = None
+                close_flight()
+                last_pass = None
             elif event in ('goal','foul_award'):
                 team,points,method=d['team'],d['points'],d['method']
                 if method=='release':
@@ -297,7 +310,7 @@ class StatsLedger:
                 self.add(d.get('actor'),'strips')
                 lost=(d.get('target'),'strip')
                 blame_at[row['t_ms']]=lost
-                flight=None
+                close_flight()
             elif event=='handoff_complete':
                 self.add(d['giver'],'handoffs')
             elif event=='handoff_fumble':
@@ -330,6 +343,8 @@ class StatsLedger:
                             self.players[d[key]].changes.append(dict(direction=key,t_ms=row['t_ms'],
                                 live_ms=row['live_ms'],other=d['outgoing' if key=='incoming' else 'incoming'],
                                 reason=d.get('reason','required_cover'),tier=d.get('tier')))
+        if self.state.phase.value == 'final':
+            close_flight()
         if saving_keeper:
             self.add(saving_keeper,'saves')
         for _,team,reason,carrier,_ in award_contexts[award_index:]:
@@ -462,7 +477,7 @@ class StatsLedger:
                                lowest_energy=min(r['lowest_energy'] for r in members),
                                points_outside_own_possession=off_points[team],
                                scoring_points_by_method=self.team_credit[team],**counts,**groups))
-        return dict(schema='native-box/2', players=lines, unattributed=unattributed, teams=totals,
+        return dict(schema='native-box/3', players=lines, unattributed=unattributed, teams=totals,
                     possessions=possessions, scores=scored)
 
 

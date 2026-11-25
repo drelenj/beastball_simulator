@@ -6,8 +6,6 @@ No new canon question arose. The fit of provisional option values and the scorin
 
 ## RB-3.30 planned wave eligibility
 
-The engine admits eleven field-role players and one Keeper per side, plus the
-Archer on his platform. The requested two waves of five cover the ten highest
-ordered field-role players. The eleventh follows the energy override and stays
-outside the planned waves. Should a future coach plan schedule that eleventh
-slot as well?
+Resolved by DreLen on 25 November. All eleven field-role starters belong in
+the plan, alongside the Keeper on the field and the Archer on his platform.
+The two rest waves have six and five field starters.

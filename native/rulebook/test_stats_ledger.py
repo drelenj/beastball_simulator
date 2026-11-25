@@ -74,3 +74,30 @@ def test_score_restart_increment_is_not_an_individual_error():
     ledger.turnover('A',pid,'goal')
     assert ledger.players[pid].counts['turnovers']==0
     assert ledger.team_only['A'].breakdown['turnovers_by_type']['score_restart']==1
+
+
+def test_reception_interception_recovery_and_drop_are_exclusive():
+    driver = match_build(1, roster='control').create(record=False)
+    driver.enable_stats()
+    ledger = driver.stats_ledger
+    log = ledger.engine.log
+    log.clear()
+
+    def log_event(event, **data):
+        log.append(dict(event=event, data=data, id=len(log)+1, t_ms=len(log)))
+
+    log_event('release',player='A:0',target='A:1',kind='pass')
+    log_event('touch',player='A:1')
+    log_event('control',player='A:1')
+    log_event('release',player='A:0',target='A:1',kind='pass')
+    log_event('touch',player='A:1')
+    log_event('touch',player='A:1')
+    log_event('control',player='B:1')
+    log_event('release',player='A:0',target='A:1',kind='pass')
+    log_event('control',player='A:2')
+    log_event('control',player='A:1')
+    ledger.events()
+    a,b = (ledger.players[p].counts for p in ('A:1','B:1'))
+    assert (a['balls_secured'],a['receptions'],a['loose_ball_recoveries'],a['targets'],a['drops'])==(2,1,1,3,1)
+    assert (b['balls_secured'],b['interceptions'],b['loose_ball_recoveries'])==(1,1,0)
+    assert ledger.players['A:2'].counts['loose_ball_recoveries']==1

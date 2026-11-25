@@ -27,17 +27,20 @@ def restart(port, live_ms=None):
 
 
 def test_uneven_groups_are_balanced_and_wave_backups_are_unique():
-    positions = ('PDR', 'STR', 'SCT', 'PFD', 'HNT', 'TRK', 'SEN', 'PFD', 'TRP', 'GRD')
+    positions = ('PDR', 'STR', 'SCT', 'PFD', 'HNT', 'TRK', 'SEN', 'PFD', 'TRP', 'GRD', 'TRP')
     roster = {str(i): (pos, .8) for i, pos in enumerate(positions)}
     waves = split_waves([SimpleNamespace(id=pid) for pid in roster], roster)
-    assert list(map(len, waves)) == [5, 5]
+    assert list(map(len, waves)) == [6, 5]
     counts = [Counter(GROUP[roster[p.id][0]] for p in wave) for wave in waves]
     assert all(abs(counts[0][group] - counts[1][group]) <= 1 for group in GROUP.values())
     plan = planned_port().rotation
-    for waves in plan.waves.values():
-        assert len(set(waves[0] + waves[1])) == 10
+    for team, waves in plan.waves.items():
+        assert tuple(map(len, waves)) == (6, 5)
+        assert set(waves[0] + waves[1]) == {
+            p.id for p in plan.port.m.s.players.values() if p.team == team and p.role == 'field' and p.active
+        }
         for wave in waves:
-            assert len({plan.backups[pid][0] for pid in wave}) == 5
+            assert len({plan.backups[pid][0] for pid in wave}) == len(wave)
 
 
 @pytest.mark.parametrize('minute,period,expected', [

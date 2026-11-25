@@ -1,8 +1,6 @@
 """Coach rotation, applied by the rulebook before restart placement."""
 from collections import defaultdict
 
-from native.roster import engine_order
-
 from .fatigue_rotation import (
     FatigueRotation, GROUP, POSITION_GROUPS, KEEPER_REGULATION_MIN_MS, REST_THRESHOLD,
     RETURN_THRESHOLD, select_substitute,
@@ -45,10 +43,8 @@ class PlannedRotation(FatigueRotation):
         self.override_benched = set()
         self.original_ids = frozenset(self.starters.values())
         self.period_ms = port.config.period_seconds * 1000
-        for team, roster in sorted(rosters.items()):
-            # The engine also admits an eleventh field player at kickoff.
-            # Coach windows apply to the ten ordered field starters.
-            planned = [players[f'{team}:{a.source_id}'] for a in engine_order(roster)[:10]]
+        for team in sorted(rosters):
+            planned = [p for p in players.values() if p.team == team and p.role == 'field' and p.active]
             waves = split_waves(planned, self.roster)
             self.waves[team] = tuple(tuple(p.id for p in wave) for wave in waves)
             for wave in waves:
