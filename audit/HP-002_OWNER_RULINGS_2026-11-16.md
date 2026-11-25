@@ -183,3 +183,4 @@ Owner: "You can throw in some magikal material science to make things realistic.
 - Owner ruling: a tackle attempt counts only an engagement with the ball carrier with intent to take him down.
 - Owner: box scores show player names (joined from the roster).
 - Owner ruling: rotation = planned minutes (coach plan), with the 0.6 / 0.75 energy thresholds as the backup override. Default plan to be proposed by the lead.
+- CANON (owner, 25 Nov): 11 field players per team on the field, plus 1 Keeper (and the Archer on his platform). Matches the Native engine since RB-1 (15 Nov); field_roster_limit 12 = Keeper + 11 field. Planned rotation must cover all 11 field starters.
