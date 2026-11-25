@@ -1,0 +1,487 @@
+{
+  "soak": {
+    "matches": 30,
+    "starter_minutes": {
+      "count": 660,
+      "mean": 31.90343787878788,
+      "minimum": 27.158,
+      "maximum": 35.450633333333336
+    },
+    "bench_minutes": {
+      "count": 420,
+      "mean": 12.798519047619047,
+      "minimum": 0.0,
+      "maximum": 24.456833333333332
+    },
+    "extra_field_minutes": {
+      "count": 0,
+      "mean": null,
+      "minimum": null,
+      "maximum": null
+    },
+    "keeper_minutes": {
+      "count": 60,
+      "mean": 40.0,
+      "minimum": 40.0,
+      "maximum": 40.0
+    },
+    "archer_minutes": {
+      "count": 60,
+      "mean": 24.839454166666666,
+      "minimum": 6.819733333333334,
+      "maximum": 40.0
+    },
+    "changes": {
+      "planned_out": 1282,
+      "planned_return": 1285,
+      "energy_override": 75,
+      "override_return": 62
+    },
+    "changes_per_team": {
+      "planned_out": 21.366666666666667,
+      "planned_return": 21.416666666666668,
+      "energy_override": 1.25,
+      "override_return": 1.0333333333333334
+    },
+    "override_exits_by_stamina": {
+      "0.66": 1,
+      "0.67": 4,
+      "0.68": 12,
+      "0.69": 3,
+      "0.7": 5,
+      "0.71": 2,
+      "0.72": 21,
+      "0.73": 1,
+      "0.74": 3,
+      "0.75": 8,
+      "0.76": 4,
+      "0.77": 1,
+      "0.78": 2,
+      "0.82": 1,
+      "0.84": 7
+    },
+    "median_team_score": 90.0,
+    "team_score_sd": 16.312026342236898,
+    "mean_possessions": 153.4,
+    "attempt_share": 0.34419817470664926,
+    "close_share": 0.16666666666666666,
+    "median_absolute_margin": 14.5,
+    "throw4_points_share": 0.4434162328899171,
+    "cpu_s": 5143.506803852,
+    "ala_margin": {
+      "mean": 22.9,
+      "se": 5.604462507680821,
+      "wins": 9,
+      "matches": 10
+    }
+  },
+  "diagnosis": {
+    "total": {
+      "out_of_bounds": 1970,
+      "interception": 3202,
+      "fumble": 740,
+      "tackle": 564,
+      "zone_violation": 154,
+      "score_restart": 1497,
+      "turnover": 26,
+      "opponent_control": 733,
+      "play_clock": 81,
+      "strip": 71,
+      "toss_timeout": 38
+    },
+    "per_team_game": {
+      "out_of_bounds": 32.833333333333336,
+      "interception": 53.36666666666667,
+      "fumble": 12.333333333333334,
+      "tackle": 9.4,
+      "zone_violation": 2.566666666666667,
+      "score_restart": 24.95,
+      "turnover": 0.43333333333333335,
+      "opponent_control": 12.216666666666667,
+      "play_clock": 1.35,
+      "strip": 1.1833333333333333,
+      "toss_timeout": 0.6333333333333333
+    },
+    "ledger": {
+      "turnovers": 9076,
+      "interceptions": 3678,
+      "attempts": 10565,
+      "made": 2578
+    },
+    "interceptions": {
+      "n": 3678,
+      "restart": 482,
+      "usable": 3678,
+      "never_seen": 1,
+      "absent_latest": 785,
+      "in_cone": 2510,
+      "in_radar": 1270,
+      "geometry_sample": 3678,
+      "believed_clear_true_blocked": 1043,
+      "yaw_changed_clear_to_blocked": 7,
+      "distance": 11.515637123446734,
+      "believed_margin": 6.460603202111713,
+      "true_margin": 2.247998940204442,
+      "thrown_margin": 2.2469055945927874,
+      "mean_abs_yaw": 0.40949938867901936,
+      "believed_pressure": 1540,
+      "true_pressure": 1796,
+      "ratings": {
+        "passing": 0.760910821098423,
+        "playmaking": 0.7599564980967918,
+        "vision": 0.7613512778684067
+      }
+    },
+    "interception_open": {
+      "n": 3196,
+      "restart": 0,
+      "usable": 3196,
+      "never_seen": 1,
+      "absent_latest": 704,
+      "in_cone": 2205,
+      "in_radar": 1146,
+      "geometry_sample": 3196,
+      "believed_clear_true_blocked": 1020,
+      "yaw_changed_clear_to_blocked": 7,
+      "distance": 11.831416070659523,
+      "believed_margin": 6.634157238646489,
+      "true_margin": 2.103381229915273,
+      "thrown_margin": 2.102122811794324,
+      "mean_abs_yaw": 0.4711612994727255,
+      "believed_pressure": 1524,
+      "true_pressure": 1787,
+      "ratings": {
+        "passing": 0.7610513141426783,
+        "playmaking": 0.7595212765957446,
+        "vision": 0.7613579474342929
+      }
+    },
+    "carries": {
+      "total": 3246,
+      "outcomes": {
+        "freeze": {
+          "n": 11,
+          "median_plane": 8.889207997595204,
+          "minimum_plane": 1.7860443173409122
+        },
+        "goal": {
+          "n": 29,
+          "median_plane": 0.579634718349024,
+          "minimum_plane": 0.009700220322766073
+        },
+        "handoff": {
+          "n": 93,
+          "median_plane": 12.504785403325172,
+          "minimum_plane": 0.6724049033454931
+        },
+        "out_of_bounds": {
+          "n": 683,
+          "median_plane": 0.4191158363859414,
+          "minimum_plane": 0.007084144416494409
+        },
+        "pass": {
+          "n": 195,
+          "median_plane": 13.59605866491657,
+          "minimum_plane": 0.7505543163932068
+        },
+        "shot": {
+          "n": 1692,
+          "median_plane": 8.816142358859814,
+          "minimum_plane": 0.6725754727181403
+        },
+        "stopped_short": {
+          "n": 301,
+          "median_plane": 12.79792291478249,
+          "minimum_plane": 0.24015214701822774
+        },
+        "strip": {
+          "n": 22,
+          "median_plane": 11.82796650461906,
+          "minimum_plane": 1.218816152876272
+        },
+        "tackle": {
+          "n": 193,
+          "median_plane": 11.498831921333226,
+          "minimum_plane": 0.7183385003885103
+        },
+        "zone_violation": {
+          "n": 27,
+          "median_plane": 2.589288696121226,
+          "minimum_plane": 0.7420756232897961
+        }
+      },
+      "within_3": 1180,
+      "within_1": 793,
+      "stretch": {},
+      "shot_followups": {
+        "on_target_not_scored": 68,
+        "goal": 922,
+        "keeper_save": 263,
+        "off_target": 441
+      },
+      "governed_goals": 29
+    },
+    "tackles": {
+      "overall": {
+        "n": 20012,
+        "made": 2139,
+        "made_rate": 0.10688586847891265,
+        "median_ms": 302.0,
+        "targeted_actual_carrier": 12045,
+        "mean_commit_distance": 2.465545933706591
+      },
+      "by_outcome": {
+        "contact_without_confirmed_grip": {
+          "n": 3299,
+          "made": 0,
+          "made_rate": 0.0,
+          "median_ms": 291,
+          "targeted_actual_carrier": 2643,
+          "mean_commit_distance": 1.7971000848859582
+        },
+        "grip_lost": {
+          "n": 1073,
+          "made": 0,
+          "made_rate": 0.0,
+          "median_ms": 478,
+          "targeted_actual_carrier": 1047,
+          "mean_commit_distance": 1.8347921278055113
+        },
+        "grip_unresolved": {
+          "n": 4093,
+          "made": 0,
+          "made_rate": 0.0,
+          "median_ms": 651,
+          "targeted_actual_carrier": 3915,
+          "mean_commit_distance": 1.5791865671849472
+        },
+        "maneuver": {
+          "n": 114,
+          "made": 0,
+          "made_rate": 0.0,
+          "median_ms": 262.5,
+          "targeted_actual_carrier": 111,
+          "mean_commit_distance": 1.2258639650238792
+        },
+        "no_contact": {
+          "n": 8521,
+          "made": 0,
+          "made_rate": 0.0,
+          "median_ms": 291,
+          "targeted_actual_carrier": 1519,
+          "mean_commit_distance": 3.477598283857665
+        },
+        "released_first": {
+          "n": 773,
+          "made": 0,
+          "made_rate": 0.0,
+          "median_ms": 145,
+          "targeted_actual_carrier": 770,
+          "mean_commit_distance": 2.5083524744009176
+        },
+        "takedown": {
+          "n": 2139,
+          "made": 2139,
+          "made_rate": 1.0,
+          "median_ms": 642,
+          "targeted_actual_carrier": 2040,
+          "mean_commit_distance": 1.527914699017495
+        }
+      },
+      "by_rating": {
+        "tackling": {
+          ".65–.79": {
+            "n": 9817,
+            "made": 1041,
+            "made_rate": 0.1060405419170826,
+            "median_ms": 309,
+            "targeted_actual_carrier": 5977,
+            "mean_commit_distance": 2.474426897654617
+          },
+          "<0.65": {
+            "n": 1973,
+            "made": 206,
+            "made_rate": 0.10440952863659402,
+            "median_ms": 309,
+            "targeted_actual_carrier": 1242,
+            "mean_commit_distance": 2.4078583312916435
+          },
+          "≥.80": {
+            "n": 8222,
+            "made": 892,
+            "made_rate": 0.10848941863293603,
+            "median_ms": 295.0,
+            "targeted_actual_carrier": 4826,
+            "mean_commit_distance": 2.468785196232365
+          }
+        },
+        "evasion": {
+          ".65–.79": {
+            "n": 10205,
+            "made": 1111,
+            "made_rate": 0.10886820186183244,
+            "median_ms": 305,
+            "targeted_actual_carrier": 6145,
+            "mean_commit_distance": 2.477594298772616
+          },
+          "<0.65": {
+            "n": 2763,
+            "made": 299,
+            "made_rate": 0.10821570756424177,
+            "median_ms": 298,
+            "targeted_actual_carrier": 1667,
+            "mean_commit_distance": 2.4816265701037112
+          },
+          "≥.80": {
+            "n": 7044,
+            "made": 729,
+            "made_rate": 0.1034923339011925,
+            "median_ms": 302.0,
+            "targeted_actual_carrier": 4233,
+            "mean_commit_distance": 2.441783247184156
+          }
+        },
+        "strength": {
+          ".65–.79": {
+            "n": 8259,
+            "made": 984,
+            "made_rate": 0.11914275335997095,
+            "median_ms": 302,
+            "targeted_actual_carrier": 4906,
+            "mean_commit_distance": 2.454831856573686
+          },
+          "≥.80": {
+            "n": 11753,
+            "made": 1155,
+            "made_rate": 0.09827278141751042,
+            "median_ms": 302,
+            "targeted_actual_carrier": 7139,
+            "mean_commit_distance": 2.473074867854524
+          }
+        },
+        "balance": {
+          ".65–.79": {
+            "n": 8698,
+            "made": 833,
+            "made_rate": 0.09576914233157048,
+            "median_ms": 302.0,
+            "targeted_actual_carrier": 5249,
+            "mean_commit_distance": 2.4292103769885536
+          },
+          "≥.80": {
+            "n": 11314,
+            "made": 1306,
+            "made_rate": 0.11543220788403748,
+            "median_ms": 302.0,
+            "targeted_actual_carrier": 6796,
+            "mean_commit_distance": 2.4934800571230205
+          }
+        }
+      },
+      "maneuvers": {
+        "stiff_arm_effect": 113,
+        "truck_broken": 6
+      },
+      "moves_near_failed": {
+        "hurdle": 895,
+        "stiff_arm": 439,
+        "spin": 498,
+        "truck": 200,
+        "juke": 155
+      }
+    },
+    "archers": {
+      "defensive_possessions": 9204,
+      "arrows": 15007,
+      "hits": 8734,
+      "freezes": 4277,
+      "with_freeze": 3529,
+      "relevant_freeze_possessions": 1201,
+      "turnovers": 7583,
+      "turnovers_soon": 807,
+      "ppp_frozen": 0.4545196939642958,
+      "ppp_unfrozen": 0.6022907488986784,
+      "quota_epochs": 9148,
+      "max_charged": 8,
+      "max_freezes": 5,
+      "at_arrow_limit": 0,
+      "at_freeze_limit": 7
+    },
+    "keepers": {
+      "total": {
+        "shots": 2805,
+        "faced": 2805,
+        "on_target": 2035,
+        "saves": 394,
+        "save_per_faced": 0.14046345811051694,
+        "save_per_on_target": 0.19361179361179362,
+        "goals": 1486,
+        "goals_touched": 109
+      },
+      "by_band": {
+        "2": {
+          "shots": 584,
+          "faced": 584,
+          "on_target": 399,
+          "saves": 74,
+          "save_per_faced": 0.1267123287671233,
+          "save_per_on_target": 0.18546365914786966,
+          "goals": 321,
+          "goals_touched": 29
+        },
+        "3": {
+          "shots": 1110,
+          "faced": 1110,
+          "on_target": 864,
+          "saves": 187,
+          "save_per_faced": 0.16846846846846847,
+          "save_per_on_target": 0.21643518518518517,
+          "goals": 618,
+          "goals_touched": 52
+        },
+        "4": {
+          "shots": 1111,
+          "faced": 1111,
+          "on_target": 772,
+          "saves": 133,
+          "save_per_faced": 0.11971197119711971,
+          "save_per_on_target": 0.172279792746114,
+          "goals": 547,
+          "goals_touched": 28
+        }
+      },
+      "by_aim_offset": {
+        "1–2 m": {
+          "shots": 66,
+          "faced": 66,
+          "on_target": 59,
+          "saves": 9,
+          "save_per_faced": 0.13636363636363635,
+          "save_per_on_target": 0.15254237288135594,
+          "goals": 41,
+          "goals_touched": 0
+        },
+        "<1 m": {
+          "shots": 53,
+          "faced": 53,
+          "on_target": 47,
+          "saves": 16,
+          "save_per_faced": 0.3018867924528302,
+          "save_per_on_target": 0.3404255319148936,
+          "goals": 24,
+          "goals_touched": 5
+        },
+        "≥2 m": {
+          "shots": 2686,
+          "faced": 2686,
+          "on_target": 1929,
+          "saves": 369,
+          "save_per_faced": 0.13737900223380492,
+          "save_per_on_target": 0.19129082426127528,
+          "goals": 1421,
+          "goals_touched": 104
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+PLANNED fresh process {'score': {'A': 64, 'B': 96}, 'trace_hash': 'ab86f8befcf2baca264ab87fabdd39af3e218cb80032eab52b356a089319a08a', 'state_hash': 'e8318c85ba3ae5205861d138f8d4f63e16202dd6d84f4ab8b5df02066e141047', 'config_digest': '117f5525293e5a2a24476697e32278ca4fec2cb761a8e8df299e57e2d19410bc'}

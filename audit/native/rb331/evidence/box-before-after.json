@@ -1,0 +1,893 @@
+{
+  "match": {
+    "score": {
+      "A": 82,
+      "B": 79
+    },
+    "trace_hash": "101d92f751a9b36cfacb8a90957b074faa08fb38ef908e619915f4d470b60b1b",
+    "state_hash": "e5a8a71ad65bbf7d0f92c8d2358e5603ca72b8f5702b8465e1fe32dd5f649338",
+    "config_digest": "117f5525293e5a2a24476697e32278ca4fec2cb761a8e8df299e57e2d19410bc"
+  },
+  "players": [
+    {
+      "player": "A:NBL24-07-09",
+      "name": "Boubacar Stormbearer",
+      "team": "A",
+      "before": {
+        "targets": 24,
+        "catches": 21,
+        "drops": 0,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 24,
+        "drops": 0,
+        "balls_secured": 31,
+        "flight_balls_secured": 21,
+        "receptions": 11,
+        "interceptions": 4,
+        "loose_ball_recoveries": 16
+      }
+    },
+    {
+      "player": "A:NBL24-07-08",
+      "name": "Fallah Kambale",
+      "team": "A",
+      "before": {
+        "targets": 20,
+        "catches": 25,
+        "drops": 0,
+        "interceptions": 10
+      },
+      "after": {
+        "targets": 20,
+        "drops": 0,
+        "balls_secured": 35,
+        "flight_balls_secured": 25,
+        "receptions": 10,
+        "interceptions": 10,
+        "loose_ball_recoveries": 15
+      }
+    },
+    {
+      "player": "A:NBL24-07-03",
+      "name": "Fara Sanyaolu",
+      "team": "A",
+      "before": {
+        "targets": 14,
+        "catches": 16,
+        "drops": 0,
+        "interceptions": 5
+      },
+      "after": {
+        "targets": 14,
+        "drops": 0,
+        "balls_secured": 24,
+        "flight_balls_secured": 16,
+        "receptions": 9,
+        "interceptions": 5,
+        "loose_ball_recoveries": 10
+      }
+    },
+    {
+      "player": "A:NBL25-D06",
+      "name": "Farai Mutasa",
+      "team": "A",
+      "before": {
+        "targets": 16,
+        "catches": 13,
+        "drops": 0,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 16,
+        "drops": 0,
+        "balls_secured": 23,
+        "flight_balls_secured": 13,
+        "receptions": 7,
+        "interceptions": 4,
+        "loose_ball_recoveries": 12
+      }
+    },
+    {
+      "player": "A:NBL24-07-18",
+      "name": "Afolabi Jama",
+      "team": "A",
+      "before": {
+        "targets": 23,
+        "catches": 29,
+        "drops": 0,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 23,
+        "drops": 0,
+        "balls_secured": 36,
+        "flight_balls_secured": 29,
+        "receptions": 19,
+        "interceptions": 4,
+        "loose_ball_recoveries": 13
+      }
+    },
+    {
+      "player": "A:NBL24-07-02",
+      "name": "Darius Ironstrike",
+      "team": "A",
+      "before": {
+        "targets": 20,
+        "catches": 17,
+        "drops": 1,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 20,
+        "drops": 0,
+        "balls_secured": 19,
+        "flight_balls_secured": 17,
+        "receptions": 14,
+        "interceptions": 2,
+        "loose_ball_recoveries": 3
+      }
+    },
+    {
+      "player": "A:NBL24-07-06",
+      "name": "Themba Thundershade",
+      "team": "A",
+      "before": {
+        "targets": 20,
+        "catches": 15,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 20,
+        "drops": 0,
+        "balls_secured": 22,
+        "flight_balls_secured": 15,
+        "receptions": 12,
+        "interceptions": 0,
+        "loose_ball_recoveries": 10
+      }
+    },
+    {
+      "player": "A:NBL24-07-17",
+      "name": "Tayo Brightcliff",
+      "team": "A",
+      "before": {
+        "targets": 23,
+        "catches": 19,
+        "drops": 0,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 23,
+        "drops": 0,
+        "balls_secured": 26,
+        "flight_balls_secured": 19,
+        "receptions": 12,
+        "interceptions": 2,
+        "loose_ball_recoveries": 12
+      }
+    },
+    {
+      "player": "A:NBL24-15-03",
+      "name": "Binta Nur",
+      "team": "A",
+      "before": {
+        "targets": 22,
+        "catches": 19,
+        "drops": 0,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 22,
+        "drops": 0,
+        "balls_secured": 31,
+        "flight_balls_secured": 19,
+        "receptions": 9,
+        "interceptions": 4,
+        "loose_ball_recoveries": 18
+      }
+    },
+    {
+      "player": "A:NBL24-07-01",
+      "name": "Banele Sunsworn",
+      "team": "A",
+      "before": {
+        "targets": 13,
+        "catches": 18,
+        "drops": 1,
+        "interceptions": 6
+      },
+      "after": {
+        "targets": 13,
+        "drops": 1,
+        "balls_secured": 23,
+        "flight_balls_secured": 18,
+        "receptions": 6,
+        "interceptions": 6,
+        "loose_ball_recoveries": 11
+      }
+    },
+    {
+      "player": "A:NBL24-07-11",
+      "name": "Lesedi Pierre",
+      "team": "A",
+      "before": {
+        "targets": 0,
+        "catches": 4,
+        "drops": 0,
+        "interceptions": 1
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 5,
+        "flight_balls_secured": 4,
+        "receptions": 0,
+        "interceptions": 1,
+        "loose_ball_recoveries": 4
+      }
+    },
+    {
+      "player": "A:DRAFT26-09",
+      "name": "Theron Daxhal",
+      "team": "A",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "A:NBL24-07-14",
+      "name": "Sola Mafunde",
+      "team": "A",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "A:NBL25-D32",
+      "name": "Jengo Msafiri",
+      "team": "A",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "A:NBL24-07-13",
+      "name": "Royce Voss",
+      "team": "A",
+      "before": {
+        "targets": 18,
+        "catches": 24,
+        "drops": 1,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 18,
+        "drops": 1,
+        "balls_secured": 30,
+        "flight_balls_secured": 24,
+        "receptions": 13,
+        "interceptions": 4,
+        "loose_ball_recoveries": 13
+      }
+    },
+    {
+      "player": "A:NBL24-07-20",
+      "name": "Tunde Osei",
+      "team": "A",
+      "before": {
+        "targets": 1,
+        "catches": 4,
+        "drops": 1,
+        "interceptions": 1
+      },
+      "after": {
+        "targets": 1,
+        "drops": 0,
+        "balls_secured": 7,
+        "flight_balls_secured": 4,
+        "receptions": 1,
+        "interceptions": 1,
+        "loose_ball_recoveries": 5
+      }
+    },
+    {
+      "player": "A:NBL24-07-10",
+      "name": "Zane Kapenda",
+      "team": "A",
+      "before": {
+        "targets": 12,
+        "catches": 12,
+        "drops": 0,
+        "interceptions": 1
+      },
+      "after": {
+        "targets": 12,
+        "drops": 0,
+        "balls_secured": 14,
+        "flight_balls_secured": 12,
+        "receptions": 9,
+        "interceptions": 1,
+        "loose_ball_recoveries": 4
+      }
+    },
+    {
+      "player": "A:NBL24-07-04",
+      "name": "Damilare Dlamini",
+      "team": "A",
+      "before": {
+        "targets": 8,
+        "catches": 14,
+        "drops": 1,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 8,
+        "drops": 0,
+        "balls_secured": 17,
+        "flight_balls_secured": 14,
+        "receptions": 7,
+        "interceptions": 4,
+        "loose_ball_recoveries": 6
+      }
+    },
+    {
+      "player": "A:NBL24-07-07",
+      "name": "Udeme Ogunleye",
+      "team": "A",
+      "before": {
+        "targets": 6,
+        "catches": 8,
+        "drops": 0,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 6,
+        "drops": 0,
+        "balls_secured": 13,
+        "flight_balls_secured": 8,
+        "receptions": 4,
+        "interceptions": 2,
+        "loose_ball_recoveries": 7
+      }
+    },
+    {
+      "player": "A:NBL24-07-16",
+      "name": "Anwar Ndong",
+      "team": "A",
+      "before": {
+        "targets": 15,
+        "catches": 16,
+        "drops": 1,
+        "interceptions": 6
+      },
+      "after": {
+        "targets": 15,
+        "drops": 1,
+        "balls_secured": 24,
+        "flight_balls_secured": 16,
+        "receptions": 9,
+        "interceptions": 6,
+        "loose_ball_recoveries": 9
+      }
+    },
+    {
+      "player": "A:NBL24-07-22",
+      "name": "Auden Zuma",
+      "team": "A",
+      "before": {
+        "targets": 16,
+        "catches": 13,
+        "drops": 0,
+        "interceptions": 1
+      },
+      "after": {
+        "targets": 16,
+        "drops": 0,
+        "balls_secured": 16,
+        "flight_balls_secured": 13,
+        "receptions": 10,
+        "interceptions": 1,
+        "loose_ball_recoveries": 5
+      }
+    },
+    {
+      "player": "A:NBL25-D28",
+      "name": "Fikile Gumede",
+      "team": "A",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "B:NBL24-01-07",
+      "name": "Julian Starhunter",
+      "team": "B",
+      "before": {
+        "targets": 16,
+        "catches": 27,
+        "drops": 0,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 16,
+        "drops": 0,
+        "balls_secured": 36,
+        "flight_balls_secured": 27,
+        "receptions": 15,
+        "interceptions": 2,
+        "loose_ball_recoveries": 19
+      }
+    },
+    {
+      "player": "B:NBL24-01-21",
+      "name": "Akin Ironvale",
+      "team": "B",
+      "before": {
+        "targets": 21,
+        "catches": 21,
+        "drops": 0,
+        "interceptions": 5
+      },
+      "after": {
+        "targets": 21,
+        "drops": 0,
+        "balls_secured": 27,
+        "flight_balls_secured": 21,
+        "receptions": 13,
+        "interceptions": 5,
+        "loose_ball_recoveries": 9
+      }
+    },
+    {
+      "player": "B:NBL24-01-09",
+      "name": "Malik Sunstorm",
+      "team": "B",
+      "before": {
+        "targets": 22,
+        "catches": 26,
+        "drops": 0,
+        "interceptions": 5
+      },
+      "after": {
+        "targets": 22,
+        "drops": 0,
+        "balls_secured": 38,
+        "flight_balls_secured": 26,
+        "receptions": 15,
+        "interceptions": 5,
+        "loose_ball_recoveries": 18
+      }
+    },
+    {
+      "player": "B:NBL24-01-04",
+      "name": "Tafari Stardancer",
+      "team": "B",
+      "before": {
+        "targets": 13,
+        "catches": 19,
+        "drops": 0,
+        "interceptions": 4
+      },
+      "after": {
+        "targets": 13,
+        "drops": 0,
+        "balls_secured": 32,
+        "flight_balls_secured": 19,
+        "receptions": 9,
+        "interceptions": 4,
+        "loose_ball_recoveries": 19
+      }
+    },
+    {
+      "player": "B:NBL24-01-22",
+      "name": "Amari Cloudbreaker",
+      "team": "B",
+      "before": {
+        "targets": 20,
+        "catches": 22,
+        "drops": 0,
+        "interceptions": 5
+      },
+      "after": {
+        "targets": 20,
+        "drops": 0,
+        "balls_secured": 32,
+        "flight_balls_secured": 22,
+        "receptions": 13,
+        "interceptions": 5,
+        "loose_ball_recoveries": 14
+      }
+    },
+    {
+      "player": "B:NBL24-01-05",
+      "name": "Amari Nightshade",
+      "team": "B",
+      "before": {
+        "targets": 19,
+        "catches": 16,
+        "drops": 0,
+        "interceptions": 3
+      },
+      "after": {
+        "targets": 19,
+        "drops": 0,
+        "balls_secured": 31,
+        "flight_balls_secured": 16,
+        "receptions": 8,
+        "interceptions": 3,
+        "loose_ball_recoveries": 20
+      }
+    },
+    {
+      "player": "B:NBL24-01-08",
+      "name": "Kelechi Stormwarden",
+      "team": "B",
+      "before": {
+        "targets": 19,
+        "catches": 19,
+        "drops": 0,
+        "interceptions": 5
+      },
+      "after": {
+        "targets": 19,
+        "drops": 0,
+        "balls_secured": 31,
+        "flight_balls_secured": 19,
+        "receptions": 10,
+        "interceptions": 5,
+        "loose_ball_recoveries": 16
+      }
+    },
+    {
+      "player": "B:NBL24-01-10",
+      "name": "Oshe Skybearer",
+      "team": "B",
+      "before": {
+        "targets": 22,
+        "catches": 22,
+        "drops": 0,
+        "interceptions": 8
+      },
+      "after": {
+        "targets": 22,
+        "drops": 0,
+        "balls_secured": 40,
+        "flight_balls_secured": 22,
+        "receptions": 12,
+        "interceptions": 8,
+        "loose_ball_recoveries": 20
+      }
+    },
+    {
+      "player": "B:NBL24-01-03",
+      "name": "Jalen Stoneguard",
+      "team": "B",
+      "before": {
+        "targets": 26,
+        "catches": 20,
+        "drops": 0,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 26,
+        "drops": 0,
+        "balls_secured": 33,
+        "flight_balls_secured": 20,
+        "receptions": 16,
+        "interceptions": 2,
+        "loose_ball_recoveries": 15
+      }
+    },
+    {
+      "player": "B:NBL24-01-01",
+      "name": "Nnamdi Sunblade",
+      "team": "B",
+      "before": {
+        "targets": 15,
+        "catches": 26,
+        "drops": 0,
+        "interceptions": 7
+      },
+      "after": {
+        "targets": 15,
+        "drops": 0,
+        "balls_secured": 33,
+        "flight_balls_secured": 26,
+        "receptions": 9,
+        "interceptions": 7,
+        "loose_ball_recoveries": 17
+      }
+    },
+    {
+      "player": "B:NBL24-01-11",
+      "name": "Seneca Nightwarden",
+      "team": "B",
+      "before": {
+        "targets": 0,
+        "catches": 8,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 9,
+        "flight_balls_secured": 8,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 9
+      }
+    },
+    {
+      "player": "B:NBL24-01-12",
+      "name": "Xavier Starfall",
+      "team": "B",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "B:UFA26-BB-43",
+      "name": "Mikaela Vornsteth",
+      "team": "B",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "B:UFA26-BB-04",
+      "name": "Dax Ironvale",
+      "team": "B",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    },
+    {
+      "player": "B:NBL24-01-14",
+      "name": "Zuri Ironheart",
+      "team": "B",
+      "before": {
+        "targets": 28,
+        "catches": 25,
+        "drops": 0,
+        "interceptions": 5
+      },
+      "after": {
+        "targets": 28,
+        "drops": 0,
+        "balls_secured": 36,
+        "flight_balls_secured": 25,
+        "receptions": 17,
+        "interceptions": 5,
+        "loose_ball_recoveries": 14
+      }
+    },
+    {
+      "player": "B:NBL24-01-13",
+      "name": "Elijah Nightshade",
+      "team": "B",
+      "before": {
+        "targets": 13,
+        "catches": 12,
+        "drops": 0,
+        "interceptions": 3
+      },
+      "after": {
+        "targets": 13,
+        "drops": 0,
+        "balls_secured": 15,
+        "flight_balls_secured": 12,
+        "receptions": 7,
+        "interceptions": 3,
+        "loose_ball_recoveries": 5
+      }
+    },
+    {
+      "player": "B:NBL24-01-06",
+      "name": "Kofi Bladestrike",
+      "team": "B",
+      "before": {
+        "targets": 5,
+        "catches": 10,
+        "drops": 0,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 5,
+        "drops": 0,
+        "balls_secured": 20,
+        "flight_balls_secured": 10,
+        "receptions": 4,
+        "interceptions": 2,
+        "loose_ball_recoveries": 14
+      }
+    },
+    {
+      "player": "B:NBL24-01-19",
+      "name": "Kwame Babatunde",
+      "team": "B",
+      "before": {
+        "targets": 11,
+        "catches": 8,
+        "drops": 0,
+        "interceptions": 1
+      },
+      "after": {
+        "targets": 11,
+        "drops": 0,
+        "balls_secured": 12,
+        "flight_balls_secured": 8,
+        "receptions": 6,
+        "interceptions": 1,
+        "loose_ball_recoveries": 5
+      }
+    },
+    {
+      "player": "B:NBL24-01-20",
+      "name": "Biko Chisomo",
+      "team": "B",
+      "before": {
+        "targets": 5,
+        "catches": 4,
+        "drops": 0,
+        "interceptions": 1
+      },
+      "after": {
+        "targets": 5,
+        "drops": 0,
+        "balls_secured": 9,
+        "flight_balls_secured": 4,
+        "receptions": 3,
+        "interceptions": 1,
+        "loose_ball_recoveries": 5
+      }
+    },
+    {
+      "player": "B:UFA26-BB-45",
+      "name": "Tavi Drennova",
+      "team": "B",
+      "before": {
+        "targets": 9,
+        "catches": 10,
+        "drops": 0,
+        "interceptions": 3
+      },
+      "after": {
+        "targets": 9,
+        "drops": 0,
+        "balls_secured": 11,
+        "flight_balls_secured": 10,
+        "receptions": 5,
+        "interceptions": 3,
+        "loose_ball_recoveries": 3
+      }
+    },
+    {
+      "player": "B:NBL24-01-17",
+      "name": "Kalu Thundershade",
+      "team": "B",
+      "before": {
+        "targets": 8,
+        "catches": 8,
+        "drops": 0,
+        "interceptions": 2
+      },
+      "after": {
+        "targets": 8,
+        "drops": 0,
+        "balls_secured": 11,
+        "flight_balls_secured": 8,
+        "receptions": 5,
+        "interceptions": 2,
+        "loose_ball_recoveries": 4
+      }
+    },
+    {
+      "player": "B:UFA26-BB-05",
+      "name": "Solene Marwick",
+      "team": "B",
+      "before": {
+        "targets": 0,
+        "catches": 0,
+        "drops": 0,
+        "interceptions": 0
+      },
+      "after": {
+        "targets": 0,
+        "drops": 0,
+        "balls_secured": 0,
+        "flight_balls_secured": 0,
+        "receptions": 0,
+        "interceptions": 0,
+        "loose_ball_recoveries": 0
+      }
+    }
+  ]
+}

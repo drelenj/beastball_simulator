@@ -1,0 +1,13 @@
+{
+  "config_digest": "3d66214c927b42abf493bfe93c9d7ef85675364f54b5e6a9f245daadc4799550",
+  "trace_hash": "44399b0853ac8a4a87ac7e7c336bd4932219b7969630838c616d6cc458fbc072",
+  "state_hash": "046ea55bb1756364ecfdf0f91576ed16cb4052259b7284883e519c61c5f6865d",
+  "score": {
+    "A": 57,
+    "B": 76
+  },
+  "steps": 32528,
+  "status": "final",
+  "live_ms": 2400000,
+  "runtime_s": 0.0
+}

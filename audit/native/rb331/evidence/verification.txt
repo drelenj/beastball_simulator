@@ -1,0 +1,2 @@
+30 completed cases, 60 eleven-player plans, 60 box-score reconciliations, exact interception joins, 9,148 quota epochs.
+Compatibility, CORE, threshold-only R1 and repeated planned seed-1 fingerprints matched their references.
