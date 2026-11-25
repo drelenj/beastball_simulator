@@ -1,5 +1,6 @@
 """Ratings 0.4 rotation and possession evidence, compact per match."""
 import argparse
+from collections import Counter
 import gzip
 import json
 from pathlib import Path
@@ -76,6 +77,8 @@ def match(book, variant, pair, seed, steps=None, stats=True, scale=TRIAL_SCALE, 
                 row['boundary'],row['keeper_reach'] = witness.detail(diagnostic['shots'])
             if steps is None:
                 row['measures'] = diagnose([row])
+                row['measures']['carries']['stretch_ends'] = Counter(
+                    r.get('reason') or 'unspecified' for r in diagnostic['stretches'] if r['event']=='stretch_end')
                 row.pop('diagnosis')
                 row.pop('possessions')
                 row.pop('scores')

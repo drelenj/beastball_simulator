@@ -40,12 +40,19 @@ class TrialWitness(Witness):
     def __init__(self, port, rosters, details):
         super().__init__(port,rosters)
         self.motion = {}
+        self.admitted_view = {}
         self.keeper = {}
         self.carrier_boundaries = {}
         self.details = details
         engine = port.m.e
         state = port.m.s
-        release, emit = engine.release, engine.emit
+        release, emit, submit = engine.release, engine.emit, port.submit
+
+        def observed_submit(intent):
+            result = submit(intent)
+            if details and intent.kind == 'pass' and result['status']=='accepted':
+                self.admitted_view[intent.intent_id] = self.views.get(intent.athlete)
+            return result
 
         def observed_release(pid, velocity, kind='pass', *args, **kwargs):
             before = len(engine.log)
@@ -65,8 +72,9 @@ class TrialWitness(Witness):
             if result and (command or keeper):
                 for row in engine.log[before:]:
                     if row['event']=='release':
-                        if command:
-                            self.motion[row['id']] = command.intent
+                        if command and details:
+                            intent = command.intent
+                            self.motion[row['id']] = intent, self.admitted_view.pop(intent.intent_id,None)
                         if keeper:
                             self.keeper[row['id']] = keeper
                         break
@@ -89,16 +97,18 @@ class TrialWitness(Witness):
             return result
 
         engine.release,engine.emit = observed_release,observed_emit
+        port.submit = observed_submit
 
     def interception(self, flight, player):
         result = super().interception(flight,player)
         if not self.details or flight['id'] not in self.release or flight['id'] not in self.motion:
             return result
-        (_,_,view,_,_,_),aim,_,_ = self.release[flight['id']]
-        intent = self.motion[flight['id']]
+        intent,view = self.motion[flight['id']]
+        aim = intent.aim
         if view is not None and aim is not None:
             actual_speed = min(view.max_throw_speed,intent.speed)
-            clearance = policy.arrival_clearance(view,aim,actual_speed,intent.height,policy.opponents(view,view.tracks))
+            clearance = policy.arrival_clearance(view,aim,actual_speed,intent.height,
+                policy.opponents(view,view.tracks),intent.wait_ms)
             result['arrival_margin'] = clearance
         return result
 

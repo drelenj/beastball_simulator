@@ -35,7 +35,8 @@ def components(r):
     exits = sum(e['data']['reason']=='energy_override' for e in r['rotations'])
     return dict(score=points,turnovers=counts, pass_pair=(complete,attempts),
                 carries={k:v['n'] for k,v in carry['outcomes'].items()},
-                carry_goals=carry['governed_goals'],stretches=carry['stretch'],
+                carry_goals=carry['governed_goals'],stretches=carry['stretch'] | {
+                    'end.'+reason:n for reason,n in carry.get('stretch_ends',{}).items()},
                 tackle=(tackle['made'],tackle['n'],tackle['n']-tackle['targeted_actual_carrier']),
                 holds=(d['ledger']['made'],d['ledger']['attempts']),
                 keeper_pair=(keeps['saves'],keeps['faced']), on_target_pair=(keeps['saves'],keeps['on_target']),

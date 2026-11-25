@@ -35,7 +35,8 @@ before evaluating any lane. It does not contribute to paired effects.
   teammate lane with its nominal delivery. Passing evaluates each speed,
   height and wait candidate and keeps its existing rating-controlled
   uncertainty. The historical diagnostic reapplies the screen to the
-  already-identified believed-clear population using the last release view.
+  already-identified believed-clear population using the admitted decision
+  view, selected speed/height and deliberate wait.
   It measures flags on past interceptions, not prevented interceptions.
 - **Carry finish.** For a carrier within 20 m of goal center, the strategy
   scores direct and single-bend goal-mouth routes using actual own-body
