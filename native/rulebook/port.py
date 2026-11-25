@@ -8,6 +8,7 @@ from .authorities import CREW
 class RulebookView(C.AthleteView):
     rb3_handoff_block_enabled: bool = False
     rb3_carrier_moves_enabled: bool = False
+    paired_fixes: tuple = ()
     ball_material: tuple | None = None        # RB-3.21 public: the ball material (k, h, e, a_roll) when the material model is on
     handed_by: tuple | None = None            # RB-3.20b own memory: (teammate who handed me the ball I hold, ms ago)
     rb319: str = ''                           # RB-3.19 public team instruction: enabled ball-in-play steps ('' = off)
@@ -31,6 +32,8 @@ from .config import RulebookConfig
 class RulebookPort(NativePort):
     def __init__(self,seed=1,config=None,policies=None,plumbing=True,rosters=None):
         self.learned_values = None
+        self.paired_fixes = tuple(name for name in ('pass_clearance','carry_finish','fresh_takedown')
+                                  if getattr(config, f'rb332_{name}', False))
         path = getattr(config,'drill_values_path',None)
         if path is not None:
             from native.learned_values import read_model
@@ -191,6 +194,8 @@ class RulebookPort(NativePort):
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None,
                        rb3_handoff_block_enabled=c.rb3_handoff_block_enabled)
+            if self.paired_fixes:
+                extra['paired_fixes'] = self.paired_fixes
             extra['rb3_carrier_moves_enabled'] = c.rb3_carrier_moves_enabled
             extra['rb319'] = c.rb319_parts if c.rb319_ball_in_play_enabled else ''
             extra['ball_material'] = (c.rb321_ball_drag_k, c.rb321_ball_bounce_h, c.rb321_ball_restitution, c.rb321_ball_roll_decel) if c.rb321_ball_material_enabled else None
@@ -258,8 +263,9 @@ class RulebookPort(NativePort):
         r319 = data['view'].pop('rb319', '')
         hby = data['view'].pop('handed_by', None)
         bmat = data['view'].pop('ball_material', None)
+        fixes = tuple(data['view'].pop('paired_fixes', ()))
         freezes_left = data['view'].pop('freezes_left', None)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),freezes_left=freezes_left,officials=tuple(officials),
                             defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions,
-                            rb3_carrier_moves_enabled=moves,rb319=r319,handed_by=tuple(hby) if hby is not None else None,ball_material=tuple(bmat) if bmat is not None else None),b
+                            rb3_carrier_moves_enabled=moves,paired_fixes=fixes,rb319=r319,handed_by=tuple(hby) if hby is not None else None,ball_material=tuple(bmat) if bmat is not None else None),b

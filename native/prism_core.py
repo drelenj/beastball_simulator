@@ -9,6 +9,7 @@ from math import hypot
 
 from . import cognition as C, cognition_rb3 as RB
 from .throw_speed import release_speed
+from . import paired_policy as paired
 
 VERSION = 'individuation/2'
 FOCUS_BASE_CAPACITY = 20
@@ -110,6 +111,8 @@ def finish(menu, view, base, tracks):
     goal_x = 100. - view.own_goal_x
     stretch = (view.role == 'field' and view.body and getattr(view, 'rb3_carrier_moves_enabled', False) and
                abs(goal_x-view.x) <= view.body.reach + STRETCH_BELIEVED_RANGE_MARGIN and abs(view.y-50.) < view.goal_radius)
+    if paired.enabled(view,'carry_finish'):
+        stretch = paired.stretch_available(view,paired.opponents(view,tracks))
     if stretch:
         hands = proposed(base, 'stretch', aim=(goal_x, view.y))
         alternatives = [Option(hands, STRETCH_VALUE, 'finishing', 'stretch')]
@@ -164,11 +167,14 @@ def passing(menu, view, base, tracks):
     if receiver is None:
         return menu.choose('passing', choices).intent
     opponents = [t for t in tracks if t.team not in (view.team, 'ball') and t.role == 'field']
-    if not opponents:
+    use_arrival = paired.enabled(view,'pass_clearance')
+    threats = paired.opponents(view,tracks) if use_arrival else opponents
+    if not threats:
         return menu.choose('passing', choices).intent
     interval = round(view.core_decision_ms * (1. + .4 * (.7 - menu.ratings.get('reaction', .7))))
     release = RB.release_time_s(view)
-    nominal_margin = RB.lane_margin(view, Aim(*base.aim), opponents, nominal, release)
+    nominal_margin = (paired.arrival_clearance(view,base.aim,nominal,base.height,threats)
+                      if use_arrival else RB.lane_margin(view,Aim(*base.aim),opponents,nominal,release))
     for label, wait, factor, height, cost in (
             ('fast', 0, 1.20, 1.6, PASS_ARC_COST),
             ('loft', 0, .88, 2.4, PASS_ARC_COST),
@@ -183,7 +189,8 @@ def passing(menu, view, base, tracks):
         if not C.in_own_zone(view.team, view.x, view.y, view) and C.in_own_zone(view.team, *aim, view):
             continue
         speed = min(view.max_throw_speed, nominal * factor)
-        margin = RB.lane_margin(view, Aim(*aim), opponents, speed, release + wait / 1000)
+        margin = (paired.arrival_clearance(view,aim,speed,height,threats,wait) if use_arrival
+                  else RB.lane_margin(view,Aim(*aim),opponents,speed,release+wait/1000))
         if margin < 0.:
             continue
         lane_gain = min(4., margin - nominal_margin)
@@ -234,7 +241,14 @@ def carrier(menu, view, belief, tracks, base, record):
                 and t.entity not in view.signals.immune),
                key=lambda t: (hypot(t.x - view.x, t.y - view.y), t.entity), default=None)
     gap = hypot(near.x - view.x, near.y - view.y) if near else 99.
+    pass_fix = paired.enabled(view,'pass_clearance')
+    finish_fix = paired.enabled(view,'carry_finish')
+    threats = paired.opponents(view,tracks) if pass_fix or finish_fix else ()
+    routes = paired.near_goal_routes(view,threats,view.zone_elapsed_ms) if finish_fix else None
     choices = []
+    if routes:
+        for aim, value, _ in routes:
+            choices.append(Option(proposed(base,'carry',aim=aim),value,'playmaking','carry_mouth'))
     for kind, target, aim, value in record['options']:
         if kind not in ('carry', 'pass', 'handoff', 'shoot', 'retain'):
             continue
@@ -242,6 +256,22 @@ def carrier(menu, view, belief, tracks, base, record):
             continue
         intent = proposed(base, kind, target, aim)
         value += SHOT_VALUE_OFFSET if kind == 'shoot' else 0.
+        if kind == 'pass' and pass_fix:
+            speed = release_speed(hypot(aim[0]-view.x,aim[1]-view.y),view.max_throw_speed)
+            margin = paired.arrival_clearance(view,aim,speed,intent.height,threats)
+            if margin < 0.:
+                continue
+            value += .12 * min(6.,margin)
+        if routes:
+            value = (paired.shot_points(view,RB.shot_plan(view,tracks)) if kind=='shoot'
+                     else paired.continuation_points(value))
+            if kind=='carry':
+                # Keep the prior diversion or Evasion option available at the
+                # value of continuing, while full mouth routes use points.
+                choices.append(Option(intent,value,'playmaking','carry_diversion'))
+                if gap < 4. or view.own_held:
+                    choices.append(Option(replace(intent,technique='evade'),value,'playmaking','evade'))
+                continue
         choices.append(Option(intent, value, 'playmaking', f'{kind}:{target or ""}'))
         if kind == 'carry':
             direct, _ = RB.carrier_to_goal(displayed(view), belief, intent, {})
@@ -253,14 +283,25 @@ def carrier(menu, view, belief, tracks, base, record):
     goal = 100. - view.own_goal_x
     if (view.role == 'field' and view.body and getattr(view,'rb3_carrier_moves_enabled',False)
             and abs(goal-view.x) <= view.body.reach + STRETCH_BELIEVED_RANGE_MARGIN and abs(view.y-50.) < view.goal_radius
-            and not any(choice.intent.kind == 'shoot' for choice in choices)):
+            and not finish_fix and not any(choice.intent.kind == 'shoot' for choice in choices)):
         choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),STRETCH_VALUE,
+                              'playmaking','commit_scoring_attempt'))
+    if finish_fix and routes and paired.stretch_available(view,threats):
+        choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),3.75,
                               'playmaking','commit_scoring_attempt'))
     if not choices:
         choices.append(Option(proposed(base, 'retain'), 0., 'playmaking', 'retain'))
-    picked = menu.choose('carrier', choices).intent
-    # Preserve the existing evidence-only zone exit policy.
-    picked, _ = RB.zone_behavior(displayed(view), belief, picked, {})
+    selected = menu.choose('carrier', choices)
+    picked = selected.intent
+    finish_eta = None
+    if selected.label == 'carry_mouth':
+        finish_eta = min(duration for aim, _, duration in routes if aim == picked.aim)
+    elif finish_fix and picked.kind == 'stretch':
+        finish_eta = .30
+    # Keep the existing exit if the perceived scoring route has insufficient
+    # time. The official zone clock still adjudicates the live race.
+    context = {} if finish_eta is None else {'planned_finish_eta_s': finish_eta}
+    picked, _ = RB.zone_behavior(displayed(view), belief, picked, context)
     if picked.kind == 'pass':
         return passing(menu, view, picked, tracks)
     if picked.kind in ('shoot', 'stretch'):
@@ -280,20 +321,23 @@ def defender(menu, view, belief, tracks, base, record):
                       .5 + AREA_DISTANCE_WEIGHT * dist + (AREA_INSIDE_VALUE if inside else 0.),
                       'zone_coverage','area')]
     own_hold = view.own_hold_target
+    evidence = paired.enabled(view,'fresh_takedown')
+    holder = paired.fresh_ball_holder(view,belief,tracks) if evidence else None
     for kind, target, aim, value in record['options']:
         if kind in ('mark','press','receive','pursue'):
             options.append(Option(proposed(base,kind,target,aim),value,'defending',kind))
         if kind == 'press' and target:
-            options.append(Option(replace(proposed(base,kind,target,aim),contact='wrap'),value + .2,'defending','wrap'))
+            if not evidence or holder == target:
+                options.append(Option(replace(proposed(base,kind,target,aim),contact='wrap'),value + .2,'defending','wrap'))
             opponent = next((t for t in opps if t.entity == target), None)
-            if opponent and hypot(opponent.x-view.x, opponent.y-view.y) < WRAP_TACKLE_DISTANCE_M:
+            if (not evidence or holder == target) and opponent and hypot(opponent.x-view.x, opponent.y-view.y) < WRAP_TACKLE_DISTANCE_M:
                 options.append(Option(replace(proposed(base,'tackle',target,aim),contact='takedown'),
                                       value + WRAP_TACKLE_VALUE,'defending','commit_takedown'))
     carrier_id = (record.get('believed_carrier') or (None,))[0]
     if nearest and nearest.entity != carrier_id and dist <= BLOCK_DISTANCE_M and getattr(view,'rb3_handoff_block_enabled',False):
         options.append(Option(proposed(base,'block',nearest.entity,(view.own_goal_x,50.)),BLOCK_VALUE,'defending','block'))
     held = next((t for t in opps if t.entity == own_hold),None)
-    if held:
+    if held and (not evidence or holder == held.entity):
         options = []
         for style in ('wrap','takedown'):
             for grip in ('upper','lower'):

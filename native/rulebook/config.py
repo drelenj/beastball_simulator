@@ -86,6 +86,9 @@ class RulebookConfigV3(RulebookConfig):
     fatigue_rotation: bool = False
     rotation_rhythm: str = "R1"
     planned_rate_scale: float = PLANNED_RATE_SCALE
+    rb332_pass_clearance: bool = False
+    rb332_carry_finish: bool = False
+    rb332_fresh_takedown: bool = False
     drill_values_path: str | None = None
     drill_values_sha256: str | None = None
 
@@ -98,6 +101,9 @@ class RulebookConfigV3(RulebookConfig):
     def record(self):
         record = super().record()
         record.pop('drill_values_path')
+        for key in ('rb332_pass_clearance','rb332_carry_finish','rb332_fresh_takedown'):
+            if not record[key]:
+                record.pop(key)
         if self.rotation_rhythm != 'PLANNED':
             record.pop('planned_rate_scale')
         if self.rotation_rhythm == 'R1':

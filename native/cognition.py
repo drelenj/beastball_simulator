@@ -539,6 +539,8 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    if not result['view'].get('paired_fixes'):
+        result['view'].pop('paired_fixes', None)
     if view.core_entropy is None:
         result['view'].pop('core_entropy')
         result['view'].pop('core_decision_ms')

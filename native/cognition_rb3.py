@@ -748,6 +748,9 @@ def _attacker_zone(view, belief, intent, record):
     out_dir = _unit(gx, 50., view.x, view.y)                       # outward from the goal centre: toward the arc
     t_arc = time_to_cover(view, view.zone_radius + ARC_INSET_M - d, out_dir)
     if view.holds_ball:
+        finish_eta = record.get('planned_finish_eta_s')
+        if finish_eta is not None and finish_eta + .15 < time_left:
+            return intent, record
         rule = record.get('rb39c')
         if isinstance(rule, dict) and rule.get('rule') == 'unopposed_carry_to_goal':
             return intent, record                      # carrier rule: carrying on to score with margin (exempt)
