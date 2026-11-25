@@ -26,6 +26,7 @@
 
 - Branch `codex/rb-3-29-stats-rotation-swing`
 - Lead-verified parent `49447ae7861d01e0f7a96e62db8b05ae6c838efc`
+- Implementation `0dc9bf9` and final individual credit correction `010e47b`.
 - [Reproduction, box-score definitions and denominators](rb329/README.md)
 
 | Task | Status |
@@ -35,3 +36,7 @@
 | 3. Possession swing diagnosis | DESIGN COMPLETE, IMPLEMENTED. Aggregate script is ready for the full soak. |
 
 The workload uses the ratings 0.4 workbook and the established on-field selection from OVR 0.422. All five profiles use hand-set values and individual substitutions. The thresholds and position preference stay fixed. The soak reports a starter-minute drift greater than 1.5 minutes from 32.
+
+## Regression evidence
+
+The maintained suite reported `779 passed, 1 warning, 23 subtests passed in 641.04s (0:10:41)`. The warning was the pytest dependency deprecation. The six legacy rows matched exactly.
