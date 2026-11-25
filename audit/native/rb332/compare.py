@@ -129,7 +129,9 @@ def compare(root):
             outside_aim=sum(r.get('aim_inside') is False for r in group),
             mean_believed_boundary_m=mean(distances) if distances else None,
             pressured=sum(r.get('believed_pressure') is True for r in group),
-            pressure_sample=sum('believed_pressure' in r for r in group))
+            pressure_sample=sum('believed_pressure' in r for r in group),
+            loose_origins=Counter(r['loose_from'] for r in group if 'loose_from' in r),
+            projected_landings=sum(r.get('first_ground_xy') is not None for r in group))
     result['boundary'] = by_source
     keepers=[r for row in rows['off'].values() for r in row['keeper_reach']]
     measured=[r for r in keepers if 'reachable' in r]

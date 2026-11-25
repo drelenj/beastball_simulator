@@ -80,9 +80,12 @@ class TrialWitness(Witness):
                 view = self.views.get(pid)
                 if view:
                     threats = policy.opponents(view,view.tracks)
+                    athlete = state.players[pid]
+                    intent = getattr(athlete,'native_intent',None)
                     self.carrier_boundaries[before+1] = dict(
                         believed_boundary_m=min(view.x,100-view.x,view.y,100-view.y),
-                        believed_pressure=rb.is_pressured(view,threats))
+                        believed_pressure=rb.is_pressured(view,threats),
+                        actual_velocity=(athlete.vx,athlete.vy),admitted_aim=intent.aim if intent else None)
             return result
 
         engine.release,engine.emit = observed_release,observed_emit
@@ -106,10 +109,14 @@ class TrialWitness(Witness):
         boundary = []
         flight = None
         deflected = False
+        loose_from = None
         for row in log:
             event,data = row['event'],row['data']
             if event in ('release','restart_release'):
                 flight,deflected = row,False
+                loose_from = 'forced_release' if data.get('forced') else None
+            elif event in ('strip','handoff_fumble'):
+                loose_from = event
             elif event in ('touch','arrow_geometry_impact') and flight:
                 if event=='touch' or data.get('target')=='ball':
                     deflected = True
@@ -119,6 +126,8 @@ class TrialWitness(Witness):
                     'shot' if flight and flight['data'].get('kind')=='shot' else 'loose_ball')
                 record = dict(kind=kind, crossing=data['crossing'],t_ms=row['t_ms'],
                               player=data.get('carrier'),event_id=row['id'])
+                if kind=='loose_ball':
+                    record['loose_from'] = loose_from or 'unclassified'
                 record.update(self.carrier_boundaries.get(row['id'],{}))
                 if flight and flight['id'] in self.release:
                     (origin,_,_,_,_,_),aim,_,_ = self.release[flight['id']]
@@ -131,9 +140,9 @@ class TrialWitness(Witness):
                         points = path((*origin,*flight['data']['velocity']),params(cfg),self.port.m.s.ball.radius,3.,.02)
                         record['first_ground_xy'] = next((r[1:3] for r in points if r[3]<=self.port.m.s.ball.radius+1e-5),None)
                 boundary.append(record)
-                flight,deflected = None,False
+                flight,deflected,loose_from = None,False,None
             elif event in ('control','goal','restart_awarded','period_end'):
-                flight,deflected = None,False
+                flight,deflected,loose_from = None,False,None
         reached = []
         for shot in shots:
             if not shot['on_target'] or shot['release_id'] not in self.keeper:
