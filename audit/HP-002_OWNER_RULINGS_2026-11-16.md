@@ -176,3 +176,7 @@ Owner: "You can throw in some magikal material science to make things realistic.
 - Owner clarification: "OVR isn't formulated from anything" meant OVRs were hand-assigned with no ratings formula; a formula-based Overall is now wanted. Owner proposal: 99 = average rating 95.0 or higher.
 - ACCEPTED (owner): ratings 0.4 (claude/ratings-0-2 @ b284e82) replaces 0.3 as baseline: Keepers and Trackers talent spread x1.38 around their position mean to match other field positions; best Keeper (Seth Mensah) +5 talent so at least one Keeper reaches 95.
 - ADOPTED (owner): interim Overall = OVR 0.422: weighted average of ratings, legacy-role weights (ratings the legacy position shape boosts count double; physical re-centred to 70; Durability excluded; Keepers/Archers on role sets), mapped OVR = 78 + 0.84 x (average - 70), clamped 40-99. Labels follow the ratings version (ratings 0.4 -> 0.4xx). Interim until ORACLE measures each rating's match worth. Overall is for people (scouting, sorting, starters); the engine never reads it.
+
+## 25 Nov 2026
+- Owner: build in-match fatigue and rotation only (wear and tear, injuries, season layer deferred).
+- Owner ruling: a substitute is chosen by the outgoing player's legacy position first, then his position group (Attackers PDR/STR/SCT; Rangers PFD/HNT/TRK/SEN; Defenders TRP/GRD), then best Overall (OVR 0.422). Legacy positions are used for this roster choice only; no athlete behaviour reads them.
