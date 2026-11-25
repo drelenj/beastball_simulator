@@ -56,7 +56,7 @@ class Witness:
         old_view, old_submit = port.view, port.submit
         old_release, old_restart = engine.release, engine.restart_release
         old_carry, old_follow = engine.rb_carry_attempt, engine.follow_carrier
-        old_freeze = engine.freeze
+        old_freeze, old_emit = engine.freeze, engine.emit
 
         def view(pid, now, *args, **kwargs):
             v, belief = old_view(pid, now, *args, **kwargs)
@@ -113,8 +113,11 @@ class Witness:
             return releasing(old_restart, pid, velocity, 'restart', args, kwargs)
 
         def carry(holder, *args, **kwargs):
+            previous = self.active_carry
             result = old_carry(holder, *args, **kwargs)
             if result:
+                if previous:
+                    previous['closing_id'] = len(engine.log)
                 goal = state.attack_goal(holder.team)
                 distance = hypot(goal-holder.x, holder.y-50.)
                 self.active_carry = dict(player=holder.id, team=holder.team, start_ms=state.now,
@@ -126,10 +129,24 @@ class Witness:
         def follow():
             result = old_follow()
             c = self.active_carry
-            if c and state.ball.carrier == c['player'] and engine.rb_open_carry:
+            if c and state.ball.carrier == c['player']:
                 holder = state.players[c['player']]
                 c['plane'] = min(c['plane'], abs(c['goal_x']-holder.x))
                 c['ball_plane'] = min(c['ball_plane'], abs(c['goal_x']-state.ball.x))
+            return result
+
+        def emit(event, rule, **data):
+            was = len(engine.log)
+            result = old_emit(event, rule, **data)
+            c = self.active_carry
+            if c and len(engine.log) > was:
+                player = c['player']
+                if (event in ('goal','boundary','period_end','restart_awarded')
+                    or event in ('release','freeze') and data.get('player') == player
+                    or event in ('tackle_count','strip') and data.get('target') == player
+                    or event == 'control' and data.get('player') != player):
+                    c['closing_id'] = was+1
+                    self.active_carry = None
             return result
 
         def freeze(pid, *args, **kwargs):
@@ -147,12 +164,12 @@ class Witness:
             return result
 
         port.view, port.submit = view, submit
-        engine.freeze = freeze
+        engine.freeze, engine.emit = freeze, emit
         engine.release, engine.restart_release = release, restart
         engine.rb_carry_attempt, engine.follow_carrier = carry, follow
 
     def interception(self, flight, player):
-        row = dict(t_ms=flight['t_ms'], player=player, origin=flight['data'].get('player', flight['data'].get('taker')),
+        row = dict(t_ms=flight['t_ms'], release_id=flight['id'], player=player, origin=flight['data'].get('player', flight['data'].get('taker')),
                    restart=flight['event']=='restart_release')
         if flight['id'] not in self.release:
             return row

@@ -30,3 +30,21 @@ def test_diagnosis_observes_without_altering_play():
         assert a[key] == b[key]
     analysis = analyze(witness, b['box_score'])
     assert witness.release and analysis['quota_epochs']
+
+
+def test_unrelated_freeze_does_not_stop_a_carry_witness():
+    p, rosters, carrier, defender = fixture()
+    witness = Witness(p, rosters)
+    s, e = p.m.s, p.m.e
+    goal, sign = s.attack_goal(carrier.team), s.attack_sign(carrier.team)
+    carrier.x = goal - sign * 12
+    e.follow_carrier()
+    e.emit('freeze','fixture',player=defender.id)
+    carrier.x = goal - sign * 8
+    e.follow_carrier()
+    assert witness.carries[-1]['plane'] == 8
+    e.emit('freeze','fixture',player=carrier.id)
+    carrier.x = goal - sign * 5
+    e.follow_carrier()
+    assert witness.carries[-1]['plane'] == 8
+    assert witness.carries[-1]['closing_id']

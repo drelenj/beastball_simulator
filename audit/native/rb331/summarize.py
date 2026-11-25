@@ -99,7 +99,8 @@ def diagnose(runs):
                   interception_open=interception_report([r for r in intercepted if not r['restart']]),
                   carries=dict(total=len(carries),outcomes=carry_ends,within_3=sum(r['plane']<3 for r in carries),
                                within_1=sum(r['plane']<1 for r in carries),
-                               stretch=stretch, governed_goals=sum(line['goals_by_method'].get('carry',0)
+                               stretch=stretch, shot_followups=Counter(r['shot_after_carry'] for r in carries if r.get('shot_after_carry')),
+                               governed_goals=sum(line['goals_by_method'].get('carry',0)
                                    for run in runs for line in run['team_lines'])),
                   tackles=dict(overall=tackle_rates(tackles),
                                by_outcome=buckets(tackles,lambda r:r['outcome'],tackle_rates),

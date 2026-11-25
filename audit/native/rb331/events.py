@@ -31,7 +31,7 @@ def end_flight(flight, touches, won, witness):
     band = next(points for upper,points in cfg.release_bands if upper is None or distance < upper)
     kid = keeper[0] if keeper else None
     on_target = won or shot_on_target(origin, velocity, gx, cfg, witness.port.m.s.ball.radius)
-    return dict(t_ms=flight['t_ms'], shooter=flight['data']['player'], keeper=kid, band=band,
+    return dict(t_ms=flight['t_ms'], release_id=flight['id'], shooter=flight['data']['player'], keeper=kid, band=band,
                 distance=distance, aim_offset=abs(aim[1]-keeper[3]) if aim and keeper else None,
                 on_target=on_target, goal=won, keeper_touch=kid in touches,
                 save=on_target and kid in touches and not won)
@@ -128,45 +128,43 @@ def index_events(log):
     return by_player
 
 
-def carry_outcomes(log, witness, by_player):
-    positions = defaultdict(list)
-    for row in log:
-        if row['event'] == 'carry_outcome':
-            key = row['data']['player'],row['data']['started_ms']
-            positions[key].append(row)
+def carry_outcomes(log, witness, by_player, shots):
+    shot_by_release = {r['release_id']:r for r in shots}
     reports = []
     for c in witness.carries:
         if c['start_distance'] >= witness.port.config.zone_radius:
             continue
         c = dict(c)
         pid = c['player']
-        candidates = positions[pid,c['start_ms']]
-        finished = candidates.pop(0) if candidates else None
-        if not finished:
+        closing = c.get('closing_id')
+        if not closing:
             reports.append(c | dict(outcome='stopped_short'))
             continue
-        end = finished['t_ms']
-        prev = log[finished['id']-2]
-        after = log[finished['id']:finished['id']+16]
-        data = prev['data']
-        same = [r for r in after if r['t_ms'] == end]
+        row = log[closing-1]
+        end, ended, data = row['t_ms'],row['event'],row['data']
+        evidence = [r for r in log[max(0,closing-5):closing+10] if r['t_ms'] == end]
         reason = data.get('reason')
-        ended = finished['data']['ended_by']
+        shot = shot_by_release.get(closing)
+        within_release_radius = shot and shot['distance'] < witness.port.config.carry_release_radius_m
+        other_holder = data.get('player') if ended=='control' else None
         outcome = (
-            'goal' if finished['data']['outcome']=='goal' else
-            'tackle' if data.get('counted') or ended=='tackle_count' else
-            'strip' if ended=='strip' or any(r['event']=='strip' and r['data'].get('target')==pid for r in same) else
-            'freeze' if ended=='freeze' and data.get('player')==pid or any(r['event']=='freeze' and r['data'].get('player')==pid for r in same) else
+            'goal' if ended=='goal' and data.get('method')=='carry' and data.get('team')==c['team']
+                      or within_release_radius and shot['goal'] else
+            'tackle' if ended=='tackle_count' else
+            'strip' if ended=='strip' or any(r['event']=='strip' and r['data'].get('target')==pid for r in evidence) else
+            'freeze' if ended=='freeze' or any(r['event']=='freeze' and r['data'].get('player')==pid for r in evidence) else
             'out_of_bounds' if ended=='boundary' or reason=='out_of_bounds' else
             'zone_violation' if reason in ZONE_REASONS else
-            'keeper' if any(r['event']=='control' and r['data']['player']!=pid
-                            and witness.port.m.s.players[r['data']['player']].role=='keeper' for r in same) else
-            data.get('kind','pass') if ended=='release' and data.get('kind') in ('shot','pass') else
+            'keeper' if other_holder and witness.port.m.s.players[other_holder].role=='keeper' else
+            data['kind'] if ended=='release' and data.get('kind') in ('shot','pass') else
+            'handoff' if other_holder and any(r['event']=='handoff_complete' and r['data'].get('giver')==pid for r in evidence) else
             'stopped_short'
         )
         stretch = [r for r in by_player[pid] if r['event'] in ('stretch_start','stretch_end','stretch_goal')
                    and c['start_ms'] <= r['t_ms'] <= end]
         c.update(outcome=outcome,end_ms=end,ended_by=ended,reason=reason,
+                 shot_after_carry=('goal' if shot['goal'] else 'keeper_save' if shot['save'] else
+                     'on_target_not_scored' if shot['on_target'] else 'off_target') if shot else None,
                  stretch=[dict(event=r['event'],t_ms=r['t_ms'],reason=r['data'].get('reason')) for r in stretch])
         reports.append(c)
     return reports
@@ -256,6 +254,6 @@ def analyze(witness, box):
     positions = index_events(log)
     interceptions, shots, epochs = flights_and_archers(log,box['possessions'],witness)
     return dict(interceptions=interceptions,shots=shots,quota_epochs=epochs,
-                carries=carry_outcomes(log,witness,positions),
+                carries=carry_outcomes(log,witness,positions,shots),
                 tackles=tackle_outcomes(log,witness,positions),
                 stretches=[dict(t_ms=r['t_ms'],event=r['event'],**r['data']) for r in log if r['event'].startswith('stretch_')])
