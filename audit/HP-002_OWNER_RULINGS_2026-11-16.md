@@ -207,3 +207,13 @@ A ball carrier whose body has not touched out of bounds is NOT out when the ball
 plane; he (or the ball) is out only on touching on or beyond the line, as in rugby and gridiron. The end-line rule is
 unchanged: outside the goal mouth's half-disc the ball crossing the end-line plane is out; inside the mouth the ball
 breaking the plane is a carry goal. Context: the A6 soak called about 10.3 held-ball crossings per team per game out.
+
+## 2026-11-26 (evening) — owner rulings after RB-3.35
+1. Tackles per possession: TRIAL 3 and 4 (the canon value stays 2 until he chooses from the evidence).
+2. End line = sideline for carriers: a carrier whose body has not touched the surface out of bounds is in bounds,
+   wherever the ball in his hand is. A held ball crossing the end-line plane outside the goal mouth is therefore not
+   out (and not a goal). Unchanged: inside the mouth the ball breaking the plane is a carry goal; the carrier's body
+   may cross the end line inside the mouth. Thrown and loose balls: unchanged by this ruling.
+   Supersedes the 25 Nov wording "a ball crossing outside the half-disc is out of bounds" for HELD balls only.
+3. Keeper planting: approved ONLY as a universal athlete property. Principle (standing): any change to a cognitive or
+   physical ability must apply to all athletes, scaled to each athlete's ability; no position-only constants.
