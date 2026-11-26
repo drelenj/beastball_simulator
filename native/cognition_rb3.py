@@ -233,7 +233,7 @@ def release_time_s(view):
 def release_blocked(view, opps):
     """RB-3.14: some opponent, advanced to the release time, is within his reach of the release point (the carrier)."""
     t = release_time_s(view)
-    if 'projected_beliefs' in view.paired_fixes:
+    if 'projected_beliefs' in getattr(view,'paired_fixes',()):
         from .turnovers import projected
         return any(hypot(x-view.x,y-view.y) <= opp_reach(view,o)
                    for o in opps for x,y in (projected(o,view,t),))
@@ -307,7 +307,7 @@ def lane_margin(view, c, opps, speed, t_release=None):
     dist = hypot(dx, dy)
     margin = 99.
     denials = tuple((o, opp_reach(view, o) + LANE_MARGIN_M) for o in opps)
-    if 'projected_beliefs' in view.paired_fixes:
+    if 'projected_beliefs' in getattr(view,'paired_fixes',()):
         from .turnovers import projected
         for k in range(LANE_SAMPLES+1):
             f = k/LANE_SAMPLES
@@ -517,7 +517,7 @@ def missed_ball_pursuit(view, belief, intent, record):
                       (100. - ball.y) / ball.vy if ball.vy > 1e-9 else (0. - ball.y) / ball.vy if ball.vy < -1e-9 else 99.):
             t_line = min(t_line, max(0., lim_t))
     steps = [k * PURSUIT_STEP_S for k in range(int(t_line / PURSUIT_STEP_S) + 1)] or [0.]
-    if 'projected_beliefs' in view.paired_fixes:
+    if 'projected_beliefs' in getattr(view,'paired_fixes',()):
         from .turnovers import projected
         pts = [projected(ball,view,t) for t in steps]
     else:
@@ -585,7 +585,7 @@ def shot_plan(view, fresh):
     fields = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
     limit = view.goal_radius - SHOT_BALL_R_M - SHOT_EDGE_M
     if keeper is not None:
-        if 'projected_beliefs' in view.paired_fixes:
+        if 'projected_beliefs' in getattr(view,'paired_fixes',()):
             from .turnovers import projected
             _,ky = projected(keeper,view,t_rel+t_flight)
         else:
@@ -1031,7 +1031,7 @@ def finishing_aim(view, fresh, intent):
         return intent
     field = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
     horizon = release_time_s(view) + abs(gx - view.x) / speed
-    if 'projected_beliefs' in view.paired_fixes:
+    if 'projected_beliefs' in getattr(view,'paired_fixes',()):
         from .turnovers import projected
         _,ky = projected(keeper,view,horizon)
     else:

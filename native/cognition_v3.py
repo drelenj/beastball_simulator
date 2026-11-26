@@ -66,7 +66,7 @@ def defender_contact(view, belief, intent, record):
     gap = hypot(c.x - view.x, c.y - view.y)
     top = view.body.maximum_speed if view.body else 27.
     lead = min(TACKLE_LEAD_S, gap / max(1., top))
-    if 'projected_beliefs' in view.paired_fixes:
+    if 'projected_beliefs' in getattr(view,'paired_fixes',()):
         from .turnovers import projected
         meet = tuple(round(_clamp(coord,.6,99.4),3) for coord in projected(c,view,lead))
     else:
