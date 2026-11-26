@@ -1,0 +1,1 @@
+44/44 roster Strength values match workbook Strength (rating) divided by 100. Range 0.65 to 0.96; 24 distinct. Takedown diagnosis uses the target ID, including in wrong-target commitments.
