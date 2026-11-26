@@ -147,8 +147,12 @@ class RulebookConfigV3(RulebookConfig):
         from native.ladder import SWITCHES
         if set(self.rb333) - SWITCHES or len(set(self.rb333)) != len(self.rb333):
             raise ValueError("unknown or repeated RB-3.33 switch")
+        expected_pocket=_RB3_POCKET
         if 'carry_seven' in self.rb333:
             object.__setattr__(self,'carry_points',7)
+            expected_pocket=tuple((key,7 if key=='carry_value' else value) for key,value in _RB3_POCKET)
+            if self.pocket_settings==_RB3_POCKET:
+                object.__setattr__(self,'pocket_settings',expected_pocket)
         if 'cadence' in self.rb333:
             object.__setattr__(self,'sense_ms',self.dt_ms)
             object.__setattr__(self,'decision_ms',200 if 'fast_cadence' in self.rb333 else 300)
@@ -179,5 +183,5 @@ class RulebookConfigV3(RulebookConfig):
         if self.zone_residence_ms<=0 or self.zone_marked_distance_m<0:raise ValueError('zone residence parameters out of range')
         if self.version!='native-rb/3' or self.profile!='native-rb' or self.scoring!='banded':raise ValueError('RB/3 profile mixing')
         if len(self.roster_digests)!=2 or any(not isinstance(x,str) or len(x)!=64 for x in self.roster_digests):raise ValueError('RB/3 requires A and B roster digests')
-        if self.mapping_version!='attr-map/2' or self.body_standards!=() or self.pocket_settings!=_RB3_POCKET:raise ValueError('RB/3 mapping/mechanics mismatch')
+        if self.mapping_version!='attr-map/2' or self.body_standards!=() or self.pocket_settings!=expected_pocket:raise ValueError('RB/3 mapping/mechanics mismatch')
         if self.m2!='null' or self.legacy_layers or (self.periods,self.period_seconds,self.overtime_seconds)!=(4,600,300):raise ValueError('RB/3 canon profile mismatch')
