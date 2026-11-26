@@ -70,6 +70,8 @@ class MatchDriver:
                     del port.reflex_pending[pid]
                     self.next_dec.pop(pid,None)
                     self.reaction_due.pop(pid,None)
+                if 'active_reflex_observers' in port.config.rb333:
+                    interrupts = {pid:reason for pid,reason in interrupts.items() if s.players[pid].active}
             if now >= self.next_sense:
                 port.capture(now)
                 self.next_sense = now + port.config.sense_ms

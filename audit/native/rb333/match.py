@@ -48,7 +48,7 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
     if turnover_arm:
         switches += tuple(k for stage in TURNOVER_STAGES[:TURNOVER_ARMS.index(turnover_arm)+1] for k in stage)
     if sets_arm:
-        switches = tuple(s for s in switches if s!='keeper_plant')+('boundary_cross_y','endline_held_ball')
+        switches = tuple(s for s in switches if s!='keeper_plant')+('boundary_cross_y','endline_held_ball','active_reflex_observers')
         if sets_arm!='C0':
             switches+=('universal_set_speed',)
         if sets_arm not in ('C0','C1'):

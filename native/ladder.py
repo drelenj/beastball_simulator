@@ -6,7 +6,7 @@ SWITCHES = frozenset(('frame_freshness','arrival_lane','movement_clock','mouth_b
     'keeper_interrupt','keeper_deadline','keeper_menu','keeper_settle','cadence','field_interrupt',
     'abort_wrap','pass_signal','pass_speed','carry_seven','carry_value','stretch_range','planning_speed','fast_cadence',
     'projected_beliefs','sideline_held_ball','carrier_boundary','keeper_plant','takedown_gate','boundary_cross_y',
-    'endline_held_ball','universal_set_speed','universal_unset'))
+    'endline_held_ball','universal_set_speed','universal_unset','active_reflex_observers'))
 
 
 def freeze_tuple(value):

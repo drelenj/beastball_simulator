@@ -178,7 +178,7 @@ class RulebookPort(NativePort):
         }
         for pid, frames in self.frames.items():
             f = frames[-1]
-            if f.captured_ms != now:
+            if f.captured_ms != now or ('active_reflex_observers' in self.config.rb333 and pid not in metadata):
                 continue
             ids = sorted({t.entity for t in f.tracks if t.entity in metadata} | {pid})
             self.indicator_frames[f.frame_id] = tuple((who,metadata[who][0]) for who in ids)
