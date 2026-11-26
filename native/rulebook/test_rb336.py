@@ -93,3 +93,29 @@ def test_unset_latches_player_speed_and_renews_same_deadline(core_port):
     p.m.seen_from=s.now
     a.vx=0.
     assert clock.hands_delay(a)==100
+
+
+def test_fourth_count_minor_and_defence_award_in_period_four(core_port):
+    p = port_with(core_port,tackles_per_possession=4)
+    e,s = p.m.e,p.m.s
+    s.owner=e.possession.pp='A'
+    s.period=4
+    e.foul('B:0',reason='hold')
+    assert s.score['A']==p.config.full_award_points
+    assert s.tackle_count==0 and s.restart.team=='A'
+    s.phase=p.types.Phase.LIVE
+    s.tackle_count=3
+    e.foul('A:0',reason='hold')
+    assert s.tackle_count==0 and s.restart.team=='B'
+    assert s.restart.reason=='offence_minor_turnover'
+
+
+def test_set_speed_uses_the_same_braking_scale_for_each_role(core_port):
+    from native.reaction_clock import keeper_set_speed
+
+    p = port_with(core_port,rb333=('universal_set_speed',))
+    athletes = [a for a in p.m.s.players.values() if a.team=='A']
+    for role in ('field','keeper','archer'):
+        athlete = next(a for a in athletes if a.role==role)
+        assert set_speed(athlete)==pytest.approx(athlete.a.braking*.40)
+        assert keeper_set_speed(athlete,p.m,p.config)==set_speed(athlete)
