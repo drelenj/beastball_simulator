@@ -190,3 +190,14 @@ Owner: "You can throw in some magikal material science to make things realistic.
 - CANON (owner, 25 Nov): carry goal = 7 points (was 5), so the carry is the sport's touchdown. Applies to every carry goal as defined (ball crosses the plane in hand, including a stretch, or released within 3 m of the goal). Other values unchanged: throws 2/3/4 by band, half goal 1, full-goal award 3, own goal 2.
 - CANON (owner, 25 Nov): inside the goal mouth the end line is NOT a boundary for a ball carrier. Within the mouth's width a carrier's body may cross the end line; it is a carry goal (7) if the ball breaks the plane inside the mouth. Out-of-bounds on the end line applies only outside the goal mouth. Refines the earlier boundary ruling.
 - CANON (owner, 25 Nov): goal-mouth edge case: only the ball decides a goal. If the carrier's body is within the mouth's width but the ball crosses the end-line plane outside the half-disc (above the 3 m arc or wide of it), the ball is out of bounds (no goal).
+
+## 2026-11-26 — Competitive balance (parity) targets (owner adopted)
+Basis: in-universe record (NBL champion Kasuf 27-5 as the fifth-strongest modeled roster, Beast Bowl 82-80; MBL top
+records 33-5 / 32-6, all four 2026 conference semifinals decided by 2-8 points; preseason blowouts of about 30-40
+between top and bottom rosters; 17 MBL champions in 79 seasons, top franchise about 14% of titles).
+Targets for the sim (judged on league soaks, team strength = minutes-weighted OVR 0.422):
+- Slope: about 2.5-3 points of margin per team-strength point (top vs bottom gap of about 14 -> 35-40 point average win).
+- Favourite win rate: about 60% at a 2-point gap, about 75% at 5, 90%+ at 10 or more.
+- Close games: about 15-20% of all games within 5 points, more among evenly matched teams.
+- Elite record: the best team over a full season wins about 80-87% of its games.
+Baseline (A6 soak interim, 78 games): slope 5.96, gap 3-5 favourite wins 93%, gap 5+ 96%, 3.8% of games within 5.
