@@ -52,7 +52,7 @@ def render(root, historical):
 
     arm_labels = ('A4 seed 1', 'A5 seed 1', *(f'A6 seed {s}' for s in range(1,6)))
     headers = ('Measure', *arm_labels, 'A6 mean', 'A6 seed 1 − A4', 'A6 seed 1 − A5')
-    metrics = [measures(run) for run in all_runs]
+    metrics = [measures(run, allow_unlinked_boundaries=True) for run in all_runs]
 
     def metric(key):
         column = [run[key] for run in metrics]

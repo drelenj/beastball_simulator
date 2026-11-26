@@ -24,7 +24,7 @@ def quantile(values,q):
     return values[lo]+(index-lo)*(values[min(lo+1,len(values)-1)]-values[lo])
 
 
-def measures(r):
+def measures(r, *, allow_unlinked_boundaries=False):
     d=r['diagnosis']
     teams=r['box']['teams']
     def total(key):
@@ -39,8 +39,14 @@ def measures(r):
     possessions=r['box']['possessions']
     out_times=[nxt['start_ms'] for current,nxt in zip(possessions,possessions[1:]) if current['end_reason']=='boundary']
     at={b['t_ms']:b for b in r['boundary']}
-    assert len(at)==len(r['boundary']) and len(out_times)==d['total']['out_of_bounds']
-    boundary_losses=[at[t] for t in out_times]
+    assert len(at)==len(r['boundary'])
+    boundary_losses=[at[t] for t in out_times if t in at]
+    unlinked = d['total']['out_of_bounds'] - len(boundary_losses)
+    if allow_unlinked_boundaries:
+        assert unlinked >= 0
+        add(section, 'Boundary turnovers without a matched transition', unlinked/2)
+    else:
+        assert unlinked == 0
     add(section,'Deflected ball went out and possession changed',sum(q['kind']=='deflection' for q in boundary_losses)/2)
     counts=Counter()
     for b in boundary_losses:
