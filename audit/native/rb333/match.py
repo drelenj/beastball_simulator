@@ -110,7 +110,9 @@ def main():
     p.add_argument('--diagnostics', action='store_true')
     p.add_argument('--turnover-diagnostics',action='store_true')
     a=p.parse_args()
-    result=run(a.arm,a.seed,a.book,a.pair,diagnostics=a.diagnostics or a.arm == 'A6',turnover_diagnostics=a.turnover_diagnostics)
+    result=run(a.arm,a.seed,a.book,a.pair,
+               diagnostics=a.diagnostics or (a.arm == 'A6' and not a.turnover_diagnostics),
+               turnover_diagnostics=a.turnover_diagnostics)
     a.out.parent.mkdir(parents=True,exist_ok=True)
     tmp=a.out.with_suffix('.tmp')
     tmp.write_bytes(gzip.compress(json.dumps(result,ensure_ascii=False).encode(),mtime=0))
