@@ -110,3 +110,33 @@ def test_carry_value_preserves_scoring_and_separates_expected_values(core_port):
     assert continuation_points(3., carry_scale=cfg.carry_points/5.) == pytest.approx(2.17/2)
     view = replace(view, x=98.)
     assert shot_points(view, plan, scoring_table=True) == pytest.approx(7*(.28+.11*2)*exp(-2./45.))
+
+
+def test_carry_value_changes_the_near_goal_menu_without_rescaling_routes(core_port, monkeypatch):
+    from math import exp
+
+    from native import cognition as c, cognition_rb3 as rb, prism_core as core
+
+    _, view, belief = scene(core_port)
+    gx = 100. - view.own_goal_x
+    view = replace(view, x=gx-.5*view.attack_sign, y=50., ladder_data=(
+        400, 7, ((10, 2), (20, 3), (None, 4)), 3,
+    ), rb3_carrier_moves_enabled=True)
+    aim = (gx, 50.)
+    monkeypatch.setattr(rb, 'shot_plan', lambda *_: dict(aim=aim, margin=2.))
+    base = c.ActionIntent('i', 'd', view.athlete, 'retain', None, None, None, None, view.delivered_ms)
+    record = {'options': [('shoot', None, aim, 3.), ('retain', None, None, 3.)]}
+
+    def values(switch):
+        v = replace(view, paired_fixes=('carry_finish', 'stretch_range', switch))
+        menu = core.Menu(v, selector=lambda _, options: next(
+            i for i, option in enumerate(options) if option.label == 'retain:'))
+        core.carrier(menu, v, belief, (), base, record)
+        return {label: value for label, _, value, _ in menu.records[0]['options']}
+
+    old, new = values('carry_seven'), values('carry_value')
+    assert new['carry_mouth'] == old['carry_mouth']
+    assert new['retain:'] == pytest.approx(2.17/2.)
+    assert old['retain:'] == pytest.approx(7./2.)
+    assert new['shoot:'] == pytest.approx(7*.50*exp(-.5/45.))
+    assert new['commit_scoring_attempt'] == pytest.approx(5.25)
