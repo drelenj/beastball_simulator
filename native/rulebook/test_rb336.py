@@ -100,6 +100,7 @@ def test_fourth_count_minor_and_defence_award_in_period_four(core_port):
     e,s = p.m.e,p.m.s
     s.owner=e.possession.pp='A'
     s.period=4
+    e.rb.enter_period(4)
     e.foul('B:0',reason='hold')
     assert s.score['A']==p.config.full_award_points
     assert s.tackle_count==0 and s.restart.team=='A'
