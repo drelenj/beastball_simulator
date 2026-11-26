@@ -27,7 +27,7 @@ def metrics(run):
     tackle_possessions = {bisect_right(starts,now)-1 for now in observed['first_tackles']}
     add('Possessions/team',team('possessions')/2)
     add('Possessions reaching first tackle (%)',pct(len(tackle_possessions - {-1}),count))
-    add('Scrimmages per possession',len(observed['scrimmages'])/count)
+    add('Scrimmages per possession',run['events'].get('scrimmage_formation',0)/count)
     add('Possessions ending in an attempt (%)',pct(team('possessions_ending_in_attempt'),team('possessions')))
     add('Points/team',team('points')/2)
     for reason in ('boundary','interception','fumble','second_tackle','score','opponent_control'):
@@ -67,6 +67,7 @@ def metrics(run):
     add('Box Keeper saves / faced (%)',pct(team('saves'),team('shots_faced')))
     add('Event Keeper save rate (%)',pct(keep['total']['saves'],keep['total']['faced']))
     add('Keeper above set speed at release (%)',pct(run['unset'],keep['total']['faced']))
+    add('Keeper plant choices',observed['plants']/2)
     add('Shots with plant witness',observed['plants_at_release']/2)
     for band,label in (('2','<10 m'),('3','10–20 m'),('4','20 m+')):
         shot = keep['by_band'].get(band,{})
