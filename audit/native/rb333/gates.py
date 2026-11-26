@@ -11,10 +11,11 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument('book',type=Path)
     p.add_argument('evidence',type=Path)
+    p.add_argument('--modes',nargs='+',choices=('compatibility','core','R1','PLANNED'),default=('compatibility','core','R1','PLANNED'))
     args=p.parse_args()
     expected=json.loads(Path('audit/native/rb332/evidence/identity.json').read_text())
     checks={}
-    for mode in ('compatibility','core','R1','PLANNED'):
+    for mode in args.modes:
         if mode in ('compatibility','core'):
             row=identity(mode)
         else:
