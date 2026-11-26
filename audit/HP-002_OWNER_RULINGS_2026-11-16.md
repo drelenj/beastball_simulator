@@ -201,3 +201,9 @@ Targets for the sim (judged on league soaks, team strength = minutes-weighted OV
 - Close games: about 15-20% of all games within 5 points, more among evenly matched teams.
 - Elite record: the best team over a full season wins about 80-87% of its games.
 Baseline (A6 soak interim, 78 games): slope 5.96, gap 3-5 favourite wins 93%, gap 5+ 96%, 3.8% of games within 5.
+
+## 2026-11-26 — Sideline: held ball over the line (owner ruling)
+A ball carrier whose body has not touched out of bounds is NOT out when the ball in his hand crosses the sideline
+plane; he (or the ball) is out only on touching on or beyond the line, as in rugby and gridiron. The end-line rule is
+unchanged: outside the goal mouth's half-disc the ball crossing the end-line plane is out; inside the mouth the ball
+breaking the plane is a carry goal. Context: the A6 soak called about 10.3 held-ball crossings per team per game out.
