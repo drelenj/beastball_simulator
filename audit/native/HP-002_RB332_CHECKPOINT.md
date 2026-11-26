@@ -1,7 +1,7 @@
 # OWNER BRIEFING
 
 1. **DESIGN COMPLETE, IMPLEMENTED** for pass clearance, carry finish, fresh takedown evidence and boundary braking. Each runs under its own switch. Keeper reach is a read-only audit.
-2. All trial arms use the 0.58 fatigue scale, which averaged 3.25 override exits per team in the calibration pilots. 60 of 180 trial games and 9 of 30 historical replays are recorded.
+2. All trial arms use the 0.58 fatigue scale, which averaged 3.25 override exits per team in the calibration pilots. 90 of 180 trial games and 14 of 30 historical replays are recorded.
 3. Trial effects below are provisional until the remaining games finish. The reach and boundary assignments are observational.
 4. The maintained suite, identities and deterministic combined replay are verified. CPU overhead measured -0.41%.
 5. Review matched deltas, especially pass volume and changes in scoring and possession, before selecting a behavior profile.
@@ -50,12 +50,12 @@
 | Work | Status |
 |---|---|
 | Fatigue calibration | DESIGN COMPLETE, IMPLEMENTED, TESTED. Two scale-0.58 pilots. |
-| Pass clearance | DESIGN COMPLETE, IMPLEMENTED. 10 of 30 ON cases finished. |
-| Carry finish | DESIGN COMPLETE, IMPLEMENTED. 10 of 30 ON cases finished. |
-| Fresh takedown evidence | DESIGN COMPLETE, IMPLEMENTED. 10 of 30 ON cases finished. |
-| Boundary diagnosis and guard | DESIGN COMPLETE, IMPLEMENTED. 10 OFF and 10 ON cases. |
-| Keeper reach diagnosis | DESIGN COMPLETE, IMPLEMENTED. 10 OFF cases. |
-| Combined policy | DESIGN COMPLETE, IMPLEMENTED. 10 of 30 ON cases finished. |
+| Pass clearance | DESIGN COMPLETE, IMPLEMENTED. 15 of 30 ON cases finished. |
+| Carry finish | DESIGN COMPLETE, IMPLEMENTED. 15 of 30 ON cases finished. |
+| Fresh takedown evidence | DESIGN COMPLETE, IMPLEMENTED. 15 of 30 ON cases finished. |
+| Boundary diagnosis and guard | DESIGN COMPLETE, IMPLEMENTED. 15 OFF and 15 ON cases. |
+| Keeper reach diagnosis | DESIGN COMPLETE, IMPLEMENTED. 15 OFF cases. |
+| Combined policy | DESIGN COMPLETE, IMPLEMENTED. 15 of 30 ON cases finished. |
 
 `pytest -q b1 native` reported `811 passed, 1 warning, 23 subtests passed in 646.88s (0:10:46)`.
 All six legacy rows matched.
@@ -70,8 +70,8 @@ and combined used 4.116, a change of -0.41%.
 
 ## Historical pass clearance
 
-The forecast flagged **173 of 291**
-measured cases from **291** of the original 1,020
+The forecast flagged **296 of 469**
+measured cases from **469** of the original 1,020
 believed-clear interceptions. Classification is evaluated on the admitted
 decision view and selected delivery, with the historical population keyed to
 the unchanged RB-3.31 trace. The number measures historical flags.
@@ -84,114 +84,114 @@ outcomes.
 
 ### pass_clearance
 
-10 paired games.
+15 paired games.
 
 | Metric | OFF | ON | Paired change | SE |
 |---|---:|---:|---:|---:|
-| median team score | 92.50 | 78.50 | -14.00 | 4.24 |
-| possessions | 153.05 | 139.85 | -13.20 | 2.52 |
-| attempt share | 35.18% | 35.79% | +0.60 pp | 0.93 pp |
-| pass completion | 76.61% | 80.06% | +3.45 pp | 0.51 pp |
-| passes attempted per team | 282.85 | 255.80 | -27.05 | 5.15 |
-| interceptions per team | 52.50 | 41.55 | -10.95 | 1.42 |
-| boundaries per team | 31.90 | 30.85 | -1.05 | 1.06 |
-| carry goals per team | 0.30 | 0.65 | +0.35 | 0.25 |
-| tackle commits per team | 351.10 | 363.05 | +11.95 | 10.92 |
-| tackle wrong target share | 39.65% | 38.11% | -1.54 pp | 1.09 pp |
-| tackle episode success | 10.31% | 11.38% | +1.07 pp | 0.39 pp |
-| tackle hold success | 22.73% | 24.19% | +1.46 pp | 0.93 pp |
-| keeper save rate | 14.46% | 12.97% | -1.48 pp | 2.16 pp |
-| keeper save on target rate | 19.14% | 18.03% | -1.11 pp | 2.76 pp |
-| four point share | 50.33% | 46.02% | -4.32 pp | 1.07 pp |
-| median absolute margin | 24.50 | 30.00 | +5.50 | 6.76 |
-| within five | 20.00% | 10.00% | -10.00 pp | 17.04 pp |
-| team score sd | 16.16 | 19.82 | +3.65 | 3.71 |
+| median team score | 90.50 | 81.00 | -9.50 | 4.67 |
+| possessions | 152.27 | 138.93 | -13.33 | 1.98 |
+| attempt share | 34.94% | 36.16% | +1.22 pp | 0.75 pp |
+| pass completion | 76.57% | 80.09% | +3.52 pp | 0.45 pp |
+| passes attempted per team | 280.73 | 255.03 | -25.70 | 3.74 |
+| interceptions per team | 53.00 | 41.43 | -11.57 | 1.11 |
+| boundaries per team | 31.87 | 30.70 | -1.17 | 1.01 |
+| carry goals per team | 0.40 | 0.70 | +0.30 | 0.22 |
+| tackle commits per team | 340.80 | 353.40 | +12.60 | 7.68 |
+| tackle wrong target share | 39.18% | 36.89% | -2.29 pp | 0.82 pp |
+| tackle episode success | 10.27% | 11.25% | +0.98 pp | 0.37 pp |
+| tackle hold success | 22.60% | 23.69% | +1.09 pp | 0.76 pp |
+| keeper save rate | 14.12% | 12.29% | -1.83 pp | 1.46 pp |
+| keeper save on target rate | 18.91% | 17.14% | -1.77 pp | 1.88 pp |
+| four point share | 48.95% | 47.01% | -1.94 pp | 2.68 pp |
+| median absolute margin | 24.00 | 29.00 | +5.00 | 7.40 |
+| within five | 13.33% | 13.33% | +0.00 pp | 12.56 pp |
+| team score sd | 16.50 | 18.83 | +2.33 | 2.58 |
 | ala minus garvian margin | 23.60 | 9.80 | -13.80 | 10.86 |
-| ala margin se | 4.91 | 10.29 | +5.39 | 1.65 |
-| ala win share | 100.00% | 50.00% | -50.00 pp | 16.28 pp |
-| planned changes per team | 41.55 | 42.40 | +0.85 | 0.56 |
-| override exits per team | 2.85 | 2.30 | -0.55 | 0.34 |
-| turnovers.fumble | 11.95 | 12.80 | +0.85 | 1.21 |
+| ala margin se | 4.91 | 10.29 | +5.39 | 1.61 |
+| ala win share | 100.00% | 50.00% | -50.00 pp | 15.70 pp |
+| planned changes per team | 41.20 | 42.07 | +0.87 | 0.41 |
+| override exits per team | 3.23 | 2.70 | -0.53 | 0.23 |
+| turnovers.fumble | 11.57 | 13.00 | +1.43 | 1.02 |
 | turnovers.held ball | 0.00 | 0.00 | +0.00 | 0.00 |
-| turnovers.interception | 52.50 | 41.55 | -10.95 | 1.42 |
-| turnovers.major | 0.05 | 0.00 | -0.05 | 0.05 |
-| turnovers.opponent control | 11.75 | 10.70 | -1.05 | 0.75 |
-| turnovers.out of bounds | 31.90 | 30.85 | -1.05 | 1.06 |
-| turnovers.play clock | 1.75 | 2.05 | +0.30 | 0.39 |
-| turnovers.score restart | 25.55 | 22.30 | -3.25 | 1.25 |
-| turnovers.strip | 1.70 | 1.60 | -0.10 | 0.40 |
-| turnovers.tackle | 10.40 | 11.80 | +1.40 | 0.98 |
-| turnovers.toss timeout | 0.40 | 0.75 | +0.35 | 0.29 |
-| turnovers.turnover | 0.50 | 0.50 | +0.00 | 0.18 |
-| turnovers.zone violation | 2.55 | 2.85 | +0.30 | 0.47 |
-| carries.freeze | 0.00 | 0.20 | +0.20 | 0.10 |
-| carries.goal | 0.30 | 0.65 | +0.35 | 0.25 |
-| carries.handoff | 2.45 | 1.45 | -1.00 | 0.42 |
-| carries.out of bounds | 12.95 | 12.20 | -0.75 | 0.64 |
-| carries.pass | 2.60 | 3.60 | +1.00 | 0.54 |
-| carries.shot | 26.65 | 25.05 | -1.60 | 1.66 |
-| carries.stopped short | 5.05 | 5.40 | +0.35 | 0.74 |
-| carries.strip | 0.70 | 0.35 | -0.35 | 0.29 |
-| carries.tackle | 4.00 | 4.30 | +0.30 | 0.69 |
-| carries.zone violation | 0.55 | 0.35 | -0.20 | 0.17 |
-| stretches.end.lost control or expired | 0.00 | 0.05 | +0.05 | 0.05 |
-| stretches.end.replaced | 0.00 | 0.05 | +0.05 | 0.05 |
-| stretches.stretch end | 0.00 | 0.10 | +0.10 | 0.09 |
-| stretches.stretch goal | 0.00 | 0.05 | +0.05 | 0.05 |
-| stretches.stretch start | 0.00 | 0.10 | +0.10 | 0.09 |
+| turnovers.interception | 53.00 | 41.43 | -11.57 | 1.11 |
+| turnovers.major | 0.03 | 0.00 | -0.03 | 0.03 |
+| turnovers.opponent control | 11.70 | 10.57 | -1.13 | 0.64 |
+| turnovers.out of bounds | 31.87 | 30.70 | -1.17 | 1.01 |
+| turnovers.play clock | 1.67 | 1.83 | +0.17 | 0.28 |
+| turnovers.score restart | 25.17 | 23.07 | -2.10 | 0.91 |
+| turnovers.strip | 1.53 | 1.57 | +0.03 | 0.33 |
+| turnovers.tackle | 10.07 | 11.17 | +1.10 | 0.81 |
+| turnovers.toss timeout | 0.40 | 0.63 | +0.23 | 0.20 |
+| turnovers.turnover | 0.53 | 0.40 | -0.13 | 0.15 |
+| turnovers.zone violation | 2.67 | 2.50 | -0.17 | 0.39 |
+| carries.freeze | 0.10 | 0.17 | +0.07 | 0.09 |
+| carries.goal | 0.40 | 0.70 | +0.30 | 0.22 |
+| carries.handoff | 2.73 | 1.67 | -1.07 | 0.32 |
+| carries.out of bounds | 12.47 | 12.00 | -0.47 | 0.65 |
+| carries.pass | 2.83 | 3.33 | +0.50 | 0.37 |
+| carries.shot | 26.37 | 25.00 | -1.37 | 1.31 |
+| carries.stopped short | 5.30 | 5.23 | -0.07 | 0.64 |
+| carries.strip | 0.57 | 0.33 | -0.23 | 0.19 |
+| carries.tackle | 3.63 | 4.03 | +0.40 | 0.52 |
+| carries.zone violation | 0.50 | 0.27 | -0.23 | 0.14 |
+| stretches.end.lost control or expired | 0.00 | 0.03 | +0.03 | 0.03 |
+| stretches.end.replaced | 0.00 | 0.03 | +0.03 | 0.03 |
+| stretches.stretch end | 0.00 | 0.07 | +0.07 | 0.06 |
+| stretches.stretch goal | 0.00 | 0.03 | +0.03 | 0.03 |
+| stretches.stretch start | 0.00 | 0.07 | +0.07 | 0.06 |
 
 ### carry_finish
 
-10 paired games.
+15 paired games.
 
 | Metric | OFF | ON | Paired change | SE |
 |---|---:|---:|---:|---:|
-| median team score | 92.50 | 106.50 | +14.00 | 3.57 |
-| possessions | 153.05 | 150.10 | -2.95 | 2.16 |
-| attempt share | 35.18% | 35.44% | +0.26 pp | 0.59 pp |
-| pass completion | 76.61% | 77.16% | +0.55 pp | 0.43 pp |
-| passes attempted per team | 282.85 | 276.50 | -6.35 | 2.90 |
-| interceptions per team | 52.50 | 50.75 | -1.75 | 1.60 |
-| boundaries per team | 31.90 | 28.85 | -3.05 | 1.62 |
-| carry goals per team | 0.30 | 2.20 | +1.90 | 0.26 |
-| tackle commits per team | 351.10 | 339.55 | -11.55 | 8.85 |
-| tackle wrong target share | 39.65% | 40.61% | +0.97 pp | 1.17 pp |
-| tackle episode success | 10.31% | 9.92% | -0.39 pp | 0.39 pp |
-| tackle hold success | 22.73% | 22.57% | -0.16 pp | 0.78 pp |
-| keeper save rate | 14.46% | 14.43% | -0.02 pp | 1.41 pp |
-| keeper save on target rate | 19.14% | 20.11% | +0.96 pp | 1.92 pp |
-| four point share | 50.33% | 39.37% | -10.97 pp | 3.18 pp |
-| median absolute margin | 24.50 | 44.00 | +19.50 | 12.61 |
-| within five | 20.00% | 0.00% | -20.00 pp | 12.45 pp |
-| team score sd | 16.16 | 26.44 | +10.28 | 3.31 |
+| median team score | 90.50 | 108.00 | +17.50 | 5.64 |
+| possessions | 152.27 | 152.07 | -0.20 | 1.87 |
+| attempt share | 34.94% | 35.69% | +0.75 pp | 0.53 pp |
+| pass completion | 76.57% | 76.64% | +0.07 pp | 0.33 pp |
+| passes attempted per team | 280.73 | 278.17 | -2.57 | 3.32 |
+| interceptions per team | 53.00 | 51.80 | -1.20 | 1.23 |
+| boundaries per team | 31.87 | 29.60 | -2.27 | 1.25 |
+| carry goals per team | 0.40 | 2.97 | +2.57 | 0.22 |
+| tackle commits per team | 340.80 | 328.47 | -12.33 | 6.48 |
+| tackle wrong target share | 39.18% | 39.39% | +0.20 pp | 0.91 pp |
+| tackle episode success | 10.27% | 10.08% | -0.19 pp | 0.33 pp |
+| tackle hold success | 22.60% | 22.51% | -0.09 pp | 0.67 pp |
+| keeper save rate | 14.12% | 14.02% | -0.10 pp | 1.07 pp |
+| keeper save on target rate | 18.91% | 19.75% | +0.84 pp | 1.49 pp |
+| four point share | 48.95% | 38.18% | -10.77 pp | 2.73 pp |
+| median absolute margin | 24.00 | 39.00 | +15.00 | 14.06 |
+| within five | 13.33% | 13.33% | +0.00 pp | 11.00 pp |
+| team score sd | 16.50 | 24.14 | +7.64 | 2.44 |
 | ala minus garvian margin | 23.60 | 44.70 | +21.10 | 7.80 |
-| ala margin se | 4.91 | 7.00 | +2.10 | 1.51 |
+| ala margin se | 4.91 | 7.00 | +2.10 | 1.46 |
 | ala win share | 100.00% | 100.00% | +0.00 pp | 0.00 pp |
-| planned changes per team | 41.55 | 42.25 | +0.70 | 0.43 |
-| override exits per team | 2.85 | 2.60 | -0.25 | 0.24 |
-| turnovers.fumble | 11.95 | 12.45 | +0.50 | 1.01 |
+| planned changes per team | 41.20 | 41.90 | +0.70 | 0.44 |
+| override exits per team | 3.23 | 2.90 | -0.33 | 0.24 |
+| turnovers.fumble | 11.57 | 12.67 | +1.10 | 0.84 |
 | turnovers.held ball | 0.00 | 0.00 | +0.00 | 0.00 |
-| turnovers.interception | 52.50 | 50.75 | -1.75 | 1.60 |
-| turnovers.major | 0.05 | 0.00 | -0.05 | 0.05 |
-| turnovers.opponent control | 11.75 | 12.60 | +0.85 | 0.74 |
-| turnovers.out of bounds | 31.90 | 28.85 | -3.05 | 1.62 |
-| turnovers.play clock | 1.75 | 1.55 | -0.20 | 0.29 |
-| turnovers.score restart | 25.55 | 28.10 | +2.55 | 0.87 |
-| turnovers.strip | 1.70 | 1.20 | -0.50 | 0.29 |
-| turnovers.tackle | 10.40 | 9.15 | -1.25 | 0.99 |
-| turnovers.toss timeout | 0.40 | 0.45 | +0.05 | 0.16 |
-| turnovers.turnover | 0.50 | 0.70 | +0.20 | 0.20 |
-| turnovers.zone violation | 2.55 | 2.10 | -0.45 | 0.47 |
-| carries.freeze | 0.00 | 0.00 | +0.00 | 0.00 |
-| carries.goal | 0.30 | 2.20 | +1.90 | 0.26 |
-| carries.handoff | 2.45 | 1.15 | -1.30 | 0.54 |
-| carries.out of bounds | 12.95 | 7.10 | -5.85 | 0.73 |
-| carries.pass | 2.60 | 1.90 | -0.70 | 0.47 |
-| carries.shot | 26.65 | 33.70 | +7.05 | 1.80 |
-| carries.stopped short | 5.05 | 4.60 | -0.45 | 0.69 |
-| carries.strip | 0.70 | 0.45 | -0.25 | 0.23 |
-| carries.tackle | 4.00 | 2.30 | -1.70 | 0.53 |
-| carries.zone violation | 0.55 | 0.15 | -0.40 | 0.12 |
+| turnovers.interception | 53.00 | 51.80 | -1.20 | 1.23 |
+| turnovers.major | 0.03 | 0.03 | +0.00 | 0.04 |
+| turnovers.opponent control | 11.70 | 12.93 | +1.23 | 0.51 |
+| turnovers.out of bounds | 31.87 | 29.60 | -2.27 | 1.25 |
+| turnovers.play clock | 1.67 | 1.43 | -0.23 | 0.25 |
+| turnovers.score restart | 25.17 | 28.60 | +3.43 | 0.98 |
+| turnovers.strip | 1.53 | 1.17 | -0.37 | 0.22 |
+| turnovers.tackle | 10.07 | 8.47 | -1.60 | 0.72 |
+| turnovers.toss timeout | 0.40 | 0.53 | +0.13 | 0.13 |
+| turnovers.turnover | 0.53 | 0.63 | +0.10 | 0.18 |
+| turnovers.zone violation | 2.67 | 2.03 | -0.63 | 0.39 |
+| carries.freeze | 0.10 | 0.10 | +0.00 | 0.08 |
+| carries.goal | 0.40 | 2.97 | +2.57 | 0.22 |
+| carries.handoff | 2.73 | 1.20 | -1.53 | 0.46 |
+| carries.out of bounds | 12.47 | 7.63 | -4.83 | 0.64 |
+| carries.pass | 2.83 | 1.70 | -1.13 | 0.33 |
+| carries.shot | 26.37 | 32.87 | +6.50 | 1.42 |
+| carries.stopped short | 5.30 | 4.80 | -0.50 | 0.50 |
+| carries.strip | 0.57 | 0.43 | -0.13 | 0.16 |
+| carries.tackle | 3.63 | 2.20 | -1.43 | 0.47 |
+| carries.zone violation | 0.50 | 0.33 | -0.17 | 0.12 |
 | stretches.end.lost control or expired | 0.00 | 0.20 | +0.20 | 0.08 |
 | stretches.end.replaced | 0.00 | 0.00 | +0.00 | 0.00 |
 | stretches.stretch end | 0.00 | 0.20 | +0.20 | 0.08 |
@@ -200,56 +200,56 @@ outcomes.
 
 ### fresh_takedown
 
-10 paired games.
+15 paired games.
 
 | Metric | OFF | ON | Paired change | SE |
 |---|---:|---:|---:|---:|
-| median team score | 92.50 | 87.50 | -5.00 | 3.66 |
-| possessions | 153.05 | 151.55 | -1.50 | 2.20 |
-| attempt share | 35.18% | 32.99% | -2.19 pp | 0.99 pp |
-| pass completion | 76.61% | 75.93% | -0.69 pp | 0.37 pp |
-| passes attempted per team | 282.85 | 277.50 | -5.35 | 2.26 |
-| interceptions per team | 52.50 | 52.80 | +0.30 | 1.29 |
-| boundaries per team | 31.90 | 31.00 | -0.90 | 1.29 |
-| carry goals per team | 0.30 | 0.30 | +0.00 | 0.15 |
-| tackle commits per team | 351.10 | 305.00 | -46.10 | 11.77 |
-| tackle wrong target share | 39.65% | 26.95% | -12.70 pp | 0.89 pp |
-| tackle episode success | 10.31% | 10.72% | +0.41 pp | 0.51 pp |
-| tackle hold success | 22.73% | 20.27% | -2.45 pp | 1.09 pp |
-| keeper save rate | 14.46% | 14.85% | +0.40 pp | 1.64 pp |
-| keeper save on target rate | 19.14% | 20.15% | +1.01 pp | 2.16 pp |
-| four point share | 50.33% | 48.90% | -1.43 pp | 2.04 pp |
-| median absolute margin | 24.50 | 12.50 | -12.00 | 10.92 |
-| within five | 20.00% | 10.00% | -10.00 pp | 16.62 pp |
-| team score sd | 16.16 | 15.46 | -0.70 | 4.93 |
-| ala minus garvian margin | 23.60 | 17.00 | -6.60 | 9.88 |
+| median team score | 90.50 | 86.00 | -4.50 | 4.98 |
+| possessions | 152.27 | 150.80 | -1.47 | 2.31 |
+| attempt share | 34.94% | 34.06% | -0.88 pp | 0.86 pp |
+| pass completion | 76.57% | 76.01% | -0.56 pp | 0.45 pp |
+| passes attempted per team | 280.73 | 274.73 | -6.00 | 2.75 |
+| interceptions per team | 53.00 | 52.17 | -0.83 | 1.47 |
+| boundaries per team | 31.87 | 31.27 | -0.60 | 1.21 |
+| carry goals per team | 0.40 | 0.43 | +0.03 | 0.13 |
+| tackle commits per team | 340.80 | 291.83 | -48.97 | 8.10 |
+| tackle wrong target share | 39.18% | 26.64% | -12.55 pp | 0.70 pp |
+| tackle episode success | 10.27% | 10.49% | +0.22 pp | 0.37 pp |
+| tackle hold success | 22.60% | 19.96% | -2.64 pp | 0.83 pp |
+| keeper save rate | 14.12% | 14.22% | +0.11 pp | 1.18 pp |
+| keeper save on target rate | 18.91% | 19.61% | +0.70 pp | 1.54 pp |
+| four point share | 48.95% | 47.63% | -1.32 pp | 2.65 pp |
+| median absolute margin | 24.00 | 10.00 | -14.00 | 8.96 |
+| within five | 13.33% | 13.33% | +0.00 pp | 12.82 pp |
+| team score sd | 16.50 | 17.65 | +1.15 | 3.71 |
+| ala minus garvian margin | 23.60 | 17.00 | -6.60 | 9.96 |
 | ala margin se | 4.91 | 6.98 | +2.07 | 1.97 |
-| ala win share | 100.00% | 90.00% | -10.00 pp | 9.47 pp |
-| planned changes per team | 41.55 | 41.45 | -0.10 | 0.66 |
-| override exits per team | 2.85 | 2.95 | +0.10 | 0.33 |
-| turnovers.fumble | 11.95 | 14.20 | +2.25 | 0.97 |
+| ala win share | 100.00% | 90.00% | -10.00 pp | 9.64 pp |
+| planned changes per team | 41.20 | 41.13 | -0.07 | 0.51 |
+| override exits per team | 3.23 | 3.27 | +0.03 | 0.23 |
+| turnovers.fumble | 11.57 | 13.73 | +2.17 | 0.76 |
 | turnovers.held ball | 0.00 | 0.00 | +0.00 | 0.00 |
-| turnovers.interception | 52.50 | 52.80 | +0.30 | 1.29 |
-| turnovers.major | 0.05 | 0.00 | -0.05 | 0.05 |
-| turnovers.opponent control | 11.75 | 12.25 | +0.50 | 0.66 |
-| turnovers.out of bounds | 31.90 | 31.00 | -0.90 | 1.29 |
-| turnovers.play clock | 1.75 | 1.20 | -0.55 | 0.32 |
-| turnovers.score restart | 25.55 | 24.15 | -1.40 | 0.94 |
-| turnovers.strip | 1.70 | 1.30 | -0.40 | 0.37 |
-| turnovers.tackle | 10.40 | 8.40 | -2.00 | 1.34 |
-| turnovers.toss timeout | 0.40 | 0.55 | +0.15 | 0.18 |
-| turnovers.turnover | 0.50 | 0.70 | +0.20 | 0.13 |
-| turnovers.zone violation | 2.55 | 2.90 | +0.35 | 0.53 |
-| carries.freeze | 0.00 | 0.10 | +0.10 | 0.06 |
-| carries.goal | 0.30 | 0.30 | +0.00 | 0.15 |
-| carries.handoff | 2.45 | 2.15 | -0.30 | 0.77 |
-| carries.out of bounds | 12.95 | 9.25 | -3.70 | 0.74 |
-| carries.pass | 2.60 | 2.65 | +0.05 | 0.39 |
-| carries.shot | 26.65 | 24.80 | -1.85 | 1.48 |
-| carries.stopped short | 5.05 | 4.40 | -0.65 | 0.71 |
-| carries.strip | 0.70 | 0.35 | -0.35 | 0.27 |
-| carries.tackle | 4.00 | 2.95 | -1.05 | 0.54 |
-| carries.zone violation | 0.55 | 0.55 | +0.00 | 0.20 |
+| turnovers.interception | 53.00 | 52.17 | -0.83 | 1.47 |
+| turnovers.major | 0.03 | 0.00 | -0.03 | 0.03 |
+| turnovers.opponent control | 11.70 | 12.87 | +1.17 | 0.55 |
+| turnovers.out of bounds | 31.87 | 31.27 | -0.60 | 1.21 |
+| turnovers.play clock | 1.67 | 1.10 | -0.57 | 0.31 |
+| turnovers.score restart | 25.17 | 24.60 | -0.57 | 1.00 |
+| turnovers.strip | 1.53 | 1.03 | -0.50 | 0.25 |
+| turnovers.tackle | 10.07 | 8.00 | -2.07 | 0.89 |
+| turnovers.toss timeout | 0.40 | 0.40 | +0.00 | 0.12 |
+| turnovers.turnover | 0.53 | 0.57 | +0.03 | 0.12 |
+| turnovers.zone violation | 2.67 | 2.97 | +0.30 | 0.45 |
+| carries.freeze | 0.10 | 0.07 | -0.03 | 0.07 |
+| carries.goal | 0.40 | 0.43 | +0.03 | 0.13 |
+| carries.handoff | 2.73 | 2.07 | -0.67 | 0.64 |
+| carries.out of bounds | 12.47 | 9.43 | -3.03 | 0.55 |
+| carries.pass | 2.83 | 2.97 | +0.13 | 0.29 |
+| carries.shot | 26.37 | 25.90 | -0.47 | 1.20 |
+| carries.stopped short | 5.30 | 4.80 | -0.50 | 0.59 |
+| carries.strip | 0.57 | 0.33 | -0.23 | 0.19 |
+| carries.tackle | 3.63 | 3.40 | -0.23 | 0.51 |
+| carries.zone violation | 0.50 | 0.60 | +0.10 | 0.16 |
 | stretches.end.lost control or expired | 0.00 | 0.00 | +0.00 | 0.00 |
 | stretches.end.replaced | 0.00 | 0.00 | +0.00 | 0.00 |
 | stretches.stretch end | 0.00 | 0.00 | +0.00 | 0.00 |
@@ -258,148 +258,149 @@ outcomes.
 
 ### boundary_guard
 
-10 paired games.
+15 paired games.
 
 | Metric | OFF | ON | Paired change | SE |
 |---|---:|---:|---:|---:|
-| median team score | 92.50 | 101.00 | +8.50 | 5.23 |
-| possessions | 153.05 | 144.85 | -8.20 | 2.43 |
-| attempt share | 35.18% | 35.66% | +0.47 pp | 0.83 pp |
-| pass completion | 76.61% | 77.36% | +0.75 pp | 0.72 pp |
-| passes attempted per team | 282.85 | 271.40 | -11.45 | 4.06 |
-| interceptions per team | 52.50 | 49.55 | -2.95 | 2.03 |
-| boundaries per team | 31.90 | 22.20 | -9.70 | 0.78 |
-| carry goals per team | 0.30 | 1.10 | +0.80 | 0.31 |
-| tackle commits per team | 351.10 | 348.85 | -2.25 | 11.05 |
-| tackle wrong target share | 39.65% | 39.47% | -0.17 pp | 0.82 pp |
-| tackle episode success | 10.31% | 10.68% | +0.37 pp | 0.46 pp |
-| tackle hold success | 22.73% | 23.79% | +1.06 pp | 0.77 pp |
-| keeper save rate | 14.46% | 13.01% | -1.44 pp | 1.54 pp |
-| keeper save on target rate | 19.14% | 17.26% | -1.88 pp | 1.91 pp |
-| four point share | 50.33% | 43.13% | -7.21 pp | 2.98 pp |
-| median absolute margin | 24.50 | 33.00 | +8.50 | 10.15 |
-| within five | 20.00% | 10.00% | -10.00 pp | 16.45 pp |
-| team score sd | 16.16 | 22.85 | +6.69 | 4.20 |
-| ala minus garvian margin | 23.60 | 28.40 | +4.80 | 10.14 |
-| ala margin se | 4.91 | 7.79 | +2.88 | 1.44 |
-| ala win share | 100.00% | 90.00% | -10.00 pp | 9.71 pp |
-| planned changes per team | 41.55 | 42.45 | +0.90 | 0.52 |
-| override exits per team | 2.85 | 2.30 | -0.55 | 0.42 |
-| turnovers.fumble | 11.95 | 12.60 | +0.65 | 0.89 |
+| median team score | 90.50 | 99.50 | +9.00 | 6.34 |
+| possessions | 152.27 | 143.60 | -8.67 | 2.51 |
+| attempt share | 34.94% | 36.54% | +1.60 pp | 0.81 pp |
+| pass completion | 76.57% | 77.33% | +0.76 pp | 0.79 pp |
+| passes attempted per team | 280.73 | 269.40 | -11.33 | 3.75 |
+| interceptions per team | 53.00 | 48.67 | -4.33 | 2.03 |
+| boundaries per team | 31.87 | 23.17 | -8.70 | 0.67 |
+| carry goals per team | 0.40 | 0.93 | +0.53 | 0.23 |
+| tackle commits per team | 340.80 | 332.90 | -7.90 | 7.99 |
+| tackle wrong target share | 39.18% | 38.47% | -0.71 pp | 0.69 pp |
+| tackle episode success | 10.27% | 10.75% | +0.48 pp | 0.33 pp |
+| tackle hold success | 22.60% | 23.61% | +1.01 pp | 0.60 pp |
+| keeper save rate | 14.12% | 12.70% | -1.42 pp | 1.22 pp |
+| keeper save on target rate | 18.91% | 17.25% | -1.65 pp | 1.55 pp |
+| four point share | 48.95% | 44.43% | -4.52 pp | 3.81 pp |
+| median absolute margin | 24.00 | 28.00 | +4.00 | 8.34 |
+| within five | 13.33% | 6.67% | -6.67 pp | 11.33 pp |
+| team score sd | 16.50 | 21.43 | +4.93 | 2.94 |
+| ala minus garvian margin | 23.60 | 28.40 | +4.80 | 9.89 |
+| ala margin se | 4.91 | 7.79 | +2.88 | 1.43 |
+| ala win share | 100.00% | 90.00% | -10.00 pp | 9.42 pp |
+| planned changes per team | 41.20 | 41.80 | +0.60 | 0.43 |
+| override exits per team | 3.23 | 2.80 | -0.43 | 0.33 |
+| turnovers.fumble | 11.57 | 12.03 | +0.47 | 0.70 |
 | turnovers.held ball | 0.00 | 0.00 | +0.00 | 0.00 |
-| turnovers.interception | 52.50 | 49.55 | -2.95 | 2.03 |
-| turnovers.major | 0.05 | 0.00 | -0.05 | 0.05 |
-| turnovers.opponent control | 11.75 | 11.60 | -0.15 | 1.02 |
-| turnovers.out of bounds | 31.90 | 22.20 | -9.70 | 0.78 |
-| turnovers.play clock | 1.75 | 2.20 | +0.45 | 0.31 |
-| turnovers.score restart | 25.55 | 29.25 | +3.70 | 1.06 |
-| turnovers.strip | 1.70 | 1.55 | -0.15 | 0.27 |
-| turnovers.tackle | 10.40 | 9.65 | -0.75 | 0.93 |
-| turnovers.toss timeout | 0.40 | 0.30 | -0.10 | 0.12 |
-| turnovers.turnover | 0.50 | 0.60 | +0.10 | 0.22 |
-| turnovers.zone violation | 2.55 | 3.15 | +0.60 | 0.66 |
-| carries.freeze | 0.00 | 0.15 | +0.15 | 0.07 |
-| carries.goal | 0.30 | 1.10 | +0.80 | 0.31 |
-| carries.handoff | 2.45 | 2.30 | -0.15 | 0.65 |
-| carries.out of bounds | 12.95 | 6.15 | -6.80 | 0.56 |
-| carries.pass | 2.60 | 4.05 | +1.45 | 0.48 |
-| carries.shot | 26.65 | 30.70 | +4.05 | 1.41 |
-| carries.stopped short | 5.05 | 4.40 | -0.65 | 1.25 |
-| carries.strip | 0.70 | 0.85 | +0.15 | 0.36 |
-| carries.tackle | 4.00 | 3.90 | -0.10 | 1.01 |
-| carries.zone violation | 0.55 | 1.05 | +0.50 | 0.31 |
-| stretches.end.lost control or expired | 0.00 | 0.25 | +0.25 | 0.10 |
-| stretches.end.replaced | 0.00 | 0.10 | +0.10 | 0.06 |
-| stretches.stretch end | 0.00 | 0.35 | +0.35 | 0.14 |
-| stretches.stretch goal | 0.00 | 0.25 | +0.25 | 0.10 |
-| stretches.stretch start | 0.00 | 0.35 | +0.35 | 0.14 |
+| turnovers.interception | 53.00 | 48.67 | -4.33 | 2.03 |
+| turnovers.major | 0.03 | 0.03 | +0.00 | 0.04 |
+| turnovers.opponent control | 11.70 | 11.87 | +0.17 | 0.89 |
+| turnovers.out of bounds | 31.87 | 23.17 | -8.70 | 0.67 |
+| turnovers.play clock | 1.67 | 2.00 | +0.33 | 0.26 |
+| turnovers.score restart | 25.17 | 28.77 | +3.60 | 1.13 |
+| turnovers.strip | 1.53 | 1.67 | +0.13 | 0.21 |
+| turnovers.tackle | 10.07 | 9.47 | -0.60 | 0.74 |
+| turnovers.toss timeout | 0.40 | 0.30 | -0.10 | 0.11 |
+| turnovers.turnover | 0.53 | 0.50 | -0.03 | 0.19 |
+| turnovers.zone violation | 2.67 | 2.97 | +0.30 | 0.52 |
+| carries.freeze | 0.10 | 0.10 | +0.00 | 0.08 |
+| carries.goal | 0.40 | 0.93 | +0.53 | 0.23 |
+| carries.handoff | 2.73 | 2.20 | -0.53 | 0.48 |
+| carries.out of bounds | 12.47 | 6.50 | -5.97 | 0.44 |
+| carries.pass | 2.83 | 3.77 | +0.93 | 0.36 |
+| carries.shot | 26.37 | 31.10 | +4.73 | 1.37 |
+| carries.stopped short | 5.30 | 4.30 | -1.00 | 0.87 |
+| carries.strip | 0.57 | 0.80 | +0.23 | 0.26 |
+| carries.tackle | 3.63 | 3.87 | +0.23 | 0.69 |
+| carries.zone violation | 0.50 | 0.97 | +0.47 | 0.23 |
+| stretches.end.lost control or expired | 0.00 | 0.17 | +0.17 | 0.07 |
+| stretches.end.replaced | 0.00 | 0.07 | +0.07 | 0.04 |
+| stretches.stretch end | 0.00 | 0.23 | +0.23 | 0.10 |
+| stretches.stretch goal | 0.00 | 0.17 | +0.17 | 0.07 |
+| stretches.stretch start | 0.00 | 0.23 | +0.23 | 0.10 |
 
 ### combined
 
-10 paired games.
+15 paired games.
 
 | Metric | OFF | ON | Paired change | SE |
 |---|---:|---:|---:|---:|
-| median team score | 92.50 | 98.50 | +6.00 | 4.57 |
-| possessions | 153.05 | 137.40 | -15.65 | 2.49 |
-| attempt share | 35.18% | 35.08% | -0.10 pp | 0.82 pp |
-| pass completion | 76.61% | 80.62% | +4.01 pp | 0.47 pp |
-| passes attempted per team | 282.85 | 255.15 | -27.70 | 3.54 |
-| interceptions per team | 52.50 | 40.15 | -12.35 | 1.98 |
-| boundaries per team | 31.90 | 19.80 | -12.10 | 1.26 |
-| carry goals per team | 0.30 | 1.90 | +1.60 | 0.35 |
-| tackle commits per team | 351.10 | 345.20 | -5.90 | 6.38 |
-| tackle wrong target share | 39.65% | 26.45% | -13.20 pp | 0.90 pp |
-| tackle episode success | 10.31% | 11.46% | +1.15 pp | 0.44 pp |
-| tackle hold success | 22.73% | 21.76% | -0.97 pp | 0.75 pp |
-| keeper save rate | 14.46% | 13.88% | -0.58 pp | 1.81 pp |
-| keeper save on target rate | 19.14% | 19.00% | -0.14 pp | 2.46 pp |
-| four point share | 50.33% | 36.02% | -14.32 pp | 2.20 pp |
-| median absolute margin | 24.50 | 32.00 | +7.50 | 8.80 |
-| within five | 20.00% | 0.00% | -20.00 pp | 12.45 pp |
-| team score sd | 16.16 | 22.71 | +6.55 | 2.66 |
-| ala minus garvian margin | 23.60 | 26.30 | +2.70 | 5.59 |
-| ala margin se | 4.91 | 7.80 | +2.89 | 1.68 |
-| ala win share | 100.00% | 90.00% | -10.00 pp | 9.20 pp |
-| planned changes per team | 41.55 | 42.45 | +0.90 | 0.72 |
-| override exits per team | 2.85 | 2.05 | -0.80 | 0.31 |
-| turnovers.fumble | 11.95 | 16.20 | +4.25 | 0.77 |
-| turnovers.held ball | 0.00 | 0.10 | +0.10 | 0.06 |
-| turnovers.interception | 52.50 | 40.15 | -12.35 | 1.98 |
-| turnovers.major | 0.05 | 0.00 | -0.05 | 0.05 |
-| turnovers.opponent control | 11.75 | 11.55 | -0.20 | 0.72 |
-| turnovers.out of bounds | 31.90 | 19.80 | -12.10 | 1.26 |
-| turnovers.play clock | 1.75 | 1.75 | +0.00 | 0.36 |
-| turnovers.score restart | 25.55 | 27.80 | +2.25 | 1.12 |
-| turnovers.strip | 1.70 | 1.60 | -0.10 | 0.55 |
-| turnovers.tackle | 10.40 | 11.70 | +1.30 | 0.49 |
-| turnovers.toss timeout | 0.40 | 0.25 | -0.15 | 0.14 |
-| turnovers.turnover | 0.50 | 0.65 | +0.15 | 0.22 |
-| turnovers.zone violation | 2.55 | 3.85 | +1.30 | 0.51 |
-| carries.freeze | 0.00 | 0.05 | +0.05 | 0.05 |
-| carries.goal | 0.30 | 1.90 | +1.60 | 0.35 |
-| carries.handoff | 2.45 | 1.90 | -0.55 | 0.60 |
-| carries.out of bounds | 12.95 | 1.95 | -11.00 | 0.66 |
-| carries.pass | 2.60 | 1.80 | -0.80 | 0.54 |
-| carries.shot | 26.65 | 32.60 | +5.95 | 1.69 |
-| carries.stopped short | 5.05 | 5.15 | +0.10 | 1.20 |
-| carries.strip | 0.70 | 0.55 | -0.15 | 0.27 |
-| carries.tackle | 4.00 | 3.40 | -0.60 | 0.82 |
-| carries.zone violation | 0.55 | 1.05 | +0.50 | 0.28 |
-| stretches.end.lost control or expired | 0.00 | 0.20 | +0.20 | 0.10 |
+| median team score | 90.50 | 97.50 | +7.00 | 3.54 |
+| possessions | 152.27 | 137.20 | -15.07 | 2.03 |
+| attempt share | 34.94% | 35.69% | +0.75 pp | 0.75 pp |
+| pass completion | 76.57% | 80.62% | +4.04 pp | 0.44 pp |
+| passes attempted per team | 280.73 | 251.60 | -29.13 | 2.66 |
+| interceptions per team | 53.00 | 39.70 | -13.30 | 1.63 |
+| boundaries per team | 31.87 | 19.90 | -11.97 | 1.02 |
+| carry goals per team | 0.40 | 2.13 | +1.73 | 0.38 |
+| tackle commits per team | 340.80 | 334.87 | -5.93 | 4.86 |
+| tackle wrong target share | 39.18% | 26.12% | -13.06 pp | 0.84 pp |
+| tackle episode success | 10.27% | 11.53% | +1.26 pp | 0.31 pp |
+| tackle hold success | 22.60% | 21.67% | -0.92 pp | 0.57 pp |
+| keeper save rate | 14.12% | 14.79% | +0.67 pp | 1.41 pp |
+| keeper save on target rate | 18.91% | 20.23% | +1.33 pp | 1.90 pp |
+| four point share | 48.95% | 35.16% | -13.79 pp | 2.40 pp |
+| median absolute margin | 24.00 | 22.00 | -2.00 | 7.52 |
+| within five | 13.33% | 0.00% | -13.33 pp | 8.34 pp |
+| team score sd | 16.50 | 20.06 | +3.56 | 2.05 |
+| ala minus garvian margin | 23.60 | 26.30 | +2.70 | 5.78 |
+| ala margin se | 4.91 | 7.80 | +2.89 | 1.67 |
+| ala win share | 100.00% | 90.00% | -10.00 pp | 9.33 pp |
+| planned changes per team | 41.20 | 42.13 | +0.93 | 0.51 |
+| override exits per team | 3.23 | 2.40 | -0.83 | 0.23 |
+| turnovers.fumble | 11.57 | 16.03 | +4.47 | 0.75 |
+| turnovers.held ball | 0.00 | 0.07 | +0.07 | 0.04 |
+| turnovers.interception | 53.00 | 39.70 | -13.30 | 1.63 |
+| turnovers.major | 0.03 | 0.03 | +0.00 | 0.04 |
+| turnovers.opponent control | 11.70 | 12.50 | +0.80 | 0.56 |
+| turnovers.out of bounds | 31.87 | 19.90 | -11.97 | 1.02 |
+| turnovers.play clock | 1.67 | 1.80 | +0.13 | 0.37 |
+| turnovers.score restart | 25.17 | 27.43 | +2.27 | 0.84 |
+| turnovers.strip | 1.53 | 1.33 | -0.20 | 0.41 |
+| turnovers.tackle | 10.07 | 11.03 | +0.97 | 0.38 |
+| turnovers.toss timeout | 0.40 | 0.33 | -0.07 | 0.15 |
+| turnovers.turnover | 0.53 | 0.63 | +0.10 | 0.21 |
+| turnovers.zone violation | 2.67 | 4.33 | +1.67 | 0.50 |
+| carries.freeze | 0.10 | 0.10 | +0.00 | 0.04 |
+| carries.goal | 0.40 | 2.13 | +1.73 | 0.38 |
+| carries.handoff | 2.73 | 1.87 | -0.87 | 0.48 |
+| carries.out of bounds | 12.47 | 2.07 | -10.40 | 0.59 |
+| carries.pass | 2.83 | 2.13 | -0.70 | 0.41 |
+| carries.shot | 26.37 | 32.93 | +6.57 | 1.35 |
+| carries.stopped short | 5.30 | 4.80 | -0.50 | 0.81 |
+| carries.strip | 0.57 | 0.47 | -0.10 | 0.19 |
+| carries.tackle | 3.63 | 3.37 | -0.27 | 0.62 |
+| carries.zone violation | 0.50 | 1.27 | +0.77 | 0.21 |
+| stretches.end.lost control or expired | 0.00 | 0.23 | +0.23 | 0.09 |
 | stretches.end.replaced | 0.00 | 0.00 | +0.00 | 0.00 |
-| stretches.stretch end | 0.00 | 0.20 | +0.20 | 0.10 |
-| stretches.stretch goal | 0.00 | 0.20 | +0.20 | 0.10 |
-| stretches.stretch start | 0.00 | 0.20 | +0.20 | 0.10 |
+| stretches.stretch end | 0.00 | 0.23 | +0.23 | 0.09 |
+| stretches.stretch goal | 0.00 | 0.23 | +0.23 | 0.09 |
+| stretches.stretch start | 0.00 | 0.23 | +0.23 | 0.09 |
 
 ## Boundary audit
 
 | Cause | Events | Mean absolute launch yaw | Inside aim | Outside aim | Pressured carrier exits | Mean believed edge distance |
 |---|---:|---:|---:|---:|---:|---:|
-| carrier | 105 | —° | 0 | 0 | 57/105 | 1.40 m |
-| deflection | 31 | 0.81° | 31 | 0 | 0/0 | — m |
-| held_ball | 372 | —° | 0 | 0 | 87/372 | 1.78 m |
-| loose_ball | 6 | —° | 0 | 0 | 0/0 | — m |
-| pass | 80 | 0.59° | 80 | 0 | 0/0 | — m |
-| shot | 101 | 0.97° | 101 | 0 | 0/0 | — m |
+| carrier | 156 | —° | 0 | 0 | 85/156 | 1.48 m |
+| deflection | 47 | 0.89° | 47 | 0 | 0/0 | — m |
+| held_ball | 556 | —° | 0 | 0 | 132/556 | 1.80 m |
+| loose_ball | 7 | —° | 0 | 0 | 0/0 | — m |
+| pass | 120 | 0.68° | 120 | 0 | 0/0 | — m |
+| shot | 155 | 1.13° | 155 | 0 | 0/0 | — m |
 
-The largest classified group is **held_ball**, with **372** events. The ball crossed while the body was still in bounds. In seed 1 this accounted for 31 of 64 boundary events, often with outward velocity and an aim toward the center. The guard reserves own braking distance and only exempts a route within the whole-ball goal-mouth envelope. This is a behavioral choice.
+The largest classified group is **held_ball**, with **556** events. The ball crossed while the body was still in bounds. In seed 1 this accounted for 31 of 64 boundary events, often with outward velocity and an aim toward the center. The guard reserves own braking distance and only exempts a route within the whole-ball goal-mouth envelope. This is a behavioral choice.
 
 ## Keeper envelope
 
-The audit measured **694** of **700** on-target
-shots in the OFF arm. **187** (26.95%) were reachable
-under the physical release-time upper bound. **82**
-(43.85%) of those were saved. Mean release-to-plane time was
+The audit measured **1014** of **1026** on-target
+shots in the OFF arm. **256** (25.25%) were reachable
+under the physical release-time upper bound. **123**
+(48.05%) of those were saved. Mean release-to-plane time was
 **0.34 s**. Projected misses for otherwise on-target
-records are reported separately (6).
+records are reported separately (12).
 
 | Outcome among physically reachable shots | Count |
 |---|---:|
-| save | 82 |
-| no_commit | 75 |
-| touch_without_save | 21 |
-| late_commit | 9 |
+| save | 123 |
+| no_commit | 90 |
+| touch_without_save | 29 |
+| late_commit | 12 |
+| wrong_side | 2 |
 
 Every reachable record carries the Keeper's release position, measured arm
 and standing reach, effective jump, Reflex and remaining action time. These
