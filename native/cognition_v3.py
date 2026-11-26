@@ -67,8 +67,7 @@ def defender_contact(view, belief, intent, record):
     top = view.body.maximum_speed if view.body else 27.
     lead = min(TACKLE_LEAD_S, gap / max(1., top))
     if 'projected_beliefs' in getattr(view,'paired_fixes',()):
-        from .turnovers import projected
-        meet = tuple(round(_clamp(coord,.6,99.4),3) for coord in projected(c,view,lead))
+        meet = tuple(round(_clamp(coord,.6,99.4),3) for coord in C.project_track(c,view,lead))
     else:
         meet = (round(_clamp(c.x + c.vx * lead, .6, 99.4), 3), round(_clamp(c.y + c.vy * lead, .6, 99.4), 3))
     # values: a takedown is worth more than staying with him once the believed gap is inside the commit range

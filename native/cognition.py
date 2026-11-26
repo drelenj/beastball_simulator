@@ -224,6 +224,11 @@ def _pass_options(view, mates, opps, restart=False):
     return out
 
 
+def project_track(track, view, ahead_s):
+    from .turnovers import projected
+    return projected(track,view,ahead_s)
+
+
 def rb3_lead(x, y, aim, vel, max_throw_speed, iterations=6, *, speed_for=None):
     """RB-3.9b E-1/B-1 (native-rb/3): lead a moving receiver by the real flight time at the speed
     chosen for the led distance. Fixed point: the speed depends on the led aim, the aim on the speed.
