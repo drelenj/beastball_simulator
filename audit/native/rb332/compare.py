@@ -55,6 +55,8 @@ def aggregate(records, turnover_kinds, carry_kinds, stretch_kinds):
         denominator = total(k,1)
         return total(k,0)/denominator if denominator else None
     result = dict(
+        turnovers_per_team=sum(sum(r['turnovers'].values()) for r in records)/(2*games),
+        near_goal_carries_per_team=sum(sum(r['carries'].values()) for r in records)/(2*games),
         median_team_score=median(points),possessions=total('possession_pair',1)/(2*games),
         attempt_share=ratio('possession_pair'),pass_completion=ratio('pass_pair'),
         passes_attempted_per_team=total('pass_pair',1)/(2*games),
@@ -84,16 +86,19 @@ def compare(root):
         for case,r in rows[arm].items():
             assert case in CASES and r['arm']==arm and r['status']=='final'
             assert r['invariants']=='passed' and r['restart_completion_ratio']==1
-    all_records = [components(r) for a in TRIAL_ARMS for r in rows[a].values()]
+    common = sorted(set.intersection(*(set(rows[arm]) for arm in TRIAL_ARMS)))
+    by_arm = {arm:[components(rows[arm][case]) for case in common] for arm in TRIAL_ARMS}
+    all_records = [r for arm in TRIAL_ARMS for r in by_arm[arm]]
     kinds = tuple(sorted({k for r in all_records for k in r[group]})
                   for group in ('turnovers','carries','stretches'))
-    result = dict(completed={a:len(r) for a,r in rows.items()},comparisons={})
+    kinds = (*kinds[:2], sorted(set(kinds[2]) | {'stretch_start','stretch_goal','stretch_end'}))
+    result = dict(completed={a:len(r) for a,r in rows.items()},
+                  common_cases=[dict(pair=p,seed=s,teams=rows['off'][p,s]['teams']) for p,s in common],
+                  score_possession_margin_status='descriptive_not_judged',comparisons={})
     for arm in TRIAL_ARMS[1:]:
-        common = sorted(rows['off'].keys() & rows[arm].keys())
         if not common:
             continue
-        off = [components(rows['off'][k]) for k in common]
-        on = [components(rows[arm][k]) for k in common]
+        off, on = by_arm['off'], by_arm[arm]
         for case in common:
             assert rows['off'][case]['planned_rate_scale']==rows[arm][case]['planned_rate_scale']
         off_est, on_est = (aggregate(group,*kinds) for group in (off,on))
@@ -113,13 +118,14 @@ def compare(root):
             metrics[k] = dict(off=old,on=new,delta=None if old is None or new is None else new-old,
                               se=stdev(samples[k]) if len(samples[k])>1 and len(common)>1 else None)
         result['comparisons'][arm]=dict(n=len(common),cases=common,metrics=metrics)
-    archive_flags=[flag for r in rows['archive'].values() for flag in r['flags']]
+    archived_common = [case for case in common if case in rows['archive']]
+    archive_flags=[flag for case in archived_common for flag in rows['archive'][case]['flags']]
     result['archive_clearance']=dict(n=len(archive_flags), measured=sum(r['arrival_margin'] is not None for r in archive_flags),
         flagged=sum(r['arrival_margin'] is not None and r['arrival_margin']<0 for r in archive_flags),
-        expected=1020,complete=set(rows['archive'])==CASES)
+        cases=archived_common,expected=1020,complete=set(archived_common)==CASES)
     if result['archive_clearance']['complete']:
         assert len(archive_flags)==1020
-    bounds = [r for row in rows['off'].values() for r in row['boundary']]
+    bounds = [r for case in common for r in rows['off'][case]['boundary']]
     by_source={}
     for key in sorted({r['kind'] for r in bounds}):
         group=[r for r in bounds if r['kind']==key]
@@ -134,7 +140,7 @@ def compare(root):
             loose_origins=Counter(r['loose_from'] for r in group if 'loose_from' in r),
             projected_landings=sum(r.get('first_ground_xy') is not None for r in group))
     result['boundary'] = by_source
-    keepers=[r for row in rows['off'].values() for r in row['keeper_reach']]
+    keepers=[r for case in common for r in rows['off'][case]['keeper_reach']]
     measured=[r for r in keepers if 'reachable' in r]
     reachable=[r for r in measured if r['reachable']]
     result['keeper_reach'] = dict(on_target=len(keepers),measured=len(measured),reachable=len(reachable),

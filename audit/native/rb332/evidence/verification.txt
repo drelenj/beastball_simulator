@@ -1,0 +1,11 @@
+off: 19 valid unique raw records
+pass_clearance: 18 valid unique raw records
+carry_finish: 18 valid unique raw records
+fresh_takedown: 18 valid unique raw records
+boundary_guard: 18 valid unique raw records
+combined: 18 valid unique raw records
+archive: 18 valid unique raw records
+The six trial arms share 18 cases at 0.58. All 108 included games passed invariants and completed all restarts.
+The additional OFF case pair 2, seed 4 is excluded. All 18 separate historical replays are present.
+Independently recomputed interception and boundary means and paired differences in every comparison.
+The offline comparison over committed raw files reproduced paired.json byte for byte.

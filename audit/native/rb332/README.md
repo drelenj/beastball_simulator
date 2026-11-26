@@ -23,6 +23,13 @@ There is a separate legacy identity and historical forecast stratum at 0.52.
 The historical stratum checks each reproduced trajectory against RB-3.31
 before evaluating any lane. It does not contribute to paired effects.
 
+To reproduce the final paired tables from the committed evidence without a match run:
+
+```bash
+python -m audit.native.rb332.compare audit/native/rb332/evidence --out /tmp/rb332-paired.json
+cmp /tmp/rb332-paired.json audit/native/rb332/evidence/paired.json
+```
+
 ## Methods
 
 - **Pass clearance.** Predicted low-arc travel time includes release wind-up
@@ -79,7 +86,7 @@ before evaluating any lane. It does not contribute to paired effects.
   save intent timing, offset direction and touch without save, leaving
   remaining execution unclassified when the record is insufficient.
 - **Paired effect.** Deltas are ON minus OFF over identical matchup/seed
-  cases. Standard errors use paired bootstrap samples stratified by
-  matchup (1,000 draws, fixed bootstrap seed). Rates use pooled
+  cases completed in every trial arm. Standard errors use paired bootstrap
+  samples stratified by matchup (1,000 draws, fixed bootstrap seed). Rates use pooled
   numerators and denominators within each paired population. Report
   completed case counts, particularly when an arm is still running.
