@@ -19,6 +19,11 @@ def body_out(p, mouth_radius=None):
     return p.posture!='airborne' and (p.x-p.radius<=0 or p.x+p.radius>=100 or p.y-p.radius<=0 or p.y+p.radius>=100)
 
 
+def held_endline_in_play(carrier):
+    # Body contact is adjudicated separately.
+    return carrier is not None
+
+
 def held_sideline_in_play(ball, carrier):
     """The airborne held ball's side crossing is not a ground touch."""
     if carrier is None or ball.z <= ball.radius and (ball.y <= 0 or ball.y >= 100):

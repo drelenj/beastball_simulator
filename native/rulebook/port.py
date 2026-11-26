@@ -141,7 +141,7 @@ class RulebookPort(NativePort):
     def assert_invariants(self):
         self.m.e.assert_invariants()
         assert all(sum(p.team==team for p in self.m.s.players.values())==22 for team in ('A','B'))
-        assert 0<=self.m.s.tackle_count<=1
+        assert 0<=self.m.s.tackle_count<getattr(self.config,'tackles_per_possession',2)
 
     def capture(self,now,observers=None):
         super().capture(now,observers)

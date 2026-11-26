@@ -10,6 +10,7 @@ from b1.possession import PossessionTracker, RulesConfig
 def install(CO, cfg):
     E, M, T = CO.engine.Engine, CO.match.Match, CO.types
     P, B = T.Phase, T.BallMode
+    tackle_limit = getattr(cfg,'tackles_per_possession',2)
     original_init, original_elapse = E.__init__, E.elapse
     original_acquire, original_touch, original_release = E.acquire, E.touch, E.release
     original_contact, original_batch, original_emit = E.contact_legal, E.batch_events, E.emit
@@ -39,6 +40,11 @@ def install(CO, cfg):
         from .geometry import held_sideline_in_play
         M.native_held_sideline_in_play = lambda self, ball: held_sideline_in_play(
             ball,self.s.players.get(ball.carrier))
+
+    if 'endline_held_ball' in getattr(cfg,'rb333',()):
+        from .geometry import held_endline_in_play
+        M.native_held_endline_in_play = lambda self, ball: held_endline_in_play(
+            self.s.players.get(ball.carrier))
 
     def sync(self):
         if self._syncing:return
@@ -103,7 +109,7 @@ def install(CO, cfg):
         s.award_deadline=s.award_available=s.award_spot=None
         s.engagements.clear()
         s.ball=T.Ball(mode=B.DEAD,x=float(x),y=float(y),z=.1075,last_touch=team)
-        if reason in ('possession_expiry','second_tackle','turnover','offence_minor_turnover'):
+        if reason in ('possession_expiry','second_tackle','nth_tackle','turnover','offence_minor_turnover'):
             own=s.ends[team];sg=s.attack_sign(team);x=max(x,own+40) if sg>0 else min(x,own-40)
         kind='snap40' if reason in ('goal','period_start') else 'toss' if reason=='boundary' else 'scrim'
         if kind=='snap40':x=s.ends[team]+s.attack_sign(team)*40;y=50.
@@ -123,7 +129,7 @@ def install(CO, cfg):
         r=T.Restart(team,x,y,reason,created_at=s.now,kind=kind,clearance=3. if kind=='toss' else 0.,taker_spot=spot)
         r.native_id=f'{s.period}/{self.restart_serial}'
         r.rs={'kind':kind,'snapper':None,'tackler':None}
-        r.clock_runs=s.possession_ms>10000 and reason=='first_tackle'
+        r.clock_runs=s.possession_ms>10000 and reason in ('first_tackle','retained_tackle')
         r.snap_deadline=s.now+(5500 if kind=='toss' else 10000)
         s.restart=r;s.phase=P.DEAD;s.ball.x,s.ball.y=x,y
         self.restart_results[r.native_id]='pending'
@@ -232,7 +238,13 @@ def install(CO, cfg):
             s.tackle_count=1
             r=self.award(t.team,x,y,'first_tackle',normalize=False)
             s.tackle_count=1;r.rs.update(snapper=target,tackler=actor)
-        else:self.award(a.team,x,y,'second_tackle',fresh=True,normalize=False)
+        elif count+1<tackle_limit:
+            s.tackle_count=count+1
+            r=self.award(t.team,x,y,'retained_tackle',normalize=False)
+            s.tackle_count=count+1;r.rs.update(snapper=target,tackler=actor)
+        else:
+            self.award(a.team,x,y,'second_tackle' if tackle_limit==2 else 'nth_tackle',
+                       fresh=True,normalize=False)
         return True
     E.tackle=tackle
 
@@ -269,8 +281,8 @@ def install(CO, cfg):
             if s.attack_sign(off)*v.x>s.attack_sign(off)*x:x,y=v.x,v.y
         count=s.tackle_count
         if a.team==off:
-            if count>=1:return self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
-            r=self.award(off,x,y,'offence_minor',normalize=False);s.tackle_count=1;return r
+            if count+1>=tackle_limit:return self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
+            r=self.award(off,x,y,'offence_minor',normalize=False);s.tackle_count=count+1;return r
         if count==0:
             self.add_score(off,1 if s.period<=3 else 2,'half_goal' if s.period<=3 else 'full_goal_award')
             if s.phase==P.FINAL:return
@@ -311,7 +323,7 @@ def install(CO, cfg):
         s=self.s;r=s.restart;team=r.team;sg=s.attack_sign(team);count=s.tackle_count
         self.close_restart('procedural:'+side)
         self.emit('scrimmage_penalty','native',side=side,team=team)
-        if side=='offence' and count>=1:return self.award(s.other(team),r.x-sg*5,r.y,'turnover',fresh=True,normalize=False)
+        if side=='offence' and count+1>=tackle_limit:return self.award(s.other(team),r.x-sg*5,r.y,'turnover',fresh=True,normalize=False)
         snapper,tackler=r.rs.get('snapper'),r.rs.get('tackler');clock_runs=r.clock_runs
         nr=self.award(team,r.x+sg*(5 if side=='defence' else -5),r.y,'offside',normalize=False)
         nr.rs.update(snapper=snapper,tackler=tackler);nr.clock_runs=clock_runs;s.tackle_count=max(0,count-1) if side=='defence' else count+1

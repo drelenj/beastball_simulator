@@ -42,6 +42,30 @@ def build_core(config):
                 ('  elif b.x<-b.radius or b.x>100+b.radius or b.y<-b.radius or b.y>100+b.radius:',
                  '  elif b.x<-b.radius or b.x>100+b.radius or ((b.y<-b.radius or b.y>100+b.radius) and not self.native_held_sideline_in_play(b)):'),
             ))
+        if 'endline_held_ball' in config.rb333:
+            # Ignore held-ball end crossings only outside the mouth. A
+            # genuine goal still participates in the swept event ordering.
+            outward = ('    if outward and not (axis==1 and self.native_held_sideline_in_play(b)):cuts.append((frac,axis,limit))'
+                       if 'sideline_held_ball' in config.rb333 else '    if outward:cuts.append((frac,axis,limit))')
+            fallback = ('  elif b.x<-b.radius or b.x>100+b.radius or ((b.y<-b.radius or b.y>100+b.radius) and not self.native_held_sideline_in_play(b)):'
+                        if 'sideline_held_ball' in config.rb333 else '  elif b.x<-b.radius or b.x>100+b.radius or b.y<-b.radius or b.y>100+b.radius:')
+            patches['match'].extend((
+                (outward, outward.replace('outward','outward and not (axis==0 and self.native_held_endline_in_play(b) and not legal_goal(old[1]+(b.y-old[1])*frac,old[2]+(b.z-old[2])*frac,b.radius))',1)),
+                (fallback, fallback.replace('b.x<-b.radius or b.x>100+b.radius','((b.x<-b.radius or b.x>100+b.radius) and not self.native_held_endline_in_play(b))',1)),
+            ))
+        if 'universal_set_speed' in config.rb333:
+            patches['match'].append(("sp>A['keeper_set_mps']", "sp>p.a.braking*.40 "))
+        if 'universal_unset' not in config.rb333:
+            patches['match'].append(('   kr=None\n',
+                '   observer=getattr(self,"native_reaction_observe",None)\n'
+                '   if observer is not None:observer(p)\n   kr=None\n'))
+        if 'universal_unset' in config.rb333:
+            patches['match'].extend((
+                ('   kr=None\n', '   unset=self.native_hands_delay(p)\n'
+                 '   lo=max(lo,(self.seen_from+unset-s.now)/ms)\n'
+                 '   if lo>=hi:continue\n   kr=None\n'),
+                ('     state=self.seen_from\n', '     state=self.seen_from+unset\n'),
+            ))
         if 'movement_clock' in config.rb333:
             patches['match'].append(('if p.id in targets and s.now>=p.next_decision:', 'if p.id in targets:'))
         if 'braking' in config.rb333:

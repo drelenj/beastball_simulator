@@ -56,8 +56,8 @@ def install(co,cfg):
     r.x=s.ball.x=x;r.taker_spot=(max(.6,min(99.4,x)),y);r.rs['goal_line']=True
    self.rb_publish(self.rb.ruling('major',actor=actor,victim=victim,spot=[x,y]))
   elif a.team==off or reason in ('kicking','delay_of_game'):
-   if count>=1:self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
-   else:self.award(off,x,y,'minor_count_plus',normalize=False);s.tackle_count=1
+   if count+1>=getattr(cfg,'tackles_per_possession',2):self.award(s.other(off),x,y,'offence_minor_turnover',fresh=True,normalize=False)
+   else:self.award(off,x,y,'minor_count_plus',normalize=False);s.tackle_count=count+1
   else:
    if count==0:
     self.add_score(off,self.rb.points(award=True),'half_goal' if s.period<=3 else 'full_goal_award')

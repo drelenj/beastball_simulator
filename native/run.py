@@ -107,6 +107,8 @@ class MatchDriver:
                 intent, record = select(view, belief, tuple(ids[index + 1:]))
             if prepared is None and interrupts.get(pid)=='release_from_wrap' and 'abort_wrap' in port.config.rb333:
                 m.e.emit('wrap_retarget' if intent.contact in ('wrap','takedown') else 'wrap_abort','RB-3.33',player=pid)
+            if getattr(port,'reaction_clock',None):
+                port.reaction_clock.perceive(view)
             admission = port.submit(intent)
             if admission['status'] == 'rejected':
                 port.feedback.setdefault(pid, []).append(

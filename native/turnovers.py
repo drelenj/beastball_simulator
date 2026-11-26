@@ -43,13 +43,27 @@ def boundary_risk(view, aim):
     if body is None or aim is None:
         return False
     x,y = aim
-    radius = .38  # Minimum body radius when the view has no measured radius.
+    flags = getattr(view,'paired_fixes',())
+    radius = (getattr(view,'own_radius',None) or .38) if 'endline_held_ball' in flags else .38
     braking = max(.1, body.braking)
     stop_x = view.x + body.vx*abs(body.vx)/(2*braking)
     stop_y = view.y + body.vy*abs(body.vy)/(2*braking)
     if min(y, stop_y) <= radius or max(y, stop_y) >= 100.-radius:
         return True
     if min(x, stop_x) <= radius or max(x, stop_x) >= 100.-radius:
+        if 'boundary_cross_y' in flags or 'endline_held_ball' in flags:
+            points = ((view.x,view.y),(x,y),(stop_x,stop_y))
+            for line, body_plane in ((0.,radius),(100.,100.-radius)):
+                for (xa,ya),(xb,yb) in zip(points,points[1:]):
+                    if not ((line==0. and xb<=body_plane<xa) or (line==100. and xa<body_plane<=xb)):
+                        continue
+                    # Read the actual end plane when the planned centre path
+                    # reaches it. Otherwise use the leading body edge.
+                    plane = line if min(xa,xb)<=line<=max(xa,xb) else body_plane
+                    crossing_y = ya+(yb-ya)*(plane-xa)/(xb-xa)
+                    if not geometry.goal_section(crossing_y,.62*body.height,.1075,view.goal_radius):
+                        return True
+            return False
         return not all(geometry.goal_section(at,.62*body.height,.1075,view.goal_radius)
                        for at in (view.y,y,stop_y))
     return False

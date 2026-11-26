@@ -119,6 +119,7 @@ class AthleteView:
     core_decision_ms: int = 500
     core_motion: tuple | None = None
     visible_windups: tuple = ()
+    own_radius: float | None = None
     own_skills: tuple = ()               # ATTR-1: self only; never teammate/opponent ratings
 
 
@@ -565,6 +566,8 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    if result['view'].get('own_radius') is None:
+        result['view'].pop('own_radius',None)
     if not result['view'].get('visible_windups'):
         result['view'].pop('visible_windups',None)
     if not result['view'].get('release_cue'):

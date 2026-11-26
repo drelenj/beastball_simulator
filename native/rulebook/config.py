@@ -87,6 +87,7 @@ class RulebookConfigV3(RulebookConfig):
     rotation_rhythm: str = "R1"
     planned_rate_scale: float = PLANNED_RATE_SCALE
     rb333: tuple[str, ...] = ()
+    tackles_per_possession: int = 2
     rb332_pass_clearance: bool = False
     rb332_carry_finish: bool = False
     rb332_fresh_takedown: bool = False
@@ -102,6 +103,8 @@ class RulebookConfigV3(RulebookConfig):
 
     def record(self):
         record = super().record()
+        if self.tackles_per_possession == 2:
+            record.pop('tackles_per_possession')
         if not self.rb333:
             record.pop('rb333')
         record.pop('drill_values_path')
@@ -145,6 +148,8 @@ class RulebookConfigV3(RulebookConfig):
     def __post_init__(self):
         from .fatigue_rotation import RHYTHMS
         from native.ladder import SWITCHES
+        if type(self.tackles_per_possession) is not int or self.tackles_per_possession not in (2,3,4):
+            raise ValueError('the tackle count must be 2, 3, or 4')
         if set(self.rb333) - SWITCHES or len(set(self.rb333)) != len(self.rb333):
             raise ValueError("unknown or repeated RB-3.33 switch")
         expected_pocket=_RB3_POCKET

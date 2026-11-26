@@ -30,7 +30,13 @@ TURNOVER_STAGES = (('projected_beliefs',),('sideline_held_ball','carrier_boundar
 TURNOVER_ARMS = ('B1','B2','B3','B4')
 
 
+SETS_ARMS = ('C0','C1','C2','T3','T4')
+
+
 def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=False):
+    sets_arm = arm if arm in SETS_ARMS else None
+    if sets_arm:
+        arm = 'B4'
     turnover_arm = arm if arm in TURNOVER_ARMS else None
     if turnover_arm:
         arm = 'A6'
@@ -41,12 +47,20 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         switches+=('fast_cadence',)
     if turnover_arm:
         switches += tuple(k for stage in TURNOVER_STAGES[:TURNOVER_ARMS.index(turnover_arm)+1] for k in stage)
+    if sets_arm:
+        switches = tuple(s for s in switches if s!='keeper_plant')+('boundary_cross_y','endline_held_ball')
+        if sets_arm!='C0':
+            switches+=('universal_set_speed',)
+        if sets_arm not in ('C0','C1'):
+            switches+=('universal_unset',)
+    trial_limit = {'T3':3,'T4':4}.get(sets_arm)
+    tackle_config = {'tackles_per_possession':trial_limit} if trial_limit else {}
     rosters=load_nbl_workbook(book,PAIRS[pair],technical='explicit')
     cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in 'AB'),
         rb322_technical_source='explicit',individuation='individuation/2',fatigue_rotation=True,
         rotation_rhythm='PLANNED',planned_rate_scale=TRIAL_SCALE,rb332_pass_clearance=True,
         rb332_boundary_guard=True,rb332_fresh_takedown=True,rb332_carry_finish=arm in ('RB332','A5','A5prime','A6'),
-        **({'rb333':switches} if switches else {}))
+        **({'rb333':switches} if switches else {}),**tackle_config)
     start=process_time()
     driver=Build(seed,cfg,rosters).create(record=False)
     driver.enable_stats()
@@ -59,6 +73,10 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
     if turnover_arm or turnover_diagnostics:
         from audit.native.rb335.witness import Witness
         turnover = Witness(driver)
+    sets = None
+    if sets_arm:
+        from audit.native.rb336.witness import Witness as SetWitness
+        sets = SetWitness(driver)
     samples=Counter()
     def sample(_signal,frame):
         samples[f'{Path(frame.f_code.co_filename).name}/{frame.f_code.co_name}']+=1
@@ -92,7 +110,9 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
     extra = diagnostic.result(observed) if diagnostic else {}
     if turnover:
         extra['rb335'] = turnover.result()
-    return dict(**extra,arm=turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
+    if sets:
+        extra['rb336'] = sets.result()
+    return dict(**extra,arm=sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
         **{k:result[k] for k in ('score','config_digest','trace_hash','state_hash','invariants','status','restart_completion_ratio')},
         box=box,box_csv=output.getvalue(),diagnosis=diagnose([dict(team_lines=box['teams'],possessions=box['possessions'],diagnosis=observed)]),
         cpu_profile=samples.most_common(20),passes=passes,boundary=bounds,keeper=keepers,ratings={p:s['catching'] for p,s in witness.skills.items()},
@@ -102,7 +122,7 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS))
+    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS))
     p.add_argument('book',type=Path)
     p.add_argument('out',type=Path)
     p.add_argument('--seed',type=int,default=1)

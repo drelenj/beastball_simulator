@@ -352,7 +352,7 @@ class StatsLedger:
         return scored,blame_at
 
     def turnover(self, team, actor, reason):
-        kind = {'out_of_bounds':'out_of_bounds','second_tackle':'tackle','boundary':'out_of_bounds','possession_expiry':'play_clock',
+        kind = {'out_of_bounds':'out_of_bounds','second_tackle':'tackle','nth_tackle':'tackle','boundary':'out_of_bounds','possession_expiry':'play_clock',
                 'goal':'score_restart'}.get(reason,reason)
         if reason.startswith('ZR-') or reason in ('zone_residence','zone_unmarked'):
             kind='zone_violation'

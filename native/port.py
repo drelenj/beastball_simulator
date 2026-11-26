@@ -173,6 +173,11 @@ class NativePort:
         if 'braking' in getattr(cfg,'rb333',()):
             from .ladder import brake_target
             m.native_boundary_target=lambda p,aim: brake_target(p,aim,cfg.goal_radius) if m.s.ball.carrier==p.id else aim
+        self.reaction_clock = None
+        if 'universal_unset' in getattr(cfg,'rb333',()):
+            from .reaction_clock import ReactionClock
+            self.reaction_clock = ReactionClock(self)
+            m.native_hands_delay = self.reaction_clock.hands_delay
         m.penalty_targets=lambda:self.move.copy()
         m.c3_withhold=lambda *a:False
         m.c3_fix_contain=False;m.c3_fix_descent=False
@@ -184,6 +189,9 @@ class NativePort:
                 if i is None:return None
                 if cfg.version=='native-rb/3' and (m.s.now-i.decided_ms>=(self.prism_decision_interval_ms(p.id, i) if self.individuation else cfg.decision_ms) or i.period!=m.s.period or
                         (i.contact in ('wrap','takedown') and (i.target!=target or m.s.ball.carrier!=target))):return None
+                if (self.reaction_clock and i.contact in ('wrap','takedown')
+                        and not self.reaction_clock.contact_ready(p)):
+                    return None
                 return i.contact
             if self.individuation:
                 m.native_catch_ready_at = self.reflex_catch_ready_at
@@ -382,7 +390,8 @@ class NativePort:
                            pending_kind=pend['cmd'].intent.kind if pend else None,pending_target=pend['cmd'].intent.target if pend else None,
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
-                           visible_windups=f.visible_windups,posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
+                           visible_windups=f.visible_windups,
+                           own_radius=p.radius if 'endline_held_ball' in getattr(self.config,'rb333',()) else None,posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
@@ -441,6 +450,8 @@ class NativePort:
         m,s,e=self.m,self.m.s,self.m.e;p=s.players.get(intent.athlete);kind=intent.kind
         if p is None or intent.decided_ms!=s.now:return {'status':'rejected','reason':'actor_time'}
         if intent.period is not None and intent.period!=s.period:return {'status':'rejected','reason':'stale_period'}
+        if self.reaction_clock and intent.kind not in ('pursue','tackle','press'):
+            self.reaction_clock.begin_command(p,None,None)
         p.native_intent=intent
         self.intents.append(intent);self.decisions[kind]+=1
         row=[intent.intent_id,kind,intent.target,intent.aim,intent.speed,intent.height,intent.record_id,intent.contact,
@@ -505,9 +516,12 @@ class NativePort:
                 if adjusted is None:
                     return {'status':'rejected','reason':'maneuver_unavailable'}
                 desired = adjusted
+            previous_aim = self.move.get(p.id,(p.x,p.y)) if self.reaction_clock else None
             self.move[p.id] = desired
             if self.individuation and kind != 'restart_position' and not getattr(e, 'rb310_hold', None):
                 self.move[p.id] = IND.movement_aim(p.x, p.y, self.move[p.id], p.native_registry['agility'])
+            if self.reaction_clock and s.phase==self.types.Phase.LIVE:
+                self.reaction_clock.admitted_move(p,intent,self.move[p.id],previous_aim)
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'locomotion')
             self.command_log.append(cmd);return {'status':'accepted','command':cmd}
         if kind in ('pass','shoot','restart_pass','draw_release','dribble','bounce'):
@@ -677,7 +691,8 @@ class NativePort:
                     if self.prism_core:
                         from .prism_motion import reflex_gain
                         reaction *= reflex_gain(p)
-                    if p.speed > m.assume['keeper_set_mps']:
+                    from .reaction_clock import keeper_set_speed
+                    if p.speed > keeper_set_speed(p,m,self.config):
                         reaction += m.assume['keeper_unset_s']
                     p.native_keeper_flight = (flight, started, started+1000*reaction)
             launch=getattr(p,'c4c_launch',None)
@@ -740,6 +755,8 @@ class NativePort:
         previous_carrier=s.ball.carrier
         previous_xy=(s.players[previous_carrier].x,s.players[previous_carrier].y) if previous_carrier else (s.ball.x,s.ball.y)
         if s.phase==P.FINAL:return
+        if self.reaction_clock:
+            self.reaction_clock.execute_moves()
         self.ball_motor()
         if s.phase==P.FINAL:return
         self.archer_motor()
@@ -763,6 +780,8 @@ class NativePort:
                     span = min(span, throw['due'] - s.now)
                     if self.prism_core and s.now < throw['cmd'].start_ms:
                         span = min(span, throw['cmd'].start_ms - s.now)
+            if self.reaction_clock:
+                span = min(span,self.reaction_clock.next_deadline(s.now)-s.now)
             m.c3_step(span,self.move.copy());m.step_count+=1;m.record()
         if s.phase==P.FINAL:return
         m.c4c_land_due()
@@ -807,6 +826,6 @@ class NativePort:
             assert sum(p.team==team for p in s.players.values())==22
             if not(s.phase==self.types.Phase.FINAL and s.result['method']=='forfeit'):
                 assert sum(p.team==team and p.active for p in s.players.values())==12
-        assert 0<=s.tackle_count<=1
+        assert 0<=s.tackle_count<getattr(self.config,'tackles_per_possession',2)
         assert not any(i.kind=='kick' for i in self.intents[-30:])
         assert self.config.legacy_layers==()
