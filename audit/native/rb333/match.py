@@ -25,30 +25,36 @@ STAGES = (('frame_freshness','arrival_lane'),('movement_clock','mouth_boundary',
 ARMS = ('RB332','A0','A1','A2','A3','A4','A5','A5prime')
 
 
-def run(arm, seed, book, pair=0):
-    switches = tuple(k for stage in STAGES[:ARMS.index(arm)] for k in stage)
+def run(arm, seed, book, pair=0, *, diagnostics=False):
+    switches = tuple(k for stage in STAGES[:ARMS.index('A5' if arm == 'A6' else arm)] for k in stage)
+    if arm == 'A6':
+        switches = tuple('carry_value' if k == 'carry_seven' else k for k in switches)
     if arm=='A5prime':
         switches+=('fast_cadence',)
     rosters=load_nbl_workbook(book,PAIRS[pair],technical='explicit')
     cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in 'AB'),
         rb322_technical_source='explicit',individuation='individuation/2',fatigue_rotation=True,
         rotation_rhythm='PLANNED',planned_rate_scale=TRIAL_SCALE,rb332_pass_clearance=True,
-        rb332_boundary_guard=True,rb332_fresh_takedown=True,rb332_carry_finish=arm in ('RB332','A5','A5prime'),
+        rb332_boundary_guard=True,rb332_fresh_takedown=True,rb332_carry_finish=arm in ('RB332','A5','A5prime','A6'),
         **({'rb333':switches} if switches else {}))
     start=process_time()
     driver=Build(seed,cfg,rosters).create(record=False)
     driver.enable_stats()
     witness=TrialWitness(driver.port,rosters,True)
+    diagnostic = None
+    if diagnostics:
+        from audit.native.rb334.witness import Diagnostics
+        diagnostic = Diagnostics(driver, witness)
     samples=Counter()
     def sample(_signal,frame):
         samples[f'{Path(frame.f_code.co_filename).name}/{frame.f_code.co_name}']+=1
-    if arm in ('A5','A5prime'):
+    if arm in ('A5','A5prime','A6'):
         previous=signal.signal(signal.SIGPROF,sample)
         signal.setitimer(signal.ITIMER_PROF,.05,.05)
     try:
         driver.play()
     finally:
-        if arm in ('A5','A5prime'):
+        if arm in ('A5','A5prime','A6'):
             signal.setitimer(signal.ITIMER_PROF,0)
             signal.signal(signal.SIGPROF,previous)
     cpu=process_time()-start
@@ -69,7 +75,8 @@ def run(arm, seed, book, pair=0):
         passes.append(dict(id=rid,speed=hypot(vx,vy,vz),lateral_miss_m=abs(sin(atan2(vy,vx)-atan2(dy,dx)))*hypot(dx,dy)))
     output=io.StringIO()
     write_csv(box,output)
-    return dict(arm=arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
+    extra = diagnostic.result(observed) if diagnostic else {}
+    return dict(**extra,arm=arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
         **{k:result[k] for k in ('score','config_digest','trace_hash','state_hash','invariants','status','restart_completion_ratio')},
         box=box,box_csv=output.getvalue(),diagnosis=diagnose([dict(team_lines=box['teams'],possessions=box['possessions'],diagnosis=observed)]),
         cpu_profile=samples.most_common(20),passes=passes,boundary=bounds,keeper=keepers,ratings={p:s['catching'] for p,s in witness.skills.items()},
@@ -79,13 +86,14 @@ def run(arm, seed, book, pair=0):
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('arm',choices=ARMS)
+    p.add_argument('arm',choices=(*ARMS,'A6'))
     p.add_argument('book',type=Path)
     p.add_argument('out',type=Path)
     p.add_argument('--seed',type=int,default=1)
     p.add_argument('--pair',type=int,default=0)
+    p.add_argument('--diagnostics', action='store_true')
     a=p.parse_args()
-    result=run(a.arm,a.seed,a.book,a.pair)
+    result=run(a.arm,a.seed,a.book,a.pair,diagnostics=a.diagnostics or a.arm == 'A6')
     a.out.parent.mkdir(parents=True,exist_ok=True)
     tmp=a.out.with_suffix('.tmp')
     tmp.write_bytes(gzip.compress(json.dumps(result,ensure_ascii=False).encode(),mtime=0))

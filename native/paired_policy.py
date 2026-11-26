@@ -132,21 +132,24 @@ def near_goal_routes(view, defenders, zone_time_ms):
         # when the latest belief admits a clear route.
         probability = exp(-duration/3.-2*needed) / (1+exp(-max(-20.,min(20.,3*slack))))
         routes.append((end if not bend or hypot(mid[0]-start[0],mid[1]-start[1])<2. else mid,
-                       (view.ladder_data[1] if enabled(view,"carry_seven") else 5)*probability,duration))
+                       (view.ladder_data[1] if enabled(view,"carry_seven") or enabled(view,"carry_value") else 5)*probability,duration))
     return routes
 
 
-def shot_points(view, plan):
+def shot_points(view, plan, *, scoring_table=False):
     if plan is None:
         return 0.
     distance = hypot(plan['aim'][0]-view.x,50.-view.y)
     band = 5 if distance<3 else 2 if distance<10 else 3 if distance<20 else 4
+    if scoring_table:
+        from .ladder import release_points
+        band = release_points(view, distance)
     margin = min(4.,max(0.,plan['margin']))
     return band * (.28+.11*margin) * exp(-distance/45.)
 
 
-def continuation_points(utility):
-    return 1.55 / (1+exp(-max(-20.,min(20.,(utility-3.)/2.))))
+def continuation_points(utility, *, carry_scale=1.):
+    return (1.55 * carry_scale) / (1+exp(-max(-20.,min(20.,(utility-3.)/2.))))
 
 
 def boundary_aim(view, aim):

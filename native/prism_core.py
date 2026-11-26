@@ -267,7 +267,11 @@ def carrier(menu, view, belief, tracks, base, record):
                 continue
             value += .12 * min(6.,margin)
         if routes:
-            if paired.enabled(view,'carry_seven'):
+            if paired.enabled(view, 'carry_value'):
+                value = (paired.shot_points(view, RB.shot_plan(view, tracks), scoring_table=True)
+                         if kind == 'shoot' else paired.continuation_points(
+                             value, carry_scale=view.ladder_data[1] / 5.))
+            elif paired.enabled(view,'carry_seven'):
                 from .ladder import release_points
                 distance = hypot(100.-view.own_goal_x-view.x,50.-view.y)
                 reward = release_points(view,distance) if kind=='shoot' else view.ladder_data[1]
@@ -297,7 +301,9 @@ def carrier(menu, view, belief, tracks, base, record):
         choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),STRETCH_VALUE,
                               'playmaking','commit_scoring_attempt'))
     if finish_fix and routes and paired.stretch_available(view,threats):
-        choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),view.ladder_data[1] if paired.enabled(view,"carry_seven") else 3.75,
+        bonus = (3.75 * view.ladder_data[1] / 5. if paired.enabled(view, 'carry_value')
+                 else view.ladder_data[1] if paired.enabled(view, 'carry_seven') else 3.75)
+        choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),bonus,
                               'playmaking','commit_scoring_attempt'))
     if not choices:
         choices.append(Option(proposed(base, 'retain'), 0., 'playmaking', 'retain'))

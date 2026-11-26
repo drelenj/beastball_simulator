@@ -148,7 +148,7 @@ class RulebookConfigV3(RulebookConfig):
         if set(self.rb333) - SWITCHES or len(set(self.rb333)) != len(self.rb333):
             raise ValueError("unknown or repeated RB-3.33 switch")
         expected_pocket=_RB3_POCKET
-        if 'carry_seven' in self.rb333:
+        if {'carry_seven', 'carry_value'}.intersection(self.rb333):
             object.__setattr__(self,'carry_points',7)
             expected_pocket=tuple((key,7 if key=='carry_value' else value) for key,value in _RB3_POCKET)
             if self.pocket_settings==_RB3_POCKET:

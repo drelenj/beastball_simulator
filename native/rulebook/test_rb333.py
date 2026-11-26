@@ -92,3 +92,21 @@ def test_carry_seven_and_release_bands_in_rule_authority():
     assert s.score['A']==7 and e.rb_bands['A']['carry_goals']==1
     assert [e.rb.points(distance=d) for d in (9.,10.,20.)]==[2,3,4]
     assert e.rb.points(own=True)==2
+
+
+def test_carry_value_preserves_scoring_and_separates_expected_values(core_port):
+    from math import exp
+    from native.paired_policy import continuation_points, shot_points
+
+    cfg = RulebookConfigV3(roster_digests=('a'*64, 'b'*64), rb333=('carry_value', 'cadence'))
+    assert (cfg.carry_points, cfg.decision_ms) == (7, 300)
+    assert dict(cfg.pocket_settings)['carry_value'] == 7
+
+    _, view, _ = scene(core_port)
+    data = (400, cfg.carry_points, cfg.release_bands, cfg.carry_release_radius_m)
+    view = replace(view, x=88., y=50., own_goal_x=0., ladder_data=data)
+    plan = dict(aim=(100., 49.), margin=2.)
+    assert shot_points(view, plan, scoring_table=True) == pytest.approx(3*(.28+.11*2)*exp(-12./45.))
+    assert continuation_points(3., carry_scale=cfg.carry_points/5.) == pytest.approx(2.17/2)
+    view = replace(view, x=98.)
+    assert shot_points(view, plan, scoring_table=True) == pytest.approx(7*(.28+.11*2)*exp(-2./45.))

@@ -2,8 +2,8 @@
 # Run a requested configuration on the pre-existing eight-matchup schedule.
 set -euo pipefail
 cd "$(dirname "$0")/../../.."
-config=${1:?supply RB332, A0, A1, A2, A3, A4, A5 or A5prime}
-case "$config" in RB332|A[0-5]|A5prime) ;; "A5'") config=A5prime ;; *) exit 2 ;; esac
+config=${1:?supply RB332, A0, A1, A2, A3, A4, A5 A5prime or A6}
+case "$config" in RB332|A[0-6]|A5prime) ;; "A5'") config=A5prime ;; *) exit 2 ;; esac
 out=${OUT:-rb333-soak}
 mkdir -p "$out/$config"
 # Each invocation is a single lane. Serialize invocations sharing this output
