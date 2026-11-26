@@ -1,0 +1,96 @@
+"""Run one named ladder arm and save one atomic self-contained result."""
+import argparse
+import gzip
+import io
+import json
+import platform
+import signal
+from collections import Counter
+from math import hypot, sin, atan2
+from pathlib import Path
+from time import process_time
+from native.oracle.snapshot import Build
+from native.rulebook.config import RulebookConfigV3
+from native.nbl_roster import load_nbl_workbook
+from native.rulebook.stats_ledger import write_csv
+from audit.native.rb332.match import PAIRS, TRIAL_SCALE
+from audit.native.rb332.witness import TrialWitness
+from audit.native.rb331.events import analyze
+from audit.native.rb331.summarize import diagnose
+
+STAGES = (('frame_freshness','arrival_lane'),('movement_clock','mouth_boundary','braking'),
+          ('keeper_interrupt','keeper_deadline','keeper_menu','keeper_settle'),
+          ('cadence','field_interrupt','abort_wrap'),('pass_signal','pass_speed'),
+          ('carry_seven','stretch_range','planning_speed'))
+ARMS = ('RB332','A0','A1','A2','A3','A4','A5','A5prime')
+
+
+def run(arm, seed, book, pair=0):
+    switches = tuple(k for stage in STAGES[:ARMS.index(arm)] for k in stage)
+    if arm=='A5prime':
+        switches+=('fast_cadence',)
+    rosters=load_nbl_workbook(book,PAIRS[pair],technical='explicit')
+    cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in 'AB'),
+        rb322_technical_source='explicit',individuation='individuation/2',fatigue_rotation=True,
+        rotation_rhythm='PLANNED',planned_rate_scale=TRIAL_SCALE,rb332_pass_clearance=True,
+        rb332_boundary_guard=True,rb332_fresh_takedown=True,rb332_carry_finish=arm in ('RB332','A5','A5prime'),
+        **({'rb333':switches} if switches else {}))
+    start=process_time()
+    driver=Build(seed,cfg,rosters).create(record=False)
+    driver.enable_stats()
+    witness=TrialWitness(driver.port,rosters,True)
+    samples=Counter()
+    def sample(_signal,frame):
+        samples[f'{Path(frame.f_code.co_filename).name}/{frame.f_code.co_name}']+=1
+    if arm in ('A5','A5prime'):
+        previous=signal.signal(signal.SIGPROF,sample)
+        signal.setitimer(signal.ITIMER_PROF,.05,.05)
+    try:
+        driver.play()
+    finally:
+        if arm in ('A5','A5prime'):
+            signal.setitimer(signal.ITIMER_PROF,0)
+            signal.signal(signal.SIGPROF,previous)
+    cpu=process_time()-start
+    result=driver.result()
+    box=result['box_score']
+    observed=analyze(witness,box)
+    bounds,keepers=witness.detail(observed['shots'])
+    for event in bounds:
+        event['ball_z']=driver.port.m.e.log[event['event_id']-1]['ball'][2]
+    passes=[]
+    for rid,(snapshot,aim,_,_) in witness.release.items():
+        row=driver.port.m.e.log[rid-1]
+        d=row['data']
+        if d.get('kind','pass')!='pass' or not aim or 'velocity' not in d:
+            continue
+        vx,vy,vz=d['velocity']
+        dx,dy=aim[0]-snapshot[0][0],aim[1]-snapshot[0][1]
+        passes.append(dict(id=rid,speed=hypot(vx,vy,vz),lateral_miss_m=abs(sin(atan2(vy,vx)-atan2(dy,dx)))*hypot(dx,dy)))
+    output=io.StringIO()
+    write_csv(box,output)
+    return dict(arm=arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
+        **{k:result[k] for k in ('score','config_digest','trace_hash','state_hash','invariants','status','restart_completion_ratio')},
+        box=box,box_csv=output.getvalue(),diagnosis=diagnose([dict(team_lines=box['teams'],possessions=box['possessions'],diagnosis=observed)]),
+        cpu_profile=samples.most_common(20),passes=passes,boundary=bounds,keeper=keepers,ratings={p:s['catching'] for p,s in witness.skills.items()},
+        strength={p:s['strength'] for p,s in witness.skills.items()},events=result['engine_events'],
+        unset=sum(hypot(b.vx,b.vy)>driver.port.m.assume['keeper_set_mps'] for b,*_ in witness.keeper.values()))
+
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('arm',choices=ARMS)
+    p.add_argument('book',type=Path)
+    p.add_argument('out',type=Path)
+    p.add_argument('--seed',type=int,default=1)
+    p.add_argument('--pair',type=int,default=0)
+    a=p.parse_args()
+    result=run(a.arm,a.seed,a.book,a.pair)
+    a.out.parent.mkdir(parents=True,exist_ok=True)
+    tmp=a.out.with_suffix('.tmp')
+    tmp.write_bytes(gzip.compress(json.dumps(result,ensure_ascii=False).encode(),mtime=0))
+    tmp.replace(a.out)
+    print(a.arm,result['score'],result['trace_hash'],flush=True)
+
+if __name__=='__main__':
+    main()

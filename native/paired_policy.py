@@ -66,6 +66,8 @@ def arrival_clearance(view, aim, speed, height, defenders, wait_ms=0):
 def fresh_ball_holder(view, belief, tracks):
     course = belief.ball_course
     reaction = view.core_decision_ms * (1+.4*(.70-dict(view.registry_ratings).get('reaction',.7)))
+    if enabled(view,"frame_freshness"):
+        reaction = view.ladder_data[0]
     if (course is None or not 0 <= view.delivered_ms-course.captured_ms <= reaction
             or course.z < MIN_HOLD_HEIGHT_M):
         return None
@@ -90,9 +92,9 @@ def stretch_available(view, defenders):
     handling = dict(view.own_skills).get('ball_handling',.7)
     extension = view.body.reach * (.9-.18*(1-handling))
     hand_height = .62*view.body.height
-    return (view.zone_elapsed_ms + 300 < 5000 and abs(goal_x-view.x) <= extension-.11 and
+    return ((enabled(view,"stretch_range") or view.zone_elapsed_ms + 300 < 5000) and abs(goal_x-view.x) <= extension-.11 and
             hypot(view.y-50., hand_height) < view.goal_radius-.11 and
-            any(rb.time_to_contact(view,t) < .28 for t in defenders))
+            (enabled(view,"stretch_range") or any(rb.time_to_contact(view,t) < .28 for t in defenders)))
 
 
 def near_goal_routes(view, defenders, zone_time_ms):
@@ -124,13 +126,13 @@ def near_goal_routes(view, defenders, zone_time_ms):
                 x,y_at = (a[0]+fraction*(b[0]-a[0]),a[1]+fraction*(b[1]-a[1]))
                 eta = duration*(index+fraction)/2
                 for rival, reach in reaches:
-                    slack = min(slack,rb.typical_time_to(rival,x,y_at,reach)-eta)
+                    slack = min(slack,rb.typical_time_to(rival,x,y_at,reach,view)-eta)
         needed = max(0.,duration-(5000-zone_time_ms)/1000)
         # Smoothed stopped-short probability, with time exposure even
         # when the latest belief admits a clear route.
         probability = exp(-duration/3.-2*needed) / (1+exp(-max(-20.,min(20.,3*slack))))
         routes.append((end if not bend or hypot(mid[0]-start[0],mid[1]-start[1])<2. else mid,
-                       5*probability,duration))
+                       (view.ladder_data[1] if enabled(view,"carry_seven") else 5)*probability,duration))
     return routes
 
 

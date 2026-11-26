@@ -65,6 +65,8 @@ class TrialWitness(Witness):
                 if p is not None:
                     model = port.m.assume
                     reflex = model['keeper_reaction_s']*(1.3-.6*p.a.awareness)*reflex_gain(p)
+                    if 'keeper_interrupt' in getattr(port.config,'rb333',()):
+                        reflex = model['keeper_reaction_s']*reflex_gain(p)
                     if p.speed>model['keeper_set_mps']:
                         reflex += model['keeper_unset_s']
                     keeper = (body(p,True),p.a.standing_reach_m,reflex,p.native_registry['reflex'],

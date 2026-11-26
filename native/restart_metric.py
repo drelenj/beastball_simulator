@@ -50,7 +50,7 @@ class RestartMetric:
                 if snapper is None and p.role != 'field':
                     continue
                 wait = max(0, p.freeze_until-s.now, (p.next_action-s.now) if p.posture == 'grounded' else 0)
-                top = p.a.maximum_speed*.88
+                top = p.a.maximum_speed * (1. if 'planning_speed' in getattr(port.config,'rb333',()) else .88)
                 t = wait+travel_ms(math.dist((p.x, p.y), r.taker_spot), top, p.a.acceleration, p.a.braking)
                 best = t if best is None else min(best, t)
             row = self.rows[rid] = dict(kind=r.kind, reason=r.reason, team=r.team, created_ms=s.now,

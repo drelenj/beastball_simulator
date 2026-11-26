@@ -491,7 +491,8 @@ def install(CO, cfg):
             events=[e for e in events if e.kind not in ('boundary','acquire')]
         if self.s.phase!=P.FINAL:original_batch(self,events)
     E.batch_events=batch_events
-    M.native_catch_capacity=lambda self,skill,miss:(400+(2.5*.5*self.assume['ball_mass_kg']*134.1**2-400)*max(0,min(1,(skill-.4)/.6))**3.6)*max(0,1-miss*miss)
+    from .ladder import catch_capacity
+    M.native_catch_capacity=lambda self,skill,miss:catch_capacity(skill,miss,self.assume['ball_mass_kg'])
 
     # Finality gate for newly installed mutators; old B0 guards cannot wrap methods
     # added after import. No command can mutate a completed Native match.

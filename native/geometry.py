@@ -11,7 +11,9 @@ def net_volume(depth,y,z,radius=0.,goal_radius=3.,goal_depth=3.):
     return (depth>=radius and goal_section(y,z,radius,goal_radius) and
             math.hypot(depth,z)+radius<=goal_depth)
 
-def body_out(p):
+def body_out(p, mouth_radius=None):
     # PLACEHOLDER: body cylinder/ground-contact envelope; detailed toes/hand
     # support witnesses replace this proxy in Native v1.
+    if mouth_radius is not None and goal_section(p.y,p.hand_height,.1075,mouth_radius):
+        return p.posture!='airborne' and (p.y-p.radius<=0 or p.y+p.radius>=100)
     return p.posture!='airborne' and (p.x-p.radius<=0 or p.x+p.radius>=100 or p.y-p.radius<=0 or p.y+p.radius>=100)

@@ -8,6 +8,8 @@ from .authorities import CREW
 class RulebookView(C.AthleteView):
     rb3_handoff_block_enabled: bool = False
     rb3_carrier_moves_enabled: bool = False
+    release_cue: str | None = None
+    ladder_data: tuple = ()
     paired_fixes: tuple = ()
     ball_material: tuple | None = None        # RB-3.21 public: the ball material (k, h, e, a_roll) when the material model is on
     handed_by: tuple | None = None            # RB-3.20b own memory: (teammate who handed me the ball I hold, ms ago)
@@ -31,15 +33,20 @@ from .config import RulebookConfig
 
 class RulebookPort(NativePort):
     def __init__(self,seed=1,config=None,policies=None,plumbing=True,rosters=None):
+        self.reflex_pending = {}
+        self.reflex_observations = {}
         self.learned_values = None
         self.paired_fixes = tuple(name for name in ('pass_clearance','carry_finish','fresh_takedown','boundary_guard')
                                   if getattr(config, f'rb332_{name}', False))
+        self.paired_fixes += getattr(config,'rb333',())
         path = getattr(config,'drill_values_path',None)
         if path is not None:
             from native.learned_values import read_model
 
             self.learned_values = read_model(path,config.drill_values_sha256)
         super().__init__(seed,config or RulebookConfig(),policies,plumbing,rosters=rosters)
+        if 'pass_speed' in self.paired_fixes:
+            self.team_catching = {p.id:p.a.catching for p in self.m.s.players.values()}
         self.setup={p.id:(abs(p.x-self.m.s.ends[p.team]),p.y) for p in self.m.s.players.values()}
         self.last_reset_period=1
         self.m.e.rb_port=self
@@ -136,8 +143,8 @@ class RulebookPort(NativePort):
         assert all(sum(p.team==team for p in self.m.s.players.values())==22 for team in ('A','B'))
         assert 0<=self.m.s.tackle_count<=1
 
-    def capture(self,now):
-        super().capture(now)
+    def capture(self,now,observers=None):
+        super().capture(now,observers)
         if self.prism_core:
             self.capture_core_metadata(now)
             return
@@ -194,6 +201,11 @@ class RulebookPort(NativePort):
             extra=dict(defender_baseline=(c.defender_baseline,c.defender_mark_distance_m,c.defender_ball_leash_m),
                        own_zone_exit_ms_ago=self.m.s.live_ms-exits[pid] if pid in exits else None,
                        rb3_handoff_block_enabled=c.rb3_handoff_block_enabled)
+            if c.rb333:
+                extra['ladder_data'] = (c.latency_ms+c.sense_ms+c.dt_ms,c.carry_points,c.release_bands,c.carry_release_radius_m)
+                if 'pass_speed' in c.rb333:
+                    teammates = tuple((a.id,self.team_catching[a.id]) for a in self.m.s.players.values() if a.team==v.team and a.active)
+                    extra['ladder_data'] += (teammates,self.m.assume['ball_mass_kg'])
             if self.paired_fixes:
                 extra['paired_fixes'] = self.paired_fixes
             extra['rb3_carrier_moves_enabled'] = c.rb3_carrier_moves_enabled
@@ -263,9 +275,12 @@ class RulebookPort(NativePort):
         r319 = data['view'].pop('rb319', '')
         hby = data['view'].pop('handed_by', None)
         bmat = data['view'].pop('ball_material', None)
+        from native.ladder import freeze_tuple
+        cue = data['view'].pop('release_cue',None)
+        ladder = freeze_tuple(data['view'].pop('ladder_data',()))
         fixes = tuple(data['view'].pop('paired_fixes', ()))
         freezes_left = data['view'].pop('freezes_left', None)
         v,b=C.view_from_json(data)
         return RulebookView(**{f.name:getattr(v,f.name) for f in fields(C.AthleteView)},status_indicators=tuple(tuple(x) for x in status),freezes_left=freezes_left,officials=tuple(officials),
                             defender_baseline=tuple(baseline) if baseline is not None else None,own_zone_exit_ms_ago=exit_ago,formation=tuple(form) if form is not None else None,own_control_ms=ctl,snap_hold=sh,pass_release_ms=prm,own_release_ms=own_release,body_height=tuple(tuple(x) for x in bh),body_reach=tuple(tuple(x) for x in br),mate_zone_ms=tuple(tuple(x) for x in mz),rb3_handoff_block_enabled=actions,
-                            rb3_carrier_moves_enabled=moves,paired_fixes=fixes,rb319=r319,handed_by=tuple(hby) if hby is not None else None,ball_material=tuple(bmat) if bmat is not None else None),b
+                            rb3_carrier_moves_enabled=moves,paired_fixes=fixes,ladder_data=ladder,release_cue=cue,rb319=r319,handed_by=tuple(hby) if hby is not None else None,ball_material=tuple(bmat) if bmat is not None else None),b

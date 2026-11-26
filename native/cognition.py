@@ -223,7 +223,7 @@ def _pass_options(view, mates, opps, restart=False):
     return out
 
 
-def rb3_lead(x, y, aim, vel, max_throw_speed, iterations=6):
+def rb3_lead(x, y, aim, vel, max_throw_speed, iterations=6, *, speed_for=None):
     """RB-3.9b E-1/B-1 (native-rb/3): lead a moving receiver by the real flight time at the speed
     chosen for the led distance. Fixed point: the speed depends on the led aim, the aim on the speed.
     Returns (aim, flight_time_s, speed)."""
@@ -231,7 +231,7 @@ def rb3_lead(x, y, aim, vel, max_throw_speed, iterations=6):
     tf = 0.
     for _ in range(iterations):
         led = (_clamp(aim[0] + vel[0] * tf, 2, 98), _clamp(aim[1] + vel[1] * tf, 2, 98))
-        d = hypot(led[0] - x, led[1] - y); speed = release_speed(d, max_throw_speed); tf = flight_time(d, speed)
+        d = hypot(led[0] - x, led[1] - y); speed = speed_for(d) if speed_for else release_speed(d, max_throw_speed); tf = flight_time(d, speed)
     led = (_clamp(aim[0] + vel[0] * tf, 2, 98), _clamp(aim[1] + vel[1] * tf, 2, 98))
     return led, tf, speed
 
@@ -404,8 +404,12 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
                     # (cognition's choice; Motor never leads the receiver).
                     rt = next(x for x in fresh if x.entity == t)
                     if view.cognition == 'native-rb/3':
+                        speed_for = None
+                        if 'pass_speed' in getattr(view,'paired_fixes',()):
+                            from .ladder import pass_target
+                            speed_for = lambda distance: pass_target(view,t,distance)
                         a = rb3_lead(view.x, view.y, a, (rt.vx * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking')),
-                                                        rt.vy * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking'))), view.max_throw_speed)[0]
+                                                        rt.vy * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking'))), view.max_throw_speed,speed_for=speed_for)[0]
                     else:
                         tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
                         a = (_clamp(a[0] + rt.vx * tf, 2, 98), _clamp(a[1] + rt.vy * tf, 2, 98))
@@ -539,6 +543,10 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    if not result['view'].get('release_cue'):
+        result['view'].pop('release_cue',None)
+    if not result['view'].get('ladder_data'):
+        result['view'].pop('ladder_data',None)
     if not result['view'].get('paired_fixes'):
         result['view'].pop('paired_fixes', None)
     if view.core_entropy is None:

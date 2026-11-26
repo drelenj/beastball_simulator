@@ -30,6 +30,14 @@ def build_core(config):
                   ('secure=1/(1+(energy/capacity)**2)if capacity>1e-9 else 0.', 'secure=1/(1+(energy/capacity)**8)if capacity>1e-9 else 0.')]
     }
     if config.version == 'native-rb/3':
+        if 'mouth_boundary' in config.rb333:
+            patches['match'].append(("if p.posture!='airborne'and not(0<=p.x<=100 and 0<=p.y<=100):","if p.posture!='airborne' and (not 0<=p.y<=100 or not 0<=p.x<=100 and not legal_goal(p.y,p.hand_height,b.radius)):"))
+        if 'movement_clock' in config.rb333:
+            patches['match'].append(('if p.id in targets and s.now>=p.next_decision:', 'if p.id in targets:'))
+        if 'braking' in config.rb333:
+            patches['match'].append(('p.target=targets[p.id];p.next_decision=', 'p.target=self.native_boundary_target(p,targets[p.id]);p.next_decision='))
+        if 'keeper_deadline' in config.rb333:
+            patches['match'].append(("   if landings_only:continue", "   timing=getattr(p,'native_keeper_flight',None)\n   if timing and b.carrier is None and timing[2]>s.now:out.append(timing[2])\n   if landings_only:continue"))
         if getattr(config, 'fatigue_rotation', False):
             from .rulebook.fatigue_rotation import KERNEL_PATCHES
             patches['match'].extend(KERNEL_PATCHES)

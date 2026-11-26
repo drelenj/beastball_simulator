@@ -162,7 +162,8 @@ class Aim:
 def passing(menu, view, base, tracks):
     receiver = next((t for t in tracks if t.entity == base.target and t.team == view.team), None)
     distance = hypot(base.aim[0] - view.x, base.aim[1] - view.y)
-    nominal = release_speed(distance, view.max_throw_speed)
+    from .ladder import pass_target
+    nominal = pass_target(view,base.target,distance) if paired.enabled(view,"pass_speed") else release_speed(distance, view.max_throw_speed)
     choices = [Option(replace(base, speed=nominal), 1., 'passing', 'direct')]
     if receiver is None:
         return menu.choose('passing', choices).intent
@@ -188,7 +189,7 @@ def passing(menu, view, base, tracks):
             aim = ((view.x + 2 * aim[0]) / 3, (view.y + 2 * aim[1]) / 3)
         if not C.in_own_zone(view.team, view.x, view.y, view) and C.in_own_zone(view.team, *aim, view):
             continue
-        speed = min(view.max_throw_speed, nominal * factor)
+        speed = nominal if paired.enabled(view,"pass_speed") else min(view.max_throw_speed, nominal * factor)
         margin = (paired.arrival_clearance(view,aim,speed,height,threats,wait) if use_arrival
                   else RB.lane_margin(view,Aim(*aim),opponents,speed,release+wait/1000))
         if margin < 0.:
@@ -258,12 +259,21 @@ def carrier(menu, view, belief, tracks, base, record):
         value += SHOT_VALUE_OFFSET if kind == 'shoot' else 0.
         if kind == 'pass' and pass_fix:
             speed = release_speed(hypot(aim[0]-view.x,aim[1]-view.y),view.max_throw_speed)
+            if paired.enabled(view,"pass_speed"):
+                from .ladder import pass_target
+                speed = pass_target(view,target,hypot(aim[0]-view.x,aim[1]-view.y))
             margin = paired.arrival_clearance(view,aim,speed,intent.height,threats)
             if margin < 0.:
                 continue
             value += .12 * min(6.,margin)
         if routes:
-            value = (paired.shot_points(view,RB.shot_plan(view,tracks)) if kind=='shoot'
+            if paired.enabled(view,'carry_seven'):
+                from .ladder import release_points
+                distance = hypot(100.-view.own_goal_x-view.x,50.-view.y)
+                reward = release_points(view,distance) if kind=='shoot' else view.ladder_data[1]
+                value = reward / (1+paired.exp(-max(-20.,min(20.,(value-3.)/2.))))
+            else:
+                value = (paired.shot_points(view,RB.shot_plan(view,tracks)) if kind=='shoot'
                      else paired.continuation_points(value))
             if kind=='carry':
                 # Keep the prior diversion or Evasion option available at the
@@ -287,7 +297,7 @@ def carrier(menu, view, belief, tracks, base, record):
         choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),STRETCH_VALUE,
                               'playmaking','commit_scoring_attempt'))
     if finish_fix and routes and paired.stretch_available(view,threats):
-        choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),3.75,
+        choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),view.ladder_data[1] if paired.enabled(view,"carry_seven") else 3.75,
                               'playmaking','commit_scoring_attempt'))
     if not choices:
         choices.append(Option(proposed(base, 'retain'), 0., 'playmaking', 'retain'))
@@ -310,7 +320,7 @@ def carrier(menu, view, belief, tracks, base, record):
         picked = evade(menu, view, picked, near if gap < 4. else None, bool(view.own_held))
     if (paired.enabled(view,'boundary_guard') and picked.aim is not None
             and picked.kind in ('carry','truck','position','stiff_arm')):
-        picked = replace(picked,aim=paired.boundary_aim(view,picked.aim))
+        picked = replace(picked,aim=RB.keep_in(view,picked.aim) if paired.enabled(view,"braking") else paired.boundary_aim(view,picked.aim))
     return picked
 
 
@@ -326,6 +336,11 @@ def defender(menu, view, belief, tracks, base, record):
     own_hold = view.own_hold_target
     evidence = paired.enabled(view,'fresh_takedown')
     holder = paired.fresh_ball_holder(view,belief,tracks) if evidence else None
+    if getattr(view,'release_cue',None):
+        if holder==view.release_cue:
+            holder=None
+        if own_hold==view.release_cue:
+            own_hold=None
     for kind, target, aim, value in record['options']:
         if kind in ('mark','press','receive','pursue'):
             options.append(Option(proposed(base,kind,target,aim),value,'defending',kind))
@@ -363,6 +378,15 @@ def keeper_options(menu, view, base):
         poised = replace(original, kind='position', target=center, course=())
         options = [Option(base, KEEPER_SAVE_VALUE + KEEPER_SAVE_TIME_VALUE * min(window,.6), 'goalkeeping','save'),
                    Option(replace(base, auxiliary=poised), KEEPER_SET_VALUE,'goalkeeping','set')]
+        if paired.enabled(view,'keeper_menu') and view.body:
+            from b1.emergence_intents import plan_keeper_motor
+            command=plan_keeper_motor(original,view.body,now_ms=view.delivered_ms,reach_factor=.9,
+                pushoff_fraction=.4,extension_fraction=.3,launch_min_s=.1,dive_hand_fraction=.3,match_lean=True)
+            if command.kind in ('step','approach','launch'):
+                options=options[:1]
+                if len(original.course)>2:
+                    later=replace(original,course=original.course[1:])
+                    options.append(Option(replace(base,auxiliary=later),options[0].value,'goalkeeping','next_intercept'))
     elif original.kind == 'position':
         resting = replace(original, kind='hold', target=(view.x,view.y))
         gap = hypot(original.target[0]-view.x,original.target[1]-view.y)
@@ -371,6 +395,14 @@ def keeper_options(menu, view, base):
                           'goalkeeping','hold')]
     else:
         options = [Option(base,KEEPER_SET_VALUE,'goalkeeping','hold')]
+    if original.kind=='position' and paired.enabled(view,'keeper_settle') and view.ball_course and view.signals.direct_team not in (None,view.team):
+        c=view.ball_course
+        depth=max(1.,min(4.,abs(c.x-view.own_goal_x)*.25))
+        if hypot(c.x-view.own_goal_x,c.y-50.)<=40.:
+            target=(view.own_goal_x+view.attack_sign*depth,50.+(c.y-50.)*depth/max(1.,abs(c.x-view.own_goal_x)))
+            if hypot(view.x-target[0],view.y-target[1])<.5:
+                target=(view.x,view.y)
+            options=[Option(replace(base,auxiliary=replace(original,target=target)),KEEPER_SET_VALUE,'goalkeeping','settle')]
     return menu.choose('keeper', options).intent
 
 

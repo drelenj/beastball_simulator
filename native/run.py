@@ -63,9 +63,23 @@ class MatchDriver:
             return
         now = s.now
         if prepared is None:
+            interrupts={}
+            if getattr(port,'reflex_pending',None):
+                interrupts={pid:reason for pid,(at,reason) in port.reflex_pending.items() if at<now}
+                for pid in interrupts:
+                    del port.reflex_pending[pid]
+                    self.next_dec.pop(pid,None)
+                    self.reaction_due.pop(pid,None)
             if now >= self.next_sense:
                 port.capture(now)
                 self.next_sense = now + port.config.sense_ms
+            elif interrupts:
+                port.capture(now,interrupts)
+            for pid in interrupts:
+                frame=port.frames[pid][-1]
+                if frame.captured_ms==now and frame.ball_course:
+                    from dataclasses import replace
+                    port.reflex_observations[pid]=replace(frame.ball_course,delivered_ms=now)
             ids = port.active_ids()
         else:
             view, belief, remaining = prepared
@@ -81,6 +95,9 @@ class MatchDriver:
                 view, belief = port.view(pid, now)
                 if view is None:
                     continue
+            if prepared is None and interrupts.get(pid)=='release_from_wrap' and 'abort_wrap' in port.config.rb333:
+                from dataclasses import replace
+                view=replace(view,release_cue=getattr(getattr(s.players[pid],'native_intent',None),'target',None))
             if select is None:
                 if learned_values is None or not view.holds_ball:
                     intent, record = cognition.decide(view, belief)
@@ -88,6 +105,8 @@ class MatchDriver:
                     intent, record = cognition.decide(view, belief, learned_values=learned_values)
             else:
                 intent, record = select(view, belief, tuple(ids[index + 1:]))
+            if prepared is None and interrupts.get(pid)=='release_from_wrap' and 'abort_wrap' in port.config.rb333:
+                m.e.emit('wrap_retarget' if intent.contact in ('wrap','takedown') else 'wrap_abort','RB-3.33',player=pid)
             admission = port.submit(intent)
             if admission['status'] == 'rejected':
                 port.feedback.setdefault(pid, []).append(

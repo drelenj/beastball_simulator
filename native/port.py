@@ -169,6 +169,9 @@ class NativePort:
         m.update_archers=self.platform_motor;m.auto_substitutions=lambda:None
         m.c4c2_targets=m.route_receiver=lambda targets:None
         m.c4c2_inbound=lambda *a,**k:None
+        if 'braking' in getattr(cfg,'rb333',()):
+            from .ladder import brake_target
+            m.native_boundary_target=lambda p,aim: brake_target(p,aim,cfg.goal_radius) if m.s.ball.carrier==p.id else aim
         m.penalty_targets=lambda:self.move.copy()
         m.c3_withhold=lambda *a:False
         m.c3_fix_contain=False;m.c3_fix_descent=False
@@ -269,12 +272,12 @@ class NativePort:
             return math.inf
         return first.delivered_ms + 1000 * PRISM.reflex_seconds(player.native_registry['reflex'])
 
-    def capture(self,now):
+    def capture(self,now,observers=None):
         s=self.m.s;e=self.m.e;e.native_sync();rs=e.possession.public();r=s.restart
         restart=(r.native_id,r.kind,r.team,r.x,r.y,*r.taker_spot,r.taker,r.rs.get('snapper'),r.rs.get('tackler'),r.created_at,r.ready_at is not None) if r else None
         ps=[p for p in s.players.values() if p.active]
         blockers=[(q.id,q.x,q.y,q.z,q.z+q.a.height,q.radius) for q in ps if q.role!='archer']
-        ids=self.active_ids()
+        ids=self.active_ids() if observers is None else tuple(sorted(observers))
         raw_entities=[(q.id,q.team,q.role,q.x,q.y,q.z) for q in ps if q.role!='archer']
         b=s.ball;raw_entities.append((C.BALL,'ball','ball',b.x,b.y,b.z))
         mask=visibility([(pid,s.players[pid].x,s.players[pid].y,s.players[pid].z+.72*s.players[pid].a.height,s.players[pid].role=='archer') for pid in ids],
@@ -355,6 +358,9 @@ class NativePort:
             track_age = 2000
             tracks=tuple(t for t in sorted(mem.values(),key=lambda t:t.entity) if now-t.captured_ms<=track_age)
         course=f.ball_course
+        immediate=getattr(self,'reflex_observations',{}).get(pid)
+        if immediate and immediate.captured_ms==now:
+            course=immediate
         # No sensor fallback: own old course can go stale, or be absent.
         self.course_beliefs[pid]=course
         self.observation_count+=1;oid=f'native/{now}/{pid}/obs/{self.observation_count}'
@@ -516,6 +522,8 @@ class NativePort:
                                'bow' if kind=='draw_release' else 'ball',ans[0] if ans else None)
             self.pending[p.id]={'cmd':cmd,'velocity':ans[0] if ans else None,'due':cmd.release_ms,'period':s.period}
             self.command_log.append(cmd)
+            if kind=='pass' and not wait and 'pass_signal' in getattr(self.config,'rb333',()):
+                self.m.pass_signal = (intent.target,s.now)
             if kind=='pass' and not wait:self.calls[p.team]=(p.id,intent.target,*intent.aim,s.now+2500)
             if wait:
                 self.pending[p.id]['windup_started'] = False
@@ -561,6 +569,8 @@ class NativePort:
                     continue
                 p = s.players[pid]
                 self.calls[p.team] = (pid,i.target,*i.aim,s.now+2500)
+                if 'pass_signal' in getattr(self.config,'rb333',()):
+                    m.pass_signal = (i.target,pend['cmd'].start_ms)
                 pend['windup_started'] = True
                 e.emit('prism_windup','RB-3.25',player=pid,command=pend['cmd'].command_id,due=pend['due'])
             if s.now<pend['due']:continue
@@ -576,6 +586,11 @@ class NativePort:
             else:origin=(s.ball.x,s.ball.y,s.ball.z)
             rotation = getattr(self, 'rotation', None)
             release_speed = min(i.speed, p.native_max_throw_speed) if rotation else i.speed
+            if i.kind=='pass' and 'pass_speed' in getattr(self.config,'rb333',()):
+                touch = p.native_individual['touch']
+                if rotation:
+                    touch = rotation.execution_rating(p,'touch')
+                release_speed = min(p.native_max_throw_speed,release_speed*(1+m.rng['ball'].uniform(-1,1)*.08*(1-touch)/.3))
             ans=self.geom.launch_for(origin,(*i.aim,.1075 if i.kind in ('bounce','dribble') else i.height),release_speed,9.81,.015)
             if ans is None:self.resolve(pid,'rejected_geometry');continue
             old=pend['velocity'];new=ans[0]
@@ -606,6 +621,13 @@ class NativePort:
                 else:yaw=m.rng['ball'].gauss(0,math.radians((1-.7)*3))
                 vx,vy,vz=new;new=(vx*math.cos(yaw)-vy*math.sin(yaw),vx*math.sin(yaw)+vy*math.cos(yaw),vz)
                 ok=e.release(pid,new,'shot' if i.kind=='shoot' else 'dribble' if i.kind=='dribble' else 'pass',i.target)
+            if ok and i.kind in ('shoot','pass') and ('keeper_interrupt' in getattr(self.config,'rb333',()) or 'field_interrupt' in getattr(self.config,'rb333',())):
+                from .ladder import release_listeners
+                listeners=release_listeners(self,p,i.kind,i.target,i.aim)
+                if listeners:
+                    self.capture(s.now,listeners)
+                    for who,reason in listeners.items():
+                        self.reflex_pending[who]=(s.now,reason)
             self.resolve(pid,'released' if ok else 'rejected_by_engine')
 
     def archer_motor(self):
@@ -641,6 +663,8 @@ class NativePort:
                                    if previous < t <= s.now and t >= 0), default=s.now)
                     reaction = (0. if self.individuation and not self.prism_core else
                                 m.assume['keeper_reaction_s']*(1.3-.6*p.a.awareness))
+                    if 'keeper_interrupt' in getattr(self.config,'rb333',()):
+                        reaction = m.assume['keeper_reaction_s']
                     if self.prism_core:
                         from .prism_motion import reflex_gain
                         reaction *= reflex_gain(p)
@@ -762,7 +786,7 @@ class NativePort:
         self.fill_cover()
         from .geometry import body_out
         carrier=s.players.get(s.ball.carrier)
-        if carrier and body_out(carrier) and s.phase in (P.LIVE,P.OPENING):
+        if carrier and body_out(carrier,self.config.goal_radius if "mouth_boundary" in getattr(self.config,"rb333",()) else None) and s.phase in (P.LIVE,P.OPENING):
             e.boundary(carrier.x,carrier.y,carrier.id)
         self.restart_metric.observe(self)
         self.assert_invariants()

@@ -86,6 +86,7 @@ class RulebookConfigV3(RulebookConfig):
     fatigue_rotation: bool = False
     rotation_rhythm: str = "R1"
     planned_rate_scale: float = PLANNED_RATE_SCALE
+    rb333: tuple[str, ...] = ()
     rb332_pass_clearance: bool = False
     rb332_carry_finish: bool = False
     rb332_fresh_takedown: bool = False
@@ -101,6 +102,8 @@ class RulebookConfigV3(RulebookConfig):
 
     def record(self):
         record = super().record()
+        if not self.rb333:
+            record.pop('rb333')
         record.pop('drill_values_path')
         for key in ('rb332_pass_clearance','rb332_carry_finish','rb332_fresh_takedown','rb332_boundary_guard'):
             if not record[key]:
@@ -141,6 +144,14 @@ class RulebookConfigV3(RulebookConfig):
 
     def __post_init__(self):
         from .fatigue_rotation import RHYTHMS
+        from native.ladder import SWITCHES
+        if set(self.rb333) - SWITCHES or len(set(self.rb333)) != len(self.rb333):
+            raise ValueError("unknown or repeated RB-3.33 switch")
+        if 'carry_seven' in self.rb333:
+            object.__setattr__(self,'carry_points',7)
+        if 'cadence' in self.rb333:
+            object.__setattr__(self,'sense_ms',self.dt_ms)
+            object.__setattr__(self,'decision_ms',200 if 'fast_cadence' in self.rb333 else 300)
 
         if (self.rotation_rhythm not in (*RHYTHMS, 'PLANNED')
                 or self.rotation_rhythm != 'R1' and not self.fatigue_rotation):

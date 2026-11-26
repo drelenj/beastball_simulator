@@ -240,7 +240,7 @@ def is_pressured(view, opps):
     return any(time_to_contact(view, o) < PRESSURE_T_S for o in opps) or release_blocked(view, opps)
 
 
-def typical_time_to(o, px, py, reach):
+def typical_time_to(o, px, py, reach, view=None):
     """RB-3.14: seconds for a TYPICAL athlete (TYPICAL_ACCEL, TYPICAL_TOP) starting from believed opponent `o`'s position
     and velocity to come within `reach` of (px, py). Signed velocity along the line first has to be braked if it points away."""
     dx, dy = px - o.x, py - o.y
@@ -248,7 +248,7 @@ def typical_time_to(o, px, py, reach):
     D = max(0., d - reach)
     if D <= 0.:
         return 0.
-    a, vmax = TYPICAL_ACCEL, TYPICAL_TOP
+    a, vmax = TYPICAL_ACCEL, (31.2928 if "planning_speed" in getattr(view,"paired_fixes",()) else TYPICAL_TOP)
     v0 = (o.vx * dx + o.vy * dy) / d
     t0 = 0.
     if v0 < 0.:
@@ -279,7 +279,7 @@ def free_run_m(view, opps, aim):
         px, py = view.x + ux * sdist, view.y + uy * sdist
         t_me = time_to_cover(view, sdist, (ux, uy))
         for o, radius in denials:
-            if typical_time_to(o, px, py, radius) <= t_me:
+            if typical_time_to(o, px, py, radius, view) <= t_me:
                 return round(max(0., min(CARRY_FREE_MAX_M, sdist - CARRY_CONTACT_BUFFER_M)), 6)
         k += 1
 
@@ -331,10 +331,14 @@ def pass_value(view, c, opps, pressured, max_age_ms=2000, *, handoff=False):
     dist = hypot(dx, dy)
     if not handoff and not PASS_MIN_M <= dist <= PASS_MAX_M:
         return None
-    margin = 10. if handoff else lane_margin(view, c, opps, release_speed(dist, 120.))
+    from . import paired_policy as paired
+    from .ladder import pass_target
+    speed = pass_target(view,c.entity,dist) if paired.enabled(view,'pass_speed') else release_speed(dist, view.max_throw_speed if paired.enabled(view,'arrival_lane') else 120.)
+    margin = 10. if handoff else (paired.arrival_clearance(view,(c.x,c.y),speed,1.6,opps)
+              if paired.enabled(view,'arrival_lane') else lane_margin(view,c,opps,speed))
     if margin < 0:
         return None                                              # unsafe lane: excluded
-    if not handoff and rb319_has(view, 'A4') and pass_exit_s(view, c, release_speed(dist, 120.)) < PASS_EXIT_MIN_S:
+    if not handoff and rb319_has(view, 'A4') and pass_exit_s(view, c, speed) < PASS_EXIT_MIN_S:
         return None                                              # RB-3.19 A4: a missed ball would leave the field within 1 s of the receiver
     gain = max(GAIN_MIN_M, min(GAIN_MAX_M, sg * dx))
     space = min([hypot(o.x - c.x, o.y - c.y) for o in opps] + [10.])
@@ -446,7 +450,12 @@ def keep_in(view, aim):
     m = BOUNDARY_MARGIN_M
     x, y = aim
     y = max(m, min(100. - m, y))
-    if abs(y - 50.) > view.goal_radius:
+    if "mouth_boundary" in getattr(view,"paired_fixes",()):
+        from .geometry import goal_section
+        outside = not goal_section(y,.62*(view.body.height if view.body else 2.39),.1075,view.goal_radius)
+    else:
+        outside = abs(y - 50.) > view.goal_radius
+    if outside:
         x = max(m, min(100. - m, x))
     return (round(x, 3), round(y, 3))
 
@@ -503,7 +512,7 @@ def missed_ball_pursuit(view, belief, intent, record):
         return best[0], best[2]
 
     me_t, me_pt = plan(lambda pt: time_to_cover(view, hypot(pt[0] - view.x, pt[1] - view.y), _unit(view.x, view.y, *pt)))
-    keys = [(me_t, view.athlete)] + [(plan(lambda pt, m=m: typical_time_to(m, pt[0], pt[1], 0.))[0], m.entity) for m in mates]
+    keys = [(me_t, view.athlete)] + [(plan(lambda pt, m=m: typical_time_to(m, pt[0], pt[1], 0., view))[0], m.entity) for m in mates]
     allowance = C.owned_effect(view, view.prism_agent, 1.5) if view.registry_ratings else 0.
     order = sorted((t - allowance if who == view.athlete else t, who) for t, who in keys)
     if view.athlete not in [who for _, who in order[:PURSUERS]]:
@@ -649,7 +658,7 @@ def time_to_cover(view, distance, toward=None):
     knowledge) first has to brake: braking time plus the distance he travels while stopping.
     `toward` is the unit vector from the athlete to the target; None means from rest."""
     b = view.body
-    v = (b.maximum_speed if b else 27.) * EXIT_SPEED_FRAC
+    v = (b.maximum_speed if b else 27.) * (1. if "planning_speed" in getattr(view,"paired_fixes",()) else EXIT_SPEED_FRAC)
     a = b.acceleration if b else 10.
     if distance <= 0:
         return 0.
@@ -864,7 +873,7 @@ def choose_block(view, belief, intent, record):
         if q.entity == view.athlete:
             reach_t = lambda o, q=q: time_to_cover(view, hypot(o.x - q.x, o.y - q.y), _unit(q.x, q.y, o.x, o.y))
         else:
-            reach_t = lambda o, q=q: typical_time_to(q, o.x, o.y, 0.)
+            reach_t = lambda o, q=q: typical_time_to(q, o.x, o.y, 0., view)
         pick = min(left, key=lambda o: (reach_t(o), o.entity))
         left.remove(pick)
         if q.entity == view.athlete:
