@@ -36,9 +36,14 @@ def measures(r):
     for k in ('interception','out_of_bounds','fumble','strip','tackle','zone_violation','play_clock','opponent_control','major','turnover','held_ball','toss_timeout','score_restart'):
         add(section,k,d['total'].get(k,0)/2)
     add(section,'Targeted drops (events)',total('drops')/2)
-    add(section,'Deflected ball went out',sum(q['kind']=='deflection' for q in r['boundary'])/2)
+    possessions=r['box']['possessions']
+    out_times=[nxt['start_ms'] for current,nxt in zip(possessions,possessions[1:]) if current['end_reason']=='boundary']
+    at={b['t_ms']:b for b in r['boundary']}
+    assert len(at)==len(r['boundary']) and len(out_times)==d['total']['out_of_bounds']
+    boundary_losses=[at[t] for t in out_times]
+    add(section,'Deflected ball went out and possession changed',sum(q['kind']=='deflection' for q in boundary_losses)/2)
     counts=Counter()
-    for b in r['boundary']:
+    for b in boundary_losses:
         x,y=b['crossing']
         group='body' if b['kind']=='carrier' else 'ball'
         mouth='outside'
@@ -48,7 +53,7 @@ def measures(r):
         counts[group,mouth]+=1
     for group in ('body','ball'):
         for mouth in ('inside','outside','unknown height'):
-            add(section,f'Boundary events, {group}, {mouth}',counts[group,mouth]/2)
+            add(section,f'Boundary turnovers, {group}, {mouth}',counts[group,mouth]/2)
     section='Passing'
     attempts=total('passes_attempted')
     add(section,'Attempts',attempts/2)
@@ -127,7 +132,7 @@ def render(root):
         table(('Measure',*ARMS),[(k[1],[data[a][k] for a in ARMS]) for k in keys])
         table(('Difference',*(a+' − '+b for a,b in COMPARISONS)),[(k[1],[
             None if None in (data[a][k],data[b][k]) else data[a][k]-data[b][k] for a,b in COMPARISONS]) for k in keys])
-    return '\n'.join(lines)+'\n'
+    return '\n'.join(lines).rstrip()+'\n'
 
 
 if __name__=='__main__':
