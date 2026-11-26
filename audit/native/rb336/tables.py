@@ -48,6 +48,9 @@ def metrics(run):
     data.update((k,v) for k,v in old.items() if k.startswith('Points from '))
     data['Possessions ending in attempt (%)'] = old['Possessions ending in an attempt (%)']
     data['Carry goals'] = run['diagnosis']['carries']['governed_goals']/2
+    for method in ('throw_2','throw_3','throw_4','half_goal','full_goal_award','own'):
+        data[f'Goals and awards from {method}'] = sum(
+            t['goals_by_method'].get(method,0) for t in box['teams'])/2
     for key in ('stretch_start','stretch_goal'):
         data[key] = run['diagnosis']['carries']['stretch'].get(key,0)/2
     data['Held end-line flights staying in play'] = len(sets['endline_continued'])/2 if sets else 0
@@ -117,8 +120,13 @@ def render(root, parent):
         lines.append('| '+' | '.join((key,*cells))+' |')
     lines.extend(['','## Opening set speeds by Agility band','',
                   '| Agility | Players | Mean (m/s) | Min | Max |','| --- | ---: | ---: | ---: | ---: |'])
-    for band,vel in sorted(runs['C1'][0]['rb336']['set_speeds'].items()):
-        lines.append(f'| {band} | {len(vel)} | {mean(vel):.2f} | {min(vel):.2f} | {max(vel):.2f} |')
+    bands = runs['C1'][0]['rb336']['set_speeds']
+    for band in ('<.60','.60–.69','.70–.79','≥.80'):
+        vel = bands.get(band,[])
+        if vel:
+            lines.append(f'| {band} | {len(vel)} | {mean(vel):.2f} | {min(vel):.2f} | {max(vel):.2f} |')
+        else:
+            lines.append(f'| {band} | 0 | — | — | — |')
     lines.extend(['','## Scores and signed margins','',
                   '| Arm | Seed 1 | Seed 2 | Seed 3 | Seed 4 | Seed 5 |',
                   '| --- | --- | --- | --- | --- | --- |'])
