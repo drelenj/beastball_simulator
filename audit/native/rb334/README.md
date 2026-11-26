@@ -17,6 +17,6 @@ A6 uses the A5 lineup, planned rotation, 300 ms decision base and seven-point sc
 
 The near-goal diagnostic covers holders within 20 m planar distance of goal centre. It classifies the selected Playmaking option before a zone exit override or sub-agent choice. Route carry means the explicit route to the mouth. Continuation includes diversion, evasion, retain, pass and handoff.
 
-Keeper motion uses physical speed at shot release. Target speed is net displacement between the current settle target and the one in force 500 ms earlier, divided by 0.5 s. A gap in settle commands leaves the history undefined.
+Keeper motion uses physical speed at shot release. Target speed is net displacement between the current settle target and the one in force 500 ms earlier, divided by 0.5 s. An accepted non-settle command clears the history. The observer also treats a last settle command older than two base decision intervals as expired.
 
 The non-carrier witness joins each episode to its first admitted command. Its believed holder comes from the defender menu's freshness function. Age comes from the ball course used by that decision. Cause labels infer explanations from the recorded event order. The classes give priority to a handoff by the target, then a still-airborne release by the target, then a remembered belief matching the target. The sample uses offline seed 334.
