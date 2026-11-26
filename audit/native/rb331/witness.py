@@ -21,7 +21,8 @@ def release_geometry(view, aim, origin, speed, velocity, opponents, now):
     true_reaches = tuple((p.entity, p.reach - rb.ACQ_RADIUS_M - rb.ACQ_EXTRA_M) for p in opponents)
     if view is None:
         return dict(distance=distance, yaw_deg=degrees(yaw))
-    actual_view = replace(view, x=sx, y=sy, body_reach=true_reaches)
+    actual_view = replace(view, x=sx, y=sy, body_reach=true_reaches,
+                          paired_fixes=tuple(s for s in view.paired_fixes if s!='projected_beliefs'))
     believed = [t for t in view.tracks if t.team not in (view.team, 'ball') and t.role in ('field', 'keeper')
                 and t.entity not in view.signals.immune]
     t_release = max(0., (now - view.delivered_ms)/1000)

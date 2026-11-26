@@ -128,7 +128,11 @@ def finish(menu, view, base, tracks):
     speed = RB.shot_speed(view)
     gx = base.aim[0]
     t = RB.release_time_s(view) + abs(gx - view.x) / max(1., speed)
-    ky = keeper.y + keeper.vy * t if keeper else 50.
+    if keeper and paired.enabled(view,'projected_beliefs'):
+        from .turnovers import projected
+        _,ky = projected(keeper,view,t)
+    else:
+        ky = keeper.y + keeper.vy * t if keeper else 50.
     kz = .62 * dict(getattr(view, 'body_height', ())).get(keeper.entity, 2.39) if keeper else 1.5
     plan = RB.shot_plan(view, tracks)
     if plan is None:
@@ -183,8 +187,13 @@ def passing(menu, view, base, tracks):
             ('wait', interval // 2, 1., 1.6, PASS_WAIT_COST)):
         if wait and hypot(receiver.vx, receiver.vy) < PASS_WAIT_VELOCITY_MPS:
             continue
-        aim = tuple(min(98., max(2., a + vel * wait / 1000))
-                    for a, vel in zip(base.aim, (receiver.vx, receiver.vy)))
+        if paired.enabled(view,'projected_beliefs'):
+            from .turnovers import projected
+            from .throw_speed import flight_time
+            aim = projected(receiver,view,release+wait/1000+flight_time(distance,nominal))
+        else:
+            aim = tuple(min(98., max(2., a + vel * wait / 1000))
+                        for a, vel in zip(base.aim, (receiver.vx, receiver.vy)))
         if label == 'bounce':
             aim = ((view.x + 2 * aim[0]) / 3, (view.y + 2 * aim[1]) / 3)
         if not C.in_own_zone(view.team, view.x, view.y, view) and C.in_own_zone(view.team, *aim, view):
@@ -305,6 +314,19 @@ def carrier(menu, view, belief, tracks, base, record):
                  else view.ladder_data[1] if paired.enabled(view, 'carry_seven') else 3.75)
         choices.append(Option(proposed(base,'stretch',aim=(goal,view.y)),bonus,
                               'playmaking','commit_scoring_attempt'))
+    if paired.enabled(view,'carrier_boundary'):
+        from .turnovers import LOST_POSSESSION_VALUE, boundary_risk
+        choices = [replace(option,value=LOST_POSSESSION_VALUE)
+                   if option.intent.kind == 'carry' and boundary_risk(view,option.intent.aim)
+                   else option for option in choices]
+        if view.body and boundary_risk(view,(view.x,view.y)) and RB.is_pressured(view,threats):
+            # The two reactions use the current best continuation value.
+            # No bonus rewards an edge approach or penalizes accepting contact.
+            value = max((option.value for option in choices if option.intent.kind == 'carry'
+                         and not boundary_risk(view,option.intent.aim)), default=0.)
+            inside = (min(95.,max(5.,view.x)),min(95.,max(5.,view.y)))
+            choices.extend((Option(proposed(base,'carry',aim=inside),value,'playmaking','cut_inside'),
+                            Option(proposed(base,'carry',aim=(view.x,view.y)),value,'playmaking','brace')))
     if not choices:
         choices.append(Option(proposed(base, 'retain'), 0., 'playmaking', 'retain'))
     selected = menu.choose('carrier', choices)
@@ -322,7 +344,7 @@ def carrier(menu, view, belief, tracks, base, record):
         return passing(menu, view, picked, tracks)
     if picked.kind in ('shoot', 'stretch'):
         return finish(menu, view, picked, tracks)
-    if picked.kind == 'carry' and (picked.technique == 'evade' or view.own_held):
+    if picked.kind == 'carry' and selected.label != 'brace' and (picked.technique == 'evade' or view.own_held):
         picked = evade(menu, view, picked, near if gap < 4. else None, bool(view.own_held))
     if (paired.enabled(view,'boundary_guard') and picked.aim is not None
             and picked.kind in ('carry','truck','position','stiff_arm')):
@@ -376,7 +398,7 @@ def defender(menu, view, belief, tracks, base, record):
     return result, selected.owner
 
 
-def keeper_options(menu, view, base):
+def keeper_options(menu, view, base, belief=None):
     original = base.auxiliary
     center = (view.own_goal_x + view.attack_sign * 2., 50.)
     if original.kind == 'save':
@@ -403,9 +425,18 @@ def keeper_options(menu, view, base):
         options = [Option(base,KEEPER_SET_VALUE,'goalkeeping','hold')]
     if original.kind=='position' and paired.enabled(view,'keeper_settle') and view.ball_course and view.signals.direct_team not in (None,view.team):
         c=view.ball_course
-        depth=max(1.,min(4.,abs(c.x-view.own_goal_x)*.25))
-        if hypot(c.x-view.own_goal_x,c.y-50.)<=40.:
-            target=(view.own_goal_x+view.attack_sign*depth,50.+(c.y-50.)*depth/max(1.,abs(c.x-view.own_goal_x)))
+        x,y = c.x,c.y
+        if paired.enabled(view,'projected_beliefs'):
+            from .turnovers import projected_course
+            x,y = projected_course(c,view)
+        depth=max(1.,min(4.,abs(x-view.own_goal_x)*.25))
+        if hypot(x-view.own_goal_x,y-50.)<=40.:
+            target=(view.own_goal_x+view.attack_sign*depth,50.+(y-50.)*depth/max(1.,abs(x-view.own_goal_x)))
+            if paired.enabled(view,'keeper_plant') and belief is not None:
+                holder = paired.fresh_ball_holder(view,belief,belief.tracks)
+                if holder in view.visible_windups and view.recognized_ball in (None,'held'):
+                    planted = replace(base,auxiliary=replace(original,target=(view.x,view.y)))
+                    return menu.choose('keeper',[Option(planted,KEEPER_SET_VALUE,'goalkeeping','plant')]).intent
             if hypot(view.x-target[0],view.y-target[1])<.5:
                 target=(view.x,view.y)
             options=[Option(replace(base,auxiliary=replace(original,target=target)),KEEPER_SET_VALUE,'goalkeeping','settle')]
@@ -421,6 +452,28 @@ def future_course(belief, rating):
 
 
 def decide(view, belief, *, selector=None, learned_values=None):
+    raw_view, raw_belief = view, belief
+    if paired.enabled(view,'projected_beliefs'):
+        from .turnovers import planning_belief
+        view, belief = planning_belief(view,belief)
+    intent, record = _decide(view,belief,selector=selector,learned_values=learned_values)
+    if intent.contact in ('wrap','takedown'):
+        stages = {m['stage']:m['choice'] for m in record.get('core_menus',())}
+        path = ('defender_baseline' if record.get('rb36') else
+                'prism_defender_menu' if 'takedown' in stages or stages.get('defense') in ('wrap','commit_takedown')
+                else 'other')
+        if paired.enabled(raw_view,'takedown_gate'):
+            from .turnovers import gate_contact
+            gated = gate_contact(raw_view,raw_belief,intent)
+        else:
+            gated = intent
+        if any(paired.enabled(raw_view,key) for key in ('projected_beliefs','takedown_gate')):
+            record = dict(record, contact_issue=(path,intent.contact,intent.target,gated!=intent))
+        intent = gated
+    return intent, record
+
+
+def _decide(view, belief, *, selector=None, learned_values=None):
     if view.observation_id != belief.observation_id:
         raise ValueError('belief/view provenance mismatch')
     baseline = displayed(view)
@@ -438,7 +491,7 @@ def decide(view, belief, *, selector=None, learned_values=None):
             forecast = future_course(belief, menu.ratings.get('anticipation',.7))
         base, record = C.decide_v2(baseline,forecast)
         if view.role == 'keeper' and base.auxiliary:
-            base = keeper_options(menu,view,base)
+            base = keeper_options(menu,view,base,belief)
         if view.role == 'archer' and base.kind == 'release_arrow':
             base = menu.choose('archer_release', [
                 Option(base,1.,'disruption','release'),
@@ -462,7 +515,7 @@ def decide(view, belief, *, selector=None, learned_values=None):
         agent = 'in_air_ball_pursuit' if belief.ball_course and belief.ball_course.z > .45 else 'live_ball_pursuit'
         options = []
         for k,t,a,v in record['options']:
-            if k == 'pursue' and a and belief.ball_course:
+            if k == 'pursue' and a and belief.ball_course and not paired.enabled(view,'projected_beliefs'):
                 trust = 1. - ANTICIPATION_RANGE * (.7 - menu.ratings.get('anticipation',.7))
                 course = belief.ball_course
                 a = (course.x + (a[0]-course.x)*trust, course.y + (a[1]-course.y)*trust)
@@ -470,8 +523,12 @@ def decide(view, belief, *, selector=None, learned_values=None):
             if k == 'pursue' and a and belief.ball_course and agent == 'in_air_ball_pursuit':
                 course = future_course(belief,menu.ratings.get('anticipation',.7)).ball_course
                 flight = min(.8, RB.flight_horizon(course))
-                landing = (max(1.,min(99.,course.x + flight * course.vx)),
-                           max(1.,min(99.,course.y + flight * course.vy)))
+                if paired.enabled(view,'projected_beliefs'):
+                    from .turnovers import projected_course
+                    landing = tuple(max(1.,min(99.,coord)) for coord in projected_course(belief.ball_course,view,flight))
+                else:
+                    landing = (max(1.,min(99.,course.x + flight * course.vx)),
+                               max(1.,min(99.,course.y + flight * course.vy)))
                 options.append(Option(proposed(base,k,t,landing),v-PURSUIT_INTERCEPT_COST,agent,'landing'))
         improved = base
         if base.kind not in ('pursue', 'receive'):

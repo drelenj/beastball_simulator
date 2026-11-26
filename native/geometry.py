@@ -17,3 +17,10 @@ def body_out(p, mouth_radius=None):
     if mouth_radius is not None and goal_section(p.y,p.hand_height,.1075,mouth_radius):
         return p.posture!='airborne' and (p.y-p.radius<=0 or p.y+p.radius>=100)
     return p.posture!='airborne' and (p.x-p.radius<=0 or p.x+p.radius>=100 or p.y-p.radius<=0 or p.y+p.radius>=100)
+
+
+def held_sideline_in_play(ball, carrier):
+    """The airborne held ball's side crossing is not a ground touch."""
+    if carrier is None or ball.z <= ball.radius and (ball.y <= 0 or ball.y >= 100):
+        return False
+    return carrier.posture == 'airborne' or carrier.radius < carrier.y < 100.-carrier.radius

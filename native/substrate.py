@@ -32,6 +32,16 @@ def build_core(config):
     if config.version == 'native-rb/3':
         if 'mouth_boundary' in config.rb333:
             patches['match'].append(("if p.posture!='airborne'and not(0<=p.x<=100 and 0<=p.y<=100):","if p.posture!='airborne' and (not 0<=p.y<=100 or not 0<=p.x<=100 and not legal_goal(p.y,p.hand_height,b.radius)):"))
+        if 'sideline_held_ball' in config.rb333:
+            patches['match'].extend((
+                ('    if outward:cuts.append((frac,axis,limit))',
+                 '    if outward and not (axis==1 and self.native_held_sideline_in_play(b)):cuts.append((frac,axis,limit))'),
+                ('  if cuts:\n   frac,axis,limit=min(cuts)',
+                 '  if b.carrier and b.z<=b.radius and (b.y<=0 or b.y>=100):cuts.append((1.,1,0 if b.y<=0 else 100))\n'
+                 '  if cuts:\n   frac,axis,limit=min(cuts)'),
+                ('  elif b.x<-b.radius or b.x>100+b.radius or b.y<-b.radius or b.y>100+b.radius:',
+                 '  elif b.x<-b.radius or b.x>100+b.radius or ((b.y<-b.radius or b.y>100+b.radius) and not self.native_held_sideline_in_play(b)):'),
+            ))
         if 'movement_clock' in config.rb333:
             patches['match'].append(('if p.id in targets and s.now>=p.next_decision:', 'if p.id in targets:'))
         if 'braking' in config.rb333:

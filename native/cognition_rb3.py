@@ -233,6 +233,10 @@ def release_time_s(view):
 def release_blocked(view, opps):
     """RB-3.14: some opponent, advanced to the release time, is within his reach of the release point (the carrier)."""
     t = release_time_s(view)
+    if 'projected_beliefs' in view.paired_fixes:
+        from .turnovers import projected
+        return any(hypot(x-view.x,y-view.y) <= opp_reach(view,o)
+                   for o in opps for x,y in (projected(o,view,t),))
     return any(hypot(o.x + o.vx * t - view.x, o.y + o.vy * t - view.y) <= opp_reach(view, o) for o in opps)
 
 
@@ -303,6 +307,15 @@ def lane_margin(view, c, opps, speed, t_release=None):
     dist = hypot(dx, dy)
     margin = 99.
     denials = tuple((o, opp_reach(view, o) + LANE_MARGIN_M) for o in opps)
+    if 'projected_beliefs' in view.paired_fixes:
+        from .turnovers import projected
+        for k in range(LANE_SAMPLES+1):
+            f = k/LANE_SAMPLES
+            px,py,tb = view.x+dx*f,view.y+dy*f,t_release+dist*f/speed
+            for other,radius in denials:
+                x,y = projected(other,view,tb)
+                margin = min(margin,hypot(x-px,y-py)-radius)
+        return margin
     for k in range(LANE_SAMPLES + 1):
         f = k / LANE_SAMPLES
         px, py, tb = view.x + dx * f, view.y + dy * f, t_release + dist * f / speed
@@ -504,7 +517,11 @@ def missed_ball_pursuit(view, belief, intent, record):
                       (100. - ball.y) / ball.vy if ball.vy > 1e-9 else (0. - ball.y) / ball.vy if ball.vy < -1e-9 else 99.):
             t_line = min(t_line, max(0., lim_t))
     steps = [k * PURSUIT_STEP_S for k in range(int(t_line / PURSUIT_STEP_S) + 1)] or [0.]
-    pts = [(ball.x + ball.vx * t, ball.y + ball.vy * t) for t in steps]
+    if 'projected_beliefs' in view.paired_fixes:
+        from .turnovers import projected
+        pts = [projected(ball,view,t) for t in steps]
+    else:
+        pts = [(ball.x + ball.vx * t, ball.y + ball.vy * t) for t in steps]
 
     def plan(arrive):
         """Earliest rendezvous with the ball's path before the line: argmin over the path samples of max(his arrival, the ball's time)."""
@@ -568,7 +585,11 @@ def shot_plan(view, fresh):
     fields = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
     limit = view.goal_radius - SHOT_BALL_R_M - SHOT_EDGE_M
     if keeper is not None:
-        ky = keeper.y + keeper.vy * (t_rel + t_flight)
+        if 'projected_beliefs' in view.paired_fixes:
+            from .turnovers import projected
+            _,ky = projected(keeper,view,t_rel+t_flight)
+        else:
+            ky = keeper.y + keeper.vy * (t_rel + t_flight)
         kz = KEEPER_CENTRE_FRAC * (dict(getattr(view, 'body_height', ()) or ()).get(keeper.entity) or (view.body.height if view.body is not None else 2.39))
         klat = keeper_lateral_reach(view, keeper)
     best = None
@@ -1010,7 +1031,11 @@ def finishing_aim(view, fresh, intent):
         return intent
     field = [t for t in fresh if t.team not in (view.team, 'ball') and t.role == 'field']
     horizon = release_time_s(view) + abs(gx - view.x) / speed
-    ky = keeper.y + keeper.vy * horizon
+    if 'projected_beliefs' in view.paired_fixes:
+        from .turnovers import projected
+        _,ky = projected(keeper,view,horizon)
+    else:
+        ky = keeper.y + keeper.vy * horizon
     height = dict(getattr(view, 'body_height', ())).get(keeper.entity, 2.39)
     kz = KEEPER_CENTRE_FRAC * height
     reserve = FINISH_CLOSE_RESERVE_M if abs(view.x - gx) < FINISH_CLOSE_DEPTH_M else FINISH_LONG_RESERVE_M

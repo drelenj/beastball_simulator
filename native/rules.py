@@ -35,6 +35,11 @@ def install(CO, cfg):
         self.play_ms = cfg.play_clock_ms
     E.__init__ = init
 
+    if 'sideline_held_ball' in getattr(cfg,'rb333',()):
+        from .geometry import held_sideline_in_play
+        M.native_held_sideline_in_play = lambda self, ball: held_sideline_in_play(
+            ball,self.s.players.get(ball.carrier))
+
     def sync(self):
         if self._syncing:return
         self._syncing = True

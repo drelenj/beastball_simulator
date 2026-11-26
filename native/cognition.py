@@ -118,6 +118,7 @@ class AthleteView:
     core_entropy: str | None = None
     core_decision_ms: int = 500
     core_motion: tuple | None = None
+    visible_windups: tuple = ()
     own_skills: tuple = ()               # ATTR-1: self only; never teammate/opponent ratings
 
 
@@ -408,7 +409,15 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
                         if 'pass_speed' in getattr(view,'paired_fixes',()):
                             from .ladder import pass_target
                             speed_for = lambda distance: pass_target(view,t,distance)
-                        a = rb3_lead(view.x, view.y, a, (rt.vx * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking')),
+                        if 'projected_beliefs' in view.paired_fixes:
+                            from .turnovers import projected
+                            from .cognition_rb3 import release_time_s
+                            start = projected(rt,view,release_time_s(view))
+                            gain = rt.anticipation_gain
+                            a = rb3_lead(view.x,view.y,start,(rt.vx*gain,rt.vy*gain),
+                                         view.max_throw_speed,speed_for=speed_for)[0]
+                        else:
+                            a = rb3_lead(view.x, view.y, a, (rt.vx * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking')),
                                                         rt.vy * (1 + owned_effect(view, 'playmaking', .5, 'anticipation', 'playmaking'))), view.max_throw_speed,speed_for=speed_for)[0]
                     else:
                         tf = min(1.2, hypot(a[0] - view.x, a[1] - view.y) / 27.)
@@ -445,7 +454,11 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
                 v2 = ball.vx * ball.vx + ball.vy * ball.vy
                 t = _clamp(((view.x - ball.x) * ball.vx + (view.y - ball.y) * ball.vy) / v2, 0., 1.5)
                 trust = PRISM.forecast_factor(registry_rating(view, 'anticipation')) if view.registry_ratings else 1.
-                aim = (round(_clamp(ball.x + ball.vx * t * trust, 1, 99), 3), round(_clamp(ball.y + ball.vy * t * trust, 1, 99), 3))
+                if 'projected_beliefs' in view.paired_fixes:
+                    from .turnovers import projected
+                    aim = tuple(round(_clamp(coord,1,99),3) for coord in projected(ball,view,t))
+                else:
+                    aim = (round(_clamp(ball.x + ball.vx * t * trust, 1, 99), 3), round(_clamp(ball.y + ball.vy * t * trust, 1, 99), 3))
             options.append(('receive', sig.pass_call[0], aim, 5.))
         if bx is None:
             # hold position while looking for the ball (running to a slot abandoned pass targets)
@@ -460,8 +473,12 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
                 if course and view.prism_agent == 'in_air_ball_pursuit':
                     from .cognition_rb3 import flight_horizon
                     t_lead = min(t_lead, flight_horizon(course))
-            px = _clamp(ball.x + ball.vx * t_lead, 1, 99)
-            py = _clamp(ball.y + ball.vy * t_lead, 1, 99)
+            if 'projected_beliefs' in view.paired_fixes:
+                from .turnovers import projected
+                px,py = (_clamp(coord,1,99) for coord in projected(ball,view,t_lead))
+            else:
+                px = _clamp(ball.x + ball.vx * t_lead, 1, 99)
+                py = _clamp(ball.y + ball.vy * t_lead, 1, 99)
             mine = hypot(px - view.x, py - view.y)
             closer = sum(1 for t in mates if t.role == 'field'
                          and hypot(px - t.x, py - t.y) < mine)
@@ -543,6 +560,8 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    if not result['view'].get('visible_windups'):
+        result['view'].pop('visible_windups',None)
     if not result['view'].get('release_cue'):
         result['view'].pop('release_cue',None)
     if not result['view'].get('ladder_data'):
@@ -618,6 +637,9 @@ def decide(view, belief, *, learned_values=None):
             intent = cognition_rb3.committed_delivery(view, belief, intent)
             record = dict(record, prism_agent=view.prism_agent,
                           final_selection=[intent.kind, intent.target, intent.aim, intent.contact])
+        if 'takedown_gate' in view.paired_fixes:
+            from .turnovers import gate_contact
+            intent = gate_contact(view,belief,intent)
         return intent, record
     if view.cognition == 'native-v0/3':
         from . import cognition_v3

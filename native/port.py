@@ -36,6 +36,7 @@ class ObservationFrame:
     hunt: bool
     hunt_cleared: bool
     recognized_ball: str | None = None
+    visible_windups: tuple = ()
 
 
 def body(p, fatigue=False):
@@ -322,6 +323,14 @@ class NativePort:
                           tuple(q.id for q in ps if q.frozen(now) or now<=q.immune_until),call[:4] if call and call[4]>=now and call[0]!=pid else None,
                           tackle_count=s.tackle_count)
             frame=ObservationFrame(f'native/{now}/{pid}',now,pid,tuple(tracks),course,sig,restart,e.hunt_claims.get(p.team),s.phase==self.types.Phase.OPENING and not e.hunt_cleared,e.hunt_cleared,recognized)
+            if 'keeper_plant' in getattr(self.config,'rb333',()) and p.role == 'keeper':
+                visible = {t.entity for t in tracks}
+                windups = tuple(q.id for q in ps if q.team != p.team and q.id in visible and (
+                    q.posture.lower() == 'loaded' or
+                    (q.id in self.pending and
+                     self.pending[q.id]['cmd'].intent.kind in ('pass','shoot') and
+                     self.pending[q.id]['cmd'].start_ms <= now < self.pending[q.id]['due'])))
+                frame = replace(frame,visible_windups=windups)
             self.frames.setdefault(pid,deque()).append(frame)
             while len(self.frames[pid])>20:self.frames[pid].popleft()
 
@@ -373,7 +382,7 @@ class NativePort:
                            pending_kind=pend['cmd'].intent.kind if pend else None,pending_target=pend['cmd'].intent.target if pend else None,
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
-                           posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
+                           visible_windups=f.visible_windups,posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
@@ -405,7 +414,7 @@ class NativePort:
             candidates = sorted(candidates, key=lambda t: (t.role != 'ball',
                 (t.x-player.x)**2+(t.y-player.y)**2, -t.captured_ms, t.entity))[:capacity]
         self.memory[player.id] = {t.entity: t for t in candidates}
-        if frame.signals.phase == 'live' and (player.role == 'archer' or player.id not in self.pending):
+        if 'projected_beliefs' not in getattr(self.config,'rb333',()) and frame.signals.phase == 'live' and (player.role == 'archer' or player.id not in self.pending):
             for index, track in enumerate(candidates):
                 if track.captured_ms < frame.captured_ms:
                     x, y = PRISM.remembered_position(track, now, focus, traits['instinct'], frame.captured_ms)

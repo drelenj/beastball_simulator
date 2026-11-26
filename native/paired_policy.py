@@ -52,8 +52,15 @@ def arrival_clearance(view, aim, speed, height, defenders, wait_ms=0):
         age = max(0., (view.delivered_ms-other.captured_ms)/1000)
         radius = sizes.get(other.entity, fallback) + rb.ACQ_RADIUS_M + rb.ACQ_EXTRA_M
         radius += rb.LANE_MARGIN_M + uncertainty + age*(.35 + .65*(1-instinct) + .5*(1-focus))
-        px, py = other.x-view.x+other.vx*windup, other.y-view.y+other.vy*windup
-        vx, vy = dx-other.vx*flight, dy-other.vy*flight
+        if enabled(view,'projected_beliefs'):
+            from .turnovers import projected
+            start = projected(other,view,windup)
+            end = projected(other,view,windup+flight)
+            px, py = start[0]-view.x,start[1]-view.y
+            vx, vy = dx-(end[0]-start[0]),dy-(end[1]-start[1])
+        else:
+            px, py = other.x-view.x+other.vx*windup, other.y-view.y+other.vy*windup
+            vx, vy = dx-other.vx*flight, dy-other.vy*flight
         fraction = max(0.,min(1.,(px*vx+py*vy)/max(1e-9,vx*vx+vy*vy)))
         for f in (max(0.,fraction-.16),fraction,min(1.,fraction+.16)):
             elapsed = windup + flight*f
@@ -71,6 +78,8 @@ def fresh_ball_holder(view, belief, tracks):
     if (course is None or not 0 <= view.delivered_ms-course.captured_ms <= reaction
             or course.z < MIN_HOLD_HEIGHT_M):
         return None
+    if enabled(view,'projected_beliefs'):
+        tracks = tuple(getattr(t,'observation',t) for t in tracks)
     candidates = sorted(
         (hypot(t.x-course.x,t.y-course.y), t.entity)
         for t in tracks if t.role in ('field','keeper') and t.captured_ms == course.captured_ms
