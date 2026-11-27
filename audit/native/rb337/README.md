@@ -6,6 +6,8 @@ Use CPython 3.13.5 and the [RB-3.34 workbook and dependencies](../rb334/README.m
 python3.13 -m audit.native.rb333.match L1 /tmp/rb334-ratings.xlsx /tmp/L1-0-1.json.gz --pair 0 --seed 1
 python3.13 -m audit.native.rb337.tables audit/native/rb337/evidence audit/native/rb336/evidence /tmp/rb337-tables.md
 cmp /tmp/rb337-tables.md audit/native/rb337/TABLES.md
+python3.13 -m audit.native.rb337.checkpoint /tmp/rb337-checkpoint.md
+cmp /tmp/rb337-checkpoint.md audit/native/HP-002_RB337_CHECKPOINT.md
 python3.13 -m audit.native.rb337.check
 python3.13 -m pytest -q b1 native
 ```

@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 from audit.native.rb334.tables import IDENTITY, load
+from .checkpoint import render_checkpoint
 from .tables import render
 
 
@@ -19,6 +20,8 @@ def check():
         assert all(load(root,replay)[key]==saved[key] for key in IDENTITY), replay
     assert (root/'legacy.txt').read_bytes()==Path('native/evidence/rb3-reach/legacy-hashes.txt').read_bytes()
     assert render(root,Path('audit/native/rb336/evidence'))==(root.parent/'TABLES.md').read_text()
+    checkpoint = root.parent.parent/'HP-002_RB337_CHECKPOINT.md'
+    assert render_checkpoint() == checkpoint.read_text()
     print('Verified historical gates, all five T3 fingerprints, L1 repeat and byte-identical tables.')
 
 
