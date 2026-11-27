@@ -17,7 +17,7 @@ Pair 0 is Garvian Guardians–Ala Apex, seeds 1–5. Pair 1 is Yukïma Cowhands�
 
 ## Reading the Archer records
 
-- Attempts include illegal forfeitures. Released arrows are projectiles. Net charges subtract in-flight refunds. Hits count geometric contacts with players regardless of the strike panel or immunity ruling. Freeze counts distinguish carriers at the freeze event.
+- Attempts include illegal forfeitures. Released arrows are projectiles. Net charges subtract in-flight refunds. Hits count first committed player impacts, regardless of the strike panel or immunity ruling. Speculative collision probes and repeatedly retired projectiles are excluded. Freeze counts distinguish carriers at the freeze event.
 - End-of-period remaining budgets use the final outgoing period's resource counts after its in-flight refunds. R0 and R1 report the active possession quota at each boundary.
 - Release intervals pair legal projectiles from the same Archer. The elapsed match clock includes dead play and breaks. The live clock excludes them. Tables average the within-game quantiles.
 - The cycle snapshots effective Strength and Archery Accuracy when the draw begins. A target change keeps the original draw deadline and restarts only the aim, with release gated by the updated deadline and a fresh athlete intent. Actual releases can follow the minimum deadline when the athlete next decides. An abort spends nothing. The legacy turn-change rule still retires projectiles without refund. Period and match scopes preserve dead-ball in-flight refunds.

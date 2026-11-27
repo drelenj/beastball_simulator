@@ -59,6 +59,7 @@ class Witness:
         self.periods = {}
         self.period_zero = {}
         self.arrows = {}
+        self.retired = set()
         self.clamps = None
 
         emit = match.e.emit
@@ -77,14 +78,19 @@ class Witness:
             elif event == 'arrow_release':
                 self.releases[-1].update(shooter=data['player'],target=data['target'],arrow=data['arrow'])
                 self.arrows[data['arrow']] = self.releases[-1]
-            elif event == 'arrow_inert' and 'arrow' in data and data.get('refunded'):
-                row = self.arrows.get(data['arrow'])
-                if row is not None:
-                    row['refunded'] = True
-            elif event == 'arrow_geometry_impact' and data.get('target') not in (None,'ball'):
-                release = self.arrows.get(data['arrow'])
-                if release:
-                    self.hits.append(self.timing(release['team']) | dict(arrow=data['arrow'],struck=data['target']))
+            elif event == 'arrow_inert' and 'arrow' in data:
+                arrow = data['arrow']
+                self.retired.add(arrow)
+                if arrow in self.arrows and data.get('refunded'):
+                    self.arrows[arrow]['refunded'] = True
+            elif event == 'arrow_outcome':
+                arrow = data['arrow']
+                release = self.arrows.get(arrow)
+                if release and arrow not in self.retired:
+                    self.retired.add(arrow)
+                    if data['struck'] in state.players:
+                        self.hits.append(self.timing(release['team']) |
+                                         dict(arrow=arrow,struck=data['struck'],outcome=data['outcome']))
             elif event == 'freeze':
                 player = state.players[data['player']]
                 release = self.arrows.get(data['arrow'])
