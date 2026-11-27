@@ -180,7 +180,7 @@ class NativePort:
             from .ladder import brake_target
             m.native_boundary_target=lambda p,aim: brake_target(p,aim,cfg.goal_radius) if m.s.ball.carrier==p.id else aim
         self.deliver_body_radius = 'endline_held_ball' in getattr(cfg,'rb333',()) or 'edge_aim' in getattr(cfg,'rb333',())
-        if self.v3 and {'edge_brake','edge_turn','edge_aim'}.intersection(cfg.rb333):
+        if cfg.version=='native-rb/3' and {'edge_brake','edge_turn','edge_aim'}.intersection(cfg.rb333):
             from .edge_control import install
             install(self)
         self.reaction_clock = None
