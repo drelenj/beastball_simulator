@@ -256,7 +256,8 @@ def typical_time_to(o, px, py, reach, view=None):
     v0 = (o.vx * dx + o.vy * dy) / d
     t0 = 0.
     if v0 < 0.:
-        t0, D, v0 = -v0 / a, D + v0 * v0 / (2. * a), 0.
+        brake = getattr(view,'typical_braking',None) or a
+        t0, D, v0 = -v0 / brake, D + v0 * v0 / (2. * brake), 0.
     v0 = min(v0, vmax)
     d1 = (vmax * vmax - v0 * v0) / (2. * a)
     if D <= d1:

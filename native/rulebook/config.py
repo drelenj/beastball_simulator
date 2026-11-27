@@ -88,6 +88,7 @@ class RulebookConfigV3(RulebookConfig):
     planned_rate_scale: float = PLANNED_RATE_SCALE
     rb333: tuple[str, ...] = ()
     tackles_per_possession: int = 2
+    traction_scale: float = 1.0
     rb332_pass_clearance: bool = False
     rb332_carry_finish: bool = False
     rb332_fresh_takedown: bool = False
@@ -103,6 +104,8 @@ class RulebookConfigV3(RulebookConfig):
 
     def record(self):
         record = super().record()
+        if self.traction_scale == 1.0:
+            record.pop('traction_scale')
         if self.tackles_per_possession == 2:
             record.pop('tackles_per_possession')
         if not self.rb333:
@@ -148,6 +151,8 @@ class RulebookConfigV3(RulebookConfig):
     def __post_init__(self):
         from .fatigue_rotation import RHYTHMS
         from native.ladder import SWITCHES
+        if isinstance(self.traction_scale,bool) or self.traction_scale not in (1.,1.5,2.):
+            raise ValueError('traction_scale must be 1, 1.5, or 2')
         if type(self.tackles_per_possession) is not int or self.tackles_per_possession not in (2,3,4):
             raise ValueError('the tackle count must be 2, 3, or 4')
         if set(self.rb333) - SWITCHES or len(set(self.rb333)) != len(self.rb333):

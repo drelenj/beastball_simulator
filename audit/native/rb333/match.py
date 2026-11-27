@@ -31,9 +31,13 @@ TURNOVER_ARMS = ('B1','B2','B3','B4')
 
 
 SETS_ARMS = ('C0','C1','C2','T3','T4')
+TRACTION = {'L0':1.,'L1':1.5,'L2':2.}
 
 
 def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=False):
+    traction_arm = arm if arm in TRACTION else None
+    if traction_arm:
+        arm = 'T3'
     sets_arm = arm if arm in SETS_ARMS else None
     if sets_arm:
         arm = 'B4'
@@ -55,6 +59,8 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
             switches+=('universal_unset',)
     trial_limit = {'T3':3,'T4':4}.get(sets_arm)
     tackle_config = {'tackles_per_possession':trial_limit} if trial_limit else {}
+    if traction_arm:
+        tackle_config['traction_scale'] = TRACTION[traction_arm]
     rosters=load_nbl_workbook(book,PAIRS[pair],technical='explicit')
     cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in 'AB'),
         rb322_technical_source='explicit',individuation='individuation/2',fatigue_rotation=True,
@@ -77,6 +83,10 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
     if sets_arm:
         from audit.native.rb336.witness import Witness as SetWitness
         sets = SetWitness(driver)
+    traction = None
+    if traction_arm:
+        from audit.native.rb337.witness import Witness as TractionWitness
+        traction = TractionWitness(driver,rosters)
     samples=Counter()
     def sample(_signal,frame):
         samples[f'{Path(frame.f_code.co_filename).name}/{frame.f_code.co_name}']+=1
@@ -112,7 +122,9 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         extra['rb335'] = turnover.result()
     if sets:
         extra['rb336'] = sets.result()
-    return dict(**extra,arm=sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
+    if traction:
+        extra['rb337'] = traction.result(box)
+    return dict(**extra,arm=traction_arm or sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
         **{k:result[k] for k in ('score','config_digest','trace_hash','state_hash','invariants','status','restart_completion_ratio')},
         box=box,box_csv=output.getvalue(),diagnosis=diagnose([dict(team_lines=box['teams'],possessions=box['possessions'],diagnosis=observed)]),
         cpu_profile=samples.most_common(20),passes=passes,boundary=bounds,keeper=keepers,ratings={p:s['catching'] for p,s in witness.skills.items()},
@@ -122,7 +134,7 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS))
+    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS,*TRACTION))
     p.add_argument('book',type=Path)
     p.add_argument('out',type=Path)
     p.add_argument('--seed',type=int,default=1)

@@ -97,7 +97,8 @@ class NativePort:
                 ordered=engine_order(rosters[team]);result={}
                 for slot,(old,record) in enumerate(zip(players.values(),ordered)):
                     old.id=f'{team}:{record.source_id}';old.slot=slot;old.role=record.role;old.active=slot<12
-                    for key,value in mapped_values(record).items():setattr(old.a,key,value)
+                    for key,value in mapped_values(record,traction_scale=getattr(cfg,'traction_scale',1.)).items():
+                        setattr(old.a,key,value)
                     raw=dict(record.values)
                     if cfg.version == 'native-rb/3':
                         old.a.standing_reach_m = raw.get('standing_reach_m')
@@ -136,6 +137,11 @@ class NativePort:
                       overtime_seconds=cfg.overtime_seconds,dt_ms=cfg.dt_ms,ruleset='1.0.2',
                       assumptions=dict(cfg.physical_assumptions),
                       native=cfg.record())
+        traction_scale = getattr(cfg,'traction_scale',1.)
+        self.typical_braking = None
+        if traction_scale != 1.:
+            from .roster import braking
+            self.typical_braking = braking(PRISM.AVERAGE,traction_scale)
         self.m=m=co.match.Match(settings)
         m.cfg['pocket']=pocket;m.e.pocket=pocket;m.e.c2_tackles=True;m.e.c2_inbound=False;m.e.c2_occ=False;m.e.mark_d=cfg.marking_distance
         m.s.keeper_zone_radius=cfg.zone_radius
@@ -390,7 +396,7 @@ class NativePort:
                            pending_kind=pend['cmd'].intent.kind if pend else None,pending_target=pend['cmd'].intent.target if pend else None,
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
-                           visible_windups=f.visible_windups,
+                           visible_windups=f.visible_windups,typical_braking=self.typical_braking,
                            own_radius=p.radius if 'endline_held_ball' in getattr(self.config,'rb333',()) else None,posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),

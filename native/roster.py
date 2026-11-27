@@ -55,12 +55,12 @@ def acceleration(rating,agility=None):
     return 12.5*rating
 
 
-def braking(agility):
-    return 16.875*agility
+def braking(agility, traction_scale=1.):
+    return 16.875*agility*traction_scale
 
 
-def turning(agility):
-    return 16.25*agility
+def turning(agility, traction_scale=1.):
+    return 16.25*agility*traction_scale
 
 
 def throw_x(rating):
@@ -236,13 +236,13 @@ def engine_order(roster):
     return tuple(starters+[a for a in roster.athletes if id(a) not in used])
 
 
-def mapped_values(athlete):
+def mapped_values(athlete, *, traction_scale=1.):
     r=dict(athlete.values)
     return dict(
         height=r['height_m'],mass=r['mass_kg'],reach=r['reach_m'],
         maximum_speed=speed_mps(r['speed']),
         acceleration=acceleration(r['acceleration']),
-        braking=braking(r['agility']),turning=turning(r['agility']),
+        braking=braking(r['agility'],traction_scale),turning=turning(r['agility'],traction_scale),
         jump_height=1.3*r['jump'],strength=r['strength'],agility=r['agility'],
         endurance=r['stamina'],balance=r['balance'],contact_resistance=r['contact_resistance'],
         tackling=r['tackling'],blocking=r['blocking'],ball_handling=r['ball_handling'],
