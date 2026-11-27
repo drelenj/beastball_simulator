@@ -23,7 +23,7 @@ def measurements(run, last_period=4):
     out = {k:v for k,v in inherited.items() if k.startswith((
         'Possession','Boundary possession','Mean possession','Median possession',
         'Points','Goals and awards','stretch','Carrier out','End P')) or k in (
-            'Carry goals','Pass attempts','Pass completion (%)','Interceptions (ledger)',
+            'Carrier body-outs','Carry goals','Pass attempts','Pass completion (%)','Interceptions (ledger)',
             'CPU seconds/game','Absolute margin','Second team minus first team margin',
             'Arrows net charged','Arrows released (legal)','Freezes','Carrier-freeze fumbles')}
     out['CPU seconds/game, matched observer'] = run.get('matched_cpu_s',run['cpu_s'])
@@ -63,6 +63,7 @@ def read(path, parent):
         base = load(parent,f'R3-{pair}-{seed}')
         again = load(path,f'E0-{pair}-{seed}')
         assert all(base[key]==again[key] for key in IDENTITY), (pair,seed)
+        assert base['rb338']==again['rb338'] and base['box']==again['box'], (pair,seed)
         trial = load(path,f'E1-{pair}-{seed}')
         for run in (again,trial):
             assert run['status']=='final' and run['invariants']=='passed' and run['restart_completion_ratio']==1

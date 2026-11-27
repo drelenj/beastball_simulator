@@ -46,7 +46,7 @@ def checkpoint():
         '',
         '## Implementation and test design',
         '',
-        'Parent `f64b9ab4836885ba6936aaaa3d57d61e37a7eebd`. Branch `codex/rb-3-39-edge`. CPython 3.13.5. The two matchups used the ratings 0.4 workbook at SHA-256 `47b48af7a19035428d517582370fa1782b542980c783edf3dfb20619cf437fba`.',
+        'Parent `f64b9ab4836885ba6936aaaa3d57d61e37a7eebd`. Implementation `791b95cd9c5d6c985472168977ef62c60f3288ea` on `codex/rb-3-39-edge`. CPython 3.13.5. The two matchups used the ratings 0.4 workbook at SHA-256 `47b48af7a19035428d517582370fa1782b542980c783edf3dfb20619cf437fba`.',
         '',
         '- The brake checks the body edge against stopping distance with the 0.3 m buffer. It spends the step first on cancelling outward motion and uses leftover time for the existing propulsion limits. At a corner the closest threatened line takes priority.',
         '- The turn-direction check uses twice the body-model turning radius and the signed short-turn side. It only changes the turn when the desired direction is more than 90° behind the current heading.',
