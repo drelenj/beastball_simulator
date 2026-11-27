@@ -240,7 +240,7 @@ class Witness:
             release = self.arrows.get(arrow)
             if release is None or event not in ('arrow_inert','arrow_outcome'):
                 continue
-            if event=='arrow_outcome' and arrow not in retired and data['struck'] in self.state.players:
+            if event=='arrow_outcome' and arrow not in retired and data.get('struck') in self.state.players:
                 hits.append(self.timing(release['team'],row) | dict(
                     arrow=arrow,struck=data['struck'],outcome=data['outcome']))
             if event=='arrow_inert' and data.get('refunded'):
