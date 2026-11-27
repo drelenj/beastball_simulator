@@ -22,6 +22,7 @@ def metrics(row):
     skip = ('Keeper above','catch ','interception reactions','deflection ','takedown reactions',
             'takedown success (%) cost','takedown success (%) no cost','loose_pursuit ')
     out = {k:v for k,v in source.items() if not k.startswith(skip)}
+    out['Second team minus first team margin'] = out.pop('Ala minus Garvian margin')
     witness = row['rb337']
     contact = row['rb335']['carrier_after_contact']
     boundaries = Counter()
@@ -50,6 +51,9 @@ def metrics(row):
         out['Fumble '+cause] = sum(fumbles[cause,band] for band in BANDS)/2
         for band in BANDS:
             out[f'Fumble {cause}, Handling {band}'] = fumbles[cause,band]/2
+    details = Counter(r['detail'] for r in witness['fumbles'] if r['cause']=='other')
+    for label in ('freeze of carrier','unresolved forced release','unlinked ledger attribution'):
+        out['Other fumble, '+label] = details[label]/2
     related = Counter((r['cause'],r['band']) for r in witness['supplemental_losses'])
     for cause in ('strip attempt','reception drop'):
         out['Related turnover '+cause] = sum(related[cause,band] for band in BANDS)/2

@@ -23,7 +23,6 @@ class Witness:
         self.handling = {f'{team}:{a.source_id}':dict(a.values)['ball_handling']
                          for team,roster in rosters.items() for a in roster.athletes}
         self.moves = defaultdict(Counter)
-        self.losses = {}
         self.dodges = {}
         self.blame = {}
         self.drops = []
@@ -63,14 +62,9 @@ class Witness:
                 pid = data.get('player',data.get('taker'))
                 self.flight = (pid,data.get('target'),[]) if kind=='pass' else None
                 if kind=='loose' and data.get('forced'):
-                    grip = any(target==pid and hold['g']>0 for (_,target),hold in port.m.c3_holds.items())
-                    self.losses[(now,pid)] = ['wrap/takedown' if grip else 'other',len(engine.log)+1]
                     self.dodges.pop(pid,None)
             elif event=='handoff_fumble':
-                self.losses[(now,data['giver'])] = ['handoff',len(engine.log)+1]
                 self.dodges.pop(data['giver'],None)
-            elif event=='strip':
-                self.losses[(now,data['target'])] = ['strip attempt',len(engine.log)+1]
             elif event=='touch' and self.flight and data.get('player')==self.flight[1]:
                 self.flight[2].append(now)
             elif event=='control':
@@ -96,15 +90,27 @@ class Witness:
 
     def result(self,box):
         log = self.port.m.e.log
-        collisions = defaultdict(list)
-        hold_ends = {}
+        collisions, holds, losses = defaultdict(list), defaultdict(list), defaultdict(list)
+        causes_at = {}
         for row in log:
-            event,d = row['event'],row['data']
+            event,d,at = row['event'],row['data'],row['t_ms']
             if event=='c3_collision':
-                for p in (d['a'],d['b']):
-                    collisions[p].append(d.get('t_ms',row['t_ms']))
-            elif event=='c3_hold_end':
-                hold_ends[(row['t_ms'],d['target'])] = d['cause']
+                for player in (d['a'],d['b']):
+                    collisions[player].append(at)
+            elif event=='c3_hold_end' and d.get('peak_grip',0)>0:
+                holds[d['target']].append(at)
+            elif event=='release' and d.get('kind')=='loose' and d.get('forced'):
+                losses[d['player'],'fumble'].append((at,row['id'],'other'))
+            elif event=='handoff_fumble':
+                losses[d['giver'],'fumble'].append((at,row['id'],'handoff'))
+            elif event=='strip':
+                losses[d['target'],'strip'].append((at,row['id'],'strip attempt'))
+                causes_at[at,d['target']] = ('strip attempt','strip event')
+            elif event=='freeze' and d.get('was_carrier'):
+                causes_at[at,d['player']] = ('other','freeze of carrier')
+            elif event=='grounded':
+                causes_at.setdefault((at,d['player']),('wrap/takedown','grounding'))
+        loss_times = {key:[item[0] for item in rows] for key,rows in losses.items()}
         timeline = sorted(self.blame)
         fumbles, supplemental = [], []
         for pos,nxt in zip(box['possessions'],box['possessions'][1:]):
@@ -114,15 +120,21 @@ class Witness:
                 at = timeline[index] if index>=0 else None
                 entry = self.blame.get(at)
                 pid = entry[0] if entry else None
-                cause, event_id = self.losses.get((at,pid),['other',None])
-                if cause=='other' and pid:
-                    if (at,pid) in hold_ends:
-                        cause = 'strip attempt' if hold_ends[at,pid]=='strip' else 'wrap/takedown'
-                    elif any(-1<=at-t<=100 for t in collisions[pid]):
-                        cause = 'collision without grip'
-                if reason=='strip':
-                    cause = 'strip attempt'
-                datum = dict(team=pos['team'],player=pid,cause=cause,witness_ms=at,event_id=event_id,
+                source = losses.get((pid,reason),())
+                release_index = bisect_right(loss_times.get((pid,reason),()),at)-1 if at is not None else -1
+                cause, detail, event_id, loss_ms = 'other', 'unlinked ledger attribution', None, None
+                if release_index>=0 and source[release_index][0]>=pos['start_ms']:
+                    loss_ms,event_id,cause = source[release_index]
+                    detail = 'loss event'
+                    if cause=='other':
+                        cause,detail = causes_at.get((loss_ms,pid),('other','unresolved forced release'))
+                        if detail=='unresolved forced release':
+                            if any(-1<=loss_ms-t<=100 for t in holds[pid]):
+                                cause,detail = 'wrap/takedown','grip ended near release'
+                            elif any(-1<=loss_ms-t<=100 for t in collisions[pid]):
+                                cause,detail = 'collision without grip','contact near release'
+                datum = dict(team=pos['team'],player=pid,cause=cause,detail=detail,
+                             witness_ms=at,loss_ms=loss_ms,event_id=event_id,
                              possession_start_ms=pos['start_ms'],possession_end_ms=nxt['start_ms'],
                              ball_handling=self.handling.get(pid),band=band(self.handling.get(pid)))
                 (fumbles if reason=='fumble' else supplemental).append(datum)
