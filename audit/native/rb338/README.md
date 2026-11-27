@@ -7,6 +7,8 @@ python3.13 -m audit.native.rb333.match R3 /tmp/rb334-ratings.xlsx /tmp/R3-0-1.js
 python3.13 -m audit.native.rb338.tables audit/native/rb338/evidence audit/native/rb337/evidence /tmp/rb338-tables.md /tmp/rb338-episodes.json
 cmp /tmp/rb338-tables.md audit/native/rb338/TABLES.md
 cmp /tmp/rb338-episodes.json audit/native/rb338/SAMPLED_BODY_OUTS.json
+python3.13 -m audit.native.rb338.checkpoint /tmp/rb338-checkpoint.md
+cmp /tmp/rb338-checkpoint.md audit/native/HP-002_RB338_CHECKPOINT.md
 python3.13 -m audit.native.rb338.check
 python3.13 -m pytest -q b1 native
 ```

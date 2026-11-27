@@ -126,8 +126,8 @@ class Witness:
 
     def timing(self, team):
         s = self.state
-        start = self.period_zero.setdefault(s.period,s.live_ms if s.period>6 else
-            s.live_ms - (self.port.config.period_seconds*1000 if s.period<=4 else 300000) + s.game_ms)
+        period_ms = self.port.config.period_seconds*1000 if s.period<=4 else 300000
+        start = self.period_zero.setdefault(s.period,s.live_ms - period_ms + s.game_ms)
         minute = max(0,(s.live_ms-start)//60000)+1
         if s.period<=5:
             minute = min(minute,10 if s.period<=4 else 5)
