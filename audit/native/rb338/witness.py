@@ -257,5 +257,9 @@ class Witness:
             if event=='arrow_inert' and data.get('refunded'):
                 release['refunded'] = True
             retired.add(arrow)
+        if self.state.phase.value=='final':
+            # A sudden-death score can close the match directly.
+            law = self.match.e.rb
+            self.periods.setdefault(self.state.period,{team:law.remaining(team) for team in ('A','B')})
         return dict(releases=self.releases,hits=hits,freezes=self.freezes,periods=self.periods,
                     body_outs=[row for row in self.outs if row['event_id'] in body])
