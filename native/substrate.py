@@ -68,8 +68,13 @@ def build_core(config):
             ))
         if 'movement_clock' in config.rb333:
             patches['match'].append(('if p.id in targets and s.now>=p.next_decision:', 'if p.id in targets:'))
-        if 'braking' in config.rb333:
+        if {'braking','edge_aim'}.intersection(config.rb333):
             patches['match'].append(('p.target=targets[p.id];p.next_decision=', 'p.target=self.native_boundary_target(p,targets[p.id]);p.next_decision='))
+        if {'edge_brake','edge_turn'}.intersection(config.rb333):
+            patches['match'].append((
+                '  dvx,dvy=desx-vx,desy-vy\n  if sp>1:',
+                '  if self.native_edge_update(p,dt,live,desx,desy,p.a.acceleration*(.55+.45*p.fatigue)*prop):return\n'
+                '  dvx,dvy=desx-vx,desy-vy\n  if sp>1:'))
         if 'keeper_deadline' in config.rb333:
             patches['match'].append(("   if landings_only:continue", "   timing=getattr(p,'native_keeper_flight',None)\n   if timing and b.carrier is None and timing[2]>s.now:out.append(timing[2])\n   if landings_only:continue"))
         if getattr(config, 'fatigue_rotation', False):

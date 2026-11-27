@@ -33,9 +33,13 @@ TURNOVER_ARMS = ('B1','B2','B3','B4')
 SETS_ARMS = ('C0','C1','C2','T3','T4')
 TRACTION = {'L0':1.,'L1':1.5,'L2':2.}
 ARCHERY = {'R0':None,'R1':None,'R2':'match','R3':'period'}
+EDGE_ARMS = ('E0','E1')
 
 
 def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=False, max_steps=None):
+    edge_arm = arm if arm in EDGE_ARMS else None
+    if edge_arm:
+        arm = 'R3'
     archer_arm = arm if arm in ARCHERY else None
     if archer_arm:
         arm = 'L0'
@@ -61,6 +65,8 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
             switches+=('universal_set_speed',)
         if sets_arm not in ('C0','C1'):
             switches+=('universal_unset',)
+    if edge_arm=='E1':
+        switches += ('edge_control',)
     trial_limit = {'T3':3,'T4':4}.get(sets_arm)
     tackle_config = {'tackles_per_possession': trial_limit or 2}
     if traction_arm:
@@ -94,7 +100,10 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         from audit.native.rb337.witness import Witness as TractionWitness
         traction = TractionWitness(driver,rosters)
     archer = None
-    if archer_arm:
+    if edge_arm:
+        from audit.native.rb339.witness import Witness as EdgeWitness
+        archer = EdgeWitness(driver)
+    elif archer_arm:
         from audit.native.rb338.witness import Witness as ArcherWitness
         archer = ArcherWitness(driver)
     samples=Counter()
@@ -136,7 +145,9 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         extra['rb337'] = traction.result(box)
     if archer:
         extra['rb338'] = archer.result(bounds)
-    return dict(**extra,arm=archer_arm or traction_arm or sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
+    if edge_arm:
+        extra['rb339'] = archer.perimeter()
+    return dict(**extra,arm=edge_arm or archer_arm or traction_arm or sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
         **{k:result[k] for k in ('score','config_digest','trace_hash','state_hash','invariants','status','restart_completion_ratio')},
         box=box,box_csv=output.getvalue(),diagnosis=diagnose([dict(team_lines=box['teams'],possessions=box['possessions'],diagnosis=observed)]),
         cpu_profile=samples.most_common(20),passes=passes,boundary=bounds,keeper=keepers,ratings={p:s['catching'] for p,s in witness.skills.items()},
@@ -146,7 +157,7 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS,*TRACTION,*ARCHERY))
+    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS,*TRACTION,*ARCHERY,*EDGE_ARMS))
     p.add_argument('book',type=Path)
     p.add_argument('out',type=Path)
     p.add_argument('--seed',type=int,default=1)

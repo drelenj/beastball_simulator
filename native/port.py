@@ -179,6 +179,10 @@ class NativePort:
         if 'braking' in getattr(cfg,'rb333',()):
             from .ladder import brake_target
             m.native_boundary_target=lambda p,aim: brake_target(p,aim,cfg.goal_radius) if m.s.ball.carrier==p.id else aim
+        self.deliver_body_radius = 'endline_held_ball' in getattr(cfg,'rb333',()) or 'edge_aim' in getattr(cfg,'rb333',())
+        if self.v3 and {'edge_brake','edge_turn','edge_aim'}.intersection(cfg.rb333):
+            from .edge_control import install
+            install(self)
         self.reaction_clock = None
         if 'universal_unset' in getattr(cfg,'rb333',()):
             from .reaction_clock import ReactionClock
@@ -397,7 +401,7 @@ class NativePort:
                            arrows_loaded=self.m.s.quivers[p.team].allocation-self.m.s.quivers[p.team].spent if p.role=='archer' else None,
                            last_release_ms=self.m.s.quivers[p.team].last_release if p.role=='archer' else None,
                            visible_windups=f.visible_windups,typical_braking=self.typical_braking,
-                           own_radius=p.radius if 'endline_held_ball' in getattr(self.config,'rb333',()) else None,posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
+                           own_radius=p.radius if self.deliver_body_radius else None,posture=p.posture,policy=self.policies[p.team],body=body(p, getattr(self.config, 'fatigue_rotation', False)),restart=f.restart,
                            contestant=f.contestant,hunt=f.hunt,bench_role=bench_role,dribble_used=bool(self.m.e.dribbles.get(pid)),
                            zone_elapsed_ms=self.m.s.live_ms-self.m.e.residence.get(pid,self.m.s.live_ms),
                            max_throw_speed=p.native_max_throw_speed if self.attr else 40.,own_mass_kg=p.a.mass if self.attr else None,
@@ -610,7 +614,8 @@ class NativePort:
             return None
         rotation = getattr(self, 'rotation', None)
         skill = rotation.execution_rating(player, intent.technique) if rotation else None
-        return maneuver(player, intent, self.m.assume['gravity'], skill=skill)
+        edge_target = getattr(self.m,'native_edge_target',None)
+        return maneuver(player, intent, self.m.assume['gravity'], skill=skill, edge_target=edge_target)
 
     def own_release_ms(self, player):
         """Unrestrained thrown-pass and shot wind-up on the integer clock."""

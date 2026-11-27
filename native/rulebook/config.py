@@ -167,6 +167,9 @@ class RulebookConfigV3(RulebookConfig):
             raise ValueError('the tackle count must be 2, 3, or 4')
         if set(self.rb333) - SWITCHES or len(set(self.rb333)) != len(self.rb333):
             raise ValueError("unknown or repeated RB-3.33 switch")
+        if 'edge_control' in self.rb333:
+            from native.edge_control import FLAGS
+            object.__setattr__(self,'rb333',self.rb333+tuple(flag for flag in FLAGS if flag not in self.rb333))
         expected_pocket=_RB3_POCKET
         if {'carry_seven', 'carry_value'}.intersection(self.rb333):
             object.__setattr__(self,'carry_points',7)

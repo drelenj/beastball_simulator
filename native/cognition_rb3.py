@@ -461,6 +461,9 @@ def rb319_has(view, part):
 def keep_in(view, aim):
     """A2: clamp an aim into the field minus BOUNDARY_MARGIN_M (the box is convex, so the path from any inside point stays inside);
     the end line within the goal mouth is exempt."""
+    if 'edge_aim' in getattr(view,'paired_fixes',()):
+        from .edge_control import view_aim
+        return tuple(round(value,3) for value in view_aim(view,aim))
     m = BOUNDARY_MARGIN_M
     x, y = aim
     y = max(m, min(100. - m, y))

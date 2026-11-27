@@ -168,6 +168,9 @@ def boundary_aim(view, aim):
     exempt only when the observed body motion and aimed route meet the
     whole-ball mouth. Braking distance is based on own motion and ability.
     """
+    if enabled(view,'edge_aim'):
+        from .edge_control import view_aim
+        return tuple(round(value,3) for value in view_aim(view,aim))
     if view.body is None:
         return aim
     x,y = aim

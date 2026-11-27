@@ -12,7 +12,7 @@ SPIN_SPEED_LOSS = .2
 HURDLE_JUMP_FRACTION = .36
 
 
-def maneuver(player, intent, gravity, *, skill=None):
+def maneuver(player, intent, gravity, *, skill=None, edge_target=None):
     if intent.aim is None:
         return None
     technique = intent.technique
@@ -30,7 +30,10 @@ def maneuver(player, intent, gravity, *, skill=None):
         dx *= .75 + .25 * skill
     else:
         dy *= 1. + DODGE_GAIN * (skill - .7)
-    return (min(99.,max(1.,player.x+dx)),min(99.,max(1.,player.y+dy)))
+    aim = player.x+dx,player.y+dy
+    if edge_target is not None:
+        return edge_target(player,aim)
+    return (min(99.,max(1.,aim[0])),min(99.,max(1.,aim[1])))
 
 
 def reflex_gain(player):
