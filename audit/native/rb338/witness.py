@@ -60,16 +60,19 @@ class Witness:
         self.period_zero = {}
         self.arrows = {}
         self.clamps = None
+        self.boundary_holder = None
 
-        emit = match.e.emit
+        emit, boundary = match.e.emit, match.e.boundary
         def observed_emit(event, rule, **data):
             seq = emit(event,rule,**data)
             now = state.now
             if event == 'c3_collision':
                 for actor,other,delta in (('a','b','dv_a'),('b','a','dv_b')):
                     self.collisions[data[actor]] = (now,data[other],data.get(delta))
-            elif event == 'boundary' and data.get('carrier'):
-                self.body_out(seq,data)
+            elif event == 'boundary':
+                holder = data.get('carrier') or self.boundary_holder
+                if holder:
+                    self.body_out(seq,data,holder)
             elif event in ('rb_arrow_release','rb_arrow_forfeited'):
                 team = data['ruling']['team']
                 self.releases.append(self.timing(team) | dict(legal=event=='rb_arrow_release',
@@ -86,6 +89,14 @@ class Witness:
             elif event == 'period_end':
                 self.periods[state.period] = {team:match.e.rb.remaining(team) for team in ('A','B')}
             return seq
+
+        def observed_boundary(x=None,y=None,carrier=None):
+            prior = self.boundary_holder
+            self.boundary_holder = carrier or state.ball.carrier
+            try:
+                return boundary(x,y,carrier)
+            finally:
+                self.boundary_holder = prior
 
         move, process_events, submit = match.c3_step, match.process_events, port.submit
         def observed_move(ms,targets,scripted=False):
@@ -107,6 +118,7 @@ class Witness:
             return result
 
         match.e.emit = observed_emit
+        match.e.boundary = observed_boundary
         match.c3_step = observed_move
         match.process_events = observed_events
         port.submit = observed_submit
@@ -217,8 +229,7 @@ class Witness:
                     last_collision_ms=body.collision[0] if body.collision else None,collision=body.collision,
                     posture=body.posture,frozen=body.frozen,thaw_immune=body.immune,maneuver=body.maneuver)
 
-    def body_out(self, seq, data):
-        pid = data['carrier']
+    def body_out(self, seq, data, pid):
         now = self.state.now
         self.sample_decision('exit',pid,now)
         history = [r for r in self.timeline[pid] if now-WINDOW_MS<=r['ms']<=now]

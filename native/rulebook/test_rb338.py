@@ -93,6 +93,7 @@ def test_budgeted_release_freeze_and_period_refund():
     assert port.submit(release)['status']=='accepted'
     port.archer_motor()
     assert e.rb.remaining('A')==(9,4)
+    assert e.assert_invariants()
     assert len(s.arrows)==1
     assert e.freeze(target.id,arrow=s.arrows[0].id)
     assert e.rb.remaining('A')==(9,3)
@@ -116,3 +117,11 @@ def test_public_budget_view_round_trip():
     recovered,_=port.view_from_json(C.view_to_json(view,belief))
     assert recovered.archer_budgets==view.archer_budgets
     assert recovered.archer_cycle_ms==view.archer_cycle_ms
+
+
+def test_match_quiver_invariant_uses_its_scoped_allocation():
+    port=build('match')
+    port.m.e.native_sync()
+    quiver=port.m.s.quivers['A']
+    assert (quiver.allocation,quiver.loaded)==(25,25)
+    assert port.m.e.assert_invariants()

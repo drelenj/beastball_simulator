@@ -104,6 +104,6 @@ def install(co,cfg):
   for team in ('A','B'):
    assert sum(p.active and p.team==team and p.role!='archer' for p in s.players.values())<=cfg.field_roster_limit
    assert sum(p.active and p.team==team and p.role=='archer' for p in s.players.values())<=1
-  for q in s.quivers.values():assert 0<=q.spent<=q.allocation and 0<=q.loaded<=cfg.arrows
+  for q in s.quivers.values():assert 0<=q.spent<=q.allocation and 0<=q.loaded<=q.allocation
   return True
  E.assert_invariants=invariants
