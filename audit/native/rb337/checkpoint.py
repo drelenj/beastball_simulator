@@ -41,7 +41,6 @@ def render_checkpoint():
     def detail(label):
         return sum(row['detail'] == label for row in loss_records)
 
-    best = min(overall,key=overall.get)
     lines = [
         '# OWNER BRIEFING',
         '',
@@ -50,7 +49,7 @@ def render_checkpoint():
           f'Across the eight pairs, carrier body-outs averaged {overall["L0"]:.2f}, {overall["L1"]:.2f} and {overall["L2"]:.2f} per team per game at 1×, 1.5× and 2×.',
         '3. **Unproven.** The two pairings do not establish a league-wide effect. Unresolved fumble attributions are itemized below.',
         '4. **Blocking.** None for this checkpoint.',
-        f'5. **Recommended action.** Review the boundary and margin contrasts together before choosing a traction scale. {best} had the fewest carrier body-outs in this sample.',
+        '5. **Recommended action.** Keep L0 as the reference. The 1.5× body-out change was within paired noise, and 2× increased self-run end-line exits. Both higher scales increased possessions.',
         '',
         '## Build and evidence',
         '',
@@ -76,6 +75,8 @@ def render_checkpoint():
         for key in (body, 'Possessions/team', 'Points/team',margin):
             lines.append(line(f'{label}, {key}',key,indices))
     lines.extend([
+        '',
+        'The 1.5× scale left total body-outs within paired noise at −0.25 ± 1.31. The 2× scale raised self-run end-line exits by 2.44 ± 0.78 versus L0 and by 1.50 ± 0.58 versus L1. Its change in total exits versus L0, +2.06 ± 1.34, remained within paired noise. Possessions rose by 8.56 ± 2.44 at 1.5× and 16.38 ± 2.97 at 2× versus L0. Both matchups’ signed margin differences stayed within paired noise.',
         '',
         'The [complete paired tables](rb337/TABLES.md) include per-pairing and combined possession endpoints, line and contact splits, scoring mix, passing, evasion, Keeper outcomes, turning radii and individual scores. A dash marks an unavailable denominator or a contrast with fewer than two paired observations.',
         '',
