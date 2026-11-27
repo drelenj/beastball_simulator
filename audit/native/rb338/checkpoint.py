@@ -25,10 +25,17 @@ def report():
              ('Arrows released (legal)','Freezes','Carrier-freeze fumbles','Possessions/team')}
     values = lambda key: ' / '.join(f'{n:.2f}' for n in brief[key])
     suite = (RAW/'pytest.txt').read_text().splitlines()[-1]
+    assert ' passed' in suite and ' failed' not in suite and ' error' not in suite, suite
     people = 'Garvian Guardians–Ala Apex seeds 1–5 and Yukïma Cowhands–Isu’Kari Sirenwings seeds 1–3'
     elapsed = [x for run in rows['R0'] for x in intervals(run['rb338'],'now')]
     live = [x for run in rows['R0'] for x in intervals(run['rb338'],'live_ms')]
     distribution = lambda clocks: ' / '.join(f'{quantile(clocks,p):.2f}' for p in (.1,.5,.9))
+
+    freeze_exhausted_early = sum(v[1]==0 for game in rows['R2'] for v in game['rb338']['periods']['1'].values())
+    period_arrow_exhausted = sum(v[0]==0 for game in rows['R3'] for period in ('1','2','3','4')
+                                 for v in game['rb338']['periods'][period].values())
+    overtime = [f"pair {game['pair']} seed {game['seed']}" for game in rows['R3']
+                if len(game['rb338']['periods'])>4]
 
     lines = [
         '# OWNER BRIEFING',
@@ -63,6 +70,12 @@ def report():
     grid(lines,{a:[{k:r[k] for k in SUMMARY} for r in arm] for a,arm in metrics.items()},range(8),'Combined highlights')
     lines.extend([
         'Counts are per team per game unless labelled. Paired contrasts use matching seeds and opponents. A tilde marks effects within two paired standard errors. See the complete tables for the matchup splits, event-based Keeper rates and named box rates.',
+        '',
+        'R1 reduced total freezes by 36.69 ± 5.40 versus R0. Its changes in carrier-freeze fumbles and possessions stayed within paired noise. R2 and R3 reduced both, with possession differences of −20.75 ± 3.75 and −14.88 ± 4.73 versus R0. Combined mean score and signed margin changes stayed within paired noise.',
+        '',
+        f'By the end of period 1, {freeze_exhausted_early} of 16 teams had spent all five match-budget freezes in R2. In R3, teams used their full arrow budget in {period_arrow_exhausted} of 64 regulation team-periods. The R3 overtime case was {", ".join(overtime)} and reconciled to its separate overtime budget.',
+        '',
+        'In R0, 13.94 of 19.19 carrier body-outs per team per game had an inside locomotion target and no recent-contact or active-maneuver classification. This was the largest category in every arm. R3 recorded 4.25 ± 1.41 more body-outs than R2.',
         '',
         '## Gates',
         '',

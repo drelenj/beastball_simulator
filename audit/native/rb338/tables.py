@@ -194,6 +194,11 @@ def render(rows, sample):
         scores = [rows[a][i]['score'] for a in ARMS]
         cells = [f"{r['A']}–{r['B']} ({r['B']-r['A']:+d})" for r in scores]
         lines.append('| '+' | '.join((('Garvian–Ala','Yukïma–Isu’Kari')[pair],str(seed),*cells))+' |')
+    lines.extend(['','## CPU seconds by game','','| Pair | Seed | R0 | R1 | R2 | R3 |',
+                  '| --- | ---: | ---: | ---: | ---: | ---: |'])
+    for i,(pair,seed) in enumerate(CASES):
+        times = [f"{rows[a][i]['cpu_s']:.2f}" for a in ARMS]
+        lines.append('| '+' | '.join((('Garvian–Ala','Yukïma–Isu’Kari')[pair],str(seed),*times))+' |')
     lines.append('')
     spending(lines,rows)
     lines.extend(['## Fixed sample of body-out episodes','',
