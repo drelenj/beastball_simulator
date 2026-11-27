@@ -18,3 +18,14 @@ Pair 0 is Garvian Guardians–Ala Apex, seeds 1–5. Pair 1 is Yukïma Cowhands�
 - The engine ledger gives strip and reception-drop turnovers separate treatment. They appear in supplemental rows so the strict fumble causes still reconcile exactly. A drop requires an intended receiver touch followed by opposing control before the receiver secures the pass, plus a possession change. Ball Handling bands use the attributed roster rating at kickoff. Unknown marks unavailable athlete attribution.
 - Juke and spin success means the athlete retained the ball for 500 live ms after an admitted move. Stiff-arm success means a recorded positive impulse. Truck success means a recorded broken contact. These measures describe the observed outcomes and have different denominators.
 - Body-outs use the nearest line to the recorded boundary point. Self-run means no collision involving the carrier in the previous 500 ms. Possession durations, save rates, first-tackle shares and other inherited measures follow the [RB-3.36 definitions](../rb336/README.md).
+
+For the full paired schedule, run the same match command for each arm and the pair/seed lists above. Use `L1-repeat.json.gz` for the second L1 pair-0 seed-1 replay. Run the historical checks with the workbook in the same Python environment.
+
+```bash
+python3.13 -m audit.native.rb333.gates /tmp/rb334-ratings.xlsx /tmp/history0.json --modes R1 PLANNED
+python3.13 -m audit.native.rb333.gates /tmp/rb334-ratings.xlsx /tmp/history1.json --modes compatibility core
+python3.13 -m native.rulebook.scoring_audit --legacy >/tmp/rb337-legacy.txt
+cmp /tmp/rb337-legacy.txt native/evidence/rb3-reach/legacy-hashes.txt
+```
+
+The A6, B4 and RB332 replays use the same match command with pair 0 and seed 1. The five L0 pair-0 replays supply the T3 identity check.
