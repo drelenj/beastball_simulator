@@ -35,6 +35,9 @@ def checkpoint():
     _,_,over_diff,over_se = summary('Carrier out, steering overshoot with aim inside')
     _,_,pace_diff,pace_se = summary('Possessions/team')
     _,_,score_diff,score_se = summary('Points/team')
+    _,_,other_diff,other_se = summary('Non-carrier body-outs')
+    _,_,edge_tackle_diff,edge_tackle_se = summary('Takedowns within 3 m of a line')
+    _,_,cpu_diff,cpu_se = summary('CPU seconds/game, matched observer')
     lines = [
         '# OWNER BRIEFING',
         '',
@@ -42,7 +45,7 @@ def checkpoint():
         f'2. **What Native can do now.** Surface locomotion checks the athlete’s own stopping and turning distances before reaching a line. Carrier body-outs averaged {body_before:.2f} in R3 and {body_after:.2f} in E1 per team per game.',
         '3. **Unproven.** The two matchups measure eight paired games. Contact impulses and the ability to stop before a given line remain part of the physics.',
         '4. **Blocking.** None for this checkpoint.',
-        '5. **Recommended action.** Review the reductions and side effects in the paired table before adopting the switch. The period-budget sizes still need the owner’s confirmation.',
+        '5. **Recommended action.** Review E1 as a candidate for adoption given the reduction in exits. Weigh the increase in near-line takedowns and the drop in possessions. The period-budget sizes still need the owner’s confirmation.',
         '',
         '## Implementation and test design',
         '',
@@ -57,7 +60,9 @@ def checkpoint():
         '',
         'Garvian Guardians–Ala Apex seeds 1–5 and Yukïma Cowhands–Isu’Kari Sirenwings seeds 1–3. Eight new E1 games finished with invariants passing and all restarts resolved. The eight E0 replays matched their archived R3 fingerprints and supplied the additional perimeter witnesses. All eight archived R3 results supply the already available comparison measures. At most two simulation processes ran for the paired games.',
         '',
-        f'Carrier body-outs changed by {body_diff:+.2f} ± {body_se:.2f} per team per game. Inside-aim steering overshoots changed by {over_diff:+.2f} ± {over_se:.2f}. Possessions changed by {pace_diff:+.2f} ± {pace_se:.2f}, and points by {score_diff:+.2f} ± {score_se:.2f}. The thresholds in the tables distinguish larger effects from paired noise.',
+        f'Carrier body-outs changed by {body_diff:+.2f} ± {body_se:.2f} per team per game. Inside-aim steering overshoots changed by {over_diff:+.2f} ± {over_se:.2f}. Non-carrier body-outs changed by {other_diff:+.2f} ± {other_se:.2f}.',
+        '',
+        f'Takedowns within 3 m of a line rose by {edge_tackle_diff:.2f} ± {edge_tackle_se:.2f}, while overall takedown success and per-pairing margins stayed within paired noise. Possessions changed by {pace_diff:+.2f} ± {pace_se:.2f}, and points by {score_diff:+.2f} ± {score_se:.2f}. The matched-observer runtime change was {cpu_diff:+.2f} ± {cpu_se:.2f} CPU seconds per game.',
         '',
         f'The replay archives embed named CSV and JSON box scores. The observer sampled {len(sample)} E1 exits with fixed seed 20261129. The linked files include per-game results, all paired contrasts, and complete episode histories.',
         '',
