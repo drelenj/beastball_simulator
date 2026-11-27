@@ -22,7 +22,7 @@ def main():
     runs = {}
     for seed in (1, 3):
         for mode in ('off', VERSION) if seed == 1 else (VERSION, 'off'):
-            cfg = RulebookConfigV3(roster_digests=digests, individuation=mode)
+            cfg = RulebookConfigV3(tackles_per_possession=2, roster_digests=digests, individuation=mode)
             start = time.process_time()
             result, _ = run_match(seed, cfg, rosters=rosters, max_steps=args.steps,
                                   port_factory=RulebookPort)

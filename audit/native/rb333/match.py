@@ -32,9 +32,13 @@ TURNOVER_ARMS = ('B1','B2','B3','B4')
 
 SETS_ARMS = ('C0','C1','C2','T3','T4')
 TRACTION = {'L0':1.,'L1':1.5,'L2':2.}
+ARCHERY = {'R0':None,'R1':None,'R2':'match','R3':'period'}
 
 
-def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=False):
+def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=False, max_steps=None):
+    archer_arm = arm if arm in ARCHERY else None
+    if archer_arm:
+        arm = 'L0'
     traction_arm = arm if arm in TRACTION else None
     if traction_arm:
         arm = 'T3'
@@ -58,9 +62,11 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         if sets_arm not in ('C0','C1'):
             switches+=('universal_unset',)
     trial_limit = {'T3':3,'T4':4}.get(sets_arm)
-    tackle_config = {'tackles_per_possession':trial_limit} if trial_limit else {}
+    tackle_config = {'tackles_per_possession': trial_limit or 2}
     if traction_arm:
         tackle_config['traction_scale'] = TRACTION[traction_arm]
+    if archer_arm and archer_arm != 'R0':
+        tackle_config.update(archer_cycle=True, archer_budget=ARCHERY[archer_arm])
     rosters=load_nbl_workbook(book,PAIRS[pair],technical='explicit')
     cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in 'AB'),
         rb322_technical_source='explicit',individuation='individuation/2',fatigue_rotation=True,
@@ -87,6 +93,10 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
     if traction_arm:
         from audit.native.rb337.witness import Witness as TractionWitness
         traction = TractionWitness(driver,rosters)
+    archer = None
+    if archer_arm:
+        from audit.native.rb338.witness import Witness as ArcherWitness
+        archer = ArcherWitness(driver)
     samples=Counter()
     def sample(_signal,frame):
         samples[f'{Path(frame.f_code.co_filename).name}/{frame.f_code.co_name}']+=1
@@ -94,7 +104,7 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         previous=signal.signal(signal.SIGPROF,sample)
         signal.setitimer(signal.ITIMER_PROF,.05,.05)
     try:
-        driver.play()
+        archer.play(driver,max_steps) if archer else driver.play(max_steps)
     finally:
         if arm in ('A5','A5prime','A6'):
             signal.setitimer(signal.ITIMER_PROF,0)
@@ -124,7 +134,9 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
         extra['rb336'] = sets.result()
     if traction:
         extra['rb337'] = traction.result(box)
-    return dict(**extra,arm=traction_arm or sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
+    if archer:
+        extra['rb338'] = archer.result(bounds)
+    return dict(**extra,arm=archer_arm or traction_arm or sets_arm or turnover_arm or arm,seed=seed,pair=pair,python=platform.python_version(),cpu_s=cpu,
         **{k:result[k] for k in ('score','config_digest','trace_hash','state_hash','invariants','status','restart_completion_ratio')},
         box=box,box_csv=output.getvalue(),diagnosis=diagnose([dict(team_lines=box['teams'],possessions=box['possessions'],diagnosis=observed)]),
         cpu_profile=samples.most_common(20),passes=passes,boundary=bounds,keeper=keepers,ratings={p:s['catching'] for p,s in witness.skills.items()},
@@ -134,17 +146,18 @@ def run(arm, seed, book, pair=0, *, diagnostics=False, turnover_diagnostics=Fals
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS,*TRACTION))
+    p.add_argument('arm',choices=(*ARMS,'A6',*TURNOVER_ARMS,*SETS_ARMS,*TRACTION,*ARCHERY))
     p.add_argument('book',type=Path)
     p.add_argument('out',type=Path)
     p.add_argument('--seed',type=int,default=1)
+    p.add_argument('--max-steps',type=int)
     p.add_argument('--pair',type=int,default=0)
     p.add_argument('--diagnostics', action='store_true')
     p.add_argument('--turnover-diagnostics',action='store_true')
     a=p.parse_args()
     result=run(a.arm,a.seed,a.book,a.pair,
                diagnostics=a.diagnostics or (a.arm == 'A6' and not a.turnover_diagnostics),
-               turnover_diagnostics=a.turnover_diagnostics)
+               turnover_diagnostics=a.turnover_diagnostics,max_steps=a.max_steps)
     a.out.parent.mkdir(parents=True,exist_ok=True)
     tmp=a.out.with_suffix('.tmp')
     tmp.write_bytes(gzip.compress(json.dumps(result,ensure_ascii=False).encode(),mtime=0))

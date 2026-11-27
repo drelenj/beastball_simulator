@@ -507,11 +507,16 @@ class NativePort:
             pending=self.pending.get(p.id)
             if not pending or pending['cmd'].intent.kind!='draw_release' or intent.related_command_id!=pending['cmd'].command_id or intent.target!=pending['cmd'].intent.target:
                 return {'status':'rejected','reason':'stale_draw'}
+            if getattr(self.config,'archer_cycle',False) and s.now < pending['due']:
+                return {'status':'rejected','reason':'archer_cycle_pending'}
             pending['release_intent']=intent
             self.command_log.append(C.MotorCommand(intent.intent_id+'/command',intent,s.now,s.now,'bow'))
             return {'status':'accepted'}
         if kind=='abort_draw':
-            self.pending.pop(p.id,None);return {'status':'accepted'}
+            self.pending.pop(p.id,None)
+            if getattr(self.config,'archer_cycle',False):
+                p.rb_archer_cycle = None
+            return {'status':'accepted'}
         if kind=='continue_current':return {'status':'accepted' if p.id in self.pending else 'rejected'}
         if kind in ('retain','archer_hold','restart_wait','scan','no_action'):return {'status':'accepted'}
         if kind in ('position','restart_position','carry','pursue','press','mark','support','receive','search','keeper_set','keeper_save') or (kind=='tackle' and self.v3):
@@ -531,6 +536,29 @@ class NativePort:
             cmd=C.MotorCommand(intent.intent_id+'/command',intent,s.now,None,'locomotion')
             self.command_log.append(cmd);return {'status':'accepted','command':cmd}
         if kind in ('pass','shoot','restart_pass','draw_release','dribble','bounce'):
+            cycle = kind == 'draw_release' and getattr(self.config,'archer_cycle',False)
+            if cycle:
+                if p.role!='archer' or s.phase!=self.types.Phase.LIVE or getattr(e,'rb310_hold',None):
+                    return {'status':'rejected','reason':'archer_unavailable'}
+                if e.rb.remaining(p.team)[0] <= 0:
+                    return {'status':'rejected','reason':'archer_quota'}
+                if intent.aim is None or intent.target is None:
+                    return {'status':'rejected','reason':'archer_aim'}
+                pending = self.pending.get(p.id)
+                if pending:
+                    old = pending['cmd']
+                    if ('aim_ms' not in pending or pending['period']!=s.period or
+                            old.command_id!=intent.related_command_id or old.intent.target==intent.target):
+                        return {'status':'rejected','reason':'stale_draw'}
+                    due = max(s.now,pending['draw_ready']) + pending['aim_ms']
+                    cmd = C.MotorCommand(intent.intent_id+'/command',intent,old.start_ms,due,'bow')
+                    pending.update(cmd=cmd,due=due)
+                    pending.pop('release_intent',None)
+                    p.rb_archer_cycle = (s.period,intent.target,due)
+                    self.command_log.append(cmd)
+                    e.emit('archer_reaim','RB-3.38',player=p.id,target=intent.target,
+                           draw_ready=pending['draw_ready'],due=due)
+                    return {'status':'accepted','command':cmd}
             if p.id in self.pending:return {'status':'rejected','reason':'resource_busy'}
             if kind not in ('restart_pass','draw_release') and s.ball.carrier!=p.id:return {'status':'rejected','reason':'not_carrier'}
             if intent.aim is None:return {'status':'rejected','reason':'missing_aim'}
@@ -542,6 +570,10 @@ class NativePort:
             ans=self.geom.launch_for(origin,target,min(intent.speed,limit),9.81,.015) if kind!='draw_release' else None
             if kind!='draw_release' and ans is None:return {'status':'rejected','reason':'geometry'}
             delay = 600 if kind == 'draw_release' else 250
+            if cycle:
+                from .archer_cycle import cycle_ms
+                draw_ms, aim_ms = cycle_ms(p.a.strength,p.a.archery_accuracy)
+                delay = draw_ms + aim_ms
             if self.config.version == 'native-rb/3' and kind in ('pass', 'shoot'):
                 delay = self.own_release_ms(p)
             wait = intent.wait_ms if self.prism_core and kind == 'pass' else 0
@@ -551,6 +583,11 @@ class NativePort:
                                'bow' if kind=='draw_release' else 'ball',ans[0] if ans else None)
             self.pending[p.id]={'cmd':cmd,'velocity':ans[0] if ans else None,'due':cmd.release_ms,'period':s.period}
             self.command_log.append(cmd)
+            if cycle:
+                self.pending[p.id].update(draw_ready=s.now+draw_ms, aim_ms=aim_ms)
+                p.rb_archer_cycle = (s.period,intent.target,cmd.release_ms)
+                e.emit('archer_draw_start','RB-3.38',player=p.id,target=intent.target,
+                       draw_ms=draw_ms,aim_ms=aim_ms,due=cmd.release_ms)
             if kind=='pass' and not wait and 'pass_signal' in getattr(self.config,'rb333',()):
                 self.m.pass_signal = (intent.target,s.now)
             if kind=='pass' and not wait:self.calls[p.team]=(p.id,intent.target,*intent.aim,s.now+2500)
@@ -582,6 +619,8 @@ class NativePort:
     def resolve(self,pid,status):
         p=self.pending.pop(pid,None)
         if p:
+            if getattr(self.config,'archer_cycle',False) and p['cmd'].intent.kind=='draw_release':
+                self.m.s.players[pid].rb_archer_cycle = None
             cmd=p['cmd'];o=C.PhysicalOutcome(cmd.command_id+'/outcome',cmd.command_id,status,self.m.s.now)
             self.outcomes.append(o);self.feedback.setdefault(pid,[]).append((o.outcome_id,status+':'+cmd.intent.kind,o.resolved_ms))
 

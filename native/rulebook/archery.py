@@ -9,7 +9,8 @@ def install(co,cfg):
   old_sync(self)
   team=self.possession.pp
   if team is not None and team!=self.rb.possession:
-   self.rb_publish(self.rb.turnover(team))
+   row = self.rb.turnover(team)
+   if row is not None:self.rb_publish(row)
    if v3:
     epoch=self.__dict__.setdefault('rb_quota_epoch',{'A':0,'B':0});epoch[self.s.other(team)]+=1
     # RB-3.5 ruling 2: an arrow in flight when possession changes is inert and stays spent.
@@ -26,12 +27,30 @@ def install(co,cfg):
     if refund:self.rb.quotas[ar.team]['arrows']=max(0,self.rb.quotas[ar.team]['arrows']-1)
     self.emit('arrow_inert','RB-3.4',arrow=ar.id,player=ar.shooter,target=ar.target,reason='dead_ball_in_flight',refunded=refund)
   for t,q in self.s.quivers.items():
-   q.allocation=cfg.arrows;q.spent=self.rb.quotas[t]['arrows'];q.loaded=cfg.arrows-q.spent
+   q.allocation=self.rb.quota_limits()[0];q.spent=self.rb.quotas[t]['arrows'];q.loaded=q.allocation-q.spent
    self.freezes[t]=self.rb.quotas[t]['freezes']
  E.native_sync=sync
+ if getattr(cfg, 'archer_budget', None):
+  old_end_period = E.end_period
+
+  def end_period(self):
+   for ar in self.s.arrows:
+    if ar.live:
+     ar.live = False
+     self.rb.quotas[ar.team]['arrows'] -= 1
+     self.emit('arrow_inert','RB-3.4',arrow=ar.id,player=ar.shooter,target=ar.target,
+               reason='period_end_in_flight',refunded=True)
+   old_end_period(self)
+   self.native_sync()
+
+  E.end_period = end_period
  def shoot(self,pid,target,velocity,origin=None):
-  s=self.s;p=s.players[pid];t=s.players.get(target);quota=self.rb.quotas[p.team]
-  if quota['arrows']>=cfg.arrows:return False
+  s=self.s;p=s.players[pid];t=s.players.get(target)
+  if getattr(cfg, 'archer_cycle', False):
+   cycle = getattr(p, 'rb_archer_cycle', None)
+   if not cycle or cycle[:2] != (s.period,target) or s.now < cycle[2]:return False
+   p.rb_archer_cycle = None
+  if self.rb.remaining(p.team)[0] <= 0:return False
   if v3:
    self.native_sync()
    if s.phase in (P.DEAD,P.FLIGHT):
@@ -69,7 +88,7 @@ def install(co,cfg):
  def freeze(self,pid,arrow=None,panel=True,direct=True,in_range=True):
   p=self.s.players[pid];projectile=next((a for a in self.s.arrows if a.id==arrow),None)
   team=projectile.team if projectile else self.s.other(p.team)
-  if not panel or p.frozen(self.s.now) or self.s.now<=p.immune_until or self.rb.quotas[team]['freezes']>=5:return False
+  if not panel or p.frozen(self.s.now) or self.s.now<=p.immune_until or self.rb.remaining(team)[1]<=0:return False
   if self.zone(p.x,p.y) is not None:return False
   # Native wrapper also enforces Keeper and recovery protections.
   # Retain Native recovery/keeper admission, but its historical quota key

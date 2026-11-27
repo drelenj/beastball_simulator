@@ -87,6 +87,8 @@ class AthleteView:
     pending_release_ms: int | None = None
     arrows_loaded: int | None = None
     last_release_ms: int | None = None
+    archer_cycle_ms: tuple[int,int] | None = None
+    archer_budgets: tuple | None = None
     posture: str = 'upright'
     policy: PolicyParams = PolicyParams()
     body: E.AthleteBody | None = None
@@ -336,7 +338,7 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
         # Ruleset 1.0.2 (D1 record R-17): any eligible player may be frozen; a Keeper inside
         # his own zone is protected; R-01: no target before the first passive possession.
         ready = (view.arrows_loaded or 0) > 0 and (
-            view.last_release_ms is None or now - view.last_release_ms >= 2600) and not getattr(view, 'snap_hold', False)   # RB-3.13: no arrow during the snap hold
+            view.archer_cycle_ms or view.last_release_ms is None or now - view.last_release_ms >= 2600) and not getattr(view, 'snap_hold', False)   # RB-3.13: no arrow during the snap hold
         if (ready and sig.phase == 'live' and sig.passive_team is not None and banned != 'draw_release'
                 and (not view.registry_ratings or getattr(view, 'freezes_left', None) != 0)):
             for t in sorted(opps, key=lambda t: t.entity):
@@ -567,6 +569,9 @@ def _base_decide(view: AthleteView, belief: BeliefState, *, compact=False):
 
 def view_to_json(view, belief):
     result = {'view': asdict(view), 'belief': asdict(belief)}
+    for key in ('archer_cycle_ms', 'archer_budgets'):
+        if result['view'].get(key) is None:
+            result['view'].pop(key,None)
     if result['view'].get('typical_braking') is None:
         result['view'].pop('typical_braking',None)
     if result['view'].get('own_radius') is None:
@@ -601,6 +606,11 @@ def view_from_json(d):
     v, b = dict(d['view']), dict(d['belief'])
     tr = lambda xs: tuple(Track(**t) for t in xs)
     v['tracks'] = tr(v['tracks'])
+    if v.get('archer_cycle_ms'):
+        v['archer_cycle_ms'] = tuple(v['archer_cycle_ms'])
+    if v.get('archer_budgets'):
+        mode, horizon, teams = v['archer_budgets']
+        v['archer_budgets'] = (mode, horizon, tuple(tuple(t) for t in teams))
     if 'individual_ratings' in v:
         v['individual_ratings'] = tuple(tuple(row) for row in v['individual_ratings'])
     if v.get('core_motion'):
@@ -656,6 +666,45 @@ def decide(view, belief, *, learned_values=None):
         from . import cognition_v3
         return cognition_v3.decide(view, belief)
     return decide_v2(view, belief)
+
+
+def archer_cycle_options(view, belief):
+    """Return the established target valuations, with the public budget reserved."""
+    from .archer_cycle import opportunity_cost
+
+    probe = replace(view, pending_command_id=None)
+    base, record = _base_decide(probe,belief,compact=True)
+    pending = view.pending_kind == 'draw_release'
+    target_visible = any(kind=='draw_release' and target==view.pending_target
+                         for kind,target,_,_ in record['options'])
+    remaining_freezes = getattr(view,'freezes_left',None)
+    hold_kind = ('continue_current' if target_visible and remaining_freezes != 0 else 'abort_draw') if pending else 'archer_hold'
+    options = [(replace(base,kind=hold_kind,target=view.pending_target,aim=None,
+                        related_command_id=view.pending_command_id),
+                0., hold_kind)]
+    if remaining_freezes == 0:
+        return options, record
+    # Holding a draw spends nothing. Compare the opportunity cost at the
+    # first aiming decision and again when a physical release is possible.
+    ready = pending and view.delivered_ms>=view.pending_release_ms
+    tracks = {t.entity:t for t in belief.tracks}
+    for kind, target, aim, value in record['options']:
+        if kind != 'draw_release':
+            continue
+        if view.archer_budgets and (not pending or ready):
+            _, horizon, teams = view.archer_budgets
+            _, arrows, freezes = next(row for row in teams if row[0]==view.team)
+            if not min(arrows,freezes):
+                continue
+            distance = hypot(aim[0]-view.x,aim[1]-view.y)
+            value -= opportunity_cost(arrows,freezes,horizon,sum(view.archer_cycle_ms),distance)
+        if pending and target==view.pending_target:
+            kind = 'release_arrow' if ready else 'continue_current'
+        track = tracks[target]
+        option = replace(base,kind=kind,target=target,aim=aim,aim_vel=(track.vx,track.vy),
+                         period=view.signals.period,related_command_id=view.pending_command_id)
+        options.append((option,value,f'{kind}:{target}'))
+    return options, record
 
 
 def decide_v2(view, belief):
@@ -715,6 +764,10 @@ def decide_v2(view, belief):
                 ux,uy=((dx/d,dy/d) if d else (view.attack_sign,0.))
                 return choice('position',(max(.6,min(99.4,gx+ux*(view.zone_radius+1.))),
                                           max(.6,min(99.4,50+uy*(view.zone_radius+1.)))))
+    if view.role=='archer' and view.archer_cycle_ms and view.signals.phase=='live' and not getattr(view,'snap_hold',False):
+        options, record = archer_cycle_options(view,belief)
+        intent = max(options,key=lambda o:(o[1],o[2]))[0]
+        return intent, record
     if view.role=='archer' and view.pending_command_id and view.pending_release_ms is not None and view.delivered_ms>=view.pending_release_ms:
         target=next((t for t in belief.tracks if t.entity==view.pending_target),None)
         if (target is None or view.signals.phase!='live' or getattr(view,'snap_hold',False)

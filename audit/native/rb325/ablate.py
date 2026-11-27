@@ -113,7 +113,7 @@ def main():
     if args.case not in ('off', 'on'):
         install(active)
     rosters = neutral_rosters(True)
-    cfg = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A','B')),
+    cfg = RulebookConfigV3(tackles_per_possession=2, roster_digests=tuple(rosters[t].digest for t in ('A','B')),
                            individuation='off' if args.case == 'off' else 'individuation/1')
     if args.case not in ('on', 'off') and 'fatigue' not in active:
         object.__setattr__(cfg, 'physical_assumptions', tuple(

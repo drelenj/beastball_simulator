@@ -87,7 +87,9 @@ class RulebookConfigV3(RulebookConfig):
     rotation_rhythm: str = "R1"
     planned_rate_scale: float = PLANNED_RATE_SCALE
     rb333: tuple[str, ...] = ()
-    tackles_per_possession: int = 2
+    tackles_per_possession: int = 3
+    archer_cycle: bool = False
+    archer_budget: str | None = None
     traction_scale: float = 1.0
     rb332_pass_clearance: bool = False
     rb332_carry_finish: bool = False
@@ -104,6 +106,10 @@ class RulebookConfigV3(RulebookConfig):
 
     def record(self):
         record = super().record()
+        if not self.archer_cycle:
+            record.pop('archer_cycle')
+        if self.archer_budget is None:
+            record.pop('archer_budget')
         if self.traction_scale == 1.0:
             record.pop('traction_scale')
         if self.tackles_per_possession == 2:
@@ -151,6 +157,10 @@ class RulebookConfigV3(RulebookConfig):
     def __post_init__(self):
         from .fatigue_rotation import RHYTHMS
         from native.ladder import SWITCHES
+        if type(self.archer_cycle) is not bool:
+            raise ValueError('archer_cycle must be boolean')
+        if self.archer_budget not in (None, 'match', 'period') or (self.archer_budget and not self.archer_cycle):
+            raise ValueError('archer_budget requires archer_cycle and must be match or period')
         if isinstance(self.traction_scale,bool) or self.traction_scale not in (1.,1.5,2.):
             raise ValueError('traction_scale must be 1, 1.5, or 2')
         if type(self.tackles_per_possession) is not int or self.tackles_per_possession not in (2,3,4):

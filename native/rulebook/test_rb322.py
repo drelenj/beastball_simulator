@@ -95,12 +95,13 @@ def _real_seed1(**overrides):
     from native.run import run_match
     from .port import RulebookPort
     rosters = load_canon_nbl(TEAMS)
-    cfg = RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A', 'B')), **overrides)
+    cfg = RulebookConfigV3(tackles_per_possession=2,
+                           roster_digests=tuple(rosters[t].digest for t in ('A', 'B')), **overrides)
     r, _ = run_match(1, cfg, max_steps=200000, rosters=rosters, port_factory=RulebookPort)
     return r['trace_hash'], r['state_hash']
 
 
-def test_real_seed_1_with_no_overrides_reproduces_the_rb321_soak_gate():
+def test_real_seed_1_with_recorded_tackle_limit_reproduces_the_rb321_soak_gate():
     pytest.importorskip('openpyxl')
     assert _real_seed1() == GATE
 

@@ -22,6 +22,8 @@ if any(field.name == 'individuation' for field in fields(RulebookConfigV3)):
     params['individuation'] = 'off' if args.mode == 'off' else 'individuation/1'
 elif args.mode == 'on':
     parser.error('the baseline has no individuation switch')
+if any(field.name == 'tackles_per_possession' for field in fields(RulebookConfigV3)):
+    params['tackles_per_possession'] = 2
 cfg = RulebookConfigV3(**params)
 before = process_time()
 result, _ = run_match(args.seed, cfg, rosters=rosters, max_steps=1500, port_factory=RulebookPort)

@@ -26,7 +26,10 @@ def scoring_report(e,cfg):
 def run_match(seed=1,config=None,max_steps=None,progress=None,plumbing=True,policies=None,rosters=None):
  r,p=native_run(seed,config or RulebookConfig(),policies=policies,plumbing=plumbing,max_steps=max_steps,progress=progress,port_factory=RulebookPort,rosters=rosters)
  e=p.m.e
- state=asdict(e.rb);state['timeout_triggers']=sorted(e.rb.timeout_triggers);state['injuries']=sorted(e.rb.injuries)
+ state=asdict(e.rb)
+ for key in ('archer_cycle', 'archer_budget'):
+  if not getattr(p.config,key,None):state['config'].pop(key,None)
+ state['timeout_triggers']=sorted(e.rb.timeout_triggers);state['injuries']=sorted(e.rb.injuries)
  shot_bands,carries,own_goals=scoring_report(e,p.config)
  counts=dict(Counter(x['kind'] for x in e.rb.calls))
  basis=dict(mode='banded',carry=p.config.carry_points,throws={'under10':p.config.release_bands[0][1],'10_to20':p.config.release_bands[1][1],'20plus':p.config.release_bands[2][1]},half_goal=1,full_goal_award=p.config.full_award_points,own_goal=p.config.own_goal_points,provisional=True)

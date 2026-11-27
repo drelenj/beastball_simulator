@@ -24,7 +24,7 @@ PAIRS = (
 
 def real_build(seed, pair, workbook):
     roster = load_nbl_workbook(workbook, PAIRS[pair], technical='explicit')
-    config = RulebookConfigV3(roster_digests=tuple(roster[t].digest for t in ('A','B')),
+    config = RulebookConfigV3(tackles_per_possession=2, roster_digests=tuple(roster[t].digest for t in ('A','B')),
                               individuation='individuation/2', rb322_technical_source='explicit')
     return Build(seed,config,roster)
 

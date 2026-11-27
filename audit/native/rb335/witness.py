@@ -23,9 +23,10 @@ class Witness:
         planted = set()
         advance, submit, emit, step = driver.advance, port.submit, engine.emit, port.step
 
-        def select(view, belief, _remaining):
+        def observe_decision(view, belief, remaining, selector):
             nonlocal latest_issue
-            intent, record = cognition.decide(view,belief)
+            intent, record = (selector(view,belief,remaining) if selector is not None
+                              else cognition.decide(view,belief))
             latest_issue = record.get('contact_issue')
             if latest_issue:
                 path, _, _, blocked = latest_issue
@@ -92,7 +93,12 @@ class Witness:
             if holder and holder==ball.carrier and (0 <= old_y <= 100) and (ball.y<0 or ball.y>100):
                 self.sidelines += 1
 
-        driver.advance = lambda *,progress=None: advance(select,progress=progress)
+        def observed_advance(*,progress=None,select=None):
+            def observe(view,belief,remaining):
+                return observe_decision(view,belief,remaining,select)
+            return advance(observe,progress=progress)
+
+        driver.advance = observed_advance
         port.submit, engine.emit, port.step = observed_submit, observed_emit, observed_step
 
     def _arrival(self,state,flight,kind):

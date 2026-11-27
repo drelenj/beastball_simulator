@@ -21,7 +21,7 @@ PAIRS = (RB327_PAIRS[0], ('Yukïma Cowhands','Isu’Kari Sirenwings'),
 def match(book, variant, pair, seed, steps=None, stats=True, scale=PLANNED_RATE_SCALE, diagnostics=True):
     teams=PAIRS[pair]
     rosters=load_nbl_workbook(book,teams,technical='explicit')
-    cfg=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in 'AB'),
+    cfg=RulebookConfigV3(tackles_per_possession=2, roster_digests=tuple(rosters[t].digest for t in 'AB'),
                         rb322_technical_source='explicit',individuation='individuation/2',
                         fatigue_rotation=True,rotation_rhythm=variant,planned_rate_scale=scale)
     start=process_time()

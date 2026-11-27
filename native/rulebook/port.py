@@ -1,6 +1,6 @@
 """RB engine driver; reuses Native's unchanged athlete decision implementation."""
 from native.port import NativePort,body
-from dataclasses import dataclass,fields
+from dataclasses import dataclass,fields,replace as dataclass_replace
 from native import cognition as C
 from .authorities import CREW
 
@@ -223,6 +223,18 @@ class RulebookPort(NativePort):
                                                and q.id in res and e_.zone(q.x,q.y)==covered)) if not self.individuation and covered is not None else ()
             hold=getattr(self.m.e,'rb310_hold',None);extra['snap_hold']=bool(hold)
             extra['own_release_ms'] = extra['pass_release_ms'] = self.own_release_ms(me_)
+            if c.archer_budget:
+                law = e_.rb
+                horizon = self.m.s.game_ms
+                if c.archer_budget == 'match':
+                    horizon += max(0,c.periods-self.m.s.period) * c.period_seconds * 1000
+                v = dataclass_replace(v,archer_budgets=(c.archer_budget,horizon,
+                                       tuple((team,*law.remaining(team)) for team in ('A','B'))))
+            if v.role == 'archer' and c.archer_cycle:
+                from native.archer_cycle import cycle_ms
+                v = dataclass_replace(v,archer_cycle_ms=cycle_ms(me_.a.strength,me_.a.archery_accuracy),
+                                      arrows_loaded=e_.rb.remaining(v.team)[0])
+                extra['freezes_left'] = e_.rb.remaining(v.team)[1]
             if self.individuation:
                 sizes = getattr(self, 'visible_bodies', {}).get(f.frame_id, ()) if f else ()
                 kept = {t.entity for t in v.tracks} | {pid}
@@ -230,7 +242,7 @@ class RulebookPort(NativePort):
                 extra['body_height'] = tuple(sorted((who, height) for who, _, height in sizes if who in kept))
                 states = tuple(row for row in states if row[0] in kept)
                 if v.role == 'archer':
-                    extra['freezes_left'] = max(0, 5 - self.m.e.rb.quotas[v.team]['freezes'])
+                    extra['freezes_left'] = self.m.e.rb.remaining(v.team)[1]
             else:
                 extra['body_reach']=tuple(sorted((q.id,round(q.a.reach,4)) for q in self.m.s.players.values() if q.active))
                 extra['body_height']=tuple(sorted((q.id,round(q.a.height,4)) for q in self.m.s.players.values() if q.active))
@@ -250,7 +262,10 @@ class RulebookPort(NativePort):
     def archer_motor(self):
         m,s=self.m,self.m.s
         for pid,pend in list(self.pending.items()):
-            if pend['cmd'].intent.kind!='draw_release' or s.now<pend['due']:continue
+            if pend['cmd'].intent.kind!='draw_release':continue
+            if getattr(self.config,'archer_cycle',False) and (pend['period']!=s.period or s.phase!=self.types.Phase.LIVE or getattr(m.e,'rb310_hold',None)):
+                self.resolve(pid,'interrupted');continue
+            if s.now<pend['due']:continue
             p=s.players[pid]
             if pend['period']!=s.period or not p.eligible(s.now):self.resolve(pid,'interrupted');continue
             if 'release_intent' not in pend:continue

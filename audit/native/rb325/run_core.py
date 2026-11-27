@@ -20,7 +20,7 @@ parser.add_argument('--steps', type=int)
 parser.add_argument('--out', type=Path,required=True)
 args=parser.parse_args()
 rosters=load_canon_nbl(('Garvian Guardians','Ala Apex')) if args.roster == 'real' else neutral_rosters(args.roster == 'neutral-real')
-config=RulebookConfigV3(roster_digests=tuple(rosters[t].digest for t in ('A','B')),
+config=RulebookConfigV3(tackles_per_possession=2, roster_digests=tuple(rosters[t].digest for t in ('A','B')),
                         individuation='individuation/2' if args.mode == 'core' else 'off')
 start=process_time()
 port=RulebookPort(args.seed,config,rosters=rosters)

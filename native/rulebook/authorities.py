@@ -23,7 +23,26 @@ class Authorities:
         authority='goal_judge_'+data.get('defending','A') if kind in ('goal','no_goal') else ('line_judge_1' if data.get('y',0)<=50 else 'line_judge_2') if kind=='boundary' else 'zone_judge' if kind=='keeper_immunity' else 'clock_official' if kind in ('break','timeout') else 'referee'
         row=dict(id=len(self.calls)+1,kind=kind,authority=authority,period=self.period,**data);self.calls.append(row);return row
 
+    @property
+    def budget(self):
+        return getattr(self.config, 'archer_budget', None)
+
+    def quota_limits(self):
+        if self.budget == 'match':
+            return 25, 5
+        if self.budget == 'period':
+            return (10, 4) if self.period <= 4 else (5, 2)
+        return self.config.arrows, 5
+
+    def remaining(self, team):
+        quota = self.quotas[team]
+        arrows, freezes = self.quota_limits()
+        return arrows - quota['arrows'], freezes - quota['freezes']
+
     def enter_period(self,period):
+        if self.budget == 'period' and self.period != period:
+            for quota in self.quotas.values():
+                quota.update(arrows=0, freezes=0)
         self.period=period
         if period==3:self.timeouts={'A':2,'B':2};self.challenges={'A':1,'B':1}
         elif period==5:self.timeouts={'A':1,'B':1};self.challenges={'A':2,'B':2}
@@ -51,13 +70,15 @@ class Authorities:
             self.possession=team
             # The other team's Archer becomes eligible against this new
             # possession. The team gaining the ball keeps its dormant quota.
+            if self.budget:
+                return None
             archer_team='B' if team=='A' else 'A'
             self.quotas[archer_team].update(arrows=0,freezes=0)
             return self.ruling('quota_reset',team=team,archer_team=archer_team)
 
     def arrow(self,team,legal):
         q=self.quotas[team]
-        if q['arrows']>=self.config.arrows:return self.ruling('arrow_denied',team=team)
+        if self.remaining(team)[0] <= 0:return self.ruling('arrow_denied',team=team)
         q['arrows']+=1
         return self.ruling('arrow_release' if legal else 'arrow_forfeited',team=team,minor=not legal)
 

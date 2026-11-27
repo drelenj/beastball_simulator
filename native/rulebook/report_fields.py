@@ -100,7 +100,7 @@ def install(co, cfg):
         why = None
         if outcome == 'inert':
             q = self.s.players.get(target)
-            quota = getattr(self, 'rb', None) and ar is not None and self.rb.quotas[ar.team]['freezes'] >= 5
+            quota = getattr(self, 'rb', None) and ar is not None and self.rb.remaining(ar.team)[1] <= 0
             why = ('not_live' if self.s.phase.value != 'live' else 'off_panel' if not panel else 'frozen' if q and q.frozen(self.s.now)
                    else 'immune' if q and self.s.now <= q.immune_until else 'zone' if q and self.zone(q.x, q.y) is not None
                    else 'freeze_quota' if quota else 'teammate' if q and ar is not None and q.team == ar.team else 'other')

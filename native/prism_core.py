@@ -484,6 +484,11 @@ def _decide(view, belief, *, selector=None, learned_values=None):
     valuation = (None if learned_values is None else
                  lambda stage,options: learned_values.score(stage,view,belief,options))
     menu = Menu(view, selector, valuation)
+    if view.role == 'archer' and view.archer_cycle_ms:
+        candidates, record = C.archer_cycle_options(baseline,belief)
+        options = [Option(intent,value,'disruption',label) for intent,value,label in candidates]
+        intent = menu.choose('archer_cycle',options).intent
+        return intent, dict(record, core_menus=menu.records, prism_agent='disruption')
     if view.pending_command_id or view.role == 'keeper' and not view.holds_ball:
         forecast = belief
         course = belief.ball_course

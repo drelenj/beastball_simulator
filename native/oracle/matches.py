@@ -10,6 +10,7 @@ def match_build(seed, mode='core', roster=None):
     source = roster or ('neutral-real' if mode == 'core' else 'real')
     rosters = load_canon_nbl(TEAMS) if source == 'real' else neutral_rosters(source == 'neutral-real')
     config = RulebookConfigV3(
+        tackles_per_possession=2,
         roster_digests=tuple(rosters[team].digest for team in ('A', 'B')),
         individuation='individuation/2' if mode == 'core' else 'off',
     )
