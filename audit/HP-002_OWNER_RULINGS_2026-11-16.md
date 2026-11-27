@@ -217,3 +217,9 @@ breaking the plane is a carry goal. Context: the A6 soak called about 10.3 held-
    Supersedes the 25 Nov wording "a ball crossing outside the half-disc is out of bounds" for HELD balls only.
 3. Keeper planting: approved ONLY as a universal athlete property. Principle (standing): any change to a cognitive or
    physical ability must apply to all athletes, scaled to each athlete's ability; no position-only constants.
+
+## 2026-11-27 — owner rulings after RB-3.37
+1. CANON: 3 tackles per possession (possession ends on the third tackle). Replaces 2.
+2. Archer volume: (a) a universal shooting cycle (draw-aim-release time scaled by the Archer's ratings, like other
+   abilities) AND (c) an arrow/freeze budget per period or per match in place of the per-possession limits
+   (15 arrows / 5 freezes). Budget size to be chosen by the owner from trial evidence.
