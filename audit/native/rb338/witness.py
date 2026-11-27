@@ -55,11 +55,10 @@ class Witness:
         self.maneuvers = {}
         self.decisions = {}
         self.collisions = {}
-        self.outs, self.releases, self.hits, self.freezes = [], [], [], []
+        self.outs, self.releases, self.freezes = [], [], []
         self.periods = {}
         self.period_zero = {}
         self.arrows = {}
-        self.retired = set()
         self.clamps = None
 
         emit = match.e.emit
@@ -78,19 +77,6 @@ class Witness:
             elif event == 'arrow_release':
                 self.releases[-1].update(shooter=data['player'],target=data['target'],arrow=data['arrow'])
                 self.arrows[data['arrow']] = self.releases[-1]
-            elif event == 'arrow_inert' and 'arrow' in data:
-                arrow = data['arrow']
-                self.retired.add(arrow)
-                if arrow in self.arrows and data.get('refunded'):
-                    self.arrows[arrow]['refunded'] = True
-            elif event == 'arrow_outcome':
-                arrow = data['arrow']
-                release = self.arrows.get(arrow)
-                if release and arrow not in self.retired:
-                    self.retired.add(arrow)
-                    if data['struck'] in state.players:
-                        self.hits.append(self.timing(release['team']) |
-                                         dict(arrow=arrow,struck=data['struck'],outcome=data['outcome']))
             elif event == 'freeze':
                 player = state.players[data['player']]
                 release = self.arrows.get(data['arrow'])
@@ -130,14 +116,16 @@ class Witness:
         self.original_clamps = ((cognition_rb3,'keep_in',cognition_rb3.keep_in),
                                 (paired_policy,'boundary_aim',paired_policy.boundary_aim))
 
-    def timing(self, team):
+    def timing(self, team, row=None):
         s = self.state
-        period_ms = self.port.config.period_seconds*1000 if s.period<=4 else 300000
-        start = self.period_zero.setdefault(s.period,s.live_ms - period_ms + s.game_ms)
-        minute = max(0,(s.live_ms-start)//60000)+1
-        if s.period<=5:
-            minute = min(minute,10 if s.period<=4 else 5)
-        return dict(team=team,period=s.period,minute=minute,now=s.now,live_ms=s.live_ms)
+        period, live, game, now = ((row['period'],row['live_ms'],row['g_ms'],row['t_ms'])
+                                  if row else (s.period,s.live_ms,s.game_ms,s.now))
+        period_ms = self.port.config.period_seconds*1000 if period<=4 else 300000
+        start = self.period_zero.setdefault(period,live - period_ms + game)
+        minute = max(0,(live-start)//60000)+1
+        if period<=5:
+            minute = min(minute,10 if period<=4 else 5)
+        return dict(team=team,period=period,minute=minute,now=now,live_ms=live)
 
     def decide(self, view, belief, remaining):
         self.clamps = [] if view.holds_ball else None
@@ -243,5 +231,20 @@ class Witness:
 
     def result(self, carrier_events):
         body = {row['event_id'] for row in carrier_events if row['kind']=='carrier'}
-        return dict(releases=self.releases,hits=self.hits,freezes=self.freezes,periods=self.periods,
+        retired, hits = set(), []
+        # The report wrapper writes some events through the original emitter.
+        # Read the committed engine log after integrations and rollbacks.
+        for row in self.match.e.log:
+            event, data = row['event'], row['data']
+            arrow = data.get('arrow')
+            release = self.arrows.get(arrow)
+            if release is None or event not in ('arrow_inert','arrow_outcome'):
+                continue
+            if event=='arrow_outcome' and arrow not in retired and data['struck'] in self.state.players:
+                hits.append(self.timing(release['team'],row) | dict(
+                    arrow=arrow,struck=data['struck'],outcome=data['outcome']))
+            if event=='arrow_inert' and data.get('refunded'):
+                release['refunded'] = True
+            retired.add(arrow)
+        return dict(releases=self.releases,hits=hits,freezes=self.freezes,periods=self.periods,
                     body_outs=[row for row in self.outs if row['event_id'] in body])
