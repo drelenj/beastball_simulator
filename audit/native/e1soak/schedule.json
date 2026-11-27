@@ -1,0 +1,1682 @@
+[
+ {
+  "id": "r000-s1",
+  "teams": [
+   "Nuk’yl Chiefs",
+   "Ndumba Specters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r000-s2",
+  "teams": [
+   "Nuk’yl Chiefs",
+   "Ndumba Specters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r001-s1",
+  "teams": [
+   "Wibatu Rangers",
+   "Priya Arpaqu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r001-s2",
+  "teams": [
+   "Wibatu Rangers",
+   "Priya Arpaqu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r002-s1",
+  "teams": [
+   "Garahviq Immortals",
+   "Ashkara Ignivars"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r002-s2",
+  "teams": [
+   "Garahviq Immortals",
+   "Ashkara Ignivars"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r003-s1",
+  "teams": [
+   "Yukïma Cowhands",
+   "Güunlekia Serpents"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r003-s2",
+  "teams": [
+   "Yukïma Cowhands",
+   "Güunlekia Serpents"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r004-s1",
+  "teams": [
+   "Isu’Kari Sirenwings",
+   "Xenar Ignite"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r004-s2",
+  "teams": [
+   "Isu’Kari Sirenwings",
+   "Xenar Ignite"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r005-s1",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Zafiren Tidewings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r005-s2",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Zafiren Tidewings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r006-s1",
+  "teams": [
+   "Ursiria 65ers",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r006-s2",
+  "teams": [
+   "Ursiria 65ers",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r007-s1",
+  "teams": [
+   "Bryjeer Flame Devils",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r007-s2",
+  "teams": [
+   "Bryjeer Flame Devils",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r008-s1",
+  "teams": [
+   "Lykessia Wolverines",
+   "Dōmyu Dominators"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r008-s2",
+  "teams": [
+   "Lykessia Wolverines",
+   "Dōmyu Dominators"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r009-s1",
+  "teams": [
+   "Kalundu Shockwave",
+   "Mbuya Ïmu Moonhawks"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r009-s2",
+  "teams": [
+   "Kalundu Shockwave",
+   "Mbuya Ïmu Moonhawks"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r010-s1",
+  "teams": [
+   "Ala Marauders",
+   "Garvian Guardians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r010-s2",
+  "teams": [
+   "Ala Marauders",
+   "Garvian Guardians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r011-s1",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Khemara Sunscourge"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r011-s2",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Khemara Sunscourge"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r012-s1",
+  "teams": [
+   "Hina’sola Hunters",
+   "Ala Apex"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r012-s2",
+  "teams": [
+   "Hina’sola Hunters",
+   "Ala Apex"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r013-s1",
+  "teams": [
+   "Ashkara Ignivars",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r013-s2",
+  "teams": [
+   "Ashkara Ignivars",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r014-s1",
+  "teams": [
+   "Ndumba Specters",
+   "Ala Marauders"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r014-s2",
+  "teams": [
+   "Ndumba Specters",
+   "Ala Marauders"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r015-s1",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Lykessia Wolverines"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r015-s2",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Lykessia Wolverines"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r016-s1",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Garahviq Immortals"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r016-s2",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Garahviq Immortals"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r017-s1",
+  "teams": [
+   "Priya Arpaqu",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r017-s2",
+  "teams": [
+   "Priya Arpaqu",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r018-s1",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Dōmyu Dominators"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r018-s2",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Dōmyu Dominators"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r019-s1",
+  "teams": [
+   "Xenar Ignite",
+   "Khemara Sunscourge"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r019-s2",
+  "teams": [
+   "Xenar Ignite",
+   "Khemara Sunscourge"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r020-s1",
+  "teams": [
+   "Kalundu Shockwave",
+   "Ala Apex"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r020-s2",
+  "teams": [
+   "Kalundu Shockwave",
+   "Ala Apex"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r021-s1",
+  "teams": [
+   "Wibatu Rangers",
+   "Yukïma Cowhands"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r021-s2",
+  "teams": [
+   "Wibatu Rangers",
+   "Yukïma Cowhands"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r022-s1",
+  "teams": [
+   "Nuk’yl Chiefs",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r022-s2",
+  "teams": [
+   "Nuk’yl Chiefs",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r023-s1",
+  "teams": [
+   "Zafiren Tidewings",
+   "Hina’sola Hunters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r023-s2",
+  "teams": [
+   "Zafiren Tidewings",
+   "Hina’sola Hunters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r024-s1",
+  "teams": [
+   "Ursiria 65ers",
+   "Kasuf Bloodravens"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r024-s2",
+  "teams": [
+   "Ursiria 65ers",
+   "Kasuf Bloodravens"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r025-s1",
+  "teams": [
+   "Güunlekia Serpents",
+   "Garvian Guardians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r025-s2",
+  "teams": [
+   "Güunlekia Serpents",
+   "Garvian Guardians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r026-s1",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Xenar Ignite"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r026-s2",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Xenar Ignite"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r027-s1",
+  "teams": [
+   "Güunlekia Serpents",
+   "Wibatu Rangers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r027-s2",
+  "teams": [
+   "Güunlekia Serpents",
+   "Wibatu Rangers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r028-s1",
+  "teams": [
+   "Bryjeer Flame Devils",
+   "Ala Marauders"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r028-s2",
+  "teams": [
+   "Bryjeer Flame Devils",
+   "Ala Marauders"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r029-s1",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Ashkara Ignivars"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r029-s2",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Ashkara Ignivars"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r030-s1",
+  "teams": [
+   "Garvian Guardians",
+   "Kalundu Shockwave"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r030-s2",
+  "teams": [
+   "Garvian Guardians",
+   "Kalundu Shockwave"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r031-s1",
+  "teams": [
+   "Garahviq Immortals",
+   "Yukïma Cowhands"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r031-s2",
+  "teams": [
+   "Garahviq Immortals",
+   "Yukïma Cowhands"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r032-s1",
+  "teams": [
+   "G’Yanka Vanagu",
+   "Dōmyu Dominators"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r032-s2",
+  "teams": [
+   "G’Yanka Vanagu",
+   "Dōmyu Dominators"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r033-s1",
+  "teams": [
+   "Ursiria 65ers",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r033-s2",
+  "teams": [
+   "Ursiria 65ers",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r034-s1",
+  "teams": [
+   "Priya Arpaqu",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r034-s2",
+  "teams": [
+   "Priya Arpaqu",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r035-s1",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Ala Apex"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r035-s2",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Ala Apex"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r036-s1",
+  "teams": [
+   "Ndumba Specters",
+   "Hina’sola Hunters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r036-s2",
+  "teams": [
+   "Ndumba Specters",
+   "Hina’sola Hunters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r037-s1",
+  "teams": [
+   "Khemara Sunscourge",
+   "Kasuf Bloodravens"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r037-s2",
+  "teams": [
+   "Khemara Sunscourge",
+   "Kasuf Bloodravens"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r038-s1",
+  "teams": [
+   "Zafiren Tidewings",
+   "Lykessia Wolverines"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r038-s2",
+  "teams": [
+   "Zafiren Tidewings",
+   "Lykessia Wolverines"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r039-s1",
+  "teams": [
+   "Garvian Guardians",
+   "Garahviq Immortals"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r039-s2",
+  "teams": [
+   "Garvian Guardians",
+   "Garahviq Immortals"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r040-s1",
+  "teams": [
+   "Güunlekia Serpents",
+   "Khemara Sunscourge"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r040-s2",
+  "teams": [
+   "Güunlekia Serpents",
+   "Khemara Sunscourge"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r041-s1",
+  "teams": [
+   "Zafiren Tidewings",
+   "Wibatu Rangers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r041-s2",
+  "teams": [
+   "Zafiren Tidewings",
+   "Wibatu Rangers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r042-s1",
+  "teams": [
+   "Bryjeer Flame Devils",
+   "Kalundu Shockwave"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r042-s2",
+  "teams": [
+   "Bryjeer Flame Devils",
+   "Kalundu Shockwave"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r043-s1",
+  "teams": [
+   "Ala Marauders",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r043-s2",
+  "teams": [
+   "Ala Marauders",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r044-s1",
+  "teams": [
+   "Dōmyu Dominators",
+   "Yukïma Cowhands"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r044-s2",
+  "teams": [
+   "Dōmyu Dominators",
+   "Yukïma Cowhands"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r045-s1",
+  "teams": [
+   "Priya Arpaqu",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r045-s2",
+  "teams": [
+   "Priya Arpaqu",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r046-s1",
+  "teams": [
+   "Ndumba Specters",
+   "Xenar Ignite"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r046-s2",
+  "teams": [
+   "Ndumba Specters",
+   "Xenar Ignite"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r047-s1",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Mbuya Ïmu Moonhawks"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r047-s2",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Mbuya Ïmu Moonhawks"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r048-s1",
+  "teams": [
+   "Ala Apex",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r048-s2",
+  "teams": [
+   "Ala Apex",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r049-s1",
+  "teams": [
+   "Lykessia Wolverines",
+   "Hina’sola Hunters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r049-s2",
+  "teams": [
+   "Lykessia Wolverines",
+   "Hina’sola Hunters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r050-s1",
+  "teams": [
+   "Ndomiri Sentinels",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r050-s2",
+  "teams": [
+   "Ndomiri Sentinels",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r051-s1",
+  "teams": [
+   "Ashkara Ignivars",
+   "Ursiria 65ers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r051-s2",
+  "teams": [
+   "Ashkara Ignivars",
+   "Ursiria 65ers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r052-s1",
+  "teams": [
+   "Garahviq Immortals",
+   "Ndumba Specters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r052-s2",
+  "teams": [
+   "Garahviq Immortals",
+   "Ndumba Specters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r053-s1",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Ala Marauders"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r053-s2",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Ala Marauders"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r054-s1",
+  "teams": [
+   "Ala Apex",
+   "Ndomiri Sentinels"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r054-s2",
+  "teams": [
+   "Ala Apex",
+   "Ndomiri Sentinels"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r055-s1",
+  "teams": [
+   "Garvian Guardians",
+   "Yukïma Cowhands"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r055-s2",
+  "teams": [
+   "Garvian Guardians",
+   "Yukïma Cowhands"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r056-s1",
+  "teams": [
+   "Wibatu Rangers",
+   "Ashkara Ignivars"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r056-s2",
+  "teams": [
+   "Wibatu Rangers",
+   "Ashkara Ignivars"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r057-s1",
+  "teams": [
+   "Güunlekia Serpents",
+   "Zafiren Tidewings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r057-s2",
+  "teams": [
+   "Güunlekia Serpents",
+   "Zafiren Tidewings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r058-s1",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r058-s2",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r059-s1",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r059-s2",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r060-s1",
+  "teams": [
+   "Isu’Kari Sirenwings",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r060-s2",
+  "teams": [
+   "Isu’Kari Sirenwings",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r061-s1",
+  "teams": [
+   "Lykessia Wolverines",
+   "Kalundu Shockwave"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r061-s2",
+  "teams": [
+   "Lykessia Wolverines",
+   "Kalundu Shockwave"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r062-s1",
+  "teams": [
+   "Khemara Sunscourge",
+   "Ursiria 65ers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r062-s2",
+  "teams": [
+   "Khemara Sunscourge",
+   "Ursiria 65ers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r063-s1",
+  "teams": [
+   "Priya Arpaqu",
+   "Hina’sola Hunters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r063-s2",
+  "teams": [
+   "Priya Arpaqu",
+   "Hina’sola Hunters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r064-s1",
+  "teams": [
+   "Xenar Ignite",
+   "Dōmyu Dominators"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r064-s2",
+  "teams": [
+   "Xenar Ignite",
+   "Dōmyu Dominators"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r065-s1",
+  "teams": [
+   "Ashkara Ignivars",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r065-s2",
+  "teams": [
+   "Ashkara Ignivars",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r066-s1",
+  "teams": [
+   "G’Yanka Vanagu",
+   "Khemara Sunscourge"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r066-s2",
+  "teams": [
+   "G’Yanka Vanagu",
+   "Khemara Sunscourge"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r067-s1",
+  "teams": [
+   "Zafiren Tidewings",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r067-s2",
+  "teams": [
+   "Zafiren Tidewings",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r068-s1",
+  "teams": [
+   "Yukïma Cowhands",
+   "Lykessia Wolverines"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r068-s2",
+  "teams": [
+   "Yukïma Cowhands",
+   "Lykessia Wolverines"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r069-s1",
+  "teams": [
+   "Priya Arpaqu",
+   "Kasuf Bloodravens"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r069-s2",
+  "teams": [
+   "Priya Arpaqu",
+   "Kasuf Bloodravens"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r070-s1",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Kalundu Shockwave"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r070-s2",
+  "teams": [
+   "Bibi Nupi Barbarians",
+   "Kalundu Shockwave"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r071-s1",
+  "teams": [
+   "Ala Apex",
+   "Ursiria 65ers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r071-s2",
+  "teams": [
+   "Ala Apex",
+   "Ursiria 65ers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r072-s1",
+  "teams": [
+   "Wibatu Rangers",
+   "Dōmyu Dominators"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r072-s2",
+  "teams": [
+   "Wibatu Rangers",
+   "Dōmyu Dominators"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r073-s1",
+  "teams": [
+   "Ala Marauders",
+   "Xenar Ignite"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r073-s2",
+  "teams": [
+   "Ala Marauders",
+   "Xenar Ignite"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r074-s1",
+  "teams": [
+   "Hina’sola Hunters",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r074-s2",
+  "teams": [
+   "Hina’sola Hunters",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r075-s1",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Garahviq Immortals"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r075-s2",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Garahviq Immortals"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r076-s1",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Garvian Guardians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r076-s2",
+  "teams": [
+   "Ndomiri Sentinels",
+   "Garvian Guardians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r077-s1",
+  "teams": [
+   "Güunlekia Serpents",
+   "Ndumba Specters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r077-s2",
+  "teams": [
+   "Güunlekia Serpents",
+   "Ndumba Specters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r078-s1",
+  "teams": [
+   "Ndumba Specters",
+   "Kalundu Shockwave"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r078-s2",
+  "teams": [
+   "Ndumba Specters",
+   "Kalundu Shockwave"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r079-s1",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Ursiria 65ers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r079-s2",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Ursiria 65ers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r080-s1",
+  "teams": [
+   "Ala Marauders",
+   "Priya Arpaqu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r080-s2",
+  "teams": [
+   "Ala Marauders",
+   "Priya Arpaqu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r081-s1",
+  "teams": [
+   "Xenar Ignite",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r081-s2",
+  "teams": [
+   "Xenar Ignite",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r082-s1",
+  "teams": [
+   "Isu’Kari Sirenwings",
+   "Lykessia Wolverines"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r082-s2",
+  "teams": [
+   "Isu’Kari Sirenwings",
+   "Lykessia Wolverines"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r083-s1",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Ala Apex"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r083-s2",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Ala Apex"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r084-s1",
+  "teams": [
+   "Hina’sola Hunters",
+   "Wibatu Rangers"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r084-s2",
+  "teams": [
+   "Hina’sola Hunters",
+   "Wibatu Rangers"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r085-s1",
+  "teams": [
+   "Garahviq Immortals",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r085-s2",
+  "teams": [
+   "Garahviq Immortals",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r086-s1",
+  "teams": [
+   "Nuk’yl Chiefs",
+   "Ashkara Ignivars"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r086-s2",
+  "teams": [
+   "Nuk’yl Chiefs",
+   "Ashkara Ignivars"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r087-s1",
+  "teams": [
+   "Garvian Guardians",
+   "Dōmyu Dominators"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r087-s2",
+  "teams": [
+   "Garvian Guardians",
+   "Dōmyu Dominators"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r088-s1",
+  "teams": [
+   "Khemara Sunscourge",
+   "Zafiren Tidewings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r088-s2",
+  "teams": [
+   "Khemara Sunscourge",
+   "Zafiren Tidewings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r089-s1",
+  "teams": [
+   "Yukïma Cowhands",
+   "Ndomiri Sentinels"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r089-s2",
+  "teams": [
+   "Yukïma Cowhands",
+   "Ndomiri Sentinels"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r090-s1",
+  "teams": [
+   "Güunlekia Serpents",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r090-s2",
+  "teams": [
+   "Güunlekia Serpents",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r091-s1",
+  "teams": [
+   "Lykessia Wolverines",
+   "Ndumba Specters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r091-s2",
+  "teams": [
+   "Lykessia Wolverines",
+   "Ndumba Specters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r092-s1",
+  "teams": [
+   "Ala Apex",
+   "Garvian Guardians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r092-s2",
+  "teams": [
+   "Ala Apex",
+   "Garvian Guardians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r093-s1",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r093-s2",
+  "teams": [
+   "Kasuf Bloodravens",
+   "Bibi Nupi Barbarians"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r094-s1",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r094-s2",
+  "teams": [
+   "Mbuya Ïmu Moonhawks",
+   "Bryjeer Flame Devils"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r095-s1",
+  "teams": [
+   "Ursiria 65ers",
+   "Hina’sola Hunters"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r095-s2",
+  "teams": [
+   "Ursiria 65ers",
+   "Hina’sola Hunters"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r096-s1",
+  "teams": [
+   "Ala Marauders",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r096-s2",
+  "teams": [
+   "Ala Marauders",
+   "G’Yanka Vanagu"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r097-s1",
+  "teams": [
+   "Yukïma Cowhands",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r097-s2",
+  "teams": [
+   "Yukïma Cowhands",
+   "Isu’Kari Sirenwings"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r098-s1",
+  "teams": [
+   "Wibatu Rangers",
+   "Kalundu Shockwave"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r098-s2",
+  "teams": [
+   "Wibatu Rangers",
+   "Kalundu Shockwave"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "r099-s1",
+  "teams": [
+   "Garahviq Immortals",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "r099-s2",
+  "teams": [
+   "Garahviq Immortals",
+   "Nuk’yl Chiefs"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "ga-s01",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 1
+ },
+ {
+  "id": "ga-s02",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 2
+ },
+ {
+  "id": "ga-s03",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 3
+ },
+ {
+  "id": "ga-s04",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 4
+ },
+ {
+  "id": "ga-s05",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 5
+ },
+ {
+  "id": "ga-s06",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 6
+ },
+ {
+  "id": "ga-s07",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 7
+ },
+ {
+  "id": "ga-s08",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 8
+ },
+ {
+  "id": "ga-s09",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 9
+ },
+ {
+  "id": "ga-s10",
+  "teams": [
+   "Garvian Guardians",
+   "Ala Apex"
+  ],
+  "seed": 10
+ }
+]
