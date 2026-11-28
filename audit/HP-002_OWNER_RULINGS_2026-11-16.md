@@ -223,3 +223,10 @@ breaking the plane is a carry goal. Context: the A6 soak called about 10.3 held-
 2. Archer volume: (a) a universal shooting cycle (draw-aim-release time scaled by the Archer's ratings, like other
    abilities) AND (c) an arrow/freeze budget per period or per match in place of the per-possession limits
    (15 arrows / 5 freezes). Budget size to be chosen by the owner from trial evidence.
+
+## 2026-11-28 — Archer rating names (owner)
+- The current Archer decision rating "Disruption" becomes the top agent "Archery" (values migrate to Archery).
+- Two sub-agents under Archery: "Disruption" = the ball-carrier strike decision (new rating); "Suppression" = the
+  off-ball strike decision (new rating). Activity-noun form, like the other ratings.
+- The technique rating "Archery Accuracy" is renamed "Bow Accuracy".
+- Pending: separate per-period freeze quotas for carrier and off-ball (sizes and the empty-quota rule to be set).
